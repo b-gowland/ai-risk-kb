@@ -1,0 +1,149 @@
+---
+id: a2-model-drift
+title: "A2 — Model Drift / Performance Degradation"
+sidebar_label: "A2 — Model Drift"
+sidebar_position: 2
+tags: [technical, monitoring, medium-severity]
+last_verified: 2026-03-28
+next_review: 2026-09-28
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# A2 — Model Drift / Performance Degradation
+
+<div style={{display:'flex',gap:'0.5rem',flexWrap:'wrap',marginBottom:'1.5rem'}}>
+  <span className="severity-badge severity-medium">Medium severity</span>
+  <span className="framework-chip">ISO 42001 Cl. 9.1</span>
+  <span className="framework-chip">EU AI Act Art. 9(7)</span>
+  <span className="framework-chip">APRA CPS 230</span>
+</div>
+
+**Domain:** A — Technical | **Jurisdiction:** Global
+
+---
+
+## Layer 1 — Executive card
+
+> AI model performance degrades over time as the real world shifts away from training conditions — silently, without visible error, until the consequences become apparent downstream.
+
+Unlike traditional software, AI models can become less accurate over time as the world changes around them. A fraud detection model trained before COVID misclassified lockdown-era transactions. An underwriting model trained before interest rate rises mispriced risk. The model does not alert you — it continues producing outputs that are increasingly wrong.
+
+<div className="key-question">
+Can we confirm that every deployed AI model has active performance monitoring and defined thresholds that trigger review or retraining?
+</div>
+
+<Tabs>
+  <TabItem value="executive" label="Executive / Board">
+  If your organisation makes decisions based on AI models — credit, fraud, underwriting, claims — and those models are not actively monitored, you may be acting on increasingly unreliable outputs without knowing it. The audit finding means your monitoring framework is insufficient. Approving remediation means investing in monitoring infrastructure that tells you when a model is no longer performing as expected.
+  </TabItem>
+  <TabItem value="pm" label="Project Manager">
+  Before going live with any predictive AI model, confirm that a monitoring framework will be active from day one. You need sign-off that drift detection is configured, performance thresholds are defined, retraining triggers are documented, and a named owner is responsible for acting when thresholds are breached. These are Technology deliverables with Risk oversight.
+  </TabItem>
+  <TabItem value="analyst" label="Security Analyst">
+  Model drift affects you when security AI systems — SIEM anomaly detection, fraud scoring, access risk models — degrade silently. A degraded fraud model that misses attack patterns is a security control failure. Ensure security AI systems have defined performance thresholds and retraining triggers, and that degradation alerts route to security.
+  </TabItem>
+</Tabs>
+
+---
+
+## Layer 2 — Practitioner overview
+
+### Risk description
+
+AI models are trained at a point in time on data reflecting the world as it was. Three mechanisms drive degradation: data drift (input distribution changes), concept drift (the relationship the model learned no longer holds), and model decay (representations become stale without identifiable input changes). Because models rarely fail visibly when drifting, degradation can persist undetected for months.
+
+### Likelihood drivers
+- No monitoring framework in place post-deployment
+- No scheduled review dates in the AI Register
+- Rapidly changing external environment (inflation, economic shocks, regulatory change)
+- Continuous learning systems updating from potentially shifted incoming data
+
+### Consequence types
+| Type | Example |
+|------|---------|
+| Financial loss | Underwriting model pricing stale risk relationships |
+| Operational degradation | Claims triage model becoming systematically inaccurate |
+| Customer harm | Fraud model false-positive spike affecting legitimate customers |
+| Regulatory exposure | Model performance no longer meets documented standards |
+
+### Affected functions
+Risk · Actuarial · Credit · Fraud · Claims · Underwriting · Operations
+
+### Controls summary
+
+| Control | Owner | Effort | Go-live? | Definition of done |
+|---------|-------|--------|----------|--------------------|
+| Continuous performance monitoring | Technology | Medium | <span className="required-badge required-golive">Required</span> | Automated monitoring tracks metrics on 30-day rolling window. Dashboard reviewed monthly. Alerts fire on threshold breach. |
+| Drift detection | Technology | Medium | <span className="required-badge required-golive">Required</span> | Statistical drift detection on primary features. Alert threshold defined and documented. |
+| Retraining triggers | Risk | Low | <span className="required-badge required-golive">Required</span> | Retraining triggers documented in AI Register. Named owner responsible for acting. |
+| Scheduled periodic review | Risk | Low | <span className="required-badge required-post">Post-launch</span> | AI Register includes review date (max 12 months). Review completed at least once. |
+
+---
+
+## Layer 3 — Controls detail
+
+### A2-001 — Continuous performance monitoring
+**Owner:** Technology | **Type:** Detective | **Effort:** Medium | **Go-live required:** Yes
+
+Track accuracy, precision, recall, F1, or domain-relevant KPIs on a rolling schedule against a held-out validation set. Dashboard reviewed at minimum monthly by the model owner.
+
+### A2-002 — Statistical drift detection
+**Owner:** Technology | **Type:** Detective | **Effort:** Medium | **Go-live required:** Yes
+
+Implement PSI (Population Stability Index) on continuous features. PSI > 0.2 indicates significant drift. Apply KS test for distribution shift. SHAP value tracking detects concept drift. Alert threshold documented in model risk record.
+
+### A2-003 — Retraining triggers
+**Owner:** Risk | **Type:** Corrective | **Effort:** Low | **Go-live required:** Yes
+
+Define thresholds at which performance degradation triggers retraining or revalidation. Document in the model risk record. Include scheduled quarterly trigger regardless of metric status.
+
+### KPIs
+| Metric | Target | Frequency |
+|--------|--------|-----------|
+| PSI on primary features | < 0.2 | Weekly |
+| Model performance vs baseline | < 5% degradation | Monthly |
+
+---
+
+## Layer 4 — Technical implementation
+
+```python
+from scipy import stats
+import numpy as np
+
+def calculate_psi(expected, actual, buckets=10):
+    """Population Stability Index. PSI > 0.2 = significant drift."""
+    breakpoints = np.arange(0, buckets + 1) / buckets * 100
+    expected_percents = np.diff(np.percentile(expected, breakpoints)) / len(expected)
+    actual_percents = np.diff(np.percentile(actual, breakpoints)) / len(actual)
+    psi = np.sum((actual_percents - expected_percents) *
+                 np.log(actual_percents / expected_percents + 1e-10))
+    return psi
+
+# Monitoring stack: Evidently AI, WhyLabs, Arize Phoenix
+# Feature store: Feast, Tecton
+# Experiment tracking: MLflow, Weights & Biases
+```
+
+---
+
+## Incident examples
+
+**Fraud detection model post-COVID (2020):** Fraud detection models trained pre-COVID misclassified legitimate lockdown-era transactions as fraud due to shifted spending patterns. False positive rates spiked, causing customer experience degradation across multiple financial institutions before models were retrained.
+
+**Underwriting model post-rate rises (2022–2023):** Multiple insurers' ML underwriting models trained on pre-rate-rise data continued to price policies using stale risk relationships. Actual loss ratios diverged materially from model predictions over 12–18 months.
+
+---
+
+## Scenario seed
+**Context:** A bank's fraud detection model has been in production for 18 months. No monitoring framework exists.
+
+**Trigger:** The risk team receives an unexplained spike in customer complaints about legitimate transactions being declined.
+
+**Complicating factor:** The model's aggregate accuracy metric (measured quarterly) has not degraded — the drift is concentrated in a specific customer segment not well-represented in the validation set.
+
+**Discussion questions:** What monitoring would have detected this earlier? How do you investigate drift when aggregate metrics look healthy? Who is accountable for this outcome?
+
+**Difficulty:** Intermediate | **Jurisdictions:** AU, Global

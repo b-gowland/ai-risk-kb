@@ -1,0 +1,104 @@
+---
+id: e1-algorithmic-bias
+title: "E1ALGORITHMICBIAS — Algorithmic Bias & Discrimination"
+sidebar_label: "E1 — Algorithmic Bias"
+sidebar_position: 1
+tags: [e, high-severity]
+last_verified: 2026-03-28
+next_review: 2026-09-28
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# E1 — Algorithmic Bias & Discrimination
+
+<div style={{display:'flex',gap:'0.5rem',flexWrap:'wrap',marginBottom:'1.5rem'}}>
+  <span className="severity-badge severity-high severity">High severity</span>
+  <span className="framework-chip">EU AI Act Art. 10</span> <span className="framework-chip">NIST AI RMF MEASURE 2.11</span> <span className="framework-chip">Colorado SB21-169</span> <span className="framework-chip">ASIC RG 271</span>
+</div>
+
+**Domain:** E — Fairness & Social | **Jurisdiction:** AU, EU, US, Global
+
+---
+
+## Layer 1 — Executive card
+
+> AI models produce systematically different outcomes for individuals based on protected characteristics — even when those characteristics are not explicit inputs.
+
+AI models can produce systematically worse outcomes for people from certain groups based on protected characteristics — through proxy variables. Postcode correlates with race. Name patterns correlate with gender. A model can learn these correlations and reproduce discriminatory outcomes without ever receiving race or gender as an input. The SafeRent settlement ($2.275M, November 2024) established that algorithmic discrimination is an enforceable legal liability.
+
+<div className="key-question">
+Has disaggregated fairness testing been completed for every AI system making decisions about people — measuring model performance separately across demographic subgroups, not just overall accuracy?
+</div>
+
+<Tabs>
+  <TabItem value="executive" label="Executive / Board">
+  If your organisation uses AI for any decision affecting people — credit, insurance, employment, housing, benefits — fairness testing is a compliance requirement. The SafeRent settlement ($2.275M, November 2024) established this. The audit finding means fairness testing has not been conducted. What you are approving is pre-deployment bias testing and ongoing fairness monitoring.
+  </TabItem>
+  <TabItem value="pm" label="Project Manager">
+  Before any AI system making or influencing decisions about people goes live, disaggregated fairness testing must be completed and documented. Technology and Data Science own the testing; Risk and Compliance must review the results. If testing reveals significant performance disparities, the system should not go live until those disparities are addressed.
+  </TabItem>
+  <TabItem value="analyst" label="Security Analyst">
+  Algorithmic bias affects your work if AI is used in access control, identity verification, or security screening. A biased identity verification model produces systematically higher false rejection rates for certain groups — both a discrimination issue and a security operations issue.
+  </TabItem>
+</Tabs>
+
+---
+
+## Layer 2 — Practitioner overview
+
+### Likelihood drivers
+- Pre-deployment bias testing not conducted
+- Protected attributes used directly or proxied through correlated features
+- Training data reflects historical discrimination patterns
+- Fairness metrics not defined or monitored post-deployment
+- Independent fairness audits not conducted for high-stakes use cases
+
+### Consequence types
+| Type | Example |
+|------|---------|
+| Regulatory enforcement | Anti-discrimination law, EU AI Act |
+| Legal liability | Class action for discriminatory AI outcomes — SafeRent $2.275M (2024) |
+| Reputational harm | Public bias findings |
+| Market access loss | Systems withdrawn or restricted by regulators |
+
+### Affected functions
+Legal · Compliance · Risk · Technology · HR · Credit · Insurance
+
+### Controls summary
+
+| Control | Owner | Effort | Go-live? | Definition of done |
+|---------|-------|--------|----------|--------------------|
+| Pre-deployment bias testing (disaggregated metrics) | Technology | Medium | <span className="required-badge required-golive">Required</span> | Model performance measured across all relevant demographic subgroups. Disaggregated metrics documented. Reviewed by Risk and Compliance. No material unexplained disparity without accepted residual risk decision. |
+| Fairness metrics definition | Risk | Low | <span className="required-badge required-golive">Required</span> | Relevant fairness metrics and acceptable thresholds defined and signed off by Risk and Legal before deployment. |
+| Ongoing fairness monitoring | Technology | Medium | <span className="required-badge required-post">Post-launch</span> | Fairness metrics included in production monitoring dashboard. Degradation in fairness metrics triggers review. |
+| Independent fairness audit | Compliance | High | <span className="required-badge required-post">Post-launch</span> | For high-stakes AI (credit, insurance, employment): independent third-party bias audit conducted at defined intervals. Results and remediation documented. |
+
+---
+
+## Layer 3 — Controls detail
+
+*See Layer 2 controls summary for ownership, effort, and go-live requirements. Full implementation guidance follows.*
+
+Refer to the controls summary table above for the definitive list of controls for this risk. Detailed control descriptions, jurisdiction notes, and KPIs are maintained in the source schema files and will be published in a forthcoming update.
+
+---
+
+## Incident examples
+
+**SafeRent settlement $2.275M (November 2024):** SafeRent's AI tenant screening system used housing voucher status as a proxy for race, disproportionately harming Black and Hispanic applicants. Final court approval November 2024, Louis et al. v. SafeRent Solutions (D. Mass., Case No. 1:22-cv-10800).
+
+**UK Home Office visa AI (2020):** UK Home Office visa processing AI flagged applications from certain nationalities at higher rates than statistical risk warranted. Discrimination investigation followed.
+
+---
+
+## Scenario seed
+
+**Context:** An insurer deploys a telematics AI that scores driving risk based on GPS and accelerometer data.
+
+**Trigger:** A fairness analysis reveals drivers in minority-majority postcodes receive significantly higher risk scores after controlling for actual driving behaviour.
+
+**Difficulty:** Advanced | **Jurisdictions:** AU, EU, US
+
+*[Full scenario with discussion questions available in the AI Risk Training Module — coming soon.]*

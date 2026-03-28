@@ -1,0 +1,103 @@
+---
+id: d3-intellectual-property
+title: "D3INTELLECTUALPROPERTY — Intellectual Property & Copyright"
+sidebar_label: "D3 — IP & Copyright"
+sidebar_position: 3
+tags: [d, medium-severity]
+last_verified: 2026-03-28
+next_review: 2026-09-28
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# D3 — Intellectual Property & Copyright
+
+<div style={{display:'flex',gap:'0.5rem',flexWrap:'wrap',marginBottom:'1.5rem'}}>
+  <span className="severity-badge severity-medium severity">Medium severity</span>
+  <span className="framework-chip">EU AI Act Art. 53</span> <span className="framework-chip">Australian Copyright Act 1968</span> <span className="framework-chip">NIST AI 600-1</span> <span className="framework-chip">EU DSM Art. 4</span>
+</div>
+
+**Domain:** D — Data | **Jurisdiction:** AU, EU, US, Global
+
+---
+
+## Layer 1 — Executive card
+
+> AI systems trained on publicly available content may reproduce copyrighted material, and AI-generated code may carry licence contamination risks.
+
+AI-generated content may reproduce copyrighted material without attribution or licence. AI-generated code may include GPL-licensed segments that contaminate proprietary codebases. Multiple class-action lawsuits have been filed against AI providers (OpenAI, Google, Stability AI, GitHub Copilot) for training on copyrighted content without authorisation. The organisational risk operates at two levels: outbound (content you publish) and inbound (your IP submitted to external AI tools).
+
+<div className="key-question">
+Do we have human review and licence scanning in place for AI-generated content and code before it is used in production or published externally?
+</div>
+
+<Tabs>
+  <TabItem value="executive" label="Executive / Board">
+  AI-generated content or code may reproduce copyrighted material. GPL contamination in AI-generated code is a particular risk for proprietary codebases. The audit finding means AI-generated outputs are not currently reviewed for IP compliance before use.
+  </TabItem>
+  <TabItem value="pm" label="Project Manager">
+  Before any AI-generated content or code goes into production or is published externally, confirm: a human review has checked for verbatim reproduction of third-party material; AI-generated code has been scanned for licence-incompatible segments; internal records track which content is AI-generated. Legal owns IP policy; Technology owns scanning tools.
+  </TabItem>
+  <TabItem value="analyst" label="Security Analyst">
+  IP and copyright are primarily Legal domain. Your interest is in the inbound risk: if your organisation's proprietary code or documents are submitted to external AI tools, that IP may enter those tools' training pipelines. Confirm DLP controls cover AI tool inputs and acceptable use policy prohibits submitting proprietary IP to unapproved tools.
+  </TabItem>
+</Tabs>
+
+---
+
+## Layer 2 — Practitioner overview
+
+### Likelihood drivers
+- AI-generated content published without human review for third-party reproduction
+- AI tools used for code generation without licence compatibility checking
+- Organisational IP submitted to external AI tools without enterprise data protection terms
+- No policy on AI-generated content documentation
+
+### Consequence types
+| Type | Example |
+|------|---------|
+| IP infringement claim | Copyright holders claim reproduction in AI-generated outputs |
+| Licence contamination | GPL-licensed segments in proprietary codebase |
+| IP loss | Proprietary content submitted to external AI training pipelines |
+| Reputational harm | Public IP infringement findings |
+
+### Affected functions
+Legal · Technology · Compliance · Marketing · Research
+
+### Controls summary
+
+| Control | Owner | Effort | Go-live? | Definition of done |
+|---------|-------|--------|----------|--------------------|
+| Output review policy for AI-generated content | Legal | Low | <span className="required-badge required-golive">Required</span> | Policy requires human review of AI-generated content before publication checking for verbatim reproduction. Documented and communicated. |
+| Code licence scanning | Technology | Low | <span className="required-badge required-golive">Required</span> | AI-generated code scanned for licence-incompatible segments before inclusion in production codebase. Integrated into CI/CD or code review process. |
+| AI-generated content labelling | Technology | Low | <span className="required-badge required-post">Post-launch</span> | Internal records maintained identifying AI-generated content. Labelling applied before content enters production or is published. |
+| Vendor training data documentation | Procurement | Low | <span className="required-badge required-golive">Required</span> | AI vendors have provided documentation on training data provenance and copyright compliance per EU AI Act Art. 53(1)(d). |
+
+---
+
+## Layer 3 — Controls detail
+
+*See Layer 2 controls summary for ownership, effort, and go-live requirements. Full implementation guidance follows.*
+
+Refer to the controls summary table above for the definitive list of controls for this risk. Detailed control descriptions, jurisdiction notes, and KPIs are maintained in the source schema files and will be published in a forthcoming update.
+
+---
+
+## Incident examples
+
+**Class-action lawsuits against AI providers (2023–2025):** Multiple class-action lawsuits filed against OpenAI, Google, Stability AI, and GitHub Copilot for training on copyrighted content without authorisation. Cases ongoing and establishing the legal framework for AI IP liability.
+
+**GPL contamination via code generation (documented risk):** AI-generated code found to include segments from GPL-licensed open-source projects, creating licensing obligations for proprietary codebases when such code is included without licence review.
+
+---
+
+## Scenario seed
+
+**Context:** A development team uses an AI coding assistant to accelerate development. Code is reviewed for functionality but not licence compatibility.
+
+**Trigger:** A legal audit flags a function in the production codebase that is nearly identical to GPL-licensed open-source code.
+
+**Difficulty:** Foundational | **Jurisdictions:** AU, EU, US
+
+*[Full scenario with discussion questions available in the AI Risk Training Module — coming soon.]*

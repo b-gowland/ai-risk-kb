@@ -1,0 +1,105 @@
+---
+id: b4-supply-chain
+title: "B4SUPPLYCHAIN — Third-Party / Supply Chain AI Risk"
+sidebar_label: "B4 — Supply Chain"
+sidebar_position: 4
+tags: [b, high-severity]
+last_verified: 2026-03-28
+next_review: 2026-09-28
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# B4 — Third-Party / Supply Chain AI Risk
+
+<div style={{display:'flex',gap:'0.5rem',flexWrap:'wrap',marginBottom:'1.5rem'}}>
+  <span className="severity-badge severity-high severity">High severity</span>
+  <span className="framework-chip">EU AI Act Art. 53/55</span> <span className="framework-chip">NIST AI RMF GOVERN 1.6</span> <span className="framework-chip">APRA CPS 230</span> <span className="framework-chip">ISO 27001/27036</span>
+</div>
+
+**Domain:** B — Governance | **Jurisdiction:** AU, EU, US, Global
+
+---
+
+## Layer 1 — Executive card
+
+> AI risk introduced through vendors, suppliers, open-source components, and upstream model providers — inherited without visibility.
+
+Most organisations deploying AI are not building models from scratch — they are integrating third-party AI components, using foundation models via API, or deploying vendor-built applications. Each layer introduces risk the deploying organisation may not be able to observe or control. Traditional vendor risk management frameworks were not designed for AI-specific risks: training data provenance, upstream model changes, data use in training.
+
+<div className="key-question">
+Can we confirm that every AI vendor has provided an AI Bill of Materials, that data processing agreements explicitly prevent training data use, and that we will receive advance notice of material model changes?
+</div>
+
+<Tabs>
+  <TabItem value="executive" label="Executive / Board">
+  When your organisation deploys a vendor AI tool, you inherit its risk profile — including risks from the vendor's own AI providers. The audit finding means your vendor risk processes do not cover AI-specific risks. You are approving an extension of TPRM to include AI-specific due diligence and a requirement for vendors to provide an AI Bill of Materials.
+  </TabItem>
+  <TabItem value="pm" label="Project Manager">
+  Before going live with any vendor AI tool, confirm AI-specific due diligence is complete: (1) does the vendor DPA confirm your data is not used for model training? (2) do you know which upstream AI providers the vendor uses? (3) will you receive advance notice if the underlying model changes? These are Procurement and Legal deliverables.
+  </TabItem>
+  <TabItem value="analyst" label="Security Analyst">
+  Supply chain AI risk is a direct security domain. A compromised open-source component in a vendor's AI stack, or a vendor using a non-enterprise API tier that logs your data, are security incidents. Your controls: require an AI-BOM from all AI vendors, verify cryptographic integrity of open-source model weights, confirm vendor API tier isolation.
+  </TabItem>
+</Tabs>
+
+---
+
+## Layer 2 — Practitioner overview
+
+### Likelihood drivers
+- No AI-specific questions in vendor due diligence questionnaires
+- Vendor contracts do not address AI-specific risks
+- Organisation uses standard API tier of public LLMs without confirming data protection terms
+- No AI-BOM requested from vendors
+- Supply chain visibility stops at immediate vendor
+
+### Consequence types
+| Type | Example |
+|------|---------|
+| Data exposure | Organisational data used to train public AI models |
+| Compliance breach | Vendor's AI non-compliant with applicable regulations |
+| Operational disruption | Undisclosed vendor model update changes production system behaviour |
+| IP exposure | Training data provenance creates copyright contamination risk |
+
+### Affected functions
+Procurement · Legal · Technology · Risk · Compliance
+
+### Controls summary
+
+| Control | Owner | Effort | Go-live? | Definition of done |
+|---------|-------|--------|----------|--------------------|
+| AI-specific vendor due diligence | Procurement | Low | <span className="required-badge required-golive">Required</span> | Standardised AI DDQ completed for all AI vendors. Covers model governance, GPAI sub-processors, training data use. Responses retained. |
+| AI Bill of Materials (AI-BOM) | Procurement | Low | <span className="required-badge required-golive">Required</span> | AI-BOM requested and received from all AI vendors identifying all components and upstream dependencies. |
+| DPA with AI sub-processors | Legal | Medium | <span className="required-badge required-golive">Required</span> | DPAs confirm: data not used for training, upstream AI providers named, data residency requirements met. Executed before data submitted. |
+| Enterprise API tier confirmation | Procurement | Low | <span className="required-badge required-golive">Required</span> | For any vendor using public LLM APIs, enterprise tier confirmed in writing including confirmation data not used for training. |
+| Vendor change notification requirement | Procurement | Low | <span className="required-badge required-post">Post-launch</span> | All vendor contracts require advance notice of material model changes. Minimum 30 days defined. |
+
+---
+
+## Layer 3 — Controls detail
+
+*See Layer 2 controls summary for ownership, effort, and go-live requirements. Full implementation guidance follows.*
+
+Refer to the controls summary table above for the definitive list of controls for this risk. Detailed control descriptions, jurisdiction notes, and KPIs are maintained in the source schema files and will be published in a forthcoming update.
+
+---
+
+## Incident examples
+
+**Samsung / ChatGPT data leak (2023):** Samsung engineers submitted proprietary source code and internal meeting notes to ChatGPT for assistance, potentially making that data available for model training. Samsung subsequently banned external AI tool use. Three separate incidents within 20 days.
+
+**npm supply chain attack (2025):** Compromised open-source Python/npm packages introduced malicious code affecting downstream model behaviour, demonstrating supply chain risk in AI dependencies.
+
+---
+
+## Scenario seed
+
+**Context:** An organisation uses a vendor AI for document processing. The vendor's standard API tier sends all submitted documents to a foundation model provider for inference.
+
+**Trigger:** The security team discovers the vendor's DPA does not explicitly prevent the foundation model provider from using submitted documents for training.
+
+**Difficulty:** Intermediate | **Jurisdictions:** AU, EU, Global
+
+*[Full scenario with discussion questions available in the AI Risk Training Module — coming soon.]*

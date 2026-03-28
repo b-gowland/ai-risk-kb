@@ -1,0 +1,104 @@
+---
+id: d1-training-data-quality
+title: "D1TRAININGDATAQUALITY — Training Data Quality & Representativeness"
+sidebar_label: "D1 — Training Data Quality"
+sidebar_position: 1
+tags: [d, high-severity]
+last_verified: 2026-03-28
+next_review: 2026-09-28
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# D1 — Training Data Quality & Representativeness
+
+<div style={{display:'flex',gap:'0.5rem',flexWrap:'wrap',marginBottom:'1.5rem'}}>
+  <span className="severity-badge severity-high severity">High severity</span>
+  <span className="framework-chip">EU AI Act Art. 10</span> <span className="framework-chip">NIST AI RMF MAP 1.5</span> <span className="framework-chip">ISO 42001 Cl. 8.2</span> <span className="framework-chip">IEEE P3119</span>
+</div>
+
+**Domain:** D — Data | **Jurisdiction:** AU, EU, US, Global
+
+---
+
+## Layer 1 — Executive card
+
+> AI model performance is fundamentally constrained by training data quality — biased, incomplete, or unrepresentative data produces models that systematically fail for underrepresented groups.
+
+An AI model learns what it is shown. Historical data reflects historical patterns of behaviour, inequity, and access. A model trained on historical hiring decisions learns those biases. A model trained on historical clinical data reflects historical healthcare inequities. The model does not have a normative view of what outcomes should be — it has a statistical view of what they were. These failures are systematic, affect specific subgroups, and are invisible without targeted testing.
+
+<div className="key-question">
+Has our training data been systematically assessed for coverage, subgroup representation, and historical bias before model training — and is that assessment documented?
+</div>
+
+<Tabs>
+  <TabItem value="executive" label="Executive / Board">
+  If the data your AI is trained on reflects historical inequities or excludes certain populations, the model will reproduce those limitations at scale affecting every decision it makes. The audit finding means training data has not been systematically assessed. Approving remediation means making data quality assessment a mandatory step in AI development.
+  </TabItem>
+  <TabItem value="pm" label="Project Manager">
+  Before go-live, confirm a data quality assessment has been completed for the training dataset. It should confirm: data represents the full population the model will be used on; known biases or gaps are documented; data provenance is traceable. Technology and Data Science own the assessment; Risk must sign off.
+  </TabItem>
+  <TabItem value="analyst" label="Security Analyst">
+  Data quality is primarily a Risk and Data Science domain, but it affects you when AI systems used in security contexts — access risk scoring, anomaly detection, identity verification — are trained on data that does not represent the full population. Underrepresented groups will have higher false positive or false negative rates, creating both an equity issue and a security gap.
+  </TabItem>
+</Tabs>
+
+---
+
+## Layer 2 — Practitioner overview
+
+### Likelihood drivers
+- No systematic data quality assessment before model training
+- Training data reflects historical period with known inequities
+- Training data does not include underrepresented groups in deployment population
+- No data lineage documentation
+- Synthetic data augmentation used without validation
+
+### Consequence types
+| Type | Example |
+|------|---------|
+| Discriminatory outcomes | Model systematically worse for underrepresented groups |
+| Regulatory enforcement | EU AI Act data governance, anti-discrimination law |
+| Legal liability | Class action for systematic discriminatory outcomes |
+| Operational failure | Model performs poorly on populations not in training data |
+
+### Affected functions
+Data Science · Risk · Legal · Compliance · Technology
+
+### Controls summary
+
+| Control | Owner | Effort | Go-live? | Definition of done |
+|---------|-------|--------|----------|--------------------|
+| Data profiling and quality assessment | Technology | Medium | <span className="required-badge required-golive">Required</span> | Systematic analysis of training data completed: coverage, subgroup representation, class balance, known biases. Report retained in model risk record. |
+| Data lineage documentation | Technology | Low | <span className="required-badge required-golive">Required</span> | Data provenance, transformations, and known biases documented for all training data sources. Accessible to audit. |
+| Regular data refresh schedule | Technology | Medium | <span className="required-badge required-post">Post-launch</span> | Data refresh schedule documented. Refresh completed at least once since initial deployment or approved plan with dates exists. |
+| Diverse and representative data sourcing | Technology | Medium | <span className="required-badge required-golive">Required</span> | Training data has been assessed to represent the full deployment population. Gaps documented and addressed or accepted residual risk recorded. |
+
+---
+
+## Layer 3 — Controls detail
+
+*See Layer 2 controls summary for ownership, effort, and go-live requirements. Full implementation guidance follows.*
+
+Refer to the controls summary table above for the definitive list of controls for this risk. Detailed control descriptions, jurisdiction notes, and KPIs are maintained in the source schema files and will be published in a forthcoming update.
+
+---
+
+## Incident examples
+
+**Facial recognition error rates (documented research 2018–2023):** Multiple studies including MIT Media Lab (Joy Buolamwini) documented significantly higher error rates for darker-skinned individuals in commercial facial recognition systems, leading to wrongful arrests. Root cause: training data predominantly lighter-skinned faces.
+
+**Amazon hiring AI discontinued (2018):** Amazon's resume screening AI downgraded applications from women, having learned from a historically male-dominated engineering hiring pool. Discontinued 2018, widely documented as a canonical warning case.
+
+---
+
+## Scenario seed
+
+**Context:** An insurer deploys an AI claims triage model trained on five years of historical claims data.
+
+**Trigger:** Six months post-deployment, a fairness audit reveals the model approves claims from metropolitan postcodes significantly faster than identical claims from regional and rural areas.
+
+**Difficulty:** Intermediate | **Jurisdictions:** AU, EU, US
+
+*[Full scenario with discussion questions available in the AI Risk Training Module — coming soon.]*

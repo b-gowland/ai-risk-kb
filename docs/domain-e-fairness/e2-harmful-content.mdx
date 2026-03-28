@@ -1,0 +1,106 @@
+---
+id: e2-harmful-content
+title: "E2HARMFULCONTENT — Harmful / Toxic Content Generation"
+sidebar_label: "E2 — Harmful Content"
+sidebar_position: 2
+tags: [e, high-severity]
+last_verified: 2026-03-28
+next_review: 2026-09-28
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# E2 — Harmful / Toxic Content Generation
+
+<div style={{display:'flex',gap:'0.5rem',flexWrap:'wrap',marginBottom:'1.5rem'}}>
+  <span className="severity-badge severity-high severity">High severity</span>
+  <span className="framework-chip">EU AI Act Art. 5</span> <span className="framework-chip">NIST AI 600-1</span> <span className="framework-chip">Australian eSafety Commissioner</span> <span className="framework-chip">AI6 Practice 6</span>
+</div>
+
+**Domain:** E — Fairness & Social | **Jurisdiction:** AU, EU, Global
+
+---
+
+## Layer 1 — Executive card
+
+> AI systems generate harmful, offensive, or illegal content — and generative AI dramatically lowers the barrier to producing such content at scale.
+
+Generative AI can produce hate speech, violent content, extremist material, self-harm facilitation, non-consensual intimate imagery, and instructions for dangerous activities. Multiple legal cases have been filed alleging AI chatbots played a role in serious harm to young users. The regulatory framework is demanding: EU AI Act Art. 5 prohibits certain categories absolutely.
+
+<div className="key-question">
+Have we completed adversarial safety red teaming before deployment, and do we have a rapid incident response process for reports of harmful AI outputs — including the ability to modify or withdraw the model?
+</div>
+
+<Tabs>
+  <TabItem value="executive" label="Executive / Board">
+  If your organisation deploys a consumer-facing AI, particularly accessible to vulnerable populations or minors, harmful content generation is a duty of care issue. Multiple legal cases have been filed. The audit finding means content safety controls are insufficient. You are approving investment in content classifiers, red teaming, and an incident response process for harmful outputs.
+  </TabItem>
+  <TabItem value="pm" label="Project Manager">
+  Before any consumer-facing generative AI goes live, confirm: content safety classifiers are deployed and tested; red teaming for harmful outputs is completed; an incident response process exists — including the ability to modify or withdraw the model quickly. If accessible to minors, age verification and context-sensitive guardrails are mandatory.
+  </TabItem>
+  <TabItem value="analyst" label="Security Analyst">
+  Content safety is primarily Technology and Legal domain, but you own the red teaming process. Your deliverable pre-deployment is a structured adversarial safety test covering hate speech, self-harm facilitation, violent content, CSAM (absolute zero tolerance), and dangerous activity instructions. Critical failures block go-live.
+  </TabItem>
+</Tabs>
+
+---
+
+## Layer 2 — Practitioner overview
+
+### Likelihood drivers
+- No content safety classifiers deployed on model outputs
+- No red teaming or adversarial safety testing before deployment
+- Consumer-facing deployment without age verification or context-sensitive controls
+- No incident response process for reports of harmful outputs
+- Model updates deployed without re-running safety testing
+
+### Consequence types
+| Type | Example |
+|------|---------|
+| Regulatory enforcement | EU AI Act absolute prohibition on CSAM and terrorist content facilitation |
+| Legal liability | Duty of care claims for harm to vulnerable users |
+| Reputational harm | Public harmful output incidents |
+| Platform de-listing | Distribution restrictions from app stores or platforms |
+
+### Affected functions
+Legal · Compliance · Technology · Risk · Customer Service · Communications
+
+### Controls summary
+
+| Control | Owner | Effort | Go-live? | Definition of done |
+|---------|-------|--------|----------|--------------------|
+| Content safety classifiers | Technology | Medium | <span className="required-badge required-golive">Required</span> | Output filtering layer detecting and blocking defined harmful content categories deployed and tested. False positive and negative rates within acceptable thresholds. |
+| Adversarial safety red teaming | Security | Medium | <span className="required-badge required-golive">Required</span> | Structured red team completed across defined harm taxonomy before deployment. No unresolved critical failures at go-live. |
+| Incident response for harmful outputs | Risk | Low | <span className="required-badge required-golive">Required</span> | Rapid response process for harmful output reports exists. Includes triage, escalation, and model modification or withdrawal capability. Tested annually. |
+| Age verification and context-sensitive guardrails | Technology | High | <span className="required-badge required-golive">Required</span> | For consumer AI accessible to minors: age verification implemented and context-sensitive safety controls active. Legal confirmed compliance with child safety obligations. |
+
+---
+
+## Layer 3 — Controls detail
+
+*See Layer 2 controls summary for ownership, effort, and go-live requirements. Full implementation guidance follows.*
+
+Refer to the controls summary table above for the definitive list of controls for this risk. Detailed control descriptions, jurisdiction notes, and KPIs are maintained in the source schema files and will be published in a forthcoming update.
+
+---
+
+## Incident examples
+
+**AI chatbot self-harm cases (2023–2025):** Multiple legal cases alleged AI chatbots played a role in teen self-harm by engaging with and reinforcing suicidal ideation rather than providing safety responses. Cases filed in US courts.
+
+**Grok AI harmful content (July 2025):** Grok AI produced hateful content without adequate safety guardrails. Developer issued public apology and modified the model.
+
+**Australian CSAM arrests (2024):** Australian Federal Police arrested two individuals for AI-generated child sexual abuse material — represents the most serious harm category enabled by generative AI.
+
+---
+
+## Scenario seed
+
+**Context:** A company deploys a customer service chatbot for a healthcare information platform. The platform is accessible without age verification.
+
+**Trigger:** A user in crisis engages with the chatbot about self-harm. The chatbot responds with detailed information rather than safety resources.
+
+**Difficulty:** Intermediate | **Jurisdictions:** AU, EU, Global
+
+*[Full scenario with discussion questions available in the AI Risk Training Module — coming soon.]*

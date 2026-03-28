@@ -1,0 +1,104 @@
+---
+id: f2-shadow-ai
+title: "F2SHADOWAI — Shadow AI"
+sidebar_label: "F2 — Shadow AI"
+sidebar_position: 2
+tags: [f, high-severity]
+last_verified: 2026-03-28
+next_review: 2026-09-28
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# F2 — Shadow AI
+
+<div style={{display:'flex',gap:'0.5rem',flexWrap:'wrap',marginBottom:'1.5rem'}}>
+  <span className="severity-badge severity-high severity">High severity</span>
+  <span className="framework-chip">APRA CPS 234</span> <span className="framework-chip">Privacy Act 1988 (Cth)</span> <span className="framework-chip">NIST AI RMF GOVERN 2</span> <span className="framework-chip">EU AI Act Art. 29</span>
+</div>
+
+**Domain:** F — HCI & Deployment | **Jurisdiction:** AU, EU, US, Global
+
+---
+
+## Layer 1 — Executive card
+
+> Employees use unauthorised, unmanaged AI tools for work tasks — submitting sensitive data to systems outside organisational control.
+
+Shadow AI describes the use of unauthorised AI tools by employees for work tasks — typically accessing public consumer LLM interfaces. When employees do this, they frequently submit confidential data: customer records, financial models, proprietary code, strategic plans. The Samsung case (2023) is the canonical example. The primary risk is data that leaves your organisation's control, potentially entering AI training pipelines.
+
+<div className="key-question">
+Do we have DLP controls detecting submission of sensitive data to unapproved AI endpoints, and an approved AI tools register giving staff sanctioned alternatives that meet their productivity needs?
+</div>
+
+<Tabs>
+  <TabItem value="executive" label="Executive / Board">
+  Employees are using AI tools whether or not your organisation has approved them. When they do, they frequently submit confidential data. The Samsung case (2023) demonstrates the scale of this risk. The audit finding means you do not have adequate visibility into or control over which AI tools staff are using with company data.
+  </TabItem>
+  <TabItem value="pm" label="Project Manager">
+  Shadow AI is a project risk because it affects every workstream. Staff may be using unapproved AI tools to speed up their work — potentially submitting project documents, client data, or technical specifications to public AI tools. Confirm: acceptable use policy has been communicated to all team members; DLP controls are in place on managed devices; approved AI tools are available.
+  </TabItem>
+  <TabItem value="analyst" label="Security Analyst">
+  Shadow AI is a DLP and access control problem. Controls: web filtering and DLP to detect data submission to known consumer AI endpoints; endpoint management policies restricting unapproved AI browser extensions; monitoring of AI tool usage on managed devices. Balance technical controls with providing approved alternatives.
+  </TabItem>
+</Tabs>
+
+---
+
+## Layer 2 — Practitioner overview
+
+### Likelihood drivers
+- Approved AI tools unavailable or inadequate for employee needs
+- No clear acceptable use policy for AI tools
+- No technical controls detecting data submission to unapproved tools
+- Culture of 'getting the job done' overrides policy compliance
+- Employees unaware public AI tools may retain submitted data
+
+### Consequence types
+| Type | Example |
+|------|---------|
+| Data breach | Confidential data submitted to external AI systems |
+| Regulatory breach | Personal data processed outside approved channels |
+| IP exposure | Proprietary content submitted to AI training pipelines |
+| Reputational harm | Public disclosure of data exposure incident |
+
+### Affected functions
+Technology · Security · HR · Compliance · Legal · All business functions
+
+### Controls summary
+
+| Control | Owner | Effort | Go-live? | Definition of done |
+|---------|-------|--------|----------|--------------------|
+| Approved AI tools register | Technology | Low | <span className="required-badge required-golive">Required</span> | Published list of approved AI tools with permitted use cases and data classification. Accessible to all staff. Reviewed and updated quarterly. |
+| DLP controls for AI tool inputs | Security | High | <span className="required-badge required-post">Post-launch</span> | DLP rules detect and restrict submission of sensitive data to unapproved AI endpoints. Covers customer data, confidential business data, personal information. Alert routing documented. |
+| Acceptable use policy for AI tools | HR | Low | <span className="required-badge required-golive">Required</span> | Policy specifying permitted and prohibited AI tool usage documented, published, and acknowledged by all staff. Includes data classification guidance. |
+| Approved enterprise AI tools provision | Technology | Medium | <span className="required-badge required-post">Post-launch</span> | Enterprise-grade approved AI tools with appropriate data protection terms provided to staff, reducing incentive to use shadow AI. |
+
+---
+
+## Layer 3 — Controls detail
+
+*See Layer 2 controls summary for ownership, effort, and go-live requirements. Full implementation guidance follows.*
+
+Refer to the controls summary table above for the definitive list of controls for this risk. Detailed control descriptions, jurisdiction notes, and KPIs are maintained in the source schema files and will be published in a forthcoming update.
+
+---
+
+## Incident examples
+
+**Samsung / ChatGPT (March 2023):** Three separate incidents within 20 days of Samsung permitting ChatGPT use. Engineers submitted proprietary source code for bug fixing, code optimisation, and meeting transcription. Prompted Samsung to ban external AI tool use entirely.
+
+**Confidential product roadmap submitted to public chatbot (illustrative):** An employee pastes a confidential product roadmap into a public chatbot to improve wording. Data may be retained by the provider and used in model training.
+
+---
+
+## Scenario seed
+
+**Context:** A compliance team member uses a public AI tool to analyse regulatory gaps in confidential internal policy documents — the analysis is correct, but the documents are now outside organisational control.
+
+**Trigger:** During a security audit, the auditor identifies that the compliance team member's device submitted multiple confidential documents to a non-approved AI endpoint.
+
+**Difficulty:** Foundational | **Jurisdictions:** AU, EU, Global
+
+*[Full scenario with discussion questions available in the AI Risk Training Module — coming soon.]*

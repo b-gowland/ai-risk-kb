@@ -1,0 +1,160 @@
+---
+id: a4-explainability
+title: "A4 — Explainability & Interpretability Gaps"
+sidebar_label: "A4 — Explainability"
+sidebar_position: 4
+tags: [technical, governance, high-severity, regulated-industries]
+last_verified: 2026-03-28
+next_review: 2026-09-28
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# A4 — Explainability & Interpretability Gaps
+
+<div style={{display:'flex',gap:'0.5rem',flexWrap:'wrap',marginBottom:'1.5rem'}}>
+  <span className="severity-badge severity-high">High severity</span>
+  <span className="framework-chip">EU AI Act Art. 13</span>
+  <span className="framework-chip">NIST AI RMF MEASURE 2.9</span>
+  <span className="framework-chip">ASIC AI Governance 2024</span>
+  <span className="framework-chip">APRA CPS 230</span>
+</div>
+
+**Domain:** A — Technical | **Jurisdiction:** AU, EU, US, Global
+
+---
+
+## Layer 1 — Executive card
+
+> AI models cannot explain in plain language why they produced a given output — making it impossible to audit decisions, detect bias, or satisfy legal requirements for decision transparency.
+
+If your organisation uses AI to make or inform decisions that affect people — loan approvals, insurance decisions, employment, benefits eligibility — and you cannot explain why the AI reached a specific decision in human-readable terms, you have a regulatory and legal exposure. The SafeRent settlement ($2.275M, November 2024) demonstrates this concretely: the opaque nature of the scoring system made discriminatory patterns harder to detect and defend against until a legal challenge surfaced them.
+
+<div className="key-question">
+For every AI system that makes or influences decisions affecting individuals, can we produce a plain-language explanation of that specific decision if required by a regulator, court, or individual?
+</div>
+
+<Tabs>
+  <TabItem value="executive" label="Executive / Board">
+  AI systems that make decisions affecting people — credit, insurance, employment, healthcare — are subject to legal requirements for explanation in most jurisdictions. "The model said so" is not a legally acceptable explanation and creates significant liability exposure. The audit finding means your AI decision systems do not currently meet explainability requirements. You are approving investment in XAI tooling, logging infrastructure, and adverse action notice processes.
+  </TabItem>
+  <TabItem value="pm" label="Project Manager">
+  If the AI system you are deploying makes or influences decisions about individuals, explainability is a go-live requirement. You need: (1) a defined method for explaining individual decisions; (2) a decision logging system recording inputs, outputs, and explanations; (3) a process for generating adverse action notices if required. Technology owns implementation; Legal and Compliance must sign off that the explanation method satisfies applicable regulatory requirements before launch.
+  </TabItem>
+  <TabItem value="analyst" label="Security Analyst">
+  Explainability affects your work when auditing AI-driven security decisions — access control, risk scoring, anomaly classification. If a security AI cannot explain why it flagged or blocked something, you cannot validate it is working correctly. Ensure security AI systems have global feature importance documentation and per-decision explanations for material actions.
+  </TabItem>
+</Tabs>
+
+---
+
+## Layer 2 — Practitioner overview
+
+### Risk description
+
+Deep learning and LLM-based models produce outputs through mathematical transformations across billions of parameters. This is called the "black box" problem. The explainability gap has two dimensions: regulatory (the obligation to explain decisions to affected individuals) and governance (the inability to detect errors, bias, or drift without understanding why the model behaves as it does). The SafeRent case illustrates both: the black-box nature precluded earlier detection of discriminatory proxy variables.
+
+### Likelihood drivers
+- Complex model architecture chosen without considering explainability requirements
+- Regulated use case attempted with an inherently opaque model
+- No post-hoc explainability tooling applied
+- No adverse action notice process designed into the model pipeline
+- Practitioners treating model outputs as authoritative without understanding the logic
+
+### Consequence types
+| Type | Example |
+|------|---------|
+| Regulatory breach | Failure to provide required adverse action explanations |
+| Legal liability | Class action where discrimination could not be audited |
+| Bias concealment | Black-box models hide discriminatory patterns |
+| Governance failure | Cannot detect or correct model errors without explainability |
+
+### Affected functions
+Legal · Compliance · Technology · Risk · Customer Service · Audit
+
+### Controls summary
+
+| Control | Owner | Effort | Go-live? | Definition of done |
+|---------|-------|--------|----------|--------------------|
+| XAI technique implementation (SHAP) | Technology | Medium | <span className="required-badge required-golive">Required</span> | Post-hoc explanations generated for every material decision. Format supports adverse action notices. |
+| Decision logging | Technology | Medium | <span className="required-badge required-golive">Required</span> | Every material decision logged with timestamp, model version, input hash, output, and explanation. Retained for regulatory minimum. |
+| Adverse action notice process | Legal | Medium | <span className="required-badge required-golive">Required</span> | Compliant notice process designed, tested, and signed off by Legal before go-live. |
+| Regulatory explainability sign-off | Compliance | Low | <span className="required-badge required-golive">Required</span> | Compliance has confirmed in writing that explanation capability satisfies applicable requirements. |
+
+---
+
+## Layer 3 — Controls detail
+
+### A4-001 — SHAP explainability implementation
+**Owner:** Technology | **Type:** Preventive | **Effort:** Medium | **Go-live required:** Yes
+
+Apply SHAP (SHapley Additive exPlanations) or equivalent to produce per-decision feature attribution. Maintain global feature importance documentation. For regulated use cases, extract top adverse factors for adverse action notice generation.
+
+### A4-002 — Decision logging
+**Owner:** Technology | **Type:** Preventive | **Effort:** Medium | **Go-live required:** Yes
+
+Log every material AI decision with: decision ID (UUID), timestamp, model version, input hash, output, SHAP values, and reason codes. Retain for regulatory minimum period. Accessible to audit and retrospective review.
+
+### A4-003 — Adverse action notice process
+**Owner:** Legal | **Type:** Preventive | **Effort:** Medium | **Go-live required:** Yes
+
+For credit, insurance, and employment use cases: design a compliant adverse action notice process using SHAP-derived reason codes. Map feature names to human-readable reason codes. Test with sample decisions before go-live.
+
+### KPIs
+| Metric | Target | Frequency |
+|--------|--------|-----------|
+| Decisions with complete explanation records | 100% of material decisions | Continuous |
+| Adverse action notice compliance rate | 100% of required notices issued | Monthly |
+
+---
+
+## Layer 4 — Technical implementation
+
+```python
+import shap
+
+# SHAP for tree-based models
+explainer = shap.TreeExplainer(model)
+shap_values = explainer.shap_values(X_test)
+
+# Global feature importance
+shap.summary_plot(shap_values, X_test)
+
+# Adverse action reasons — top 4 negative factors
+def get_adverse_reasons(shap_values_i, feature_names, n=4):
+    factors = sorted(zip(feature_names, shap_values_i), key=lambda x: x[1])
+    adverse = factors[:n]  # Most negative SHAP values
+    return [{"feature": f, "shap": v, "reason_code": REASON_CODES[f]}
+            for f, v in adverse]
+
+# DiCE for counterfactual explanations
+import dice_ml
+exp = dice_ml.Dice(data, model_wrapper)
+counterfactuals = exp.generate_counterfactuals(
+    query_instance, total_CFs=3, desired_class="opposite"
+)
+```
+
+**Tools:** SHAP · DiCE (counterfactuals) · InterpretML · Alibi Explain · Captum (PyTorch)
+
+---
+
+## Incident examples
+
+**SafeRent settlement $2.275M (2024):** SafeRent's AI tenant screening system scored rental applicants using factors opaque to landlords and applicants. The black-box nature precluded earlier detection of discriminatory patterns against housing voucher holders (disproportionately Black and Hispanic). Final court approval November 2024, Louis et al. v. SafeRent Solutions (D. Mass.).
+
+**nH Predict algorithm care denials (2023):** UnitedHealth's nH Predict algorithm denied Medicare Advantage care with no explainable justification to patients or physicians. "The model said so" was not an acceptable legal or regulatory response. Subject of Senate HELP Committee investigation and ProPublica reporting.
+
+---
+
+## Scenario seed
+**Context:** A financial services firm uses an ML credit scoring model. A customer calls to dispute a declined application.
+
+**Trigger:** The customer requests an explanation of why they were declined, as required under ECOA (US) / RG 271 (AU). The model owner discovers SHAP has not been implemented. The only available explanation is "score was below threshold."
+
+**Complicating factor:** The compliance team confirms this is a regulatory breach requiring remediation. A second review discovers the model's top adverse feature is strongly correlated with postcode — a potential proxy for race.
+
+**Discussion questions:** What is the regulatory exposure? How should the adverse action notice process have been designed before go-live? What does the postcode correlation suggest about a broader bias issue?
+
+**Difficulty:** Intermediate | **Jurisdictions:** AU, EU, US

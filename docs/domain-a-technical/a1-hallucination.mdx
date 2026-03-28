@@ -1,0 +1,151 @@
+---
+id: a1-hallucination
+title: "A1 — Hallucination / Confabulation"
+sidebar_label: "A1 — Hallucination"
+sidebar_position: 1
+tags: [technical, llm, high-severity]
+last_verified: 2026-03-28
+next_review: 2026-09-28
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# A1 — Hallucination / Confabulation
+
+<div style={{display:'flex',gap:'0.5rem',flexWrap:'wrap',marginBottom:'1.5rem'}}>
+  <span className="severity-badge severity-high">High severity</span>
+  <span className="framework-chip">NIST AI 600-1 Risk 2</span>
+  <span className="framework-chip">EU AI Act Art. 13</span>
+  <span className="framework-chip">OWASP LLM02</span>
+</div>
+
+**Domain:** A — Technical | **Jurisdiction:** Global
+
+---
+
+## Layer 1 — Executive card
+
+> AI systems produce outputs that are factually wrong or fabricated, presented with confidence and no indication of uncertainty.
+
+AI language models generate text by predicting what word comes next — not by retrieving verified facts. They have no internal truth-checker. When they do not know something, they produce a plausible-sounding answer anyway. A fabricated legal citation looks identical to a real one. This is inherent to how these systems work, not a bug to be patched.
+
+<div className="key-question">
+Do we have mandatory verification requirements before AI-generated content is acted upon in any high-stakes domain — legal, medical, financial, or regulatory?
+</div>
+
+<Tabs>
+  <TabItem value="executive" label="Executive / Board">
+  If your organisation uses AI to produce content that staff or customers rely on, hallucination is an active risk today. Courts have held organisations liable for actions taken on AI-generated falsehoods (Air Canada, 2024). You are being asked to approve a verification framework for high-stakes AI outputs and training that changes how staff treat AI-generated content.
+  </TabItem>
+  <TabItem value="pm" label="Project Manager">
+  Before any AI tool generating factual content goes live, confirm output verification controls exist. The key question: what happens when the AI produces incorrect information? If the answer is "the user acts on it," that is not acceptable for high-stakes domains. Technology owns retrieval architecture; the business owns verification workflow. Both need sign-off before launch.
+  </TabItem>
+  <TabItem value="analyst" label="Security Analyst">
+  Hallucination becomes a security problem when AI-generated content drives automated workflows or populates compliance reports. Ensure AI systems in security contexts have RAG grounding applied, and that outputs feeding automated pipelines have a validation layer before action is taken.
+  </TabItem>
+</Tabs>
+
+---
+
+## Layer 2 — Practitioner overview
+
+### Risk description
+
+Generative AI systems produce outputs by predicting statistically likely token sequences, not by retrieving verified facts. The model has no internal truth detector. This is termed "confabulation" in NIST AI 600-1 and is identified as one of the three most significant generative AI risks. It is highest stakes in domains where factual accuracy is material: legal, medical, financial, and regulatory contexts.
+
+### Likelihood drivers
+- Model used without a retrieval layer — relies entirely on training data
+- High-stakes outputs not subject to mandatory human verification  
+- Users not trained to understand LLMs fabricate confidently
+- LLM used for tasks requiring precise facts, dates, or citations
+
+### Consequence types
+| Type | Example |
+|------|---------|
+| Legal liability | Air Canada tribunal (2024) — liable for chatbot's invented bereavement policy |
+| Professional sanctions | Lawyers sanctioned for AI-hallucinated case citations (2023–2025) |
+| Financial loss | Fabricated analyst projections used in investment decisions |
+| Regulatory breach | Inaccurate compliance advice treated as authoritative |
+
+### Affected functions
+Legal · Compliance · Finance · Medical/Clinical · Customer Service · Research
+
+### Controls summary
+
+| Control | Owner | Effort | Go-live? | Definition of done |
+|---------|-------|--------|----------|--------------------|
+| RAG implementation | Technology | High | <span className="required-badge required-golive">Required</span> | LLM outputs grounded in verified knowledge base. Source citations surfaced to users. |
+| Output verification requirement | Risk | Low | <span className="required-badge required-golive">Required</span> | Acceptable use policy specifies mandatory verification for high-stakes use cases. |
+| Staff training on LLM limitations | HR | Low | <span className="required-badge required-golive">Required</span> | All AI tool users completed training on hallucination risk. Completion above 95%. |
+| Hallucination rate monitoring | Technology | Medium | <span className="required-badge required-post">Post-launch</span> | Rate measured on evaluation set monthly. Degradation triggers review. |
+
+---
+
+## Layer 3 — Controls detail
+
+### A1-001 — Retrieval-Augmented Generation (RAG)
+**Owner:** Technology | **Type:** Preventive | **Effort:** High | **Go-live required:** Yes
+
+Ground LLM outputs in a verified, current knowledge base. Retrieve relevant documents and inject as context before generation. Instruct the model to answer only from provided context and to state when information is absent. Surface source citations alongside outputs.
+
+### A1-002 — Output verification policy
+**Owner:** Risk | **Type:** Preventive | **Effort:** Low | **Go-live required:** Yes
+
+Define for each AI use case whether outputs require mandatory human verification before use. Implement through workflow design — not just training. High-stakes domains require verification by default.
+
+### A1-003 — Staff training
+**Owner:** HR | **Type:** Preventive | **Effort:** Low | **Go-live required:** Yes
+
+Train all AI tool users that LLM outputs may be confidently wrong. Require explicit verification of any cited fact, case, statistic, or figure. Include real examples of hallucination failures relevant to the team's work.
+
+### KPIs
+| Metric | Target | Frequency |
+|--------|--------|-----------|
+| Hallucination rate on evaluation set | < 2% on factual queries | Monthly |
+| Verification policy compliance | > 95% of high-stakes outputs verified | Quarterly spot-check |
+
+---
+
+## Layer 4 — Technical implementation
+
+```python
+# Minimal RAG pipeline with citation grounding
+from langchain.chains import RetrievalQA
+
+GROUNDED_PROMPT = """Answer based ONLY on the provided context.
+If the answer is not in the context, explicitly state that.
+Always cite the source document for each claim.
+Context: {context}
+Question: {question}"""
+
+qa_chain = RetrievalQA.from_chain_type(
+    llm=llm,
+    retriever=vectorstore.as_retriever(search_kwargs={"k": 5}),
+    return_source_documents=True,
+    chain_type_kwargs={"prompt": GROUNDED_PROMPT}
+)
+```
+
+**Tools:** LangChain, LlamaIndex · Pinecone, pgvector, Weaviate · RAGAS, TruLens (evaluation) · Cohere Rerank
+
+---
+
+## Incident examples
+
+**Air Canada chatbot liability (2024):** Air Canada's AI chatbot invented a non-existent bereavement fare discount. The Civil Resolution Tribunal of British Columbia held Air Canada liable, rejecting the argument that the chatbot was a separate entity. Landmark case establishing organisational liability for AI-generated falsehoods.
+
+**Lawyer sanctions for hallucinated citations (2023–2025):** Multiple US cases saw lawyers submit court filings citing AI-hallucinated case law. Mata v. Avianca (SDNY, 2023) resulted in sanctions including fines and required remedial training.
+
+---
+
+## Scenario seed
+**Context:** A compliance team uses an AI assistant to draft regulatory submissions — not connected to a knowledge base.
+
+**Trigger:** A team member asks the AI to summarise current APRA requirements for AI model risk management. The AI produces a confident response citing Prudential Standard numbers that do not exist.
+
+**Complicating factor:** Submission deadline is the next day. The team member is under pressure and submits without verification.
+
+**Discussion questions:** What control failure enabled this? How should verification have been embedded in the workflow? What risk does submitting inaccurate regulatory references create?
+
+**Difficulty:** Foundational | **Jurisdictions:** AU, Global

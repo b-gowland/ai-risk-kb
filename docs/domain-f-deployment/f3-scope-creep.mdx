@@ -1,0 +1,103 @@
+---
+id: f3-scope-creep
+title: "F3SCOPECREEP — Scope Creep & Deployment Beyond Intended Use"
+sidebar_label: "F3 — Scope Creep"
+sidebar_position: 3
+tags: [f, medium-severity]
+last_verified: 2026-03-28
+next_review: 2026-09-28
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# F3 — Scope Creep & Deployment Beyond Intended Use
+
+<div style={{display:'flex',gap:'0.5rem',flexWrap:'wrap',marginBottom:'1.5rem'}}>
+  <span className="severity-badge severity-medium severity">Medium severity</span>
+  <span className="framework-chip">EU AI Act Art. 29</span> <span className="framework-chip">APRA CPS 230</span> <span className="framework-chip">ISO 42001 Cl. 8.1</span> <span className="framework-chip">NIST AI RMF GOVERN 1</span>
+</div>
+
+**Domain:** F — HCI & Deployment | **Jurisdiction:** AU, EU, Global
+
+---
+
+## Layer 1 — Executive card
+
+> AI systems used for purposes beyond their intended, tested, and approved scope — invalidating the original risk assessment.
+
+When an AI system is approved for one purpose and then used for another — a FAQ chatbot extended to handle refund decisions; an analytics tool applied to external negotiations — the original risk assessment no longer covers the actual deployment. This happens gradually, often without anyone intending to create a governance gap.
+
+<div className="key-question">
+Are the approved use case boundaries for every AI system documented in the AI Register, and is there a change governance process that triggers reassessment when those boundaries are expanded?
+</div>
+
+<Tabs>
+  <TabItem value="executive" label="Executive / Board">
+  When an AI system is approved for one purpose and then used for another, the original risk assessment no longer covers the actual deployment. This happens gradually. The audit finding means AI systems are being used beyond their assessed scope. Approving remediation means adding use case boundaries to AI Register entries and requiring reassessment when those boundaries are breached.
+  </TabItem>
+  <TabItem value="pm" label="Project Manager">
+  The go-live documentation for any AI system should define precisely what the system is approved to do. If the actual deployment expands beyond these boundaries later, that triggers a new assessment. Your role is ensuring those boundaries are documented before go-live, and that the process for requesting expansion is understood by the business team.
+  </TabItem>
+  <TabItem value="analyst" label="Security Analyst">
+  Scope creep creates security risk when AI systems are extended to process data or take actions they were not assessed for. A document summarisation tool extended to process customer financial statements has a different data risk profile than was assessed. Monitor AI system usage logs for evidence of scope expansion and feed findings back to Risk for reassessment.
+  </TabItem>
+</Tabs>
+
+---
+
+## Layer 2 — Practitioner overview
+
+### Likelihood drivers
+- AI Register entries do not specify use case boundaries with sufficient precision
+- No change governance requirement for use case expansions
+- Business teams extend AI tool use without notifying risk or compliance
+- Annual use case reviews not conducted
+
+### Consequence types
+| Type | Example |
+|------|---------|
+| Regulatory breach | AI system used in context not covered by conformity assessment |
+| Compliance exposure | Use case attracts obligations not assessed for |
+| Operational harm | AI used beyond validated performance envelope |
+| Legal liability | Harm from use case risk assessment did not cover |
+
+### Affected functions
+Risk · Compliance · Technology · Internal Audit · Legal
+
+### Controls summary
+
+| Control | Owner | Effort | Go-live? | Definition of done |
+|---------|-------|--------|----------|--------------------|
+| Documented use case boundaries in AI Register | Risk | Low | <span className="required-badge required-golive">Required</span> | AI Register entry specifies permitted use case, data scope, output uses, and explicit out-of-scope conditions. Confirmed accurate at each annual review. |
+| Change governance for scope expansion | Risk | Low | <span className="required-badge required-post">Post-launch</span> | Documented process requires any expansion beyond AI Register boundaries to trigger new or updated risk assessment. Communicated to all AI system owners. |
+| Periodic use case review | Risk | Low | <span className="required-badge required-post">Post-launch</span> | Annual review confirms how each AI system is actually being used matches its documented scope. Discrepancies investigated and remediated or formally reassessed. |
+| Usage monitoring for scope detection | Technology | Medium | <span className="required-badge required-post">Post-launch</span> | Automated monitoring of AI system usage logs with topic classification. Alerts when usage patterns suggest out-of-scope deployment. Report to Risk. |
+
+---
+
+## Layer 3 — Controls detail
+
+*See Layer 2 controls summary for ownership, effort, and go-live requirements. Full implementation guidance follows.*
+
+Refer to the controls summary table above for the definitive list of controls for this risk. Detailed control descriptions, jurisdiction notes, and KPIs are maintained in the source schema files and will be published in a forthcoming update.
+
+---
+
+## Incident examples
+
+**FAQ chatbot extended to binding financial decisions (illustrative):** A customer service AI chatbot initially deployed for FAQs is gradually configured to handle complaints and refund decisions. The original risk assessment never covered binding financial decisions.
+
+**Spend analytics tool used for external negotiations (illustrative):** A spend analytics tool approved for internal analysis is used by a procurement team to challenge supplier pricing in external negotiations — the tool was not validated for this use.
+
+---
+
+## Scenario seed
+
+**Context:** An AI model approved for credit scoring in Australia is deployed by a business unit to score customers in New Zealand without reassessment.
+
+**Trigger:** A compliance review identifies the New Zealand deployment lacks the jurisdiction-specific assessment required for different consumer credit obligations.
+
+**Difficulty:** Foundational | **Jurisdictions:** AU, EU, Global
+
+*[Full scenario with discussion questions available in the AI Risk Training Module — coming soon.]*

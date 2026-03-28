@@ -1,0 +1,104 @@
+---
+id: g2-environmental-impact
+title: "G2ENVIRONMENTALIMPACT — Environmental Impact"
+sidebar_label: "G2 — Environmental Impact"
+sidebar_position: 2
+tags: [g, low-severity]
+last_verified: 2026-03-28
+next_review: 2026-09-28
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# G2 — Environmental Impact
+
+<div style={{display:'flex',gap:'0.5rem',flexWrap:'wrap',marginBottom:'1.5rem'}}>
+  <span className="severity-badge severity-low severity">Low severity</span>
+  <span className="framework-chip">NIST AI 600-1</span> <span className="framework-chip">ISSB IFRS S2</span> <span className="framework-chip">GRI Standards</span> <span className="framework-chip">APRA CPG 229</span>
+</div>
+
+**Domain:** G — Systemic & Macro | **Jurisdiction:** AU, EU, Global
+
+---
+
+## Layer 1 — Executive card
+
+> Training and operating large AI models consumes significant energy and water — creating ESG reporting obligations, reputational risk, and emerging regulatory exposure.
+
+AI compute is a significant and growing source of energy consumption. Training a single large language model can produce carbon emissions equivalent to hundreds of transatlantic flights (NIST AI 600-1 estimate). As organisations scale AI adoption, the aggregate footprint becomes material for ESG reporting and sustainability commitments.
+
+<div className="key-question">
+Is AI compute energy consumption captured in our sustainability reporting, and are we making model selection decisions that consider efficiency alongside capability?
+</div>
+
+<Tabs>
+  <TabItem value="executive" label="Executive / Board">
+  AI adoption increases energy consumption and emissions. As your organisation scales AI, the aggregate compute footprint becomes material for ESG reporting and sustainability commitments. The audit finding means AI compute is not captured in your emissions tracking. This is primarily a reporting and governance issue — the controls are low effort relative to the reporting risk they mitigate.
+  </TabItem>
+  <TabItem value="pm" label="Project Manager">
+  Environmental impact is not typically a blocking go-live item, but it becomes one if your organisation has active sustainability reporting obligations and the AI system represents material compute. Confirm with Sustainability and Technology whether energy consumption needs to be captured in reporting. Model selection (choosing a smaller efficient model) is the highest-impact lever.
+  </TabItem>
+  <TabItem value="analyst" label="Security Analyst">
+  Environmental impact is outside your primary domain. Your tangential interest: some lower-carbon cloud regions also have better data residency characteristics, so alignment between sustainability and security objectives is possible when selecting inference regions.
+  </TabItem>
+</Tabs>
+
+---
+
+## Layer 2 — Practitioner overview
+
+### Likelihood drivers
+- AI compute not included in emissions tracking and reporting
+- Large general-purpose models used for tasks smaller models could perform
+- AI inference sourced from cloud regions with high carbon intensity
+- No governance process for approving large-scale AI training runs
+- ESG and AI governance not integrated
+
+### Consequence types
+| Type | Example |
+|------|---------|
+| ESG reporting exposure | AI emissions not captured in sustainability reporting |
+| Reputational harm | Inconsistency between sustainability commitments and AI scaling |
+| Regulatory exposure | Mandatory climate reporting may capture AI emissions |
+| Investor scrutiny | AI compute driving emissions against net-zero commitments |
+
+### Affected functions
+Technology · Finance · Risk · Sustainability · Procurement · Executive
+
+### Controls summary
+
+| Control | Owner | Effort | Go-live? | Definition of done |
+|---------|-------|--------|----------|--------------------|
+| AI energy consumption tracking | Technology | Low | <span className="required-badge required-post">Post-launch</span> | Energy consumption from AI training and inference measured and reported as part of ESG reporting. Methodology documented. Results feed into sustainability reporting. |
+| Efficient model selection review | Technology | Low | <span className="required-badge required-post">Post-launch</span> | At system design stage, model selection decision documents why the chosen model size is appropriate — confirming a smaller model was evaluated. |
+| Green data centre sourcing | Procurement | Low | <span className="required-badge required-post">Post-launch</span> | AI inference sourced from cloud regions powered predominantly by renewable energy where operationally feasible. Region selection rationale documented. |
+| AI compute governance | Technology | Low | <span className="required-badge required-post">Post-launch</span> | Large-scale AI training runs included in capital expenditure and environmental impact approval processes. |
+
+---
+
+## Layer 3 — Controls detail
+
+*See Layer 2 controls summary for ownership, effort, and go-live requirements. Full implementation guidance follows.*
+
+Refer to the controls summary table above for the definitive list of controls for this risk. Detailed control descriptions, jurisdiction notes, and KPIs are maintained in the source schema files and will be published in a forthcoming update.
+
+---
+
+## Incident examples
+
+**NIST AI 600-1 emissions estimate:** NIST AI 600-1 estimates that training a large transformer model may emit carbon equivalent to approximately 300 round-trip San Francisco–New York flights.
+
+**Tech company data centre scrutiny (2024–2025):** Multiple major technology companies faced investor and regulatory scrutiny after AI data centre expansion increased total carbon emissions despite broader net-zero commitments.
+
+---
+
+## Scenario seed
+
+**Context:** An organisation announces ambitious net-zero targets. Three months later, it also announces a major AI capability investment requiring significant data centre expansion.
+
+**Trigger:** An investor raises a question at the AGM about whether AI compute is included in emissions forecasts and net-zero pathway modelling.
+
+**Difficulty:** Foundational | **Jurisdictions:** AU, EU, Global
+
+*[Full scenario with discussion questions available in the AI Risk Training Module — coming soon.]*

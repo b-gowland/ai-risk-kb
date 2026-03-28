@@ -1,0 +1,104 @@
+---
+id: d2-privacy
+title: "D2PRIVACY — Privacy & Data Protection"
+sidebar_label: "D2 — Privacy"
+sidebar_position: 2
+tags: [d, high-severity]
+last_verified: 2026-03-28
+next_review: 2026-09-28
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# D2 — Privacy & Data Protection
+
+<div style={{display:'flex',gap:'0.5rem',flexWrap:'wrap',marginBottom:'1.5rem'}}>
+  <span className="severity-badge severity-high severity">High severity</span>
+  <span className="framework-chip">Privacy Act 1988 (Cth) / APPs</span> <span className="framework-chip">GDPR (EU)</span> <span className="framework-chip">EU AI Act Art. 10/26</span> <span className="framework-chip">APRA CPS 234</span>
+</div>
+
+**Domain:** D — Data | **Jurisdiction:** AU, EU, US, Global
+
+---
+
+## Layer 1 — Executive card
+
+> AI systems create multiple vectors for personal information breaches — through model memorisation, inference data transmission, and agent exfiltration.
+
+AI systems create privacy risks beyond traditional data handling. Models can memorise and reproduce personal data from training. Inference processes transmit data to external processors that may retain it. AI agents can exfiltrate data if compromised. The Samsung case (2023) demonstrates that employees routinely submit sensitive data to public AI tools without understanding the risk.
+
+<div className="key-question">
+Has a Privacy Impact Assessment been completed for every AI system processing personal information, and have we confirmed that external AI APIs do not retain or train on submitted data?
+</div>
+
+<Tabs>
+  <TabItem value="executive" label="Executive / Board">
+  AI systems create privacy risks that go beyond traditional data handling. The Samsung case (2023) demonstrates employees routinely submit sensitive data to public AI tools. The audit finding means your privacy controls for AI deployments are insufficient. Approving remediation means funding PIAs for AI systems, enterprise API tier requirements, and an acceptable use policy.
+  </TabItem>
+  <TabItem value="pm" label="Project Manager">
+  Any AI system processing personal information requires a Privacy Impact Assessment before go-live — mandatory under the Privacy Act and GDPR. Confirm: (1) PIA completed and approved; (2) vendor DPA confirms data not used for model training; (3) data minimisation applied. Legal and Compliance own the PIA; Technology owns data minimisation.
+  </TabItem>
+  <TabItem value="analyst" label="Security Analyst">
+  Privacy controls are security controls in AI contexts. Ensure PII detection is implemented on inputs to external AI APIs; confirm enterprise API tiers are in use; implement access controls and audit logging on all AI system inputs and outputs. Model inversion attacks — where training data can be reconstructed from model outputs — are a documented threat.
+  </TabItem>
+</Tabs>
+
+---
+
+## Layer 2 — Practitioner overview
+
+### Likelihood drivers
+- No PIA/DPIA conducted before deploying AI systems processing personal data
+- External AI tools used without confirming enterprise data protection terms
+- Data minimisation not applied — personal data submitted to AI where not required
+- No access controls or audit logs on AI system inputs/outputs
+- Staff not trained on acceptable AI use with personal data
+
+### Consequence types
+| Type | Example |
+|------|---------|
+| Regulatory enforcement | Privacy Act, GDPR breaches, notifiable data breach |
+| Legal liability | Class action for privacy breaches |
+| Reputational harm | Public data exposure incidents |
+| Training data exfiltration | Proprietary or personal data entering external AI training pipelines |
+
+### Affected functions
+Legal · Compliance · Technology · HR · Customer Service
+
+### Controls summary
+
+| Control | Owner | Effort | Go-live? | Definition of done |
+|---------|-------|--------|----------|--------------------|
+| Privacy Impact Assessment (PIA/DPIA) | Legal | Medium | <span className="required-badge required-golive">Required</span> | Structured PIA completed and signed off before any AI system processing personal information goes live. Retained on file. |
+| Enterprise API tier for external AI | Procurement | Low | <span className="required-badge required-golive">Required</span> | Any external AI API confirms in writing via DPA that data is not used for model training. Enterprise tier confirmed. Retained on file. |
+| Data minimisation controls | Technology | Medium | <span className="required-badge required-golive">Required</span> | AI inputs minimised to exclude personal information where not required. PII detection implemented on inputs to external AI APIs. |
+| Acceptable use policy for AI tools | HR | Low | <span className="required-badge required-golive">Required</span> | Policy specifying what data may be submitted to which AI tools documented, published, and acknowledged by all staff. |
+
+---
+
+## Layer 3 — Controls detail
+
+*See Layer 2 controls summary for ownership, effort, and go-live requirements. Full implementation guidance follows.*
+
+Refer to the controls summary table above for the definitive list of controls for this risk. Detailed control descriptions, jurisdiction notes, and KPIs are maintained in the source schema files and will be published in a forthcoming update.
+
+---
+
+## Incident examples
+
+**Samsung / ChatGPT data leak (March 2023):** Samsung engineers submitted proprietary source code and internal meeting transcripts to ChatGPT for assistance with three separate incidents within 20 days of being permitted to use the tool. Data potentially entered OpenAI training pipelines. Samsung subsequently banned external AI tool use.
+
+**Healthcare AI agent data exposure (September 2024):** An AI agent exposed sensitive medical patient data while processing healthcare records. Incident highlighted privacy risks of agentic AI systems with broad data access.
+
+---
+
+## Scenario seed
+
+**Context:** A legal team uses a public AI tool to draft contract summaries, pasting client contract text into the tool for efficiency.
+
+**Trigger:** A client raises concerns after seeing what appears to be their confidential contract language reproduced in a competitor document.
+
+**Difficulty:** Foundational | **Jurisdictions:** AU, EU, Global
+
+*[Full scenario with discussion questions available in the AI Risk Training Module — coming soon.]*

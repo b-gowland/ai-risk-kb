@@ -1,0 +1,105 @@
+---
+id: c4-deepfakes
+title: "C4DEEPFAKES — Deepfakes & Synthetic Media Fraud"
+sidebar_label: "C4 — Deepfakes"
+sidebar_position: 4
+tags: [c, high-severity]
+last_verified: 2026-03-28
+next_review: 2026-09-28
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# C4 — Deepfakes & Synthetic Media Fraud
+
+<div style={{display:'flex',gap:'0.5rem',flexWrap:'wrap',marginBottom:'1.5rem'}}>
+  <span className="severity-badge severity-high severity">High severity</span>
+  <span className="framework-chip">NIST AI 600-1</span> <span className="framework-chip">EU AI Act Art. 50</span> <span className="framework-chip">NIST AI RMF MANAGE 1.3</span> <span className="framework-chip">ACSC AU</span>
+</div>
+
+**Domain:** C — Security & Adversarial | **Jurisdiction:** AU, EU, US, Global
+
+---
+
+## Layer 1 — Executive card
+
+> AI-generated synthetic audio, video, and images used to impersonate individuals, fabricate evidence, and manipulate financial decisions — now accessible to attackers with no specialised expertise.
+
+Deepfake technology has crossed the threshold where sophisticated attacks require no specialised expertise. The Arup case (January 2024) demonstrated the scale possible: a Hong Kong finance worker transferred $25M after a video call where every participant — including the CFO — was AI-generated. No technical systems were compromised. The attack exploited human psychology and the assumption that video is authentic.
+
+<div className="key-question">
+Do our high-value financial transaction approval processes require verification through a channel that cannot be satisfied or spoofed by AI-generated audio or video?
+</div>
+
+<Tabs>
+  <TabItem value="executive" label="Executive / Board">
+  AI-generated video and audio can now convincingly impersonate your executives and manipulate financial authorisation processes. The Arup case ($25M loss, 2024) demonstrates this is not theoretical. Your organisation is at risk if high-value financial transfers can be authorised by a single communication channel. What you are approving is out-of-band verification protocols, code word systems, and staff training.
+  </TabItem>
+  <TabItem value="pm" label="Project Manager">
+  Deepfake controls are primarily process controls — they do not require a major implementation project. The critical pre-launch item is confirming that high-value financial transaction approval processes include out-of-band verification that cannot be satisfied by a phone call, video call, or email alone. Finance owns this process; Security should review.
+  </TabItem>
+  <TabItem value="analyst" label="Security Analyst">
+  Your focus is detection and verification infrastructure. Deepfake detection tooling should be evaluated for high-risk communication channels. C2PA content authentication standards should be considered for official organisational media. Verify your incident response playbook covers deepfake-enabled fraud scenarios.
+  </TabItem>
+</Tabs>
+
+---
+
+## Layer 2 — Practitioner overview
+
+### Likelihood drivers
+- High-value financial transactions authorisable by single communication channel
+- No out-of-band verification requirement for large transfers
+- Executives have substantial publicly available audio/video
+- Staff not trained on deepfake threat or verification protocols
+- No code word or challenge-response protocol
+
+### Consequence types
+| Type | Example |
+|------|---------|
+| Financial fraud | Fraudulent transfer authorisation via deepfake video call |
+| Reputational harm | Deepfake content of executives distributed publicly |
+| Market manipulation | AI-generated false information attributed to organisation eroding share value |
+
+### Affected functions
+Finance · Security · Executive · Communications · Legal
+
+### Controls summary
+
+| Control | Owner | Effort | Go-live? | Definition of done |
+|---------|-------|--------|----------|--------------------|
+| Out-of-band verification for high-value transactions | Operations | Low | <span className="required-badge required-golive">Required</span> | Documented process requires verification through pre-registered channel independent of initiating communication for transactions above defined thresholds. Tested annually. |
+| Code word / challenge-response protocol | Operations | Low | <span className="required-badge required-post">Post-launch</span> | Pre-agreed verification phrases established for executive financial instructions. Rotated on schedule. All relevant staff briefed. |
+| Staff awareness training on deepfakes | HR | Low | <span className="required-badge required-post">Post-launch</span> | All staff with financial authorisation responsibilities completed deepfake awareness training. Completion tracked. Updated when new techniques documented. |
+| Deepfake detection tooling | Security | High | <span className="required-badge required-post">Post-launch</span> | Deepfake detection capability evaluated. Deployment decision documented. If deployed, active on relevant communication channels. |
+
+---
+
+## Layer 3 — Controls detail
+
+*See Layer 2 controls summary for ownership, effort, and go-live requirements. Full implementation guidance follows.*
+
+Refer to the controls summary table above for the definitive list of controls for this risk. Detailed control descriptions, jurisdiction notes, and KPIs are maintained in the source schema files and will be published in a forthcoming update.
+
+---
+
+## Incident examples
+
+**Arup deepfake fraud $25M (2024):** A Hong Kong finance worker at UK engineering firm Arup transferred $25M (HKD 200M) following a video call where every participant including the CFO was an AI-generated deepfake. 15 transfers to 5 bank accounts. Discovered when the worker followed up with actual headquarters. Publicly confirmed May 2024.
+
+**EU election deepfakes (2024):** AI-generated deepfake videos of politicians making inflammatory statements distributed during EU elections to manipulate voter perception.
+
+**Norwegian financial group deepfake CEO (2025):** Norwegian financial group executives lured into a video conference where a deepfake CEO instructed fund transfers. Fraud detected before completion.
+
+---
+
+## Scenario seed
+
+**Context:** A CFO receives a WhatsApp message from what appears to be the CEO, asking them to initiate a confidential wire transfer. They follow up with a video call to verify.
+
+**Trigger:** The video call involves the CEO and two board members — all AI-generated deepfakes. The CFO cannot distinguish them from real people.
+
+**Difficulty:** Foundational | **Jurisdictions:** AU, EU, US, Global
+
+*[Full scenario with discussion questions available in the AI Risk Training Module — coming soon.]*

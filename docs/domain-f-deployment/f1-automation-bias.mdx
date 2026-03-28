@@ -1,0 +1,106 @@
+---
+id: f1-automation-bias
+title: "F1AUTOMATIONBIAS — Over-Reliance & Automation Bias"
+sidebar_label: "F1 — Automation Bias"
+sidebar_position: 1
+tags: [f, high-severity]
+last_verified: 2026-03-28
+next_review: 2026-09-28
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# F1 — Over-Reliance & Automation Bias
+
+<div style={{display:'flex',gap:'0.5rem',flexWrap:'wrap',marginBottom:'1.5rem'}}>
+  <span className="severity-badge severity-high severity">High severity</span>
+  <span className="framework-chip">NIST AI 600-1 Human-AI Config</span> <span className="framework-chip">EU AI Act Art. 14</span> <span className="framework-chip">NIST AI RMF MAP 1.6</span> <span className="framework-chip">AI6 Practice 5</span>
+</div>
+
+**Domain:** F — HCI & Deployment | **Jurisdiction:** Global
+
+---
+
+## Layer 1 — Executive card
+
+> Users excessively trust AI outputs, reducing independent verification even when the AI is wrong — one of the three most pervasive and difficult-to-mitigate generative AI risks per NIST.
+
+Automation bias is the documented human tendency to over-trust automated systems — accepting outputs with less scrutiny than they would give to a human source. NIST AI 600-1 identifies this as one of the three most pervasive and difficult-to-mitigate generative AI risks. LLM outputs are presented with uniform confidence — there is no visible signal distinguishing a correct output from a fabricated one.
+
+<div className="key-question">
+Are verification steps built into our AI-assisted workflows — not optional, not passive — such that staff cannot act on AI outputs in high-stakes domains without explicit confirmation of their own independent check?
+</div>
+
+<Tabs>
+  <TabItem value="executive" label="Executive / Board">
+  When people use AI tools, they tend to trust the outputs more than they should — accepting recommendations without independent verification. Lawyers have been sanctioned for unverified AI court filings. Radiologists have accepted AI diagnoses over their own clinical judgment. This risk affects every AI tool your organisation deploys where staff are expected to exercise judgment alongside the AI.
+  </TabItem>
+  <TabItem value="pm" label="Project Manager">
+  The go-live question for any AI decision-support tool is: what happens when the AI is wrong? If the workflow allows staff to act on an AI output without any verification step, automation bias is designed in. Confirm: verification steps are built into the workflow (not optional); AI interfaces communicate uncertainty; staff have been trained on this tool's specific error rates.
+  </TabItem>
+  <TabItem value="analyst" label="Security Analyst">
+  Automation bias affects your domain when security tools powered by AI — SIEM, anomaly detection, access risk scoring — are configured so analysts accept AI recommendations without review. Ensure security AI outputs are labelled as requiring analyst judgment, interfaces surface confidence levels, and periodic spot-checks of AI-assisted decisions are included in quality assurance.
+  </TabItem>
+</Tabs>
+
+---
+
+## Layer 2 — Practitioner overview
+
+### Likelihood drivers
+- AI interface presents outputs without uncertainty indicators or confidence signals
+- No verification step required before AI-generated content is acted upon
+- Users not trained on historical AI error rates for the specific use case
+- High-volume time-pressured workflows create incentive to skip verification
+- No audit or spot-checking of AI-assisted decisions
+
+### Consequence types
+| Type | Example |
+|------|---------|
+| Professional harm | Professionals sanctioned for relying on unverified AI outputs |
+| Patient harm | Clinical decisions based on unverified AI recommendations |
+| Financial loss | Investment decisions based on fabricated AI analysis |
+| Regulatory breach | Submissions containing unverified AI-generated content |
+
+### Affected functions
+All functions where AI tools are deployed for decision support
+
+### Controls summary
+
+| Control | Owner | Effort | Go-live? | Definition of done |
+|---------|-------|--------|----------|--------------------|
+| Friction by design (verification steps) | Technology | Medium | <span className="required-badge required-golive">Required</span> | High-stakes AI-assisted workflows include deliberate verification steps requiring explicit human sign-off. Cannot be bypassed. Reviewed in UAT. |
+| Uncertainty communication in AI interfaces | Technology | Low | <span className="required-badge required-golive">Required</span> | AI interfaces display confidence levels, known limitations, and recommended use boundaries. Low-confidence outputs visually distinguished. |
+| Calibration training for AI users | HR | Low | <span className="required-badge required-golive">Required</span> | All staff using AI decision-support tools have completed training covering this tool's specific error rates and verification requirements. Completion tracked. |
+| Audit spot-checking of AI-assisted decisions | Risk | Low | <span className="required-badge required-post">Post-launch</span> | Defined percentage of AI-assisted decisions spot-checked for evidence of unverified automation. Results reviewed quarterly. |
+
+---
+
+## Layer 3 — Controls detail
+
+*See Layer 2 controls summary for ownership, effort, and go-live requirements. Full implementation guidance follows.*
+
+Refer to the controls summary table above for the definitive list of controls for this risk. Detailed control descriptions, jurisdiction notes, and KPIs are maintained in the source schema files and will be published in a forthcoming update.
+
+---
+
+## Incident examples
+
+**Lawyer sanctions for AI-hallucinated citations (2023–2025):** Multiple US cases saw lawyers submit court filings citing AI-generated case law that did not exist, without verification. Courts imposed sanctions including fines. Mata v. Avianca (SDNY, 2023) is the landmark case.
+
+**Financial analyst AI summary error (illustrative):** Financial analyst used AI-generated market summary without independently verifying underlying data. Report containing material errors reached investors.
+
+---
+
+## Scenario seed
+
+**Context:** A radiologist uses an AI diagnostic aid for chest X-ray interpretation. Their workflow is time-pressured — they review 80 scans per day.
+
+**Trigger:** The AI flags a scan as normal. The radiologist's own reading suggests a small abnormality, but they defer to the AI.
+
+**Complicating factor:** A follow-up scan three months later reveals early-stage lung cancer that was visible on the original scan.
+
+**Difficulty:** Intermediate | **Jurisdictions:** Global
+
+*[Full scenario with discussion questions available in the AI Risk Training Module — coming soon.]*

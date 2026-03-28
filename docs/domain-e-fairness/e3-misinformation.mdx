@@ -1,0 +1,103 @@
+---
+id: e3-misinformation
+title: "E3MISINFORMATION — Misinformation & Disinformation"
+sidebar_label: "E3 — Misinformation"
+sidebar_position: 3
+tags: [e, medium-severity]
+last_verified: 2026-03-28
+next_review: 2026-09-28
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# E3 — Misinformation & Disinformation
+
+<div style={{display:'flex',gap:'0.5rem',flexWrap:'wrap',marginBottom:'1.5rem'}}>
+  <span className="severity-badge severity-medium severity">Medium severity</span>
+  <span className="framework-chip">EU AI Act Art. 50</span> <span className="framework-chip">NIST AI 600-1</span> <span className="framework-chip">Australian Disinformation Register</span> <span className="framework-chip">CDSA</span>
+</div>
+
+**Domain:** E — Fairness & Social | **Jurisdiction:** AU, EU, Global
+
+---
+
+## Layer 1 — Executive card
+
+> AI systems generate or amplify false, misleading, or deceptive information at scale — creating systemic information integrity risk.
+
+AI dramatically lowers the cost of producing convincing false content at scale. An AI-generated false news article about a pharmaceutical company's clinical trial failure reportedly erased $100 billion in shareholder value before being debunked. The EU AI Act Art. 50 creates mandatory disclosure obligations for AI-generated content presented to natural persons.
+
+<div className="key-question">
+Do we have synthetic content disclosure mechanisms in place for AI-generated content presented to natural persons, as required by EU AI Act Art. 50?
+</div>
+
+<Tabs>
+  <TabItem value="executive" label="Executive / Board">
+  AI can generate convincing false information at scale — fake news, fabricated quotes, synthetic personas. The EU AI Act Art. 50 creates mandatory disclosure obligations. Your organisation faces risk in two directions: AI systems may generate misinformation inadvertently, and synthetic content attributed to your organisation may be used against you.
+  </TabItem>
+  <TabItem value="pm" label="Project Manager">
+  Before any system generating content for external consumption goes live, confirm: AI-generated content is disclosed per EU AI Act Art. 50; content authentication is considered for official organisational media; a monitoring process exists for AI-generated content misrepresenting your organisation.
+  </TabItem>
+  <TabItem value="analyst" label="Security Analyst">
+  Misinformation is primarily Communications and Compliance domain. Your contribution is technical: C2PA content authentication for official media, watermarking for AI-generated outputs, and detection tooling for identifying AI-generated content submitted to your organisation in regulatory filings or customer communications.
+  </TabItem>
+</Tabs>
+
+---
+
+## Layer 2 — Practitioner overview
+
+### Likelihood drivers
+- AI-generated content deployed at scale without human review
+- No content provenance or watermarking on AI-generated outputs
+- No monitoring for AI-generated content misuse or manipulation
+- Synthetic content disclosure obligations not implemented
+
+### Consequence types
+| Type | Example |
+|------|---------|
+| Market manipulation | False AI-generated information eroding shareholder value |
+| Regulatory enforcement | EU AI Act synthetic content disclosure obligations |
+| Reputational harm | Deepfake or AI-generated false content attributed to organisation |
+| Information integrity | AI-generated synthetic personas in public consultations |
+
+### Affected functions
+Communications · Legal · Compliance · Risk · Marketing
+
+### Controls summary
+
+| Control | Owner | Effort | Go-live? | Definition of done |
+|---------|-------|--------|----------|--------------------|
+| Synthetic content disclosure | Compliance | Low | <span className="required-badge required-golive">Required</span> | All AI-generated content presented to natural persons disclosed as such per EU AI Act Art. 50. Mechanism implemented and tested before go-live. |
+| Content provenance (C2PA) | Technology | Medium | <span className="required-badge required-post">Post-launch</span> | C2PA content authentication evaluated. Deployment decision documented. If deployed, official organisational media signed with organisational certificate. |
+| AI content detection for inbound content | Compliance | Medium | <span className="required-badge required-post">Post-launch</span> | AI-generated content detection deployed for high-stakes inbound content. Results reviewed as part of content processing workflow. |
+| Media literacy and staff training | HR | Low | <span className="required-badge required-post">Post-launch</span> | Staff educated on identifying AI-generated content. Training completed and tracked. |
+
+---
+
+## Layer 3 — Controls detail
+
+*See Layer 2 controls summary for ownership, effort, and go-live requirements. Full implementation guidance follows.*
+
+Refer to the controls summary table above for the definitive list of controls for this risk. Detailed control descriptions, jurisdiction notes, and KPIs are maintained in the source schema files and will be published in a forthcoming update.
+
+---
+
+## Incident examples
+
+**AI-generated false news pharmaceutical (illustrative, documented risk):** An AI-generated fake news article about a pharmaceutical company's clinical trial failure reportedly erased significant shareholder value before being debunked — demonstrating the market manipulation potential of AI-generated misinformation.
+
+**EU election deepfakes (2024):** AI-generated deepfake videos of politicians making inflammatory statements were distributed during EU elections to manipulate voter perception.
+
+---
+
+## Scenario seed
+
+**Context:** A public consultation on a proposed infrastructure project receives thousands of submissions. The project team notices many submissions use nearly identical language despite purporting to come from different individuals.
+
+**Trigger:** Investigation reveals the submissions are AI-generated synthetic personas, manufactured to create the appearance of public opposition.
+
+**Difficulty:** Advanced | **Jurisdictions:** EU, AU, Global
+
+*[Full scenario with discussion questions available in the AI Risk Training Module — coming soon.]*

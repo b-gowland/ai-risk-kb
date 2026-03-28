@@ -1,0 +1,104 @@
+---
+id: b2-regulatory-compliance
+title: "B2REGULATORYCOMPLIANCE — Regulatory Non-Compliance"
+sidebar_label: "B2 — Regulatory Compliance"
+sidebar_position: 2
+tags: [b, high-severity]
+last_verified: 2026-03-28
+next_review: 2026-09-28
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# B2 — Regulatory Non-Compliance
+
+<div style={{display:'flex',gap:'0.5rem',flexWrap:'wrap',marginBottom:'1.5rem'}}>
+  <span className="severity-badge severity-high severity">High severity</span>
+  <span className="framework-chip">EU AI Act (all articles)</span> <span className="framework-chip">APRA CPS 230</span> <span className="framework-chip">Privacy Act 1988</span> <span className="framework-chip">NIST AI RMF GOVERN 1.1</span>
+</div>
+
+**Domain:** B — Governance | **Jurisdiction:** AU, EU, US, Global
+
+---
+
+## Layer 1 — Executive card
+
+> AI systems breach applicable laws, regulations, or standards — increasingly across multiple jurisdictions simultaneously.
+
+AI regulation has shifted from theory to active enforcement. EU AI Act prohibited practices enforceable February 2025; GPAI obligations August 2025; high-risk AI system requirements August 2026 (Annex III). APRA CPS 230 effective July 2025. Workday faces class action (filed 2023, Ninth Circuit ruling allowing disparate impact claims to proceed 2025) over AI hiring tools. The compliance surface is expanding rapidly.
+
+<div className="key-question">
+Does our organisation have a current, complete mapping of all AI systems to their applicable regulatory obligations — and is that mapping maintained as regulations change?
+</div>
+
+<Tabs>
+  <TabItem value="executive" label="Executive / Board">
+  If your organisation does not have a current mapping of AI systems to applicable regulatory obligations, you are entering an active enforcement environment without a map. The audit finding means your regulatory mapping is absent, incomplete, or stale. Approving remediation means funding a compliance mapping exercise and assigning ongoing monitoring responsibility.
+  </TabItem>
+  <TabItem value="pm" label="Project Manager">
+  Before any new AI system goes live, a compliance sign-off is required from Legal or Compliance confirming the system has been assessed and is compliant. If you do not have that sign-off in your go-live checklist, it is missing. Escalate to Compliance before launch.
+  </TabItem>
+  <TabItem value="analyst" label="Security Analyst">
+  Regulatory compliance in AI creates direct security obligations — EU AI Act Art. 15 requires cybersecurity controls for high-risk AI. Confirm with Compliance which regulatory category each AI system you support falls into, so you know which security controls are mandatory versus recommended.
+  </TabItem>
+</Tabs>
+
+---
+
+## Layer 2 — Practitioner overview
+
+### Likelihood drivers
+- AI regulatory mapping not maintained or updated
+- No regulatory monitoring function assigned
+- AI systems classified before current regulatory framework was in place
+- Organisation operates across multiple jurisdictions without jurisdiction-specific assessment
+
+### Consequence types
+| Type | Example |
+|------|---------|
+| Regulatory fines | EU AI Act penalties up to €35M or 7% global turnover |
+| Legal liability | Class action for discriminatory AI outcomes |
+| Operational disruption | Required to withdraw or remediate non-compliant systems |
+
+### Affected functions
+Legal · Compliance · Risk · Technology · Procurement
+
+### Controls summary
+
+| Control | Owner | Effort | Go-live? | Definition of done |
+|---------|-------|--------|----------|--------------------|
+| AI regulatory mapping | Compliance | High | <span className="required-badge required-golive">Required</span> | All AI systems mapped to applicable regulatory obligations. Current (reviewed last 12 months). Updated when new systems deployed or regulations change. |
+| Pre-deployment compliance sign-off | Legal | Low | <span className="required-badge required-golive">Required</span> | Written sign-off from Legal or Compliance obtained before any new AI system goes live. |
+| EU AI Act risk classification | Compliance | Medium | <span className="required-badge required-golive">Required</span> | All AI systems classified under EU AI Act framework. Classification documented and reviewed when scope changes. |
+| Regulatory monitoring assignment | Compliance | Low | <span className="required-badge required-post">Post-launch</span> | Named person responsible for monitoring emerging AI regulation. Process to escalate changes to system owners within 30 days. |
+
+---
+
+## Layer 3 — Controls detail
+
+*See Layer 2 controls summary for ownership, effort, and go-live requirements. Full implementation guidance follows.*
+
+Refer to the controls summary table above for the definitive list of controls for this risk. Detailed control descriptions, jurisdiction notes, and KPIs are maintained in the source schema files and will be published in a forthcoming update.
+
+---
+
+## Incident examples
+
+**EU AI Act high-risk provisions (August 2026):** Organisations that have not completed conformity assessments, technical documentation, and human oversight systems for high-risk AI face enforcement from August 2, 2026. Note: a proposed Digital Omnibus may extend some Annex III deadlines — August 2026 remains the legally binding date until any amendment is adopted.
+
+**Workday AI hiring lawsuit (2023/2025):** Workday faces class action (Mobley v. Workday) over AI hiring tools alleged to discriminate against protected classes. Ninth Circuit ruled in March 2025 that disparate impact claims can proceed under Title VII and ADEA.
+
+---
+
+## Scenario seed
+
+**Context:** An organisation deploys an AI hiring screening tool. Six months later, HR discovers the tool has been filtering out candidates from a specific demographic at a higher rate.
+
+**Trigger:** An external audit flags the disparity. Legal is asked whether the tool was reviewed against anti-discrimination obligations before deployment.
+
+**Complicating factor:** No pre-deployment compliance sign-off was obtained. The tool was treated as a standard software deployment.
+
+**Difficulty:** Foundational | **Jurisdictions:** AU, EU, US
+
+*[Full scenario with discussion questions available in the AI Risk Training Module — coming soon.]*

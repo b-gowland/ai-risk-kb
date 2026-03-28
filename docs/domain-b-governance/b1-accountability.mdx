@@ -1,0 +1,102 @@
+---
+id: b1-accountability
+title: "B1ACCOUNTABILITY — Accountability Gaps"
+sidebar_label: "B1 — Accountability"
+sidebar_position: 1
+tags: [b, high-severity]
+last_verified: 2026-03-28
+next_review: 2026-09-28
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# B1 — Accountability Gaps
+
+<div style={{display:'flex',gap:'0.5rem',flexWrap:'wrap',marginBottom:'1.5rem'}}>
+  <span className="severity-badge severity-high severity">High severity</span>
+  <span className="framework-chip">EU AI Act Art. 29</span> <span className="framework-chip">APRA CPS 230</span> <span className="framework-chip">FAR (AU)</span> <span className="framework-chip">ISO 42001 Cl. 5</span>
+</div>
+
+**Domain:** B — Governance | **Jurisdiction:** AU, EU, Global
+
+---
+
+## Layer 1 — Executive card
+
+> No identifiable person or function is responsible for an AI system's decisions, behaviour, or outcomes.
+
+Accountability in AI is complicated by multi-party deployments. When an AI causes harm, establishing who is accountable — across the model provider, software vendor, cloud provider, and deploying organisation — is non-trivial. In regulated industries, this is not just a governance inconvenience: accountability frameworks are explicit that responsibility cannot be contracted away.
+
+<div className="key-question">
+Can we name a specific individual accountable for each AI system in production, and demonstrate that accountability mapping to our regulatory framework?
+</div>
+
+<Tabs>
+  <TabItem value="executive" label="Executive / Board">
+  If APRA or ASIC asks who is accountable for an AI system making credit decisions and the answer is unclear, that is a direct breach. You are being asked to approve an AI Register with named owners and a RACI mapping each system to your accountability framework.
+  </TabItem>
+  <TabItem value="pm" label="Project Manager">
+  Before any AI system goes live, an AI Register entry must exist with a named system owner. That entry is your go-live prerequisite. Confirm with Risk or Governance that the entry is created and the owner has acknowledged their responsibilities before you sign off.
+  </TabItem>
+  <TabItem value="analyst" label="Security Analyst">
+  Accountability gaps create a security risk: if no one owns an AI system, no one is monitoring it. Every AI system in your environment should be inventoried with a named owner and subject to the same monitoring obligations as other technology assets.
+  </TabItem>
+</Tabs>
+
+---
+
+## Layer 2 — Practitioner overview
+
+### Likelihood drivers
+- No AI Register maintained
+- AI systems deployed without designated accountable owners
+- Accountability diffused across vendor relationships without explicit contractual allocation
+- Regulated entity cannot demonstrate accountability to a supervising regulator
+
+### Consequence types
+| Type | Example |
+|------|---------|
+| Regulatory enforcement | APRA/ASIC finding of accountability framework breach |
+| Incident response failure | No identifiable decision-maker when AI causes harm |
+| Legal liability | No accountable party for AI-driven harmful decisions |
+
+### Affected functions
+Risk · Compliance · Legal · Technology · Executive · Internal Audit
+
+### Controls summary
+
+| Control | Owner | Effort | Go-live? | Definition of done |
+|---------|-------|--------|----------|--------------------|
+| AI Register with named owners | Risk | Medium | <span className="required-badge required-golive">Required</span> | All AI systems in production listed with named owner, purpose, risk rating, and review date. |
+| FAR/accountability mapping | Compliance | Low | <span className="required-badge required-golive">Required</span> | AI systems mapped to Accountable Persons under applicable accountability regime. Documented and available for regulatory review. |
+| Third-party accountability clauses | Legal | Medium | <span className="required-badge required-golive">Required</span> | All vendor contracts specify which party is responsible for model decisions, accuracy, and compliance. |
+| RACI for AI lifecycle | Risk | Low | <span className="required-badge required-post">Post-launch</span> | RACI defining who can approve deployment, monitor, pause, or shut down each system is documented. |
+
+---
+
+## Layer 3 — Controls detail
+
+*See Layer 2 controls summary for ownership, effort, and go-live requirements. Full implementation guidance follows.*
+
+Refer to the controls summary table above for the definitive list of controls for this risk. Detailed control descriptions, jurisdiction notes, and KPIs are maintained in the source schema files and will be published in a forthcoming update.
+
+---
+
+## Incident examples
+
+**Health insurer AI claim denials (2023):** UnitedHealth's AI system overrode physician recommendations without a clear accountability chain — no individual was identifiable as responsible for the aggregate claim denial outcome. Subject of congressional investigation and class action litigation.
+
+**AI-generated advice from embedded chatbot (ongoing):** Organisations deploying third-party chatbots in their customer portal face accountability disputes when harm occurs — the organisation, chatbot vendor, and LLM provider each point to each other.
+
+---
+
+## Scenario seed
+
+**Context:** An APRA-supervised entity is undergoing a supervisory review. The reviewer asks who is accountable for the AI system making credit decisions.
+
+**Trigger:** The entity cannot name a specific individual. The AI Register entry lists the model vendor and the technology team but no named Accountable Person.
+
+**Difficulty:** Foundational | **Jurisdictions:** AU
+
+*[Full scenario with discussion questions available in the AI Risk Training Module — coming soon.]*

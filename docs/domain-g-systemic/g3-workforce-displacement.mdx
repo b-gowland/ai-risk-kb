@@ -1,0 +1,104 @@
+---
+id: g3-workforce-displacement
+title: "G3WORKFORCEDISPLACEMENT — Workforce Displacement & Socioeconomic Impact"
+sidebar_label: "G3 — Workforce Displacement"
+sidebar_position: 3
+tags: [g, medium-severity]
+last_verified: 2026-03-28
+next_review: 2026-09-28
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# G3 — Workforce Displacement & Socioeconomic Impact
+
+<div style={{display:'flex',gap:'0.5rem',flexWrap:'wrap',marginBottom:'1.5rem'}}>
+  <span className="severity-badge severity-medium severity">Medium severity</span>
+  <span className="framework-chip">OECD AI Principles</span> <span className="framework-chip">EU AI Act (fundamental rights)</span> <span className="framework-chip">ILO AI and Work</span> <span className="framework-chip">Australian AI Ethics</span>
+</div>
+
+**Domain:** G — Systemic & Macro | **Jurisdiction:** AU, EU, Global
+
+---
+
+## Layer 1 — Executive card
+
+> AI-driven automation displaces roles and changes skill requirements — creating operational, reputational, and industrial relations risk for organisations deploying AI.
+
+AI-driven automation is reshaping demand for human labour. At the organisational level, AI adoption creates workforce transition challenges. Organisations that automate roles without adequate transition planning face operational disruption (knowledge loss), reputational harm (criticism of AI-enabled job cuts), and industrial relations risk (workforce resistance). This is not only an ethical concern — it is an operational and strategic one.
+
+<div className="key-question">
+Before deploying AI that materially changes or eliminates roles, have we assessed the workforce transition impact and developed retraining, redeployment, or managed reduction pathways?
+</div>
+
+<Tabs>
+  <TabItem value="executive" label="Executive / Board">
+  AI adoption that displaces roles without adequate transition planning creates operational, reputational, and industrial relations risk — not just an ethical concern. Organisations that have announced AI-driven redundancies without adequate communication have faced significant consequences. The audit finding means workforce impact has not been assessed before AI deployment decisions are made.
+  </TabItem>
+  <TabItem value="pm" label="Project Manager">
+  If the AI system you are deploying will reduce the need for specific roles or significantly change how those roles operate, a workforce impact assessment is required before go-live. This is an HR and Executive deliverable. Your role is flagging the dependency — if the assessment has not been completed and the system affects people's roles, it should not launch until it is.
+  </TabItem>
+  <TabItem value="analyst" label="Security Analyst">
+  Workforce displacement is outside your primary domain. Your tangential interest: if AI displaces security operations roles (L1 SOC analysts, for example), ensure that the human oversight and escalation capabilities those roles provided are not lost. Automation without human fallback creates security risk.
+  </TabItem>
+</Tabs>
+
+---
+
+## Layer 2 — Practitioner overview
+
+### Likelihood drivers
+- AI deployment decisions made without workforce impact assessment
+- No upskilling or redeployment pathway for displaced roles
+- Transparency to affected staff inadequate or too late
+- AI adoption framed primarily as cost reduction
+- Industrial relations implications not assessed before deployment
+
+### Consequence types
+| Type | Example |
+|------|---------|
+| Operational disruption | Loss of institutional knowledge through redundancies |
+| Industrial relations risk | Workforce resistance or industrial action |
+| Reputational harm | Public criticism of AI-driven job losses |
+| Social harm | Contribution to broader labour market disruption |
+
+### Affected functions
+HR · Executive · Risk · Communications · Legal
+
+### Controls summary
+
+| Control | Owner | Effort | Go-live? | Definition of done |
+|---------|-------|--------|----------|--------------------|
+| Workforce impact assessment | HR | Medium | <span className="required-badge required-golive">Required</span> | Before deployment of AI materially changing or displacing roles: structured impact assessment identifying affected roles, timeline, and transition options completed. Reviewed by HR and Executive. |
+| Stakeholder communication plan | HR | Low | <span className="required-badge required-golive">Required</span> | Communication plan for affected staff developed and executed with adequate notice before AI deployment. Communication documented. |
+| Upskilling investment | HR | High | <span className="required-badge required-post">Post-launch</span> | Upskilling pathways for affected roles identified and funded. AI literacy training available to all staff in affected functions. Participation tracked. |
+| Ethical AI deployment policy | Risk | Low | <span className="required-badge required-post">Post-launch</span> | Workforce impact considerations included in AI use case approval process. Policy exists and is applied. |
+
+---
+
+## Layer 3 — Controls detail
+
+*See Layer 2 controls summary for ownership, effort, and go-live requirements. Full implementation guidance follows.*
+
+Refer to the controls summary table above for the definitive list of controls for this risk. Detailed control descriptions, jurisdiction notes, and KPIs are maintained in the source schema files and will be published in a forthcoming update.
+
+---
+
+## Incident examples
+
+**Financial services and media redundancies (2023–2025):** Multiple large organisations announced significant redundancies in roles being automated by AI tools, alongside reputational and industrial relations impacts. Affected organisations included major banks, media companies, and technology firms.
+
+**AI content moderation replacing contractors (2023–2024):** AI-driven content moderation replaced contractor workforces — with significant impacts on contractors in developing countries who had depended on this work.
+
+---
+
+## Scenario seed
+
+**Context:** A financial services firm deploys an AI system automating a significant portion of the work done by a team of 40 mortgage processing specialists.
+
+**Trigger:** The firm announces the technology change will result in 25 redundancies. Staff find out through a media leak before any internal communication.
+
+**Difficulty:** Foundational | **Jurisdictions:** AU, EU, Global
+
+*[Full scenario with discussion questions available in the AI Risk Training Module — coming soon.]*

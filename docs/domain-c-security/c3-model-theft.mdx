@@ -1,0 +1,103 @@
+---
+id: c3-model-theft
+title: "C3MODELTHEFT — Model Theft / Extraction"
+sidebar_label: "C3 — Model Theft"
+sidebar_position: 3
+tags: [c, medium-severity]
+last_verified: 2026-03-28
+next_review: 2026-09-28
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# C3 — Model Theft / Extraction
+
+<div style={{display:'flex',gap:'0.5rem',flexWrap:'wrap',marginBottom:'1.5rem'}}>
+  <span className="severity-badge severity-medium severity">Medium severity</span>
+  <span className="framework-chip">NIST AI RMF GOVERN 6.2</span> <span className="framework-chip">MITRE ATLAS AML.T0005</span> <span className="framework-chip">OWASP ML02</span> <span className="framework-chip">ISO 27001</span>
+</div>
+
+**Domain:** C — Security & Adversarial | **Jurisdiction:** Global
+
+---
+
+## Layer 1 — Executive card
+
+> Adversaries reconstruct a proprietary AI model by querying it repeatedly and using the outputs to train a surrogate — stealing the IP without accessing model weights.
+
+A proprietary AI model represents significant investment in data collection, training, and accumulated intellectual property. An adversary who makes systematic queries to the model's API can reconstruct a working approximation — a process called model extraction. The surrogate model can replicate outputs, discover blind spots, or serve as the basis for adversarial attacks transferred to the original.
+
+<div className="key-question">
+Do we have rate limiting, query monitoring, and output obfuscation in place for externally accessible AI models that represent proprietary intellectual property?
+</div>
+
+<Tabs>
+  <TabItem value="executive" label="Executive / Board">
+  If your organisation has invested in building a proprietary AI model — a pricing algorithm, fraud detection system, credit scoring model — that IP can be stolen without accessing your systems directly. The audit finding means your API lacks controls to detect or limit systematic extraction.
+  </TabItem>
+  <TabItem value="pm" label="Project Manager">
+  If the AI system you are deploying exposes an API that external parties can query repeatedly, model extraction is a risk to assess before go-live. Confirm: API rate limiting is in place, query patterns are monitored for systematic probing, confidence scores are not exposed at full precision.
+  </TabItem>
+  <TabItem value="analyst" label="Security Analyst">
+  Model extraction is an IP theft and adversarial intelligence problem. Controls: rate limiting per API key with anomaly alerts on systematic probing; output obfuscation (ranges not exact confidence scores); watermarking to detect and attribute extracted models. Include model API endpoints in security monitoring.
+  </TabItem>
+</Tabs>
+
+---
+
+## Layer 2 — Practitioner overview
+
+### Likelihood drivers
+- No API rate limiting or query volume monitoring
+- Model outputs include full-precision confidence scores
+- No authentication or authorisation controls on model API
+- No monitoring for systematic probing patterns
+- API terms do not explicitly prohibit model extraction
+
+### Consequence types
+| Type | Example |
+|------|---------|
+| IP theft | Proprietary pricing or decisioning logic cloned without accessing model weights |
+| Security compromise | Adversary discovers model blind spots enabling fraud evasion |
+| Competitive harm | Significant R&D investment effectively transferred to adversary |
+
+### Affected functions
+Security · Technology · Legal · Risk
+
+### Controls summary
+
+| Control | Owner | Effort | Go-live? | Definition of done |
+|---------|-------|--------|----------|--------------------|
+| API rate limiting and query monitoring | Technology | Low | <span className="required-badge required-golive">Required</span> | Per-key rate limits enforced. Monitoring detects systematic probing patterns and alerts security. Configuration documented. |
+| Output obfuscation | Technology | Low | <span className="required-badge required-golive">Required</span> | Model API returns probability ranges or categorical outputs rather than exact confidence scores for externally exposed models. |
+| Access controls and authentication | Security | Low | <span className="required-badge required-golive">Required</span> | Strong authentication required for model API access. Access restricted to verified and authorised parties. Keys rotated on schedule. |
+| Model watermarking | Technology | High | <span className="required-badge required-post">Post-launch</span> | Cryptographic watermarks embedded in model outputs enabling detection and attribution of extracted models. |
+
+---
+
+## Layer 3 — Controls detail
+
+*See Layer 2 controls summary for ownership, effort, and go-live requirements. Full implementation guidance follows.*
+
+Refer to the controls summary table above for the definitive list of controls for this risk. Detailed control descriptions, jurisdiction notes, and KPIs are maintained in the source schema files and will be published in a forthcoming update.
+
+---
+
+## Incident examples
+
+**Competitor API systematic querying (illustrative):** A competitor makes repeated API queries to a proprietary pricing model, gradually building a surrogate that replicates outputs — effectively cloning the pricing algorithm without accessing model weights.
+
+**Fraud detection blind spot discovery:** A threat actor extracts sufficient information about a fraud detection model to understand its blind spots, enabling systematic fraud that evades detection.
+
+---
+
+## Scenario seed
+
+**Context:** A financial services firm's proprietary credit scoring API is publicly accessible for integration partners.
+
+**Trigger:** Security monitoring detects a single API key making 50,000 requests in 24 hours, systematically varying input features.
+
+**Difficulty:** Intermediate | **Jurisdictions:** Global
+
+*[Full scenario with discussion questions available in the AI Risk Training Module — coming soon.]*

@@ -1,0 +1,102 @@
+---
+id: c5-ai-cyber-attacks
+title: "C5AICYBERATTACKS — AI-Enabled Cyber Attacks"
+sidebar_label: "C5 — AI Cyber Attacks"
+sidebar_position: 5
+tags: [c, high-severity]
+last_verified: 2026-03-28
+next_review: 2026-09-28
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# C5 — AI-Enabled Cyber Attacks
+
+<div style={{display:'flex',gap:'0.5rem',flexWrap:'wrap',marginBottom:'1.5rem'}}>
+  <span className="severity-badge severity-high severity">High severity</span>
+  <span className="framework-chip">NIST CSF 2.0</span> <span className="framework-chip">APRA CPS 234</span> <span className="framework-chip">ACSC Essential Eight</span> <span className="framework-chip">NIST Cyber AI Profile IR 8596</span>
+</div>
+
+**Domain:** C — Security & Adversarial | **Jurisdiction:** AU, EU, US, Global
+
+---
+
+## Layer 1 — Executive card
+
+> Adversaries using AI to enhance the scale, sophistication, and effectiveness of cyber attacks — permanently raising the baseline threat level.
+
+AI removes the indicators that previously helped staff identify phishing: poor grammar, generic greetings, suspicious formatting. AI-generated phishing is indistinguishable from genuine correspondence. AI-assisted vulnerability discovery allows attackers to identify and exploit flaws faster than defenders can patch. The threat level has permanently shifted upward.
+
+<div className="key-question">
+Have we updated our email security and staff awareness training to address AI-generated phishing, which removes the grammatical and formatting cues that previously aided detection?
+</div>
+
+<Tabs>
+  <TabItem value="executive" label="Executive / Board">
+  Cyber attackers now use AI to produce phishing emails that are grammatically perfect, personally tailored, and indistinguishable from genuine correspondence. The traditional indicators your staff were trained to detect no longer apply. The audit finding means your defensive controls have not been updated for AI-enhanced attack capabilities.
+  </TabItem>
+  <TabItem value="pm" label="Project Manager">
+  AI-enabled cyber attacks affect every project — not just AI-specific ones. Confirm: email security is updated for AI-generated phishing detection; staff awareness training reflects current threats; zero-trust architecture limits blast radius of a successful attack. Security owns these — your role is confirming they are not deferred.
+  </TabItem>
+  <TabItem value="analyst" label="Security Analyst">
+  This is your primary domain. Update email security to focus on metadata, behavioural signals, and sender reputation — not content heuristics. Deploy AI-powered SIEM. Ensure threat intelligence is current on AI-enabled techniques. North Korean IT worker schemes using LLMs for social engineering (2025) are a documented current threat.
+  </TabItem>
+</Tabs>
+
+---
+
+## Layer 2 — Practitioner overview
+
+### Likelihood drivers
+- Email security relies on content heuristics (grammar, spelling) rather than behavioural signals
+- Staff awareness training based on historical phishing indicators now obsolete
+- Zero-trust architecture not implemented — successful phishing gives broad access
+- No AI-powered defensive tooling to match AI-enhanced attack scale
+
+### Consequence types
+| Type | Example |
+|------|---------|
+| Data breach | AI-enhanced phishing bypasses traditional security controls |
+| Financial fraud | Sophisticated social engineering targeting finance functions |
+| Ransomware | AI-assisted vulnerability discovery enables faster compromise |
+
+### Affected functions
+Security · Technology · Finance · HR · Operations
+
+### Controls summary
+
+| Control | Owner | Effort | Go-live? | Definition of done |
+|---------|-------|--------|----------|--------------------|
+| AI-enhanced email security | Security | Medium | <span className="required-badge required-post">Post-launch</span> | Email security solution uses behavioural and metadata signals (not content heuristics) to detect AI-generated phishing. Detection rates monitored monthly. |
+| Updated security awareness training | HR | Low | <span className="required-badge required-post">Post-launch</span> | Training updated to address AI-generated phishing. Staff trained not to rely on grammar/spelling as indicators. Completion above 95%. |
+| Zero-trust architecture | Security | High | <span className="required-badge required-post">Post-launch</span> | Zero-trust controls (MFA, network segmentation, least-privilege) implemented and documented. Architecture review conducted annually. |
+| AI-powered SIEM | Security | High | <span className="required-badge required-post">Post-launch</span> | SIEM with AI-enhanced detection active. Baselines normal behaviour per user/role. Alerts on deviations at machine speed. |
+
+---
+
+## Layer 3 — Controls detail
+
+*See Layer 2 controls summary for ownership, effort, and go-live requirements. Full implementation guidance follows.*
+
+Refer to the controls summary table above for the definitive list of controls for this risk. Detailed control descriptions, jurisdiction notes, and KPIs are maintained in the source schema files and will be published in a forthcoming update.
+
+---
+
+## Incident examples
+
+**Australian university breach 200,000 records (illustrative):** University suffered a breach after receiving AI-generated phishing emails that precisely mimicked official HR communications — indistinguishable from legitimate correspondence. No grammar or formatting cues to identify them as phishing.
+
+**North Korean LLM social engineering (August 2025):** North Korean operatives used LLMs for elaborate social engineering schemes targeting financial institutions, documented in FBI and industry threat intelligence reporting.
+
+---
+
+## Scenario seed
+
+**Context:** An employee receives an email appearing to come from the CFO asking them to process an urgent supplier payment. The email is grammatically perfect and contains accurate context about a real pending contract.
+
+**Trigger:** The employee processes the payment. Finance discovers three days later the supplier account was fraudulent.
+
+**Difficulty:** Foundational | **Jurisdictions:** AU, Global
+
+*[Full scenario with discussion questions available in the AI Risk Training Module — coming soon.]*

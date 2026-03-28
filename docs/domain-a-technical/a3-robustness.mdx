@@ -1,0 +1,151 @@
+---
+id: a3-robustness
+title: "A3 — Robustness & Brittleness"
+sidebar_label: "A3 — Robustness"
+sidebar_position: 3
+tags: [technical, testing, medium-severity]
+last_verified: 2026-03-28
+next_review: 2026-09-28
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# A3 — Robustness & Brittleness
+
+<div style={{display:'flex',gap:'0.5rem',flexWrap:'wrap',marginBottom:'1.5rem'}}>
+  <span className="severity-badge severity-medium">Medium severity</span>
+  <span className="framework-chip">NIST AI RMF MEASURE 2.6</span>
+  <span className="framework-chip">EU AI Act Art. 15</span>
+  <span className="framework-chip">ISO 42001 Cl. 8.4</span>
+</div>
+
+**Domain:** A — Technical | **Jurisdiction:** Global
+
+---
+
+## Layer 1 — Executive card
+
+> AI systems that pass testing can still fail unpredictably on unusual inputs, edge cases, or conditions not seen during training — and those failures may only surface in production.
+
+A model can achieve high accuracy in testing and still fail catastrophically on specific input patterns that were absent from the test set. Waymo recalled 1,212 robotaxis in May 2025 after discovering a systematic failure on gate-like barriers that did not appear in testing. McDonald's IBM AI drive-thru system added hundreds of unwanted items to orders — including 260 chicken nuggets — under unusual ordering patterns. Both systems passed their original testing. Both failed in production.
+
+<div className="key-question">
+Have our AI systems been tested against edge cases and adversarial inputs, and do they have a defined, safe fallback when they encounter inputs outside their design envelope?
+</div>
+
+<Tabs>
+  <TabItem value="executive" label="Executive / Board">
+  AI testing cannot provide complete assurance — failure modes are emergent and may only appear in production. What you are approving is adversarial testing before go-live and a designed fallback when the system reaches its limits. This is the control that prevents the "it passed all our tests" post-incident explanation.
+  </TabItem>
+  <TabItem value="pm" label="Project Manager">
+  Before go-live, confirm adversarial testing has been completed — deliberately testing with unusual, noisy, or adversarial inputs beyond the happy path. You also need a documented fallback: what does the system do when it encounters an input it cannot handle confidently? "Produce a confident wrong output" is not acceptable. Technology owns testing and fallback design; Risk or Compliance signs off on the operational design domain.
+  </TabItem>
+  <TabItem value="analyst" label="Security Analyst">
+  Brittleness is directly relevant to any AI used in security contexts. A model that degrades on out-of-distribution inputs can be exploited by crafting inputs that fall just outside the training distribution. Include adversarial inputs in your pre-deployment red team scope and ensure security AI systems have OOD detection enabled.
+  </TabItem>
+</Tabs>
+
+---
+
+## Layer 2 — Practitioner overview
+
+### Risk description
+
+AI models are optimised to perform well on the data they were trained and tested on. Unlike traditional software where failure modes are predictable from the specification, AI model failure modes are emergent — they may be invisible until they occur in production. A model that achieves high accuracy on benchmark tests can still fail on specific input patterns absent from testing.
+
+### Likelihood drivers
+- Deployment environment differs materially from training data context
+- Insufficient adversarial testing before deployment
+- No OOD detection to flag inputs outside the training distribution
+- Model used beyond its documented operational design domain
+- No graceful degradation — system produces confident outputs when confidence is low
+
+### Consequence types
+| Type | Example |
+|------|---------|
+| Safety incident | Autonomous system failure on physical edge cases |
+| Customer experience | AI system failing under unusual but realistic inputs |
+| Reputational damage | Viral failure incidents (McDonald's nugget orders) |
+| Financial liability | Consequential harm from high-stakes domain failures |
+
+### Affected functions
+Technology · Product · Operations · Customer Service · Risk
+
+### Controls summary
+
+| Control | Owner | Effort | Go-live? | Definition of done |
+|---------|-------|--------|----------|--------------------|
+| Adversarial testing | Technology | Medium | <span className="required-badge required-golive">Required</span> | Structured adversarial test suite completed. Results documented. No critical failures at go-live. |
+| OOD detection | Technology | Medium | <span className="required-badge required-golive">Required</span> | OOD mechanism active. Out-of-distribution inputs flagged or rejected. Threshold documented. |
+| Operational design domain | Risk | Low | <span className="required-badge required-golive">Required</span> | AI Register defines the ODD — conditions under which model is approved to operate. |
+| Graceful degradation | Technology | Medium | <span className="required-badge required-golive">Required</span> | Documented and tested fallback when confidence is low. Does not produce confident wrong output. |
+
+---
+
+## Layer 3 — Controls detail
+
+### A3-001 — Adversarial testing
+**Owner:** Technology | **Type:** Detective | **Effort:** Medium | **Go-live required:** Yes
+
+Systematically test models against edge cases, unexpected inputs, and adversarial examples before deployment. Include: boundary testing, noise injection, distribution shift testing, and semantic equivalence testing. Maintain a growing library of historical failure cases. Run on every model update.
+
+### A3-002 — OOD detection  
+**Owner:** Technology | **Type:** Preventive | **Effort:** Medium | **Go-live required:** Yes
+
+Implement mechanisms to detect when inputs fall outside the training distribution. Flag or reject these inputs rather than processing them silently. Threshold defined and documented in the model risk record.
+
+### A3-003 — Graceful degradation
+**Owner:** Technology | **Type:** Preventive | **Effort:** Medium | **Go-live required:** Yes
+
+Design systems to fail safely — revert to human decision, flag for review — rather than producing confident wrong outputs when uncertainty is high. Test the fallback as rigorously as the primary system.
+
+### KPIs
+| Metric | Target | Frequency |
+|--------|--------|-----------|
+| OOD detection rate | > 95% of intentional OOD inputs flagged in testing | Pre-deployment |
+| Adversarial test pass rate | 100% of critical edge cases handled safely | Pre-deployment + quarterly |
+
+---
+
+## Layer 4 — Technical implementation
+
+```python
+from sklearn.ensemble import IsolationForest
+import numpy as np
+
+# OOD detection via Isolation Forest
+clf = IsolationForest(contamination=0.01, random_state=42)
+clf.fit(X_train)  # Fit on known-good training data
+
+def check_ood(input_features):
+    score = clf.decision_function([input_features])[0]
+    is_ood = score < OOD_THRESHOLD
+    if is_ood:
+        return {"action": "flag_for_review", "ood_score": score}
+    return {"action": "proceed", "ood_score": score}
+
+# Tools: Giskard (AI testing), DeepChecks, ART (IBM Adversarial Robustness Toolbox)
+# Conformal prediction: MAPIE
+```
+
+---
+
+## Incident examples
+
+**Waymo recall 1,212 robotaxis (May 2025):** Waymo's fifth-generation ADS software failed to correctly detect and respond to chains, gates, and gate-like roadway barriers. The failure mode was absent from testing but present in real-world deployment. 16 low-speed collisions occurred before software was updated. NHTSA recall filed May 2025.
+
+**McDonald's IBM AI drive-thru discontinued (2024):** McDonald's IBM automated order-taking system added unwanted items to orders under unusual inputs — including 260 chicken nuggets in one documented case. System was discontinued at all 100+ test locations in July 2024 after viral incidents demonstrating brittleness under realistic but unusual user behaviour.
+
+---
+
+## Scenario seed
+**Context:** A hospital deploys a clinical AI diagnostic system that performs well on their imaging equipment. A rural facility partnership is announced.
+
+**Trigger:** The rural facility uses different scan protocols. Clinical staff notice the AI's confidence scores are unusually low. They proceed anyway, trusting the system.
+
+**Complicating factor:** The ODD was not defined — there is no technical control preventing use on out-of-distribution imaging data.
+
+**Discussion questions:** What ODD documentation would have prevented deployment to the rural facility without validation? How should OOD detection be designed for clinical systems? Who is accountable for the deployment decision?
+
+**Difficulty:** Intermediate | **Jurisdictions:** Global

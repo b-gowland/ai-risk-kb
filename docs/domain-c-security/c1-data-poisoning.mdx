@@ -1,0 +1,103 @@
+---
+id: c1-data-poisoning
+title: "C1DATAPOISONING — Data Poisoning"
+sidebar_label: "C1 — Data Poisoning"
+sidebar_position: 1
+tags: [c, high-severity]
+last_verified: 2026-03-28
+next_review: 2026-09-28
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# C1 — Data Poisoning
+
+<div style={{display:'flex',gap:'0.5rem',flexWrap:'wrap',marginBottom:'1.5rem'}}>
+  <span className="severity-badge severity-high severity">High severity</span>
+  <span className="framework-chip">NIST AI 600-1</span> <span className="framework-chip">MITRE ATLAS AML.T0020</span> <span className="framework-chip">OWASP ML01</span> <span className="framework-chip">ISO 42001 Cl. 6.3.1</span>
+</div>
+
+**Domain:** C — Security & Adversarial | **Jurisdiction:** Global
+
+---
+
+## Layer 1 — Executive card
+
+> Adversaries corrupt an AI model's training data to produce a model that behaves maliciously in targeted scenarios while appearing normal in testing.
+
+If an adversary can influence the data your AI is trained on, they can embed malicious behaviour that persists in the model weights after training — invisible in normal testing but triggered on specific targeted inputs. This is particularly dangerous for continuously learning systems, federated learning, and models that retrain on user-generated data.
+
+<div className="key-question">
+Do our training data pipelines have access controls, integrity verification, and anomaly detection sufficient to detect and prevent malicious data injection?
+</div>
+
+<Tabs>
+  <TabItem value="executive" label="Executive / Board">
+  Data poisoning enables an attacker to compromise AI system behaviour without ever accessing your production systems — by targeting the training pipeline instead. The audit finding means your training data pipeline lacks integrity controls. Approving remediation means implementing cryptographic verification and anomaly detection on training data before each training run.
+  </TabItem>
+  <TabItem value="pm" label="Project Manager">
+  Before go-live with any AI system that will retrain on live data, confirm: training data pipeline has access controls, data integrity checks are in place, anomaly detection is implemented on incoming data. Technology owns implementation; Security should review the pipeline access controls.
+  </TabItem>
+  <TabItem value="analyst" label="Security Analyst">
+  This is your domain. Training pipelines should be treated as critical infrastructure: restricted write access (least privilege), cryptographic integrity verification of datasets before each training run, statistical anomaly detection on incoming data, Byzantine-tolerant aggregation for federated learning.
+  </TabItem>
+</Tabs>
+
+---
+
+## Layer 2 — Practitioner overview
+
+### Likelihood drivers
+- Model retrains on user-generated data without anomaly detection
+- Training data sourced from third parties without integrity verification
+- Federated learning without Byzantine-tolerant aggregation
+- Unrestricted write access to training pipelines
+- No cryptographic integrity checks on datasets
+
+### Consequence types
+| Type | Example |
+|------|---------|
+| Safety failure | Safety-critical system manipulated to ignore specific failure conditions |
+| Security bypass | Fraud detection trained to ignore specific attack patterns |
+| Reputational harm | Recommendation system manipulated to favour specific outcomes |
+
+### Affected functions
+Technology · Security · Risk · Data Science · Operations
+
+### Controls summary
+
+| Control | Owner | Effort | Go-live? | Definition of done |
+|---------|-------|--------|----------|--------------------|
+| Training data integrity verification | Technology | Medium | <span className="required-badge required-golive">Required</span> | Cryptographic hashes of training datasets verified before each training run. Deviation halts training and alerts model owner. |
+| Restricted write access to training pipelines | Security | Low | <span className="required-badge required-golive">Required</span> | Least-privilege access controls on all training data pipeline components. Access reviewed quarterly. |
+| Statistical anomaly detection on training data | Technology | Medium | <span className="required-badge required-golive">Required</span> | Anomaly detection on training data ingestion for systems retraining on live data. Anomalous samples flagged for manual review. |
+| Federated learning safeguards | Technology | High | <span className="required-badge required-golive">Required</span> | Byzantine-tolerant aggregation implemented for federated learning deployments. Limits influence of any single contributor. |
+
+---
+
+## Layer 3 — Controls detail
+
+*See Layer 2 controls summary for ownership, effort, and go-live requirements. Full implementation guidance follows.*
+
+Refer to the controls summary table above for the definitive list of controls for this risk. Detailed control descriptions, jurisdiction notes, and KPIs are maintained in the source schema files and will be published in a forthcoming update.
+
+---
+
+## Incident examples
+
+**Oil refinery predictive maintenance attack (illustrative, documented technique):** Attackers upload a malicious model component that disables safety alarms while reporting normal sensor readings. Demonstrates that AI systems in industrial contexts are high-value data poisoning targets.
+
+**Email spam filter poisoning (documented research):** Attacker poisons training dataset by injecting labelled examples that teach the model to classify malicious emails as legitimate. Malicious emails bypass filtering undetected.
+
+---
+
+## Scenario seed
+
+**Context:** A fraud detection model retrains weekly on new confirmed fraud and legitimate transaction labels. Access to the labelling system is broad.
+
+**Trigger:** Fraud rates begin declining in model metrics, but actual confirmed fraud cases are increasing. The data science team investigates.
+
+**Difficulty:** Advanced | **Jurisdictions:** Global
+
+*[Full scenario with discussion questions available in the AI Risk Training Module — coming soon.]*

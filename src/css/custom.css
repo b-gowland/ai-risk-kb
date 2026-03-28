@@ -1,0 +1,369 @@
+/**
+ * AI Risk Knowledge Base — Custom Styles
+ * Extends Docusaurus default theme
+ */
+
+:root {
+  --ifm-color-primary: #1a4f8a;
+  --ifm-color-primary-dark: #17467b;
+  --ifm-color-primary-darker: #154274;
+  --ifm-color-primary-darkest: #113660;
+  --ifm-color-primary-light: #1d589b;
+  --ifm-color-primary-lighter: #1f5ca2;
+  --ifm-color-primary-lightest: #2468b6;
+  --ifm-code-font-size: 90%;
+  --ifm-font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  --ifm-heading-font-weight: 600;
+  --ifm-navbar-height: 60px;
+  --domain-a: #1a4f8a;
+  --domain-b: #2e7d32;
+  --domain-c: #b71c1c;
+  --domain-d: #e65100;
+  --domain-e: #6a1b9a;
+  --domain-f: #00695c;
+  --domain-g: #4e342e;
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary: #4d8fd4;
+  --ifm-color-primary-dark: #3a82cc;
+  --ifm-color-primary-darker: #3179c5;
+  --ifm-color-primary-darkest: #2063a3;
+  --ifm-color-primary-light: #609cd9;
+  --ifm-color-primary-lighter: #6aa5de;
+  --ifm-color-primary-lightest: #8bbce8;
+}
+
+/* ── Navbar ── */
+.navbar {
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+  box-shadow: none;
+}
+
+.navbar__title {
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: -0.01em;
+}
+
+.coming-soon-nav {
+  opacity: 0.6;
+  font-style: italic;
+}
+
+/* ── Homepage hero ── */
+.hero-banner {
+  padding: 4rem 2rem;
+  text-align: center;
+  background: linear-gradient(135deg, #f0f4f8 0%, #e8eef5 100%);
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}
+
+[data-theme='dark'] .hero-banner {
+  background: linear-gradient(135deg, #1a1f2e 0%, #1e2535 100%);
+}
+
+.hero-banner h1 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+  color: var(--ifm-color-primary);
+}
+
+[data-theme='dark'] .hero-banner h1 {
+  color: var(--ifm-color-primary-light);
+}
+
+.hero-banner p {
+  font-size: 1.15rem;
+  color: var(--ifm-color-emphasis-700);
+  max-width: 640px;
+  margin: 0 auto 2rem;
+  line-height: 1.7;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ── Domain cards on homepage ── */
+.domain-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding: 3rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.domain-card {
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: box-shadow 0.2s, transform 0.2s;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.domain-card:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+.domain-card-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  display: inline-block;
+  color: white;
+}
+
+.domain-card h3 {
+  font-size: 1.05rem;
+  margin: 0.75rem 0 0.5rem;
+  font-weight: 600;
+}
+
+.domain-card p {
+  font-size: 0.9rem;
+  color: var(--ifm-color-emphasis-600);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ── Persona tabs on risk entries ── */
+.persona-tabs {
+  margin: 2rem 0;
+}
+
+.persona-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  margin-bottom: 1rem;
+}
+
+.persona-badge.executive {
+  background: #e8f4fd;
+  color: #0d47a1;
+}
+
+.persona-badge.pm {
+  background: #e8f5e9;
+  color: #1b5e20;
+}
+
+.persona-badge.analyst {
+  background: #fce4ec;
+  color: #880e4f;
+}
+
+[data-theme='dark'] .persona-badge.executive {
+  background: #0d2044;
+  color: #90caf9;
+}
+
+[data-theme='dark'] .persona-badge.pm {
+  background: #0d2a10;
+  color: #a5d6a7;
+}
+
+[data-theme='dark'] .persona-badge.analyst {
+  background: #2a0a14;
+  color: #f48fb1;
+}
+
+/* ── Controls summary table ── */
+.controls-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  margin: 1.5rem 0;
+}
+
+.controls-table th {
+  background: var(--ifm-color-emphasis-100);
+  padding: 0.6rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--ifm-color-emphasis-300);
+}
+
+.controls-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+  vertical-align: top;
+}
+
+.controls-table tr:last-child td {
+  border-bottom: none;
+}
+
+.effort-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+}
+
+.effort-low { background: #e8f5e9; color: #2e7d32; }
+.effort-medium { background: #fff8e1; color: #f57f17; }
+.effort-high { background: #fce4ec; color: #c62828; }
+
+[data-theme='dark'] .effort-low { background: #1b3a1f; color: #81c784; }
+[data-theme='dark'] .effort-medium { background: #2a2000; color: #ffcc02; }
+[data-theme='dark'] .effort-high { background: #2a0a0a; color: #ef9a9a; }
+
+.required-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.1rem 0.4rem;
+  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.required-golive { background: #b71c1c; color: white; }
+.required-post { background: var(--ifm-color-emphasis-200); color: var(--ifm-color-emphasis-700); }
+
+/* ── Severity indicator ── */
+.severity-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  letter-spacing: 0.03em;
+}
+
+.severity-critical { background: #b71c1c; color: white; }
+.severity-high { background: #e65100; color: white; }
+.severity-medium { background: #f57f17; color: white; }
+.severity-low { background: #2e7d32; color: white; }
+
+/* ── Layer navigation on entries ── */
+.layer-nav {
+  display: flex;
+  gap: 0.5rem;
+  margin: 1.5rem 0;
+  flex-wrap: wrap;
+}
+
+.layer-pill {
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  color: var(--ifm-color-emphasis-700);
+  text-decoration: none;
+  transition: all 0.15s;
+}
+
+.layer-pill:hover, .layer-pill.active {
+  background: var(--ifm-color-primary);
+  border-color: var(--ifm-color-primary);
+  color: white;
+  text-decoration: none;
+}
+
+/* ── Training module CTA ── */
+.training-cta {
+  background: linear-gradient(135deg, #1a4f8a10, #6a1b9a10);
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 3rem 0 1rem;
+  text-align: center;
+}
+
+.training-cta h4 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+}
+
+.training-cta p {
+  font-size: 0.9rem;
+  color: var(--ifm-color-emphasis-600);
+  margin: 0 0 1rem;
+}
+
+/* ── Key question callout ── */
+.key-question {
+  border-left: 4px solid var(--ifm-color-primary);
+  background: var(--ifm-color-emphasis-100);
+  padding: 1rem 1.25rem;
+  border-radius: 0 6px 6px 0;
+  margin: 1.5rem 0;
+  font-style: italic;
+}
+
+/* ── Framework ref chips ── */
+.framework-refs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 1rem 0;
+}
+
+.framework-chip {
+  font-size: 0.75rem;
+  padding: 0.2rem 0.6rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 4px;
+  color: var(--ifm-color-emphasis-700);
+  background: var(--ifm-color-emphasis-100);
+}
+
+/* ── Verify flag warning ── */
+.verify-flag {
+  background: #fff3e0;
+  border: 1px solid #ff9800;
+  border-radius: 6px;
+  padding: 0.6rem 1rem;
+  font-size: 0.85rem;
+  color: #e65100;
+  margin: 0.5rem 0;
+}
+
+[data-theme='dark'] .verify-flag {
+  background: #2a1800;
+  border-color: #ff9800;
+  color: #ffb74d;
+}
+
+/* ── Docusaurus overrides ── */
+.markdown h2 {
+  margin-top: 2.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.table-of-contents__link {
+  font-size: 0.85rem;
+}
+
+article header h1 {
+  font-size: 1.8rem;
+}

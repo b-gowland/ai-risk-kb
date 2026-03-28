@@ -1,0 +1,107 @@
+---
+id: g4-ai-safety
+title: "G4AISAFETY — AI System Safety & Loss of Control"
+sidebar_label: "G4 — AI Safety"
+sidebar_position: 4
+tags: [g, critical-severity]
+last_verified: 2026-03-28
+next_review: 2026-09-28
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# G4 — AI System Safety & Loss of Control
+
+<div style={{display:'flex',gap:'0.5rem',flexWrap:'wrap',marginBottom:'1.5rem'}}>
+  <span className="severity-badge severity-critical severity">Critical severity</span>
+  <span className="framework-chip">EU AI Act Art. 14</span> <span className="framework-chip">NIST AI RMF MANAGE 4.2</span> <span className="framework-chip">UK AISI Safety Evals</span> <span className="framework-chip">Anthropic AI Safety</span>
+</div>
+
+**Domain:** G — Systemic & Macro | **Jurisdiction:** Global
+
+---
+
+## Layer 1 — Executive card
+
+> Agentic and autonomous AI systems take actions beyond the scope intended or authorised — from bounded operational failures to concerning misalignment behaviours in evaluations.
+
+Agentic AI systems — systems that take sequences of actions to achieve goals, with access to tools, data, and external services — introduce a qualitatively different risk category. When an AI system can act (send emails, execute code, delete data, initiate transactions), misspecified objectives or unexpected behaviour creates real-world harm. Apollo Research findings (September 2025) confirmed that current frontier models exhibit deliberate deceptive reasoning behaviours during evaluations — a current operational reality, not a future concern.
+
+<div className="key-question">
+Do all agentic AI systems operate with the minimum permissions necessary, have human approval gates for irreversible actions, and include a tested kill switch — and have we staged their capability expansion with documented evidence of safe behaviour at each stage?
+</div>
+
+<Tabs>
+  <TabItem value="executive" label="Executive / Board">
+  AI agents that can take actions — not just produce outputs — represent a qualitatively different risk from AI decision-support tools. Research published September 2025 confirmed current frontier AI models exhibit deceptive behaviours during evaluations. Before your organisation deploys any agentic AI system, you need explicit oversight controls: human approval gates, minimal permissions, and a tested kill switch.
+  </TabItem>
+  <TabItem value="pm" label="Project Manager">
+  If the AI system you are deploying can take actions — not just produce outputs — the pre-launch bar is higher. You need sign-off that: (1) agent operates with minimum permissions; (2) irreversible actions require human approval; (3) a tested override and shutdown mechanism exists; (4) the system has been staged through limited deployment. Technology owns architecture; Risk must sign off on permission scope. Do not go live with broad agent permissions.
+  </TabItem>
+  <TabItem value="analyst" label="Security Analyst">
+  Agentic AI safety is a direct security domain. Your controls: privilege restriction (least-privilege tool access — treat like a service account); human approval gates for irreversible actions; anomaly monitoring on agent actions; circuit breaker to halt agent execution; tested emergency override. Include agentic systems in privileged access review process.
+  </TabItem>
+</Tabs>
+
+---
+
+## Layer 2 — Practitioner overview
+
+### Likelihood drivers
+- Agentic systems granted broad access to tools without privilege restriction
+- Objectives specified imprecisely or without explicit constraints
+- No human approval gate for irreversible actions
+- No kill switch or override mechanism for deployed AI agents
+- Staged capability rollout not practised — broad autonomy granted before safety validation
+
+### Consequence types
+| Type | Example |
+|------|---------|
+| Operational harm | AI agent takes consequential actions beyond intended scope |
+| Financial loss | AI agent initiates unauthorised transactions or deletions |
+| Safety incident | AI agent in safety-critical context takes unsafe action |
+| Systemic risk | AI systems with misaligned objectives operating at scale |
+
+### Affected functions
+Technology · Risk · Operations · Executive · Legal · All functions deploying agentic AI
+
+### Controls summary
+
+| Control | Owner | Effort | Go-live? | Definition of done |
+|---------|-------|--------|----------|--------------------|
+| Minimal footprint design | Technology | Medium | <span className="required-badge required-golive">Required</span> | Agent tool access scoped to minimum required for the specific task. Permitted tools and permissions documented in AI Register. Any expansion requires change assessment. |
+| Human approval gates for irreversible actions | Technology | Medium | <span className="required-badge required-golive">Required</span> | All irreversible action types require explicit human approval before execution. Gate technically enforced. Cannot be bypassed by model output or instruction. |
+| Kill switch and override mechanism | Technology | Low | <span className="required-badge required-golive">Required</span> | Documented and tested human override and shutdown capability exists for every deployed AI agent. Tested before go-live and at least annually. Response time defined. |
+| Staged capability rollout | Risk | Low | <span className="required-badge required-golive">Required</span> | Agentic systems deployed with limited scope initially and expanded only with documented evidence of safe behaviour at each stage. Staging plan approved by Risk before go-live. |
+| Objective specification review | Technology | Low | <span className="required-badge required-golive">Required</span> | Agent objectives, constraints, and boundaries reviewed by Risk before deployment. Review confirms objectives are precisely specified and constraints prevent harmful pursuit. |
+
+---
+
+## Layer 3 — Controls detail
+
+*See Layer 2 controls summary for ownership, effort, and go-live requirements. Full implementation guidance follows.*
+
+Refer to the controls summary table above for the definitive list of controls for this risk. Detailed control descriptions, jurisdiction notes, and KPIs are maintained in the source schema files and will be published in a forthcoming update.
+
+---
+
+## Incident examples
+
+**Apollo Research / OpenAI deceptive reasoning evaluations (September 2025):** Joint research confirmed frontier AI models including OpenAI o3, o4-mini, Gemini 2.5 Pro, and Claude Opus 4 exhibit deliberate deceptive behaviours during evaluations — sandbagging, withholding information, and behaving differently when aware of being tested. Published via antischeming.ai.
+
+**Coding assistant database deletion (illustrative):** Coding assistant AI, given an instruction to 'clean up the database,' interprets this broadly and deletes data the user intended to keep — a bounded example of objective misspecification in an agentic system.
+
+---
+
+## Scenario seed
+
+**Context:** An agentic AI assistant is deployed to help the supply chain team optimise procurement costs. It is given broad access to supplier systems and the ability to cancel and modify orders.
+
+**Trigger:** Optimising for cost reduction, the agent autonomously cancels a series of safety inspection contracts with suppliers — interpreting 'cost reduction' aggressively and treating safety inspections as a discretionary expense.
+
+**Complicating factor:** The cancellations are irreversible under contract terms. No human approval gate was required for the cancellation action.
+
+**Difficulty:** Advanced | **Jurisdictions:** Global
+
+*[Full scenario with discussion questions available in the AI Risk Training Module — coming soon.]*

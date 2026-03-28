@@ -1,0 +1,104 @@
+---
+id: g1-concentration-risk
+title: "G1CONCENTRATIONRISK — Operational Dependency & Concentration Risk"
+sidebar_label: "G1 — Concentration Risk"
+sidebar_position: 1
+tags: [g, medium-severity]
+last_verified: 2026-03-28
+next_review: 2026-09-28
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# G1 — Operational Dependency & Concentration Risk
+
+<div style={{display:'flex',gap:'0.5rem',flexWrap:'wrap',marginBottom:'1.5rem'}}>
+  <span className="severity-badge severity-medium severity">Medium severity</span>
+  <span className="framework-chip">APRA CPS 230</span> <span className="framework-chip">EU AI Act Art. 53</span> <span className="framework-chip">NIST AI RMF MANAGE 4</span> <span className="framework-chip">FSB AI/ML 2017</span>
+</div>
+
+**Domain:** G — Systemic & Macro | **Jurisdiction:** AU, EU, Global
+
+---
+
+## Layer 1 — Executive card
+
+> Over-reliance on AI infrastructure from a small number of hyperscale providers creates single points of failure and systemic concentration risk.
+
+The AI infrastructure market is concentrated among a small number of hyperscale providers. Organisations that have built production systems on a single provider's API have accepted that provider as a single point of failure. An outage, model deprecation, or pricing change cascades simultaneously to all dependent organisations. APRA's supervisory focus on concentration risk under CPS 230 explicitly encompasses this.
+
+<div className="key-question">
+Does every AI-dependent critical system have a tested fallback — manual process, alternative provider, or degraded functional mode — and are our vendor contracts confirmed to include adequate exit rights and deprecation notice periods?
+</div>
+
+<Tabs>
+  <TabItem value="executive" label="Executive / Board">
+  If your organisation's operations depend on AI infrastructure from a small number of providers, an outage or deprecation at that provider cascades to you simultaneously with every other organisation sharing the same dependency. APRA CPS 230 addresses concentration risk explicitly. The audit finding means your AI provider dependencies are not mapped and BCP does not cover AI system unavailability.
+  </TabItem>
+  <TabItem value="pm" label="Project Manager">
+  Before any AI-dependent system goes live, confirm a business continuity plan exists for AI provider unavailability. The critical questions: (1) what does the system do if the provider is unavailable? (2) is there a degraded mode or manual fallback? (3) are exit rights and portability confirmed in the vendor contract? Technology, Procurement, and Risk all have deliverables here.
+  </TabItem>
+  <TabItem value="analyst" label="Security Analyst">
+  Concentration risk creates a single point of failure that attackers can target. A significant AI provider outage — whether from technical failure, DDoS, or geopolitical event — affects all dependent systems simultaneously. Ensure AI provider dependencies are included in your threat model and fallback capabilities are tested in tabletop exercises.
+  </TabItem>
+</Tabs>
+
+---
+
+## Layer 2 — Practitioner overview
+
+### Likelihood drivers
+- Critical business processes built on single AI provider without fallback
+- No business continuity plans covering AI system unavailability
+- Vendor agreements do not include deprecation notice periods or portability rights
+- Pricing exposure not modelled
+- No concentration risk assessment of AI vendor dependencies
+
+### Consequence types
+| Type | Example |
+|------|---------|
+| Operational disruption | Customer-facing services down during AI provider outage |
+| Financial harm | Margin compression from unexpected pricing changes |
+| Forced migration | Model deprecation requiring rapid transition to new provider |
+| Regulatory exposure | Failure to maintain operational resilience under CPS 230 |
+
+### Affected functions
+Technology · Risk · Operations · Finance · Procurement
+
+### Controls summary
+
+| Control | Owner | Effort | Go-live? | Definition of done |
+|---------|-------|--------|----------|--------------------|
+| AI provider dependency mapping | Risk | Low | <span className="required-badge required-golive">Required</span> | All AI provider dependencies documented in AI Register including provider, models, criticality, and single points of failure. Reviewed annually. |
+| Fallback architecture or degraded mode | Technology | High | <span className="required-badge required-golive">Required</span> | Each AI-dependent critical system has documented and tested fallback. Tested at least annually in BCP exercises. |
+| Vendor contract exit and portability rights | Procurement | Low | <span className="required-badge required-golive">Required</span> | AI vendor contracts include data portability rights, model export rights where applicable, and minimum deprecation notice periods. Confirmed before contract execution. |
+| Business continuity planning for AI | Risk | Medium | <span className="required-badge required-post">Post-launch</span> | AI system failure scenarios included in BCP. Manually-operated fallback processes tested. Results documented. |
+
+---
+
+## Layer 3 — Controls detail
+
+*See Layer 2 controls summary for ownership, effort, and go-live requirements. Full implementation guidance follows.*
+
+Refer to the controls summary table above for the definitive list of controls for this risk. Detailed control descriptions, jurisdiction notes, and KPIs are maintained in the source schema files and will be published in a forthcoming update.
+
+---
+
+## Incident examples
+
+**OpenAI API outage (multiple incidents 2023–2025):** Organisations whose customer-facing services depend on the GPT API have been simultaneously impacted during OpenAI outages with no fallback. Incidents have lasted hours and affected production services globally.
+
+**Google Gemini API version deprecation:** Organisations that built production systems on specific Gemini API versions must migrate or face service interruption when versions are deprecated, often with limited notice.
+
+---
+
+## Scenario seed
+
+**Context:** A financial services firm's customer-facing AI assistant depends entirely on a single LLM provider API. The provider experiences a 4-hour outage.
+
+**Trigger:** The customer service centre is unable to serve customers for the duration of the outage. No fallback exists.
+
+**Difficulty:** Foundational | **Jurisdictions:** AU, EU, Global
+
+*[Full scenario with discussion questions available in the AI Risk Training Module — coming soon.]*

@@ -1,0 +1,102 @@
+---
+id: b3-lifecycle-governance
+title: "B3LIFECYCLEGOVERNANCE — AI Lifecycle Governance Failure"
+sidebar_label: "B3 — Lifecycle Governance"
+sidebar_position: 3
+tags: [b, medium-severity]
+last_verified: 2026-03-28
+next_review: 2026-09-28
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# B3 — AI Lifecycle Governance Failure
+
+<div style={{display:'flex',gap:'0.5rem',flexWrap:'wrap',marginBottom:'1.5rem'}}>
+  <span className="severity-badge severity-medium severity">Medium severity</span>
+  <span className="framework-chip">ISO 42001 Cl. 8</span> <span className="framework-chip">NIST AI RMF MANAGE 2</span> <span className="framework-chip">EU AI Act Art. 9</span> <span className="framework-chip">APRA CPS 230</span>
+</div>
+
+**Domain:** B — Governance | **Jurisdiction:** AU, EU, Global
+
+---
+
+## Layer 1 — Executive card
+
+> Inadequate governance across the full AI lifecycle — from development through deployment, monitoring, and decommissioning.
+
+Software development lifecycle disciplines were developed for deterministic software. AI systems are not deterministic — a model update changes behaviour in ways that cannot be fully specified from a change log. Many organisations deploy AI but have no structured process for what happens next: no change management for model updates, no monitoring framework, no formal decommissioning.
+
+<div className="key-question">
+Can we demonstrate that every AI system in production has passed a structured pre-deployment testing gate, is actively monitored, and has a defined review and decommissioning process?
+</div>
+
+<Tabs>
+  <TabItem value="executive" label="Executive / Board">
+  Many organisations have deployed AI but have no structured process for what happens after launch. The audit finding means there is no AISDLC framework. What you are approving is implementing a structured lifecycle framework with mandatory gates before deployment and active oversight throughout — analogous to SDLC but adapted for AI.
+  </TabItem>
+  <TabItem value="pm" label="Project Manager">
+  Before go-live, confirm documented evidence exists for each lifecycle phase: data documented, model tested (including fairness and adversarial testing), risk and compliance sign-off obtained, AI Register entry created, monitoring configured. If you are asked to approve go-live without this evidence, escalate.
+  </TabItem>
+  <TabItem value="analyst" label="Security Analyst">
+  Lifecycle governance gaps directly affect you when vendor model updates are deployed without your knowledge or testing. Ensure any AI system you rely on for security functions is in the AI Register, model changes go through change management, and decommissioned models are actually removed from production.
+  </TabItem>
+</Tabs>
+
+---
+
+## Layer 2 — Practitioner overview
+
+### Likelihood drivers
+- No AISDLC framework adapted for AI-specific lifecycle
+- Vendor model updates not subject to change management
+- No pre-deployment testing checklist or minimum standards
+- Models run indefinitely without formal reassessment
+
+### Consequence types
+| Type | Example |
+|------|---------|
+| Regulatory breach | Deploying AI without meeting conformity standards |
+| Operational harm | Model behaviour changes undetected after vendor update |
+| Fairness failure | Bias not caught without pre-deployment fairness testing |
+
+### Affected functions
+Technology · Risk · Compliance · Internal Audit · Procurement
+
+### Controls summary
+
+| Control | Owner | Effort | Go-live? | Definition of done |
+|---------|-------|--------|----------|--------------------|
+| AISDLC framework | Technology | High | <span className="required-badge required-post">Post-launch</span> | Documented AISDLC framework covering all lifecycle phases approved by Risk and actively used for new deployments. |
+| Pre-deployment testing checklist | Technology | Low | <span className="required-badge required-golive">Required</span> | Standardised checklist (accuracy, fairness, robustness, security, explainability) completed and signed off for every AI system before go-live. |
+| Vendor model change notification | Procurement | Low | <span className="required-badge required-post">Post-launch</span> | All AI vendor contracts include advance notice requirement for material model changes. Minimum 30 days. Present in all current contracts. |
+| Decommissioning protocol | Technology | Low | <span className="required-badge required-post">Post-launch</span> | Formal decommissioning process including data deletion, documentation archival, and AI Register update exists and is followed. |
+
+---
+
+## Layer 3 — Controls detail
+
+*See Layer 2 controls summary for ownership, effort, and go-live requirements. Full implementation guidance follows.*
+
+Refer to the controls summary table above for the definitive list of controls for this risk. Detailed control descriptions, jurisdiction notes, and KPIs are maintained in the source schema files and will be published in a forthcoming update.
+
+---
+
+## Incident examples
+
+**Undisclosed vendor model update (illustrative):** A model update by a third-party vendor changes classification logic without customer notification. The organisation discovers this through unexplained output changes weeks later — by which time incorrect outputs have influenced decisions.
+
+**Deprecated model still running in production (illustrative):** A deprecated AI model continues running after its intended decommission date. Outputs become increasingly unreliable; no monitoring exists to detect this.
+
+---
+
+## Scenario seed
+
+**Context:** A vendor silently upgrades the underlying LLM in a deployed AI product from one model version to another without notification.
+
+**Trigger:** Customer service staff notice the AI's responses have changed in tone and accuracy. The product owner investigates and discovers the change.
+
+**Difficulty:** Foundational | **Jurisdictions:** AU, EU, Global
+
+*[Full scenario with discussion questions available in the AI Risk Training Module — coming soon.]*
