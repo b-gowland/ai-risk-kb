@@ -76,9 +76,7 @@ ai-risk-kb/
 
 The knowledge base is designed for automated maintenance with a human review gate. GitHub Actions workflows run:
 
-- **Weekly** — check AIID and OECD AIM for new incidents
-- **Monthly** — check regulatory sources and run gap detection
-- **Quarterly** — fact-check all claims against primary sources
+- **Weekly** — full maintenance pass: incident monitoring across all 14 sources, gap detection across all 17 entries, and verification of all flagged claims
 
 All proposed changes are generated as GitHub Issues for human review before being applied.
 
