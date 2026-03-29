@@ -127,21 +127,27 @@ jobs:
               summary += `- **Monitoring:** ${actions} source(s) with new content\n`;
             }
 
-            const issueBody = `## Weekly maintenance run — ${itemCount} item(s) require review
-
-**Run date:** ${new Date().toISOString().split('T')[0]}
-**Run ID:** ${context.runId}
-
-### Summary
-${summary || '- See full review document below'}
-
----
-
-${reviewDoc.substring(0, 60000)}
-
----
-
-*This issue was created automatically by the weekly maintenance workflow. Review each item, mark your decision (Approve / Reject / Modify), and close the issue when complete.*`;
+            const runDate = new Date().toISOString().split('T')[0];
+            const runId = context.runId;
+            const summaryBlock = summary || '- See full review document below';
+            const reviewBlock = reviewDoc.substring(0, 60000);
+            const issueBody = [
+              '## Weekly maintenance run \u2014 ' + itemCount + ' item(s) require review',
+              '',
+              'Run date: ' + runDate,
+              'Run ID: ' + runId,
+              '',
+              '### Summary',
+              summaryBlock,
+              '',
+              '---',
+              '',
+              reviewBlock,
+              '',
+              '---',
+              '',
+              '_This issue was created automatically by the weekly maintenance workflow. Review each item, mark your decision (Approve / Reject / Modify), and close the issue when complete._',
+            ].join('\n');
 
             await github.rest.issues.create({
               owner: context.repo.owner,
