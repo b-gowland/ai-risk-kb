@@ -14,8 +14,8 @@ const config = {
   deploymentBranch: 'gh-pages',
   trailingSlash: false,
 
-  onBrokenLinks: 'warn',
-  onBrokenMarkdownLinks: 'warn',
+  onBrokenLinks: 'throw',
+  onBrokenMarkdownLinks: 'throw',
 
   i18n: {
     defaultLocale: 'en',
@@ -72,8 +72,7 @@ const config = {
           {
             label: 'Training Module',
             position: 'left',
-            href: 'https://github.com/b-gowland/ai-risk-training',
-            className: 'coming-soon-nav',
+            href: 'https://b-gowland.github.io/ai-risk-training/',
           },
           {
             href: 'https://github.com/b-gowland/ai-risk-kb',

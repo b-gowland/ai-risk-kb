@@ -11,6 +11,13 @@ on:
         required: false
         default: ''
 
+# Explicit minimum permissions — principle of least privilege
+# issues: write is needed to create human-review issues
+# contents: read is sufficient — automation never commits back to the repo
+permissions:
+  contents: read
+  issues: write
+
 jobs:
   full-maintenance:
     name: Full maintenance pass
@@ -27,14 +34,27 @@ jobs:
       - name: Install dependencies
         run: pip install anthropic
 
+      - name: Validate entry input
+        # Reject the input before it reaches the shell if it contains anything
+        # other than letters, digits, and hyphens. Prevents script injection.
+        if: github.event.inputs.entry != ''
+        run: |
+          ENTRY_INPUT="${{ github.event.inputs.entry }}"
+          if ! echo "$ENTRY_INPUT" | grep -qE '^[A-Za-z0-9-]{1,10}$'; then
+            echo "ERROR: Invalid entry value — must be 1-10 alphanumeric characters (e.g. C2, A1, g4-ai-safety)"
+            exit 1
+          fi
+
       - name: Run full maintenance pass
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # Pass input as an environment variable — never interpolate inputs directly into shell commands
+          ENTRY_ID: ${{ github.event.inputs.entry }}
         run: |
           cd automation
-          if [ -n "${{ github.event.inputs.entry }}" ]; then
-            echo "Running single-entry mode for: ${{ github.event.inputs.entry }}"
-            python automation_engine.py --mode single --entry "${{ github.event.inputs.entry }}"
+          if [ -n "$ENTRY_ID" ]; then
+            echo "Running single-entry mode for: $ENTRY_ID"
+            python automation_engine.py --mode single --entry "$ENTRY_ID"
           else
             echo "Running full maintenance pass across all entries"
             python automation_engine.py --mode full
@@ -135,11 +155,13 @@ ${reviewDoc.substring(0, 60000)}
 
       - name: Post run summary
         if: always()
+        env:
+          ENTRY_ID: ${{ github.event.inputs.entry }}
         run: |
           echo "## Weekly maintenance run complete" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "**Run date:** $(date -u +%Y-%m-%d)" >> $GITHUB_STEP_SUMMARY
-          echo "**Mode:** ${{ github.event.inputs.entry && 'single-entry' || 'full' }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Mode:** ${ENTRY_ID:+single-entry ($ENTRY_ID)}${ENTRY_ID:-full}" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           if [ -d "automation/reports" ]; then
             echo "**Reports generated:**" >> $GITHUB_STEP_SUMMARY

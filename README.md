@@ -119,6 +119,10 @@ Provided for informational purposes only. Not legal, regulatory, or professional
 
 ---
 
-## Coming soon
+## AI Risk Training Module — Live
 
-**AI Risk Training Module** (`ai-risk-training`) — an interactive scenario-based learning tool using the scenario seeds embedded in each entry. Persona-based workplace scenarios, illustrated panels, multiple choice questions. Open source. [Watch this space.](https://github.com/b-gowland/ai-risk-training)
+**[AI Risk Training Module](https://b-gowland.github.io/ai-risk-training/)** (`ai-risk-training`) — interactive scenario-based learning using the scenario seeds in each entry. Choose-your-own-adventure workplace scenarios with real consequences. Four personas per scenario. Open source.
+
+**Live scenarios:** F2 Shadow AI · C4 Deepfakes · A1 Hallucination · E1 Algorithmic Bias  
+**Play:** [b-gowland.github.io/ai-risk-training](https://b-gowland.github.io/ai-risk-training/)  
+**Source:** [github.com/b-gowland/ai-risk-training](https://github.com/b-gowland/ai-risk-training)
