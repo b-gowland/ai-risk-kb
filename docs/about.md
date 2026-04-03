@@ -16,7 +16,7 @@ This knowledge base aims to bridge that gap: authoritative enough to be credible
 
 ## Structure
 
-**17 risk categories** are organised across **7 domains** (A through G), each with four layers of depth:
+**26 risk entries** are organised across **7 domains** (A through G), each with four layers of depth:
 
 - **Layer 1** — Plain English executive card, designed for board members and senior executives with no AI background
 - **Layer 2** — Practitioner overview with controls ownership, effort estimates, and go-live criteria — designed for risk managers, compliance leads, and project managers

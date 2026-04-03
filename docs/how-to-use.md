@@ -33,13 +33,13 @@ Every risk entry has four layers. You do not need to read all four — read to t
 
 ## How to navigate
 
-The left sidebar organises all 17 risk entries across 7 domains (A through G). Within each entry, use the on-page table of contents on the right to jump directly to the layer you need.
+The left sidebar organises all 26 risk entries across 7 domains (A through G). Within each entry, use the on-page table of contents on the right to jump directly to the layer you need.
 
 ## How to use this alongside a risk assessment
 
 This taxonomy is a checklist and reference, not a risk assessment methodology. When conducting an AI risk assessment for a specific deployment:
 
-1. Use the 17 categories as a checklist — consider each domain and determine whether it is relevant to your deployment context.
+1. Use the 26 entries as a checklist — consider each domain and determine whether it is relevant to your deployment context.
 2. For relevant risks, use Layer 2 to understand likelihood drivers and assess which apply.
 3. Use the controls summary to identify what must be in place before go-live versus what can be addressed post-launch.
 4. Use Layer 3 and 4 to design and implement the specific controls.

@@ -90,7 +90,7 @@ export default function Home() {
         <p>
           A free, open-source reference for understanding, assessing, and controlling AI risk.
           Written for every level — from board to technical practitioner.
-          17 risk categories across 7 domains, four layers of depth per entry.
+          26 risk entries across 7 domains, four layers of depth per entry.
         </p>
         <div className="hero-buttons">
           <Link className="button button--primary button--lg" to="/docs/how-to-use">
