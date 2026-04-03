@@ -575,8 +575,11 @@ class GapDetectionEngine:
 
     def _check_layer2_gaps(self, content: str, entry_id: str) -> list[GapReport]:
         gaps = []
+        # Note: "### Risk description" is intentionally excluded — A-domain entries
+        # include it but B-G entries use "## Layer 2" with content directly under
+        # the other subheadings. Checking for it would produce false positives on
+        # all 21 B-G entries.
         required_headings = [
-            "### Risk description",
             "### Likelihood drivers",
             "### Consequence types",
             "### Affected functions",
@@ -941,12 +944,16 @@ class ReportGenerator:
 
     def generate_monitoring_report(self, results: list[MonitoringResult]) -> str:
         action_items = [r for r in results if r.recommended_action != "none"]
+        failed = [r for r in results if r.summary.startswith("Check failed")]
+        clean = [r for r in results if not r.new_content_detected
+                 and not r.summary.startswith("Check failed")]
 
         lines = [
             "# Monitoring Report",
             f"Generated: {utc_now().strftime('%Y-%m-%d %H:%M UTC')}",
             f"Sources checked: {len(results)}",
             f"Action items: {len(action_items)}",
+            f"Failed checks: {len(failed)}",
             "",
         ]
 
@@ -959,8 +966,12 @@ class ReportGenerator:
                 lines.append(f"Summary: {r.summary}")
                 lines.append(f"Human review required: {r.human_review_required}")
 
+        if failed:
+            lines.extend(["", "## Failed checks (web search not available — add tool to resolve)"])
+            for r in failed:
+                lines.append(f"- {r.source_name} — {r.summary}")
+
         lines.extend(["", "## Sources with no new content"])
-        clean = [r for r in results if not r.new_content_detected]
         for r in clean:
             lines.append(f"- {r.source_name} — checked {r.checked_at[:10]}")
 
