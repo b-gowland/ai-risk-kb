@@ -1,0 +1,115 @@
+---
+id: a1-hallucination
+title: "A1 — Hallucination / Confabulation"
+sidebar_label: "A1 — Hallucination"
+sidebar_position: 1
+tags: [technical, llm, high-severity]
+last_verified: 2026-03-28
+next_review: 2026-09-28
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# A1 — Hallucination / Confabulation
+
+<div style={{display:'flex',gap:'0.5rem',flexWrap:'wrap',marginBottom:'1.5rem'}}>
+  <span className="severity-badge severity-high">High severity</span>
+  <span className="framework-chip">NIST AI 600-1 Risk 2</span>
+</div>
+
+**Domain:** A — Technical | **Jurisdiction:** Global
+
+---
+
+## Layer 1 — Executive card
+
+> AI systems produce outputs that are factually wrong or fabricated, presented
+> with confidence and no indication of uncertainty.
+
+AI language models generate text by predicting what word comes next, not by
+retrieving verified facts.
+
+<div className="key-question">
+Do we have mandatory verification requirements before AI-generated content is
+acted upon in any high-stakes domain?
+</div>
+
+<Tabs>
+  <TabItem value="executive" label="Executive / Board">
+  Hallucination is an active risk today. Approve a verification framework for
+  high-stakes AI outputs.
+  </TabItem>
+  <TabItem value="pm" label="Project Manager">
+  Confirm output verification controls exist before go-live.
+  </TabItem>
+  <TabItem value="analyst" label="Security Analyst">
+  Ensure automated pipelines have a validation layer before action is taken.
+  </TabItem>
+</Tabs>
+
+---
+
+## Layer 2 — Practitioner overview
+
+### Risk description
+
+Generative AI systems produce outputs by predicting statistically likely token
+sequences, not by retrieving verified facts.
+
+### Likelihood drivers
+- Model used without a retrieval layer
+- Users not trained to understand LLMs fabricate confidently
+
+### Consequence types
+| Type | Example |
+|------|---------|
+| Legal liability | Chatbot invents a policy |
+
+### Affected functions
+Legal · Compliance · Technology
+
+### Controls summary
+
+| Control | Owner | Effort | Go-live? | Definition of done |
+|---------|-------|--------|----------|--------------------|
+| RAG implementation | Technology | High | Required | LLM outputs grounded in verified knowledge base. |
+
+---
+
+## Layer 3 — Controls detail
+
+### A1-001 — Retrieval-Augmented Generation (RAG)
+**Owner:** Technology | **Type:** Preventive | **Effort:** High | **Go-live required:** Yes
+
+Ground LLM outputs in a verified, current knowledge base.
+
+### KPIs
+| Metric | Target | Frequency |
+|--------|--------|-----------|
+| Hallucination rate on evaluation set | < 2% | Monthly |
+
+---
+
+## Layer 4 — Technical implementation
+
+```python
+qa_chain = RetrievalQA.from_chain_type(
+    llm=llm,
+    retriever=vectorstore.as_retriever(search_kwargs={"k": 5}),
+)
+```
+
+**Tools:** LangChain, pgvector
+
+---
+
+## Incident examples
+
+**Air Canada chatbot liability (2024):** Air Canada's AI chatbot invented a
+non-existent bereavement fare discount.
+
+---
+
+## Scenario seed
+**Context:** A compliance team uses an AI assistant to draft submissions.

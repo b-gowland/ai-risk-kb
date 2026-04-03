@@ -15,6 +15,9 @@ automation/run_*.json
 .env
 .env.local
 .env.*.local
+.venv/
+__pycache__/
+*.pyc
 
 # OS
 .DS_Store
