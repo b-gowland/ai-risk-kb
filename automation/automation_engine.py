@@ -235,7 +235,7 @@ class VerificationEngine:
 
     def verify_entry(self, entry_path: Path) -> list[VerificationResult]:
         """Run verification pass on a single entry file."""
-        with open(entry_path) as f:
+        with open(entry_path, encoding="utf-8") as f:
             content = f.read()
 
         claims = self._extract_verifiable_claims(content, parse_entry_id(entry_path))
@@ -505,7 +505,7 @@ class GapDetectionEngine:
 
     def check_entry(self, entry_path: Path) -> list[GapReport]:
         """Check a single entry for all gap types."""
-        with open(entry_path) as f:
+        with open(entry_path, encoding="utf-8") as f:
             content = f.read()
 
         entry_id = parse_entry_id(entry_path)
@@ -845,7 +845,7 @@ Entry content:
         Returns a dict of proposed changes — does NOT write to file.
         All changes require human approval before being applied.
         """
-        with open(entry_path) as f:
+        with open(entry_path, encoding="utf-8") as f:
             content = f.read()
 
         entry_id = parse_entry_id(entry_path)
