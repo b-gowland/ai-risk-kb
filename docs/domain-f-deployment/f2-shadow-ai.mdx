@@ -79,9 +79,190 @@ Technology · Security · HR · Compliance · Legal · All business functions
 
 ## Layer 3 — Controls detail
 
-*See Layer 2 controls summary for ownership, effort, and go-live requirements. Full implementation guidance follows.*
+### F2-001 — Approved AI tools register
+**Owner:** Technology | **Type:** Preventive | **Effort:** Low | **Go-live required:** Yes
 
-Refer to the controls summary table above for the definitive list of controls for this risk. Detailed control descriptions, jurisdiction notes, and KPIs are maintained in the source schema files and will be published in a forthcoming update.
+Maintain a published list of AI tools approved for use with organisational data, including: permitted use cases, permitted data classification levels, and any conditions of use. The register is the foundation of shadow AI control — without a clear list of what is approved and why, staff have no basis for making compliant choices.
+
+Implementation requirements: (1) define data classification tiers relevant to AI tool selection (e.g. Public, Internal, Confidential, Restricted — or equivalent per your existing DLP classification); (2) for each approved tool, document: tool name and version/tier, provider, permitted data classification levels, permitted use cases, prohibited use cases, data processing location, and whether the provider's terms allow training on submitted content; (3) publish the register to all staff via intranet — not buried in a policy document; (4) include a clear escalation path for staff to request addition of a tool; (5) review and update quarterly — the AI tool landscape changes faster than annual policy review cycles.
+
+**Jurisdiction notes:** AU — Privacy Act 1988 APP 8 (cross-border disclosure) — if an AI tool processes data offshore, this may trigger APP 8 obligations; the register should note data processing locations | EU — GDPR Art. 28 — tools processing personal data require a Data Processing Agreement; the register should flag which tools require a DPA and confirm it is in place | US — sector-specific requirements (HIPAA for health data, GLBA for financial data) — the register should flag applicable data residency and processing restrictions per tool
+
+---
+
+### F2-002 — DLP controls for AI tool inputs
+**Owner:** Security | **Type:** Detective/Preventive | **Effort:** High | **Go-live required:** No (post-launch)
+
+Implement Data Loss Prevention controls that detect and restrict submission of sensitive data to unapproved AI service endpoints. DLP is the technical enforcement layer that supports the acceptable use policy — policy alone is insufficient for a threat vector driven by convenience and habit.
+
+Implementation requirements: (1) catalogue known consumer and enterprise AI endpoints to monitor (ChatGPT, Claude.ai, Gemini, Copilot consumer tier, and others relevant to your workforce); (2) implement network-level or endpoint-level DLP rules that: detect sensitive data patterns (PII, financial data, document markers) in outbound requests to AI endpoints; block or alert on submissions to unapproved endpoints; (3) define alert routing — high-sensitivity alerts (e.g. customer PII, classified documents) should route to Security for review; lower-sensitivity patterns may route to manager; (4) document intentional exceptions for approved tools; (5) review and update the endpoint list at minimum quarterly as new AI services emerge.
+
+Note: DLP is a post-launch control because implementation requires baseline data classification and endpoint cataloguing. Do not delay the register (F2-001) and policy (F2-003) while DLP is being configured.
+
+**Jurisdiction notes:** AU — Privacy Act 1988 APP 11 — obligation to take reasonable steps to protect personal information from misuse and unauthorised access applies to shadow AI data pathways; APRA CPS 234 — security controls must be commensurate with the risk of data loss | EU — GDPR Art. 32 — technical measures for data security include preventing unauthorised processing; DLP controls directly address this obligation | Global — CASB (Cloud Access Security Broker) tools can provide visibility across cloud AI services without requiring per-endpoint rules
+
+---
+
+### F2-003 — Acceptable use policy for AI tools
+**Owner:** HR | **Type:** Preventive | **Effort:** Low | **Go-live required:** Yes
+
+Document, publish, and obtain acknowledgement of a policy specifying what staff may and may not do with AI tools in the course of their work. The policy creates the compliance baseline — DLP controls enforce the boundary technically, but the policy establishes the obligation and supports disciplinary and legal processes where violations occur.
+
+Minimum policy content: (1) definition of approved and unapproved AI tools (cross-reference the register); (2) data classification rules — which data classification levels may be submitted to which tool tiers; (3) explicit prohibited actions — submitting customer data, financial models, source code, legal documents, or other confidential material to unapproved tools; (4) output obligations — AI outputs used in work products must be reviewed and verified by a human before use; (5) incident reporting — how to report if staff believe they have submitted data in error; (6) consequences — confirmation that violation of the policy is a disciplinary matter.
+
+Obtain individual staff acknowledgement (not just publication). Include in new starter onboarding. Review annually or when significant new AI tool categories become available.
+
+**Jurisdiction notes:** AU — Fair Work Act 2009 — for disciplinary action to be supportable, the policy must have been communicated and acknowledged; a policy buried in an appendix to the IT security manual is unlikely to meet this standard | EU — GDPR Art. 29 / Art. 32(4) — employees must act only on documented instructions of the controller; the AUP is that documented instruction for AI tool usage | US — for financial services, document AI AUP as part of information security programme under Gramm-Leach-Bliley Act
+
+---
+
+### F2-004 — Approved enterprise AI tools provision
+**Owner:** Technology | **Type:** Preventive | **Effort:** Medium | **Go-live required:** No (post-launch)
+
+The most effective long-term control against shadow AI is removing the incentive to use unapproved tools — by providing enterprise-grade alternatives that meet staff productivity needs and have appropriate data protection terms. Staff use shadow AI primarily because approved alternatives are unavailable, too slow to access, or insufficiently capable.
+
+Implementation requirements: (1) survey staff on AI tool needs before procuring — avoid deploying tools that do not match the actual use cases driving shadow AI adoption; (2) negotiate data processing terms — enterprise tiers of major AI providers typically include: no training on submitted content, data residency commitments, DPA included; (3) confirm the enterprise tool's data handling terms explicitly before approving for Confidential data — do not rely on consumer-tier terms with an enterprise billing plan; (4) communicate availability actively — staff may continue using shadow tools if they are unaware approved alternatives exist.
+
+⚠️ **[VERIFY BEFORE PUBLISH]** Enterprise AI data processing terms vary by provider, region, and contract tier and change frequently. Confirm current terms directly with providers before approving tools for sensitive data. Do not rely on vendor marketing materials.
+
+**Jurisdiction notes:** AU — Privacy Act 1988 APP 8 — cross-border data disclosure obligations apply to offshore AI processing; enterprise agreements should address data residency | EU — GDPR Art. 44–49 — international data transfer requirements; enterprise AI agreements must include Standard Contractual Clauses or equivalent where processing occurs outside EEA | US — sector-specific contractual requirements may apply (HIPAA BAA for health data, etc.)
+
+---
+
+### KPIs
+
+| Metric | Target | Frequency |
+|--------|--------|-----------|
+| Approved AI tools register — last updated | Within 90 days | Quarterly |
+| Staff AUP acknowledgement rate | 100% of active staff | Annual + on policy update |
+| DLP alert review SLA | 100% of high-severity alerts reviewed within 2 business days | Continuous |
+| Unapproved AI tool submissions detected | Tracked; trend toward zero for sensitive data categories | Monthly |
+| Enterprise AI tool adoption rate | Tracked — rising adoption indicates reduced shadow AI incentive | Quarterly |
+
+---
+
+## Layer 4 — Technical implementation
+
+### DLP endpoint catalogue — implementation pattern
+
+```python
+# Shadow AI endpoint catalogue — maintain and update quarterly
+# Use as basis for DLP rules and web filtering policies
+
+CONSUMER_AI_ENDPOINTS = [
+    "chat.openai.com", "api.openai.com",   # OpenAI consumer
+    "claude.ai",                            # Anthropic consumer
+    "gemini.google.com",                    # Google consumer
+    "meta.ai",                              # Meta
+    "chat.mistral.ai",                      # Mistral consumer
+    "perplexity.ai",
+    "character.ai",
+    # Review and update quarterly — new services emerge continuously
+]
+
+ENTERPRISE_APPROVED_ENDPOINTS = [
+    # Add your approved enterprise endpoints here
+    # e.g. "yourtenant.openai.azure.com" for Azure OpenAI
+]
+
+def is_unapproved_ai_endpoint(url: str) -> bool:
+    from urllib.parse import urlparse
+    domain = urlparse(url).netloc.lower().lstrip("www.")
+    if any(domain == ep or domain.endswith("." + ep)
+           for ep in ENTERPRISE_APPROVED_ENDPOINTS):
+        return False
+    return any(domain == ep or domain.endswith("." + ep)
+               for ep in CONSUMER_AI_ENDPOINTS)
+```
+
+### Approved tools register — data schema
+
+```python
+from dataclasses import dataclass
+from typing import Literal
+
+DataClassification = Literal["public", "internal", "confidential", "restricted"]
+
+@dataclass
+class ApprovedAITool:
+    tool_name: str
+    provider: str
+    approved_date: str                           # ISO 8601
+    next_review_date: str                        # ISO 8601
+    max_data_classification: DataClassification  # Highest classification permitted
+    data_processing_location: str               # e.g. "Australia", "EU", "US"
+    trains_on_data: bool                         # Does provider train on submitted content?
+    dpa_in_place: bool                           # Data Processing Agreement signed?
+    permitted_use_cases: list[str]
+    prohibited_use_cases: list[str]
+    approved_by: str                             # Name and role
+
+# Example entry — confirm terms against your actual contract
+EXAMPLE_ENTERPRISE_TOOL = ApprovedAITool(
+    tool_name="Microsoft 365 Copilot",
+    provider="Microsoft",
+    approved_date="2026-01-15",
+    next_review_date="2026-07-15",
+    max_data_classification="confidential",
+    data_processing_location="Australia / EU",
+    trains_on_data=False,          # ⚠️ Confirm in your specific contract
+    dpa_in_place=True,
+    permitted_use_cases=["document drafting", "email summarisation", "meeting notes"],
+    prohibited_use_cases=["processing restricted financial model data",
+                          "generating regulatory submissions without human review"],
+    approved_by="CISO"
+)
+```
+
+### Shadow AI incident response tiers
+
+```python
+# Incident classification and response triggers
+# Integrate with your existing security incident response process
+
+SHADOW_AI_INCIDENT_TIERS = {
+    "P1_critical": {
+        "trigger": "Restricted data (customer PII, financial model data, legal privileged material) submitted to unapproved endpoint",
+        "response_time_hours": 4,
+        "actions": [
+            "Notify Privacy Officer",
+            "Assess whether notifiable data breach threshold met (Privacy Act / GDPR)",
+            "Contact AI provider to request data deletion — note: consumer tiers often cannot honour this",
+            "Document in incident register",
+            "Brief CISO",
+        ]
+    },
+    "P2_high": {
+        "trigger": "Confidential business data (strategy documents, source code, internal policies) submitted to unapproved endpoint",
+        "response_time_hours": 24,
+        "actions": [
+            "Notify Security team",
+            "Document in incident register",
+            "Assess IP exposure risk",
+            "Brief manager",
+        ]
+    },
+    "P3_medium": {
+        "trigger": "Internal data submitted to unapproved endpoint — no sensitive content confirmed",
+        "response_time_hours": 72,
+        "actions": [
+            "Log in DLP incident register",
+            "Conduct staff reminder / coaching conversation",
+            "Review whether pattern indicates training gap",
+        ]
+    }
+}
+```
+
+### Compliance implementation
+
+**Australia:** Privacy Act 1988 APP 11 — take reasonable steps to protect personal information; DLP controls on AI endpoints directly address this. APP 8 — submitting personal information to an overseas AI provider triggers cross-border disclosure obligations; the approved tools register must confirm data residency for any tool processing personal information. APRA CPS 234 — information security capability must address shadow AI as an identified threat vector; include in annual CPS 234 attestation. Notifiable Data Breaches scheme — a shadow AI incident involving personal information may trigger NDB notification obligations.
+
+**EU:** GDPR Art. 28 — any tool processing personal data on behalf of your organisation requires a Data Processing Agreement. Consumer-tier AI tools typically do not offer a DPA. Art. 32 — technical and organisational measures for data security must address unauthorised processing pathways. Art. 83 — fines for Art. 32 violations up to €10M or 2% of global annual turnover. EU AI Act Art. 29 — deployers of AI systems must implement appropriate technical and organisational measures; an approved tools governance framework is part of this obligation.
+
+**US:** Gramm-Leach-Bliley Act (financial services) — information security programme must address third-party data processing risks including AI tools. HIPAA (health sector) — submitting PHI to a non-BAA-covered AI tool is a reportable breach. FTC Act Section 5 — failure to protect customer data through inadequate shadow AI controls has been the basis for FTC enforcement actions.
+
+**Tools and references:** Microsoft Purview (DLP + CASB) · Netskope (CASB) · Zscaler (web filtering + DLP) · OAIC NDB assessment guidance · OWASP AI Security and Privacy Guide
 
 ---
 

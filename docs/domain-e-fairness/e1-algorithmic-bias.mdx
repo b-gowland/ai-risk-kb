@@ -79,9 +79,191 @@ Legal · Compliance · Risk · Technology · HR · Credit · Insurance
 
 ## Layer 3 — Controls detail
 
-*See Layer 2 controls summary for ownership, effort, and go-live requirements. Full implementation guidance follows.*
+### E1-001 — Pre-deployment bias testing (disaggregated metrics)
+**Owner:** Technology | **Type:** Preventive | **Effort:** Medium | **Go-live required:** Yes
 
-Refer to the controls summary table above for the definitive list of controls for this risk. Detailed control descriptions, jurisdiction notes, and KPIs are maintained in the source schema files and will be published in a forthcoming update.
+Measure model performance separately across all demographic subgroups relevant to the use case before any production deployment. Overall accuracy metrics are insufficient — a model can achieve strong aggregate performance while producing materially worse outcomes for a specific group. Disaggregated testing surfaces these disparities before they cause harm.
+
+Implementation requirements: (1) identify all protected characteristics relevant to the use case (race, gender, age, disability, national origin — and jurisdiction-specific additions); (2) identify proxy variables that correlate with protected characteristics in your data — postcode, name patterns, device type; (3) measure primary performance metrics (accuracy, precision, recall, false positive rate, false negative rate) separately for each subgroup; (4) document the results in a bias assessment report reviewed by Risk and Compliance before deployment sign-off; (5) define the disparity threshold at which deployment is blocked — typically any statistically significant unexplained disparity in outcomes requires remediation or a documented accepted residual risk decision signed off by a named risk owner.
+
+**Jurisdiction notes:** AU — Racial Discrimination Act 1975, Sex Discrimination Act 1984, Age Discrimination Act 2004 — indirect discrimination via algorithmic proxy is actionable under existing law; AHRC guidance on automated decision-making (2023) recommends pre-deployment bias assessment | EU — EU AI Act Art. 10 — high-risk AI systems must use training data that is representative and free from errors and bias; bias testing is part of conformity assessment for Annex III systems (credit scoring, employment, essential services) | US — ECOA and Regulation B — disparate impact liability applies to algorithmic credit decisions; CFPB guidance on AI and credit (2022) requires lenders to be able to explain adverse actions; Colorado SB21-169 — external fairness audit required for insurance AI systems
+
+---
+
+### E1-002 — Fairness metrics definition
+**Owner:** Risk | **Type:** Preventive | **Effort:** Low | **Go-live required:** Yes
+
+Define which fairness metrics apply to this use case and what acceptable thresholds are before testing begins. Different fairness metrics can conflict — a model cannot simultaneously satisfy demographic parity and equalised odds in many real-world settings. The choice of metric is a value judgment that Risk and Legal must own, not a technical default.
+
+Common fairness metrics and their appropriate use cases:
+- **Demographic parity:** equal positive outcome rates across groups — appropriate for hiring, lending where equal representation is the goal
+- **Equalised odds:** equal true positive and false positive rates across groups — appropriate for risk scoring where accuracy equity matters
+- **Predictive parity / calibration:** equal precision across groups — appropriate when score meaning must be consistent (e.g. fraud scoring)
+- **Individual fairness:** similar individuals receive similar outcomes — appropriate for decisions where contextual similarity is assessable
+
+Document the metric choice with rationale. Risk and Legal sign off before testing begins. This sign-off is the pre-condition for E1-001 — testing cannot begin until the metric is agreed.
+
+**Jurisdiction notes:** AU — AHRC guidance recommends documented fairness criteria before deployment | EU — EU AI Act Art. 10 and Recital 44 — accuracy and bias-free operation must be demonstrable; metric choice forms part of technical documentation | US — CFPB has indicated that demographic parity is not the only acceptable metric but that chosen metrics must be documented and defensible under fair lending law
+
+---
+
+### E1-003 — Ongoing fairness monitoring
+**Owner:** Technology | **Type:** Detective | **Effort:** Medium | **Go-live required:** No (post-launch)
+
+Fairness can degrade post-deployment without any change to the model — through shifts in the population applying for services, changes in data collection, or environmental changes that affect subgroups differently. Production monitoring must track fairness metrics alongside performance metrics.
+
+Implementation requirements: (1) include disaggregated fairness metrics in the production monitoring dashboard alongside standard accuracy/performance metrics; (2) define alert thresholds — typically: any statistically significant degradation from baseline fairness metrics triggers a review; (3) schedule regular fairness review cadence (minimum quarterly for high-risk use cases, monthly for credit/insurance/employment); (4) route fairness alerts to Risk and Compliance, not only to the technology team; (5) document the response process — what triggers remediation vs. accepted variance.
+
+**Jurisdiction notes:** AU — APRA CPG 229 established the principle that risk monitoring must be dynamic and forward-looking; the same principle applies to algorithmic fairness under APRA's broader prudential framework | EU — EU AI Act Art. 72 — post-market monitoring is mandatory for high-risk AI systems; providers must establish and document a monitoring plan | US — OCC guidance on model risk management (SR 11-7) requires ongoing monitoring of model performance including any evidence of disparate outcomes
+
+---
+
+### E1-004 — Independent fairness audit
+**Owner:** Compliance | **Type:** Detective | **Effort:** High | **Go-live required:** No (post-launch)
+
+For AI systems making or significantly influencing high-stakes decisions — credit, insurance, employment, housing, essential services — commission an independent third-party fairness audit at defined intervals. Internal testing is necessary but insufficient: the independence requirement exists because internal teams have incentives to find acceptable results.
+
+Implementation requirements: (1) select an auditor with demonstrated algorithmic fairness expertise and no commercial relationship with the model vendor; (2) provide the auditor with: model documentation, training data sample, test data with ground truth, disaggregated performance metrics, and incident log; (3) the audit scope should cover: data quality and representativeness, feature selection and proxy variable analysis, model performance disaggregated across protected characteristics, comparison to baseline fairness metrics from pre-deployment testing; (4) document audit findings and remediation actions in a register accessible to the Board Risk Committee; (5) conduct audits at minimum annually for high-stakes deployments; trigger an out-of-cycle audit following any material change to the model, data, or target population.
+
+**Jurisdiction notes:** AU — ASIC RG 271 (internal dispute resolution) requires firms to monitor AI-driven complaint patterns for potential systematic issues; independent audit supports this obligation. AHRC's Human Rights and Technology report recommends independent auditing for high-risk automated decisions | EU — EU AI Act Art. 62 — providers of high-risk AI systems must cooperate with market surveillance authorities; documented independent audit supports this. Art. 9 — risk management obligations include testing by qualified parties | US — Colorado SB21-169 mandates external bias audits for insurance AI systems annually. NYC Local Law 144 (effective 2023) requires bias audits for automated employment decision tools used with NYC candidates
+
+---
+
+### KPIs
+
+| Metric | Target | Frequency |
+|--------|--------|-----------|
+| Disaggregated testing completion before deployment | 100% of AI systems making decisions about people | Per deployment |
+| Fairness metric sign-off on record | 100% — before testing begins | Per deployment |
+| Fairness metric degradation alerts reviewed | 100% reviewed and documented within 5 business days | Continuous |
+| Independent audit completion | Annual for high-stakes AI (credit, insurance, employment, housing) | Annual |
+| Open audit findings with no remediation plan | Zero | Tracked continuously |
+
+---
+
+## Layer 4 — Technical implementation
+
+### Disaggregated bias testing — Python implementation
+
+```python
+import pandas as pd
+import numpy as np
+from sklearn.metrics import accuracy_score, confusion_matrix
+
+def disaggregated_bias_report(
+    y_true: pd.Series,
+    y_pred: pd.Series,
+    sensitive_col: pd.Series,
+) -> pd.DataFrame:
+    """
+    Compute key fairness metrics per subgroup.
+    Returns a DataFrame with one row per group.
+    """
+    rows = []
+    for g in sensitive_col.unique():
+        mask = sensitive_col == g
+        yt, yp = y_true[mask], y_pred[mask]
+        tn, fp, fn, tp = confusion_matrix(yt, yp, labels=[0, 1]).ravel()
+        rows.append({
+            "group":              g,
+            "n":                  len(yt),
+            "positive_rate":      yp.mean(),           # Demographic parity numerator
+            "true_positive_rate": tp / (tp + fn) if (tp + fn) > 0 else None,
+            "false_positive_rate":fp / (fp + tn) if (fp + tn) > 0 else None,
+            "precision":          tp / (tp + fp) if (tp + fp) > 0 else None,
+            "accuracy":           accuracy_score(yt, yp),
+        })
+
+    df = pd.DataFrame(rows)
+
+    # Disparate impact ratio — relative to highest positive_rate group
+    max_rate = df["positive_rate"].max()
+    df["disparate_impact_ratio"] = df["positive_rate"] / max_rate
+    # Flag: ratio < 0.8 is the 80% rule threshold used in US employment law
+    df["below_80pct_rule"] = df["disparate_impact_ratio"] < 0.8
+
+    return df.sort_values("positive_rate", ascending=False)
+
+
+def check_equalised_odds(df: pd.DataFrame) -> dict:
+    """Check whether TPR and FPR are roughly equal across groups."""
+    tpr_disparity = df["true_positive_rate"].max() - df["true_positive_rate"].min()
+    fpr_disparity = df["false_positive_rate"].max() - df["false_positive_rate"].min()
+    return {
+        "max_tpr_disparity": tpr_disparity,
+        "max_fpr_disparity": fpr_disparity,
+        "equalised_odds_flag": tpr_disparity > 0.05 or fpr_disparity > 0.05
+    }
+```
+
+### Production fairness monitoring — alerting pattern
+
+```python
+from datetime import datetime
+import json
+
+class FairnessMonitor:
+    """
+    Compares current disaggregated metrics against signed-off baseline.
+    Triggers alert if degradation exceeds threshold.
+    """
+
+    def __init__(self, baseline_path: str, alert_threshold: float = 0.05):
+        with open(baseline_path) as f:
+            self.baseline = json.load(f)
+        self.threshold = alert_threshold
+
+    def check(self, current_metrics: pd.DataFrame) -> list[dict]:
+        alerts = []
+        for _, row in current_metrics.iterrows():
+            group = row["group"]
+            baseline_row = next(
+                (b for b in self.baseline if b["group"] == group), None
+            )
+            if baseline_row is None:
+                alerts.append({"group": group, "type": "NEW_GROUP", "severity": "high"})
+                continue
+            for metric in ["positive_rate", "true_positive_rate", "false_positive_rate"]:
+                current_val = row[metric]
+                baseline_val = baseline_row[metric]
+                if current_val is None or baseline_val is None:
+                    continue
+                delta = abs(current_val - baseline_val)
+                if delta > self.threshold:
+                    alerts.append({
+                        "group":     group,
+                        "metric":    metric,
+                        "baseline":  baseline_val,
+                        "current":   current_val,
+                        "delta":     delta,
+                        "severity":  "high" if delta > 0.1 else "medium",
+                        "timestamp": datetime.utcnow().isoformat(),
+                    })
+        return alerts
+```
+
+### Common proxy variable patterns — financial services
+
+The following features frequently act as proxies for protected characteristics in financial services models. Testing should explicitly check for these:
+
+| Feature | Protected characteristic proxied | Why |
+|---|---|---|
+| Postcode / suburb | Race, ethnicity | Residential segregation patterns |
+| First name / surname patterns | Race, national origin | Name origin correlates with ethnicity |
+| Repayment gap patterns | Gender | Career gaps correlate with childcare |
+| Device type / OS | Socioeconomic status | Proxy for income |
+| Time of day of application | Employment type | Night applications correlate with shift work |
+| Number of dependants | Gender, marital status | Proxy for household composition |
+
+### Compliance implementation
+
+**Australia:** Racial Discrimination Act 1975 s.9 — indirect discrimination covers facially neutral criteria with disproportionate impact. AI systems producing disparate impact without justification are exposed. Prepare a business justification analysis for any features that produce disparate impact. ASIC RG 271 — monitor complaint data for demographic patterns in AI-influenced decisions.
+
+**EU:** EU AI Act high-risk provisions take effect **2 August 2026**. Credit scoring (Annex III 5(b)), employment screening (Annex III 4), and essential services (Annex III 5) all require conformity assessment including bias testing before deployment. Technical documentation (Art. 11, Annex IV) must include bias testing methodology and results. Begin documentation now if deploying in these categories.
+
+**US:** ECOA / Regulation B — adverse action notices must explain AI-driven credit decisions in human-understandable terms. CFPB 2022 circular on AI in credit decisions confirms that "complex algorithm" is not an acceptable reason code. Fair Housing Act — disparate impact liability applies to AI-driven housing decisions. Colorado SB21-169 (effective 2023) — life insurers must conduct annual external bias audits for AI systems.
+
+**Tools and libraries:** Fairlearn (Microsoft) · AI Fairness 360 (IBM) · SHAP (feature attribution and proxy detection) · Aequitas (bias audit toolkit) · What-If Tool (Google) · Responsible AI Toolbox (Microsoft)
 
 ---
 

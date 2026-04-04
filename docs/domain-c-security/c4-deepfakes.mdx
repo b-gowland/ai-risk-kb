@@ -78,9 +78,166 @@ Finance · Security · Executive · Communications · Legal
 
 ## Layer 3 — Controls detail
 
-*See Layer 2 controls summary for ownership, effort, and go-live requirements. Full implementation guidance follows.*
+### C4-001 — Out-of-band verification for high-value transactions
+**Owner:** Operations | **Type:** Preventive | **Effort:** Low | **Go-live required:** Yes
 
-Refer to the controls summary table above for the definitive list of controls for this risk. Detailed control descriptions, jurisdiction notes, and KPIs are maintained in the source schema files and will be published in a forthcoming update.
+Establish a mandatory verification process for financial transactions above a defined threshold (typically aligned to your existing single-signatory limits). The verification channel must be independent of and established prior to the initiating communication — a pre-registered direct phone number for the authorising executive, not a callback to a number provided in the instruction itself. The process must be documented, tested, and staff must know it applies regardless of urgency framing.
+
+Implementation requirements: (1) define the transaction threshold triggering mandatory verification; (2) maintain a verified contact register — direct numbers only, no switchboard or numbers received in the instruction; (3) the process must be a workflow control, not a training-only control — embed it in your payment authorisation system as a mandatory step; (4) test the process with a simulated high-value request scenario at least annually.
+
+**Jurisdiction notes:** AU — ASIC and AFCA expect financial service firms to have procedural controls preventing authorisation fraud; APRA CPS 234 information security obligations apply to fraud prevention processes | EU — EU AI Act Art. 14 human oversight obligations; EU PSD2 requirements for strong customer authentication on high-value transactions | US — FinCEN guidance on business email compromise and fraud controls; FFIEC IT Examination Handbook
+
+---
+
+### C4-002 — Code word / challenge-response protocol
+**Owner:** Operations | **Type:** Preventive | **Effort:** Low | **Go-live required:** No (post-launch)
+
+Establish pre-agreed verification phrases between executives and staff with financial authorisation responsibilities. A code word protocol provides a simple, zero-technology control that cannot be replicated by an attacker who does not know the phrase — even a highly convincing deepfake cannot supply a code word it does not have.
+
+Implementation requirements: (1) establish unique phrases for each executive with financial authorisation responsibilities — not shared across individuals; (2) rotate phrases on a documented schedule (minimum quarterly); (3) brief all relevant staff on the protocol and confirm they understand they should challenge any request that does not include the phrase, regardless of how authentic the caller appears; (4) do not store the phrases in any shared system — verbal briefing only; (5) include the protocol in new staff onboarding for affected roles.
+
+**Jurisdiction notes:** AU — ASIC RG 274 and AFCA scheme rules recognise procedural controls as part of a reasonable fraud prevention framework | Global — no jurisdiction-specific requirement; this is an operational best practice control
+
+---
+
+### C4-003 — Staff awareness training on deepfakes
+**Owner:** HR | **Type:** Preventive | **Effort:** Low | **Go-live required:** No (post-launch)
+
+Train all staff with financial authorisation or executive communication responsibilities on the current state of deepfake technology and the verification protocols they must follow. Training must be concrete — not a general AI awareness module. Staff who have completed training must be able to: (1) explain why video and audio are no longer reliable verification channels; (2) describe the correct verification process for financial instructions; (3) recognise urgency and confidentiality framing as common manipulation tactics.
+
+Training content must reference current incidents (Arup 2024 is the most direct reference for financial services). Update content when new techniques or incidents are documented. Track completion.
+
+**Jurisdiction notes:** AU — APRA CPS 234 requires information security awareness training covering current threat landscape | EU — EU AI Act Art. 50 synthetic media transparency obligations create staff responsibility to identify deepfake-origin content where feasible | US — SEC cybersecurity guidance recommends documented staff training programmes for social engineering including AI-enabled variants
+
+---
+
+### C4-004 — Deepfake detection tooling
+**Owner:** Security | **Type:** Detective | **Effort:** High | **Go-live required:** No (post-launch)
+
+Evaluate and, where the risk profile warrants it, deploy deepfake detection capability on high-risk communication channels. Note: detection tooling should be treated as a supplementary detective control — it is not a substitute for the verification process controls above, which should be implemented regardless of detection tooling decisions.
+
+Evaluation scope: assess detection accuracy against current-generation deepfakes (not only older benchmark datasets); false positive rate on legitimate executive video; integration path with your communication platforms; vendor update cadence as generation techniques evolve. Document the deployment decision — both a decision to deploy and a decision not to deploy should be recorded with rationale.
+
+⚠️ **[VERIFY BEFORE PUBLISH]** The deepfake detection vendor landscape is fast-moving. Specific vendor names (e.g. Sensity AI, Intel FakeCatcher, Hive Moderation, Microsoft Video Authenticator) were active at time of writing but should be confirmed current before publication or recommendation. Detection efficacy claims require independent validation against current generation models.
+
+**Jurisdiction notes:** AU — no mandate to deploy detection tooling; assessment should be documented in risk register | EU — EU AI Act Art. 50 requires disclosure when content is AI-generated; detection tooling supports compliance monitoring obligations
+
+---
+
+### KPIs
+
+| Metric | Target | Frequency |
+|--------|--------|-----------|
+| Out-of-band verification process coverage | 100% of transactions above threshold require verified channel check | Reviewed on each process change |
+| Staff training completion — affected roles | 100% of staff with financial authorisation responsibilities | Annual + on new incidents |
+| Code word rotation compliance | Rotated within 7 days of schedule date | Quarterly |
+| Detection tooling evaluation status | Documented decision on record | Annual review |
+
+---
+
+## Layer 4 — Technical implementation
+
+### Verification channel registry — implementation pattern
+
+The out-of-band verification process depends on a maintained, access-controlled registry of verified contact details. The following pattern documents the minimum viable implementation.
+
+```python
+# Verified contact registry — minimal implementation
+# Store in access-controlled system, not shared document
+
+VERIFIED_CONTACTS = {
+    "cfo": {
+        "name": "Dana Okafor",
+        "verified_number": "+61 4XX XXX XXX",   # Direct mobile — not switchboard
+        "last_verified": "2026-03-01",            # Date registry entry last confirmed
+        "verified_by": "IT Security",
+        "threshold_aud": 50000                    # Transactions above this require verification
+    },
+    # ... additional executives
+}
+
+def requires_verification(amount: float, currency: str, approver_id: str) -> bool:
+    contact = VERIFIED_CONTACTS.get(approver_id)
+    if not contact:
+        return True  # Unknown approver — always verify
+    threshold = contact.get("threshold_aud", 10000)
+    # Normalise to AUD for threshold check — implement currency conversion
+    return amount >= threshold
+
+def get_verification_number(approver_id: str) -> str | None:
+    contact = VERIFIED_CONTACTS.get(approver_id)
+    if not contact:
+        return None
+    return contact["verified_number"]
+```
+
+### C2PA content provenance — for organisations publishing official media
+
+The Coalition for Content Provenance and Authenticity (C2PA) standard provides a mechanism for digitally signing media at point of creation, enabling downstream verification. For organisations concerned about deepfake impersonation of executive communications, implementing C2PA signing on official video releases provides a verifiable authenticity signal.
+
+```python
+# C2PA content signing — conceptual pattern
+# Requires c2pa-python library: https://github.com/contentauth/c2pa-rs
+# ⚠️ [VERIFY BEFORE PUBLISH] Confirm library availability and API stability
+
+def verify_c2pa_manifest(video_path: str, trusted_certs: list[str]) -> dict:
+    """
+    Returns verification result for C2PA-signed content.
+    Absence of a manifest does not confirm deepfake — unsigned content
+    may be legitimate. Presence of a valid manifest confirms authenticity.
+    See https://contentauth.github.io/c2pa-python/ for current API.
+    """
+    pass  # Implement using c2pa-python SDK
+```
+
+### Detection tooling integration — generic pattern
+
+```python
+# Deepfake detection API integration — generic pattern
+# ⚠️ [VERIFY BEFORE PUBLISH] Confirm vendor API availability and accuracy benchmarks
+# Treat detection as supplementary — do not remove verification process controls
+
+import httpx
+import base64
+
+async def check_video_authenticity(
+    video_bytes: bytes,
+    detection_endpoint: str,
+    api_key: str
+) -> dict:
+    """
+    Submit video frame sample to detection API.
+    Returns confidence score and recommended action.
+    High confidence deepfake: flag for human review — do NOT auto-reject.
+    """
+    payload = {
+        "content": base64.b64encode(video_bytes).decode(),
+        "content_type": "video/mp4"
+    }
+    async with httpx.AsyncClient() as client:
+        response = await client.post(
+            detection_endpoint,
+            json=payload,
+            headers={"Authorization": f"Bearer {api_key}"},
+            timeout=30.0
+        )
+    result = response.json()
+    return {
+        "is_synthetic_probability": result.get("synthetic_probability"),
+        "recommended_action": "human_review" if result.get("synthetic_probability", 0) > 0.7 else "pass",
+        "vendor_model_version": result.get("model_version"),  # Log for audit
+    }
+```
+
+### Compliance implementation
+
+**Australia:** APRA CPS 234 — document the out-of-band verification process in your information security policy as a detective and preventive control against social engineering. Include in annual CPS 234 attestation. ASIC RG 274 — financial services licensees are expected to have fraud controls commensurate with risk; a $25M deepfake fraud is within the risk range for APRA-regulated entities.
+
+**EU:** EU AI Act Art. 50 — organisations deploying AI to generate synthetic media of real persons must ensure the output is marked as AI-generated. If your organisation is a potential target (not creator) of synthetic media fraud, document your verification controls as part of your AI risk management framework. DORA (Digital Operational Resilience Act) — for financial entities, social engineering including deepfake-enabled fraud should be covered in your ICT risk management framework and incident reporting obligations.
+
+**US:** FinCEN advisory FIN-2022-A001 on business email compromise extends to deepfake-enabled variants. Financial institutions should document deepfake fraud controls in BSA/AML compliance frameworks. SEC cybersecurity disclosure rules (effective December 2023) require material cybersecurity incidents to be reported — a successful deepfake fraud at scale would meet the materiality threshold.
+
+**Tools and references:** C2PA standard (contentauth.org) · Intel FakeCatcher · Microsoft Video Authenticator · Sensity AI · Hive Moderation · NIST guidelines on media authenticity · ACSC guidance on business email compromise
 
 ---
 
