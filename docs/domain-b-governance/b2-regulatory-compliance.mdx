@@ -77,9 +77,199 @@ Legal · Compliance · Risk · Technology · Procurement
 
 ## Layer 3 — Controls detail
 
-*See Layer 2 controls summary for ownership, effort, and go-live requirements. Full implementation guidance follows.*
+### B2-001 — AI regulatory mapping
+**Owner:** Compliance | **Type:** Preventive | **Effort:** High | **Go-live required:** Yes
 
-Refer to the controls summary table above for the definitive list of controls for this risk. Detailed control descriptions, jurisdiction notes, and KPIs are maintained in the source schema files and will be published in a forthcoming update.
+Maintain a current, structured mapping of every AI system in production and development to its applicable regulatory obligations. Without this map, your organisation cannot know which systems need conformity assessments, which require human oversight controls, and which trigger notification or registration obligations.
+
+Implementation requirements: (1) inventory all AI systems — include systems where AI is embedded in a vendor product (e.g. HR screening tools, credit decisioning modules); (2) for each system, map to: applicable jurisdiction(s), regulatory category (prohibited, high-risk, limited-risk, general purpose), specific articles or standards that apply, and current compliance status; (3) assign a named compliance owner for each system; (4) review the mapping when: a new system is deployed, an existing system's scope changes materially, or a regulatory update occurs; (5) conduct a full mapping review at minimum annually.
+
+The mapping is the foundation for all other B2 controls — without it, pre-deployment sign-off and classification work cannot be done systematically.
+
+**Jurisdiction notes:** AU — APRA CPS 230 requires material service arrangements to be identified and managed; AI systems providing material functions are in scope. Privacy Act APP 1 — privacy policy obligations require disclosure of AI-assisted decisions involving personal information | EU — EU AI Act Art. 6, 51 — providers and deployers of high-risk AI systems must maintain technical documentation (Annex IV) and register systems in the EU database (Art. 71) from August 2, 2026 | US — no single federal AI registration requirement; sector-specific obligations apply (ECOA for credit, EEOC guidance for employment, FDA for medical devices)
+
+---
+
+### B2-002 — Pre-deployment compliance sign-off
+**Owner:** Legal | **Type:** Preventive | **Effort:** Low | **Go-live required:** Yes
+
+Require written sign-off from Legal or Compliance before any AI system goes live. This single control prevents the most common compliance failure mode — AI systems deployed as standard software without regulatory review. The sign-off must confirm that a regulatory assessment has been completed, not merely that the system has been through IT change management.
+
+Implementation requirements: (1) add compliance sign-off as a mandatory gate in your AI deployment checklist — it must be a blocking step, not advisory; (2) the sign-off should confirm: regulatory mapping completed, applicable obligations identified, required controls implemented, any residual compliance risk documented and accepted by a named risk owner; (3) retain the sign-off on file with the AI system's risk record; (4) trigger a new sign-off for material changes to an existing system's scope, data inputs, or decision-making function.
+
+**Jurisdiction notes:** AU — APRA CPS 230 cl. 20 — board must approve material outsourcing arrangements; AI systems making material decisions should be captured. Privacy Act — legal review should confirm PIA requirements | EU — EU AI Act Art. 9 — risk management system must be established before high-risk AI system is placed on the market or put into service. Art. 16(b) — technical documentation must be prepared before deployment | US — EEOC guidance (2023) — employers are responsible for employment decision tools regardless of whether developed internally or by a vendor; pre-deployment legal review is the mechanism for discharging this responsibility
+
+---
+
+### B2-003 — EU AI Act risk classification
+**Owner:** Compliance | **Type:** Preventive | **Effort:** Medium | **Go-live required:** Yes
+
+Classify every AI system against the EU AI Act framework before deployment. This applies to any organisation that places AI systems on the EU market or uses them to serve EU persons — including Australian financial services firms with EU clients or EU-based operations.
+
+Classification categories: (1) **Prohibited** — unacceptable risk practices banned under Art. 5 (e.g. social scoring, real-time biometric surveillance in public spaces, manipulation of vulnerable persons); (2) **High-risk** — Annex III systems including: credit scoring, employment screening, access to essential services, biometric categorisation, critical infrastructure; (3) **Limited-risk** — transparency obligations apply (chatbots must disclose AI identity); (4) **Minimal risk** — no specific obligations.
+
+For high-risk classification, the following must be in place before August 2, 2026: conformity assessment, technical documentation (Annex IV), human oversight controls, accuracy and robustness testing, registration in the EU AI database.
+
+**Jurisdiction notes:** EU — EU AI Act Art. 6 — definition of high-risk AI systems. Art. 5 — prohibited practices enforceable from February 2, 2025. Art. 51 — high-risk AI system registration. Annex III — exhaustive list of high-risk use cases. **Key date: August 2, 2026 — high-risk provisions come into force** | AU — no equivalent mandatory classification requirement; however, APRA-regulated entities with EU operations or EU clients are directly in scope for EU AI Act
+
+---
+
+### B2-004 — Regulatory monitoring assignment
+**Owner:** Compliance | **Type:** Preventive | **Effort:** Low | **Go-live required:** No (post-launch)
+
+Assign a named person responsible for monitoring emerging AI regulation and escalating changes to affected system owners. The AI regulatory landscape is changing faster than standard annual policy review cycles — new guidance, enforcement actions, and legislative updates require continuous monitoring.
+
+Implementation requirements: (1) assign a named compliance officer or legal counsel as AI regulatory monitor; (2) define the monitoring scope: jurisdictions, regulatory bodies, and legislative programmes relevant to your AI portfolio; (3) establish an escalation process — when a regulatory update is identified, affected system owners must be notified within 30 days with an impact assessment; (4) maintain a regulatory change log as part of the AI regulatory mapping; (5) subscribe to relevant regulatory feeds — OAIC, APRA, ASIC, EU AI Office, FTC, CFPB as applicable.
+
+**Jurisdiction notes:** AU — OAIC regulatory guidance, APRA CPGs, ASIC regulatory guidance | EU — EU AI Office publications, EDPB opinions, national supervisory authority guidance | US — FTC AI guidance, CFPB supervisory bulletins, EEOC technical assistance, NIST AI RMF updates
+
+---
+
+### KPIs
+
+| Metric | Target | Frequency |
+|--------|--------|-----------|
+| AI systems with current regulatory mapping | 100% of production AI systems | Reviewed quarterly |
+| Pre-deployment compliance sign-offs on file | 100% of AI systems deployed in last 24 months | Audited annually |
+| EU AI Act classification completed | 100% of systems with EU nexus | Before August 2, 2026 |
+| Regulatory updates escalated within 30 days | 100% of material regulatory changes | Continuous |
+| AI regulatory mapping last full review | Within 12 months | Annual |
+
+---
+
+## Layer 4 — Technical implementation
+
+### AI system regulatory mapping — schema
+
+```python
+from dataclasses import dataclass, field
+from typing import Literal
+
+RiskCategory = Literal["prohibited", "high-risk", "limited-risk", "minimal-risk", "unclassified"]
+ComplianceStatus = Literal["compliant", "remediation-required", "assessment-pending", "non-compliant"]
+
+@dataclass
+class AISystemRegulatoryRecord:
+    # Identity
+    system_id: str                          # Internal system identifier
+    system_name: str
+    owner: str                              # Business owner name and role
+    compliance_owner: str                   # Named compliance officer
+    deployment_date: str                    # ISO 8601
+
+    # Classification
+    eu_ai_act_category: RiskCategory
+    eu_ai_act_annexes: list[str]            # e.g. ["Annex III 4(a)"] for employment screening
+    jurisdictions: list[str]               # e.g. ["AU", "EU", "US"]
+
+    # Applicable obligations
+    regulations: list[str]                 # e.g. ["EU AI Act", "Privacy Act 1988", "ECOA"]
+    specific_obligations: list[str]        # e.g. ["Conformity assessment", "PIA", "Adverse action notice"]
+
+    # Status
+    compliance_status: ComplianceStatus
+    pre_deployment_signoff_date: str | None
+    pre_deployment_signoff_by: str | None
+    last_assessment_date: str
+    next_review_date: str
+    open_remediation_items: list[str] = field(default_factory=list)
+    notes: str = ""
+
+# Example — AI hiring screening tool
+EXAMPLE_HIRING_TOOL = AISystemRegulatoryRecord(
+    system_id="HR-AI-001",
+    system_name="Candidate Screening Assistant",
+    owner="Head of People — J. Smith",
+    compliance_owner="General Counsel — A. Wong",
+    deployment_date="2025-09-01",
+    eu_ai_act_category="high-risk",
+    eu_ai_act_annexes=["Annex III 4(a)"],   # Employment — recruitment and selection
+    jurisdictions=["AU", "EU"],
+    regulations=["EU AI Act", "Privacy Act 1988", "Sex Discrimination Act 1984",
+                 "Racial Discrimination Act 1975"],
+    specific_obligations=["Conformity assessment", "Technical documentation (Annex IV)",
+                          "Human oversight (Art. 14)", "PIA under Privacy Act",
+                          "Bias testing before deployment"],
+    compliance_status="remediation-required",
+    pre_deployment_signoff_date=None,       # MISSING — key finding
+    pre_deployment_signoff_by=None,
+    last_assessment_date="2026-04-01",
+    next_review_date="2026-07-01",
+    open_remediation_items=[
+        "Complete EU AI Act conformity assessment",
+        "Obtain pre-deployment compliance sign-off (retroactive)",
+        "Complete bias testing and document results",
+    ]
+)
+```
+
+### EU AI Act conformity assessment — decision tree
+
+```python
+def classify_eu_ai_act(system: AISystemRegulatoryRecord) -> dict:
+    """
+    Preliminary EU AI Act classification.
+    This is a decision support tool — legal review required for final classification.
+    """
+    # Step 1: Check prohibited practices (Art. 5)
+    prohibited_indicators = [
+        "subliminal manipulation",
+        "social scoring by public authorities",
+        "real-time remote biometric identification in public spaces",
+        "emotion recognition in workplace or education",
+    ]
+
+    # Step 2: Check Annex III high-risk categories
+    HIGH_RISK_ANNEX_III = {
+        "biometric_categorisation": "Annex III 1",
+        "critical_infrastructure": "Annex III 2",
+        "education_vocational": "Annex III 3",
+        "employment_screening": "Annex III 4(a)",
+        "employment_management": "Annex III 4(b)",
+        "essential_services_credit": "Annex III 5(b)",
+        "essential_services_insurance": "Annex III 5(c)",
+        "law_enforcement": "Annex III 6",
+        "migration_asylum": "Annex III 7",
+        "justice_administration": "Annex III 8",
+    }
+
+    # Step 3: Obligations by category
+    OBLIGATIONS = {
+        "high-risk": [
+            "Risk management system (Art. 9)",
+            "Data governance (Art. 10)",
+            "Technical documentation — Annex IV (Art. 11)",
+            "Record-keeping (Art. 12)",
+            "Transparency to deployers (Art. 13)",
+            "Human oversight (Art. 14)",
+            "Accuracy, robustness, cybersecurity (Art. 15)",
+            "Conformity assessment (Art. 43)",
+            "Registration in EU AI database (Art. 71)",
+        ],
+        "limited-risk": [
+            "Transparency obligation — disclose AI identity (Art. 50)",
+        ],
+        "minimal-risk": [],
+    }
+
+    return {
+        "classification": system.eu_ai_act_category,
+        "applicable_annexes": system.eu_ai_act_annexes,
+        "obligations": OBLIGATIONS.get(system.eu_ai_act_category, []),
+        "key_deadline": "2026-08-02" if system.eu_ai_act_category == "high-risk" else None,
+        "legal_review_required": True,
+    }
+```
+
+### Compliance implementation
+
+**Australia:** APRA CPS 230 (effective July 2025) — material AI systems must be captured in operational risk management framework; board approval required for material outsourcing including AI vendor arrangements. Privacy Act 1988 APP 1 — update privacy policy to disclose AI-assisted decision-making. ASIC RG 271 — AI systems influencing complaints handling or financial advice are in scope for internal dispute resolution obligations.
+
+**EU:** EU AI Act enforcement timeline: prohibited practices from February 2, 2025; GPAI obligations from August 2, 2025; high-risk AI system obligations (Annex III) from **August 2, 2026**. Deployers of high-risk AI (organisations using, not just building, these systems) have obligations under Art. 26 — including human oversight, monitoring, and incident reporting. Financial services firms using AI for credit scoring, insurance underwriting, or employment are high-risk deployers.
+
+**US:** No federal AI Act equivalent as of 2026. Patchwork of sector obligations applies: EEOC technical assistance (2023) on AI in employment decisions; CFPB guidance on AI in credit; FTC Act Section 5 for unfair or deceptive AI practices; Colorado SB21-169 for insurance AI; New York City Local Law 144 for employment AI. For financial services: SR 11-7 model risk management guidance applies to AI models used in credit and risk decisions.
+
+**Tools and references:** EU AI Office (digital-strategy.ec.europa.eu/ai-act) · NIST AI RMF · OAIC AI guidance · APRA CPS 230 · Workday v. Mobley (Ninth Circuit, 2025) — employer liability for vendor AI tools
 
 ---
 
@@ -101,4 +291,4 @@ Refer to the controls summary table above for the definitive list of controls fo
 
 **Difficulty:** Foundational | **Jurisdictions:** AU, EU, US
 
-*[Full scenario with discussion questions available in the AI Risk Training Module — coming soon.]*
+**[▶ Play this scenario in the AI Risk Training Module](https://b-gowland.github.io/ai-risk-training/#/scenario/b2-compliance)** — AI Regulatory Non-Compliance, four personas, ~12 minutes.

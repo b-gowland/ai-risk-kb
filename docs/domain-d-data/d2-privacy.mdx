@@ -79,9 +79,199 @@ Legal · Compliance · Technology · HR · Customer Service
 
 ## Layer 3 — Controls detail
 
-*See Layer 2 controls summary for ownership, effort, and go-live requirements. Full implementation guidance follows.*
+### D2-001 — Privacy Impact Assessment (PIA/DPIA)
+**Owner:** Legal | **Type:** Preventive | **Effort:** Medium | **Go-live required:** Yes
 
-Refer to the controls summary table above for the definitive list of controls for this risk. Detailed control descriptions, jurisdiction notes, and KPIs are maintained in the source schema files and will be published in a forthcoming update.
+Complete a structured Privacy Impact Assessment before any AI system that processes personal information goes live. The PIA identifies privacy risks introduced by the AI system — including risks specific to AI such as model memorisation, inference data retention, and re-identification through output analysis — and documents mitigations before deployment.
+
+Implementation requirements: (1) trigger a PIA for any AI system that: processes personal information as input, generates outputs about individuals, or accesses datasets containing personal information; (2) the PIA must assess: what personal information is processed, why, how long it is retained, who can access it, what happens to it when submitted to external AI APIs, and whether individuals can exercise their rights (access, correction, deletion); (3) for systems involving sensitive information (health, financial, biometric) or large-scale processing, escalate to a full DPIA; (4) PIA must be signed off by Legal or Privacy Officer before go-live; (5) retain the PIA with the system's risk record and review when scope changes materially.
+
+**Jurisdiction notes:** AU — Privacy Act 1988 APP 1 — organisations must have a clearly expressed privacy policy. APP 3 — collection of personal information must be reasonably necessary. OAIC recommends PIAs as best practice for new AI systems; forthcoming Privacy Act reforms may make PIAs mandatory for high-privacy-risk activities | EU — GDPR Art. 35 — Data Protection Impact Assessment (DPIA) is mandatory where processing is likely to result in high risk to individuals. Art. 35(3) — specifically required for systematic evaluation of individuals using automated processing (including AI profiling), large-scale processing of sensitive data, and systematic monitoring | US — no general federal PIA requirement for private sector; sector-specific requirements apply (HIPAA for health data, FERPA for education)
+
+---
+
+### D2-002 — Enterprise API tier for external AI
+**Owner:** Procurement | **Type:** Preventive | **Effort:** Low | **Go-live required:** Yes
+
+Before using any external AI API with data that could include personal information, confirm in writing that the provider does not use submitted data for model training, and that a Data Processing Agreement is in place. Consumer-tier terms for most major AI providers explicitly permit training on submitted content — enterprise tiers typically exclude this.
+
+Implementation requirements: (1) require written confirmation from any external AI API provider that: submitted data is not used for model training, data retention periods are defined and limited, data processing location is documented, and a DPA is available; (2) procure enterprise tiers where the organisation's use case involves personal information — do not rely on consumer-tier pricing with the assumption that enterprise protections apply; (3) document the confirmed terms in the approved AI tools register; (4) review provider terms when renewing contracts — terms change and a previously compliant arrangement may no longer be.
+
+**Jurisdiction notes:** AU — Privacy Act 1988 APP 8 — disclosure of personal information to an overseas recipient requires reasonable steps to ensure the recipient handles it in accordance with the APPs; a DPA is the mechanism for this. APP 11 — take reasonable steps to protect personal information from misuse | EU — GDPR Art. 28 — any processor of personal data on your behalf requires a Data Processing Agreement. Art. 44–49 — international data transfers require Standard Contractual Clauses or equivalent | US — HIPAA BAA required if PHI is involved; GLBA safeguards rule for financial data shared with service providers
+
+---
+
+### D2-003 — Data minimisation controls
+**Owner:** Technology | **Type:** Preventive | **Effort:** Medium | **Go-live required:** Yes
+
+Apply data minimisation at the point of AI input — strip or pseudonymise personal information that is not required for the AI task before it is submitted to an external AI API. The principle: if the AI does not need to know who the individual is to complete the task, it should not be told.
+
+Implementation requirements: (1) for each AI use case, define the minimum data fields required — this should be documented in the PIA; (2) implement technical controls to strip, mask, or pseudonymise fields not required before submission: names, email addresses, government identifiers, account numbers, dates of birth; (3) implement PII detection on inputs to external AI APIs — flag or block submissions that contain unminimised personal information; (4) document the minimisation rules in the system's technical documentation; (5) test PII detection on representative samples before go-live.
+
+**Jurisdiction notes:** AU — Privacy Act 1988 APP 3(3) — organisations must not collect more personal information than reasonably necessary. Data minimisation is the technical implementation of this obligation | EU — GDPR Art. 5(1)(c) — data minimisation is a core principle. Art. 25 — data protection by design and by default requires minimisation to be built into the system architecture, not applied as an afterthought | US — FTC guidance on data minimisation as a privacy best practice; sector-specific minimisation requirements apply
+
+---
+
+### D2-004 — Acceptable use policy for AI tools (data focus)
+**Owner:** HR | **Type:** Preventive | **Effort:** Low | **Go-live required:** Yes
+
+Publish and obtain acknowledgement of a policy specifying what personal information and data classifications may be submitted to which AI tools. This is distinct from the general Shadow AI AUP (F2-003) — this policy focuses specifically on personal information handling obligations and is framed around privacy law compliance, not just information security.
+
+Minimum policy content: (1) explicit prohibition on submitting personal information to consumer-tier AI tools without a DPA in place; (2) data classification guidance — what can go into which tool tier; (3) specific examples relevant to the organisation's work (client names in legal documents, patient identifiers in health records, customer account data in financial services); (4) the privacy consequences of non-compliance — not just disciplinary, but regulatory and for the individuals whose data is affected; (5) how to report suspected privacy incidents involving AI tools.
+
+**Jurisdiction notes:** AU — Privacy Act 1988 — staff who handle personal information on behalf of the organisation bind the organisation to the APPs; the policy creates the documented instruction required for disciplinary action and demonstrates reasonable steps | EU — GDPR Art. 29 / Art. 32(4) — employees must process data only on documented instructions of the controller | US — HIPAA requires workforce training and written policies for covered entities and business associates
+
+---
+
+### KPIs
+
+| Metric | Target | Frequency |
+|--------|--------|-----------|
+| AI systems processing personal data with completed PIA | 100% before go-live | Per deployment |
+| External AI APIs with confirmed DPA in place | 100% of APIs used with personal data | Reviewed quarterly |
+| PII detected in inputs to external AI APIs | Tracked; zero unminimised sensitive data | Continuous monitoring |
+| Staff AUP acknowledgement — data handling focus | 100% of staff with AI tool access | Annual + on policy update |
+| PIA last review date | Within 12 months or on material system change | Annual |
+
+---
+
+## Layer 4 — Technical implementation
+
+### PII detection on AI inputs — implementation pattern
+
+```python
+import re
+from dataclasses import dataclass
+
+@dataclass
+class PIIDetectionResult:
+    contains_pii: bool
+    detected_types: list[str]
+    recommended_action: str   # "block" | "redact" | "flag"
+    redacted_text: str | None = None
+
+# Pattern library — extend for jurisdiction-specific identifiers
+PII_PATTERNS = {
+    "email":            r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b",
+    "au_tfn":           r"\b\d{3}[\s-]?\d{3}[\s-]?\d{3}\b",      # AU Tax File Number
+    "au_medicare":      r"\b\d{10}[\s-]?\d\b",                     # AU Medicare number
+    "au_phone":         r"\b(?:\+?61|0)[2-478](?:[\s-]?\d){8}\b",
+    "us_ssn":           r"\b\d{3}-\d{2}-\d{4}\b",
+    "eu_iban":          r"\b[A-Z]{2}\d{2}[A-Z0-9]{4}\d{7}(?:[A-Z0-9]?){0,16}\b",
+    "credit_card":      r"\b(?:\d{4}[\s-]?){3}\d{4}\b",
+    "date_of_birth":    r"\b(?:DOB|date of birth|born)[:\s]+\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2,4}\b",
+    "full_name_label":  r"\b(?:Name|Client|Customer|Patient)[:\s]+[A-Z][a-z]+ [A-Z][a-z]+\b",
+}
+
+def detect_pii(text: str, action: str = "flag") -> PIIDetectionResult:
+    detected = []
+    redacted = text
+
+    for pii_type, pattern in PII_PATTERNS.items():
+        matches = re.findall(pattern, text, re.IGNORECASE)
+        if matches:
+            detected.append(pii_type)
+            if action == "redact":
+                redacted = re.sub(pattern, f"[{pii_type.upper()}_REDACTED]",
+                                  redacted, flags=re.IGNORECASE)
+
+    return PIIDetectionResult(
+        contains_pii=len(detected) > 0,
+        detected_types=detected,
+        recommended_action="block" if "au_tfn" in detected or "us_ssn" in detected
+                           else ("redact" if detected else "pass"),
+        redacted_text=redacted if action == "redact" else None,
+    )
+
+
+def safe_ai_submit(text: str, ai_client, model: str, prompt: str) -> dict:
+    """
+    Submit text to AI API only after PII detection and minimisation.
+    Blocks submission if high-sensitivity PII detected.
+    """
+    result = detect_pii(text, action="redact")
+
+    if result.recommended_action == "block":
+        return {
+            "status": "blocked",
+            "reason": f"High-sensitivity PII detected: {result.detected_types}",
+            "ai_response": None,
+        }
+
+    submit_text = result.redacted_text if result.contains_pii else text
+
+    if result.contains_pii:
+        # Log for audit — do not log the original text
+        print(f"AUDIT: PII detected and redacted before submission. "
+              f"Types: {result.detected_types}")
+
+    response = ai_client.messages.create(
+        model=model,
+        max_tokens=1000,
+        messages=[{"role": "user", "content": f"{prompt}\n\n{submit_text}"}],
+    )
+    return {
+        "status": "submitted",
+        "pii_redacted": result.contains_pii,
+        "pii_types_redacted": result.detected_types,
+        "ai_response": response.content[0].text,
+    }
+```
+
+### DPIA screening questions — decision tool
+
+```python
+DPIA_TRIGGERS = [
+    {
+        "question": "Does the system evaluate, score, or profile individuals using automated processing?",
+        "eu_reference": "GDPR Art. 35(3)(a)",
+        "triggers_dpia": True,
+    },
+    {
+        "question": "Does the system process special category data at scale (health, biometric, financial)?",
+        "eu_reference": "GDPR Art. 35(3)(b)",
+        "triggers_dpia": True,
+    },
+    {
+        "question": "Does the system systematically monitor individuals in a publicly accessible area?",
+        "eu_reference": "GDPR Art. 35(3)(c)",
+        "triggers_dpia": True,
+    },
+    {
+        "question": "Does the system process data of vulnerable individuals (children, patients, employees)?",
+        "eu_reference": "EDPB WP248 guidelines",
+        "triggers_dpia": True,
+    },
+    {
+        "question": "Could the system prevent individuals from exercising a right or accessing a service?",
+        "eu_reference": "EDPB WP248 guidelines",
+        "triggers_dpia": True,
+    },
+]
+
+def screen_for_dpia(answers: dict[str, bool]) -> dict:
+    """
+    answers: {question_text: True/False}
+    Returns DPIA requirement decision.
+    """
+    triggered = [q for q in DPIA_TRIGGERS if answers.get(q["question"], False)]
+    return {
+        "dpia_required": len(triggered) > 0,
+        "triggered_by": [q["eu_reference"] for q in triggered],
+        "recommendation": "Conduct full DPIA before deployment" if triggered
+                          else "PIA recommended; DPIA may not be strictly required",
+    }
+```
+
+### Compliance implementation
+
+**Australia:** Privacy Act 1988 — the Notifiable Data Breaches scheme requires notification to the OAIC and affected individuals when a data breach involving AI is likely to result in serious harm. APP 11 requires reasonable steps to protect personal information — PII detection on AI inputs is a reasonable step. APP 8 — cross-border disclosure obligations apply whenever personal information is submitted to an overseas AI API; DPA is the mechanism for compliance. Forthcoming Privacy Act reforms (exposure draft 2024) propose mandatory PIAs for high-privacy-risk activities — implement now.
+
+**EU:** GDPR Art. 35 DPIA is mandatory for AI systems that profile individuals, process special category data at scale, or systematically monitor people. Art. 17 (right to erasure) and Art. 22 (right not to be subject to solely automated decisions) create obligations for AI systems making decisions about individuals. EU AI Act Art. 10 — high-risk AI systems must use personal data that is relevant, representative, and free from errors.
+
+**US:** HIPAA — any AI system processing PHI requires a Business Associate Agreement with the AI provider. CCPA (California) — consumers have rights over personal information used in automated decision-making. FERPA — student data submitted to AI tools without appropriate agreements is a violation. FTC enforcement has targeted companies that used personal data in ways inconsistent with stated privacy policies.
+
+**Tools and references:** OAIC Privacy Impact Assessment Guide · EDPB DPIA Guidelines (WP248) · Microsoft Presidio (PII detection library) · AWS Comprehend (PII detection) · spaCy NER (entity recognition for PII) · IAPP PIA templates
 
 ---
 
@@ -101,4 +291,4 @@ Refer to the controls summary table above for the definitive list of controls fo
 
 **Difficulty:** Foundational | **Jurisdictions:** AU, EU, Global
 
-*[Full scenario with discussion questions available in the AI Risk Training Module — coming soon.]*
+**[▶ Play this scenario in the AI Risk Training Module](https://b-gowland.github.io/ai-risk-training/#/scenario/d2-privacy)** — Privacy & AI Data Exposure, four personas, ~10 minutes.
