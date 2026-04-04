@@ -59,6 +59,29 @@ def parse_entry_id(path: Path) -> str:
     return match.group(1).upper() if match else path.stem.upper()
 
 
+# Web search tool — added to API calls that require live URL fetching
+WEB_SEARCH_TOOL = [{"type": "web_search_20250305", "name": "web_search"}]
+
+
+def extract_text_from_response(response) -> str:
+    """
+    Extract the final text content from an Anthropic API response.
+
+    When web search is enabled the response content list contains a mix of
+    text, tool_use, and tool_result blocks.  Naively indexing content[0].text
+    fails because the first block may be a tool_use block.  This helper scans
+    all blocks and returns the last text block — which is always Claude's
+    synthesised answer after completing any tool calls.
+
+    Falls back gracefully to content[0].text for plain (no-tool) responses.
+    """
+    text_blocks = [b for b in response.content if getattr(b, "type", None) == "text"]
+    if text_blocks:
+        return text_blocks[-1].text
+    # Fallback — should not be reached in normal operation
+    return response.content[0].text
+
+
 # Review cadence settings
 REVIEW_CADENCE_DAYS = {
     "incident_examples": 90,  # Quarterly
@@ -320,10 +343,11 @@ Return as JSON:
         response = self.client.messages.create(
             model="claude-sonnet-4-6",
             max_tokens=1000,
+            tools=WEB_SEARCH_TOOL,
             messages=[{"role": "user", "content": search_prompt}],
         )
         try:
-            data = json.loads(response.content[0].text)
+            data = json.loads(extract_text_from_response(response))
             return VerificationResult(
                 entry_id=claim.get("entry_id", "unknown"),
                 claim=claim["claim"],
@@ -395,10 +419,11 @@ Return as JSON:
         response = self.client.messages.create(
             model="claude-sonnet-4-6",
             max_tokens=1000,
+            tools=WEB_SEARCH_TOOL,
             messages=[{"role": "user", "content": prompt}],
         )
         try:
-            data = json.loads(response.content[0].text)
+            data = json.loads(extract_text_from_response(response))
             return MonitoringResult(source_name=source["name"], checked_at=utc_isoformat(), **data)
         except Exception as e:
             return MonitoringResult(
@@ -967,7 +992,7 @@ class ReportGenerator:
                 lines.append(f"Human review required: {r.human_review_required}")
 
         if failed:
-            lines.extend(["", "## Failed checks (web search not available — add tool to resolve)"])
+            lines.extend(["", "## Failed checks"])
             for r in failed:
                 lines.append(f"- {r.source_name} — {r.summary}")
 
