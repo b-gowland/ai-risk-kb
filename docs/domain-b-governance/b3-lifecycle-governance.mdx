@@ -77,9 +77,176 @@ Technology · Risk · Compliance · Internal Audit · Procurement
 
 ## Layer 3 — Controls detail
 
-*See Layer 2 controls summary for ownership, effort, and go-live requirements. Full implementation guidance follows.*
+### B3-001 — Pre-deployment testing checklist
+**Owner:** Technology | **Type:** Preventive | **Effort:** Low | **Go-live required:** Yes
 
-Refer to the controls summary table above for the definitive list of controls for this risk. Detailed control descriptions, jurisdiction notes, and KPIs are maintained in the source schema files and will be published in a forthcoming update.
+Require documented completion of a standardised testing checklist before any AI system goes into production. The checklist enforces minimum quality and safety standards across every deployment — not through judgment, but through gates that must be passed. A checklist item without a defined standard is not a control; each item must have a specific, verifiable definition of done.
+
+Minimum checklist items: (1) **Accuracy** — performance metrics on held-out test set documented and meet defined thresholds; (2) **Fairness** — disaggregated performance metrics across demographic subgroups documented, no material unexplained disparity; (3) **Robustness** — tested against out-of-distribution inputs and adversarial examples; (4) **Explainability** — outputs can be explained to the level required for the use case (adverse action notices, regulatory explanation); (5) **Security** — adversarial input testing completed for models with external-facing interfaces; (6) **Data governance** — training data provenance documented, data processing agreements confirmed; (7) **Compliance sign-off** — written sign-off from Legal confirming regulatory obligations assessed; (8) **Monitoring configured** — production monitoring dashboard active before go-live, not after.
+
+Note: Tiffany Treloar (Change Management, April 2026) specifically recommended adding **entry and exit criteria for AI pilots** as an explicit checklist item — the pilot phase is where real stress-testing happens and go/no-go criteria before production should be formally named. This should be a mandatory section for any system that ran as a pilot before production deployment.
+
+**Jurisdiction notes:** AU — APRA CPS 230 cl. 20 — material AI systems should meet equivalent testing standards to other technology changes; fairness and accuracy testing supports Privacy Act and anti-discrimination law obligations | EU — EU AI Act Art. 9 — risk management system for high-risk AI must include evaluation of the risk management measures before market placement. Art. 15 — accuracy, robustness, and cybersecurity measures must be demonstrated | Global — NIST AI RMF MANAGE 2.2 — pre-deployment testing is a core practice
+
+---
+
+### B3-002 — AISDLC framework
+**Owner:** Technology | **Type:** Preventive | **Effort:** High | **Go-live required:** No (post-launch)
+
+Implement a structured AI System Development Lifecycle (AISDLC) framework that covers the full lifecycle: problem definition, data acquisition and governance, model development and testing, deployment, monitoring, and decommissioning. The AISDLC is the organisational infrastructure that makes the pre-deployment checklist (B3-001) sustainable at scale.
+
+Lifecycle phases and minimum governance requirements: (1) **Problem definition** — use case documented, risk rated, legal and compliance consulted; (2) **Data** — provenance documented, PIA completed if personal data involved, data quality assessed; (3) **Development** — model trained, evaluated, and version-controlled; (4) **Testing** — full pre-deployment checklist (B3-001) completed; (5) **Deployment** — AI Register entry created, RACI documented, monitoring configured; (6) **Operations** — performance and fairness metrics monitored, model change log maintained; (7) **Review** — formal reassessment at defined intervals or on material drift; (8) **Decommissioning** — formal shutdown including data deletion, documentation archival, AI Register update.
+
+The AISDLC is a post-launch control because building the framework takes longer than implementing the checklist. The checklist should be implemented immediately; the AISDLC formalises and extends it.
+
+**Jurisdiction notes:** AU — APRA CPS 230 — operational risk management obligation extends to the full lifecycle of AI systems. Model risk management expectations from APRA align with AISDLC lifecycle phases | EU — EU AI Act Art. 9 — risk management system must be continuous throughout the lifecycle. Art. 72 — post-market monitoring is mandatory for high-risk AI | Global — ISO 42001 Cl. 8 — AI system lifecycle management is a core requirement of the AI management system standard
+
+---
+
+### B3-003 — Vendor model change notification
+**Owner:** Procurement | **Type:** Preventive | **Effort:** Low | **Go-live required:** No (post-launch)
+
+Require all AI vendor contracts to include advance notification of material model changes — typically a minimum of 30 days. A vendor that can update the underlying model without your knowledge or testing undermines your ability to govern the AI system you have deployed.
+
+What constitutes a material change: (1) replacement of the underlying foundation model; (2) significant changes to model weights through retraining; (3) changes to output format or scoring methodology; (4) changes to data inputs used at inference; (5) changes to the vendor's AI sub-processors. The contract clause should define these categories explicitly rather than leaving "material" undefined.
+
+Implementation: include in all new AI vendor contracts; audit existing contracts and negotiate amendments for material legacy vendors; treat notification as a trigger for change management — a vendor model update should go through the same change assessment as an internal model update.
+
+**Jurisdiction notes:** AU — APRA CPS 230 — material changes to outsourced arrangements require notification and reassessment. The entity cannot govern what it does not know has changed | EU — EU AI Act Art. 26 — deployers must monitor AI system performance and are responsible for changes in behaviour; vendor notification is necessary for this obligation to be dischargeable | Global — NIST AI RMF GOVERN 6.2 — policies for AI system changes should include third-party change notification requirements
+
+---
+
+### B3-004 — Decommissioning protocol
+**Owner:** Technology | **Type:** Preventive | **Effort:** Low | **Go-live required:** No (post-launch)
+
+Implement a formal process for retiring AI systems from production. Deprecated AI models running beyond their intended lifecycle produce increasingly unreliable outputs with no monitoring and no accountable owner — creating silent operational risk.
+
+Decommissioning checklist: (1) decommission decision documented and approved by accountable owner; (2) all data processed by the system handled according to retention policy — personal data deleted or anonymised per Privacy Act / GDPR obligations; (3) system removed from production environment (not just disabled — confirm removal); (4) AI Register entry updated with decommission date and status; (5) documentation archived — model card, testing records, incident log, retained for regulatory minimum period; (6) vendor contract terminated or amended; (7) monitoring and alerting configurations removed to prevent false alarms.
+
+**Jurisdiction notes:** AU — Privacy Act 1988 APP 11 — personal information no longer needed must be destroyed or de-identified. Retaining training data or inference logs beyond the required period creates ongoing compliance exposure | EU — GDPR Art. 5(1)(e) — storage limitation principle; data must not be kept longer than necessary. EU AI Act Art. 12 — logs must be retained for minimum periods depending on system category | US — CCPA right to deletion — AI systems processing California consumer data may receive deletion requests that require system-level response
+
+---
+
+### KPIs
+
+| Metric | Target | Frequency |
+|--------|--------|-----------|
+| New AI deployments with completed pre-deployment checklist | 100% | Per deployment |
+| AI pilot deployments with documented entry/exit criteria | 100% | Per pilot |
+| AI vendor contracts with change notification clause | 100% of new contracts | Quarterly audit |
+| AI systems decommissioned via formal protocol | 100% — no silent retirements | Continuous |
+| AISDLC framework adoption rate for new deployments | 100% once framework published | After framework launch |
+
+---
+
+## Layer 4 — Technical implementation
+
+### Pre-deployment testing checklist — structured template
+
+```python
+from dataclasses import dataclass, field
+from typing import Literal
+
+CheckStatus = Literal["pass", "fail", "not-applicable", "pending"]
+
+@dataclass
+class PreDeploymentCheckItem:
+    category: str
+    check: str
+    status: CheckStatus
+    evidence: str           # Location of supporting evidence (doc, test report, etc.)
+    reviewer: str           # Name and role of person who verified
+    date_completed: str     # ISO 8601
+    notes: str = ""
+
+@dataclass
+class PreDeploymentChecklist:
+    system_id: str
+    system_name: str
+    deployment_target_date: str
+    checklist_owner: str    # Named person accountable for checklist completion
+
+    checks: list[PreDeploymentCheckItem] = field(default_factory=list)
+    compliance_signoff_obtained: bool = False
+    compliance_signoff_by: str = ""
+    compliance_signoff_date: str = ""
+    overall_status: CheckStatus = "pending"
+
+    def is_go_live_approved(self) -> bool:
+        required = [c for c in self.checks if c.status not in ("pass", "not-applicable")]
+        return len(required) == 0 and self.compliance_signoff_obtained
+
+# Example minimum checklist items
+STANDARD_CHECKS = [
+    ("Accuracy",        "Performance metrics on held-out test set meet defined thresholds"),
+    ("Fairness",        "Disaggregated metrics documented across all relevant demographic subgroups"),
+    ("Fairness",        "No material unexplained disparity without accepted residual risk decision"),
+    ("Robustness",      "Tested against out-of-distribution inputs"),
+    ("Explainability",  "Output explanation mechanism confirmed for use case requirements"),
+    ("Security",        "Adversarial input testing completed for external-facing interfaces"),
+    ("Data",            "Training data provenance documented"),
+    ("Data",            "Data Processing Agreement confirmed for all data sources"),
+    ("Privacy",         "PIA/DPIA completed if personal information processed"),
+    ("Governance",      "AI Register entry created with named owner"),
+    ("Governance",      "RACI documented and accountable owner acknowledged"),
+    ("Monitoring",      "Production monitoring dashboard configured and active"),
+    ("Pilot criteria",  "Entry and exit criteria for pilot phase documented (if applicable)"),
+    ("Pilot criteria",  "Go/no-go decision for production documented with approver (if applicable)"),
+]
+```
+
+### Vendor model change management — notification handler
+
+```python
+from datetime import datetime
+
+@dataclass
+class VendorModelChangeNotification:
+    vendor: str
+    system_id: str                # AI Register reference
+    change_type: str              # "foundation_model_replacement" | "weight_update" | "output_format" etc.
+    change_description: str
+    planned_change_date: str      # ISO 8601
+    notification_received_date: str
+    days_notice: int
+
+    def requires_change_assessment(self) -> bool:
+        HIGH_IMPACT_TYPES = {"foundation_model_replacement", "weight_update", "scoring_methodology"}
+        return self.change_type in HIGH_IMPACT_TYPES
+
+    def is_compliant_notice(self, minimum_days: int = 30) -> bool:
+        return self.days_notice >= minimum_days
+
+def handle_vendor_change_notification(notification: VendorModelChangeNotification) -> dict:
+    actions = []
+
+    if not notification.is_compliant_notice():
+        actions.append(f"BREACH: Vendor provided {notification.days_notice} days notice — minimum is 30. Escalate to Procurement and Legal.")
+
+    if notification.requires_change_assessment():
+        actions.append("Trigger change assessment — assign Technical Owner to evaluate impact")
+        actions.append("Schedule regression testing before change date")
+        actions.append("Brief Accountable Owner")
+
+    actions.append("Update AI Register change log")
+
+    return {
+        "system_id": notification.system_id,
+        "actions": actions,
+        "change_assessment_required": notification.requires_change_assessment(),
+        "go_live_hold": notification.requires_change_assessment(),
+    }
+```
+
+### Compliance implementation
+
+**Australia:** APRA CPS 230 — the operational risk management obligation requires lifecycle governance for material AI systems: pre-deployment testing, ongoing monitoring, and formal decommissioning. APRA expects evidence that material model changes are managed through change management processes equivalent to those applied to other technology changes. ASIC — regulatory guidance on AI in financial services expects firms to maintain model inventories and governance documentation throughout the model lifecycle.
+
+**EU:** EU AI Act Art. 9 — risk management system must be continuous and iterative across the full lifecycle of a high-risk AI system. Art. 72 — post-market monitoring plan is mandatory and must be proportionate to the risk. Art. 12 — logging requirements ensure auditability throughout the operational lifetime. ISO 42001 Cl. 8 — the AI management system standard specifies lifecycle management requirements including planning, implementation, monitoring, and continual improvement.
+
+**US:** OCC SR 11-7 (model risk management) — model governance requirements apply throughout the lifecycle: validation before use, ongoing monitoring, and formal model retirement. NIST AI RMF MANAGE function — specific practices for AI system lifecycle management including change monitoring and decommissioning. EEOC — employment AI systems should have documented review cycles and sunset processes.
+
+**Tools and references:** ISO 42001 · NIST AI RMF · APRA CPS 230 · MLflow (model lifecycle tracking) · DVC (data version control) · Weights & Biases (experiment tracking and model registry)
 
 ---
 

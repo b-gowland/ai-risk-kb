@@ -77,9 +77,159 @@ Risk · Compliance · Legal · Technology · Executive · Internal Audit
 
 ## Layer 3 — Controls detail
 
-*See Layer 2 controls summary for ownership, effort, and go-live requirements. Full implementation guidance follows.*
+### B1-001 — AI Register with named owners
+**Owner:** Risk | **Type:** Preventive | **Effort:** Medium | **Go-live required:** Yes
 
-Refer to the controls summary table above for the definitive list of controls for this risk. Detailed control descriptions, jurisdiction notes, and KPIs are maintained in the source schema files and will be published in a forthcoming update.
+Maintain a current, structured inventory of every AI system in production and development, with a named accountable individual for each. The AI Register is the foundational accountability control — without it, no regulator, auditor, or internal reviewer can establish who is responsible for a given system's decisions and outcomes.
+
+Implementation requirements: (1) record every AI system with at minimum: system ID, name, purpose, risk rating, named owner (a specific person, not a team or vendor), deployment date, data inputs, decision outputs, and next review date; (2) the named owner must be an employee of the deploying organisation — a vendor contact does not satisfy accountability obligations under APRA or the FAR; (3) include AI systems embedded in vendor software products — if a vendor tool makes or influences decisions about your customers, it belongs in your register; (4) require AI Register entry creation as a mandatory step before any system goes into production; (5) review the register at minimum annually and whenever a new system is deployed or an existing one is materially changed.
+
+**Jurisdiction notes:** AU — APRA CPS 230 cl. 20 requires material service arrangements to be identified and managed; AI systems providing material functions require named accountability. Financial Accountability Regime (FAR) — accountable persons must be able to demonstrate accountability for material decisions, including AI-assisted ones | EU — EU AI Act Art. 26 — deployers of high-risk AI systems must assign a named person responsible for human oversight. Art. 71 — high-risk AI systems must be registered in the EU AI database | Global — ISO 42001 Cl. 5.3 — organisational roles, responsibilities, and authorities for AI management must be assigned and documented
+
+---
+
+### B1-002 — FAR/accountability mapping
+**Owner:** Compliance | **Type:** Preventive | **Effort:** Low | **Go-live required:** Yes
+
+Map each AI system in the AI Register to the applicable accountability framework — specifically to the Accountable Person under the Financial Accountability Regime (FAR) in Australia, or equivalent senior manager accountability regimes in other jurisdictions. The key principle: responsibility for AI-driven decisions must trace to a named individual, not a system, vendor, or team.
+
+Implementation requirements: (1) for each AI system, identify: which Accountable Person's accountability statement covers decisions made or influenced by this system; (2) confirm the Accountable Person is aware of and has acknowledged their accountability for this system; (3) document the mapping in a format that can be provided to a regulator on request; (4) update the mapping when Accountable Persons change roles; (5) for systems that span multiple accountability boundaries (e.g. a credit AI that touches both the Chief Risk Officer and Chief Data Officer domains), document the primary accountable person and any shared accountability explicitly.
+
+**Jurisdiction notes:** AU — Financial Accountability Regime (FAR, effective July 2025 for ADIs) — accountable persons must take reasonable steps to manage accountability obligations, which now includes AI systems within their domain. APRA CPS 230 — board and senior management are accountable for material operational risks including AI | EU — EU AI Act Art. 26 — deployers must designate responsible human oversight. Senior Managers and Certification Regime (SMCR) in UK — equivalent obligation | US — no direct equivalent to FAR; SEC Cybersecurity Rules require board-level disclosure of material AI risks; OCC guidance requires board oversight of model risk
+
+---
+
+### B1-003 — Third-party accountability clauses
+**Owner:** Legal | **Type:** Preventive | **Effort:** Medium | **Go-live required:** Yes
+
+Ensure all contracts with AI vendors explicitly state which party is responsible for the model's decisions, accuracy, fairness, and regulatory compliance. The default position in most vendor contracts is that the vendor provides a tool and the customer is responsible for how it is used — this means the deploying organisation inherits regulatory accountability by default.
+
+Implementation requirements: (1) include in all AI vendor contracts: a clause specifying which party bears responsibility for model decisions and outputs; a warranty on model accuracy and freedom from known biases; a requirement to notify of material model changes; a clause confirming the vendor's own AI governance and regulatory compliance; (2) for high-stakes AI (credit, employment, insurance), require the vendor to provide evidence of bias testing and model governance documentation on request; (3) include a right to audit or request third-party audits of vendor AI systems that make or influence decisions about your customers; (4) do not accept indemnity waivers for AI outputs without independent legal review.
+
+**Jurisdiction notes:** AU — APRA CPS 230 — outsourcing arrangements must not reduce the APRA-regulated entity's accountability to APRA. The entity cannot contract away its prudential obligations | EU — EU AI Act Art. 25 — obligations of deployers cannot be contractually transferred to providers in a way that reduces deployer obligations | US — EEOC guidance (2023) — employers are accountable for the employment decisions made using vendor AI tools regardless of contractual language
+
+---
+
+### B1-004 — RACI for AI lifecycle
+**Owner:** Risk | **Type:** Preventive | **Effort:** Low | **Go-live required:** No (post-launch)
+
+Define and document who can approve deployment, modify, pause, monitor, and shut down each AI system. For deterministic software, this is standard ITSM. For AI, the stakes of an unclear RACI are higher — a model producing harmful outputs needs a clear chain of command that can act within hours, not days.
+
+Implementation requirements: (1) for each AI system, document: who can approve deployment (Responsible + Accountable); who monitors ongoing performance (Responsible); who can pause or roll back the system (Responsible + Accountable); who must be consulted on material changes (Consulted); who must be informed of incidents (Informed — should include Risk, Compliance, and Legal as minimum); (2) ensure the person with authority to pause or shut down the system can be reached 24/7 for high-risk AI; (3) include the RACI in the AI Register entry; (4) test the RACI annually — simulate an incident and confirm the escalation chain works as documented.
+
+**Jurisdiction notes:** AU — APRA CPS 230 — incident management obligations require clear accountability for response actions. FAR — accountable persons must be able to take reasonable steps to prevent and respond to breaches in their domain | EU — EU AI Act Art. 14 — human oversight must be technically implementable; the RACI is the organisational mechanism that makes technical oversight actionable
+
+---
+
+### KPIs
+
+| Metric | Target | Frequency |
+|--------|--------|-----------|
+| AI systems in production with AI Register entry | 100% | Continuous — new entries required before go-live |
+| AI Register entries with named owner (person, not team) | 100% | Quarterly review |
+| AI systems mapped to FAR/accountability framework | 100% of material AI systems | Annual + on system change |
+| Vendor contracts with AI accountability clauses | 100% of new contracts; remediation plan for legacy | Quarterly |
+| RACI documented and tested | 100% of high-risk AI systems | Annual |
+
+---
+
+## Layer 4 — Technical implementation
+
+### AI Register — minimum viable schema
+
+```python
+from dataclasses import dataclass, field
+from typing import Literal
+
+RiskRating = Literal["critical", "high", "medium", "low"]
+
+@dataclass
+class AIRegisterEntry:
+    # Identity
+    system_id: str                    # e.g. "CREDIT-AI-001"
+    system_name: str
+    purpose: str                      # One sentence description of what the system does
+    vendor: str | None                # None if internally built
+
+    # Accountability — must be a named individual, not a team
+    accountable_owner: str            # Full name and role: "Jane Smith — Chief Risk Officer"
+    technical_owner: str              # Full name and role: "Alex Wong — Head of Data Science"
+    far_accountable_person: str       # Named FAR/accountability framework owner
+    raci_document_location: str       # Link or file path to RACI document
+
+    # Classification
+    risk_rating: RiskRating
+    eu_ai_act_category: str           # "high-risk" | "limited-risk" | "minimal-risk"
+    decision_type: str                # "automated" | "decision-support" | "monitoring"
+    affects_customers: bool
+
+    # Data
+    input_data_types: list[str]       # e.g. ["credit bureau data", "bank statements"]
+    output_description: str           # What decisions or outputs does this produce?
+    personal_data_processed: bool
+
+    # Governance
+    deployment_date: str              # ISO 8601
+    pre_deployment_signoff_date: str  # ISO 8601 — must exist before deployment_date
+    pre_deployment_signoff_by: str    # Named approver
+    last_review_date: str
+    next_review_date: str
+    monitoring_dashboard_url: str | None
+    incident_count_ytd: int = 0
+    open_issues: list[str] = field(default_factory=list)
+```
+
+### Accountability chain — incident response template
+
+```python
+# Minimum viable AI incident response RACI
+# Populate per system and store in AI Register
+
+AI_INCIDENT_RACI = {
+    "detect_anomaly": {
+        "responsible": "Technology — AI/ML Engineering",
+        "accountable": "Technical Owner (named in AI Register)",
+        "consulted":   ["Risk", "Compliance"],
+        "informed":    ["Accountable Owner", "Legal"],
+    },
+    "pause_system": {
+        "responsible": "Technical Owner",
+        "accountable": "Accountable Owner",
+        "consulted":   ["Risk", "Legal"],
+        "informed":    ["Board Risk Committee (if material)", "APRA (if CPS 230 notifiable)"],
+        "authority_required": True,
+        "max_response_time_hours": 4,  # For high-risk AI
+    },
+    "notify_regulator": {
+        "responsible": "Compliance",
+        "accountable": "FAR Accountable Person",
+        "consulted":   ["Legal", "Executive"],
+        "informed":    ["Board"],
+        "trigger":     "Material incident affecting customers or regulatory obligations",
+    },
+    "resume_system": {
+        "responsible": "Technical Owner",
+        "accountable": "Accountable Owner",
+        "consulted":   ["Risk", "Compliance", "Legal"],
+        "informed":    ["Board Risk Committee if incident was material"],
+        "required_evidence": [
+            "Root cause analysis documented",
+            "Remediation tested",
+            "Risk sign-off obtained",
+        ],
+    },
+}
+```
+
+### Compliance implementation
+
+**Australia:** Financial Accountability Regime (FAR, effective July 2025 for ADIs, July 2026 for insurers and superannuation) — accountable persons must have clearly documented accountability for material functions including AI-driven decisions. APRA CPS 230 — outsourcing and third-party arrangements involving AI must have clear accountability allocation and cannot reduce the entity's obligations to APRA. ASIC regulatory guidance on AI in financial services — ASIC expects firms to be able to demonstrate clear governance and accountability for AI systems used in financial advice, credit, and insurance.
+
+**EU:** EU AI Act Art. 26 — deployers of high-risk AI systems must assign human oversight responsibility to a named person with the competence, authority, and resources to exercise that oversight. Art. 71 — registration of high-risk AI systems in the EU AI database is mandatory from August 2, 2026. ISO 42001 Cl. 5.3 — AI management system standard requires documented roles, responsibilities, and authorities for all AI-related activities.
+
+**US:** OCC model risk management guidance (SR 11-7) — model owners must be designated for all models used in credit and risk decisions. SEC cybersecurity rules — material AI risks must be disclosed at board level. EEOC guidance — named accountability for employment AI decisions is implicit in employer liability under Title VII.
+
+**Tools and references:** APRA CPS 230 · Financial Accountability Regime (ASIC/APRA) · EU AI Act Art. 26 · ISO 42001 · NIST AI RMF GOVERN 1.2
 
 ---
 

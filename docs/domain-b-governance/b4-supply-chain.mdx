@@ -80,9 +80,192 @@ Procurement · Legal · Technology · Risk · Compliance
 
 ## Layer 3 — Controls detail
 
-*See Layer 2 controls summary for ownership, effort, and go-live requirements. Full implementation guidance follows.*
+### B4-001 — AI-specific vendor due diligence
+**Owner:** Procurement | **Type:** Preventive | **Effort:** Low | **Go-live required:** Yes
 
-Refer to the controls summary table above for the definitive list of controls for this risk. Detailed control descriptions, jurisdiction notes, and KPIs are maintained in the source schema files and will be published in a forthcoming update.
+Extend vendor due diligence questionnaires to include AI-specific questions before contracting with any vendor whose product includes AI components. Traditional TPRM questionnaires cover security, availability, and data handling — they were not designed to capture AI-specific risks such as training data provenance, upstream model governance, and model change processes.
+
+Minimum AI-specific DDQ questions: (1) **Model governance** — what model governance framework does the vendor operate? Who is accountable for the AI system's outputs? (2) **Training data** — what data was used to train the model? Is any customer data used for training? How is training data quality assured? (3) **Sub-processors** — which foundation model providers or upstream AI services does the vendor use? Are those sub-processors named in the DPA? (4) **Model change management** — what is the vendor's process for model updates? How much advance notice is provided? (5) **Bias and fairness** — has the model been tested for bias against relevant demographic groups? Are results available? (6) **Regulatory compliance** — has the vendor assessed the model against applicable AI regulations? What is their EU AI Act classification for this product? (7) **Incident history** — has the vendor had material AI incidents in the last 24 months? How were they handled?
+
+Retain completed DDQs on file. Reassess on contract renewal and when the vendor's AI product materially changes.
+
+**Jurisdiction notes:** AU — APRA CPS 230 — due diligence on material service providers must be commensurate with the risk; AI-specific DDQs are the mechanism for discharging this for AI vendors | EU — EU AI Act Art. 25 — deployers must select providers that are compliant with the Act; DDQ is the due diligence mechanism. Art. 53 — GPAI model providers must provide technical documentation to downstream deployers | US — OCC third-party risk management guidance (2023) — due diligence should be tailored to the risk profile of the arrangement; AI-specific DDQ satisfies this for AI vendors
+
+---
+
+### B4-002 — AI Bill of Materials (AI-BOM)
+**Owner:** Procurement | **Type:** Preventive | **Effort:** Low | **Go-live required:** Yes
+
+Request and retain an AI Bill of Materials from all AI vendors — a structured document identifying all components, models, datasets, and upstream dependencies that comprise the vendor's AI product. Without an AI-BOM, the deploying organisation cannot assess the full supply chain risk it is inheriting.
+
+Minimum AI-BOM content: (1) foundation model(s) used — name, version, provider; (2) fine-tuning datasets — description, source, licensing; (3) third-party AI sub-components — libraries, APIs, inference services; (4) data processing pipeline components; (5) known limitations and failure modes documented by the vendor; (6) model card or equivalent technical documentation.
+
+The AI-BOM is an emerging standard — many vendors do not yet produce one in a structured format. Where a full AI-BOM is not available, request the information in the DDQ (B4-001) and document what was disclosed. The ability to obtain an AI-BOM is itself a signal of vendor maturity.
+
+**Jurisdiction notes:** AU — no specific AI-BOM requirement; APRA CPS 230 due diligence obligations support requesting this information | EU — EU AI Act Art. 53 — providers of GPAI models must provide technical documentation to downstream users. Art. 13 — deployers of high-risk AI must have access to documentation sufficient to understand the system's capabilities and limitations. This is the regulatory basis for requiring an AI-BOM | US — NIST AI RMF GOVERN 1.6 — AI risk management should include understanding of the AI supply chain. Executive Order 14110 (2023) — requirements for AI safety documentation align with AI-BOM concept
+
+---
+
+### B4-003 — DPA with AI sub-processors
+**Owner:** Legal | **Type:** Preventive | **Effort:** Medium | **Go-live required:** Yes
+
+Ensure Data Processing Agreements with AI vendors explicitly address AI sub-processors — the foundation model providers and inference services the vendor uses. A DPA that covers the immediate vendor but does not address the vendor's own AI providers leaves a gap that may result in customer data reaching a third party whose data handling you have not approved.
+
+DPA requirements for AI vendors: (1) confirm that customer data is not used for model training — by the vendor or any sub-processor; (2) name all AI sub-processors — foundation model APIs, inference services, fine-tuning providers; (3) confirm data residency — where data is processed and stored at each layer; (4) define data retention limits for inference — how long query data is held at the API layer; (5) confirm right to audit sub-processor compliance; (6) include change notification requirement for sub-processor changes.
+
+Do not accept generic DPAs that do not address AI-specific data flows. If a vendor cannot confirm their sub-processors, this is a material risk requiring escalation before contract execution.
+
+**Jurisdiction notes:** AU — Privacy Act 1988 APP 8 — cross-border disclosure obligations apply to data submitted to overseas AI sub-processors; DPA is the mechanism for compliance. APP 11 — reasonable steps to protect personal information must extend to vendor AI data handling | EU — GDPR Art. 28 — processor must not engage sub-processors without prior specific or general written authorisation of the controller. Art. 28(4) — sub-processor must be subject to equivalent data protection obligations. International transfer provisions (Art. 44–49) apply to cross-border AI inference | US — HIPAA BAA must cover AI sub-processors handling PHI. GLBA safeguards rule — service provider agreements must address data protection throughout the supply chain
+
+---
+
+### B4-004 — Enterprise API tier confirmation
+**Owner:** Procurement | **Type:** Preventive | **Effort:** Low | **Go-live required:** Yes
+
+Confirm in writing that any vendor using public LLM APIs to power their product is using enterprise tiers — not consumer tiers — and that data submitted through the vendor's product is isolated from public model training. This is distinct from B4-003 (which covers the DPA) — this control specifically addresses the API tier used and the written confirmation obtained.
+
+Consumer tiers of major LLM APIs typically permit the provider to use submitted data for model improvement. Enterprise tiers typically exclude this. The distinction is not always visible in the vendor's marketing — it requires explicit written confirmation, ideally as a DPA schedule.
+
+Implementation: add a standard question to the AI DDQ (B4-001): "Does your product use public LLM APIs for inference? If so: which provider, which tier, and can you confirm in writing that customer data is not used for model training?" Retain the written confirmation on file. Review on contract renewal — API tier terms change.
+
+⚠️ **[VERIFY BEFORE PUBLISH]** Enterprise API tier data protection terms vary by provider and change over time. Confirm current terms for each named provider directly before recommending specific products or tiers to clients.
+
+**Jurisdiction notes:** AU — Privacy Act 1988 APP 8 — offshore AI inference via consumer API tier may constitute cross-border disclosure without adequate protection | EU — GDPR Art. 28 — consumer-tier LLM APIs typically do not offer DPAs; enterprise tier is required for processing personal data | US — sector-specific requirements apply; HIPAA covered entities must ensure BAA coverage extends to all AI API tiers used
+
+---
+
+### B4-005 — Vendor change notification requirement
+**Owner:** Procurement | **Type:** Preventive | **Effort:** Low | **Go-live required:** No (post-launch)
+
+Require all AI vendor contracts to mandate advance notice of material changes — to the underlying model, the sub-processor stack, or the data handling arrangements. This is the supply chain equivalent of B3-003 (internal change management) — it ensures that external changes to your AI stack are visible and can be managed.
+
+Contract language: "Vendor must provide a minimum of 30 calendar days advance written notice of: (1) changes to the underlying AI model including foundation model replacements or material retraining; (2) changes to AI sub-processors; (3) changes to data retention or processing arrangements; (4) any security incidents affecting customer data processed by AI components."
+
+Apply to all new contracts. Audit existing contracts and prioritise renegotiation for vendors providing high-risk AI systems (credit, employment, insurance decisions).
+
+**Jurisdiction notes:** AU — APRA CPS 230 — material changes to outsourcing arrangements require notification. Vendor model changes are material changes to an AI outsourcing arrangement | EU — EU AI Act Art. 26 — deployers must be able to monitor AI system behaviour; vendor change notification is necessary for this obligation. GDPR Art. 28(2) — changes to sub-processors require notification to the data controller
+
+---
+
+### KPIs
+
+| Metric | Target | Frequency |
+|--------|--------|-----------|
+| AI vendors with completed AI-specific DDQ | 100% of new vendors; remediation plan for legacy | Quarterly |
+| AI vendors with AI-BOM on file | 100% of new vendors; best efforts for legacy | Quarterly |
+| AI vendor DPAs addressing AI sub-processors | 100% of vendors processing personal data | Quarterly |
+| Enterprise API tier confirmation on file | 100% of vendors using public LLM APIs | Quarterly |
+| AI vendor contracts with change notification clause | 100% of new contracts | Quarterly audit |
+
+---
+
+## Layer 4 — Technical implementation
+
+### AI vendor DDQ — structured schema
+
+```python
+from dataclasses import dataclass, field
+
+@dataclass
+class AIVendorDDQ:
+    vendor_name: str
+    product_name: str
+    assessment_date: str        # ISO 8601
+    assessed_by: str            # Name and role
+
+    # Model governance
+    model_governance_framework: str
+    accountable_person_named: bool
+    model_card_available: bool
+
+    # Training data
+    customer_data_used_for_training: bool   # Must be False
+    training_data_sources_documented: bool
+    training_data_description: str
+
+    # Sub-processors
+    uses_public_llm_apis: bool
+    llm_sub_processors: list[str]           # e.g. ["OpenAI (Azure enterprise)", "Anthropic"]
+    sub_processors_named_in_dpa: bool
+
+    # Data protection
+    enterprise_api_tier_confirmed: bool
+    enterprise_tier_confirmation_document: str  # File path or URL
+    data_residency_locations: list[str]
+    dpa_available: bool
+    dpa_covers_ai_subprocessors: bool
+
+    # Change management
+    change_notification_days_minimum: int   # Must be >= 30
+    change_types_covered: list[str]
+
+    # Bias and fairness
+    bias_testing_conducted: bool
+    bias_testing_results_available: bool
+    eu_ai_act_classification: str
+
+    # Regulatory
+    regulatory_compliance_assessed: bool
+    compliance_jurisdictions: list[str]
+
+    # Incidents
+    material_incidents_last_24_months: bool
+    incident_description: str = ""
+
+    # Overall
+    procurement_approved: bool = False
+    risk_approved: bool = False
+    legal_approved: bool = False
+    notes: str = ""
+```
+
+### AI-BOM — minimum content template
+
+```python
+@dataclass
+class AIBillOfMaterials:
+    vendor: str
+    product: str
+    version: str
+    bom_date: str           # ISO 8601
+
+    # Foundation models
+    foundation_models: list[dict]
+    # Each dict: {"name": "GPT-4o", "provider": "OpenAI", "version": "2024-11",
+    #             "api_tier": "Azure OpenAI enterprise", "training_cutoff": "2024-04"}
+
+    # Fine-tuning
+    fine_tuning_conducted: bool
+    fine_tuning_datasets: list[dict]
+    # Each dict: {"name": "...", "source": "...", "license": "...", "size": "..."}
+
+    # Third-party AI components
+    third_party_components: list[dict]
+    # Each dict: {"name": "...", "provider": "...", "purpose": "...", "version": "..."}
+
+    # Data flows
+    inference_data_retention_hours: int     # How long query data is held
+    data_processing_locations: list[str]
+    training_on_customer_data: bool         # Must be False
+
+    # Known limitations
+    known_limitations: list[str]
+    known_failure_modes: list[str]
+
+    # Documentation
+    model_card_url: str | None
+    technical_documentation_url: str | None
+```
+
+### Compliance implementation
+
+**Australia:** APRA CPS 230 — due diligence obligations for material service providers extend to the full supply chain of AI systems. APRA expects regulated entities to understand and manage risks from AI vendors and their upstream providers. Privacy Act 1988 APP 8 — cross-border disclosure obligations require that overseas processing by AI sub-processors is covered by appropriate protections. The AI DDQ, AI-BOM, and DPA controls together satisfy the "reasonable steps" standard.
+
+**EU:** EU AI Act Art. 53 — providers of general-purpose AI models must provide technical documentation (equivalent to an AI-BOM) to downstream providers and deployers. Art. 25 — deployers who place high-risk AI on the market under their own name must comply with the same obligations as providers. GDPR Art. 28 — sub-processor chain must be documented and covered by appropriate agreements. The full B4 control set is required for any organisation deploying high-risk AI with EU nexus.
+
+**US:** OCC third-party risk management guidance (2023) — due diligence requirements extend to sub-contractors and critical fourth parties, which includes AI sub-processors. NIST AI RMF GOVERN 1.6 — policies should address AI supply chain risks. NIST AI 100-1 — AI risk management framework explicitly addresses supply chain risk including upstream model providers.
+
+**Tools and references:** CISA AI-BOM guidance · SPDX standard (Software Package Data Exchange — adaptable for AI-BOM) · EU AI Act Art. 53 technical documentation requirements · NIST AI 100-1 · APRA CPS 230 third-party guidance
 
 ---
 
