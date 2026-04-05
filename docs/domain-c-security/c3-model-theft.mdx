@@ -78,9 +78,178 @@ Security · Technology · Legal · Risk
 
 ## Layer 3 — Controls detail
 
-*See Layer 2 controls summary for ownership, effort, and go-live requirements. Full implementation guidance follows.*
+### C3-001 — API rate limiting and query monitoring
+**Owner:** Technology | **Type:** Preventive/Detective | **Effort:** Low | **Go-live required:** Yes
 
-Refer to the controls summary table above for the definitive list of controls for this risk. Detailed control descriptions, jurisdiction notes, and KPIs are maintained in the source schema files and will be published in a forthcoming update.
+Model extraction requires volume — an adversary needs thousands to hundreds of thousands of queries to reconstruct a useful surrogate. Rate limiting constrains the volume any single consumer can achieve; query monitoring detects systematic probing patterns that rate limiting alone does not prevent across multiple keys.
+
+Implementation requirements: (1) **Per-key rate limits** — enforce rate limits at the API key level, not just the IP level. IP-level limits are trivially bypassed with distributed requests. Define limits appropriate to the legitimate use case — a credit decision API used by integration partners has a different legitimate query pattern than one exposed to retail consumers. Document the limit and the rationale; (2) **Burst and daily caps** — implement both burst limits (queries per minute) and sustained daily caps. Extraction attacks often use sustained moderate query rates to stay below burst thresholds; (3) **Systematic probing detection** — implement monitoring that identifies extraction-characteristic patterns beyond simple volume: (a) feature sweeping — queries that vary one or a small number of input features incrementally; (b) boundary probing — queries clustered around decision boundaries; (c) output correlation — successive queries where inputs are systematically correlated. Flag these patterns for security review regardless of whether rate limits have been hit; (4) **Alert and response** — define a tiered alert policy: warning (human review within 4 hours), critical (automatic key suspension + immediate security notification). Automatic key suspension on confirmed extraction pattern prevents the attack completing while investigation proceeds; (5) **Usage analytics** — retain query logs (appropriately anonymised per privacy obligations) sufficient to reconstruct the query sequence for any flagged key. This enables post-incident forensic analysis and attribution.
+
+**Jurisdiction notes:** AU — APRA CPS 234 — API security is within the scope of information security capability requirements; access to externally exposed AI models must be controlled | EU — EU AI Act Art. 15 — robustness requirements for high-risk AI include resilience against attempts to alter outputs; GDPR Art. 32 — API security controls must be appropriate to the risk | US — NIST Cyber AI Profile IR 8596 — API security controls for AI model endpoints are an explicit requirement; SOC 2 Type II — for enterprise-grade systems processing customer data
+
+---
+
+### C3-002 — Output obfuscation
+**Owner:** Technology | **Type:** Preventive | **Effort:** Low | **Go-live required:** Yes
+
+Full-precision confidence scores — exact probability values from the model's output layer — provide maximum information per query to an extractor. An adversary can use precise scores to locate decision boundaries with fewer queries and construct a higher-fidelity surrogate. Obfuscating outputs degrades extraction quality with minimal impact on legitimate use cases.
+
+Implementation requirements: (1) **Precision reduction** — round continuous probability scores to the minimum precision needed for the legitimate use case. A credit decision API that returns an approval decision and risk band does not need to expose the underlying probability to three decimal places. Typical reduction: full precision (e.g. 0.847293) → two significant figures (0.85) or even categorical (High / Medium / Low); (2) **Return decisions not scores** — for API consumers who only need the outcome (approve/decline, fraud/legitimate), return the categorical decision only. Reserve score exposure for consumers with a documented need and commensurate contractual controls; (3) **Calibrated noise** — for APIs that must return scores (e.g. for downstream calibration by the consumer), add calibrated noise sufficient to meaningfully degrade extraction. The noise level must be tuned: too little provides no protection; too much degrades the utility of the score for legitimate use. Gaussian noise with σ = 0.02–0.05 provides meaningful extraction degradation for most model types; (4) **Avoid returning input echoes** — some model APIs echo back the processed input features alongside the output. This assists extraction by confirming which features were used and at what values. Return only what is needed for the consumer's decision-making; (5) **Document and version the obfuscation policy** — obfuscation must be applied consistently across all API versions. A legacy API version returning full precision while a new version obfuscates provides the adversary with a trivially exploitable path.
+
+**Jurisdiction notes:** Global — output obfuscation is a technical control with no direct regulatory mandate; it is a best practice recommendation from MITRE ATLAS and NIST Cyber AI Profile IR 8596 | EU — EU AI Act Art. 13 — transparency to deployers requires sufficient information for deployers to interpret and use system outputs, but does not require full-precision exposure | AU — no specific regulatory mandate; recommended under ACSC AI security guidance
+
+---
+
+### C3-003 — Access controls and authentication
+**Owner:** Security | **Type:** Preventive | **Effort:** Low | **Go-live required:** Yes
+
+An unauthenticated or weakly authenticated model API allows extraction attacks without attribution. Strong authentication is the prerequisite for rate limiting, monitoring, and legal recourse — you cannot rate-limit or monitor an adversary you cannot identify.
+
+Implementation requirements: (1) **API key authentication** — require API key authentication for all model endpoint access. Anonymous access must not be permitted for any model representing proprietary IP. Keys must be scoped to specific consumers with documented identities and purposes; (2) **Key rotation** — implement a key rotation schedule appropriate to risk (quarterly minimum for high-sensitivity APIs). Provide a rotation mechanism that allows consumers to rotate without service interruption (issuing new key before revoking old); (3) **Mutual TLS for high-sensitivity APIs** — for model APIs accessed by integration partners with significant contractual relationships, implement mutual TLS authentication. This provides stronger attribution than API keys alone and is more resistant to key theft; (4) **Access provisioning process** — API access must be provisioned through a formal process: consumer identifies themselves, documents use case, accepts terms of service (including explicit prohibition on model extraction), and is issued a key. The record of this agreement is critical for legal recourse; (5) **Terms of service** — API terms must explicitly prohibit: systematic querying for model extraction, use of outputs to train competing models, resale of API access, and circumvention of rate limits. Without explicit prohibition, enforcement options are limited; (6) **Deprovisioning** — maintain a process for immediate key revocation on confirmed extraction attempt or end of partnership relationship. Revocation must be immediate and must be tested.
+
+**Jurisdiction notes:** AU — Australian Privacy Act APP 11 — for APIs processing personal data, security controls must be appropriate to prevent unauthorised access | EU — GDPR Art. 32 — appropriate technical measures for API security | US — relevant trade secret law — contractual prohibition on extraction combined with authentication controls supports trade secret protection of model IP; CFAA — unauthorised computer access provisions may apply to extraction that violates terms of service
+
+---
+
+### C3-004 — Model watermarking
+**Owner:** Technology | **Type:** Detective | **Effort:** High | **Go-live required:** No (post-launch)
+
+Model watermarking embeds a verifiable signal into model outputs that persists in extracted surrogate models, enabling detection and attribution of extraction attacks. It does not prevent extraction but converts extraction from undetectable IP theft to detectable and attributable IP theft — a meaningful deterrent and legal enforcement mechanism.
+
+Implementation requirements: (1) **Output watermarking** — embed a statistically detectable pattern in model outputs. The pattern must be: (a) imperceptible — not detectable by a user examining outputs casually; (b) persistent — surviving the extraction process so the surrogate model retains the watermark; (c) verifiable — detectable using a private verification key that is not accessible to the adversary; (2) **Backdoor watermarking** — for models that can be specifically trained for it: embed a small number of specific input-output pairs (watermark samples) into the model during training. These pairs produce outputs that are statistically improbable under any legitimate model but expected under the watermarked model. When a suspected surrogate is encountered, query it with watermark samples — the watermark is confirmed if the outputs match; (3) **Verification procedure** — document the process for verifying the watermark in a suspected extracted model. This must be executable without accessing the suspected model's weights (black-box verification through API queries); (4) **Chain of custody** — maintain records of watermark parameters as legally admissible evidence of ownership. The watermark record must be: timestamped, signed, and stored in a tamper-evident system; (5) **Limitations** — acknowledge that model watermarking is an active research area. Some watermarks can be removed by adversaries with sufficient queries (watermark removal attacks). Watermarking should be layered with C3-001 through C3-003, not relied upon as the primary defence.
+
+**Jurisdiction notes:** AU — Copyright Act 1968 — model watermarking supports copyright and trade secret claims in IP litigation; establishing existence of a watermark before alleged theft is critical | EU — GDPR — if watermark samples contain personal data, data governance obligations apply | US — Defend Trade Secrets Act — watermarks serve as technical evidence of trade secret protection; deliberate removal of a watermark in circumvention of a protection measure may attract additional liability
+
+---
+
+### KPIs
+
+| Metric | Target | Frequency |
+|--------|--------|-----------| 
+| API keys with documented owner and rate limits | 100% of active keys | Monthly |
+| Systematic probing alerts reviewed within SLA | 100% within 4 hours (critical), 24 hours (warning) | Continuous |
+| API keys automatically suspended on critical alert | 100% — zero manual-only critical response paths | Tested quarterly |
+| Output precision reduction implemented | 100% of externally exposed AI model APIs | Reviewed at each API change |
+| Key rotation completed on schedule | 100% of keys within rotation period | Tracked continuously |
+
+---
+
+## Layer 4 — Technical implementation
+
+### API rate limiting and extraction detection
+
+```python
+import time
+import math
+from collections import defaultdict, deque
+from dataclasses import dataclass, field
+
+@dataclass
+class RateLimitConfig:
+    requests_per_minute: int     # burst limit
+    requests_per_day: int        # sustained limit
+    feature_sweep_threshold: int = 100  # correlated queries triggering sweep alert
+    boundary_probe_threshold: int = 50  # boundary-concentrated queries
+
+class ExtractionDetector:
+    """
+    Detects model extraction patterns beyond simple volume limits.
+    Tracks per-key query patterns for systematic probing signatures.
+    """
+
+    def __init__(self, config: RateLimitConfig):
+        self.config = config
+        # Per-key tracking: {api_key: deque of (timestamp, input_hash, output_score)}
+        self._query_log: dict[str, deque] = defaultdict(lambda: deque(maxlen=10000))
+        self._day_counts: dict[str, int] = defaultdict(int)
+        self._alerts: list[dict] = []
+
+    def record_query(self, api_key: str, input_features: dict, output_score: float) -> dict:
+        """
+        Record a query and check for extraction patterns.
+        Returns: {allowed: bool, alert: str | None, action: str}
+        """
+        now = time.time()
+        self._query_log[api_key].append((now, input_features, output_score))
+        self._day_counts[api_key] += 1
+
+        # Check daily cap
+        if self._day_counts[api_key] > self.config.requests_per_day:
+            return self._flag(api_key, "daily_cap_exceeded", "suspend_key")
+
+        # Check burst rate (last 60 seconds)
+        recent = [t for t, _, _ in self._query_log[api_key] if now - t < 60]
+        if len(recent) > self.config.requests_per_minute:
+            return self._flag(api_key, "burst_limit_exceeded", "throttle")
+
+        # Check for feature sweeping (one feature varying systematically)
+        if self._detect_feature_sweep(api_key):
+            return self._flag(api_key, "feature_sweep_detected", "suspend_key")
+
+        return {"allowed": True, "alert": None, "action": "proceed"}
+
+    def _detect_feature_sweep(self, api_key: str) -> bool:
+        """
+        Detect queries where a single feature varies incrementally
+        while others remain constant — signature of boundary probing.
+        """
+        recent_queries = list(self._query_log[api_key])[-self.config.feature_sweep_threshold:]
+        if len(recent_queries) < self.config.feature_sweep_threshold:
+            return False
+
+        inputs = [q[1] for q in recent_queries]
+        if not inputs or not isinstance(inputs[0], dict):
+            return False
+
+        features = list(inputs[0].keys())
+        for feature in features:
+            values = [inp.get(feature) for inp in inputs if isinstance(inp.get(feature), (int, float))]
+            other_features_constant = all(
+                len(set(inp.get(f) for inp in inputs if isinstance(inp.get(f), (int, float)))) == 1
+                for f in features if f != feature
+            )
+            if other_features_constant and len(set(values)) > 20:
+                return True  # One feature sweeping, others constant
+        return False
+
+    def _flag(self, api_key: str, reason: str, action: str) -> dict:
+        alert = {"api_key": api_key, "reason": reason, "action": action, "timestamp": time.time()}
+        self._alerts.append(alert)
+        # In production: page security, write to SIEM, auto-suspend if action=="suspend_key"
+        return {"allowed": action == "throttle", "alert": reason, "action": action}
+
+
+def obfuscate_output(
+    raw_score: float,
+    precision: int = 2,
+    add_noise: bool = False,
+    noise_sigma: float = 0.02,
+) -> float | str:
+    """
+    Apply output obfuscation before returning score to API consumer.
+    Choose precision=0 to return categorical band only.
+    """
+    if add_noise:
+        import random
+        raw_score += random.gauss(0, noise_sigma)
+        raw_score = max(0.0, min(1.0, raw_score))
+
+    if precision == 0:
+        # Return categorical band — maximum obfuscation
+        if raw_score >= 0.7: return "High"
+        if raw_score >= 0.4: return "Medium"
+        return "Low"
+
+    return round(raw_score, precision)
+```
+
+### Compliance implementation
+
+**Australia:** APRA CPS 234 requires that information assets — including proprietary AI models — are protected against exploitation. API security controls for externally exposed model endpoints should be documented as part of the CPS 234 information security policy. Australian trade secret protection operates under contract law and the common law of confidence — there is no standalone trade secret statute. Model extraction from a contractually protected API may support a breach of confidence claim. Copyright in AI model code and architecture is protected under the Copyright Act 1968.
+
+**EU:** GDPR Art. 32 requires appropriate technical and organisational measures for data security; where the model API processes personal data, this extends to API authentication and access controls. EU AI Act Art. 15 requires high-risk AI systems to be resilient against adversarial attacks — model extraction enabling adversarial attacks transfers this obligation to API security. EU trade secret protection under Directive 2016/943 (Trade Secrets Directive) requires: information to be secret, have commercial value, and be subject to reasonable protective measures. API authentication, rate limiting, and contractual prohibition together satisfy the "reasonable protective measures" requirement.
+
+**US:** Computer Fraud and Abuse Act (CFAA) — where API terms explicitly prohibit model extraction and authentication is in place, extraction may constitute unauthorised computer access. The Defend Trade Secrets Act (DTSA) protects AI models as trade secrets provided reasonable protective measures are in place — API key authentication, rate limits, and contractual prohibition collectively satisfy this requirement. Output obfuscation and watermarking provide additional evidentiary support for trade secret status.
 
 ---
 

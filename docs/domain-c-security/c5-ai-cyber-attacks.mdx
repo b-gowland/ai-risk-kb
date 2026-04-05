@@ -77,9 +77,234 @@ Security · Technology · Finance · HR · Operations
 
 ## Layer 3 — Controls detail
 
-*See Layer 2 controls summary for ownership, effort, and go-live requirements. Full implementation guidance follows.*
+### C5-001 — AI-enhanced email security
+**Owner:** Security | **Type:** Preventive/Detective | **Effort:** Medium | **Go-live required:** No (post-launch)
 
-Refer to the controls summary table above for the definitive list of controls for this risk. Detailed control descriptions, jurisdiction notes, and KPIs are maintained in the source schema files and will be published in a forthcoming update.
+AI-generated phishing removes the content-level signals — poor grammar, generic greetings, suspicious formatting — that traditional email security and staff training rely on. Email security must shift to metadata, behavioural, and sender reputation signals that AI content generation cannot replicate.
+
+Implementation requirements: (1) **Signal shift** — audit current email security configuration and identify rules that rely on content heuristics (spelling, grammar, formatting) rather than metadata signals. Content heuristics should be deprioritised or removed — they now generate false confidence by passing AI-generated phishing. Signals that remain effective: sender domain age, DNS/SPF/DKIM alignment, sending infrastructure reputation, header anomalies, unexpected geographic origin; (2) **Behavioural analysis** — implement email security that profiles normal correspondence patterns per sender and recipient. An AI-generated email from a known supplier may be grammatically perfect but arrive outside normal correspondence hours, from an unusual sending server, or with unusual attachment behaviour; (3) **Link and attachment sandboxing** — AI-generated phishing increasingly contains legitimate-looking links to adversary-controlled pages rather than obvious malicious domains. Deep sandboxing of all links and attachments — not just those flagging content heuristics — is required; (4) **Business email compromise (BEC) controls** — AI dramatically lowers the cost of BEC attacks. Implement: display name spoofing detection (sender display name matches a known contact but domain differs); lookalike domain detection; executive impersonation alerts; out-of-band verification requirements for payment instruction changes regardless of how plausible the email appears; (5) **Continuous rule updates** — email threat landscape is evolving at the pace of AI capability improvements. Subscribe to threat intelligence feeds specific to AI-enhanced email attacks. Review and update detection rules quarterly minimum.
+
+**Jurisdiction notes:** AU — ACSC Essential Eight — patch applications and operating systems; email is the primary initial access vector. APRA CPS 234 — email security is within scope of information security capability requirements for regulated entities | EU — NIS2 Directive — entities in scope must implement appropriate technical measures for network and information security, including email security | US — NIST CSF 2.0 Protect function — email security controls are a baseline requirement; SEC cybersecurity disclosure rules (2023) — material cybersecurity incidents triggered by phishing require disclosure
+
+---
+
+### C5-002 — Updated security awareness training
+**Owner:** HR | **Type:** Preventive | **Effort:** Low | **Go-live required:** No (post-launch)
+
+Training that teaches staff to identify phishing by grammar and formatting errors is now actively harmful — it provides false confidence when AI-generated phishing arrives with perfect English and precise personalisation. Training must be rebuilt around behavioural verification, not content inspection.
+
+Implementation requirements: (1) **Remove obsolete indicators** — explicitly tell staff that the indicators they previously relied on are no longer reliable: poor grammar, generic greetings, obvious urgency, suspicious formatting. Phishing emails now look like legitimate correspondence from known contacts; (2) **Teach verification behaviour** — replace content-inspection guidance with verification behaviour: (a) any request involving money, credentials, or access — verify via a separate channel (phone call to a known number, in-person) regardless of how legitimate the email appears; (b) unexpected requests from known contacts — call the sender before acting, even if the email appears genuine; (c) payment instruction changes — never action from email alone; always verify via pre-established process; (3) **Personalisation awareness** — inform staff that AI-generated phishing may contain accurate personal details (name, role, recent activities, colleagues' names). Receiving an email that appears to know things about you is no longer evidence of legitimacy; (4) **Simulated phishing — updated** — if your organisation runs phishing simulations, update the simulation templates to use AI-generated content. Simulations using templates with obvious grammar errors no longer measure real-world detection capability. Measure simulation results by verification behaviour (did the recipient verify?), not by whether they clicked a link; (5) **Completion and testing** — training completion above 95% annually; include scenario-based testing questions, not just completion tracking; refresh training annually and when significant new threat patterns emerge.
+
+**Jurisdiction notes:** AU — APRA CPS 234 — security awareness training for all personnel with access to information assets is an explicit requirement | EU — NIS2 — training obligations for entities in scope | US — FFIEC guidance for financial institutions requires security awareness training addressing current threats; SEC cybersecurity rules require disclosure of material cyber incidents, creating board-level incentive to ensure training is current
+
+---
+
+### C5-003 — Zero-trust architecture
+**Owner:** Security | **Type:** Preventive | **Effort:** High | **Go-live required:** No (post-launch)
+
+The primary reason AI-enhanced phishing is so damaging is that a single compromised credential in a perimeter-based network gives an adversary broad access. Zero-trust limits the blast radius of a successful phishing attack by ensuring no implicit trust exists — every access request is verified, regardless of whether it comes from inside or outside the network perimeter.
+
+Implementation requirements: (1) **Identity verification — MFA everywhere** — multi-factor authentication must be enforced for all users, all applications, all administrative access. SMS-based MFA is vulnerable to SIM-swapping; implement authenticator app or hardware token MFA. Phishing-resistant MFA (FIDO2/WebAuthn passkeys) provides the strongest protection against AI-enhanced credential phishing; (2) **Least-privilege access** — users should have access only to what they need for their current function. Broad standing access to sensitive systems dramatically increases the value of a compromised credential. Implement just-in-time (JIT) access for privileged roles; (3) **Network micro-segmentation** — segment the network so that a compromised endpoint cannot directly reach sensitive systems or spread laterally. Verify that segments align with data sensitivity, not just organisational structure; (4) **Continuous session verification** — implement policies that re-verify identity during sessions where risk signals emerge (unusual location, unusual time, sensitive action). Do not rely on initial authentication lasting for an entire working session for sensitive applications; (5) **Device trust** — verify that devices accessing sensitive applications meet security policy (patching, EDR, encryption) before allowing access. Unmanaged devices should not be permitted to access sensitive AI systems or the training pipelines they serve; (6) **Privileged access workstations (PAW)** — for access to AI training infrastructure, production model serving systems, and sensitive data stores: require dedicated hardened workstations with no general internet access. This limits the attack surface even if a user's general workstation is compromised.
+
+**Jurisdiction notes:** AU — ACSC Essential Eight — MFA is Essential Eight control; zero-trust is the recommended architecture framework. APRA CPS 234 cl. 19 — controls over access to information assets | EU — NIS2 — multi-factor authentication is an explicitly required control for entities in scope | US — CISA Zero Trust Maturity Model — recommended architecture for all federal agencies; OMB M-22-09 — mandates zero trust adoption for federal agencies; financial sector: FFIEC guidance strongly encourages zero-trust principles
+
+---
+
+### C5-004 — AI-powered SIEM
+**Owner:** Security | **Type:** Detective | **Effort:** High | **Go-live required:** No (post-launch)
+
+AI-enhanced attacks operate at machine speed — vulnerability exploitation, lateral movement, and data exfiltration can occur within hours of initial compromise. A SIEM that generates alerts for human review cannot respond at the speed required. AI-powered SIEM uses machine learning to establish normal behaviour baselines and detect deviations in real time.
+
+Implementation requirements: (1) **Behavioural baseline establishment** — the SIEM must learn normal behaviour per user, per role, per system, and per time period. Baselines should cover: authentication patterns, resource access patterns, data transfer volumes, application usage, network traffic. This takes 2–4 weeks of learning before anomaly detection is reliable; (2) **Real-time alerting and automated response** — define automated response playbooks for high-confidence anomalies: automatic session termination, account lockout, network segmentation for suspected compromised hosts. These must be tested and tuned to avoid false positive disruption before enabling automated response; (3) **AI system telemetry integration** — ensure AI model serving infrastructure, training pipelines, and data stores are included in the SIEM telemetry scope. AI infrastructure is a high-value target; anomalous access to model weights, training data, or API credentials should trigger immediate alerts; (4) **Threat intelligence integration** — connect threat intelligence feeds to the SIEM so that known malicious infrastructure (C2 servers, phishing domains) generates alerts when contacted from within the network, even if the traffic volume is low; (5) **Mean time to detect (MTTD) target** — set and track MTTD for significant security events. AI-enhanced SIEM should target MTTD under 1 hour for critical events. Review MTTD quarterly and investigate instances exceeding target.
+
+**Jurisdiction notes:** AU — APRA CPS 234 cl. 21 — detection and response capability required; APRA expects prompt detection of information security incidents | EU — NIS2 Art. 21 — incident detection and response capabilities are mandatory for entities in scope; DORA (Digital Operational Resilience Act) — financial sector requires comprehensive ICT incident detection and response | US — SEC cybersecurity rules (2023) — material cybersecurity incidents must be disclosed within 4 business days; faster detection enables faster disclosure and response. FFIEC — detection and response are required elements of information security programme
+
+---
+
+### KPIs
+
+| Metric | Target | Frequency |
+|--------|--------|-----------| 
+| Email security detection rate for AI-generated phishing simulations | > 85% blocked before reaching inbox | Monthly simulation |
+| Security awareness training completion | > 95% of all staff | Annual (tracked monthly) |
+| MFA enrolment | 100% of users; 100% of privileged accounts | Monthly |
+| Mean time to detect significant security events | < 1 hour for critical | Monthly review |
+| Phishing simulation click rate (updated templates) | < 5% | Quarterly simulation |
+
+---
+
+## Layer 4 — Technical implementation
+
+### AI-enhanced phishing — detection signal taxonomy
+
+```python
+# Email security signal classification post-AI
+# Signals are classified by their reliability for detecting AI-generated phishing
+# Effective: metadata and behavioural signals AI cannot replicate
+# Ineffective: content signals AI eliminates
+
+EMAIL_SECURITY_SIGNALS = {
+    "effective": {
+        "sender_domain_age": {
+            "description": "Domain registered within 30 days — extraction evasion",
+            "reliability": "high",
+            "weight": 0.8,
+        },
+        "spf_dkim_dmarc_alignment": {
+            "description": "Sender authentication alignment failures",
+            "reliability": "high",
+            "weight": 0.9,
+        },
+        "sending_infrastructure_reputation": {
+            "description": "Sending IP/ASN reputation against threat intel feeds",
+            "reliability": "high",
+            "weight": 0.85,
+        },
+        "display_name_mismatch": {
+            "description": "Display name matches known contact but domain differs",
+            "reliability": "high",
+            "weight": 0.9,
+        },
+        "lookalike_domain": {
+            "description": "Domain visually similar to legitimate domain (homoglyph, typo)",
+            "reliability": "high",
+            "weight": 0.85,
+        },
+        "geographic_anomaly": {
+            "description": "Sending server in unexpected geography for claimed sender",
+            "reliability": "medium",
+            "weight": 0.6,
+        },
+        "correspondence_pattern_deviation": {
+            "description": "Sender/recipient pair with no prior correspondence history",
+            "reliability": "medium",
+            "weight": 0.5,
+        },
+        "link_sandbox_verdict": {
+            "description": "URL detonation in sandbox — behaviour-based verdict",
+            "reliability": "high",
+            "weight": 0.95,
+        },
+    },
+    "ineffective_post_ai": {
+        "grammar_spelling": {
+            "description": "Grammar and spelling errors — AI eliminates these",
+            "reliability": "low",
+            "note": "REMOVE from detection rules — generates false confidence",
+        },
+        "generic_greeting": {
+            "description": "Generic salutation — AI generates personalised greetings",
+            "reliability": "low",
+            "note": "REMOVE from detection rules",
+        },
+        "urgency_keywords": {
+            "description": "Urgency language — AI matches register of legitimate communications",
+            "reliability": "low",
+            "note": "Deprioritise — too many false positives and false negatives",
+        },
+        "suspicious_formatting": {
+            "description": "Unusual formatting, fonts, colours",
+            "reliability": "low",
+            "note": "AI-generated phishing uses legitimate email templates",
+        },
+    },
+}
+```
+
+### Zero-trust access verification — policy schema
+
+```python
+from dataclasses import dataclass
+from typing import Literal
+
+MFAStrength = Literal["none", "sms", "totp", "hardware_token", "passkey_fido2"]
+TrustLevel = Literal["deny", "limited", "standard", "elevated"]
+
+@dataclass
+class AccessPolicy:
+    resource: str
+    sensitivity: Literal["low", "medium", "high", "critical"]
+    required_mfa: MFAStrength
+    required_device_posture: list[str]   # e.g. ["managed", "encrypted", "edr_active"]
+    max_session_hours: float
+    jit_required: bool
+    re_verify_on_sensitive_action: bool
+
+# Example policies for AI infrastructure
+AI_ACCESS_POLICIES = [
+    AccessPolicy(
+        resource="ai_training_pipeline",
+        sensitivity="critical",
+        required_mfa="passkey_fido2",
+        required_device_posture=["managed", "encrypted", "edr_active", "paw"],
+        max_session_hours=2.0,
+        jit_required=True,
+        re_verify_on_sensitive_action=True,
+    ),
+    AccessPolicy(
+        resource="model_serving_api_admin",
+        sensitivity="high",
+        required_mfa="hardware_token",
+        required_device_posture=["managed", "encrypted", "edr_active"],
+        max_session_hours=4.0,
+        jit_required=True,
+        re_verify_on_sensitive_action=True,
+    ),
+    AccessPolicy(
+        resource="model_api_consumer",
+        sensitivity="medium",
+        required_mfa="totp",
+        required_device_posture=["managed"],
+        max_session_hours=8.0,
+        jit_required=False,
+        re_verify_on_sensitive_action=False,
+    ),
+]
+
+def evaluate_access_request(
+    user_mfa: MFAStrength,
+    device_posture: list[str],
+    policy: AccessPolicy,
+    session_age_hours: float,
+) -> dict:
+    """Evaluate an access request against zero-trust policy."""
+    MFA_STRENGTH_ORDER = ["none", "sms", "totp", "hardware_token", "passkey_fido2"]
+
+    mfa_sufficient = (
+        MFA_STRENGTH_ORDER.index(user_mfa)
+        >= MFA_STRENGTH_ORDER.index(policy.required_mfa)
+    )
+    posture_met = all(p in device_posture for p in policy.required_device_posture)
+    session_valid = session_age_hours <= policy.max_session_hours
+
+    trust: TrustLevel = (
+        "elevated" if mfa_sufficient and posture_met and session_valid
+        else "limited" if mfa_sufficient and not posture_met
+        else "deny"
+    )
+
+    return {
+        "resource": policy.resource,
+        "trust_level": trust,
+        "access_granted": trust in ("elevated", "standard", "limited"),
+        "mfa_sufficient": mfa_sufficient,
+        "posture_met": posture_met,
+        "session_valid": session_valid,
+        "remediation": [] if trust == "elevated" else [
+            f"Upgrade MFA to {policy.required_mfa}" if not mfa_sufficient else None,
+            f"Device posture missing: {set(policy.required_device_posture) - set(device_posture)}" if not posture_met else None,
+            f"Session expired after {policy.max_session_hours}h — re-authenticate" if not session_valid else None,
+        ],
+    }
+```
+
+### Compliance implementation
+
+**Australia:** APRA CPS 234 is the primary framework for regulated entities — it requires information security capability commensurate with the size and nature of threats. ACSC Essential Eight controls (patch OS, patch applications, MFA, restrict admin privileges, application control, disable macros, user application hardening, daily backups) are the Australian government baseline; for APRA-regulated entities, these are effectively mandatory. The ACSC's updated guidance on AI-enhanced phishing (2024–2025) specifically recommends the shift from content-based to metadata-based email security signals described in C5-001.
+
+**EU:** NIS2 Directive (effective October 2024) applies to essential and important entities across a broad range of sectors — financial services, healthcare, digital infrastructure, and others. NIS2 Art. 21 requires: multi-factor authentication, encryption, supply chain security, incident response, and security awareness training. Entities in scope should treat C5-001 through C5-004 as NIS2 Art. 21 implementation measures. DORA (Digital Operational Resilience Act, effective January 2025) imposes specific requirements on financial sector entities including ICT risk management, incident reporting, and resilience testing.
+
+**US:** NIST CSF 2.0 (2024) — the updated framework introduces a Govern function alongside the existing Identify, Protect, Detect, Respond, Recover functions. AI-enhanced attack defences map directly to the Protect and Detect functions. SEC cybersecurity disclosure rules (effective December 2023) require public companies to disclose material cybersecurity incidents within four business days and annual disclosure of cybersecurity risk management programmes. CISA Zero Trust Maturity Model — the definitive US guidance on zero-trust implementation; financial sector and critical infrastructure entities should reference this alongside NIST CSF 2.0.
 
 ---
 

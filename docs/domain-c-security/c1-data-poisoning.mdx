@@ -78,9 +78,240 @@ Technology · Security · Risk · Data Science · Operations
 
 ## Layer 3 — Controls detail
 
-*See Layer 2 controls summary for ownership, effort, and go-live requirements. Full implementation guidance follows.*
+### C1-001 — Training data integrity verification
+**Owner:** Technology | **Type:** Preventive | **Effort:** Medium | **Go-live required:** Yes
 
-Refer to the controls summary table above for the definitive list of controls for this risk. Detailed control descriptions, jurisdiction notes, and KPIs are maintained in the source schema files and will be published in a forthcoming update.
+Training data must be verified as unmodified before each training run. Without cryptographic integrity verification, a poisoned dataset is indistinguishable from a clean one — the model trains normally, passes all functional tests, and enters production carrying embedded malicious behaviour. By the time the backdoor is triggered, the attack has already succeeded.
+
+Implementation requirements: (1) **Hash generation at ingestion** — generate a cryptographic hash (SHA-256 minimum) of each training dataset at the point of ingestion into the pipeline. Store the hash in a tamper-evident record outside the training pipeline (separate system, write-protected storage, or immutable log); (2) **Pre-training verification** — before each training run, recompute hashes of all datasets to be used and compare against stored reference hashes. Any mismatch halts training automatically and triggers an alert to the model owner and security team; (3) **Dataset versioning** — maintain version control on all training datasets. Each version must have an associated hash. Training runs must be logged with the specific dataset version and hash used — this enables reconstruction of exactly what was trained on; (4) **Scope** — apply to all datasets: primary training data, fine-tuning datasets, evaluation datasets (poisoned evaluation data can mask poisoned training data), and any augmentation datasets; (5) **Automated enforcement** — the hash verification must be technically enforced in the training pipeline, not reliant on manual checks. A failed verification must block training execution, not merely log a warning.
+
+**Jurisdiction notes:** AU — APRA CPS 234 cl. 15 — information assets must be protected commensurate with criticality; training data for material AI systems is a critical information asset | EU — EU AI Act Art. 10 — data governance requirements for high-risk AI include data integrity; Art. 9 — risk management must address adversarial attacks | US — NIST AI RMF MANAGE 2.4 — AI risks from training data integrity must be addressed; NIST Cyber AI Profile IR 8596 — data pipeline integrity is an explicit control requirement
+
+---
+
+### C1-002 — Restricted write access to training pipelines
+**Owner:** Security | **Type:** Preventive | **Effort:** Low | **Go-live required:** Yes
+
+Training pipelines must be treated as critical infrastructure with the same access controls applied to production systems. Unrestricted write access to training data storage or labelling systems is the primary attack vector for data poisoning — an insider threat, a compromised credential, or an insecure third-party integration can inject malicious samples without any other system compromise.
+
+Implementation requirements: (1) **Least-privilege access** — enumerate every human and system account with write access to training data storage, data labelling systems, and pipeline configurations. Reduce to the minimum set required. Each account must have a documented owner and a legitimate need; (2) **Separation of duties** — no single account or individual should have both the ability to inject training data and the ability to approve training runs. This prevents a single compromised account from completing a poisoning attack without detection; (3) **Privileged access controls** — for particularly sensitive training pipelines (fraud detection, safety-critical systems), implement privileged access workstation (PAW) requirements and just-in-time (JIT) access for any modifications; (4) **Quarterly access review** — schedule quarterly review of all accounts with write access. Remove stale accounts, contractor access post-engagement, and any accounts whose business justification can no longer be confirmed; (5) **Third-party data controls** — for training data sourced from third parties, implement a receiving buffer with restricted access. Third-party data is never written directly to the training store — it passes through validation before promotion; (6) **Immutable audit log** — all write operations to training data must be logged to an immutable audit trail. Logs must capture: who, what, when, and the hash of the data written.
+
+**Jurisdiction notes:** AU — APRA CPS 234 cl. 16 — information security capability must include access controls; APRA expects access reviews as part of operational risk management | EU — EU AI Act Art. 10(3) — technical measures for data governance; GDPR Art. 32 — appropriate technical measures for data security | US — NIST Cyber AI Profile IR 8596 — access control for ML pipelines is an explicit requirement; SOC 2 Type II controls are applicable for systems processing customer data
+
+---
+
+### C1-003 — Statistical anomaly detection on training data
+**Owner:** Technology | **Type:** Detective | **Effort:** Medium | **Go-live required:** Yes
+
+Systems that retrain on live data — fraud detection, recommendation systems, content moderation, continuous learning pipelines — are structurally exposed to data poisoning through normal operation. An adversary who can influence what data is generated (by performing transactions, generating content, or submitting feedback) can gradually shift the training distribution. Statistical anomaly detection catches this before it is trained into the model.
+
+Implementation requirements: (1) **Baseline profiling** — for each training feature and label, establish statistical baselines: expected value distributions, label class proportions, inter-feature correlations, and temporal patterns. Document the baseline at model deployment and update it on each verified-clean training run; (2) **Incoming data monitoring** — before data is admitted to the training store, run automated statistical comparison against the baseline. Key checks: (a) label distribution — unexpected shift in class proportions (e.g. sudden decrease in fraud labels in a fraud detection system); (b) feature distribution drift — features shifting outside established bounds; (c) correlation changes — unexpected new correlations between features and labels; (d) cluster analysis — new dense clusters of highly similar samples (indicative of synthetic injection); (3) **Alert thresholds** — define alert thresholds at two levels: warning (human review triggered) and critical (training halted, security alerted). Thresholds must be tuned to the specific dataset to avoid alert fatigue; (4) **Triggered manual review** — flagged samples should be held in a quarantine buffer, not admitted to training data. A human reviewer with domain expertise reviews flagged samples before they are approved or rejected; (5) **Retrospective analysis** — periodically rescan historical training data against current statistical models. Poisoning attacks may be designed to evade real-time detection but become visible with retrospective analysis.
+
+**Jurisdiction notes:** AU — APRA CPG 229 — model monitoring expectations include data quality monitoring for continuously learning models | EU — EU AI Act Art. 72 — post-market monitoring requirements for high-risk AI include data monitoring | US — NIST AI 600-1 — adversarial ML attack mitigation for generative AI; SR 11-7 — ongoing model monitoring includes data monitoring
+
+---
+
+### C1-004 — Federated learning safeguards
+**Owner:** Technology | **Type:** Preventive | **Effort:** High | **Go-live required:** Yes
+
+Federated learning — where model updates are contributed by distributed participants — is structurally vulnerable to poisoning by malicious participants. A Byzantine participant (one that submits malicious updates) can corrupt the global model in proportion to their contribution. Standard federated averaging gives every participant equal weight, which is a deliberate poisoning opportunity.
+
+Implementation requirements: (1) **Byzantine-tolerant aggregation** — replace standard federated averaging with a robust aggregation algorithm. Options include: Krum (selects update closest to the majority), FedAvgM (with momentum clipping), Coordinate-wise median, or Bulyan. The choice depends on the expected proportion of malicious participants — document the assumption and validate it; (2) **Participant validation** — before a participant is permitted to contribute updates, validate their update against statistical bounds. Updates that deviate significantly from the expected distribution are rejected. Implement gradient norm clipping to limit the maximum influence any single participant can have; (3) **Contribution auditing** — log all participant contributions and the aggregated outcome. Maintain the ability to identify which participant contributed which update for post-incident attribution; (4) **Participant reputation system** — for long-running federated learning deployments, implement a reputation system that weights participant contributions based on historical reliability and consistency with the majority. New participants receive lower initial trust weight; (5) **Differential privacy** — consider adding calibrated noise to participant updates before aggregation (differential privacy). This provides a mathematically proven bound on the information any single participant's update can contribute to the model, limiting poisoning effectiveness. Note the accuracy/privacy tradeoff and document it; (6) **Applicability** — this control applies specifically to federated learning architectures. For centralised training, C1-001 through C1-003 are the primary controls.
+
+**Jurisdiction notes:** EU — EU AI Act Art. 10 — data governance applies to federated learning; the organisation deploying the federated model is responsible for the integrity of the aggregated result, regardless of participant behaviour | US — NIST AI 600-1 — federated learning poisoning is an explicit adversarial ML risk category; NIST Cyber AI Profile IR 8596 — distributed learning security controls
+
+---
+
+### KPIs
+
+| Metric | Target | Frequency |
+|--------|--------|-----------| 
+| Training runs with hash verification completed | 100% of training runs | Per training run |
+| Accounts with write access to training pipelines | ≤ documented minimum; zero stale accounts | Quarterly access review |
+| Statistical anomaly alerts reviewed within SLA | 100% within 24 hours (warning), 4 hours (critical) | Continuous |
+| Federated learning updates rejected as anomalous | Tracked and trended; spike triggers investigation | Per training round |
+| Mean time to detect training data anomaly | < 1 training cycle | Quarterly drill |
+
+---
+
+## Layer 4 — Technical implementation
+
+### Training data integrity — cryptographic pipeline
+
+```python
+import hashlib
+import json
+import os
+from dataclasses import dataclass, asdict
+from datetime import datetime, UTC
+from pathlib import Path
+
+@dataclass
+class DatasetRecord:
+    dataset_id: str
+    version: str
+    path: str
+    sha256: str
+    record_count: int
+    feature_count: int
+    created_at: str
+    created_by: str
+    approved_by: str | None = None
+    notes: str = ""
+
+def compute_dataset_hash(path: str | Path) -> str:
+    """Compute SHA-256 of a dataset file or directory."""
+    h = hashlib.sha256()
+    p = Path(path)
+    if p.is_file():
+        with open(p, "rb") as f:
+            for chunk in iter(lambda: f.read(65536), b""):
+                h.update(chunk)
+    elif p.is_dir():
+        # Hash all files in deterministic order
+        for file in sorted(p.rglob("*")):
+            if file.is_file():
+                h.update(str(file.relative_to(p)).encode())
+                with open(file, "rb") as f:
+                    for chunk in iter(lambda: f.read(65536), b""):
+                        h.update(chunk)
+    return h.hexdigest()
+
+def verify_dataset(record: DatasetRecord) -> dict:
+    """
+    Verify a dataset's integrity before a training run.
+    Returns verification result — HALT training if not passed.
+    """
+    computed = compute_dataset_hash(record.path)
+    passed = computed == record.sha256
+
+    return {
+        "dataset_id": record.dataset_id,
+        "version": record.version,
+        "expected_hash": record.sha256,
+        "computed_hash": computed,
+        "passed": passed,
+        "verified_at": datetime.now(UTC).isoformat(),
+        "action": "proceed" if passed else "HALT — notify security immediately",
+    }
+
+def pre_training_gate(dataset_records: list[DatasetRecord]) -> bool:
+    """
+    Gate function — call before every training run.
+    Returns True only if ALL datasets pass integrity verification.
+    Raises RuntimeError on any failure — do not suppress.
+    """
+    results = [verify_dataset(r) for r in dataset_records]
+    failures = [r for r in results if not r["passed"]]
+
+    if failures:
+        failure_ids = [r["dataset_id"] for r in failures]
+        # In production: page on-call security, write to immutable audit log
+        raise RuntimeError(
+            f"TRAINING HALTED — integrity verification failed for: {failure_ids}. "
+            "Do not proceed. Notify security team immediately."
+        )
+    return True
+```
+
+### Statistical anomaly detection on incoming data
+
+```python
+import numpy as np
+from dataclasses import dataclass
+
+@dataclass
+class DataBaseline:
+    feature_means: dict[str, float]
+    feature_stds: dict[str, float]
+    label_proportions: dict[str, float]   # class -> proportion
+    n_samples_baseline: int
+
+def detect_label_distribution_shift(
+    incoming_labels: list,
+    baseline: DataBaseline,
+    threshold_z: float = 3.0,
+) -> dict:
+    """
+    Detect unexpected shifts in label class proportions.
+    A sudden drop in fraud labels in a fraud detection dataset
+    is the canonical poisoning signal.
+    """
+    from collections import Counter
+    counts = Counter(incoming_labels)
+    total = len(incoming_labels)
+    alerts = []
+
+    for label, baseline_prop in baseline.label_proportions.items():
+        observed_prop = counts.get(label, 0) / total
+        # Z-score against binomial variance
+        variance = baseline_prop * (1 - baseline_prop) / total
+        z_score = abs(observed_prop - baseline_prop) / (variance ** 0.5 + 1e-9)
+
+        if z_score > threshold_z:
+            alerts.append({
+                "label": label,
+                "baseline_proportion": round(baseline_prop, 4),
+                "observed_proportion": round(observed_prop, 4),
+                "z_score": round(z_score, 2),
+                "severity": "critical" if z_score > threshold_z * 2 else "warning",
+            })
+
+    return {
+        "check": "label_distribution",
+        "n_samples": total,
+        "alerts": alerts,
+        "passed": len(alerts) == 0,
+        "action": "quarantine_and_review" if alerts else "admit",
+    }
+
+def detect_synthetic_injection(
+    incoming_features: np.ndarray,
+    baseline: DataBaseline,
+    similarity_threshold: float = 0.98,
+    cluster_size_threshold: int = 50,
+) -> dict:
+    """
+    Detect dense clusters of highly similar samples — signature of
+    bulk synthetic injection.
+    """
+    from sklearn.metrics.pairwise import cosine_similarity
+
+    if len(incoming_features) < cluster_size_threshold:
+        return {"check": "synthetic_injection", "passed": True, "alerts": []}
+
+    # Sample for efficiency on large batches
+    sample_idx = np.random.choice(
+        len(incoming_features),
+        min(500, len(incoming_features)),
+        replace=False,
+    )
+    sample = incoming_features[sample_idx]
+    sim_matrix = cosine_similarity(sample)
+
+    # Count pairs above similarity threshold
+    high_sim_pairs = int(
+        np.sum(sim_matrix > similarity_threshold) - len(sample)
+    ) // 2
+
+    alert = high_sim_pairs > cluster_size_threshold
+    return {
+        "check": "synthetic_injection",
+        "high_similarity_pairs": high_sim_pairs,
+        "threshold": cluster_size_threshold,
+        "passed": not alert,
+        "alerts": [{"severity": "critical", "detail": f"{high_sim_pairs} near-identical sample pairs detected"}] if alert else [],
+        "action": "quarantine_and_review" if alert else "admit",
+    }
+```
+
+### Compliance implementation
+
+**Australia:** APRA CPS 234 requires that information assets — including AI training data — are protected with controls commensurate with their criticality. For AI systems making material decisions (credit, fraud, claims), training data integrity controls should be treated as critical infrastructure security. APRA CPG 229 model risk management guidance expects documentation of data inputs and controls over data quality and integrity. ACSC Essential Eight — application control and privileged access management controls directly apply to training pipeline access.
+
+**EU:** EU AI Act Art. 10 requires that training, validation, and testing data for high-risk AI systems be subject to appropriate data governance practices including measures to examine possible biases and ensure data integrity. For high-risk systems (effective August 2, 2026), data poisoning controls are not optional — Art. 9 risk management must address adversarial attacks as a known risk to system integrity. ENISA's AI Threat Landscape report identifies data poisoning as a primary AI security threat.
+
+**US:** NIST AI 600-1 (Generative AI Risk Management) explicitly addresses data poisoning as a risk requiring mitigation. NIST Cyber AI Profile IR 8596 provides technical controls including data pipeline integrity verification. For financial services: SR 11-7 model risk management guidance requires documentation of training data sources and controls; OCC guidance on model risk management in banks extends to AI models used in credit and fraud decisions.
 
 ---
 
