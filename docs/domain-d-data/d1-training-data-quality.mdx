@@ -79,9 +79,265 @@ Data Science · Risk · Legal · Compliance · Technology
 
 ## Layer 3 — Controls detail
 
-*See Layer 2 controls summary for ownership, effort, and go-live requirements. Full implementation guidance follows.*
+### D1-001 — Data profiling and quality assessment
+**Owner:** Technology | **Type:** Preventive | **Effort:** Medium | **Go-live required:** Yes
 
-Refer to the controls summary table above for the definitive list of controls for this risk. Detailed control descriptions, jurisdiction notes, and KPIs are maintained in the source schema files and will be published in a forthcoming update.
+Before training any model, conduct a systematic assessment of the training dataset. Quality assessment is not a once-off activity — it must be repeated whenever the training data is refreshed or the model is retrained on new data. The assessment must go beyond aggregate statistics to examine subgroup-level representation.
+
+Implementation requirements: (1) **Coverage audit** — confirm the training dataset covers the full deployment population. Map the intended deployment population (all users the model will make decisions about) against the represented population in the data. Where gaps exist, document them explicitly; (2) **Subgroup analysis** — disaggregate by protected characteristics relevant to the deployment context (age, gender, geography, income band, ethnicity where legally permissible to collect) and assess representation relative to the deployment population; (3) **Class balance check** — assess whether outcome classes (approve/decline, high/low risk, hire/reject) are balanced and whether imbalance reflects genuine base rates or data collection artefacts; (4) **Historical bias assessment** — assess whether historical outcomes reflected in the data were themselves the product of discriminatory or inequitable processes. Historical data is not neutral — it embeds historical decisions; (5) **Data quality metrics** — assess completeness, consistency, and accuracy across all features used in training. Document missing value rates, outlier rates, and known data quality issues by feature; (6) retain the assessment as a formal document in the model risk record. It must be retrievable for audit.
+
+**Jurisdiction notes:** AU — APRA CPG 229 — data quality is a key governance expectation for models used in material risk decisions | EU — EU AI Act Art. 10 — mandatory data governance requirements for high-risk AI including training data quality, relevance, representativeness, and freedom from errors; non-compliance from August 2, 2026 | US — ECOA and Regulation B — lenders must ensure credit models do not produce discriminatory outcomes; data quality assessment is the mechanism for detecting this before deployment; SR 11-7 model risk management guidance — model documentation must cover data quality
+
+---
+
+### D1-002 — Data lineage documentation
+**Owner:** Technology | **Type:** Preventive | **Effort:** Low | **Go-live required:** Yes
+
+Maintain a complete, auditable record of where training data came from, how it was transformed, and what known quality issues exist. Without lineage documentation, the organisation cannot demonstrate to regulators how the model was built, cannot diagnose the source of observed failures, and cannot conduct targeted remediation when bias is detected.
+
+Implementation requirements: (1) **Source documentation** — for every dataset used in training, record: source system or vendor, date range of data extracted, version or snapshot identifier, known limitations, and data owner; (2) **Transformation log** — document all preprocessing transformations applied: feature engineering, normalisation, handling of missing values, exclusion criteria. Record the rationale for each decision; (3) **Known issues register** — document known data quality issues, gaps, and limitations explicitly. Include: what is known to be missing, which subgroups are underrepresented, and any historical period excluded and why; (4) **Version control** — maintain version control on datasets used for each training run, enabling reproducibility; (5) store the lineage documentation with the model risk record. It must be accessible to Risk, Compliance, and Audit without requiring access to the underlying data systems.
+
+**Jurisdiction notes:** AU — APRA CPS 220 and CPG 229 — model governance requires documentation of model inputs and limitations | EU — EU AI Act Art. 10(3) — training data must be subject to appropriate data governance practices including examination of possible biases; Art. 11 and Annex IV — technical documentation for high-risk AI must describe training data and methodologies | US — SR 11-7 — model development documentation must include data sources, preprocessing, and known limitations
+
+---
+
+### D1-003 — Diverse and representative data sourcing
+**Owner:** Technology | **Type:** Preventive | **Effort:** Medium | **Go-live required:** Yes
+
+Where the initial training dataset is found to be unrepresentative, take active steps to address the gap before training the model. Sourcing more representative data is preferable to statistical correction techniques, which introduce their own assumptions and may not address the underlying coverage problem.
+
+Implementation requirements: (1) **Gap-driven sourcing** — use the coverage gaps identified in D1-001 to define a data acquisition plan. The plan should specify: which subgroups or populations are underrepresented, what additional data sources would address the gap, and what minimum representation level is targeted; (2) **Synthetic data policy** — if synthetic data augmentation is used to address representation gaps, it must be validated before use. Validation must confirm the synthetic data does not introduce its own biases or distributions that differ materially from the real population; (3) **Partnerships and external datasets** — where internal data is structurally limited (e.g. an insurer with few regional claims because they historically had low regional market share), consider licensed external datasets; document the provenance and any known limitations of external data; (4) **Acceptance criteria** — define quantitative acceptance criteria for representation before training commences. Document the criteria and the assessment outcome. Where gaps remain and cannot be closed, record the residual risk and the mitigating controls; (5) the sourcing plan and acceptance assessment must be retained in the model risk record.
+
+**Jurisdiction notes:** AU — RBA and APRA expect credit models and insurance underwriting models to demonstrate fair treatment across geographic regions and protected characteristics | EU — EU AI Act Art. 10(2) — training data shall be relevant, representative, free of errors, and complete; Art. 10(4) — special category data may be processed for the purpose of ensuring bias monitoring where strictly necessary | US — ECOA Regulation B — adverse action requirements apply where models produce discriminatory outcomes; representative training data is the first line of defence; Fair Housing Act — similar obligations for property-related AI decisions
+
+---
+
+### D1-004 — Regular data refresh schedule
+**Owner:** Technology | **Type:** Preventive | **Effort:** Medium | **Go-live required:** No (post-launch)
+
+Training data becomes stale as the population it represents evolves. A model trained on pre-pandemic financial behaviour, pre-regulatory-change lending practices, or pre-climate-shift agricultural risk patterns will degrade in accuracy and potentially increase bias over time as the world diverges from the training distribution. Data refresh is not optional for long-lived models.
+
+Implementation requirements: (1) **Refresh schedule** — define and document a data refresh schedule appropriate to the rate of change in the deployment domain. High-change environments (credit risk, fraud detection, hiring) typically require annual or more frequent refresh; lower-change environments may support biennial refresh; (2) **Trigger-based refresh** — define triggers that mandate an unscheduled refresh review: significant regulatory change, identified model drift, significant shift in the deployment population, material change in the product or service; (3) **Refresh quality gate** — each data refresh must undergo the same quality assessment as the original training data (D1-001). Refresh does not automatically improve quality — it must be assessed; (4) **Deprecation policy** — establish a policy for deprecating and archiving historical training datasets. Archived datasets must remain accessible for the model's operational life to support retrospective audit; (5) document the refresh schedule and track completion in the AI Register entry for the system.
+
+**Jurisdiction notes:** AU — APRA CPG 229 — models used in material risk decisions must be reviewed and updated to remain fit for purpose | EU — EU AI Act Art. 9(6) — risk management system must be updated continuously; Art. 72 — post-market monitoring plans required for high-risk AI systems | US — SR 11-7 — ongoing model monitoring includes data monitoring; models must be recalibrated or redeveloped when performance deteriorates
+
+---
+
+### KPIs
+
+| Metric | Target | Frequency |
+|--------|--------|-----------| 
+| AI systems with documented data quality assessment | 100% of production AI systems | Reviewed quarterly |
+| Subgroup representation gap (largest gap vs deployment population) | < 10% for high-risk systems | Assessed at each training run |
+| Training data lineage documentation on file | 100% of production AI systems | Audited annually |
+| Data refresh completed within scheduled period | 100% of AI systems with due refresh | Tracked continuously |
+| Open data quality findings | Zero critical at go-live | Tracked continuously |
+
+---
+
+## Layer 4 — Technical implementation
+
+### Data quality assessment — implementation
+
+```python
+from dataclasses import dataclass, field
+from typing import Literal
+
+QualitySeverity = Literal["critical", "major", "minor", "acceptable"]
+
+@dataclass
+class SubgroupRepresentationCheck:
+    attribute: str                    # e.g. "geographic_region", "age_band"
+    deployment_population_pct: float  # % in intended deployment population
+    training_data_pct: float          # % in training dataset
+    gap: float                        # abs(deployment - training)
+    severity: QualitySeverity
+    notes: str = ""
+
+@dataclass
+class DataQualityReport:
+    model_id: str
+    training_dataset_id: str
+    assessment_date: str
+    assessor: str
+
+    # Coverage
+    total_records: int
+    date_range_start: str
+    date_range_end: str
+    known_exclusions: list[str] = field(default_factory=list)
+
+    # Subgroup representation
+    representation_checks: list[SubgroupRepresentationCheck] = field(default_factory=list)
+
+    # Feature quality
+    missing_value_rates: dict[str, float] = field(default_factory=dict)  # feature -> % missing
+    known_quality_issues: list[str] = field(default_factory=list)
+
+    # Historical bias
+    historical_bias_assessment: str = ""   # narrative assessment
+    historical_bias_mitigations: list[str] = field(default_factory=list)
+
+    # Outcome
+    overall_severity: QualitySeverity = "acceptable"
+    go_live_approved: bool = False
+    conditions: list[str] = field(default_factory=list)
+    approver: str = ""
+    approval_date: str = ""
+
+
+def assess_representation(
+    training_df,
+    deployment_population: dict[str, float],
+    attribute: str,
+    threshold_pct: float = 10.0,
+) -> SubgroupRepresentationCheck:
+    """
+    Compare subgroup distribution in training data vs deployment population.
+
+    Args:
+        training_df: pandas DataFrame of training data
+        deployment_population: dict of {subgroup_label: pct_of_population}
+        attribute: column name in training_df to assess
+        threshold_pct: gap threshold above which severity is raised
+    """
+    training_dist = training_df[attribute].value_counts(normalize=True) * 100
+
+    max_gap = 0.0
+    worst_group = ""
+    for group, deploy_pct in deployment_population.items():
+        train_pct = training_dist.get(group, 0.0)
+        gap = abs(deploy_pct - train_pct)
+        if gap > max_gap:
+            max_gap = gap
+            worst_group = group
+
+    severity: QualitySeverity = (
+        "critical" if max_gap > 20
+        else "major" if max_gap > threshold_pct
+        else "minor" if max_gap > 5
+        else "acceptable"
+    )
+
+    return SubgroupRepresentationCheck(
+        attribute=attribute,
+        deployment_population_pct=deployment_population.get(worst_group, 0.0),
+        training_data_pct=training_dist.get(worst_group, 0.0),
+        gap=max_gap,
+        severity=severity,
+        notes=f"Largest gap on group: {worst_group}",
+    )
+```
+
+### Data lineage schema
+
+```python
+@dataclass
+class DataSource:
+    source_id: str
+    source_name: str                  # e.g. "Core Banking System — Loans Module"
+    source_type: str                  # e.g. "internal", "licensed", "synthetic"
+    owner: str                        # data owner name and team
+    date_range_start: str
+    date_range_end: str
+    record_count: int
+    known_limitations: list[str]
+    extraction_date: str
+    extraction_query_ref: str         # link to version-controlled query
+
+@dataclass
+class TransformationStep:
+    step_id: str
+    description: str
+    rationale: str
+    applied_by: str
+    applied_date: str
+    output_record_count: int
+    records_excluded: int
+    exclusion_reason: str = ""
+
+@dataclass
+class DataLineageRecord:
+    model_id: str
+    training_run_id: str
+    sources: list[DataSource]
+    transformations: list[TransformationStep]
+    final_record_count: int
+    known_issues: list[str]
+    lineage_author: str
+    created_date: str
+    version: str                       # increment on each training run
+```
+
+### Synthetic data validation
+
+```python
+from scipy import stats
+
+def validate_synthetic_data(
+    real_df,
+    synthetic_df,
+    key_features: list[str],
+    categorical_features: list[str],
+    significance_level: float = 0.05,
+) -> dict:
+    """
+    Validate that synthetic data does not introduce distributional bias
+    not present in the real data.
+
+    Uses KS test for continuous features, chi-squared for categorical.
+    A significant result (p < significance_level) means the synthetic
+    data has a materially different distribution — investigate before use.
+    """
+    results = {}
+
+    for feature in key_features:
+        if feature in categorical_features:
+            real_counts = real_df[feature].value_counts()
+            synth_counts = synthetic_df[feature].value_counts()
+            # Align categories
+            all_cats = set(real_counts.index) | set(synth_counts.index)
+            real_vals = [real_counts.get(c, 0) for c in all_cats]
+            synth_vals = [synth_counts.get(c, 0) for c in all_cats]
+            chi2, p_value = stats.chisquare(synth_vals, f_exp=real_vals)
+            results[feature] = {
+                "test": "chi-squared",
+                "statistic": chi2,
+                "p_value": p_value,
+                "passed": p_value > significance_level,
+            }
+        else:
+            ks_stat, p_value = stats.ks_2samp(
+                real_df[feature].dropna(), synthetic_df[feature].dropna()
+            )
+            results[feature] = {
+                "test": "kolmogorov-smirnov",
+                "statistic": ks_stat,
+                "p_value": p_value,
+                "passed": p_value > significance_level,
+            }
+
+    failed = [f for f, r in results.items() if not r["passed"]]
+    return {
+        "results": results,
+        "failed_features": failed,
+        "overall_pass": len(failed) == 0,
+        "recommendation": (
+            "Synthetic data validated — safe to use for augmentation."
+            if len(failed) == 0
+            else f"Synthetic data FAILED validation on: {failed}. "
+                 "Investigate distributional differences before use."
+        ),
+    }
+```
+
+### Compliance implementation
+
+**Australia:** APRA CPG 229 (Model Risk) — models used in material risk decisions (credit, insurance underwriting, fraud detection) must have documented data quality assessments. The CPG does not prescribe methodology but expects evidence of systematic assessment, governance sign-off, and ongoing monitoring. OAIC — where training data includes personal information, Privacy Act APP 6 requirements apply to the use of that data for model development. Data minimisation principles apply — use only the personal data attributes necessary for the model's purpose.
+
+**EU:** EU AI Act Art. 10 is the most prescriptive data governance standard currently in force globally for AI. For high-risk AI systems (effective August 2, 2026): training data must be relevant, representative, free of errors, and complete to the best extent possible; data governance practices must cover the intended purpose, data collection process, data provenance, annotation procedures, and measures to detect and correct biases. Art. 10(4) permits processing of special category data (including race, ethnicity) strictly for the purpose of bias detection and correction. GDPR Art. 22 — automated decision-making using personal data requires a lawful basis; data minimisation applies to training data.
+
+**US:** ECOA and Regulation B (Reg B) — creditors using AI in credit decisions must be able to provide specific reasons for adverse actions; this requires understanding what the training data caused the model to learn. CFPB guidance (2023) — AI models in consumer finance must be explainable and auditable; training data documentation is a prerequisite. Fair Housing Act and EEOC guidance — AI systems in housing and employment must demonstrate non-discrimination; data quality assessment is the primary mechanism for pre-deployment validation. SR 11-7 — applies to all models used by bank holding companies; data quality assessment and lineage documentation are explicit expectations.
 
 ---
 
