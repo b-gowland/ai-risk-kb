@@ -80,9 +80,180 @@ Technology · Risk · Operations · Executive · Legal · All functions deployin
 
 ## Layer 3 — Controls detail
 
-*See Layer 2 controls summary for ownership, effort, and go-live requirements. Full implementation guidance follows.*
+### G4-001 — Minimal footprint design
+**Owner:** Technology | **Type:** Preventive | **Effort:** Medium | **Go-live required:** Yes
 
-Refer to the controls summary table above for the definitive list of controls for this risk. Detailed control descriptions, jurisdiction notes, and KPIs are maintained in the source schema files and will be published in a forthcoming update.
+Agentic AI systems — those that take actions in the world rather than merely producing text — should be designed with the minimum capability necessary to perform their task. An agent with broad tool access, broad data access, and broad action permissions is harder to monitor, harder to contain when something goes wrong, and more dangerous when compromised or misaligned. Minimal footprint is not a performance constraint — it is a risk management principle.
+
+Implementation requirements: (1) **Tool access enumeration** — before deployment, enumerate precisely which tools and capabilities the agent requires. Document each tool, the specific action it enables, and the business justification for including it. Any tool not on the enumerated list must not be available to the agent; (2) **Least-privilege principle** — apply least-privilege to every dimension of agent access: data (read only where write is not needed), scope (access only to records relevant to the current task, not the entire dataset), actions (specific operations only, not broad CRUD access), external integrations (only the specific APIs and endpoints needed); (3) **Just-in-time tool access** — where feasible, implement just-in-time tool provisioning: tools are made available to the agent only when the specific task requiring them is active, then withdrawn. This limits the window during which a compromised or misaligned agent can cause harm; (4) **AI Register documentation** — document the agent's approved tool set in the AI Register. Any change to the tool set — addition of new tools or expansion of permissions on existing tools — requires a change assessment. This creates a governance gate for capability expansion; (5) **Scope creep prevention** — agent capability expansion is subject to the same change governance as use case scope creep (F3-002). Requests to give an agent new tools or expanded permissions must go through the same risk assessment as any other AI scope change.
+
+**Jurisdiction notes:** AU — APRA CPS 234 — principle of least privilege applies to agentic AI as to any information system | EU — EU AI Act Art. 14(4) — human oversight for high-risk AI must include ability to halt; minimal footprint design reduces the urgency and complexity of halting when needed | US — NIST AI 600-1 — agentic AI risk mitigation explicitly includes minimal footprint as a primary control
+
+---
+
+### G4-002 — Human approval gates for irreversible actions
+**Owner:** Technology | **Type:** Preventive | **Effort:** Medium | **Go-live required:** Yes
+
+An AI agent that can take irreversible actions autonomously — send emails, initiate payments, delete records, deploy code, modify access controls — represents a qualitatively different risk from one that only produces text for human review. A single misaligned or manipulated action can cause harm that cannot be undone. Human approval gates at irreversible action points are the architectural control that prevents autonomous harm.
+
+Implementation requirements: (1) **Irreversible action taxonomy** — before deployment, enumerate every irreversible or high-consequence action the agent could take. Irreversible actions typically include: send external communications, initiate financial transactions, delete or archive records, deploy to production, modify access controls, provision external resources. Document the taxonomy and review it with Risk and Legal; (2) **Gate architecture** — implement approval gates as technical enforcements, not as model-level instructions. The gate must operate at the action execution layer — it must be architecturally impossible for the agent to execute an irreversible action without passing the gate, regardless of what the model outputs or what prompt it received. A model instruction to "always ask before sending emails" is not a gate — it is a suggestion the model can ignore; (3) **Gate design** — the gate presents a human approver with: the proposed action in clear language, the context that led to the action proposal, the specific parameters (who, what, amount, timing), and an explicit approve/reject decision. The gate must not be bypassable by the agent and must not be framed in a way that creates approval fatigue (ambiguous or high-volume approval requests lead to rubber-stamping); (4) **Emergency override** — the gate must include a path for emergency halt: if the agent proposes an action that the approver recognises as wrong or potentially harmful, there must be a clear mechanism to halt not just the current action but the current agent session; (5) **Audit trail** — every gate event — proposal presented, approver identity, decision, timestamp — must be logged. This creates accountability and enables post-incident analysis.
+
+**Jurisdiction notes:** EU — EU AI Act Art. 14 — human oversight is a legal obligation for high-risk AI; the irreversible action gate is a primary implementation mechanism. Art. 14(4) — humans must be able to intervene in or interrupt the AI system | AU — APRA CPS 230 — operational risk management must address AI agents taking consequential actions; human approval for material actions is an expected control | US — NIST AI 600-1 — human oversight for agentic AI is explicitly recommended; irreversible action gates are the architectural implementation
+
+---
+
+### G4-003 — Kill switch and override mechanism
+**Owner:** Technology | **Type:** Responsive | **Effort:** Low | **Go-live required:** Yes
+
+Every deployed AI agent must have a tested, documented, and accessible mechanism by which a human can immediately halt its operation. This is not a theoretical control — it must be exercisable by an authorised person, under stress, potentially without the agent's cooperation. The kill switch is the control of last resort when other safety controls have failed.
+
+Implementation requirements: (1) **Mechanism design** — the kill switch must: (a) halt the agent's current actions immediately; (b) prevent the agent from initiating new actions; (c) preserve the agent's current state for post-incident review; (d) be executable without requiring access to the agent's underlying infrastructure (i.e. not require SSH access to the production server — it should be accessible through an operations dashboard); (2) **Authorised operators** — document who is authorised to use the kill switch: which roles, under what circumstances, and what the approval chain is for use outside of an emergency. For true emergencies, any authorised operator should be able to use it without needing another person's approval; (3) **Response time definition** — define the maximum acceptable time from a decision to halt the agent to the agent actually halting. For agents with access to external systems (sending emails, making payments), this must be short — minutes, not hours; (4) **Annual testing** — the kill switch must be tested at least annually, in conditions that simulate an actual emergency (not just a calm scheduled test). The test must confirm: the mechanism is functional, authorised operators know how to use it, and the response time is within the defined target; (5) **Post-halt procedure** — define what happens after the kill switch is used: how the agent's state is preserved, who conducts the post-incident review, what criteria must be met before the agent is restarted, and who authorises restart.
+
+**Jurisdiction notes:** EU — EU AI Act Art. 14(4) — the ability to interrupt the AI system is a legal obligation for high-risk AI oversight. Art. 9 — risk management must address the ability to take corrective action | AU — APRA CPS 230 — incident response capability must include ability to contain operational disruptions caused by AI systems | US — NIST AI RMF RESPOND function — incident response for AI includes ability to halt operation; NIST AI 600-1 — kill switch is an explicit control recommendation for agentic AI
+
+---
+
+### G4-004 — Staged capability rollout
+**Owner:** Risk | **Type:** Preventive | **Effort:** Low | **Go-live required:** Yes
+
+Agentic AI systems should not be deployed at full capability immediately. Deploying with limited scope — constrained tool access, limited user population, monitored environment — and expanding capability only with documented evidence of safe behaviour at each stage gives the organisation confidence the system behaves as expected before it operates at full scale.
+
+Implementation requirements: (1) **Staging plan** — before deployment, document a capability rollout plan: what capability is available at each stage, what evidence of safe behaviour is required to progress to the next stage, and who has authority to approve progression; (2) **Stage 0 — shadow mode** — where feasible, run the agent in shadow mode before live deployment: the agent proposes actions but does not execute them; a human executes the actions independently and compares outcomes. Shadow mode testing reveals misalignment between agent proposals and correct actions before any real-world impact; (3) **Stage 1 — limited scope** — deploy with the minimum subset of approved tools, to a small user population, in a monitored environment. Define: what volume of successful interactions constitutes sufficient evidence for progression, what failure rate is acceptable, and what types of failures would prevent progression; (4) **Evidence requirements** — progression from each stage must be evidenced, not just decided. Evidence types: interaction logs reviewed by Risk, failure analysis for all incidents in the stage, user feedback, performance against defined success criteria; (5) **Objective specification review** — before deployment, verify that the agent's objectives, constraints, and reward function are precisely specified. Vague objectives ("be helpful and efficient") create specification gaps that the agent will fill with unexpected behaviour. Constraints must cover not just what the agent should do but what it must not do.
+
+**Jurisdiction notes:** EU — EU AI Act Art. 9 — risk management for high-risk AI must include testing appropriate to the risk level; staged rollout is a risk management approach for high-consequence agentic systems | AU — DISR voluntary AI Safety Standard — phased deployment and testing are expected for high-risk AI systems | US — NIST AI RMF MANAGE 1.3 — responses to AI risks include staged deployment as a risk mitigation approach
+
+---
+
+### G4-005 — Objective specification review
+**Owner:** Technology | **Type:** Preventive | **Effort:** Low | **Go-live required:** Yes
+
+The objective specification problem — also called the alignment problem in research contexts — is the risk that an AI agent optimises for its stated objective in ways that produce harmful side effects, game the metric rather than the underlying goal, or pursue the objective in ways not intended by the designer. Reviewing the objective specification before deployment does not eliminate this risk, but it identifies the most obvious gaps before they cause harm.
+
+Implementation requirements: (1) **Objective precision review** — for each agentic system, review the objective specification for: (a) ambiguity — can the objective be achieved in a way the designer did not intend? (b) incompleteness — are there implicit constraints the agent needs but that are not stated? (c) measurability — is the objective measurable in a way that rewards genuine goal achievement rather than metric gaming? (2) **Constraint completeness** — specify not only what the agent should do but what it must not do. Negative constraints are often more important than positive objectives for safety. Document: categories of action the agent must never take regardless of how beneficial they might appear; data it must never share; systems it must never access; (3) **Adversarial review** — conduct a structured review asking: "How could an agent optimise this objective in a way that produces bad outcomes?" Red-team the objective specification the way you would red-team a security control. Engage people who were not involved in writing the objective; (4) **Misalignment scenario documentation** — document the top three to five misalignment scenarios identified in the adversarial review: specific ways the agent could pursue the objective in unintended ways. For each, document how the architectural controls (G4-001, G4-002, G4-003) mitigate it; (5) **Review on objective change** — any material change to the agent's objective or constraints requires a new objective specification review. Partial objective changes can introduce new misalignment risks even if the original specification was reviewed.
+
+**Jurisdiction notes:** EU — EU AI Act Art. 9 — risk management must include analysis of risks arising from the intended purpose and from foreseeable misuse; objective specification review is the primary tool for this analysis | US — NIST AI 600-1 — objective specification and alignment are core concerns for agentic AI governance | Global — AI safety frameworks including Anthropic's responsible scaling policy and OpenAI's safety practices all include objective specification review as a foundational practice
+
+---
+
+### KPIs
+
+| Metric | Target | Frequency |
+|--------|--------|-----------| 
+| Agentic AI systems with documented minimal footprint and AI Register entry | 100% | Quarterly |
+| Irreversible actions approved without human gate (unauthorised autonomy) | Zero | Continuous monitoring |
+| Kill switch tested within last 12 months | 100% of deployed agents | Annual test |
+| Staged rollout progression with documented evidence | 100% of stage progressions | Per stage |
+| Objective specification review completed | 100% before deployment, on material objective change | Per deployment |
+
+---
+
+## Layer 4 — Technical implementation
+
+### Agentic AI safety architecture
+
+```python
+from dataclasses import dataclass, field
+from typing import Literal, Callable
+import time
+
+ActionCategory = Literal[
+    "read_data", "write_data", "delete_data",
+    "send_communication", "initiate_payment",
+    "deploy_code", "modify_access", "provision_resource"
+]
+IRREVERSIBLE_CATEGORIES: set[ActionCategory] = {
+    "delete_data", "send_communication", "initiate_payment",
+    "deploy_code", "modify_access", "provision_resource"
+}
+
+@dataclass
+class AgentTool:
+    tool_id: str
+    name: str
+    action_category: ActionCategory
+    requires_human_approval: bool       # True for irreversible categories
+    approved_by: str
+    approval_date: str
+    scope: str                          # e.g. "read access to customer_orders table only"
+
+@dataclass
+class AgentConfig:
+    agent_id: str
+    name: str
+    objective: str
+    constraints: list[str]              # explicit must-not-do list
+    approved_tools: list[AgentTool]
+    deployment_stage: Literal["shadow", "limited", "full"]
+    kill_switch_owners: list[str]       # roles authorised to halt
+    kill_switch_response_time_seconds: int
+
+    def validate_tool_access(self, requested_tool_id: str) -> bool:
+        """Gate: check requested tool is in approved set."""
+        return any(t.tool_id == requested_tool_id for t in self.approved_tools)
+
+    def requires_approval(self, tool_id: str) -> bool:
+        tool = next((t for t in self.approved_tools if t.tool_id == tool_id), None)
+        if not tool:
+            raise ValueError(f"Tool {tool_id} not in approved set — cannot execute")
+        return tool.requires_human_approval
+
+@dataclass
+class ApprovalGateEvent:
+    agent_id: str
+    proposed_action: str
+    action_category: ActionCategory
+    parameters: dict
+    context_summary: str               # what led to this proposal
+    presented_at: str
+    approver_id: str | None = None
+    decision: Literal["approved", "rejected", "halted"] | None = None
+    decided_at: str | None = None
+    notes: str = ""
+
+def execute_with_gate(
+    agent_config: AgentConfig,
+    tool_id: str,
+    parameters: dict,
+    context: str,
+    human_approval_fn: Callable,       # function that presents gate to human and returns decision
+    audit_log: list,
+) -> dict:
+    """
+    Execute an agent action, enforcing human approval for irreversible actions.
+    This gate operates at the execution layer — not in the model.
+    """
+    if not agent_config.validate_tool_access(tool_id):
+        return {"executed": False, "reason": "Tool not in approved set — blocked"}
+
+    if agent_config.requires_approval(tool_id):
+        gate_event = ApprovalGateEvent(
+            agent_id=agent_config.agent_id,
+            proposed_action=tool_id,
+            action_category=next(t.action_category for t in agent_config.approved_tools if t.tool_id == tool_id),
+            parameters=parameters,
+            context_summary=context,
+            presented_at=str(time.time()),
+        )
+        decision = human_approval_fn(gate_event)   # blocks until human decides
+        gate_event.decision = decision
+        gate_event.decided_at = str(time.time())
+        audit_log.append(gate_event)
+
+        if decision != "approved":
+            return {"executed": False, "reason": f"Human {decision} action"}
+
+    # Execute the approved action
+    audit_log.append({"tool_id": tool_id, "executed": True, "timestamp": str(time.time())})
+    return {"executed": True, "tool_id": tool_id}
+```
+
+### Compliance implementation
+
+**Australia:** APRA CPS 230 operational risk management applies to agentic AI systems taking consequential operational actions. The kill switch and human approval gates are the primary controls for ensuring that AI agents operating within APRA-regulated processes can be halted and do not take unilateral consequential actions. APRA's guidance on model risk management (CPG 229) will increasingly extend to agentic systems as they are deployed in material risk functions. ASIC has signalled interest in AI agent governance for financial services — robo-advice and AI-driven trading frameworks will be extended to agentic contexts.
+
+**EU:** EU AI Act Art. 14 is the primary obligation for agentic AI in high-risk contexts. Art. 14(1) requires that high-risk AI systems be designed with human oversight measures. Art. 14(4) specifically requires that natural persons overseeing high-risk AI must be able to interrupt the system. For agentic GPAI systems: the GPAI Code of Practice (2025) includes specific expectations on agentic AI safety including minimal footprint, reversibility of actions, and human oversight. The G4 control set maps directly to these obligations.
+
+**US:** NIST AI 600-1 (Generative AI Risk Management, July 2024) provides the most detailed US-government guidance on agentic AI risk. It explicitly addresses: minimal footprint (limiting data collection and action scope), human-in-the-loop for irreversible actions, and kill switch requirements. The NIST Cyber AI Profile IR 8596 addresses the security dimensions of agentic AI including access controls and monitoring. EO 14110 safety requirements for dual-use foundation models extend to agentic capabilities.
 
 ---
 

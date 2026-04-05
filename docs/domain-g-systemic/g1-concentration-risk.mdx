@@ -79,9 +79,120 @@ Technology · Risk · Operations · Finance · Procurement
 
 ## Layer 3 — Controls detail
 
-*See Layer 2 controls summary for ownership, effort, and go-live requirements. Full implementation guidance follows.*
+### G1-001 — AI provider dependency mapping
+**Owner:** Risk | **Type:** Preventive | **Effort:** Low | **Go-live required:** Yes
 
-Refer to the controls summary table above for the definitive list of controls for this risk. Detailed control descriptions, jurisdiction notes, and KPIs are maintained in the source schema files and will be published in a forthcoming update.
+You cannot manage a concentration risk you have not mapped. The AI provider dependency map is the foundational document for G1 — it establishes what the organisation depends on, how critical each dependency is, and where single points of failure exist.
+
+Implementation requirements: (1) **Inventory scope** — map every AI provider dependency: first-party AI deployments (your own models, hosted on cloud), third-party AI APIs (OpenAI, Anthropic, Google, Azure AI, AWS AI services), AI embedded in SaaS products (HR tools with AI features, CRM with AI scoring, document tools with AI generation), and AI in vendor products used as part of operational processes. Many organisations significantly undercount embedded AI dependencies; (2) **Criticality classification** — for each dependency, classify: (a) **Critical** — system failure would halt a material business process or breach regulatory obligations; (b) **Important** — system failure would significantly degrade capability but not halt operations; (c) **Standard** — system failure would be inconvenient but has readily available workarounds; (3) **Single point of failure identification** — identify where multiple critical processes depend on a single provider, a single model, or a single API endpoint. Document: which processes share the dependency, what the combined impact of failure would be, and whether the failure modes are correlated (e.g. all OpenAI-dependent processes failing simultaneously during a GPT API outage); (4) **Register maintenance** — the dependency map must be maintained as a live document: updated when new AI systems are deployed, when provider changes occur, and reviewed annually at minimum. Stale dependency maps are worse than none because they create false confidence; (5) **APRA CPS 230 applicability** — for APRA-regulated entities, AI providers providing services supporting material business activities must be identified as material service arrangements and managed under CPS 230 requirements.
+
+**Jurisdiction notes:** AU — APRA CPS 230 (effective July 2025) — material service arrangements must be identified and risk-managed; AI providers supporting critical processes are in scope. CPS 220 — operational risk management must address third-party concentration risk | EU — DORA Art. 28 — ICT third-party concentration risk management is mandatory for financial sector entities; AI providers are ICT providers under DORA | US — OCC guidance on third-party relationships — AI providers should be subject to appropriate due diligence proportionate to criticality
+
+---
+
+### G1-002 — Fallback architecture or degraded mode
+**Owner:** Technology | **Type:** Preventive | **Effort:** High | **Go-live required:** Yes
+
+A critical AI-dependent system with no fallback is a single point of failure. When the AI provider is unavailable — through outage, deprecation, rate limiting, or price change — the operational process stops. The fallback architecture defines how the organisation continues operating when AI capability is unavailable.
+
+Implementation requirements: (1) **Fallback design options** — for each critical AI-dependent process, design a fallback that can sustain operations during AI unavailability. Options in order of effort: (a) **Manual process fallback** — a documented manual process that staff can execute when AI is unavailable. Must be tested and documented in sufficient detail that staff who do not routinely perform the task can execute it; (b) **Alternative provider fallback** — a secondary AI provider pre-integrated into the system with automatic or rapid-switch capability; (c) **Degraded functional mode** — the system operates in a reduced-capability mode without AI, with explicit communication to users that AI features are temporarily unavailable; (2) **Recovery time objective (RTO)** — define the RTO for each critical AI-dependent process: the maximum tolerable time before fallback must be active. RTO drives the fallback design — a 4-hour RTO may permit manual activation; a 15-minute RTO requires automated failover; (3) **Testing requirement** — fallbacks must be tested, not just documented. Annual BCP exercise that tests AI provider failure scenarios. The test must confirm that the fallback actually works — not just that the documentation exists; (4) **Staff capability** — manual fallbacks require staff who can execute the manual process. Where the manual process involves skills that have atrophied due to AI automation, invest in maintaining those skills. An untested manual fallback executed by staff who have not performed the manual process in years is not a reliable fallback; (5) **Degraded mode communication** — define how users and customers are notified when AI capability is unavailable and the system is operating in degraded mode.
+
+**Jurisdiction notes:** AU — APRA CPS 230 — business continuity plans must address scenarios where material service arrangements (including AI providers) are unavailable. APRA expects tested fallback arrangements | EU — DORA Art. 11 — business continuity policies must address ICT third-party disruption; Art. 25 — testing of continuity plans is required for significant ICT providers | US — FFIEC Business Continuity Management booklet — AI provider outage is a disruption scenario that must be addressed in continuity planning
+
+---
+
+### G1-003 — Vendor contract exit and portability rights
+**Owner:** Procurement | **Type:** Preventive | **Effort:** Low | **Go-live required:** Yes
+
+Vendor lock-in converts a normal commercial relationship into a concentration risk. If the organisation cannot exit an AI provider relationship without prohibitive data loss, transition cost, or operational disruption, the provider has significant leverage — to raise prices, change terms, or deprecate the model — with no effective countervailing power.
+
+Implementation requirements: (1) **Data portability** — all contracts with AI providers should include: (a) right to export all data stored or processed by the provider in a standard, machine-readable format; (b) data deletion confirmation upon contract termination; (c) a transition period of reasonable duration (30–90 days) during which data export can occur before deletion; (2) **Model export rights** — for custom-trained or fine-tuned models, negotiate the right to export model weights or a serialised model artefact on contract termination. Where the provider's terms do not permit full model export, document the lock-in risk and ensure the dependency map reflects this; (3) **Deprecation notice period** — require a minimum notice period before model deprecation or material API changes: 6 months minimum for models supporting critical processes. This notice period enables planned migration rather than emergency response; (4) **API stability commitment** — for critical integrations, seek contractual commitment to API stability (no breaking changes without notice period). At minimum, understand the provider's stated API deprecation policy and ensure it is reflected in the risk assessment; (5) **Review at procurement** — these requirements must be assessed at the time of procurement — not retrofitted into existing contracts (which may require renegotiation). Procurement checklists for AI vendors should include: data portability, model portability, deprecation notice, and API stability.
+
+**Jurisdiction notes:** AU — APRA CPS 230 cl. 35 — contracts with material service providers must include termination provisions and exit management plans. APRA expects viable exit strategies for critical providers | EU — DORA Art. 30 — ICT contracts must include minimum contract provisions including termination rights, data portability, and transition assistance | US — OCC third-party risk management guidance — exit strategies are required for critical third-party relationships; AI providers supporting material bank functions are in scope
+
+---
+
+### G1-004 — Business continuity planning for AI
+**Owner:** Risk | **Type:** Responsive | **Effort:** Medium | **Go-live required:** No (post-launch)
+
+AI provider outage scenarios must be explicitly included in the organisation's business continuity planning. BCP that predates significant AI adoption may not include AI-specific failure scenarios — and the manual processes that previously provided resilience may have been decommissioned as AI automation was introduced.
+
+Implementation requirements: (1) **Scenario integration** — add AI provider outage scenarios to the BCP scenario library: (a) single provider outage (one provider, all dependent systems); (b) model deprecation (provider discontinues a specific model with short notice); (c) rate limiting at scale (provider imposes usage limits that constrain critical processes); (d) price shock (cost increase that makes current usage unviable); (2) **Manual process documentation** — for each critical AI-dependent process, document the pre-AI manual process or the degraded-mode process. This documentation must be current — if the manual process has been materially changed by AI adoption, the documentation must reflect the current manual capability, not the historic one; (3) **Skill maintenance** — where manual fallbacks require skills that staff no longer routinely exercise, include AI fallback drills in the annual BCP exercise programme. This keeps manual competency alive; (4) **Recovery validation** — the BCP exercise must include a live simulation of fallback activation, not just a tabletop exercise. Confirm that staff can actually execute the manual process in the required timeframe; (5) **Regulatory alignment** — for APRA-regulated entities, AI provider failure scenarios must be assessed against the CPS 230 BCP requirements. For DORA-regulated entities, ICT-related business continuity testing is a formal obligation.
+
+**Jurisdiction notes:** AU — APRA CPS 230 — business continuity plans must address operational disruptions including third-party service disruptions | EU — DORA Art. 11 — ICT business continuity policies are mandatory; Art. 25 — testing including AI provider disruption scenarios | US — FFIEC — tested BCP is a regulatory expectation for financial institutions; AI provider scenarios must be included
+
+---
+
+### KPIs
+
+| Metric | Target | Frequency |
+|--------|--------|-----------| 
+| Critical AI dependencies with documented fallback | 100% | Quarterly |
+| Fallback tested within last 12 months | 100% of critical dependencies | Annual BCP exercise |
+| AI vendor contracts with data portability and deprecation notice | 100% of critical AI providers | Reviewed at procurement and annually |
+| AI dependency map accuracy (no undocumented critical dependencies) | 100% — confirmed at annual review | Annual |
+| BCP exercise — AI provider failure scenario included | At least 1 AI provider scenario per annual exercise | Annual |
+
+---
+
+## Layer 4 — Technical implementation
+
+### AI dependency map — schema
+
+```python
+from dataclasses import dataclass, field
+from typing import Literal
+
+Criticality = Literal["critical", "important", "standard"]
+
+@dataclass
+class AIProviderDependency:
+    provider_name: str              # e.g. "Anthropic", "OpenAI", "Azure OpenAI"
+    model_name: str                 # e.g. "claude-sonnet-4-6", "gpt-4o"
+    dependency_type: str            # "direct API", "embedded in SaaS", "custom deployment"
+    criticality: Criticality
+    dependent_processes: list[str]  # business processes relying on this dependency
+    rto_hours: float                # recovery time objective
+    fallback_type: str              # "manual process", "alternative provider", "degraded mode"
+    fallback_documented: bool
+    fallback_last_tested: str | None   # ISO date string
+    contract_data_portability: bool
+    contract_deprecation_notice_days: int | None
+    single_point_of_failure: bool   # True if no equivalent alternative exists
+
+@dataclass
+class ConcentrationRiskReport:
+    """Summarise concentration risk across all AI dependencies."""
+    dependencies: list[AIProviderDependency]
+
+    def critical_without_fallback(self) -> list[AIProviderDependency]:
+        return [d for d in self.dependencies if d.criticality == "critical" and not d.fallback_documented]
+
+    def untested_fallbacks(self, days: int = 365) -> list[AIProviderDependency]:
+        from datetime import date, timedelta
+        cutoff = (date.today() - timedelta(days=days)).isoformat()
+        return [d for d in self.dependencies
+                if d.fallback_documented and (not d.fallback_last_tested or d.fallback_last_tested < cutoff)]
+
+    def single_points_of_failure(self) -> list[AIProviderDependency]:
+        return [d for d in self.dependencies if d.single_point_of_failure and d.criticality == "critical"]
+
+    def provider_concentration(self) -> dict[str, int]:
+        """Count critical processes per provider — high numbers = concentration risk."""
+        from collections import Counter
+        return Counter(
+            d.provider_name for d in self.dependencies
+            if d.criticality == "critical"
+        )
+```
+
+### Compliance implementation
+
+**Australia:** APRA CPS 230 (effective July 2025) is the primary framework. It requires that material service arrangements — including AI providers supporting critical processes — are subject to: due diligence at selection, contract provisions including exit rights, ongoing monitoring, and tested BCP scenarios. The AI provider dependency map, vendor contract requirements (G1-003), and BCP integration (G1-004) together constitute a CPS 230-compliant AI concentration risk programme. CPS 230 cl. 37 requires that APRA-regulated entities do not place excessive reliance on individual service providers without adequate mitigating controls.
+
+**EU:** DORA (Digital Operational Resilience Act, effective January 2025) applies to financial sector entities and requires comprehensive ICT third-party risk management. AI providers are ICT third-party service providers under DORA. Key requirements: register of ICT third-party service providers, contractual minimum provisions (Art. 30), concentration risk management (Art. 28), and ICT business continuity testing including third-party scenarios (Art. 25). The G1 control set maps directly to DORA obligations.
+
+**US:** OCC Bulletin 2023-17 on third-party relationships — financial institutions must manage AI providers as third parties proportionate to their criticality. SR 11-7 model risk management guidance — critical AI models must have documented fallback arrangements. FFIEC business continuity management — AI provider disruption scenarios should be incorporated into scenario testing.
 
 ---
 

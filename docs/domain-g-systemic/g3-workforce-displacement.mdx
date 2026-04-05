@@ -79,9 +79,118 @@ HR · Executive · Risk · Communications · Legal
 
 ## Layer 3 — Controls detail
 
-*See Layer 2 controls summary for ownership, effort, and go-live requirements. Full implementation guidance follows.*
+### G3-001 — Workforce impact assessment
+**Owner:** HR | **Type:** Preventive | **Effort:** Medium | **Go-live required:** Yes
 
-Refer to the controls summary table above for the definitive list of controls for this risk. Detailed control descriptions, jurisdiction notes, and KPIs are maintained in the source schema files and will be published in a forthcoming update.
+Deploying AI that materially changes or eliminates roles without prior assessment of workforce impact is a governance failure — and increasingly a regulatory risk. The assessment should happen before deployment decisions are finalised, when transition pathways can still be designed into the project rather than bolted on afterward.
+
+Implementation requirements: (1) **Assessment trigger** — conduct a workforce impact assessment before deploying AI that will: eliminate one or more roles, materially reduce headcount in a function, substantially change the skills required for a role, or significantly change how a large number of staff spend their working time; (2) **Assessment content** — the assessment must cover: (a) which roles are affected and how many people in each role; (b) the timeline — when will changes take effect; (c) the nature of the change — elimination, reduction, reskilling requirement, task substitution; (d) which affected staff are likely to be able to transition with training vs those who face displacement; (e) the organisation's obligations under employment law (redundancy obligations, consultation requirements, notice periods); (3) **Transition pathway design** — for each affected group, identify transition pathways: retraining into AI-adjacent roles, redeployment to other functions, voluntary early retirement, managed redundancy with support services. The assessment should not just describe the impact — it should propose how the organisation will respond; (4) **Executive and HR sign-off** — the assessment must be reviewed and signed off by HR and the relevant Executive before the deployment decision is finalised. This ensures workforce impact is a deliberate governance consideration, not an afterthought; (5) **Consultation obligations** — in many jurisdictions, employers have legal obligations to consult with employees or their representatives before making decisions affecting employment. Assess these obligations early — after a deployment decision has been announced, consultation may be legally compromised.
+
+**Jurisdiction notes:** AU — Fair Work Act 2009 — redundancy obligations, consultation requirements in enterprise agreements. Modern Awards typically include consultation clauses requiring 28 days' notice of significant workplace change | EU — European Works Council Directive and national laws — consultation obligations with employee representatives before significant workforce changes. EU Directive on Platform Work (2024) — transparency about algorithmic management | US — WARN Act — 60 days' notice required for plant closings or mass layoffs meeting thresholds. NLRA — collective bargaining obligations where union agreements exist. No federal AI-specific workforce displacement obligation
+
+---
+
+### G3-002 — Stakeholder communication plan
+**Owner:** HR | **Type:** Preventive | **Effort:** Low | **Go-live required:** Yes
+
+How the organisation communicates AI-driven workforce changes significantly affects trust, morale, and the organisation's ability to retain talent and manage the transition. Communication that is too late, too vague, or clearly designed to minimise resistance rather than genuinely inform damages trust — and damaged trust is expensive to rebuild.
+
+Implementation requirements: (1) **Timing** — communicate with affected staff before public announcement, before media reports, and with sufficient notice to allow genuine planning. The minimum acceptable notice period is the legally required period in the relevant jurisdiction; the recommended period is longer — enough for affected staff to prepare; (2) **Content** — communication must honestly address: which roles are affected, what the timeline is, what transition support the organisation will provide, who staff can speak to for more information, and what the process is for people who want to raise concerns; (3) **Channel and format** — in-person communication is strongly preferable for significant workforce changes — receiving life-affecting news via email or a group announcement without opportunity for immediate questions damages trust disproportionately. Plan for manager-led conversations, not just broadcast communications; (4) **Ongoing communication** — the initial communication is not sufficient. Establish a regular update cadence throughout the transition period. In the absence of information, rumour fills the vacuum; (5) **Feedback mechanism** — provide a channel for affected staff to raise concerns, ask questions, and give feedback on the transition process. This is both ethically appropriate and practically useful — staff often identify transition issues the organisation has not anticipated.
+
+**Jurisdiction notes:** AU — Fair Work Act — consultation requirements; Modern Award consultation clauses. Enterprise agreements often include specific communication obligations | EU — national worker consultation laws vary significantly by member state; German Betriebsrat (works council) has co-determination rights on certain AI deployment decisions | US — NLRA — employers must bargain with certified unions before implementing changes affecting terms and conditions of employment
+
+---
+
+### G3-003 — Upskilling investment
+**Owner:** HR | **Type:** Preventive | **Effort:** High | **Go-live required:** No (post-launch)
+
+AI literacy and adjacent technical skills are becoming baseline requirements across professional functions. Organisations that invest in upskilling the workforce for an AI-augmented work environment build capability, retain talent, and manage the workforce transition more effectively than those that default to displacement.
+
+Implementation requirements: (1) **Skills gap analysis** — identify the skills gap between the current workforce and the skills required in an AI-augmented operating model. Distinguish: (a) skills that are complementary to AI (judgment, relationship management, complex problem-solving, creative direction) — invest in developing these; (b) AI literacy for all functions — understanding AI outputs, knowing when to question them, identifying AI errors; (c) role-specific AI tool proficiency for each affected function; (2) **AI literacy programme** — make AI literacy training available to all staff. This should not be optional for affected functions — it should be a required development investment. Content: how AI systems work at a conceptual level, how to use AI tools effectively, how to identify AI errors and limitations, organisational policy on AI use; (3) **Transition retraining** — for roles facing material displacement, invest in retraining pathways into roles that are growing in the AI-augmented organisation. Partner with RTOs and universities where internal provision is insufficient; (4) **Progress tracking** — track: number of staff completed AI literacy training, number of staff engaged in transition retraining, skills gap closure over time. Report to the board as part of workforce sustainability reporting; (5) **Minimum funding commitment** — frame upskilling as a capital investment, not a cost to be minimised. Organisations that have committed specific per-employee training budgets for AI transition have demonstrated more successful outcomes than those treating it as discretionary.
+
+**Jurisdiction notes:** AU — FWC decisions — in redundancy disputes, courts consider whether the employer took reasonable steps to redeploy. Investment in retraining supports a genuine redeployment defence | EU — European Pillar of Social Rights — right to training is a core principle; AI-driven workforce changes without training provision is reputationally and legally exposed | US — no federal upskilling mandate; state-level workforce development programmes exist
+
+---
+
+### G3-004 — Ethical AI deployment policy
+**Owner:** Risk | **Type:** Preventive | **Effort:** Low | **Go-live required:** No (post-launch)
+
+An ethical AI deployment policy formalises the organisation's commitment to considering workforce impact as a governance criterion for AI deployment decisions — not just productivity and cost. Without a policy, workforce impact assessment is discretionary; with a policy, it is a requirement.
+
+Implementation requirements: (1) **Policy content** — the policy should require: workforce impact assessment before AI deployments meeting defined criteria, minimum notice periods for affected staff, a commitment to upskilling investment before displacement, and governance sign-off requirements. It should also define what the organisation will not do — e.g. will not deploy AI solely to reduce headcount without offering transition support; (2) **Integration into AI use case approval** — the policy must be integrated into the AI use case approval process (F3-001). Before an AI system is approved for deployment, the approving committee must confirm workforce impact has been assessed and transition pathways are in place; (3) **Board visibility** — workforce displacement risk should be reported to the board as part of AI governance reporting. The board should be aware of planned and in-progress workforce transitions driven by AI deployment; (4) **External communication** — many organisations choose to make their ethical AI commitments public. Where this is done, the public commitment must be accurate — gap between public commitment and practice creates significant reputational and legal risk; (5) **Review cadence** — review the policy annually. As the AI landscape evolves, the policy may need updating to address new types of workforce impact not anticipated when it was written.
+
+**Jurisdiction notes:** Global — ethical AI deployment policy is currently voluntary in most jurisdictions, but signals emerging as a due diligence expectation in B2B contexts and among institutional investors evaluating ESG governance | EU — EU AI Act Art. 4 — AI literacy obligations; CSRD — social (S1) reporting includes workforce management practices including those affected by AI | AU — AIIA and DISR voluntary AI Safety Standard — workforce impact is a core ethical consideration
+
+---
+
+### KPIs
+
+| Metric | Target | Frequency |
+|--------|--------|-----------| 
+| AI deployments affecting roles with prior workforce impact assessment | 100% meeting trigger criteria | Per deployment |
+| Staff AI literacy training completion | > 90% of affected functions | Annual |
+| Consultation requirements met | 100% of qualifying deployments | Per deployment |
+| AI deployment ethical policy reviewed | Current version within 12 months | Annual |
+
+---
+
+## Layer 4 — Technical implementation
+
+### Workforce impact assessment — schema
+
+```python
+from dataclasses import dataclass, field
+from typing import Literal
+
+@dataclass
+class AffectedRole:
+    role_title: str
+    headcount: int
+    change_type: Literal["eliminated", "reduced", "materially_changed", "reskilling_required"]
+    transition_pathway: str              # e.g. "retraining to AI operations", "redeployment to X", "voluntary redundancy"
+    legally_at_risk_of_displacement: bool
+    consultation_required: bool
+
+@dataclass
+class WorkforceImpactAssessment:
+    ai_system_id: str
+    deployment_timeline: str
+    assessed_by: str
+    assessed_date: str
+    hr_signoff: str | None
+    executive_signoff: str | None
+
+    affected_roles: list[AffectedRole]
+
+    # Obligations
+    legal_consultation_required: bool
+    consultation_deadline: str | None     # date by which consultation must commence
+    jurisdictions: list[str]              # jurisdictions with relevant employment obligations
+
+    # Transition programme
+    upskilling_budget_committed: float | None
+    transition_programme_description: str
+    external_support_provided: bool       # e.g. outplacement services
+
+    # Communication
+    communication_plan_complete: bool
+    initial_communication_date: str | None
+    update_cadence: str                   # e.g. "monthly during transition"
+
+    def total_affected_headcount(self) -> int:
+        return sum(r.headcount for r in self.affected_roles)
+
+    def roles_at_displacement_risk(self) -> list[AffectedRole]:
+        return [r for r in self.affected_roles if r.legally_at_risk_of_displacement]
+```
+
+### Compliance implementation
+
+**Australia:** Fair Work Act 2009 — genuine redundancy defence requires that the employer: could not reasonably redeploy the employee, and complied with any consultation obligations in applicable modern award or enterprise agreement. The workforce impact assessment and upskilling investment directly support the genuine redundancy defence. Most Modern Awards include a model consultation clause requiring 28 days' advance notice of significant workplace changes and a genuine consultation process. Enterprise agreements often have more prescriptive requirements.
+
+**EU:** The workforce impact of AI is an active legislative and regulatory focus in the EU. European Works Councils must be informed and consulted on significant operational changes at multinational level. National laws in Germany, France, Netherlands, and others impose specific consultation requirements with workers' representatives before AI deployment affecting employment. The EU Platform Work Directive (2024) introduces transparency requirements for algorithmic management of workers. CSRD S1 (Social) reporting requires disclosure of workforce management practices including those relating to AI.
+
+**US:** WARN Act — employers with 100+ employees must provide 60 days' advance written notice of plant closings or mass layoffs. AI-driven workforce reductions meeting the threshold trigger WARN obligations. NLRA — where a workforce is unionised, the employer must bargain in good faith before implementing changes to wages, hours, or terms and conditions of employment affected by AI deployment. No federal AI-specific workforce protection obligation as of 2026, but states are legislating (California AB 1186, Maryland HB 682).
 
 ---
 

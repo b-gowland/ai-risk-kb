@@ -78,9 +78,124 @@ Risk · Compliance · Technology · Internal Audit · Legal
 
 ## Layer 3 — Controls detail
 
-*See Layer 2 controls summary for ownership, effort, and go-live requirements. Full implementation guidance follows.*
+### F3-001 — Documented use case boundaries in AI Register
+**Owner:** Risk | **Type:** Preventive | **Effort:** Low | **Go-live required:** Yes
 
-Refer to the controls summary table above for the definitive list of controls for this risk. Detailed control descriptions, jurisdiction notes, and KPIs are maintained in the source schema files and will be published in a forthcoming update.
+An AI system deployed without documented use case boundaries has no defined perimeter — scope expansion is invisible because there is no baseline to compare against. The AI Register entry for each system is the authoritative record of what the system is approved to do, what data it is approved to use, and what it is explicitly not approved for.
+
+Implementation requirements: (1) **Boundary definition** — for every AI system, document: (a) **Permitted use cases** — the specific tasks the system is approved to perform, described precisely enough that a new user could determine whether a proposed use is within scope; (b) **Permitted data scope** — what data types and sources the system is approved to process, including any data it is explicitly prohibited from receiving; (c) **Permitted output uses** — what actions can legitimately be taken based on the system's outputs, and what actions require additional human process; (d) **Explicit out-of-scope conditions** — uses cases that have been specifically considered and excluded, with rationale. Explicit exclusion prevents future drift by establishing intent; (2) **Precision standard** — boundaries must be specific enough to be auditable. "For customer service" is not auditable. "For responding to product enquiries from existing customers via the web chat channel — not for financial advice, contract variations, or complaint handling" is auditable; (3) **Owner sign-off** — the boundary documentation must be signed off by the Risk function. This establishes that the boundaries reflect a risk assessment, not just a technical design decision; (4) **Accessibility** — the AI Register and the use case boundaries within it must be accessible to the system owners and the teams operating the system. Boundaries that live in a risk committee report no one reads do not function as controls; (5) **Annual review** — confirm at each annual review that the documented boundaries still accurately reflect how the system is being used. If the system's actual use has expanded, the review triggers a reassessment.
+
+**Jurisdiction notes:** AU — APRA CPG 229 — model purpose documentation is a basic model governance expectation. Privacy Act APP 3 — data collected for a stated purpose must not be used for incompatible purposes; the use case boundary definition is the mechanism for ensuring AI data use stays within APP 3 constraints | EU — EU AI Act Art. 11 — high-risk AI systems require technical documentation including intended purpose; scope is defined in technical documentation and must match actual deployment | US — SR 11-7 — model documentation must include model purpose and appropriate use; models must not be used outside their validated range
+
+---
+
+### F3-002 — Change governance for scope expansion
+**Owner:** Risk | **Type:** Preventive | **Effort:** Low | **Go-live required:** No (post-launch)
+
+Scope creep typically does not happen as a deliberate policy decision — it happens through incremental, individually reasonable-looking steps. A change governance process that triggers reassessment whenever the approved use case boundary is proposed to be expanded interrupts this drift at the point of each incremental step.
+
+Implementation requirements: (1) **Trigger definition** — define precisely what constitutes a boundary expansion that triggers change governance: (a) new data types being submitted to the AI system; (b) new user populations accessing the system; (c) new output uses (acting on AI outputs in ways not in the original design); (d) new channels or contexts of deployment; (e) material changes to the model underlying the system. The trigger definition must be communicated to system owners so they know when to raise a change request; (2) **Change governance process** — when a trigger event occurs: (a) system owner raises a scope change request; (b) request documents the proposed change, its rationale, and a preliminary risk assessment; (c) Risk reviews and determines whether: the change is within the existing risk tolerance (approve), the change requires a full re-assessment (risk assessment), or the change is outside the organisation's risk appetite (reject); (3) **Temporary approval** — for urgent business needs, define a temporary approval process that allows limited scope expansion under enhanced monitoring while a full reassessment is conducted. Temporary approvals must have a defined expiry and cannot be rolled over without formal renewal; (4) **Escalation** — material scope changes (new jurisdiction, new high-risk use case, new data type with privacy implications) should be escalated to the AI governance committee or equivalent. Changes that move a system from general-purpose to high-risk AI under the EU AI Act require immediate legal and compliance review; (5) **Communication** — communicate the change governance process to all AI system owners and the teams that use AI systems. Scope creep is often opportunistic — teams find new ways to use a tool without realising they are triggering a governance obligation.
+
+**Jurisdiction notes:** AU — APRA CPG 229 — changes to model scope require reassessment; models operating outside their validated range represent model risk | EU — EU AI Act Art. 25 — substantial modifications to AI systems require reassessment; changes that cause a general-purpose AI system to enter a high-risk category trigger full high-risk AI obligations | US — SR 11-7 — material changes to models require new validation; scope expansion is a material change
+
+---
+
+### F3-003 — Periodic use case review
+**Owner:** Risk | **Type:** Detective | **Effort:** Low | **Go-live required:** No (post-launch)
+
+Change governance controls planned expansions; periodic use case review detects unplanned drift. Without periodic review, scope creep that happens gradually — one informal use at a time — is invisible until it has become entrenched.
+
+Implementation requirements: (1) **Annual review cadence** — conduct a formal annual review of how each AI system is actually being used. The review should compare documented use case boundaries against observed actual usage. Primary evidence sources: usage logs (topic analysis of queries where available), user interviews, incident reports, and help desk tickets about edge cases; (2) **Usage log analysis** — for AI systems that log user queries or requests, conduct topic classification or sampling analysis to identify whether usage patterns match documented scope. Queries about topics outside the documented scope are the primary signal of scope creep; (3) **User interview methodology** — interview a sample of system users about how they use the system. Users often adapt tools creatively in ways not visible in logs. Ask specifically: "Have you ever used this for something you were unsure was in scope?" and "Do you know of colleagues using it for anything beyond its intended purpose?"; (4) **Discrepancy handling** — when the review identifies discrepancies between documented and actual usage: (a) unauthorised scope creep that represents acceptable use — formalise it through the F3-002 change governance process; (b) unauthorised scope creep that represents unacceptable use — investigate, remediate, and implement controls to prevent recurrence; (c) documented scope that is no longer accurate — update documentation; (5) **Documentation** — the review must produce a formal output: findings, discrepancies identified, and disposition of each discrepancy. Retained as evidence of ongoing governance.
+
+**Jurisdiction notes:** EU — EU AI Act Art. 72 — post-market monitoring plans must be established for high-risk AI. Annual use case review is a component of the monitoring programme | AU — APRA CPG 229 — ongoing model monitoring includes reviewing whether the model is used appropriately | US — SR 11-7 — ongoing monitoring and periodic model reviews are explicit requirements
+
+---
+
+### F3-004 — Usage monitoring for scope detection
+**Owner:** Technology | **Type:** Detective | **Effort:** Medium | **Go-live required:** No (post-launch)
+
+For AI systems with sufficient query volume, automated monitoring can detect scope creep patterns in near-real-time — well before the next annual review. This is particularly valuable for customer-facing AI systems where usage patterns are driven by thousands of users and manual review is not feasible.
+
+Implementation requirements: (1) **Topic classification** — implement automated topic classification on AI system queries (or a representative sample). Topics are classified against the approved use case taxonomy. Queries falling outside the approved topic set generate a monitoring signal; (2) **Alert threshold** — define the alert threshold: a single off-topic query may be noise; a sustained pattern of off-topic queries requires investigation. Express thresholds as: percentage of queries in an off-topic category over a rolling period (e.g. > 5% of queries in a 7-day period classified as out-of-scope); (3) **Prompt injection as scope creep** — monitor for prompt injection attempts that attempt to repurpose the AI system beyond its documented scope. Systematic injection attempts often precede legitimate scope creep (users who want a capability the system doesn't provide will often try to elicit it by jailbreaking before eventually finding workarounds through different channels); (4) **Report to Risk** — generate weekly reports for Risk on usage patterns. Include: top topics by volume, off-topic query rate, trend over time, and any alerts triggered. Risk uses these reports to calibrate the annual review and trigger change governance when patterns indicate emerging scope drift; (5) **Privacy constraints** — usage monitoring of user queries must be implemented consistently with the privacy policy and GDPR obligations where applicable. Where queries contain personal data, monitoring must be conducted at topic/category level, not at individual query level.
+
+**Jurisdiction notes:** EU — EU AI Act Art. 72 — post-market monitoring for high-risk AI must include systematic collection and analysis of data on system performance in practice | AU — Privacy Act APP 5 — if usage monitoring involves retaining query data, notification obligations may apply | US — CCPA/CPRA (California) — user query data may constitute personal information subject to privacy rights
+
+---
+
+### KPIs
+
+| Metric | Target | Frequency |
+|--------|--------|-----------| 
+| AI systems with documented use case boundaries in AI Register | 100% of production AI systems | Quarterly confirmation |
+| Change governance requests raised for scope expansions | All expansions go through process — zero undocumented expansions discovered at review | Annual review |
+| Annual use case reviews completed | 100% of AI systems reviewed annually | Annual |
+| Off-topic query rate (usage monitoring) | < 5% sustained — alerts at threshold | Weekly report |
+| Discrepancies found at annual review with no change governance record | Zero | Annual review |
+
+---
+
+## Layer 4 — Technical implementation
+
+### AI Register — use case boundary schema
+
+```python
+from dataclasses import dataclass, field
+from datetime import date
+
+@dataclass
+class UseCaseBoundary:
+    system_id: str
+    system_name: str
+    owner: str
+    risk_approver: str
+    approved_date: date
+    next_review_date: date
+    version: str                         # increment on each approved change
+
+    # Permitted scope
+    permitted_use_cases: list[str]       # precise descriptions
+    permitted_data_types: list[str]      # e.g. ["customer transaction data", "public pricing data"]
+    permitted_output_uses: list[str]     # what actions outputs can drive
+    permitted_channels: list[str]        # e.g. ["web chat", "internal API"] — not mobile app
+
+    # Explicit exclusions (document intent)
+    excluded_use_cases: list[str]        # explicitly considered and excluded
+    excluded_data_types: list[str]       # data the system must not receive
+    excluded_output_uses: list[str]      # actions that must not be driven by outputs alone
+
+    # Change triggers (any of these requires F3-002 change governance)
+    change_triggers_documented: list[str] = field(default_factory=lambda: [
+        "New data type submitted to system",
+        "New user population accessing system",
+        "New output use beyond documented permitted uses",
+        "New channel or deployment context",
+        "Material change to underlying model",
+        "New jurisdiction of deployment",
+    ])
+
+    def assess_proposed_use(self, proposed_use: str, proposed_data: str) -> dict:
+        """
+        Quick assessment of a proposed use against documented boundaries.
+        Returns guidance — not a substitute for formal change governance review.
+        """
+        in_scope = any(pu.lower() in proposed_use.lower() for pu in self.permitted_use_cases)
+        data_permitted = any(dt.lower() in proposed_data.lower() for dt in self.permitted_data_types)
+        explicitly_excluded = any(eu.lower() in proposed_use.lower() for eu in self.excluded_use_cases)
+
+        if explicitly_excluded:
+            return {"guidance": "OUT OF SCOPE — explicitly excluded. Do not proceed.", "action": "reject"}
+        if in_scope and data_permitted:
+            return {"guidance": "Appears within scope. Confirm with system owner.", "action": "confirm"}
+        return {"guidance": "Uncertain — raise with Risk before proceeding.", "action": "change_governance"}
+```
+
+### Compliance implementation
+
+**Australia:** APRA CPG 229 model risk management guidance requires that models are documented with their intended purpose and are monitored to ensure they are used within their validated scope. The AI Register and use case boundary documentation implement this requirement. Privacy Act APP 3 requires that personal information collected for one purpose is not used for a secondary incompatible purpose — the use case boundary defines the approved purpose, and scope monitoring enforces it.
+
+**EU:** EU AI Act Art. 11 and Annex IV require technical documentation for high-risk AI systems to include the intended purpose and the conditions under which the system should not be used. The use case boundary documentation maps directly to this requirement. Art. 25 requires providers to update documentation when a substantial modification occurs — change governance (F3-002) is the mechanism for triggering this. For GPAI models: providers must document intended uses and prohibited uses; deployers are responsible for ensuring use within those bounds.
+
+**US:** SR 11-7 requires that models are used within their validated range and that material changes to model use trigger new validation. The use case boundary and change governance framework implement these requirements. EEOC technical assistance on AI in employment — AI systems must not be used in employment decisions beyond their validated and documented scope; use outside documented scope creates liability.
 
 ---
 

@@ -79,9 +79,138 @@ All functions where AI tools are deployed for decision support
 
 ## Layer 3 — Controls detail
 
-*See Layer 2 controls summary for ownership, effort, and go-live requirements. Full implementation guidance follows.*
+### F1-001 — Friction by design (verification steps)
+**Owner:** Technology | **Type:** Preventive | **Effort:** Medium | **Go-live required:** Yes
 
-Refer to the controls summary table above for the definitive list of controls for this risk. Detailed control descriptions, jurisdiction notes, and KPIs are maintained in the source schema files and will be published in a forthcoming update.
+Automation bias — the tendency to accept AI outputs without adequate critical evaluation — is a design problem as much as a training problem. Users in time-pressured environments will take the path of least resistance. If the path of least resistance is to accept the AI output unchecked, that is what will happen. Verification steps must be technically enforced, not advisory.
+
+Implementation requirements: (1) **Identify high-stakes decision points** — for each AI-assisted workflow, identify the decision points where acting on an incorrect AI output would cause material harm. These are the points where verification friction is required. Examples: AI-generated medical diagnosis output acted on without clinician review, AI credit decision acted on without human underwriter sign-off in complex cases, AI-generated regulatory submission content used without legal review; (2) **Technical enforcement** — verification steps must be implemented as non-bypassable gates in the workflow. Acceptable mechanisms: (a) mandatory checkbox requiring explicit attestation of independent review before submission; (b) mandatory secondary reviewer approval before action is executed; (c) time-delayed confirmation (forces a pause before irreversible action); (d) required input of a decision rationale field. Advisory pop-ups that can be dismissed without reading are not adequate; (3) **Calibration to stakes** — not every AI output requires the same friction. Apply friction proportionate to the stakes: critical decisions (clinical, financial, legal) require strong gates; low-stakes decisions may need only visible uncertainty communication (F1-002). Document the calibration decision; (4) **Workflow integration testing** — test verification steps in UAT with users who are incentivised to complete tasks quickly. Observe whether verification steps are being completed genuinely or bypassed. If users are finding workarounds, the verification design needs strengthening; (5) **Avoid friction fatigue** — excessive verification requirements on low-stakes decisions desensitise users to friction and lead them to treat all verification as a formality. Restrict enforced verification to genuinely high-stakes decision points.
+
+**Jurisdiction notes:** AU — APRA CPG 229 — model risk management expects human oversight for material AI-assisted decisions. ASIC expectations for AI in financial advice — human review requirements | EU — EU AI Act Art. 14 — human oversight for high-risk AI systems is a legal obligation; the technical design of the human oversight mechanism is within scope of Art. 14 compliance | US — SR 11-7 — model risk management requires validation and ongoing monitoring; EEOC guidance — employers remain responsible for AI-assisted employment decisions regardless of automation level
+
+---
+
+### F1-002 — Uncertainty communication in AI interfaces
+**Owner:** Technology | **Type:** Preventive | **Effort:** Low | **Go-live required:** Yes
+
+AI systems that present outputs with uniform visual confidence — regardless of the underlying model's actual certainty — actively encourage automation bias. An AI output that looks identical whether the model is 99% confident or 52% confident provides no signal to calibrate the level of scrutiny applied.
+
+Implementation requirements: (1) **Confidence display** — where the model produces confidence scores or uncertainty estimates, surface them in the UI in a format users can act on. Options: numerical score, categorical band (High / Medium / Low confidence), colour coding, or natural language qualifier ("I am less confident about this"). The format must be tested with users to confirm it is understood correctly; (2) **Low-confidence visual treatment** — outputs below a defined confidence threshold must be visually distinguished from high-confidence outputs. Examples: amber/red border on low-confidence outputs, reduced opacity, warning icon, explicit "Review carefully" label. The distinction must be visible without the user needing to seek it out; (3) **Known limitations disclosure** — for AI systems with known domain limitations (e.g. an AI trained on data up to a certain date, or on a specific geographic population), these limitations should be disclosed in the interface at the relevant point of use — not just in documentation. A clinician using a diagnostic AI trained on data that underrepresents their patient population needs that information at the point of use; (4) **Recommended use boundaries** — define and display the boundaries of recommended use: input types the model performs well on, input types that should be referred to a human expert, output types that require mandatory second review. Make these visible in the product UI, not just in training materials; (5) **Testing for calibration** — test whether users actually use confidence information to modulate their review behaviour. Confidence display that is ignored is not working. If user research shows confidence signals are not changing behaviour, redesign the interface.
+
+**Jurisdiction notes:** EU — EU AI Act Art. 13 — transparency obligations for high-risk AI include sufficient information for deployers to interpret outputs; uncertainty communication is a component of this requirement | AU — ASIC guidance for AI in financial services emphasises the importance of communicating AI output limitations to end users | US — SR 11-7 — model documentation must include performance characteristics including limitations; these must be communicated to users in operational contexts
+
+---
+
+### F1-003 — Calibration training for AI users
+**Owner:** HR | **Type:** Preventive | **Effort:** Low | **Go-live required:** Yes
+
+Friction by design and uncertainty communication are technical controls; they need a trained user population to be effective. A user who does not understand what the confidence score means, does not understand the specific failure modes of the AI system they are using, or who has never seen an example of the AI being convincingly wrong, will not apply adequate scrutiny even when the interface prompts them to.
+
+Implementation requirements: (1) **System-specific training** — generic AI literacy training is not sufficient. Training must cover the specific AI system the staff member will use: its documented error rates, the types of inputs where it performs well versus poorly, examples of actual failures, and the verification steps required for this system. Generalised training about AI limitations does not transfer reliably to specific system behaviour; (2) **Error case exposure** — include specific examples where the AI produced a plausible but incorrect output — ideally real examples from testing or monitored production use. Seeing a convincing-looking AI error is the most effective way to calibrate appropriate scepticism; (3) **Verification process walkthrough** — train users on the specific verification steps required for high-stakes decisions with this system. They must understand what they are being asked to check, not just that they are being asked to check something. A user who ticks a verification checkbox without understanding what they are attesting to has not completed a meaningful review; (4) **Completion tracking and refresher requirement** — track completion at the individual level. Require refresher training: annually for stable systems, and when the system changes materially. System changes often change the failure mode profile; (5) **Role-based depth** — casual AI users need awareness-level training; primary decision-makers using AI in high-stakes contexts need deeper calibration training. Tier training requirements by role and stakes.
+
+**Jurisdiction notes:** AU — APRA CPS 234 — security awareness training obligation; AI system-specific training is an extension of this for staff using AI tools with security implications. Professional licensing bodies (ASIC for financial advice, AHPRA for clinical use) may have continuing education requirements that extend to AI tool use | EU — EU AI Act Art. 26 — deployers of high-risk AI must ensure staff have sufficient AI literacy; Art. 4 — AI literacy obligation applies to all providers and deployers | US — sector-specific competency requirements; EEOC guidance requires employers to understand AI tools used in employment decisions, implying training obligations
+
+---
+
+### F1-004 — Audit spot-checking of AI-assisted decisions
+**Owner:** Risk | **Type:** Detective | **Effort:** Low | **Go-live required:** No (post-launch)
+
+Even with technical verification controls and training, automation bias may persist in practice. Audit spot-checking provides the detective control that confirms verification steps are being completed substantively, not just procedurally — and identifies systemic patterns of over-reliance before they cause material harm.
+
+Implementation requirements: (1) **Sample design** — define the sampling methodology: what percentage of AI-assisted decisions will be spot-checked, how the sample is selected (random vs stratified), and by whom. Risk should own the programme; the spot-check review should be independent of the teams making the AI-assisted decisions; (2) **Evidence of verification** — the spot-check must assess whether the verification step was completed substantively. This is harder than checking a checkbox was ticked. Evidence of genuine verification: documented reasoning that goes beyond repeating the AI output, evidence that alternative explanations were considered, documentation of what the reviewer checked. An audit trail that records the verification attestation timestamp alone is not sufficient evidence of genuine review; (3) **Findings reporting** — report findings quarterly to the AI governance committee or equivalent. Track: rate of verification steps completed, rate of substantive versus procedural verification, specific decision types where over-reliance is detected; (4) **Escalation and remediation** — when the spot-check identifies systematic over-reliance, the response should address both the individual pattern (targeted refresher training) and the systemic pattern (interface redesign if the verification step is clearly not working); (5) **Coverage** — prioritise spot-checking on: decisions with highest consequence if wrong, AI systems with known high error rates in specific domains, recently deployed AI systems where calibration is still being established.
+
+**Jurisdiction notes:** AU — APRA CPG 229 — internal audit of model risk management is an expected control; this extends to audit of human oversight processes for AI | EU — EU AI Act Art. 26 — deployers must monitor operation of high-risk AI; Art. 72 — post-market monitoring obligations | US — SR 11-7 — ongoing model monitoring includes monitoring of the human processes that interact with model outputs
+
+---
+
+### KPIs
+
+| Metric | Target | Frequency |
+|--------|--------|-----------| 
+| AI-assisted high-stakes decisions acted on without verification evidence | Zero in spot-check sample | Quarterly audit |
+| Verification step bypass rate (technical gate circumvention) | Zero | Continuous monitoring |
+| AI user calibration training completion | 100% of primary decision-makers before system use | Tracked per system |
+| Spot-check finding: substantive verification rate | > 95% of sampled decisions | Quarterly |
+| Low-confidence output escalation rate (via interface) | Tracked and trending | Monthly |
+
+---
+
+## Layer 4 — Technical implementation
+
+### Verification gate — UI pattern schema
+
+```python
+from dataclasses import dataclass, field
+from typing import Literal
+
+GateType = Literal["attestation", "secondary_approver", "time_delay", "mandatory_rationale"]
+
+@dataclass
+class VerificationGate:
+    gate_id: str
+    decision_type: str              # e.g. "credit_approval", "clinical_diagnosis"
+    stakes_level: Literal["critical", "high", "medium"]
+    gate_type: GateType
+    gate_prompt: str                # Text shown to user
+    requires_rationale_field: bool  # Force entry of reasoning
+    min_review_seconds: int         # Minimum time before gate can be passed (time delay)
+    secondary_approver_role: str | None  # Required role for secondary approval
+    bypassable: bool = False        # MUST be False for high-stakes gates
+
+    def validate(self) -> list[str]:
+        """Validate gate configuration before deployment."""
+        issues = []
+        if self.stakes_level == "critical" and self.bypassable:
+            issues.append("Critical gates must not be bypassable")
+        if self.gate_type == "time_delay" and self.min_review_seconds < 10:
+            issues.append("Time delay gate must be at least 10 seconds to be meaningful")
+        if self.gate_type == "secondary_approver" and not self.secondary_approver_role:
+            issues.append("Secondary approver gate requires approver role specification")
+        return issues
+
+# Example gates
+CREDIT_APPROVAL_GATE = VerificationGate(
+    gate_id="credit_approval_v1",
+    decision_type="credit_approval",
+    stakes_level="critical",
+    gate_type="attestation",
+    gate_prompt=(
+        "I confirm I have independently reviewed the applicant data, "
+        "the AI recommendation, and the supporting evidence. "
+        "My decision reflects my own assessment, not solely the AI output."
+    ),
+    requires_rationale_field=True,
+    min_review_seconds=30,
+    secondary_approver_role=None,
+    bypassable=False,
+)
+
+@dataclass
+class UncertaintyDisplay:
+    score: float
+    threshold_warn: float = 0.6
+    threshold_alert: float = 0.4
+
+    @property
+    def display_band(self) -> str:
+        if self.score >= self.threshold_warn: return "High confidence"
+        if self.score >= self.threshold_alert: return "Medium confidence — review carefully"
+        return "Low confidence — independent verification required"
+
+    @property
+    def css_class(self) -> str:
+        if self.score >= self.threshold_warn: return "confidence-high"
+        if self.score >= self.threshold_alert: return "confidence-medium"
+        return "confidence-low"
+```
+
+### Compliance implementation
+
+**Australia:** APRA CPG 229 (Model Risk) establishes expectations for human oversight of models used in material risk decisions. The CPG does not specify technical mechanisms but expects evidence that decisions are not made solely on model output — the verification gate and audit spot-check programme provide this evidence. ASIC Regulatory Guide 000 on digital advice (robo-advice) requires that automated financial advice systems have appropriate oversight mechanisms; this extends to any AI-assisted advice process. Professional licensing obligations for financial advisers, credit assessors, and clinicians may impose independent professional obligations on top of organisational controls.
+
+**EU:** EU AI Act Art. 14 is the primary obligation. Human oversight must be such that the human can: understand the capabilities and limitations of the system, detect and address malfunctions and unexpected outputs, and when necessary refrain from using or override the AI output. Art. 14(4) requires that human overseers be able to intervene in or interrupt the system. The verification gate technically implements this capability. Art. 26 places responsibility on deployers to implement and maintain the human oversight design in practice — the audit spot-check provides the monitoring evidence.
+
+**US:** SR 11-7 model risk management guidance is the primary framework for financial institutions. It requires that model limitations are understood by users and that models are not used outside their validated range. Calibration training and uncertainty communication are the primary implementation mechanisms. EEOC technical assistance on AI in employment decisions (2023) requires that employers understand and can explain AI-assisted employment decisions; this implies both training and audit obligations.
 
 ---
 

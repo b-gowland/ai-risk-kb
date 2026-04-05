@@ -79,9 +79,160 @@ Legal · Compliance · Technology · Risk · Customer Service · Communications
 
 ## Layer 3 — Controls detail
 
-*See Layer 2 controls summary for ownership, effort, and go-live requirements. Full implementation guidance follows.*
+### E2-001 — Content safety classifiers
+**Owner:** Technology | **Type:** Preventive | **Effort:** Medium | **Go-live required:** Yes
 
-Refer to the controls summary table above for the definitive list of controls for this risk. Detailed control descriptions, jurisdiction notes, and KPIs are maintained in the source schema files and will be published in a forthcoming update.
+A content safety classifier is an automated output filtering layer that evaluates AI-generated content against a defined harm taxonomy before it reaches the user. It is the primary technical control for preventing harmful content delivery at scale — human review of individual outputs is not feasible for consumer-facing AI.
+
+Implementation requirements: (1) **Define the harm taxonomy** — before implementing classifiers, document the specific harm categories relevant to the deployment context. Standard categories include: hate speech, incitement to violence, sexual content, child safety, self-harm facilitation, dangerous instructions, privacy violations. Deployment context determines which categories are in scope and at what severity threshold; (2) **Classifier architecture** — implement classifiers on the output layer, after generation but before delivery to the user. This catches harmful content regardless of how it was elicited. For high-risk deployments, also implement input classifiers to detect known harmful prompt patterns; (3) **Threshold calibration** — calibrate classification thresholds to balance false positive rate (legitimate content blocked) against false negative rate (harmful content passed). Document the calibration decision, the rationale, and the acceptable threshold ranges. Over-blocking degrades product utility; under-blocking produces safety failures. Both require documentation and sign-off; (4) **Human review pipeline** — establish a process for human review of: (a) content that scores near the classification threshold (ambiguous cases); (b) content that triggered a block but the user is disputing; (c) a random sample of passed content for quality assurance. Human reviewers need clear harm taxonomy guidance, psychological support provisions, and escalation paths; (5) **Performance monitoring** — track classifier performance continuously: false positive rate, false negative rate (via human review sample), block volume by category, and user appeal rate. Investigate anomalies. Retrain or recalibrate classifiers when performance degrades.
+
+**Jurisdiction notes:** AU — Online Safety Act 2021 — class 1 and class 2 material prohibitions apply to AI-generated content; providers must have mechanisms to detect and remove prohibited content. Child protection obligations under the Criminal Code Act 1995 | EU — EU AI Act Art. 50 — disclosure obligations for AI-generated synthetic content; GDPR Art. 22 — automated decision-making safeguards. DSA (Digital Services Act) — very large platforms have enhanced content moderation obligations | US — Section 230 CDA — liability protection for intermediaries depends on active good-faith moderation. CSAM laws — no exemption for AI-generated child sexual abuse material; active detection and reporting obligations under 18 U.S.C. § 2258A
+
+---
+
+### E2-002 — Adversarial safety red teaming
+**Owner:** Security | **Type:** Preventive | **Effort:** Medium | **Go-live required:** Yes
+
+Red teaming proactively identifies harmful output failure modes before deployment by having skilled testers systematically attempt to elicit harmful content across the documented harm taxonomy. It is the only reliable way to discover safety failures that automated classifiers will miss — because those failures are produced by prompts specifically designed to evade classifiers.
+
+Implementation requirements: (1) **Harm taxonomy coverage** — the red team must systematically cover every category in the harm taxonomy defined in E2-001. Each category requires multiple attack strategies: direct requests, indirect elicitation, multi-turn jailbreaks, role-play scenarios, hypothetical framings; (2) **Dual team structure** — red team should include both domain experts (who understand the specific harm categories) and prompt engineers (who understand model failure modes). Domain experts identify whether an elicited output is actually harmful; prompt engineers find the failure modes; (3) **Critical finding definition and gate** — define before testing what constitutes a critical finding (one that must be remediated before go-live). Typically: outputs that provide meaningful uplift to harmful activities (violence, weapons, CSAM, dangerous instructions), consistent jailbreaks that bypass core safety measures, outputs that could directly cause physical harm. Critical findings at go-live are a hard blocker; (4) **Documentation and tracking** — document every finding: prompt used, output produced, harm category, severity assessment, remediation approach, and post-remediation retest result. The finding log is a legal record of the organisation's safety due diligence; (5) **Periodic cadence** — red teaming is not once-and-done. Schedule: before every major model update or capability change, before deployment to a new context or population, annually for stable deployments. The threat landscape evolves — new jailbreak techniques emerge continuously.
+
+**Jurisdiction notes:** AU — DISR (Department of Industry) voluntary AI Safety Standard includes red teaming as an expected practice for high-risk AI | EU — EU AI Act Art. 9 — risk management for high-risk AI must include testing; Art. 72 — post-market monitoring. GPAI Code of Practice (2025) — red teaming is an explicit expected control for GPAI providers | US — NIST AI 600-1 — adversarial testing is a primary control for generative AI risk mitigation; EO 14110 (AI Safety) — dual-use foundation model providers must conduct red teaming before deployment
+
+---
+
+### E2-003 — Incident response for harmful outputs
+**Owner:** Risk | **Type:** Responsive | **Effort:** Low | **Go-live required:** Yes
+
+Even with classifiers and red teaming, harmful outputs will occur. The question is how quickly the organisation detects, contains, and remediates them. The ability to modify or withdraw a model in response to a harmful output incident is the minimum organisational capability required for responsible deployment.
+
+Implementation requirements: (1) **Incident triage classification** — define severity tiers for harmful output incidents: P1 (immediate withdrawal risk — CSAM, incitement, direct physical harm enablement), P2 (urgent classifier update required — systematic harmful output pattern), P3 (monitoring and logging — isolated case, classifier functioning as designed). Response times and owner responsibilities defined per tier; (2) **Rapid response capability** — the organisation must have the technical capability to: (a) disable the model or a specific capability within hours, not days; (b) push classifier updates without a full deployment cycle; (c) apply prompt-level mitigations as a bridge while model-level fixes are developed; (3) **User reporting channel** — implement a clear, accessible mechanism for users to report harmful outputs. Reports are a critical signal — user reports often identify failure modes that internal testing missed. Acknowledge reports within 24 hours. Track and analyse report patterns; (4) **Post-incident review** — every P1 and P2 incident must trigger a formal post-incident review: how did this bypass safety controls, what is the scope of the failure, what remediation is required, and what process change prevents recurrence. Document and retain reviews; (5) **Regulatory notification assessment** — assess each incident against applicable regulatory notification obligations. Online Safety Act (AU), GDPR Art. 33 (EU), and sector-specific obligations may trigger notification requirements.
+
+**Jurisdiction notes:** AU — Online Safety Act 2021 — eSafety Commissioner has powers to require removal of harmful content and can investigate systemic failures | EU — GDPR Art. 33/34 — data breach notification obligations where harmful output involves personal data; EU AI Act Art. 73 — serious incident reporting obligations for high-risk AI from August 2, 2026 | US — FTC Act Section 5 — unfair or deceptive practices; failure to act on known harmful output patterns may constitute a deceptive practice
+
+---
+
+### E2-004 — Age verification and context-sensitive guardrails
+**Owner:** Technology | **Type:** Preventive | **Effort:** High | **Go-live required:** Yes
+
+Consumer AI systems accessible to minors require enhanced safety controls beyond the baseline harm taxonomy. Regulators globally are moving to mandate age verification for platforms where AI could expose minors to harmful content — and the organisational liability for CSAM or harm-enabling content reaching minors is severe.
+
+Implementation requirements: (1) **Age verification architecture** — implement age verification at account creation for consumer AI accessible through web or mobile interfaces. Methods in order of assurance: age declaration (lowest — not recommended for high-risk contexts), payment method age inference (medium), document verification (high). The method must be commensurate with the risk of the content the platform can generate; (2) **Context-sensitive safety profiles** — implement separate safety profiles for verified minors vs adults. The minor profile should: apply stricter harm thresholds, disable categories not appropriate for minors (e.g. adult content even if legal for adults), apply enhanced safeguards for mental health topics, apply keyword-triggered escalation for distress signals; (3) **Isolation of minor-facing contexts** — ensure that content accessible to minors is architecturally isolated from adult content generation contexts. This prevents prompt injection or context leakage from adult contexts into minor-facing sessions; (4) **Legal review** — age verification and child safety obligations vary significantly by jurisdiction and are evolving rapidly. Obtain legal review specific to each jurisdiction of deployment before go-live; (5) **Compliance monitoring** — conduct quarterly compliance checks against child safety obligations in all jurisdictions of operation. The regulatory landscape is changing at high speed.
+
+**Jurisdiction notes:** AU — Online Safety Act 2021 — eSafety Commissioner's age assurance powers; Criminal Code Act 1995 — absolute prohibition on CSAM including AI-generated | EU — EU AI Act Art. 5 — manipulation targeting vulnerable persons including minors is a prohibited AI practice; GDPR Art. 8 — parental consent required for data processing of children under 16 (member states may lower to 13) | US — COPPA — parental consent required for collection of personal information from children under 13; state-level age verification laws (Louisiana, Arkansas, others) vary
+
+---
+
+### KPIs
+
+| Metric | Target | Frequency |
+|--------|--------|-----------| 
+| Content classifier false negative rate (harmful content passed) | < 0.1% of harmful prompts in test set | Monthly red team sample |
+| Red team critical findings at go-live | Zero | Per deployment |
+| Harmful output incident P1 response time | < 4 hours to containment | Per incident |
+| User harmful output reports acknowledged | 100% within 24 hours | Continuous |
+| Age verification compliance review | Current for all deployment jurisdictions | Quarterly |
+
+---
+
+## Layer 4 — Technical implementation
+
+### Content safety classifier pipeline
+
+```python
+from dataclasses import dataclass
+from typing import Literal
+
+HarmCategory = Literal[
+    "hate_speech", "violence_incitement", "sexual_content",
+    "child_safety", "self_harm", "dangerous_instructions",
+    "privacy_violation", "harassment"
+]
+Severity = Literal["none", "low", "medium", "high", "critical"]
+Action = Literal["pass", "warn", "block", "escalate_human"]
+
+@dataclass
+class ClassifierResult:
+    category: HarmCategory
+    score: float           # 0.0 – 1.0
+    severity: Severity
+    action: Action
+    explanation: str
+
+@dataclass
+class SafetyProfile:
+    name: str              # e.g. "consumer_adult", "consumer_minor", "enterprise"
+    thresholds: dict[HarmCategory, float]  # category -> block threshold
+    enabled_categories: list[HarmCategory]
+
+# Example profiles
+ADULT_CONSUMER_PROFILE = SafetyProfile(
+    name="consumer_adult",
+    thresholds={
+        "hate_speech": 0.7, "violence_incitement": 0.5,
+        "sexual_content": 0.9, "child_safety": 0.0,  # zero tolerance
+        "self_harm": 0.4, "dangerous_instructions": 0.5,
+        "privacy_violation": 0.6, "harassment": 0.65,
+    },
+    enabled_categories=list(HarmCategory.__args__),
+)
+
+MINOR_PROFILE = SafetyProfile(
+    name="consumer_minor",
+    thresholds={
+        "hate_speech": 0.4, "violence_incitement": 0.3,
+        "sexual_content": 0.1, "child_safety": 0.0,   # zero tolerance
+        "self_harm": 0.2, "dangerous_instructions": 0.3,
+        "privacy_violation": 0.4, "harassment": 0.4,
+    },
+    enabled_categories=list(HarmCategory.__args__),
+)
+
+def evaluate_output(
+    content: str,
+    profile: SafetyProfile,
+    classifier_fn,          # your classifier model
+) -> dict:
+    """
+    Evaluate AI output against safety profile.
+    Returns overall action and per-category results.
+    """
+    results = []
+    for category in profile.enabled_categories:
+        score = classifier_fn(content, category)
+        threshold = profile.thresholds[category]
+        severity: Severity = (
+            "critical" if score >= threshold and threshold == 0.0
+            else "high"   if score >= threshold
+            else "medium" if score >= threshold * 0.8
+            else "low"    if score >= threshold * 0.5
+            else "none"
+        )
+        action: Action = (
+            "block" if severity in ("critical", "high")
+            else "escalate_human" if severity == "medium"
+            else "warn" if severity == "low"
+            else "pass"
+        )
+        results.append(ClassifierResult(category, score, severity, action, ""))
+
+    # Overall action = most severe individual action
+    action_order = ["pass", "warn", "escalate_human", "block"]
+    overall_action = max(results, key=lambda r: action_order.index(r.action)).action
+    return {
+        "overall_action": overall_action,
+        "results": results,
+        "safe_to_deliver": overall_action == "pass",
+    }
+```
+
+### Compliance implementation
+
+**Australia:** Online Safety Act 2021 — the eSafety Commissioner has powers to issue notices requiring removal of class 1 (illegal) and class 2 (restricted) material generated by AI systems. Basic Online Safety Expectations (BOSE) require large platforms to take reasonable steps to minimise harmful content. AI-generated CSAM is prohibited under the Criminal Code Act 1995 with no artistic merit or other exemptions.
+
+**EU:** EU AI Act Art. 5 — manipulation of vulnerable persons using AI is a prohibited practice from February 2025. For GPAI systems capable of generating synthetic media: Art. 50 disclosure obligations. DSA (Digital Services Act) — very large online platforms (> 45M EU users) face enhanced content moderation obligations including risk assessments for systemic risks from AI-generated content. GDPR Art. 8 — children's data processing requires parental consent; this applies to any AI system that processes children's data in generating personalised content.
+
+**US:** No comprehensive federal AI content safety law as of 2026. FTC has authority under Section 5 for unfair or deceptive practices — systematic harmful AI outputs with inadequate safety controls may be actionable. CSAM: 18 U.S.C. § 2258A requires electronic service providers to report CSAM to NCMEC; AI-generated CSAM is explicitly included under PROTECT Act. State-level legislation is proliferating — California SB 1047, Colorado HB 1468, and others impose content safety obligations on AI developers and deployers.
 
 ---
 
