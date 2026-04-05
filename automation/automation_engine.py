@@ -24,6 +24,7 @@ from __future__ import annotations
 import hashlib
 import json
 import re
+import time
 from dataclasses import asdict, dataclass, field
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
@@ -89,6 +90,55 @@ REVIEW_CADENCE_DAYS = {
     "framework_refs": 180,  # Biannually
     "full_entry": 365,  # Annually
 }
+
+# ---------------------------------------------------------------------------
+# Rate limit helpers
+# The automation makes many sequential API calls (monitoring: 8 sources;
+# verification: ~26 entries × ~4 claims each). Firing them back-to-back
+# exceeds the 30,000 input tokens/minute limit on standard tier accounts.
+# _api_call_with_backoff wraps every messages.create call with:
+#   - a mandatory inter-call pause (INTER_CALL_DELAY_S seconds)
+#   - exponential backoff on 429 RateLimitError (up to MAX_RETRIES attempts)
+# ---------------------------------------------------------------------------
+
+INTER_CALL_DELAY_S = 10     # seconds between API calls — keeps burst well under 30k TPM
+MAX_RETRIES = 4             # max retry attempts on 429
+BACKOFF_BASE_S = 30         # first retry wait; doubles each attempt (30, 60, 120, 240s)
+
+
+def _api_call_with_backoff(client_fn, *args, **kwargs):
+    """
+    Call an Anthropic API function with inter-call delay and exponential backoff.
+
+    Usage:
+        response = _api_call_with_backoff(self.client.messages.create,
+                                          model=..., max_tokens=..., messages=...)
+    """
+    time.sleep(INTER_CALL_DELAY_S)  # always pause before each call
+
+    last_exc = None
+    for attempt in range(MAX_RETRIES + 1):
+        try:
+            return client_fn(*args, **kwargs)
+        except Exception as exc:
+            # Only retry on rate limit errors
+            is_rate_limit = (
+                (anthropic is not None and isinstance(exc, anthropic.RateLimitError))
+                or "rate_limit_error" in str(exc).lower()
+                or "429" in str(exc)
+            )
+            if not is_rate_limit or attempt == MAX_RETRIES:
+                raise
+            wait = BACKOFF_BASE_S * (2 ** attempt)
+            print(
+                f"[rate-limit] 429 received — waiting {wait}s before retry "
+                f"(attempt {attempt + 1}/{MAX_RETRIES})"
+            )
+            time.sleep(wait)
+            last_exc = exc
+
+    raise last_exc  # unreachable but satisfies type checkers
+
 
 # Monitoring sources — checked on each monitor run
 MONITORING_SOURCES = [
@@ -298,7 +348,7 @@ Do not include opinions or general statements.
 Entry content:
 {content[:4000]}
 """
-        response = self.client.messages.create(
+        response = _api_call_with_backoff(self.client.messages.create,
             model="claude-sonnet-4-6",
             max_tokens=2000,
             messages=[{"role": "user", "content": prompt}],
@@ -340,7 +390,7 @@ Return as JSON:
   "notes": "brief explanation"
 }}
 """
-        response = self.client.messages.create(
+        response = _api_call_with_backoff(self.client.messages.create,
             model="claude-sonnet-4-6",
             max_tokens=1000,
             tools=WEB_SEARCH_TOOL,
@@ -416,7 +466,7 @@ Return as JSON:
   "human_review_required": true/false
 }}
 """
-        response = self.client.messages.create(
+        response = _api_call_with_backoff(self.client.messages.create,
             model="claude-sonnet-4-6",
             max_tokens=1000,
             tools=WEB_SEARCH_TOOL,
@@ -823,7 +873,7 @@ Return as JSON:
 Entry content:
 {entry_content[:5000]}
 """
-        response = self.client.messages.create(
+        response = _api_call_with_backoff(self.client.messages.create,
             model="claude-sonnet-4-6",
             max_tokens=1000,
             messages=[{"role": "user", "content": prompt}],
@@ -854,7 +904,7 @@ Return as JSON array.
 Entry content:
 {entry_content[:5000]}
 """
-        response = self.client.messages.create(
+        response = _api_call_with_backoff(self.client.messages.create,
             model="claude-sonnet-4-6",
             max_tokens=2000,
             messages=[{"role": "user", "content": prompt}],
