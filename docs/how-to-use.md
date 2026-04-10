@@ -58,4 +58,6 @@ See the [Contributing guide](/docs/contributing) for how to raise an issue or su
 
 ## Training module
 
-An interactive scenario-based training module is under development. It will use the scenario seeds embedded in each entry to generate workplace situations across different personas — allowing practitioners to test their understanding of risks and controls in context. Watch the [GitHub repository](https://github.com/b-gowland/ai-risk-kb) for updates.
+The [AI Risk Training Module](https://b-gowland.github.io/ai-risk-training/) is live and free. It contains all 26 interactive scenarios — one for every risk entry in this knowledge base — using a choose-your-own-adventure format with four personas per scenario: Executive, Project Manager, Analyst, and Business User. Each scenario presents workplace situations drawn from the entry's scenario seed, with branching decision paths, outcome feedback, and controls explanations.
+
+Total content: over 5 hours across 26 scenarios. No account required. Start from any scenario directly, or follow the knowledge base links at the bottom of each entry.

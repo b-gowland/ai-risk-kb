@@ -44,7 +44,7 @@ All factual claims are verified against primary sources before publication. Clai
 
 ## Designed for the future
 
-Each risk entry includes a **scenario seed** — a structured workplace scenario used as the basis for the companion training module. The [AI Risk Training Module](https://b-gowland.github.io/ai-risk-training/) is live, with 14 interactive choose-your-own-adventure scenarios across all major AI risk domains — including Security & Adversarial, Governance, Data, Fairness, and Deployment risks.
+Each risk entry includes a **scenario seed** — a structured workplace scenario used as the basis for the companion training module. The [AI Risk Training Module](https://b-gowland.github.io/ai-risk-training/) is live, with **all 26 interactive choose-your-own-adventure scenarios** across all 7 AI risk domains — covering Technical, Governance, Security & Adversarial, Data, Fairness, Deployment, and Systemic risks. Each scenario supports four personas (Executive, Project Manager, Analyst, and Business User) with independent decision paths, totalling over 5 hours of interactive training content.
 
 ## Licence
 

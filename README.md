@@ -124,8 +124,19 @@ Provided for informational purposes only. Not legal, regulatory, or professional
 
 ## AI Risk Training Module — Live
 
-**[AI Risk Training Module](https://b-gowland.github.io/ai-risk-training/)** (`ai-risk-training`) — interactive scenario-based learning using the scenario seeds in each entry. Choose-your-own-adventure workplace scenarios with real consequences. Four personas per scenario. Open source.
+**[AI Risk Training Module](https://b-gowland.github.io/ai-risk-training/)** (`ai-risk-training`) — interactive scenario-based learning using the scenario seeds in each entry. Choose-your-own-adventure workplace scenarios with real consequences. Four personas per scenario (Executive, Project Manager, Analyst, Business User). Open source, free forever.
 
-**Live scenarios:** F2 Shadow AI · C4 Deepfakes · A1 Hallucination · E1 Algorithmic Bias  
+**All 26 scenarios live** — one for every risk entry across all 7 domains. Over 5 hours of interactive training content.
+
+| Domain | Scenarios |
+|--------|-----------|
+| A — Technical | Confident and Wrong · The Silent Drift · Edge of the Map · The Black Box Decision |
+| B — Governance | Nobody's Problem · The Deadline Creep · Still Running · Inside the Vendor |
+| C — Security | Poisoned at the Source · The Hidden Instruction · The Extraction · The Fabricated Call · The Convincing Email |
+| D — Data | The Blind Spot · The Accidental Disclosure · Who Owns This? |
+| E — Fairness | The Score · The Guardrail Gap · The Fabricated Story |
+| F — Deployment | Trust the Machine · The Shortcut · The Expanding Tool |
+| G — Systemic | Single Point · The Hidden Cost · The Redundancy Leak · No One Said Stop |
+
 **Play:** [b-gowland.github.io/ai-risk-training](https://b-gowland.github.io/ai-risk-training/)  
 **Source:** [github.com/b-gowland/ai-risk-training](https://github.com/b-gowland/ai-risk-training)

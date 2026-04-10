@@ -8,6 +8,20 @@ sidebar_position: 6
 
 All material changes to the knowledge base are documented here. Changes are version-controlled in the [GitHub repository](https://github.com/b-gowland/ai-risk-kb).
 
+## [1.1.0] — April 2026
+
+### Content
+- Completed all 26 risk entries — 9 additional entries fully drafted to L3+L4 depth (A2, A3, A4, B2, B3, B4, E2, E3, G2)
+- All 26 entries now complete across all four layers
+- AI Risk Training Module launched — all 26 interactive scenarios live, one per KB entry
+- Training links added to all 26 entries (▶ Play this scenario)
+
+### Training module
+- 26 choose-your-own-adventure scenarios across all 7 domains
+- Four personas per scenario (Executive, Project Manager, Analyst, Business User); three personas for C1, C2, C3
+- Total training content: approximately 5.3 hours
+- Scenarios grounded in real documented incidents with verified facts
+
 ## [1.0.0] — March 2026
 
 Initial public release.
