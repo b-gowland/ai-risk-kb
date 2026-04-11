@@ -60,7 +60,10 @@ def parse_entry_id(path: Path) -> str:
     return match.group(1).upper() if match else path.stem.upper()
 
 
-# Web search tool — added to API calls that require live URL fetching
+# web_search_20250305 is a claude.ai-only tool and is NOT available via the Anthropic API.
+# Passing it to messages.create causes a JSON parse error in the response, silently
+# failing all verification and monitoring calls. Defined here for reference only —
+# do not pass to any API call unless this changes in a future API version.
 WEB_SEARCH_TOOL = [{"type": "web_search_20250305", "name": "web_search"}]
 
 
@@ -393,7 +396,6 @@ Return as JSON:
         response = _api_call_with_backoff(self.client.messages.create,
             model="claude-sonnet-4-6",
             max_tokens=1000,
-            tools=WEB_SEARCH_TOOL,
             messages=[{"role": "user", "content": search_prompt}],
         )
         try:
@@ -469,7 +471,6 @@ Return as JSON:
         response = _api_call_with_backoff(self.client.messages.create,
             model="claude-sonnet-4-6",
             max_tokens=1000,
-            tools=WEB_SEARCH_TOOL,
             messages=[{"role": "user", "content": prompt}],
         )
         try:
