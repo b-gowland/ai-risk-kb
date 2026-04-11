@@ -69,15 +69,9 @@ WEB_SEARCH_TOOL = [{"type": "web_search_20250305", "name": "web_search"}]
 
 def extract_text_from_response(response) -> str:
     """
-    Extract the final text content from an Anthropic API response.
-
-    When web search is enabled the response content list contains a mix of
-    text, tool_use, and tool_result blocks.  Naively indexing content[0].text
-    fails because the first block may be a tool_use block.  This helper scans
-    all blocks and returns the last text block — which is always Claude's
-    synthesised answer after completing any tool calls.
-
-    Falls back gracefully to content[0].text for plain (no-tool) responses.
+    Extract the text content from an Anthropic API response.
+    Scans all content blocks and returns the last text block.
+    Falls back to content[0].text if no typed text blocks found.
     """
     text_blocks = [b for b in response.content if getattr(b, "type", None) == "text"]
     if text_blocks:
@@ -366,31 +360,29 @@ Entry content:
 
     def _verify_claim(self, claim: dict, entry_content: str) -> VerificationResult:
         """
-        Verify a single claim using web search.
+        Verify a single claim using Claude's training knowledge.
         Returns structured result with status and any correction needed.
         """
         search_prompt = f"""
-Verify this claim from an AI risk knowledge base:
+Verify this claim from an AI risk knowledge base using your training knowledge:
 
 CLAIM: {claim["claim"]}
-SEARCH QUERY TO USE: {claim["search_query"]}
 
-Search for the most authoritative primary source (court records, official
-regulatory publications, original news reports) and determine:
-1. Is the claim accurate?
+Based on what you know about this topic, determine:
+1. Is the claim accurate based on your training knowledge?
 2. If not, what is the correct information?
-3. What is the primary source URL?
+3. What is the most authoritative primary source for this claim?
 
-Return as JSON:
+Return ONLY a JSON object with no preamble or markdown fences:
 {{
   "status": "verified|corrected|flagged|unverifiable",
   "original_value": "{claim["claim"]}",
   "verified_value": "the correct value, or same as original if verified",
   "source": "source name",
-  "source_url": "URL",
+  "source_url": "URL or null if unknown",
   "confidence": "high|medium|low",
-  "action_required": true/false,
-  "notes": "brief explanation"
+  "action_required": true,
+  "notes": "brief explanation of your assessment"
 }}
 """
         response = _api_call_with_backoff(self.client.messages.create,
@@ -399,7 +391,10 @@ Return as JSON:
             messages=[{"role": "user", "content": search_prompt}],
         )
         try:
-            data = json.loads(extract_text_from_response(response))
+            raw = extract_text_from_response(response)
+            # Strip markdown fences if present
+            clean = raw.strip().removeprefix("```json").removeprefix("```").removesuffix("```").strip()
+            data = json.loads(clean)
             return VerificationResult(
                 entry_id=claim.get("entry_id", "unknown"),
                 claim=claim["claim"],
@@ -445,27 +440,28 @@ class MonitoringEngine:
         since_date = last_checked or (utc_now() - timedelta(days=30)).strftime("%Y-%m-%d")
 
         prompt = f"""
-You are monitoring an AI risk knowledge base. Check this source for new
-content since {since_date}:
+You are monitoring an AI risk knowledge base. Based on your training knowledge,
+assess whether this source is likely to have published new content relevant to
+AI risk management since {since_date}:
 
 Source: {source["name"]}
 URL: {source["url"]}
 Purpose: {source["purpose"]}
 
-Search for new content from this source. Then determine:
-1. Is there new content relevant to AI risk management?
-2. Which of these entry IDs is the content most relevant to:
+Using what you know about this organisation and its publication patterns, determine:
+1. Has this source likely published new content relevant to AI risk since {since_date}?
+2. Which of these KB entry IDs is most likely affected:
    {", ".join(DOMAIN_SOURCE_MAP.get(source["name"], ["all entries"]))}
-3. Should this trigger a knowledge base update review?
+3. Should a human reviewer check this source?
 
-Return as JSON:
+Return ONLY a JSON object with no preamble or markdown fences:
 {{
-  "new_content_detected": true/false,
+  "new_content_detected": true,
   "relevant_entries": ["A1", "C2"],
-  "summary": "brief summary of new content",
+  "summary": "brief description of what this source typically publishes and whether new content is likely",
   "recommended_action": "none|flag_for_review|draft_update",
-  "content_excerpt": "key excerpt or description",
-  "human_review_required": true/false
+  "content_excerpt": "description of likely new content based on training knowledge",
+  "human_review_required": true
 }}
 """
         response = _api_call_with_backoff(self.client.messages.create,
@@ -474,7 +470,10 @@ Return as JSON:
             messages=[{"role": "user", "content": prompt}],
         )
         try:
-            data = json.loads(extract_text_from_response(response))
+            raw = extract_text_from_response(response)
+            # Strip markdown fences if present
+            clean = raw.strip().removeprefix("```json").removeprefix("```").removesuffix("```").strip()
+            data = json.loads(clean)
             return MonitoringResult(source_name=source["name"], checked_at=utc_isoformat(), **data)
         except Exception as e:
             return MonitoringResult(
