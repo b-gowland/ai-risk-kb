@@ -1,0 +1,97 @@
+name: Weekly — Gap check
+
+on:
+  schedule:
+    # Every Sunday at 02:00 UTC
+    - cron: '0 2 * * 0'
+  workflow_dispatch:
+
+# Explicit minimum permissions
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  gap-check:
+    name: Gap check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install anthropic
+
+      - name: Run gap check
+        run: |
+          cd automation
+          echo "Running gap check across all 26 entries (no API key required)"
+          python automation_engine.py --mode gap-check
+
+      - name: List reports
+        if: always()
+        run: ls -la automation/reports/ || echo "No reports directory found"
+
+      - name: Upload reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gap-check-reports-${{ github.run_id }}
+          path: automation/reports/
+          retention-days: 90
+          if-no-files-found: warn
+
+      - name: Create GitHub issue if gaps found
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+            const reportsDir = 'automation/reports';
+
+            if (!fs.existsSync(reportsDir)) {
+              console.log('No reports directory — nothing to review.');
+              return;
+            }
+
+            const files = fs.readdirSync(reportsDir);
+            const gapFiles = files.filter(f => f.startsWith('gaps_')).sort().reverse();
+
+            if (gapFiles.length === 0) {
+              console.log('No gap report found.');
+              return;
+            }
+
+            const gapReport = fs.readFileSync(path.join(reportsDir, gapFiles[0]), 'utf8');
+
+            if (!gapReport.includes('blocking')) {
+              console.log('No blocking gaps — run completed cleanly.');
+              return;
+            }
+
+            const runDate = new Date().toISOString().split('T')[0];
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `[Weekly gap check] Blocking gaps found — ${runDate}`,
+              body: gapReport.substring(0, 60000),
+              labels: ['automation', 'human-review-required', 'gap-check']
+            });
+
+      - name: Post run summary
+        if: always()
+        run: |
+          echo "## Weekly gap check complete" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Run date:** $(date -u +%Y-%m-%d)" >> $GITHUB_STEP_SUMMARY
+          echo "**Cost:** \$0 (no API calls)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [ -d "automation/reports" ]; then
+            echo "**Reports generated:**" >> $GITHUB_STEP_SUMMARY
+            ls automation/reports/ | sed 's/^/- /' >> $GITHUB_STEP_SUMMARY
+          fi

@@ -1,9 +1,9 @@
-name: Weekly — Full maintenance run
+name: Monthly — Full maintenance run
 
 on:
   schedule:
-    # Every Sunday at 02:00 UTC
-    - cron: '0 2 * * 0'
+    # 1st of every month at 03:00 UTC
+    - cron: '0 3 1 * *'
   workflow_dispatch:
     inputs:
       entry:
@@ -11,9 +11,7 @@ on:
         required: false
         default: ''
 
-# Explicit minimum permissions — principle of least privilege
-# issues: write is needed to create human-review issues
-# contents: read is sufficient — automation never commits back to the repo
+# Explicit minimum permissions
 permissions:
   contents: read
   issues: write
@@ -35,20 +33,17 @@ jobs:
         run: pip install anthropic
 
       - name: Validate entry input
-        # Reject the input before it reaches the shell if it contains anything
-        # other than letters, digits, and hyphens. Prevents script injection.
         if: github.event.inputs.entry != ''
         run: |
           ENTRY_INPUT="${{ github.event.inputs.entry }}"
           if ! echo "$ENTRY_INPUT" | grep -qE '^[A-Za-z0-9-]{1,10}$'; then
-            echo "ERROR: Invalid entry value — must be 1-10 alphanumeric characters (e.g. C2, A1, g4-ai-safety)"
+            echo "ERROR: Invalid entry value — must be 1-10 alphanumeric characters (e.g. C2, A1)"
             exit 1
           fi
 
       - name: Run full maintenance pass
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          # Pass input as an environment variable — never interpolate inputs directly into shell commands
           ENTRY_ID: ${{ github.event.inputs.entry }}
         run: |
           cd automation
@@ -87,8 +82,6 @@ jobs:
             }
 
             const files = fs.readdirSync(reportsDir);
-
-            // Find the human review document from this run
             const reviewFiles = files
               .filter(f => f.startsWith('human_review_'))
               .sort().reverse();
@@ -102,16 +95,12 @@ jobs:
               path.join(reportsDir, reviewFiles[0]), 'utf8'
             );
 
-            // Only create an issue if there are actual items to review
             if (!reviewDoc.includes('## Item')) {
               console.log('Human review document is empty — no action required.');
               return;
             }
 
-            // Count items
             const itemCount = (reviewDoc.match(/## Item \d+/g) || []).length;
-
-            // Build summary from individual reports
             let summary = '';
             const verifyFiles = files.filter(f => f.startsWith('verification_')).sort().reverse();
             const gapFiles = files.filter(f => f.startsWith('gaps_')).sort().reverse();
@@ -134,46 +123,42 @@ jobs:
             }
 
             const runDate = new Date().toISOString().split('T')[0];
-            const runId = context.runId;
-            const summaryBlock = summary || '- See full review document below';
-            const reviewBlock = reviewDoc.substring(0, 60000);
             const issueBody = [
-              '## Weekly maintenance run \u2014 ' + itemCount + ' item(s) require review',
+              `## Monthly maintenance run — ${itemCount} item(s) require review`,
               '',
-              'Run date: ' + runDate,
-              'Run ID: ' + runId,
+              `Run date: ${runDate}`,
+              `Run ID: ${context.runId}`,
               '',
               '### Summary',
-              summaryBlock,
+              summary || '- See full review document below',
               '',
               '---',
               '',
-              reviewBlock,
+              reviewDoc.substring(0, 60000),
               '',
               '---',
               '',
-              '_This issue was created automatically by the weekly maintenance workflow. Review each item, mark your decision (Approve / Reject / Modify), and close the issue when complete._',
+              '_Created automatically by the monthly maintenance workflow. Review each item, mark your decision (Approve / Reject / Modify), and close the issue when complete._',
             ].join('\n');
 
             await github.rest.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              title: `[Weekly maintenance] ${itemCount} item(s) require human review — ${new Date().toISOString().split('T')[0]}`,
+              title: `[Monthly maintenance] ${itemCount} item(s) require human review — ${new Date().toISOString().split('T')[0]}`,
               body: issueBody,
-              labels: ['automation', 'human-review-required', 'weekly-maintenance']
+              labels: ['automation', 'human-review-required', 'monthly-maintenance']
             });
-
-            console.log(`Created issue with ${itemCount} review items.`);
 
       - name: Post run summary
         if: always()
         env:
           ENTRY_ID: ${{ github.event.inputs.entry }}
         run: |
-          echo "## Weekly maintenance run complete" >> $GITHUB_STEP_SUMMARY
+          echo "## Monthly maintenance run complete" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "**Run date:** $(date -u +%Y-%m-%d)" >> $GITHUB_STEP_SUMMARY
           echo "**Mode:** ${ENTRY_ID:+single-entry ($ENTRY_ID)}${ENTRY_ID:-full}" >> $GITHUB_STEP_SUMMARY
+          echo "**Estimated cost:** ~\$2.70 USD" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           if [ -d "automation/reports" ]; then
             echo "**Reports generated:**" >> $GITHUB_STEP_SUMMARY

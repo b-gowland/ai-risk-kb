@@ -66,7 +66,8 @@ ai-risk-kb/
 │   └── entry_template.md         # Entry schema v0.2
 ├── .github/workflows/
 │   ├── deploy.yml                # Build + deploy site
-│   └── weekly-full.yml           # Weekly full maintenance run
+│   ├── weekly-gap-check.yml      # Weekly gap detection (free, no API key)
+│   └── monthly-full.yml          # Monthly full maintenance run (API key required)
 └── src/
     ├── pages/index.js            # Homepage
     └── css/custom.css            # Site styling
@@ -76,7 +77,8 @@ ai-risk-kb/
 
 The knowledge base is designed for automated maintenance with a human review gate. GitHub Actions workflows run:
 
-- **Weekly** — full maintenance pass: incident monitoring across 8 configured sources, gap detection across all 26 entries, and verification of flagged claims
+- **Weekly** — gap detection across all 26 entries: checks for missing layers, incomplete controls, and schema violations. No API key required, zero cost.
+- **Monthly** — full maintenance pass: verification of flagged claims and monitoring of 8 configured sources using Claude's training knowledge. Requires `ANTHROPIC_API_KEY`. Estimated cost ~$2.70 USD/run.
 
 All proposed changes are generated as GitHub Issues for human review before being applied.
 
@@ -116,8 +118,6 @@ In brief: raise a GitHub Issue to report errors, suggest incidents, or propose n
 
 MIT licence. Free to use, adapt, and redistribute with attribution.
 
-A commercial product layer may be developed above this open-source core in future — see [CONTRIBUTING.md](CONTRIBUTING.md) for details.
-
 ## Disclaimer
 
 Provided for informational purposes only. Not legal, regulatory, or professional advice. Risk ratings are starting points for assessment, not prescribed values.
@@ -128,6 +128,6 @@ Provided for informational purposes only. Not legal, regulatory, or professional
 
 **[AI Risk Training Module](https://b-gowland.github.io/ai-risk-training/)** (`ai-risk-training`) — interactive scenario-based learning using the scenario seeds in each entry. Choose-your-own-adventure workplace scenarios with real consequences. Four personas per scenario. Open source.
 
-**All 26 scenarios live across 7 domains.**
-**Play:** [b-gowland.github.io/ai-risk-training](https://b-gowland.github.io/ai-risk-training/)
+**Live scenarios:** F2 Shadow AI · C4 Deepfakes · A1 Hallucination · E1 Algorithmic Bias  
+**Play:** [b-gowland.github.io/ai-risk-training](https://b-gowland.github.io/ai-risk-training/)  
 **Source:** [github.com/b-gowland/ai-risk-training](https://github.com/b-gowland/ai-risk-training)

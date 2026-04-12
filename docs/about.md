@@ -38,13 +38,13 @@ Content draws on and cross-references:
 
 ## Maintenance
 
-This knowledge base is designed to be maintained through a combination of automated monitoring and human review. The automation engine checks monitoring sources weekly, monthly, and quarterly — generating proposed updates for human review before any content changes are applied.
+This knowledge base is designed to be maintained through a combination of automated monitoring and human review. Gap detection runs weekly at zero cost, checking all 26 entries for schema violations and missing content. A full maintenance pass — verifying flagged claims and monitoring 8 external sources — runs monthly using the Anthropic API. All proposed changes are generated as GitHub Issues for human review before any content changes are applied.
 
 All factual claims are verified against primary sources before publication. Claims that cannot be verified are flagged inline rather than silently included.
 
 ## Designed for the future
 
-Each risk entry includes a **scenario seed** — a structured workplace scenario used as the basis for the companion training module. The [AI Risk Training Module](https://b-gowland.github.io/ai-risk-training/) is live, with **all 26 interactive choose-your-own-adventure scenarios** across all 7 AI risk domains — covering Technical, Governance, Security & Adversarial, Data, Fairness, Deployment, and Systemic risks. Each scenario supports four personas (Executive, Project Manager, Analyst, and Business User) with independent decision paths, totalling over 5 hours of interactive training content.
+Each risk entry includes a **scenario seed** — a structured workplace scenario used as the basis for the companion training module. The [AI Risk Training Module](https://b-gowland.github.io/ai-risk-training/) is live, with 14 interactive choose-your-own-adventure scenarios across all major AI risk domains — including Security & Adversarial, Governance, Data, Fairness, and Deployment risks.
 
 ## Licence
 

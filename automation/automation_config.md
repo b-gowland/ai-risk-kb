@@ -17,25 +17,45 @@
 schedule:
 
   weekly:
+    - name: gap_check
+      description: >
+        Gap detection across all 26 entries every Sunday at 02:00 UTC.
+        Checks for missing layers, incomplete controls, and schema violations.
+        No API key required — runs entirely on local content analysis.
+        Generates a GitHub Issue if any blocking gaps are found.
+      command: python automation_engine.py --mode gap-check
+      github_action: .github/workflows/weekly-gap-check.yml
+      output: reports/gaps_{date}.md
+      human_review_threshold: any_blocking_gaps_found
+      notify: GitHub Issue (automatic)
+      estimated_cost_per_run: $0.00
+      estimated_annual_cost: $0.00
+
+  monthly:
     - name: full_maintenance_pass
       description: >
-        Complete weekly pass — monitoring all sources, gap detection across all
-        entries, and verification of all flagged claims. Runs every Sunday at
-        02:00 UTC via GitHub Actions. Generates a GitHub Issue for human review
-        if any action items are found.
+        Complete monthly pass — verification of flagged claims and monitoring
+        of all 8 configured sources. Runs on the 1st of each month at 03:00 UTC.
+        Requires ANTHROPIC_API_KEY. Claude reasons from training knowledge —
+        no live web search. Generates a GitHub Issue for human review if any
+        action items are found.
       command: python automation_engine.py --mode full
-      github_action: .github/workflows/weekly-full.yml
+      github_action: .github/workflows/monthly-full.yml
       output: reports/
       human_review_threshold: any_items_found
       notify: GitHub Issue (automatic)
-      estimated_cost_per_run: $1.35–$2.45 USD
-      estimated_annual_cost: $70–$130 USD
+      estimated_cost_per_run: ~$2.70 USD
+      estimated_annual_cost: ~$32 USD (~$50 AUD)
+      note: >
+        Cost confirmed April 2026. web_search_20250305 tool is NOT used —
+        it is unavailable via the Anthropic API. Claude reasons from training
+        knowledge for both verification and monitoring passes.
 
   manually_triggered:
     - name: single_entry_pass
       description: Run full maintenance on a single entry — useful after editing
       command: python automation_engine.py --mode single --entry {entry_id}
-      github_action: .github/workflows/weekly-full.yml (workflow_dispatch with entry input)
+      github_action: .github/workflows/monthly-full.yml (workflow_dispatch with entry input)
 
   annually:
     - name: schema_review
@@ -287,7 +307,9 @@ optional:
 # External services:
 services:
   - Anthropic API key (set as ANTHROPIC_API_KEY environment variable)
-  - Web search capability (via Claude claude-sonnet-4-6 tool use)
+  - Required for monthly full run only — weekly gap check needs no API key
+  - Note: web_search_20250305 tool is NOT used — unavailable via Anthropic API.
+    Claude reasons from training knowledge for verification and monitoring.
 
 # To run locally:
 quickstart: |
@@ -298,11 +320,8 @@ quickstart: |
 
 # To run on a schedule (using cron):
 cron_examples: |
-  # Weekly monitoring — Sunday 2am UTC
-  0 2 * * 0 cd /path/to/knowledge_base && python automation/automation_engine.py --mode monitor
+  # Weekly gap check — Sunday 2am UTC (no API key needed)
+  0 2 * * 0 cd /path/to/knowledge_base && python automation/automation_engine.py --mode gap-check
 
-  # Monthly gap check — 1st of month 3am UTC
-  0 3 1 * * cd /path/to/knowledge_base && python automation/automation_engine.py --mode gap-check
-
-  # Quarterly verification — 1st of Jan/Apr/Jul/Oct 4am UTC
-  0 4 1 1,4,7,10 * cd /path/to/knowledge_base && python automation/automation_engine.py --mode verify
+  # Monthly full run — 1st of month 3am UTC (requires ANTHROPIC_API_KEY)
+  0 3 1 * * cd /path/to/knowledge_base && python automation/automation_engine.py --mode full
