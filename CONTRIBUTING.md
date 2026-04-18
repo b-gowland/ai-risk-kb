@@ -14,10 +14,6 @@ Thanks for your interest. This knowledge base is open source and free to use for
 
 This project is licensed under the [MIT licence](./LICENSE). Free to use, adapt, and redistribute with attribution.
 
-## Commercial use notice
-
-A commercial product layer may be developed above this open-source core in future. Contributors should be aware of this before submitting. No contributor licence agreement (CLA) is required at this stage. If that changes, existing contributors will be notified directly before any CLA is introduced.
-
 ## Standards
 
 - All factual claims require a primary source (court filings, official reports, regulatory text, published research)
