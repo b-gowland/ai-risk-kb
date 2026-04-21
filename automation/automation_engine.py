@@ -80,6 +80,33 @@ def extract_text_from_response(response) -> str:
     return response.content[0].text
 
 
+def parse_json_from_response(response):
+    """
+    Parse JSON from a Claude API response, tolerating common formatting:
+    - markdown fences (```json ... ``` or ``` ... ```)
+    - leading or trailing prose
+    - leading whitespace
+
+    Uses json.JSONDecoder.raw_decode to extract the first well-formed JSON
+    value in the text and ignore anything after it. Raises json.JSONDecodeError
+    if no parseable JSON value is found.
+    """
+    raw = extract_text_from_response(response)
+    # Strip markdown fences if present (single pass, in either order)
+    cleaned = raw.strip()
+    cleaned = cleaned.removeprefix("```json").removeprefix("```").removesuffix("```").strip()
+
+    # Find the first '{' or '[' and raw_decode from there.
+    # This skips any leading prose Claude may have added.
+    for idx, ch in enumerate(cleaned):
+        if ch in "{[":
+            decoder = json.JSONDecoder()
+            obj, _end = decoder.raw_decode(cleaned[idx:])
+            return obj
+    # No JSON structure found
+    raise json.JSONDecodeError("No JSON object or array found in response", cleaned, 0)
+
+
 # Review cadence settings
 REVIEW_CADENCE_DAYS = {
     "incident_examples": 90,  # Quarterly
@@ -351,11 +378,9 @@ Entry content:
             messages=[{"role": "user", "content": prompt}],
         )
         try:
-            raw = extract_text_from_response(response)
-            clean = raw.strip().removeprefix("```json").removeprefix("```").removesuffix("```").strip()
-            claims = json.loads(clean)
+            claims = parse_json_from_response(response)
         except Exception as e:
-            print(f"[verify] Claim extraction failed for {entry_id}: {e}")
+            print(f"[verify] Claim extraction failed for {entry_id}: {e}", flush=True)
             return []
         for claim in claims:
             claim["entry_id"] = entry_id
@@ -394,10 +419,7 @@ Return ONLY a JSON object with no preamble or markdown fences:
             messages=[{"role": "user", "content": search_prompt}],
         )
         try:
-            raw = extract_text_from_response(response)
-            # Strip markdown fences if present
-            clean = raw.strip().removeprefix("```json").removeprefix("```").removesuffix("```").strip()
-            data = json.loads(clean)
+            data = parse_json_from_response(response)
             return VerificationResult(
                 entry_id=claim.get("entry_id", "unknown"),
                 claim=claim["claim"],
@@ -473,10 +495,7 @@ Return ONLY a JSON object with no preamble or markdown fences:
             messages=[{"role": "user", "content": prompt}],
         )
         try:
-            raw = extract_text_from_response(response)
-            # Strip markdown fences if present
-            clean = raw.strip().removeprefix("```json").removeprefix("```").removesuffix("```").strip()
-            data = json.loads(clean)
+            data = parse_json_from_response(response)
             return MonitoringResult(source_name=source["name"], checked_at=utc_isoformat(), **data)
         except Exception as e:
             return MonitoringResult(
@@ -882,11 +901,9 @@ Entry content:
             messages=[{"role": "user", "content": prompt}],
         )
         try:
-            raw = extract_text_from_response(response)
-            clean = raw.strip().removeprefix("```json").removeprefix("```").removesuffix("```").strip()
-            return json.loads(clean)
+            return parse_json_from_response(response)
         except Exception as e:
-            print(f"[draft] Persona hook generation failed for {entry_id}: {e}")
+            print(f"[draft] Persona hook generation failed for {entry_id}: {e}", flush=True)
             return {"executive": "", "project_manager": "", "security_analyst": ""}
 
     def generate_controls_summary(self, entry_id: str, entry_content: str) -> list[dict]:
@@ -916,11 +933,9 @@ Entry content:
             messages=[{"role": "user", "content": prompt}],
         )
         try:
-            raw = extract_text_from_response(response)
-            clean = raw.strip().removeprefix("```json").removeprefix("```").removesuffix("```").strip()
-            return json.loads(clean)
+            return parse_json_from_response(response)
         except Exception as e:
-            print(f"[draft] Controls summary generation failed for {entry_id}: {e}")
+            print(f"[draft] Controls summary generation failed for {entry_id}: {e}", flush=True)
             return []
 
     def apply_fixes_to_entry(self, entry_path: Path, gaps: list[GapReport]) -> dict:
@@ -1174,14 +1189,14 @@ class AutomationOrchestrator:
             status="running",
         )
 
-        print(f"[{run_id}] Starting automation run — mode: {mode}")
+        print(f"[{run_id}] Starting automation run — mode: {mode}", flush=True)
 
         entry_paths = list(KNOWLEDGE_BASE_PATH.glob("**/*.mdx"))
         if entry_filter:
             entry_paths = [p for p in entry_paths if entry_filter.upper() in p.stem.upper()]
 
         # STEP 1: Gap detection (always runs)
-        print(f"[{run_id}] Running gap detection on {len(entry_paths)} entries...")
+        print(f"[{run_id}] Running gap detection on {len(entry_paths)} entries...", flush=True)
         gap_map = {}
         for path in entry_paths:
             entry_id = parse_entry_id(path)
@@ -1199,7 +1214,7 @@ class AutomationOrchestrator:
         if mode in ("verify", "full", "single"):
             if self.verifier is None:
                 raise RuntimeError("Verification mode requires the Anthropic client.")
-            print(f"[{run_id}] Running verification pass...")
+            print(f"[{run_id}] Running verification pass...", flush=True)
             for path in entry_paths:
                 results = self.verifier.verify_entry(path)
                 run.verification_results.extend(results)
@@ -1223,11 +1238,11 @@ class AutomationOrchestrator:
         if mode in ("monitor", "full"):
             if self.monitor is None:
                 raise RuntimeError("Monitoring mode requires the Anthropic client.")
-            print(f"[{run_id}] Checking monitoring sources...")
+            print(f"[{run_id}] Checking monitoring sources...", flush=True)
             run.monitoring_results = self.monitor.run_all_sources()
 
         # STEP 4: Generate reports
-        print(f"[{run_id}] Generating reports...")
+        print(f"[{run_id}] Generating reports...", flush=True)
         timestamp = utc_now().strftime("%Y%m%d_%H%M")
 
         if run.verification_results:
@@ -1245,8 +1260,8 @@ class AutomationOrchestrator:
         if run.human_review_items:
             review_doc = self.reporter.generate_human_review_summary(run)
             (REPORTS_PATH / f"human_review_{timestamp}.md").write_text(review_doc)
-            print(f"[{run_id}] {len(run.human_review_items)} items require human review")
-            print(f"[{run_id}] Review document: reports/human_review_{timestamp}.md")
+            print(f"[{run_id}] {len(run.human_review_items)} items require human review", flush=True)
+            print(f"[{run_id}] Review document: reports/human_review_{timestamp}.md", flush=True)
 
         # Save full run record as JSON
         run.completed_at = utc_isoformat()
@@ -1254,7 +1269,7 @@ class AutomationOrchestrator:
         run_data = asdict(run)
         (REPORTS_PATH / f"run_{run_id}_{timestamp}.json").write_text(json.dumps(run_data, indent=2))
 
-        print(f"[{run_id}] Run complete — status: {run.status}")
+        print(f"[{run_id}] Run complete — status: {run.status}", flush=True)
         return run
 
 
