@@ -351,8 +351,11 @@ Entry content:
             messages=[{"role": "user", "content": prompt}],
         )
         try:
-            claims = json.loads(response.content[0].text)
-        except Exception:
+            raw = extract_text_from_response(response)
+            clean = raw.strip().removeprefix("```json").removeprefix("```").removesuffix("```").strip()
+            claims = json.loads(clean)
+        except Exception as e:
+            print(f"[verify] Claim extraction failed for {entry_id}: {e}")
             return []
         for claim in claims:
             claim["entry_id"] = entry_id
@@ -879,8 +882,11 @@ Entry content:
             messages=[{"role": "user", "content": prompt}],
         )
         try:
-            return json.loads(response.content[0].text)
-        except Exception:
+            raw = extract_text_from_response(response)
+            clean = raw.strip().removeprefix("```json").removeprefix("```").removesuffix("```").strip()
+            return json.loads(clean)
+        except Exception as e:
+            print(f"[draft] Persona hook generation failed for {entry_id}: {e}")
             return {"executive": "", "project_manager": "", "security_analyst": ""}
 
     def generate_controls_summary(self, entry_id: str, entry_content: str) -> list[dict]:
@@ -910,8 +916,11 @@ Entry content:
             messages=[{"role": "user", "content": prompt}],
         )
         try:
-            return json.loads(response.content[0].text)
-        except Exception:
+            raw = extract_text_from_response(response)
+            clean = raw.strip().removeprefix("```json").removeprefix("```").removesuffix("```").strip()
+            return json.loads(clean)
+        except Exception as e:
+            print(f"[draft] Controls summary generation failed for {entry_id}: {e}")
             return []
 
     def apply_fixes_to_entry(self, entry_path: Path, gaps: list[GapReport]) -> dict:

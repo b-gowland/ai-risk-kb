@@ -69,7 +69,14 @@ jobs:
 
             const gapReport = fs.readFileSync(path.join(reportsDir, gapFiles[0]), 'utf8');
 
-            if (!gapReport.includes('blocking')) {
+            // Parse the header line: "Total gaps: N (M blocking, K recommended)"
+            // Only open an issue when M > 0. The word "blocking" always appears
+            // in the report heading "## Blocking gaps (must fix before publication)",
+            // so a substring check on "blocking" would fire on every clean run.
+            const blockingMatch = gapReport.match(/Total gaps:\s*\d+\s*\(\s*(\d+)\s*blocking/);
+            const blockingCount = blockingMatch ? parseInt(blockingMatch[1], 10) : 0;
+
+            if (blockingCount === 0) {
               console.log('No blocking gaps — run completed cleanly.');
               return;
             }
@@ -78,7 +85,7 @@ jobs:
             await github.rest.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              title: `[Weekly gap check] Blocking gaps found — ${runDate}`,
+              title: `[Weekly gap check] ${blockingCount} blocking gap(s) found — ${runDate}`,
               body: gapReport.substring(0, 60000),
               labels: ['automation', 'human-review-required', 'gap-check']
             });
