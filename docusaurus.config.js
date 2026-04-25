@@ -22,6 +22,21 @@ const config = {
     locales: ['en'],
   },
 
+  scripts: [
+    {
+      src: 'https://plausible.io/js/pa-KshwKmFS5HmfreqjImvCc.js',
+      async: true,
+    },
+  ],
+
+  headTags: [
+    {
+      tagName: 'script',
+      attributes: {},
+      innerHTML: `window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()`,
+    },
+  ],
+
   presets: [
     [
       'classic',
