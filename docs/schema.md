@@ -27,7 +27,7 @@ next_review: date             # ISO date triggering automated review
 
 | Layer | Heading | Audience | Key fields |
 |-------|---------|----------|------------|
-| 1 | `## Layer 1 — Executive card` | Board, executives | Headline, summary, severity badge, key question, persona tabs |
+| 1 | `## Layer 1 — Start here` | All audiences | Headline, summary, severity badge, key question, persona tabs |
 | 2 | `## Layer 2 — Practitioner overview` | Risk, compliance, PMs | Risk description, likelihood drivers, consequence types, controls summary table |
 | 3 | `## Layer 3 — Controls detail` | Risk practitioners, audit | Full control descriptions, jurisdiction notes, KPIs |
 | 4 | `## Layer 4 — Technical implementation` | Engineers, security analysts | Code examples, tool references, compliance implementation |
