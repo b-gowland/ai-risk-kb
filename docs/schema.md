@@ -34,7 +34,7 @@ next_review: date             # ISO date triggering automated review
 
 ### Persona tabs (Layer 1)
 
-Each entry includes three persona-specific hooks in a tabbed interface:
+Each entry includes persona-specific hooks in a tabbed interface. All entries include three practitioner tabs. Entries linked from the Fork everyday track (A1, C4, E1) also include an **Everyday** tab written in plain language for general public readers.
 
 ```mdx
 <Tabs>
@@ -46,6 +46,11 @@ Each entry includes three persona-specific hooks in a tabbed interface:
   </TabItem>
   <TabItem value="analyst" label="Security Analyst">
   [2-3 sentences anchored to implementing controls or reviewing a vendor]
+  </TabItem>
+  {/* Everyday tab — only on A1, C4, E1 (Fork-linked entries) */}
+  <TabItem value="everyday" label="Everyday">
+  [Plain language for general public. No jargon, no framework codes.
+   Ends with a link back to the Fork scenario. See CONTENT_STYLE_GUIDE for voice rules.]
   </TabItem>
 </Tabs>
 ```

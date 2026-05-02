@@ -18,7 +18,7 @@ This knowledge base aims to bridge that gap: authoritative enough to be credible
 
 **26 risk entries** are organised across **7 domains** (A through G), each with four layers of depth:
 
-- **Layer 1** — Plain English executive card, designed for board members and senior executives with no AI background
+- **Layer 1 — Start here** — Plain English summary for any audience, with persona-specific tabs for executives, project managers, and security analysts — plus an **Everyday** tab for general public readers arriving from the [Fork everyday track](https://b-gowland.github.io/ai-risk-training/#/everyday)
 - **Layer 2** — Practitioner overview with controls ownership, effort estimates, and go-live criteria — designed for risk managers, compliance leads, and project managers
 - **Layer 3** — Full actionable controls with KPIs and jurisdiction notes — designed for risk practitioners and internal audit
 - **Layer 4** — Technical implementation with code examples and tool references — designed for security analysts and engineers
@@ -44,7 +44,9 @@ All factual claims are verified against primary sources before publication. Clai
 
 ## Designed for the future
 
-Each risk entry includes a **scenario seed** — a structured workplace scenario used as the basis for the companion training module. The [AI Risk Training Module](https://b-gowland.github.io/ai-risk-training/) is live, with 14 interactive choose-your-own-adventure scenarios across all major AI risk domains — including Security & Adversarial, Governance, Data, Fairness, and Deployment risks.
+Each risk entry includes a **scenario seed** — a structured workplace scenario used as the basis for the companion training module. The [AI Risk Training](https://b-gowland.github.io/ai-risk-training/) app is live with **26 interactive practitioner scenarios** — one for every entry — using a choose-your-own-adventure format with up to four professional personas per scenario.
+
+A separate **everyday track** — [Fork](https://b-gowland.github.io/ai-risk-training/#/everyday) — offers three public-facing scenarios on deepfake voice scams, AI hallucination, and algorithmic hiring decisions, designed for anyone who uses AI in daily life rather than in a professional risk context.
 
 ## Licence
 

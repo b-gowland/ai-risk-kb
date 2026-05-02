@@ -12,7 +12,9 @@ The AI Risk Knowledge Base is a practitioner reference, not a risk assessment. I
 
 This resource is designed for everyone involved in AI governance, deployment, and oversight — across every level of seniority and technical background.
 
-**Executives and board members** — use the Layer 1 executive cards to understand what a risk means, what the consequence of inaction is, and what question to ask about it.
+**Executives and board members** — use the Layer 1 **Start here** tab to understand what a risk means, what the consequence of inaction is, and what question to ask about it.
+
+**General public** — three entries (A1 Hallucination, C4 Deepfakes, E1 Algorithmic Bias) have an **Everyday** tab written in plain language with no jargon. These link to the [Fork everyday scenarios](https://b-gowland.github.io/ai-risk-training/#/everyday) if you want to explore the risk through a real-life situation.
 
 **Risk managers and compliance leads** — use Layer 2 to understand the risk mechanism, which controls apply, who owns each control, and what done looks like before a system goes live.
 
@@ -26,7 +28,7 @@ Every risk entry has four layers. You do not need to read all four — read to t
 
 | Layer | Audience | What you get |
 |-------|----------|--------------|
-| **1 — Executive card** | Board, executives | Plain English summary, severity, key question to ask, persona-specific hooks |
+| **1 — Start here** | All audiences | Plain English summary, severity, key question to ask, persona-specific tabs (Executive, PM, Analyst, Everyday) |
 | **2 — Practitioner overview** | Risk, compliance, PMs | Risk mechanism, likelihood drivers, controls summary with owner/effort/done criteria |
 | **3 — Controls detail** | Risk practitioners, audit | Full control descriptions, KPIs, jurisdiction-specific obligations |
 | **4 — Technical implementation** | Engineers, security analysts | Code examples, tool references, compliance implementation steps |
@@ -56,8 +58,10 @@ This is an open-source project. If you spot an error, know of a documented incid
 
 See the [Contributing guide](/docs/contributing) for how to raise an issue or submit a pull request.
 
-## Training module
+## Training app
 
-The [AI Risk Training Module](https://b-gowland.github.io/ai-risk-training/) is live and free. It contains all 26 interactive scenarios — one for every risk entry in this knowledge base — using a choose-your-own-adventure format with four personas per scenario: Executive, Project Manager, Analyst, and Business User. Each scenario presents workplace situations drawn from the entry's scenario seed, with branching decision paths, outcome feedback, and controls explanations.
+The [AI Risk Training](https://b-gowland.github.io/ai-risk-training/) app is live and free. It contains **26 interactive practitioner scenarios** — one for every risk entry in this knowledge base — using a choose-your-own-adventure format with up to four professional personas per scenario (Executive, Project Manager, Analyst, Business User). Each scenario presents workplace situations drawn from the entry's scenario seed, with branching decision paths, outcome feedback, and controls explanations.
 
-Total content: over 5 hours across 26 scenarios. No account required. Start from any scenario directly, or follow the knowledge base links at the bottom of each entry.
+Total content: approximately 5.3 hours across 26 scenarios. No account required.
+
+**Fork — everyday track:** Three of the most common everyday AI risks — deepfake voice scams, AI hallucination, and algorithmic hiring — are also available as public-facing scenarios at [Fork](https://b-gowland.github.io/ai-risk-training/#/everyday). These are written for general readers rather than practitioners and take 4–5 minutes each.
