@@ -1,8 +1,10 @@
-# AI Risk Knowledge Base
+# AI Risk Practice Library
 
 A free, open-source reference for understanding, assessing, and controlling AI risk — from board level to technical implementation.
 
 **Live site:** https://library.airiskpractice.org/
+**Companion training app:** https://app.airiskpractice.org/
+**Project home:** https://airiskpractice.org/
 
 ---
 
@@ -12,7 +14,7 @@ A practitioner reference covering 26 AI risk entries across 7 domains, with four
 
 | Layer | Audience | Content |
 |-------|----------|---------|
-| 1 — Executive card | Board, executives | Plain English summary, severity, key question, persona-specific hooks |
+| 1 — Start here | All audiences | Plain English summary, severity, key question, persona-specific tabs (Executive, PM, Analyst, Everyday) |
 | 2 — Practitioner overview | Risk, compliance, PMs | Risk mechanism, controls ownership, effort, go-live criteria |
 | 3 — Controls detail | Risk practitioners, audit | Full control descriptions, KPIs, jurisdiction notes |
 | 4 — Technical implementation | Engineers, security analysts | Code examples, tool references, compliance implementation |
@@ -54,80 +56,27 @@ ai-risk-kb/
 │   ├── how-to-use.md
 │   ├── about.md
 │   ├── schema.md
-│   ├── monitoring-sources.md
 │   ├── contributing.md
 │   └── changelog.md
 ├── automation/
-│   ├── automation_engine.py      # Maintenance engine
-│   ├── automation_config.md      # Schedule and configuration
-│   ├── pyproject.toml            # Python project + tool config
-│   └── tests/                    # Automation regression tests
-├── schema/
-│   └── entry_template.md         # Entry schema v0.2
-├── .github/workflows/
-│   ├── deploy.yml                # Build + deploy site
-│   ├── weekly-gap-check.yml      # Weekly gap detection (free, no API key)
-│   └── monthly-full.yml          # Monthly full maintenance run (API key required)
-└── src/
-    ├── pages/index.js            # Homepage
-    └── css/custom.css            # Site styling
+│   └── scripts/                  # Weekly gap-check + monthly maintenance
+└── .github/workflows/            # CI/CD and automation
 ```
 
-## Automated maintenance
+## Maintenance
 
-The knowledge base is designed for automated maintenance with a human review gate. GitHub Actions workflows run:
-
-- **Weekly** — gap detection across all 26 entries: checks for missing layers, incomplete controls, and schema violations. No API key required, zero cost.
-- **Monthly** — full maintenance pass: verification of flagged claims and monitoring of 8 configured sources using Claude's training knowledge. Requires `ANTHROPIC_API_KEY`. Estimated cost ~$2.70 USD/run.
-
-All proposed changes are generated as GitHub Issues for human review before being applied.
-
-To run the automation locally:
-
-```bash
-cd automation
-uv sync --dev
-uv run python automation_engine.py --mode gap-check
-
-# API-backed modes require ANTHROPIC_API_KEY
-export ANTHROPIC_API_KEY=your_key_here
-uv run python automation_engine.py --mode monitor
-uv run python automation_engine.py --mode verify
-uv run python automation_engine.py --mode full
-uv run python automation_engine.py --mode single --entry C2
-```
-
-## Running locally
-
-```bash
-git clone https://github.com/b-gowland/ai-risk-kb.git
-cd ai-risk-kb
-npm install
-npm start
-```
-
-The site will be available at `http://localhost:3000/ai-risk-kb/`
+Gap detection runs weekly (zero cost). Full maintenance pass runs monthly via Anthropic API (~$2.70/run). All changes go through GitHub Issues for human review before publication.
 
 ## Contributing
 
-See [CONTRIBUTING.md](docs/contributing.md) or the [contributing page](https://library.airiskpractice.org/docs/contributing) on the live site.
-
-In brief: raise a GitHub Issue to report errors, suggest incidents, or propose new entries. Submit a pull request for content changes. All factual claims must be verifiable against primary sources.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for how to raise an issue, suggest an update, or submit a pull request.
 
 ## Licence
 
-MIT licence. Free to use, adapt, and redistribute with attribution.
+Content: MIT licence. You are free to use, adapt, and redistribute with attribution.
 
-## Disclaimer
+## Related
 
-Provided for informational purposes only. Not legal, regulatory, or professional advice. Risk ratings are starting points for assessment, not prescribed values.
-
----
-
-## AI Risk Training Module — Live
-
-**[AI Risk Training Module](https://app.airiskpractice.org/)** (`ai-risk-training`) — interactive scenario-based learning using the scenario seeds in each entry. Choose-your-own-adventure workplace scenarios with real consequences. Four personas per scenario. Open source.
-
-**Live scenarios:** F2 Shadow AI · C4 Deepfakes · A1 Hallucination · E1 Algorithmic Bias  
-**Play:** [b-gowland.github.io/ai-risk-training](https://app.airiskpractice.org/)  
-**Source:** [github.com/b-gowland/ai-risk-training](https://github.com/b-gowland/ai-risk-training)
+- **Companion training app:** https://app.airiskpractice.org/
+- **Training repo:** https://github.com/b-gowland/ai-risk-training
+- **Project home:** https://airiskpractice.org/

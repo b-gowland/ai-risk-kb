@@ -89,11 +89,6 @@ const config = {
             position: 'left',
             href: 'https://app.airiskpractice.org/',
           },
-          {
-            href: 'https://github.com/b-gowland/ai-risk-kb',
-            label: 'GitHub',
-            position: 'right',
-          },
         ],
       },
 

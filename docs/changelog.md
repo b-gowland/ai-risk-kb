@@ -8,6 +8,20 @@ sidebar_position: 6
 
 All material changes to the knowledge base are documented here. Changes are version-controlled in the [GitHub repository](https://github.com/b-gowland/ai-risk-kb).
 
+## [1.3.0] — May 2026
+
+### Brand and domain
+- Project renamed to **AI Risk Practice Library** — part of [airiskpractice.org](https://airiskpractice.org/)
+- Live URL updated to [library.airiskpractice.org](https://library.airiskpractice.org/)
+- All internal links updated to new domain
+- Companion training app now at [app.airiskpractice.org](https://app.airiskpractice.org/)
+- Fork everyday track now at [app.airiskpractice.org/#/everyday](https://app.airiskpractice.org/#/everyday)
+
+### Design
+- Full visual re-skin: Playfair Display + DM Sans typography, amber accent, white background
+- New hero copy: "References explain the risks. This explains what to do."
+- Docusaurus upgraded 3.5.2 → 3.10.1
+
 ## [1.2.0] — May 2026
 
 ### Structure
@@ -15,7 +29,7 @@ All material changes to the knowledge base are documented here. Changes are vers
 - Schema reference updated to reflect new heading name
 
 ### New content
-- **Everyday tab** added to three entries linked from the [Fork everyday track](https://b-gowland.github.io/ai-risk-training/#/everyday):
+- **Everyday tab** added to three entries linked from the [Fork everyday track](https://app.airiskpractice.org/#/everyday):
   - **A1 — Hallucination**: plain language explanation of AI confident wrong answers, safe vs risky use patterns, link to Fork hallucination scenario
   - **C4 — Deepfakes**: plain language explanation of voice cloning scams, out-of-band verification, Scamwatch reporting, link to Fork deepfake scenario
   - **E1 — Algorithmic Bias**: plain language explanation of AI in hiring decisions, right to ask for reasons, link to Fork employment scenario

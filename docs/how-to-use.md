@@ -6,7 +6,7 @@ sidebar_position: 1
 
 # How to use this resource
 
-The AI Risk Knowledge Base is a practitioner reference, not a risk assessment. It helps you understand AI risks in depth, identify applicable controls, and engage with the topic at the level your role requires.
+The AI Risk Practice Library is a practitioner reference, not a risk assessment. It helps you understand AI risks in depth, identify applicable controls, and engage with the topic at the level your role requires.
 
 ## Who this is for
 
@@ -14,7 +14,7 @@ This resource is designed for everyone involved in AI governance, deployment, an
 
 **Executives and board members** — use the Layer 1 **Start here** tab to understand what a risk means, what the consequence of inaction is, and what question to ask about it.
 
-**General public** — three entries (A1 Hallucination, C4 Deepfakes, E1 Algorithmic Bias) have an **Everyday** tab written in plain language with no jargon. These link to the [Fork everyday scenarios](https://b-gowland.github.io/ai-risk-training/#/everyday) if you want to explore the risk through a real-life situation.
+**General public** — three entries (A1 Hallucination, C4 Deepfakes, E1 Algorithmic Bias) have an **Everyday** tab written in plain language with no jargon. These link to the [Fork everyday scenarios](https://app.airiskpractice.org/#/everyday) if you want to explore the risk through a real-life situation.
 
 **Risk managers and compliance leads** — use Layer 2 to understand the risk mechanism, which controls apply, who owns each control, and what done looks like before a system goes live.
 
@@ -58,10 +58,10 @@ This is an open-source project. If you spot an error, know of a documented incid
 
 See the [Contributing guide](/docs/contributing) for how to raise an issue or submit a pull request.
 
-## Training app
+## Companion training app
 
-The [AI Risk Training](https://b-gowland.github.io/ai-risk-training/) app is live and free. It contains **26 interactive practitioner scenarios** — one for every risk entry in this knowledge base — using a choose-your-own-adventure format with up to four professional personas per scenario (Executive, Project Manager, Analyst, Business User). Each scenario presents workplace situations drawn from the entry's scenario seed, with branching decision paths, outcome feedback, and controls explanations.
+The [AI Risk Training](https://app.airiskpractice.org/) app is live and free. It contains **26 interactive practitioner scenarios** — one for every risk entry in this knowledge base — using a choose-your-own-adventure format with up to four professional personas per scenario (Executive, Project Manager, Analyst, Business User). Each scenario presents workplace situations drawn from the entry's scenario seed, with branching decision paths, outcome feedback, and controls explanations.
 
 Total content: approximately 5.3 hours across 26 scenarios. No account required.
 
-**Fork — everyday track:** Three of the most common everyday AI risks — deepfake voice scams, AI hallucination, and algorithmic hiring — are also available as public-facing scenarios at [Fork](https://b-gowland.github.io/ai-risk-training/#/everyday). These are written for general readers rather than practitioners and take 4–5 minutes each.
+**Fork — everyday track:** Three of the most common everyday AI risks — deepfake voice scams, AI hallucination, and algorithmic hiring — are also available as public-facing scenarios at [app.airiskpractice.org/#/everyday](https://app.airiskpractice.org/#/everyday). These are written for general readers rather than practitioners and take 4–5 minutes each.

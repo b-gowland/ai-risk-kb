@@ -6,7 +6,7 @@ sidebar_position: 2
 
 # About this project
 
-The AI Risk Knowledge Base is a free, open-source reference for understanding, assessing, and controlling AI risk across organisations of any size, in any industry.
+The AI Risk Practice Library is a free, open-source reference for understanding, assessing, and controlling AI risk across organisations of any size, in any industry. It is part of [AI Risk Practice](https://airiskpractice.org/) — a free, open-source AI risk literacy resource.
 
 ## Why it exists
 
@@ -18,7 +18,7 @@ This knowledge base aims to bridge that gap: authoritative enough to be credible
 
 **26 risk entries** are organised across **7 domains** (A through G), each with four layers of depth:
 
-- **Layer 1 — Start here** — Plain English summary for any audience, with persona-specific tabs for executives, project managers, and security analysts — plus an **Everyday** tab for general public readers arriving from the [Fork everyday track](https://b-gowland.github.io/ai-risk-training/#/everyday)
+- **Layer 1 — Start here** — Plain English summary for any audience, with persona-specific tabs for executives, project managers, and security analysts — plus an **Everyday** tab for general public readers arriving from the [Fork everyday track](https://app.airiskpractice.org/#/everyday)
 - **Layer 2** — Practitioner overview with controls ownership, effort estimates, and go-live criteria — designed for risk managers, compliance leads, and project managers
 - **Layer 3** — Full actionable controls with KPIs and jurisdiction notes — designed for risk practitioners and internal audit
 - **Layer 4** — Technical implementation with code examples and tool references — designed for security analysts and engineers
@@ -42,15 +42,15 @@ This knowledge base is designed to be maintained through a combination of automa
 
 All factual claims are verified against primary sources before publication. Claims that cannot be verified are flagged inline rather than silently included.
 
-## Designed for the future
+## Companion training app
 
-Each risk entry includes a **scenario seed** — a structured workplace scenario used as the basis for the companion training module. The [AI Risk Training](https://b-gowland.github.io/ai-risk-training/) app is live with **26 interactive practitioner scenarios** — one for every entry — using a choose-your-own-adventure format with up to four professional personas per scenario.
+Each risk entry includes a **scenario seed** — a structured workplace scenario used as the basis for the companion training module. The [AI Risk Training](https://app.airiskpractice.org/) app is live with **26 interactive practitioner scenarios** — one for every entry — using a choose-your-own-adventure format with up to four professional personas per scenario.
 
-A separate **everyday track** — [Fork](https://b-gowland.github.io/ai-risk-training/#/everyday) — offers three public-facing scenarios on deepfake voice scams, AI hallucination, and algorithmic hiring decisions, designed for anyone who uses AI in daily life rather than in a professional risk context.
+A separate **everyday track** — [Fork](https://app.airiskpractice.org/#/everyday) — offers three public-facing scenarios on deepfake voice scams, AI hallucination, and algorithmic hiring decisions, designed for anyone who uses AI in daily life rather than in a professional risk context.
 
 ## Licence
 
-Content is published under the MIT licence. You are free to use, adapt, and redistribute it — with attribution.
+Content is published under the MIT licence. Code is published under Apache 2.0. You are free to use, adapt, and redistribute — with attribution.
 
 ## Important disclaimer
 
