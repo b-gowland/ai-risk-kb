@@ -2,12 +2,12 @@
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'AI Risk Knowledge Base',
-  tagline: 'A practitioner reference for understanding, assessing, and controlling AI risk — from board level to technical implementation.',
+  title: 'AI Risk Practice Library',
+  tagline: 'References explain the risks. This explains what to do.',
   favicon: 'img/favicon.ico',
 
-  url: 'https://b-gowland.github.io',
-  baseUrl: '/ai-risk-kb/',
+  url: 'https://library.airiskpractice.org',
+  baseUrl: '/',
 
   organizationName: 'b-gowland',
   projectName: 'ai-risk-kb',
@@ -62,7 +62,7 @@ const config = {
       image: 'img/social-card.png',
 
       navbar: {
-        title: 'AI Risk KB',
+        title: 'AI Risk Practice Library',
         logo: {
           alt: 'AI Risk Knowledge Base',
           src: 'img/logo.svg',
@@ -87,7 +87,7 @@ const config = {
           {
             label: 'Training Module',
             position: 'left',
-            href: 'https://b-gowland.github.io/ai-risk-training/',
+            href: 'https://app.airiskpractice.org/',
           },
           {
             href: 'https://github.com/b-gowland/ai-risk-kb',
@@ -141,7 +141,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Open source AI risk reference. Content is provided for informational purposes — not legal or regulatory advice. Last updated ${new Date().getFullYear()}.`,
+        copyright: `AI Risk Practice · airiskpractice.org · Open source under MIT licence. Not legal or regulatory advice. ${new Date().getFullYear()}.`,
       },
 
       prism: {

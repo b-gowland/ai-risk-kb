@@ -2,7 +2,7 @@
 
 A free, open-source reference for understanding, assessing, and controlling AI risk — from board level to technical implementation.
 
-**Live site:** https://b-gowland.github.io/ai-risk-kb/
+**Live site:** https://library.airiskpractice.org/
 
 ---
 
@@ -110,7 +110,7 @@ The site will be available at `http://localhost:3000/ai-risk-kb/`
 
 ## Contributing
 
-See [CONTRIBUTING.md](docs/contributing.md) or the [contributing page](https://b-gowland.github.io/ai-risk-kb/docs/contributing) on the live site.
+See [CONTRIBUTING.md](docs/contributing.md) or the [contributing page](https://library.airiskpractice.org/docs/contributing) on the live site.
 
 In brief: raise a GitHub Issue to report errors, suggest incidents, or propose new entries. Submit a pull request for content changes. All factual claims must be verifiable against primary sources.
 
@@ -126,8 +126,8 @@ Provided for informational purposes only. Not legal, regulatory, or professional
 
 ## AI Risk Training Module — Live
 
-**[AI Risk Training Module](https://b-gowland.github.io/ai-risk-training/)** (`ai-risk-training`) — interactive scenario-based learning using the scenario seeds in each entry. Choose-your-own-adventure workplace scenarios with real consequences. Four personas per scenario. Open source.
+**[AI Risk Training Module](https://app.airiskpractice.org/)** (`ai-risk-training`) — interactive scenario-based learning using the scenario seeds in each entry. Choose-your-own-adventure workplace scenarios with real consequences. Four personas per scenario. Open source.
 
 **Live scenarios:** F2 Shadow AI · C4 Deepfakes · A1 Hallucination · E1 Algorithmic Bias  
-**Play:** [b-gowland.github.io/ai-risk-training](https://b-gowland.github.io/ai-risk-training/)  
+**Play:** [b-gowland.github.io/ai-risk-training](https://app.airiskpractice.org/)  
 **Source:** [github.com/b-gowland/ai-risk-training](https://github.com/b-gowland/ai-risk-training)
