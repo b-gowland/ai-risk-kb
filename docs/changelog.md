@@ -50,7 +50,7 @@ All material changes to the knowledge base are documented here. Changes are vers
 ### Training module
 - 26 choose-your-own-adventure scenarios across all 7 domains
 - Four personas per scenario (Executive, Project Manager, Analyst, Business User); three personas for C1, C2, C3
-- Total training content: approximately 5.3 hours
+- Total training content: approximately 2–3 hours
 - Scenarios grounded in real documented incidents with verified facts
 
 ## [1.0.0] — March 2026

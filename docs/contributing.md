@@ -74,4 +74,6 @@ This project follows the [Contributor Covenant](https://www.contributor-covenant
 
 ## Questions
 
-Raise a GitHub issue or start a GitHub Discussion for questions about the project, scope, or contribution process.
+Raise a GitHub issue or start a GitHub Discussion for technical questions about the project, scope, or contribution process.
+
+For general questions or non-technical feedback: [hello@airiskpractice.org](mailto:hello@airiskpractice.org)

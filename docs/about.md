@@ -58,4 +58,4 @@ This resource is provided for informational purposes only. It is not legal, regu
 
 ## Contributing
 
-See the [Contributing guide](/docs/contributing) to raise an issue, suggest an update, or submit a pull request.
+See the [Contributing guide](/docs/contributing) to raise an issue, suggest an update, or submit a pull request. For general questions or non-technical feedback: [hello@airiskpractice.org](mailto:hello@airiskpractice.org)
