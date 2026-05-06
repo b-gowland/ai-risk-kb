@@ -15,7 +15,7 @@ import TabItem from '@theme/TabItem';
 
 <div style={{display:'flex',gap:'0.5rem',flexWrap:'wrap',marginBottom:'1.5rem'}}>
   <span className="severity-badge severity-high severity">High severity</span>
-  <span className="framework-chip">Privacy Act 1988 (Cth) / APPs</span> <span className="framework-chip">GDPR (EU)</span> <span className="framework-chip">EU AI Act Art. 10/26</span> <span className="framework-chip">APRA CPS 234</span>
+  <span className="framework-chip">Privacy Act 1988 (Cth) / APPs</span> <span className="framework-chip">GDPR (EU)</span> <span className="framework-chip">EU AI Act Art. 10/26</span>
 </div>
 
 **Domain:** D — Data | **Jurisdiction:** AU, EU, US, Global
@@ -26,7 +26,7 @@ import TabItem from '@theme/TabItem';
 
 > AI systems create multiple vectors for personal information breaches — through model memorisation, inference data transmission, and agent exfiltration.
 
-AI systems create privacy risks beyond traditional data handling. Models can memorise and reproduce personal data from training. Inference processes transmit data to external processors that may retain it. AI agents can exfiltrate data if compromised. The Samsung case (2023) demonstrates that employees routinely submit sensitive data to public AI tools without understanding the risk.
+AI systems create privacy risks beyond traditional data handling. Models can memorise and reproduce personal data from training. Inference processes transmit data to external processors that may retain it. AI agents can exfiltrate data if compromised. The Samsung case (2023) demonstrates that employees have submitted sensitive data to public AI tools without understanding the exposure risk.
 
 <div className="key-question">
 Has a Privacy Impact Assessment been completed for every AI system processing personal information, and have we confirmed that external AI APIs do not retain or train on submitted data?
@@ -34,7 +34,7 @@ Has a Privacy Impact Assessment been completed for every AI system processing pe
 
 <Tabs>
   <TabItem value="executive" label="Executive / Board">
-  AI systems create privacy risks that go beyond traditional data handling. The Samsung case (2023) demonstrates employees routinely submit sensitive data to public AI tools. The audit finding means your privacy controls for AI deployments are insufficient. Approving remediation means funding PIAs for AI systems, enterprise API tier requirements, and an acceptable use policy.
+  AI systems create privacy risks that go beyond traditional data handling. The Samsung case (2023) demonstrates that employees have submitted sensitive data to public AI tools — in three separate incidents within 20 days of being granted access. The audit finding means your privacy controls for AI deployments are insufficient. Approving remediation means funding PIAs for AI systems, enterprise API tier requirements, and an acceptable use policy.
   </TabItem>
   <TabItem value="pm" label="Project Manager">
   Any AI system processing personal information requires a Privacy Impact Assessment before go-live — mandatory under the Privacy Act and GDPR. Confirm: (1) PIA completed and approved; (2) vendor DPA confirms data not used for model training; (3) data minimisation applied. Legal and Compliance own the PIA; Technology owns data minimisation.
@@ -277,7 +277,7 @@ def screen_for_dpia(answers: dict[str, bool]) -> dict:
 
 ## Incident examples
 
-**Samsung / ChatGPT data leak (March 2023):** Samsung engineers submitted proprietary source code and internal meeting transcripts to ChatGPT for assistance with three separate incidents within 20 days of being permitted to use the tool. Data potentially entered OpenAI training pipelines. Samsung subsequently banned external AI tool use.
+**Samsung / ChatGPT data leak (March 2023):** Samsung engineers submitted proprietary source code and internal meeting transcripts to ChatGPT for assistance with three separate incidents within 20 days of being permitted to use the tool. Data potentially entered OpenAI training pipelines. Samsung subsequently banned external AI tool use. (CIO Dive, April 2023; Gizmodo, April 2023; AI Incident Database #768)
 
 **Healthcare AI agent data exposure (September 2024):** An AI agent exposed sensitive medical patient data while processing healthcare records. Incident highlighted privacy risks of agentic AI systems with broad data access.
 

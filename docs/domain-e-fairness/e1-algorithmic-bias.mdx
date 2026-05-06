@@ -15,7 +15,7 @@ import TabItem from '@theme/TabItem';
 
 <div style={{display:'flex',gap:'0.5rem',flexWrap:'wrap',marginBottom:'1.5rem'}}>
   <span className="severity-badge severity-high severity">High severity</span>
-  <span className="framework-chip">EU AI Act Art. 10</span> <span className="framework-chip">NIST AI RMF MEASURE 2.11</span> <span className="framework-chip">Colorado SB21-169</span> <span className="framework-chip">ASIC RG 271</span>
+  <span className="framework-chip">EU AI Act Art. 10</span> <span className="framework-chip">NIST AI RMF MEASURE 2.11</span> <span className="framework-chip">Colorado SB21-169</span>
 </div>
 
 **Domain:** E — Fairness & Social | **Jurisdiction:** AU, EU, US, Global
@@ -26,7 +26,7 @@ import TabItem from '@theme/TabItem';
 
 > AI models produce systematically different outcomes for individuals based on protected characteristics — even when those characteristics are not explicit inputs.
 
-AI models can produce systematically worse outcomes for people from certain groups based on protected characteristics — through proxy variables. Postcode correlates with race. Name patterns correlate with gender. A model can learn these correlations and reproduce discriminatory outcomes without ever receiving race or gender as an input. The SafeRent settlement ($2.275M, November 2024) established that algorithmic discrimination is an enforceable legal liability.
+AI models can produce systematically worse outcomes for people from certain groups based on protected characteristics — through proxy variables. Postcode correlates with race. Name patterns correlate with gender. A model can learn these correlations and reproduce discriminatory outcomes without ever receiving race or gender as an input. The SafeRent settlement ($2.275M, December 2024 final approval) established that algorithmic discrimination is an enforceable legal liability.
 
 <div className="key-question">
 Has disaggregated fairness testing been completed for every AI system making decisions about people — measuring model performance separately across demographic subgroups, not just overall accuracy?
@@ -34,7 +34,7 @@ Has disaggregated fairness testing been completed for every AI system making dec
 
 <Tabs>
   <TabItem value="executive" label="Executive / Board">
-  If your organisation uses AI for any decision affecting people — credit, insurance, employment, housing, benefits — fairness testing is a compliance requirement. The SafeRent settlement ($2.275M, November 2024) established this. The audit finding means fairness testing has not been conducted. What you are approving is pre-deployment bias testing and ongoing fairness monitoring.
+  If your organisation uses AI for any decision affecting people — credit, insurance, employment, housing, benefits — fairness testing is a compliance requirement. The SafeRent settlement ($2.275M, December 2024 final approval) established this. The audit finding means fairness testing has not been conducted. What you are approving is pre-deployment bias testing and ongoing fairness monitoring.
   </TabItem>
   <TabItem value="pm" label="Project Manager">
   Before any AI system making or influencing decisions about people goes live, disaggregated fairness testing must be completed and documented. Technology and Data Science own the testing; Risk and Compliance must review the results. If testing reveals significant performance disparities, the system should not go live until those disparities are addressed.
@@ -280,7 +280,7 @@ The following features frequently act as proxies for protected characteristics i
 
 ## Incident examples
 
-**SafeRent settlement $2.275M (November 2024):** SafeRent's AI tenant screening system used housing voucher status as a proxy for race, disproportionately harming Black and Hispanic applicants. Final court approval November 2024, Louis et al. v. SafeRent Solutions (D. Mass., Case No. 1:22-cv-10800).
+**SafeRent settlement $2.275M (2024):** SafeRent's AI tenant screening system used housing voucher status as a proxy for race, disproportionately harming Black and Hispanic applicants. Settlement certified April 2024, final court approval December 2024. (Louis et al. v. SafeRent Solutions, D. Mass., Case No. 1:22-cv-10800; Cohen Milstein case page; GAO-25-107196)
 
 **UK Home Office visa AI (2020):** UK Home Office visa processing AI flagged applications from certain nationalities at higher rates than statistical risk warranted. Discrimination investigation followed.
 
