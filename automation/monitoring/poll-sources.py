@@ -279,31 +279,72 @@ def poll_rss_feed(source_id: str, url: str, state: dict) -> list[dict]:
 
 def poll_mit_airr(source_id: str, state: dict) -> list[dict]:
     """
-    Poll MIT AI Risk Repository for new releases/updates.
-    Checks the GitHub repo for new releases and the blog index.
+    Poll MIT AI Risk Repository blog for new posts.
+
+    MIT AIRR publishes updates via blog posts at airisk.mit.edu/blog — this is
+    the authoritative signal for taxonomy updates, new subdomains, and dataset
+    releases. The April 2025 post ("new subdomain: multi-agent risks") is the
+    canonical example of what we need to catch.
+
+    Strategy: fetch the /blog index, extract post links and titles, diff against
+    last-seen. For each new post, fetch the post itself to extract a meaningful
+    excerpt for the classifier.
     """
     results = []
+    blog_url = "https://airisk.mit.edu/blog"
+    text = fetch_url(blog_url)
+    if not text:
+        return []
 
-    # GitHub repo releases
-    results.extend(poll_github_releases(source_id + "_gh", "mit-fsi-ai-banking/ai-risk-repository", state))
+    # Extract blog post links — typically /blog/post-slug pattern
+    post_links = re.findall(r'href=["\'](/blog/[a-z0-9][a-z0-9\-]+)["\']', text)
+    # Deduplicate preserving order
+    seen = set()
+    unique_links = []
+    for link in post_links:
+        if link not in seen and link != "/blog":
+            seen.add(link)
+            unique_links.append(link)
 
-    # Also try the main AIRR site index for blog/update posts
-    index_url = "https://airisk.mit.edu"
-    text = fetch_url(index_url)
-    if text:
-        last_seen_hash = state.get(source_id, {}).get("site_hash", "")
-        current_hash = hashlib.md5(text[:5000].encode()).hexdigest()
-        if current_hash != last_seen_hash and last_seen_hash:
-            results.append({
-                "source_id": source_id,
-                "type": "site_update",
-                "id": current_hash,
-                "title": "MIT AI Risk Repository — site content updated",
-                "url": index_url,
-                "body_excerpt": "Site content has changed since last check. Review airisk.mit.edu for new releases, taxonomy updates, or new subdomain additions.",
-                "release_date": utc_now()[:10],
-            })
-        state.setdefault(source_id, {})["site_hash"] = current_hash
+    last_seen_links = set(state.get(source_id, {}).get("seen_links", []))
+    new_links = [l for l in unique_links if l not in last_seen_links]
+
+    for link in new_links[:5]:  # cap at 5 new posts per run
+        full_url = f"https://airisk.mit.edu{link}"
+        post_text = fetch_url(full_url)
+
+        # Extract title
+        title_m = re.search(r'<h1[^>]*>(.*?)</h1>', post_text or "", re.S | re.I)
+        title = re.sub(r'<[^>]+>', '', title_m.group(1)).strip() if title_m else link
+
+        # Extract first substantive paragraph as excerpt
+        excerpt = ""
+        if post_text:
+            paras = re.findall(r'<p[^>]*>(.*?)</p>', post_text, re.S | re.I)
+            for p in paras:
+                clean = re.sub(r'<[^>]+>', '', p).strip()
+                if len(clean) > 80:  # skip nav/short paras
+                    excerpt = clean[:600]
+                    break
+
+        # Extract date if present
+        date_m = re.search(r'(\d{4}-\d{2}-\d{2})', post_text or "")
+        pub_date = date_m.group(1) if date_m else utc_now()[:10]
+
+        results.append({
+            "source_id": source_id,
+            "type": "blog_post",
+            "id": link,
+            "title": f"MIT AI Risk Repository: {title}",
+            "url": full_url,
+            "body_excerpt": excerpt or "New blog post published. Check for taxonomy updates, new subdomains, or dataset releases.",
+            "release_date": pub_date,
+        })
+        time.sleep(1)
+
+    # Update state — store all seen links
+    all_links = list(set(unique_links) | last_seen_links)
+    state.setdefault(source_id, {})["seen_links"] = all_links[:200]
 
     return results
 
