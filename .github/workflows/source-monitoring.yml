@@ -1,0 +1,175 @@
+name: Weekly — Source monitoring
+
+on:
+  schedule:
+    # Every Monday at 10:00 UTC
+    - cron: '0 10 * * 1'
+  workflow_dispatch:
+
+# Explicit minimum permissions
+permissions:
+  contents: write   # needed to commit updated last-seen-state.json
+  issues: write
+
+jobs:
+  source-monitoring:
+    name: Poll sources and classify
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # Need write access to commit state file
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install anthropic
+
+      - name: Poll sources
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "Polling all monitoring sources..."
+          python automation/monitoring/poll-sources.py
+
+      - name: Show diff summary
+        if: always()
+        run: |
+          if [ -f "automation/monitoring/monitoring-diff.json" ]; then
+            echo "## Monitoring diff" >> $GITHUB_STEP_SUMMARY
+            python3 -c "
+          import json, sys
+          d = json.load(open('automation/monitoring/monitoring-diff.json'))
+          print(f'Total new items: {d[\"total_new_items\"]}')
+          by_source = {}
+          for item in d['items']:
+              s = item['source_id']
+              by_source[s] = by_source.get(s, 0) + 1
+          for s, n in sorted(by_source.items()):
+              print(f'  {s}: {n}')
+          " >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Classify new items
+        if: success()
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          python automation/monitoring/classify.py
+          CLASSIFY_EXIT=$?
+          # Exit 2 means "action items found" — not a workflow failure
+          if [ $CLASSIFY_EXIT -eq 2 ]; then
+            echo "ACTION_ITEMS_FOUND=true" >> $GITHUB_ENV
+            exit 0
+          fi
+          exit $CLASSIFY_EXIT
+
+      - name: Commit updated state file
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add automation/monitoring/last-seen-state.json || true
+          git add automation/monitoring/monitoring-diff.json || true
+          git add automation/monitoring/monitoring-output/ || true
+          if git diff --cached --quiet; then
+            echo "No state changes to commit."
+          else
+            git commit -m "chore: update monitoring state [skip ci]"
+            git push origin main
+          fi
+
+      - name: Upload reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: monitoring-reports-${{ github.run_id }}
+          path: |
+            automation/monitoring/monitoring-diff.json
+            automation/monitoring/monitoring-output/
+          retention-days: 90
+          if-no-files-found: warn
+
+      - name: Create GitHub issue if action items found
+        if: env.ACTION_ITEMS_FOUND == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+
+            // Find latest monitoring report
+            const outputDir = 'automation/monitoring/monitoring-output';
+            if (!fs.existsSync(outputDir)) {
+              console.log('No monitoring output directory found.');
+              return;
+            }
+
+            const files = fs.readdirSync(outputDir)
+              .filter(f => f.endsWith('.md'))
+              .sort()
+              .reverse();
+
+            if (files.length === 0) {
+              console.log('No monitoring report found.');
+              return;
+            }
+
+            const reportPath = path.join(outputDir, files[0]);
+            const report = fs.readFileSync(reportPath, 'utf8');
+
+            // Count action types
+            const newDomain = (report.match(/## 🔴 New domain needed/g) || []).length;
+            const newEntry = (report.match(/## 🟠 New entry needed/g) || []).length;
+            const updateEntry = (report.match(/## 🟡 Update existing entry/g) || []).length;
+
+            const runDate = new Date().toISOString().split('T')[0];
+
+            let title = `[Source monitoring] `;
+            const parts = [];
+            if (newDomain) parts.push(`${report.match(/###.*?\n/g)?.filter((_, i, a) => {
+              const idx = report.indexOf('## 🔴');
+              return idx > -1;
+            }).length || 0} new domain`);
+
+            // Simpler title construction
+            const actionSections = [];
+            if (report.includes('## 🔴')) actionSections.push('new domain');
+            if (report.includes('## 🟠')) actionSections.push('new entry');
+            if (report.includes('## 🟡')) actionSections.push('entry updates');
+
+            title += actionSections.join(' + ') + ` — ${runDate}`;
+
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: title,
+              body: report.substring(0, 60000),
+              labels: ['automation', 'human-review-required', 'source-monitoring'],
+            });
+
+            console.log(`Issue created: ${title}`);
+
+      - name: Post run summary
+        if: always()
+        run: |
+          echo "## Weekly source monitoring complete" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Run date:** $(date -u +%Y-%m-%d)" >> $GITHUB_STEP_SUMMARY
+          echo "**Estimated cost:** ~\$0.10–0.40 USD" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [ -f "automation/monitoring/monitoring-diff.json" ]; then
+            TOTAL=$(python3 -c "import json; d=json.load(open('automation/monitoring/monitoring-diff.json')); print(d['total_new_items'])")
+            echo "**New items found:** $TOTAL" >> $GITHUB_STEP_SUMMARY
+          fi
+          if [ "$ACTION_ITEMS_FOUND" = "true" ]; then
+            echo "**Status:** ⚠️ Action items found — GitHub Issue opened for review" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "**Status:** ✅ No action required this cycle" >> $GITHUB_STEP_SUMMARY
+          fi
