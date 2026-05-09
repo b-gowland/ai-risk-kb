@@ -1,0 +1,269 @@
+---
+id: b5-agentic-logging
+title: "B5 — Agentic Logging & Auditability Gaps"
+sidebar_label: "B5 — Agentic Logging"
+sidebar_position: 5
+tags: [governance, agentic-ai, high-severity]
+last_verified: 2026-05-10
+next_review: 2026-11-10
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# B5 — Agentic Logging & Auditability Gaps
+
+<div style={{display:'flex', gap:'0.5rem', flexWrap:'wrap', marginBottom:'1.5rem'}}>
+  <span className="severity-badge severity-high">High severity</span>
+  <span className="framework-chip">EU AI Act Art. 12</span>
+  <span className="framework-chip">NIST AI RMF GOVERN 1.7</span>
+  <span className="framework-chip">NIST AI 600-1</span>
+  <span className="framework-chip">MITRE ATLAS</span>
+</div>
+
+**Domain:** B — Governance | **Jurisdiction:** AU, EU, US, Global
+
+---
+
+## Layer 1 — Start here
+
+> Agentic AI systems take real actions — but conventional logging was designed for human-operated systems. When an agent makes a bad decision or is exploited, the question "what happened and why?" often cannot be answered.
+
+When a conventional software system does something wrong, audit logs typically show who initiated the action, what the system did, and when. When an agentic AI system does something wrong, the logs typically show the tool call that was made — but not the chain of reasoning that led to it, which earlier actions created the context for it, or whether the agent was acting on legitimate instructions or injected ones. Auditability gaps in agentic systems are not just an operational problem; they are a regulatory compliance failure in jurisdictions requiring explainable AI decision-making.
+
+<div className="key-question">
+For each agentic AI system we operate, can we reconstruct the complete sequence of reasoning, inputs, and actions that led to any specific outcome — and does our logging meet the retention and detail requirements applicable to our regulatory context?
+</div>
+
+<Tabs>
+  <TabItem value="executive" label="Executive / Board">
+
+Regulatory frameworks including the EU AI Act, APRA, and NIST require that AI system decisions be explainable and auditable. Agentic systems — which act autonomously over long task horizons — create significant auditability challenges that conventional application logging does not address. If a regulator or legal proceeding requires you to explain why an AI agent took a specific action, you need logs that capture the reasoning chain, not just the final action. The question to ask your technology team: for every agentic system we run, can we answer "why did the agent do that" for any specific action it took?
+
+  </TabItem>
+  <TabItem value="pm" label="Project Manager">
+
+Agentic system logging must be addressed at design, not after deployment. Before go-live, confirm: (1) every agent action is logged with sufficient context to reconstruct the decision (not just the action); (2) logs meet your jurisdictional retention requirements; (3) in multi-agent systems, a correlation ID links all actions in a workflow so the complete chain is reconstructable. This is a go-live requirement for any agentic system used in high-risk decisions (credit, insurance, employment, compliance).
+
+  </TabItem>
+  <TabItem value="analyst" label="Security Analyst">
+
+Agentic logging has two purposes: operational debugging and security forensics. For forensics, the critical question is whether you can determine after an incident whether the agent was acting on legitimate instructions or was compromised via injection. This requires logging: the full input context at each decision point (or a hash of it), the reasoning chain where the model makes it available, the tool calls and their parameters, and the complete inter-agent message chain in multi-agent deployments. Standard APM tooling is insufficient for this. Design logging at the architecture stage.
+
+  </TabItem>
+</Tabs>
+
+---
+
+## Layer 2 — Practitioner overview
+
+### Risk description
+
+Conventional application logging captures what a system did: API calls, database queries, function invocations, user actions. This is sufficient for auditing deterministic systems — the same input always produces the same output, so the log of what happened explains why it happened.
+
+Agentic AI systems are not deterministic. The agent makes decisions based on a combination of its instructions, its context window at the time of the decision, its training, and the sequence of actions that have already occurred. The same final action can result from very different reasoning paths, and in particular from either legitimate task completion or from a successful injection attack.
+
+Without auditability controls designed for agentic systems, organisations face:
+
+- **Regulatory non-compliance:** EU AI Act Art. 12 requires logging for high-risk AI systems. APRA CPS 234 requires the ability to investigate and explain security incidents. Standard application logs do not meet these requirements for agentic systems.
+- **Security forensics failure:** When an agent is compromised via prompt injection, standard logs typically show the action taken but not that it was caused by an injected instruction. The attack is invisible in retrospect.
+- **Legal exposure:** In litigation or regulatory investigation, inability to explain agent decision-making may be treated as evidence of inadequate governance, independent of whether the decision itself was correct.
+
+### Likelihood drivers
+
+- Agentic system logging implemented using conventional application monitoring tools
+- Logs capture tool calls but not the context that led to them
+- Multi-agent systems log individual agents without chain-level correlation
+- Agent reasoning is not logged (model generates it but it is not retained)
+- Retention periods set for application logs rather than regulatory requirements
+- No defined incident investigation procedure for agentic system failures
+
+### Consequence types
+
+| Type | Example |
+|------|---------|
+| Regulatory non-compliance | Unable to demonstrate AI decision audit trail required under EU AI Act Art. 12 |
+| Security forensics failure | Cannot determine whether incident was injection attack or model error |
+| Legal exposure | Cannot reconstruct why agent took action that is subject to litigation |
+| Governance failure | Unable to detect pattern of out-of-scope agent behaviour across sessions |
+
+### Affected functions
+
+Technology · Security · Legal / Compliance · Risk
+
+### Controls summary
+
+| Control | Owner | Effort | Go-live required? | Definition of done |
+|---------|-------|--------|-------------------|-------------------|
+| Agentic action log design | Technology | Medium | <span className="required-badge required-golive">Required</span> | Log schema captures: session ID, agent ID, timestamp, input context hash, tool called, parameters, response, downstream action. Documented. |
+| Chain-level correlation in multi-agent systems | Technology | Medium | <span className="required-badge required-golive">Required</span> | Correlation ID assigned at workflow start, propagated through all inter-agent calls. Any action traceable to originating input. |
+| Log retention meeting regulatory requirements | Technology | Low | <span className="required-badge required-golive">Required</span> | Retention period documented and enforced: minimum 6 months for EU AI Act high-risk AI; 12 months recommended for APRA-regulated entities. |
+| Agentic incident investigation procedure | Security | Low | <span className="required-badge required-post">Post-launch</span> | Documented procedure for investigating agentic system failures. Tested at least annually with a simulated incident. |
+
+### Regulatory obligations
+
+| Jurisdiction | Key requirement | Mandatory? |
+|---|---|---|
+| **EU** | AI Act Art. 12 — automatic logging for high-risk AI systems; logs must enable verification of compliance | Yes (high-risk AI) |
+| **EU** | AI Act Art. 26(6) — deployers of high-risk AI must retain logs for minimum 6 months | Yes (high-risk AI deployers) |
+| **AU** | APRA CPS 234 — capability to detect, respond to, and investigate information security incidents | Yes |
+| **AU** | Privacy Act APP 11 — reasonable steps to protect personal information; auditability supports breach response | Yes (personal data) |
+| **Global** | NIST AI RMF GOVERN 1.7 — AI systems should produce audit trails | Voluntary |
+
+---
+
+## Layer 3 — Controls detail
+
+### B5-001 — Agentic action log design
+
+**Owner:** Technology | **Type:** Preventive | **Effort:** Medium | **Go-live required:** Yes
+
+Design a log schema for agentic systems that captures: session ID, agent ID, timestamp (UTC), a hash or identifier for the input context at this decision point (enabling reconstruction without logging full context if privacy constraints apply), tool invoked, tool parameters, tool response (truncated if large), and the action taken based on this tool response.
+
+Where the model provides reasoning traces (chain-of-thought, scratchpad), log these or store them separately with a reference in the action log. Reasoning traces are the primary mechanism for distinguishing legitimate model behaviour from injection-driven behaviour after an incident.
+
+Implement the log schema at the agent framework level — not as an afterthought in individual tool implementations — so it applies consistently to all agents built on the framework.
+
+**Jurisdiction notes:** EU — EU AI Act Art. 12 and Art. 26(6) | AU — APRA CPS 234 | US — NIST AI RMF GOVERN 1.7
+
+---
+
+### B5-002 — Chain-level correlation in multi-agent systems
+
+**Owner:** Technology | **Type:** Preventive | **Effort:** Medium | **Go-live required:** Yes
+
+Assign a correlation ID (trace ID) at the start of every agentic workflow. Propagate this ID through every inter-agent call, tool invocation, and external action within the workflow. Every log entry for any action in the workflow must reference this correlation ID.
+
+This enables: (1) reconstruction of the complete causal chain for any action; (2) detection of injection propagation patterns across agents; (3) audit trail that satisfies regulatory requirements for high-risk AI decision accountability.
+
+In practice, implement using distributed tracing standards (OpenTelemetry is recommended) so that agentic workflow traces can be correlated with application infrastructure traces.
+
+**Jurisdiction notes:** EU — EU AI Act Art. 12 | AU — APRA CPS 234 | US — NIST CSF IDENTIFY.AM
+
+---
+
+### B5-003 — Log retention meeting regulatory requirements
+
+**Owner:** Technology | **Type:** Preventive | **Effort:** Low | **Go-live required:** Yes
+
+Set retention periods based on the most stringent applicable regulatory requirement:
+- EU AI Act high-risk AI deployers: minimum 6 months (Art. 26(6))
+- APRA-regulated entities: minimum 12 months recommended (CPS 234)
+- GDPR-subject systems processing personal data: 12 months minimum, subject to data minimisation review
+- Financial services: align with applicable transaction log retention requirements (typically 5–7 years)
+
+Document the retention policy for each agentic system in its AI Register entry. Where privacy constraints limit what can be retained (e.g. logs referencing personal data), implement hashed context references rather than raw content, with a documented key management process for resolution.
+
+**Jurisdiction notes:** EU — EU AI Act Art. 26(6); GDPR Art. 30 | AU — APRA CPS 234; Privacy Act APP 11 | US — relevant to FFIEC and SEC guidance for financial services
+
+---
+
+### B5-004 — Agentic incident investigation procedure
+
+**Owner:** Security | **Type:** Detective | **Effort:** Low | **Go-live required:** No (post-launch)
+
+Document a step-by-step procedure for investigating agentic system failures. The procedure must address: (1) how to reconstruct the complete action sequence for any session; (2) how to identify whether an anomalous action was caused by injection, model error, or configuration failure; (3) who has access to full agent logs and under what circumstances; (4) escalation path for confirmed injection attacks; (5) regulatory notification requirements where personal data is involved.
+
+Test the procedure at least annually with a simulated incident — "the agent sent an email it should not have sent; reconstruct what happened."
+
+**Jurisdiction notes:** EU — EU AI Act Art. 26(5) — deployers must cooperate with market surveillance; requires investigation capability | AU — APRA CPS 234 | AU — Privacy Act — notifiable data breach scheme requires timely investigation
+
+---
+
+### KPIs
+
+| Metric | Target | Frequency |
+|--------|--------|-----------|
+| Agentic system log schema coverage | 100% of deployed agentic systems use approved log schema | Reviewed on each deployment |
+| Log retention compliance | 100% of agentic systems meet documented retention period | Quarterly audit |
+| Incident investigation procedure test | Completed annually with documented outcome | Annual |
+| Chain-level trace coverage in multi-agent systems | 100% of multi-agent workflows produce correlated traces | Continuous |
+
+---
+
+## Layer 4 — Technical implementation
+
+### Agentic action log schema (OpenTelemetry-aligned)
+
+```python
+import hashlib
+import json
+import time
+from dataclasses import dataclass, asdict
+from typing import Optional
+
+@dataclass
+class AgentActionLog:
+    trace_id: str           # Correlation ID for full workflow
+    span_id: str            # ID for this specific action
+    agent_id: str           # Which agent took this action
+    session_id: str         # User/task session
+    timestamp_utc: float    # Unix timestamp
+    input_context_hash: str # SHA-256 of input context (not full content)
+    tool_name: str          # Tool invoked
+    tool_params_hash: str   # SHA-256 of parameters (log separately if needed)
+    tool_response_excerpt: str  # First 500 chars of response
+    action_taken: str       # What the agent did based on tool response
+    reasoning_excerpt: Optional[str] = None  # Chain-of-thought if available
+    injection_flags: list = None  # Injection pattern matches detected
+
+def log_agent_action(
+    agent_id: str,
+    session_id: str,
+    trace_id: str,
+    tool_name: str,
+    tool_params: dict,
+    tool_response: str,
+    action_taken: str,
+    input_context: str,
+    reasoning: Optional[str] = None,
+) -> AgentActionLog:
+    entry = AgentActionLog(
+        trace_id=trace_id,
+        span_id=generate_span_id(),
+        agent_id=agent_id,
+        session_id=session_id,
+        timestamp_utc=time.time(),
+        input_context_hash=hashlib.sha256(input_context.encode()).hexdigest(),
+        tool_name=tool_name,
+        tool_params_hash=hashlib.sha256(
+            json.dumps(tool_params, sort_keys=True).encode()
+        ).hexdigest(),
+        tool_response_excerpt=tool_response[:500],
+        action_taken=action_taken,
+        reasoning_excerpt=reasoning[:500] if reasoning else None,
+        injection_flags=scan_for_injection_patterns(tool_response),
+    )
+    emit_to_log_store(entry)
+    return entry
+```
+
+**Tools:** OpenTelemetry (distributed tracing) · LangSmith (LLM observability) · Weights & Biases (model monitoring) · Arize AI (LLM observability) · Datadog LLM Observability
+
+---
+
+## Incident examples
+
+**Injection attack leaves no forensic trace (documented risk pattern):** Security researchers have documented that standard application logs for agentic systems typically capture the tool call that resulted from a successful injection attack but not the injected instruction that caused it. Post-incident investigation cannot distinguish an agent acting on legitimate instructions from an agent that was compromised. This is the canonical auditability gap for agentic systems and is the driver for the EU AI Act Art. 12 logging requirements. Source: OWASP LLM Top 10 2025; MITRE ATLAS documentation.
+
+**EU AI Act Art. 12 enforcement context (2025):** EU AI Act Art. 12 logging requirements for high-risk AI systems came into force in August 2025. The article requires that high-risk AI systems be capable of automatically generating logs enabling verification of compliance throughout their lifetime. Standard agentic system deployments that rely on application-layer logging typically do not meet this requirement without deliberate logging design. Source: EU AI Act Art. 12, Regulation (EU) 2024/1689; EU AI Office guidance.
+
+---
+
+## Scenario seed
+
+**Context:** A financial services firm deploys an AI agent to assist compliance officers with regulatory document review. The agent reads uploaded documents, flags potential compliance issues, and adds entries to the compliance tracking system.
+
+**Trigger event:** Twelve months after deployment, during a regulatory examination, the regulator asks the firm to demonstrate that a specific compliance determination made by the agent was correct and explain the agent's reasoning. The compliance team pulls the application logs. The logs show that the agent added an entry to the tracking system — but contain no record of which document it processed, what it found, or why it reached the determination it did.
+
+**Complicating factor:** The agent processes hundreds of documents per week. The specific document has been deleted from the intake queue. The model's reasoning at the time is unrecoverable.
+
+**Discussion questions:**
+1. Which logging controls, if in place, would have made this determination reconstructable?
+2. What is the firm's regulatory exposure from inability to demonstrate the basis for this AI-assisted compliance determination?
+3. How should the firm's AI Register entry for this system be updated?
+4. What changes to the logging architecture are needed before the next examination?
+
+**Difficulty:** Intermediate | **Applicable jurisdictions:** AU, EU
+
+**[▶ Play the governance scenario](https://app.airiskpractice.org/#/scenario/b1-accountability)** — Nobody's Problem: Accountability Gaps in AI Systems (related scenario).

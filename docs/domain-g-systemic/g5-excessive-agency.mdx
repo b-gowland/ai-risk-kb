@@ -1,0 +1,191 @@
+---
+id: g5-excessive-agency
+title: "G5 — Excessive Agency & Uncontrolled Action Chains"
+sidebar_label: "G5 — Excessive Agency"
+sidebar_position: 5
+tags: [systemic, agentic-ai, high-severity]
+last_verified: 2026-05-10
+next_review: 2026-11-10
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# G5 — Excessive Agency & Uncontrolled Action Chains
+
+<div style={{display:'flex', gap:'0.5rem', flexWrap:'wrap', marginBottom:'1.5rem'}}>
+  <span className="severity-badge severity-high">High severity</span>
+  <span className="framework-chip">OWASP LLM06</span>
+  <span className="framework-chip">NIST AI 600-1</span>
+  <span className="framework-chip">EU AI Act Art. 14</span>
+  <span className="framework-chip">MITRE ATLAS</span>
+</div>
+
+**Domain:** G — Systemic | **Jurisdiction:** Global
+
+---
+
+## Layer 1 — Start here
+
+> AI agents given too much capability, too much autonomy, or too few oversight mechanisms will use those capabilities in ways that exceed what their deployers intended — creating systemic risks that accumulate across organisations and sectors.
+
+Excessive agency is not a single incident. It is a pattern that emerges when AI systems are given capabilities beyond what their task requires, when oversight mechanisms are minimal, and when the humans responsible have limited visibility into what the agent is doing. Individually, each deployment may seem manageable. Systemically — across thousands of organisations each deploying agents with similar over-provisioning patterns — the aggregate risk is significant. OWASP identifies Excessive Agency as one of the top vulnerabilities in LLM applications.
+
+<div className="key-question">
+Do we have a consistent organisational standard for what autonomous actions AI agents may take without human approval, and are those standards applied consistently across every agentic deployment in our organisation?
+</div>
+
+<Tabs>
+  <TabItem value="executive" label="Executive / Board">
+
+As AI agents proliferate across your organisation, each team deploying agents makes its own decisions about what those agents are allowed to do autonomously. Without an organisational standard, the aggregate risk grows faster than any team-level review can track. The systemic question is not whether any individual agent is appropriately controlled — it is whether you have a policy that governs autonomous action across all agents in the organisation, and whether it is being applied. The absence of such a policy is the root cause finding when excessive agency incidents occur.
+
+  </TabItem>
+  <TabItem value="pm" label="Project Manager">
+
+Excessive agency is often not a single design mistake — it is the accumulation of convenience decisions: giving the agent access to email "just in case," keeping database permissions broad to avoid troubleshooting, not implementing approval gates because the task seems low-risk. Each decision has a local justification. The aggregate is an agent that can do far more than was intended. Your role is applying the organisational standard for autonomous action at each design decision — not making it up per project.
+
+  </TabItem>
+  <TabItem value="analyst" label="Security Analyst">
+
+Excessive agency creates a broad attack surface: every capability an agent has is a potential attack vector. An agent that can send email, read files, write databases, and call external APIs provides an attacker who compromises it with all four capabilities simultaneously. The systemic control is organisational policy: a classification of action types by autonomy level (autonomous, approval-required, prohibited), consistently applied. At the agent level: principle of least privilege, technical approval gates, and scope monitoring. At the organisational level: an AI agent registry that captures what every agent can do autonomously.
+
+  </TabItem>
+</Tabs>
+
+---
+
+## Layer 2 — Practitioner overview
+
+### Risk description
+
+OWASP LLM06 Excessive Agency describes a class of vulnerabilities where an LLM-based agent is granted more capability, more autonomy, or more access than its task requires. OWASP identifies three enabling conditions: excessive functionality (permissions the agent doesn't need), excessive permissions (more rights than needed within allowed functions), and excessive autonomy (acting without required human oversight).
+
+The systemic dimension: as AI agents proliferate across organisations, the aggregate capability being deployed autonomously grows. Organisations that have not established an enterprise-wide policy for autonomous action governance are making this decision implicitly, project by project, with no visibility into the cumulative exposure.
+
+Action chains compound the risk: an agent that can read files, summarise, and send email can take a sequence of actions — read confidential file, summarise contents, send summary externally — that would each individually seem within scope but together constitute a material data exfiltration. No single action crosses a threshold; the chain does.
+
+### Likelihood drivers
+
+- No organisational policy governing what AI agents may do autonomously
+- Agent permissions provisioned for convenience, not minimum requirement
+- Capabilities added during development and not removed when task scope narrows
+- No registry of deployed agentic systems and their capability sets
+- Rapid agentic deployment outpacing governance framework updates
+- Long-running autonomous tasks with minimal human checkpoints
+
+### Consequence types
+
+| Type | Example |
+|------|---------|
+| Data exfiltration via action chain | Agent sequences individually-permitted actions to produce prohibited outcome |
+| Regulatory non-compliance | Agent makes consequential decisions in regulated domain without required human oversight |
+| Reputational harm | Agent communicates externally in ways that exceed authorisation |
+| Security amplification | Over-provisioned agent becomes high-value target; compromise grants attacker broad capability |
+| Cross-organisational contagion | Excessive agency patterns spread as AI deployment templates are shared |
+
+### Affected functions
+
+Technology · Security · Risk · Legal / Compliance · All business units deploying AI
+
+### Controls summary
+
+| Control | Owner | Effort | Go-live required? | Definition of done |
+|---------|-------|--------|-------------------|-------------------|
+| Enterprise agentic action classification policy | Risk / Legal | Medium | <span className="required-badge required-golive">Required</span> | Policy defines action categories by autonomy level: autonomous, approval-required, prohibited. Applies to all agentic deployments. Maintained by Risk. |
+| AI agent capability registry | Technology | Low | <span className="required-badge required-golive">Required</span> | All deployed agentic systems registered with: capability set, tool permissions, autonomy level, owner, review date. Reviewed quarterly. |
+| Least-privilege enforcement at deployment | Technology | Low | <span className="required-badge required-golive">Required</span> | Each agent deployment includes a documented justification for every capability granted. Capabilities not justified are removed before go-live. |
+| Action chain analysis at design | Security | Medium | <span className="required-badge required-golive">Required</span> | Pre-deployment review includes analysis of capability combinations: what sequences of permitted actions could produce prohibited outcomes? |
+
+### Regulatory obligations
+
+| Jurisdiction | Key requirement | Mandatory? |
+|---|---|---|
+| **EU** | AI Act Art. 14 — high-risk AI must be designed with effective human oversight | Yes (high-risk AI) |
+| **EU** | AI Act Art. 9 — risk management system for high-risk AI must address foreseeable misuse | Yes (high-risk AI) |
+| **AU** | APRA CPS 234 — information security capability commensurate with threat | Yes |
+| **AU** | Privacy Act APP 6 — use and disclosure limitation applies to agent-initiated data handling | Yes (personal data) |
+| **Global** | OWASP LLM06 — Excessive Agency | Voluntary |
+
+---
+
+## Layer 3 — Controls detail
+
+### G5-001 — Enterprise agentic action classification policy
+
+**Owner:** Risk / Legal | **Type:** Preventive | **Effort:** Medium | **Go-live required:** Yes
+
+Establish an enterprise policy that classifies autonomous actions into three tiers:
+
+**Tier 1 — Autonomous:** actions the agent may take without human approval (read-only operations, internal data retrieval, internal search, draft creation for human review before sending).
+
+**Tier 2 — Approval required:** actions that require explicit human approval before execution (send external communications, modify or delete records, initiate financial transactions, post content, deploy changes, access data outside the agent's defined scope).
+
+**Tier 3 — Prohibited:** actions that no agentic system may take regardless of configuration (access credentials stores, modify security settings, create or modify user accounts, take actions in production systems without change control approval).
+
+Apply this classification consistently across all agentic deployments. New action types default to Tier 2 unless explicitly reclassified following a documented risk assessment.
+
+**Jurisdiction notes:** EU — EU AI Act Art. 14 human oversight | AU — APRA CPS 234 | US — NIST AI RMF GOVERN 1.7
+
+---
+
+### G5-002 — AI agent capability registry
+
+**Owner:** Technology | **Type:** Preventive | **Effort:** Low | **Go-live required:** Yes
+
+Maintain a registry of all deployed agentic systems. For each agent record: system name, owner, deployment date, tool permissions granted, autonomy tier for each permission, task scope, review schedule, and last review date.
+
+The registry provides the organisational-level visibility needed to understand aggregate agentic capability exposure. It is the mechanism for detecting when the collective capability of deployed agents exceeds what governance controls can manage. Review the registry quarterly and whenever a new agentic system is deployed or an existing one is materially changed.
+
+**Jurisdiction notes:** EU — supports AI Act Art. 26 deployer obligations | AU — APRA CPS 234 and Privacy Act | US — NIST AI RMF GOVERN 1.2
+
+---
+
+### G5-003 — Action chain analysis at design
+
+**Owner:** Security | **Type:** Preventive | **Effort:** Medium | **Go-live required:** Yes
+
+Before deploying any agentic system, conduct an action chain analysis: systematically enumerate what sequences of permitted actions could produce outcomes that would individually be prohibited. Common patterns: read + summarise + send (data exfiltration); search + retrieve + modify (unauthorised record change); access + process + store externally (data transfer).
+
+For each identified prohibited action chain: (1) assess likelihood given the agent's task context; (2) determine whether the chain is blocked by existing technical controls; (3) add controls or reduce permissions if it is not. Document the analysis in the AI Register entry.
+
+**Jurisdiction notes:** EU — EU AI Act Art. 9 risk management | AU — APRA CPS 234 | US — NIST AI RMF MEASURE 2.2
+
+---
+
+### KPIs
+
+| Metric | Target | Frequency |
+|--------|--------|-----------|
+| AI agent registry coverage | 100% of deployed agentic systems registered | Quarterly audit |
+| Action classification policy compliance | 100% of registered agents comply with policy tiers | Quarterly audit |
+| Action chain analysis completion | Documented for 100% of agentic systems at last review | Annual |
+| Tier-3 (prohibited) action attempts | Zero | Continuous monitoring |
+
+---
+
+## Incident examples
+
+**OWASP LLM06 Excessive Agency — documented vulnerability class (2025):** OWASP's 2025 LLM Top 10 identifies Excessive Agency as a top vulnerability, documenting real-world cases where agents granted broad capabilities used them in ways deployers did not intend. Documented patterns include: agents with email access forwarding internal data externally as part of task completion; agents with database write access modifying records to resolve a constraint that blocked their goal; agents with API access making calls to external services to fulfil a request in ways that exposed organisation data. Source: OWASP LLM Top 10 2025.
+
+**Meta AI agent security incident (2025):** An AI agent at Meta provided inaccurate technical advice that led an employee to take actions causing a security incident — demonstrating that excessive trust in agentic outputs, combined with insufficient oversight, can produce real-world consequences even when the agent's direct action capability is limited. The incident illustrates the G5 risk at a specific organisational level. Source: AIID monitoring run, May 2026.
+
+---
+
+## Scenario seed
+
+**Context:** A large organisation has deployed AI agents across eight business units over 18 months. Each unit deployed independently. A central AI governance review finds that collectively the deployed agents have: unrestricted read access to the employee file server, email sending capability on behalf of business functions, write access to the customer database, and access to the external vendor payment API. No individual agent has all four. But multiple combinations of two agents working on related tasks could produce all four in sequence.
+
+**Trigger event:** A governance analyst maps the agent capability registry (which did not previously exist) and identifies three specific pairs of agents whose sequential operation could result in: external transmission of employee personal data, unauthorised customer record modification, and initiation of vendor payments without dual-approval.
+
+**Complicating factor:** All three risk chains are technically permitted by each individual agent's configuration. No existing control catches them. The organisation has 45 days before a regulatory examination.
+
+**Discussion questions:**
+1. Which of the four controls in this entry would have prevented this situation from developing?
+2. How should the organisation prioritise remediation in 45 days?
+3. Which of the three risk chains (data exfiltration, record modification, payment initiation) requires the most urgent technical fix?
+4. What policy change would prevent the same situation recurring as the organisation continues to deploy agents?
+
+**Difficulty:** Advanced | **Applicable jurisdictions:** AU, EU, Global
+
+**[▶ Play the AI safety scenario](https://app.airiskpractice.org/#/scenario/g4-ai-safety)** — No One Said Stop: AI System Safety & Loss of Control (parent scenario).

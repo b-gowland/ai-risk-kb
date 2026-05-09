@@ -4,8 +4,8 @@ title: "B4 — Third-Party / Supply Chain AI Risk"
 sidebar_label: "B4 — Supply Chain"
 sidebar_position: 4
 tags: [b, high-severity]
-last_verified: 2026-03-28
-next_review: 2026-09-28
+last_verified: 2026-05-10
+next_review: 2026-11-10
 ---
 
 import Tabs from '@theme/Tabs';
@@ -274,6 +274,12 @@ class AIBillOfMaterials:
 **Samsung / ChatGPT data leak (2023):** Samsung engineers submitted proprietary source code and internal meeting notes to ChatGPT for assistance, potentially making that data available for model training. Samsung subsequently banned external AI tool use. Three separate incidents within 20 days. (CIO Dive, April 2023; Gizmodo, April 2023; AI Incident Database #768)
 
 **npm supply chain attack (2025):** Compromised open-source Python/npm packages introduced malicious code affecting downstream model behaviour, demonstrating supply chain risk in AI dependencies.
+
+**AI Supply Chain Rug Pull (ATLAS v5.5, 2025):** MITRE ATLAS v5.5 documented the AI Supply Chain Rug Pull technique — where a dependency that appears legitimate is later modified to behave maliciously. In the AI context this includes model weights, fine-tuning datasets, or tool packages that are substituted or silently updated after passing initial vetting. Organisations with no model pinning or integrity verification are exposed after initial due diligence is complete. Source: MITRE ATLAS v5.5.0 (2025).
+
+**AI Supply Chain Reputation Inflation (ATLAS v5.5, 2025):** MITRE ATLAS v5.5 also documented Reputation Inflation — manipulation of open-source download counts, stars, and community signals to create the appearance of a trustworthy, widely-used AI component. Organisations that rely on community adoption metrics as a proxy for trustworthiness in AI component selection are directly targeted by this technique. Source: MITRE ATLAS v5.5.0 (2025).
+
+**MCP server supply chain compromise (ATLAS v5.3, 2025):** MITRE ATLAS v5.3 documented compromise of MCP (Model Context Protocol) servers as a supply chain attack vector. A compromised MCP server can inject malicious instructions into an agent's context, cause data exfiltration, or redirect agent actions. Organisations deploying AI agents that connect to third-party MCP servers inherit the security posture of those servers. Source: MITRE ATLAS v5.3.0 (2025).
 
 ---
 

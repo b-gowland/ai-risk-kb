@@ -4,8 +4,8 @@ title: "C1 — Data Poisoning"
 sidebar_label: "C1 — Data Poisoning"
 sidebar_position: 1
 tags: [c, high-severity]
-last_verified: 2026-03-28
-next_review: 2026-09-28
+last_verified: 2026-05-10
+next_review: 2026-11-10
 ---
 
 import Tabs from '@theme/Tabs';
@@ -320,6 +320,10 @@ def detect_synthetic_injection(
 **Oil refinery predictive maintenance attack (illustrative, documented technique):** Attackers upload a malicious model component that disables safety alarms while reporting normal sensor readings. Demonstrates that AI systems in industrial contexts are high-value data poisoning targets.
 
 **Email spam filter poisoning (documented research):** Attacker poisons training dataset by injecting labelled examples that teach the model to classify malicious emails as legitimate. Malicious emails bypass filtering undetected.
+
+**AI Agent Tool Data Poisoning (ATLAS v5.2–v5.4, 2025):** MITRE ATLAS v5.2 and v5.4 document a technique specific to agentic systems: poisoning the tools and data sources that AI agents rely on rather than the model weights themselves. An agent that reads from a database, retrieves documents, or calls external APIs as part of its workflow can be manipulated if any of those data sources are compromised. The agent processes poisoned tool outputs with the same trust as legitimate ones. This extends the poisoning attack surface beyond the training pipeline to include runtime data dependencies. Source: MITRE ATLAS v5.2.0 and v5.4.0 (2025).
+
+**Publish Poisoned AI Agent Tool (ATLAS v5.4, 2025):** MITRE ATLAS v5.4 documents a supply-chain poisoning technique where an adversary publishes a malicious AI agent tool to a public repository — a plugin, MCP server, or agent extension — that appears legitimate but contains embedded malicious behaviour. Organisations that allow AI agents to install or connect to tools from public repositories without vetting inherit the risk. Source: MITRE ATLAS v5.4.0 (2025).
 
 ---
 

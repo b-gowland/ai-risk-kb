@@ -1,0 +1,270 @@
+---
+id: f4-irreversibility-scope-creep
+title: "F4 — Irreversibility & Scope Creep in Autonomous Systems"
+sidebar_label: "F4 — Irreversibility & Scope Creep"
+sidebar_position: 4
+tags: [deployment, agentic-ai, high-severity]
+last_verified: 2026-05-10
+next_review: 2026-11-10
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# F4 — Irreversibility & Scope Creep in Autonomous Systems
+
+<div style={{display:'flex', gap:'0.5rem', flexWrap:'wrap', marginBottom:'1.5rem'}}>
+  <span className="severity-badge severity-high">High severity</span>
+  <span className="framework-chip">OWASP LLM06</span>
+  <span className="framework-chip">NIST AI 600-1</span>
+  <span className="framework-chip">EU AI Act Art. 14</span>
+  <span className="framework-chip">MITRE ATLAS v5.3</span>
+</div>
+
+**Domain:** F — Deployment | **Jurisdiction:** Global
+
+---
+
+## Layer 1 — Start here
+
+> Agentic AI systems can take sequences of actions that individually appear reasonable but cumulatively exceed what was authorised — and some of those actions cannot be undone once taken.
+
+When an AI agent makes a wrong decision, the cost depends on whether that decision is reversible. Deleting a record, sending an email, executing a financial transaction, or modifying a production system are not things you can take back with an apology. Agentic systems compound this: an agent pursuing a goal over a long task horizon will take many incremental steps, each of which may seem locally justified, while the cumulative effect moves far outside the original scope. By the time a human notices, the actions have already happened.
+
+<div className="key-question">
+For every agentic AI system we operate, have we defined what actions are irreversible, implemented technical gates requiring human approval before those actions are taken, and confirmed that the agent cannot expand its own scope without explicit authorisation?
+</div>
+
+<Tabs>
+  <TabItem value="executive" label="Executive / Board">
+
+AI agents act. Unlike AI systems that only produce text for a human to act on, agents send emails, modify databases, place orders, and execute code. Once those actions happen, they may be impossible or costly to reverse. The audit finding here is that no gate exists between the agent's decision to act and the action itself. What you are approving is a technical requirement: irreversible actions must route through a human approval step before execution. This is not optional for any agent with real-world consequences.
+
+  </TabItem>
+  <TabItem value="pm" label="Project Manager">
+
+Before any agentic AI system goes live, you need a completed irreversible action inventory: a list of every action the agent can take, categorised by whether it can be undone, and confirmation that human approval gates exist for every irreversible action. Scope must also be defined and bounded — what is the agent authorised to work on, and what triggers escalation when the task goes outside that boundary? These are go-live blockers. Document them in the AI Register.
+
+  </TabItem>
+  <TabItem value="analyst" label="Security Analyst">
+
+Your focus is the execution layer. Every irreversible action type (send, delete, deploy, pay, modify permissions) needs a technical gate — not a prompt instruction, not a guideline, a technical gate that cannot be bypassed by model output. Additionally, implement scope monitoring: detect when an agent's activity starts touching systems, data, or people outside its defined perimeter. OWASP LLM06 Excessive Agency is the canonical framing for this risk class. MITRE ATLAS v5.3 documents specific techniques for exploiting overly permissioned agents.
+
+  </TabItem>
+</Tabs>
+
+---
+
+## Layer 2 — Practitioner overview
+
+### Risk description
+
+Agentic AI systems operate with greater autonomy than conventional AI: they pursue goals over multiple steps, make decisions about what actions to take, and execute those actions using real tool permissions. This introduces two distinct risk categories:
+
+**Irreversibility:** Actions taken by an agent may have real-world consequences that cannot be reversed. Unlike a human operator who might draft an email before sending it, an agent with email permissions can send immediately. Unlike a human who knows to check before deleting a record, an agent may delete to free up processing capacity. Each action individually may seem locally justified to the agent's goal-directed reasoning, but the action itself is done.
+
+**Scope creep:** Agents pursuing goals over long task horizons have a tendency to expand their operational scope. To complete its assigned task, the agent may access systems it wasn't intended to touch, invoke permissions it wasn't intended to use, or take actions that are technically within its permission set but outside the intended scope of its deployment. OWASP LLM06 Excessive Agency describes the pattern where an agent is given more permissions than it needs and uses them beyond the intended context.
+
+These two risks interact: an out-of-scope action may also be irreversible, combining the consequences of both.
+
+### Likelihood drivers
+
+- Agent deployed with broad tool permissions "just in case"
+- No defined task boundary or scope constraints
+- No human approval gate for irreversible actions
+- Agent operates on long task horizons with minimal checkpoints
+- No monitoring of agent activity footprint relative to intended scope
+- Permissions granted at deployment not reviewed as agent capability expands
+
+### Consequence types
+
+| Type | Example |
+|------|---------|
+| Financial loss | Agent initiates transactions outside authorised scope |
+| Data loss | Agent deletes records or files as part of task completion |
+| Unauthorised communication | Agent sends emails on behalf of organisation beyond intended use |
+| Regulatory breach | Agent accesses or modifies personal data outside the specified purpose |
+| Reputational harm | Agent makes commitments or public statements outside its authorisation |
+
+### Affected functions
+
+Technology · Security · Operations · Legal / Compliance · Finance
+
+### Controls summary
+
+| Control | Owner | Effort | Go-live required? | Definition of done |
+|---------|-------|--------|-------------------|-------------------|
+| Irreversible action inventory and human approval gates | Technology | Medium | <span className="required-badge required-golive">Required</span> | All irreversible action types for this agent documented. Technical gates implemented — human must explicitly approve before each irreversible action. Documented in AI Register. |
+| Least-privilege tool permissions | Technology | Low | <span className="required-badge required-golive">Required</span> | Agent has only the tool permissions required for its defined task. Permissions reviewed and justified at deployment. Expansion requires documented approval. |
+| Task scope definition and boundary monitoring | Technology | Medium | <span className="required-badge required-golive">Required</span> | Agent's authorised scope documented. Monitoring alerts when agent activity touches systems or data outside defined scope. |
+| Checkpoint-based long task review | Technology | Low | <span className="required-badge required-post">Post-launch</span> | Agents operating on task horizons exceeding a defined duration or action count pause and present summary to human for review before continuing. |
+
+### Regulatory obligations
+
+| Jurisdiction | Key requirement | Mandatory? |
+|---|---|---|
+| **AU** | Privacy Act APP 6 — use and disclosure limitation; agent scope must match original purpose | Yes |
+| **AU** | APRA CPS 234 — security controls commensurate with risk | Yes |
+| **EU** | AI Act Art. 14 — human oversight for high-risk AI systems | Yes (high-risk AI) |
+| **EU** | GDPR Art. 5(1)(b) — purpose limitation for personal data | Yes (personal data) |
+| **Global** | OWASP LLM06 — Excessive Agency controls | Voluntary |
+
+---
+
+## Layer 3 — Controls detail
+
+### F4-001 — Irreversible action inventory and human approval gates
+
+**Owner:** Technology | **Type:** Preventive | **Effort:** Medium | **Go-live required:** Yes
+
+Before deploying any agentic system, complete an irreversible action inventory: enumerate every action type the agent can take and classify each as reversible (can be undone without significant cost), partially reversible (can be undone with cost), or irreversible (cannot be undone or reversal is prohibitively costly). Common irreversible categories: send external communications, delete records, initiate financial transactions, deploy to production systems, modify access permissions, post public content.
+
+For every irreversible action category, implement a technical approval gate that halts agent execution and routes to a human approver. The gate must be enforced at the execution layer — it cannot be a prompt instruction ("ask before sending"), because prompt instructions can be overridden by injection or by the model's own goal-directed reasoning. The gate is a hard technical control: the action cannot execute until approval is received.
+
+**Jurisdiction notes:** EU — EU AI Act Art. 14 human oversight obligation for high-risk AI | AU — APRA CPS 234 | US — NIST AI RMF MANAGE 4.2
+
+---
+
+### F4-002 — Least-privilege tool permissions
+
+**Owner:** Technology | **Type:** Preventive | **Effort:** Low | **Go-live required:** Yes
+
+Grant agents the minimum tool permissions required for their defined task — not what might be useful, not what is convenient to provision, only what is required. For each tool permission, document: why this permission is needed, what task requires it, and what the impact would be if the agent used this permission incorrectly or maliciously.
+
+Review tool permissions at the start of each deployment and whenever the agent's task scope changes. Permissions granted at deployment tend to persist and expand over time; review is needed to counteract this tendency. Any request to expand agent permissions should be treated as a significant change requiring documented approval from Technology and Security.
+
+**Jurisdiction notes:** AU — recommended under APRA CPS 234 | EU — EU AI Act Art. 9 risk management | US — NIST AI RMF GOVERN 1.7
+
+---
+
+### F4-003 — Task scope definition and boundary monitoring
+
+**Owner:** Technology | **Type:** Detective | **Effort:** Medium | **Go-live required:** Yes
+
+Define the operational scope of each agent deployment: what systems it may access, what data it may process, what people it may contact, what actions it may take autonomously. Make this definition explicit and machine-readable where possible. Implement monitoring that alerts when agent activity touches anything outside the defined scope — a different data store, a different user group, a different system.
+
+Scope violations do not necessarily indicate a security attack — they may indicate the agent reasoning its way to a solution that requires resources outside its authorised boundary. Both cases require human review. The monitoring alert is the signal to pause and assess.
+
+**Jurisdiction notes:** EU — GDPR Art. 5 purpose limitation | AU — Privacy Act APP 6 | US — NIST AI RMF MEASURE 2.5
+
+---
+
+### F4-004 — Checkpoint-based long task review
+
+**Owner:** Technology | **Type:** Preventive | **Effort:** Low | **Go-live required:** No (post-launch)
+
+For agents operating on long task horizons — tasks that span multiple hours, involve more than a defined number of actions, or access more than a defined number of systems — implement mandatory checkpoints where the agent presents a summary of actions taken so far and proposed next steps, and a human must explicitly approve continuation.
+
+This addresses the accumulation risk: individually reasonable steps adding up to an out-of-scope cumulative effect. The checkpoint is the mechanism for catching this before it compounds. Set the checkpoint interval based on task risk: higher-risk tasks (financial, regulatory, communications) warrant shorter intervals.
+
+**Jurisdiction notes:** EU — EU AI Act Art. 14 human oversight | AU — APRA CPS 230 | US — NIST AI RMF MANAGE 4.2
+
+---
+
+### KPIs
+
+| Metric | Target | Frequency |
+|--------|--------|-----------|
+| Irreversible action gate coverage | 100% of irreversible action types have technical gates | Reviewed on each deployment or permission change |
+| Scope boundary alerts reviewed | 100% reviewed within 4 hours | Continuous |
+| Least-privilege audit completion | Documented for 100% of deployed agents | Quarterly |
+| Checkpoint compliance | 100% of long-task agents have defined checkpoint intervals | Reviewed on each deployment |
+
+---
+
+## Layer 4 — Technical implementation
+
+### Irreversible action gate — implementation pattern
+
+```python
+IRREVERSIBLE_ACTIONS = {
+    "send_email": {"requires_approval": True, "category": "external_communication"},
+    "send_message": {"requires_approval": True, "category": "external_communication"},
+    "delete_record": {"requires_approval": True, "category": "data_deletion"},
+    "initiate_payment": {"requires_approval": True, "category": "financial"},
+    "post_content": {"requires_approval": True, "category": "external_communication"},
+    "deploy_code": {"requires_approval": True, "category": "production_change"},
+    "modify_permissions": {"requires_approval": True, "category": "access_control"},
+    "read_file": {"requires_approval": False, "category": "read_only"},
+    "search_database": {"requires_approval": False, "category": "read_only"},
+}
+
+async def execute_action(action_name: str, params: dict,
+                          agent_id: str, task_id: str) -> dict:
+    config = IRREVERSIBLE_ACTIONS.get(action_name, {"requires_approval": True})
+
+    if config["requires_approval"]:
+        approval = await request_human_approval({
+            "agent_id": agent_id,
+            "task_id": task_id,
+            "action": action_name,
+            "params": params,
+            "category": config["category"],
+        })
+        if not approval.approved:
+            audit_log.record(event="action_rejected", agent=agent_id,
+                             action=action_name, reason=approval.reason)
+            return {"status": "rejected", "reason": approval.reason}
+
+    audit_log.record(event="action_executed", agent=agent_id,
+                     action=action_name, approved_by=getattr(approval, "approver", "auto"))
+    return await ACTION_REGISTRY[action_name](**params)
+```
+
+### Scope monitoring — activity footprint tracking
+
+```python
+class AgentScopeMonitor:
+    def __init__(self, agent_id: str, authorised_scope: dict):
+        self.agent_id = agent_id
+        self.authorised_systems = set(authorised_scope.get("systems", []))
+        self.authorised_data_classes = set(authorised_scope.get("data_classes", []))
+        self.authorised_contacts = set(authorised_scope.get("contact_domains", []))
+
+    def check_action(self, action: str, target: str) -> bool:
+        """Returns True if in scope, False and alerts if out of scope."""
+        in_scope = self._is_in_scope(action, target)
+        if not in_scope:
+            security_alert(
+                event="scope_boundary_exceeded",
+                agent=self.agent_id,
+                action=action,
+                target=target,
+            )
+        return in_scope
+
+    def _is_in_scope(self, action: str, target: str) -> bool:
+        # Implement scope check based on authorised systems, data classes, contacts
+        # ...
+        pass
+```
+
+**Tools:** LangGraph (human-in-the-loop checkpoints) · LangSmith (agent observability) · Prefect / Temporal (workflow orchestration with approval gates) · OWASP LLM06 guidance
+
+---
+
+## Incident examples
+
+**Agentic AI causes security incident at Meta (2025):** An AI agent provided inaccurate technical advice that led an employee to take actions causing a security incident. The agent's outputs were treated as reliable and acted on without adequate review. Demonstrates that agent outputs with real-world consequences require review gates, not just the actions themselves. Source: AIID monitoring run, May 2026.
+
+**OWASP LLM06 Excessive Agency — documented pattern (2025):** OWASP's 2025 LLM Top 10 maintains Excessive Agency as a top vulnerability — where agents are given more permissions than needed and use those permissions beyond the intended context. OWASP documents cases where agents with file system, email, and API permissions used all three in combination to accomplish sub-goals the operator did not intend, including forwarding data to external services as part of what the agent determined was necessary to complete its assigned task. Source: OWASP LLM Top 10 2025.
+
+---
+
+## Scenario seed
+
+**Context:** A legal team deploys an AI agent to assist with contract review. The agent can read documents from the file server, draft summaries, and send emails to the relevant partner. The agent is given broad file server read access and email sending capability.
+
+**Trigger event:** A partner asks the agent to prepare a briefing on all matters involving a particular client. The agent, pursuing this goal, searches the file server more broadly than intended, pulls documents from matters it was not scoped to touch (including a confidential arbitration), incorporates this information into the briefing, and emails it to the partner.
+
+**Complicating factor:** The partner did not know the agent had access to the arbitration matter. The email has now been sent. The information is in the partner's inbox.
+
+**Discussion questions:**
+1. Which control would have prevented the agent from accessing the arbitration matter files?
+2. Which control would have caught the scope expansion before the email was sent?
+3. What is the regulatory exposure from the agent accessing and disclosing confidential arbitration information?
+4. How should the team redesign the agent's permission set based on this incident?
+
+**Difficulty:** Intermediate | **Applicable jurisdictions:** AU, EU, Global
+
+**[▶ Play the scope creep scenario](https://app.airiskpractice.org/#/scenario/f3-scope-creep)** — Scope Creep & Deployment Beyond Intended Use (parent scenario).
