@@ -1,1 +1,89 @@
-{}
+{
+  "aiid": {
+    "seen_guids": [
+      "ac7aecfb91efb0b4fdbe21ab730c537f",
+      "b8ec492f1c70f8390034a05d99e88753",
+      "5b0be5677b9ed13333568c650693756c",
+      "4094b61d46e97240c97a0af570f242dd",
+      "3f81423374b83d1402c7b038bf4b31a8",
+      "2a4dd890d5014e031b9e695788709c18",
+      "c6ae4ce7e7f92dba82da64d472f27a42",
+      "9c0d29ef697cf90176d2054ca6f2d027",
+      "11e5cda7b92779e43ed0c0f10cec6fe2",
+      "6dd6fae7fa0aaf70e2ccf61f3b8f9d5f",
+      "46000f4948ca6f1cd47506afa7d00c8f",
+      "e5ee2f0cf11a80c24e13eb88ac434395",
+      "e6951f1fec325ca46370de4e851e9b0a",
+      "f48771860cdcf9157ba62ee116210c7a",
+      "98f58e166f23daf976905df33005d788",
+      "4f3f6f5b61c6aaebce67328809967728",
+      "6d26e16f521d00784f27299076f618bf",
+      "f4bf536a2f53bc188a0e31b0967ed4a3",
+      "26d52e86e757c445ca2be62c9c5cc963",
+      "88cb85ee1b414da3049091f77f13e11b"
+    ]
+  },
+  "mit_incident_tracker": {
+    "links_hash": "6c90dd0c6cb106a871a9124fda50be84"
+  },
+  "eu_ai_office": {
+    "seen_guids": []
+  },
+  "mitre_atlas_releases": {
+    "last_seen_tag": "v5.6.0"
+  },
+  "owasp_llm": {
+    "last_seen_tag": "2024"
+  },
+  "mit_airr": {
+    "seen_links": [
+      "/blog/model-evaluation-for-extreme-risks",
+      "/blog/ai-verify-testing-framework",
+      "/blog/explore-the-frameworks-behind-the-ai-risk-repository",
+      "/blog/incident-tracker---june-2025-update",
+      "/blog/safety-assessment-of-chinese-large-language-models",
+      "/blog/trustworthy-llms",
+      "/blog/sources-of-risk-of-ai-systems",
+      "/blog/april-2025-update-of-the-ai-risk-repository-2",
+      "/blog/examining-the-differential-risk-from-high-level-artificial-intelligence-and-the-question-of-control",
+      "/blog/repository-update-december-2025",
+      "/blog/risk-taxonomy-mitigation-and-assessment-benchmarks-of-large-language-model-systems",
+      "/blog/mapping-the-ai-governance-landscape-april-2026-update",
+      "/blog/ai-trism",
+      "/blog/mapping-frameworks-at-the-intersection-of-ai-safety-and-traditional-risk-management",
+      "/blog/generating-harms-generative-ais-impact-and-paths-forward",
+      "/blog/mapping-ai-risk-mitigations",
+      "/blog/social-impacts-of-artificial-intelligence-and-mitigation-recommendations-an-exploratory-study",
+      "/blog/navigating-the-landscape-of-ai-ethics-and-responsibility",
+      "/blog/towards-risk-aware-artificial-intelligence-and-machine-learning-systems-an-overview",
+      "/blog/december-2024-update",
+      "/blog/the-dark-sides-of-artificial-intelligence-an-integrated-ai-governance-framework-for-public-administration",
+      "/blog/safetybench-evaluating-the-safety-of-large-language-models",
+      "/blog/the-risks-of-machine-learning-systems",
+      "/blog/taxonomy-of-risks-posed-by-language-models",
+      "/blog/the-ethics-of-advanced-ai-assistants",
+      "/blog/highlights-from-paris-attending-the-2025-iaseai-conference",
+      "/blog/towards-safer-generative-language-models-a-survey-on-safety-risks-evaluations-and-improvements",
+      "/blog/mit-ai-risk-repository-selected-for-2025-paris-peace-forum-ai-action-summit",
+      "/blog/governance-of-artificial-intelligence-a-risk-and-guideline-based-integrative-framework",
+      "/blog/explore-frameworks-in-the-ai-risk-mitigation-database",
+      "/blog/new-version-of-the-ai-risk-repository-preprint-now-available",
+      "/blog/sociotechnical-harms-of-algorithmic-systems-scoping-a-taxonomy-for-harm-reduction",
+      "/blog/evaluating-the-social-impact-of-generative-ai-systems-in-systems-and-society",
+      "/blog/an-overview-of-catastrophic-ai-risks",
+      "/blog/managing-the-ethical-and-risk-implications-of-rapid-advances-in-artificial-intelligence-a-literature-review",
+      "/blog/the-risks-associated-with-artificial-general-intelligence-a-systematic-review",
+      "/blog/ai-risk-profiles-a-standards-proposal-for-pre-deployment-ai-risk-disclosures",
+      "/blog/introducing-v0-5-of-the-ai-safety-benchmark-from-mlcommons",
+      "/blog/mapping-the-ai-governance-landscape-pilot-test-and-update",
+      "/blog/tasra-a-taxonomy-and-analysis-of-societal-scale-risks-from-ai",
+      "/blog/framework-updates-december-2024",
+      "/blog/a-framework-for-ethical-ai-at-the-united-nations-2",
+      "/blog/mapping-the-ethics-of-generative-ai-a-comprehensive-scoping-review",
+      "/blog/introducing-the-ai-risk-navigator"
+    ]
+  },
+  "iapp": {
+    "seen_guids": []
+  }
+}
