@@ -57,14 +57,17 @@ jobs:
           fi
 
       - name: Classify new items
+        id: classify
         if: success()
+        continue-on-error: true
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
           python automation/monitoring/classify.py
           CLASSIFY_EXIT=$?
-          # Exit 2 means "action items found" — not a workflow failure
+          # Exit 2 means "action items found" — signal via GITHUB_OUTPUT and GITHUB_ENV
           if [ $CLASSIFY_EXIT -eq 2 ]; then
+            echo "action_items_found=true" >> $GITHUB_OUTPUT
             echo "ACTION_ITEMS_FOUND=true" >> $GITHUB_ENV
             exit 0
           fi
@@ -97,7 +100,7 @@ jobs:
           if-no-files-found: warn
 
       - name: Create GitHub issue if action items found
-        if: env.ACTION_ITEMS_FOUND == 'true'
+        if: steps.classify.outputs.action_items_found == 'true' || env.ACTION_ITEMS_FOUND == 'true'
         uses: actions/github-script@v7
         with:
           script: |

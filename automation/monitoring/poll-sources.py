@@ -436,7 +436,12 @@ def poll_source(source_id: str, state: dict) -> list[dict]:
         if source_id == "aiid":
             return poll_aiid(source_id, state)
         elif source_id == "mit_incident_tracker":
-            return poll_html_index(source_id, "https://airisk.mit.edu/ai-incident-tracker", state)
+            return poll_html_index(
+                source_id,
+                "https://incidentdatabase.ai/summaries/incidents",
+                state,
+                link_pattern=r"/cite/\d+"
+            )
         elif source_id == "mitre_atlas":
             return poll_mitre_atlas_changelog(source_id, state)
         elif source_id == "owasp_llm":
@@ -446,39 +451,40 @@ def poll_source(source_id: str, state: dict) -> list[dict]:
         elif source_id == "eu_ai_office":
             return poll_rss_feed(
                 source_id,
-                "https://digital-strategy.ec.europa.eu/en/policies/european-approach-artificial-intelligence/rss",
+                "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai/rss",
                 state
             )
         elif source_id == "nist_ai_rmf":
             return poll_html_index(
                 source_id,
-                "https://www.nist.gov/system/files/rss-feeds/nist-news.xml",
+                "https://airc.nist.gov/News",
                 state,
-                link_pattern=r"ai|artificial.intelligence|risk.management"
+                link_pattern=r"ai|artificial.intelligence|risk.management|rmf"
             )
         elif source_id == "apra":
             return poll_html_index(
                 source_id,
-                "https://www.apra.gov.au/news-and-publications/apra-releases",
+                "https://www.apra.gov.au/news-releases",
                 state,
-                link_pattern=r"ai|artificial|technology|cps.?230|data"
+                link_pattern=r"ai|artificial|technology|cps.?230|data|operational"
             )
         elif source_id == "disr_ai_safety":
             return poll_html_index(
                 source_id,
-                "https://www.industry.gov.au/policies-and-initiatives/ai-safety",
+                "https://www.industry.gov.au/science-technology-and-innovation/technology/artificial-intelligence",
                 state
             )
         elif source_id == "iapp":
+            # Use IAPP AI Governance feed (more targeted than general news RSS)
             return poll_rss_feed(
                 source_id,
-                "https://iapp.org/rss/news/",
+                "https://iapp.org/resources/topics/artificial-intelligence/feed/",
                 state
             )
         elif source_id == "oaic":
             return poll_html_index(
                 source_id,
-                "https://www.oaic.gov.au/privacy/privacy-guidance-for-organisations-and-government-agencies/artificial-intelligence",
+                "https://www.oaic.gov.au/privacy/your-privacy-rights/artificial-intelligence",
                 state
             )
         elif source_id == "acsc":
