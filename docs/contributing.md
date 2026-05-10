@@ -31,7 +31,7 @@ Incidents must be real and documented. Illustrative examples are already flagged
 
 ## Suggesting new entries
 
-The taxonomy currently covers **26 risk categories across 7 domains**. If you believe a material AI risk is absent or inadequately covered, raise an issue describing:
+The taxonomy currently covers **32 risk categories across 7 domains**. If you believe a material AI risk is absent or inadequately covered, raise an issue describing:
 
 - The risk you believe is missing
 - Why it is distinct from existing entries

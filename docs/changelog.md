@@ -8,6 +8,31 @@ sidebar_position: 6
 
 All material changes to the knowledge base are documented here. Changes are version-controlled in the [GitHub repository](https://github.com/b-gowland/ai-risk-kb).
 
+## [1.4.0] — May 2026
+
+### Added — Agentic AI risk entries
+Six new entries covering risks specific to agentic AI systems:
+- **C6 — MCP Attack Surface** — security risks from Model Context Protocol server integrations, supply chain compromise, and response injection (MITRE ATLAS v5.3–v5.4)
+- **C7 — Multi-Agent Trust & Prompt Injection Chains** — injection propagation through inter-agent trust relationships in multi-agent pipelines
+- **C8 — Computer-Use Agent Hijacking** — visual prompt injection attacks against agents that operate browsers and desktop interfaces
+- **F4 — Irreversibility & Scope Creep in Autonomous Systems** — irreversible actions and capability accumulation beyond intended scope (OWASP LLM06)
+- **B5 — Agentic Logging & Auditability Gaps** — forensic and regulatory logging requirements for agentic systems (EU AI Act Art. 12)
+- **G5 — Excessive Agency & Uncontrolled Action Chains** — enterprise-wide governance of autonomous agent capability (OWASP LLM06)
+
+### Updated — Existing entries (MITRE ATLAS v5.0–v5.6 and monitoring queue)
+- **C2 — Prompt Injection** — added MCP server data exfiltration technique (ATLAS v5.3), jailbreak documentation (ATLAS v5.6), new C2-006 MCP server trust boundary control
+- **C4 — Deepfakes** — added pet/animal scam incidents, AI-generated evidence fabrication cases, school harassment pattern, Aadhaar identity document fraud
+- **C1 — Data Poisoning** — added AI agent tool data poisoning (ATLAS v5.2/v5.4), poisoned MCP server supply chain technique (ATLAS v5.4)
+- **C5 — AI-Enabled Cyber Attacks** — added Generate Malicious Commands (ATLAS v5.2), Machine Compromise techniques (ATLAS v5.1/v5.4/v5.5)
+- **B4 — Supply Chain** — added AI Supply Chain Rug Pull, Reputation Inflation, and MCP server compromise (ATLAS v5.3–v5.5)
+- **E3 — Misinformation** — added AI-generated celebrity impersonation incidents, OpenAI covert influence operation disruptions, Meta coordinated inauthentic behaviour cases
+- **E1 — Algorithmic Bias** — added facial recognition wrongful arrest pattern with documentary source references
+- **D3 — Intellectual Property** — added AI-generated audiovisual content copyright reproduction case
+
+### Automation
+- Workflow 2 source-driven monitoring operational — weekly polling of 14+ sources with AI-assisted classification
+- Model updated to `claude-sonnet-4-6`
+
 ## [1.3.0] — May 2026
 
 ### Brand and domain

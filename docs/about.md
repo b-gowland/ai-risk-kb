@@ -16,7 +16,7 @@ This knowledge base aims to bridge that gap: authoritative enough to be credible
 
 ## Structure
 
-**26 risk entries** are organised across **7 domains** (A through G), each with four layers of depth:
+**32 risk entries** are organised across **7 domains** (A through G), each with four layers of depth:
 
 - **Layer 1 — Start here** — Plain English summary for any audience, with persona-specific tabs for executives, project managers, and security analysts — plus an **Everyday** tab for general public readers arriving from the [Fork everyday track](https://app.airiskpractice.org/#/everyday)
 - **Layer 2** — Practitioner overview with controls ownership, effort estimates, and go-live criteria — designed for risk managers, compliance leads, and project managers
@@ -38,13 +38,13 @@ Content draws on and cross-references:
 
 ## Maintenance
 
-This knowledge base is designed to be maintained through a combination of automated monitoring and human review. Gap detection runs weekly at zero cost, checking all 26 entries for schema violations and missing content. A full maintenance pass — verifying flagged claims and monitoring 8 external sources — runs monthly using the Anthropic API. All proposed changes are generated as GitHub Issues for human review before any content changes are applied.
+This knowledge base is designed to be maintained through a combination of automated monitoring and human review. Gap detection runs weekly at zero cost, checking all 32 entries for schema violations and missing content. A full maintenance pass — verifying flagged claims and monitoring 8 external sources — runs monthly using the Anthropic API. All proposed changes are generated as GitHub Issues for human review before any content changes are applied.
 
 All factual claims are verified against primary sources before publication. Claims that cannot be verified are flagged inline rather than silently included.
 
 ## Companion training app
 
-Each risk entry includes a **scenario seed** — a structured workplace scenario used as the basis for the companion training module. The [AI Risk Training](https://app.airiskpractice.org/) app is live with **26 interactive practitioner scenarios** — one for every entry — using a choose-your-own-adventure format with up to four professional personas per scenario.
+Each risk entry includes a **scenario seed** — a structured workplace scenario used as the basis for the companion training module. The [AI Risk Training](https://app.airiskpractice.org/) app is live with **26 interactive practitioner scenarios** across the original 26 KB entries, with 6 new agentic scenario seeds ready to build — using a choose-your-own-adventure format with up to four professional personas per scenario.
 
 A separate **everyday track** — [Fork](https://app.airiskpractice.org/#/everyday) — offers three public-facing scenarios on deepfake voice scams, AI hallucination, and algorithmic hiring decisions, designed for anyone who uses AI in daily life rather than in a professional risk context.
 
