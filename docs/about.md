@@ -44,7 +44,7 @@ All factual claims are verified against primary sources before publication. Clai
 
 ## Companion training app
 
-Each risk entry includes a **scenario seed** — a structured workplace scenario used as the basis for the companion training module. The [AI Risk Training](https://app.airiskpractice.org/) app is live with **26 interactive practitioner scenarios** across the original 26 KB entries, with 6 new agentic scenario seeds ready to build — using a choose-your-own-adventure format with up to four professional personas per scenario.
+Each risk entry includes a **scenario seed** — a structured workplace scenario used as the basis for the companion training module. The [AI Risk Training](https://app.airiskpractice.org/) app is live with **32 interactive practitioner scenarios** across all 32 KB entries, using a choose-your-own-adventure format with up to four professional personas per scenario.
 
 A separate **everyday track** — [Fork](https://app.airiskpractice.org/#/everyday) — offers three public-facing scenarios on deepfake voice scams, AI hallucination, and algorithmic hiring decisions, designed for anyone who uses AI in daily life rather than in a professional risk context.
 

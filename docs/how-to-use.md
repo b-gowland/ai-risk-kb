@@ -60,8 +60,8 @@ See the [Contributing guide](/docs/contributing) for how to raise an issue or su
 
 ## Companion training app
 
-The [AI Risk Training](https://app.airiskpractice.org/) app is live and free. It contains **26 interactive practitioner scenarios** across the original 26 KB entries — using a choose-your-own-adventure format with up to four professional personas per scenario (Executive, Project Manager, Analyst, Business User). Each scenario presents workplace situations drawn from the entry's scenario seed, with branching decision paths, outcome feedback, and controls explanations.
+The [AI Risk Training](https://app.airiskpractice.org/) app is live and free. It contains **32 interactive practitioner scenarios** across all 32 KB entries — using a choose-your-own-adventure format with up to four professional personas per scenario (Executive, Project Manager, Analyst, Business User). Each scenario presents workplace situations drawn from the entry's scenario seed, with branching decision paths, outcome feedback, and controls explanations.
 
-Total content: approximately 2–3 hours across 26 scenarios. No account required.
+Total content: approximately 5–6 hours across 32 scenarios. No account required.
 
 **Fork — everyday track:** Three of the most common everyday AI risks — deepfake voice scams, AI hallucination, and algorithmic hiring — are also available as public-facing scenarios at [app.airiskpractice.org/#/everyday](https://app.airiskpractice.org/#/everyday). These are written for general readers rather than practitioners and take 4–5 minutes each.
