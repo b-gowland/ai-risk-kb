@@ -26,6 +26,7 @@ const sidebars = {
         'domain-b-governance/b2-regulatory-compliance',
         'domain-b-governance/b3-lifecycle-governance',
         'domain-b-governance/b4-supply-chain',
+        'domain-b-governance/b5-agentic-logging',
       ],
     },
     {
@@ -38,6 +39,9 @@ const sidebars = {
         'domain-c-security/c3-model-theft',
         'domain-c-security/c4-deepfakes',
         'domain-c-security/c5-ai-cyber-attacks',
+        'domain-c-security/c6-mcp-attack-surface',
+        'domain-c-security/c7-multi-agent-trust',
+        'domain-c-security/c8-computer-use-hijacking',
       ],
     },
     {
@@ -68,6 +72,7 @@ const sidebars = {
         'domain-f-deployment/f1-automation-bias',
         'domain-f-deployment/f2-shadow-ai',
         'domain-f-deployment/f3-scope-creep',
+        'domain-f-deployment/f4-irreversibility-scope-creep',
       ],
     },
     {
@@ -79,6 +84,7 @@ const sidebars = {
         'domain-g-systemic/g2-environmental-impact',
         'domain-g-systemic/g3-workforce-displacement',
         'domain-g-systemic/g4-ai-safety',
+        'domain-g-systemic/g5-excessive-agency',
       ],
     },
     {
