@@ -1,0 +1,103 @@
+{
+  "run_date": "2026-05-11",
+  "items_reviewed": 6,
+  "classifications": [
+    {
+      "item_id": "7b36138261f106f309da36b2b7a381af",
+      "item_title": "Alberta separatist leader unconcerned about influence of YouTube 'slopaganda' videos",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "E3",
+          "confidence": "high",
+          "rationale": "AI-generated disinformation videos promoting Alberta separatism represent AI-amplified misinformation at scale."
+        }
+      ],
+      "evidence_quote": "popular YouTube videos with unclear origin promoting Alberta separatism",
+      "recommended_action": "Update E3 to include examples of AI-generated political disinformation ('slopaganda') targeting regional separatist movements."
+    },
+    {
+      "item_id": "f9daac998f814a0034fec3f1cee01e57",
+      "item_title": "Slopaganda: The Inauthentic YouTube Network Selling Secession to Albertans",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "E3",
+          "confidence": "high",
+          "rationale": "Inauthentic AI-generated content network exploiting grievances to normalize secession narratives exemplifies AI-driven disinformation campaigns."
+        },
+        {
+          "kb_id": "C4",
+          "confidence": "medium",
+          "rationale": "AI-generated synthetic media content used within an inauthentic influence network overlaps with deepfake/synthetic media fraud."
+        }
+      ],
+      "evidence_quote": "network of inauthentic YouTube accounts...advance narratives that normalize the prospect of secession",
+      "recommended_action": "Update E3 with this case study of coordinated AI-generated 'slopaganda' networks; also note in C4 the use of synthetic media in influence operations."
+    },
+    {
+      "item_id": "7a81619d8d521c91f9340a44b4bd7f82",
+      "item_title": "His daughter called him crying, and then another voice got on the phone. Only one of them was real",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "C4",
+          "confidence": "high",
+          "rationale": "AI-cloned voice used to impersonate a family member in a real-time phone scam is a direct example of deepfake/synthetic audio fraud."
+        }
+      ],
+      "evidence_quote": "She was crying and upset...She told me, 'Dad, I got in an accident and I'm in trou",
+      "recommended_action": "Update C4 to include real-world voice-cloning family impersonation scam as a concrete case study illustrating synthetic audio fraud risk."
+    },
+    {
+      "item_id": "f19adf3057ecb0fee7fa4f4df7641661",
+      "item_title": "Foreign actors exploiting Alberta separatist debate to stoke discord, researchers say",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "E3",
+          "confidence": "high",
+          "rationale": "Foreign actors using AI-catalogued propaganda accounts to amplify separatist discord is a state-level AI-enabled disinformation operation."
+        }
+      ],
+      "evidence_quote": "artificial intelligence to catalogue the activity of Russian websites and social-media accounts",
+      "recommended_action": "Update E3 to reference state-sponsored foreign interference using AI tools to identify and amplify divisive political narratives."
+    },
+    {
+      "item_id": "f3d0f32f6a64c2306592a3137ca6be3a",
+      "item_title": "AI 'slopaganda' pushing Alberta separatism content: report",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "E3",
+          "confidence": "high",
+          "rationale": "AI-generated disinformation ('slopaganda') fuelling political separatism debate is a clear instance of AI-amplified misinformation at scale."
+        }
+      ],
+      "evidence_quote": "explosion of AI-generated disinformation, fuelling the discussion of Alberta separating",
+      "recommended_action": "Update E3 to add the 'slopaganda' phenomenon as a named emerging tactic within AI-driven political disinformation."
+    },
+    {
+      "item_id": "b40fe06aa6a2ec5598cc1494d032acdc",
+      "item_title": "South Korea police arrest man for posting AI photo of runaway wolf",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "E3",
+          "confidence": "high",
+          "rationale": "AI-generated image shared to mislead authorities during an active emergency response is a real-world misinformation harm case."
+        },
+        {
+          "kb_id": "C4",
+          "confidence": "medium",
+          "rationale": "Fabricated AI photo presented as real to disrupt an official operation overlaps with synthetic media fraud use cases."
+        }
+      ],
+      "evidence_quote": "AI-generated image that misled authorities who were searching for a wolf that had broken out",
+      "recommended_action": "Update E3 with this case of AI-generated imagery causing real-world harm to emergency operations; note in C4 as an example of synthetic image misuse."
+    }
+  ],
+  "source_counts": {
+    "aiid": 6
+  }
+}
