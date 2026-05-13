@@ -10,7 +10,7 @@ A free, open-source reference for understanding, assessing, and controlling AI r
 
 ## What this is
 
-A practitioner reference covering 26 AI risk entries across 7 domains, with four layers of depth per entry:
+A practitioner reference covering 32 AI risk entries across 7 domains, with four layers of depth per entry:
 
 | Layer | Audience | Content |
 |-------|----------|---------|
@@ -24,12 +24,12 @@ A practitioner reference covering 26 AI risk entries across 7 domains, with four
 | Domain | Entries |
 |--------|---------|
 | A — Technical | A1 Hallucination, A2 Model Drift, A3 Robustness, A4 Explainability |
-| B — Governance | B1 Accountability, B2 Regulatory Compliance, B3 Lifecycle Governance, B4 Supply Chain |
-| C — Security & Adversarial | C1 Data Poisoning, C2 Prompt Injection, C3 Model Theft, C4 Deepfakes, C5 AI Cyber Attacks |
+| B — Governance | B1 Accountability, B2 Regulatory Compliance, B3 Lifecycle Governance, B4 Supply Chain, B5 Agentic Logging & Auditability Gaps |
+| C — Security & Adversarial | C1 Data Poisoning, C2 Prompt Injection, C3 Model Theft, C4 Deepfakes, C5 AI-Enabled Cyber Attacks, C6 MCP Attack Surface, C7 Multi-Agent Trust & Prompt Injection Chains, C8 Computer-Use Agent Hijacking |
 | D — Data | D1 Training Data Quality, D2 Privacy, D3 IP & Copyright |
 | E — Fairness & Social | E1 Algorithmic Bias, E2 Harmful Content, E3 Misinformation |
-| F — HCI & Deployment | F1 Automation Bias, F2 Shadow AI, F3 Scope Creep |
-| G — Systemic & Macro | G1 Concentration Risk, G2 Environmental Impact, G3 Workforce Displacement, G4 AI Safety |
+| F — HCI & Deployment | F1 Automation Bias, F2 Shadow AI, F3 Scope Creep, F4 Irreversibility & Scope Creep in Autonomous Systems |
+| G — Systemic & Macro | G1 Concentration Risk, G2 Environmental Impact, G3 Workforce Displacement, G4 AI Safety, G5 Excessive Agency & Uncontrolled Action Chains |
 
 ## Taxonomy basis
 
