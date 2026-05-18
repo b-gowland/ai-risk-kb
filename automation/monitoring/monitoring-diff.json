@@ -1,61 +1,187 @@
 {
-  "run_date": "2026-05-11",
-  "run_timestamp": "2026-05-11T12:34:23.916860+00:00",
-  "total_new_items": 6,
+  "run_date": "2026-05-18",
+  "run_timestamp": "2026-05-18T12:59:55.914176+00:00",
+  "total_new_items": 20,
   "items": [
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "7b36138261f106f309da36b2b7a381af",
-      "title": "Alberta separatist leader unconcerned about influence of YouTube \u2018slopaganda\u2019 videos",
-      "url": "https://www.cbc.ca/news/canada/calgary/slopaganda-youtube-alberta-separatism-9.7171993",
-      "body_excerpt": "After a new report put a spotlight on popular YouTube videos with unclear origin promoting Alberta separatism, an independence leader said he's unconcerned about foreign interference influencing a possible upcoming separation referendum.\n\nM ... (https://incidentdatabase.ai/cite/1481#7195)",
-      "release_date": "Sun, 10 Ma"
+      "id": "ec0a48302198d863a5123fd5531fa6ca",
+      "title": "Families sue OpenAI over Canadian mass shooter's use of ChatGPT",
+      "url": "https://www.npr.org/2026/04/29/nx-s1-5798896/tumbler-ridge-mass-shooting-chat-gpt-lawsuit",
+      "body_excerpt": "Families of those injured and killed in a school shooting in Tumbler Ridge, British Columbia are suing OpenAI for negligence and providing a dangerously defective version of ChatGPT to the shooter.\n\nThe seven suits, filed in federal court i ... (https://incidentdatabase.ai/cite/1375#7301)",
+      "release_date": "Fri, 15 Ma"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "f9daac998f814a0034fec3f1cee01e57",
-      "title": "Slopaganda: The Inauthentic YouTube Network Selling Secession to Albertans",
-      "url": "https://www.cdmrn.ca/slopaganda-the-inauthentic-youtube-network-selling-secession-to-albertans",
-      "body_excerpt": "Key takeaways\n\nA network of inauthentic YouTube accounts is targeting Albertan audiences, exploiting genuinely-held grievances and repurposing them to advance narratives that normalize the prospect of secession and U.S. annexation.\n\nThese Y ... (https://incidentdatabase.ai/cite/1481#7196)",
-      "release_date": "Sun, 10 Ma"
+      "id": "502d1721a4f64df22f3aefd4814a09a6",
+      "title": "Tumbler Ridge, B.C. lawsuits filed in California court against OpenAI",
+      "url": "https://globalnews.ca/news/11821359/tumbler-ridge-bc-lawsuit-filed-california-court-openai/",
+      "body_excerpt": "Seven families impacted by the Tumbler Ridge, B.C., shooting in February filed lawsuits against OpenAI and its founder, Sam Altman, in a San Francisco court on Wednesday.\n\n\n\nEight people were killed when 18-year-old Jesse Van Rootselaar ope ... (https://incidentdatabase.ai/cite/1375#7212)",
+      "release_date": "Thu, 14 Ma"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "7a81619d8d521c91f9340a44b4bd7f82",
-      "title": "His daughter called him crying, and then another voice got on the phone. Only one of them was real",
-      "url": "https://www.spokesman.com/stories/2026/may/08/his-daughter-called-him-crying-and-then-another-vo/",
-      "body_excerpt": "Mark A. Young's daughter called him at his\n\nhome on a Monday. The young woman's panicked voice projected fear and pain.\n\nShe needed her father. \"She was crying and upset,\" Young said. \"She told me, 'Dad, I got in an accident and I'm in trou ... (https://incidentdatabase.ai/cite/1482#7197)",
-      "release_date": "Sun, 10 Ma"
+      "id": "b258ee9607dd3bd1baabb2d1e2ee9497",
+      "title": "Families sue OpenAI over failure to report Canada mass shooter\u2019s behavior on ChatGPT",
+      "url": "https://www.theguardian.com/technology/2026/apr/29/openai-tumbler-ridge-shooter-chatgpt-lawsuit",
+      "body_excerpt": "Families of seven victims of a mass shooting at a secondary school in British Columbia are suing OpenAI and the company's CEO for negligence after it failed to alert authorities to the shooter's troubling conversations with ChatGPT.\n\nThe la ... (https://incidentdatabase.ai/cite/1375#7213)",
+      "release_date": "Thu, 14 Ma"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "f19adf3057ecb0fee7fa4f4df7641661",
-      "title": "Foreign actors exploiting Alberta separatist debate to stoke discord, researchers say",
-      "url": "https://www.theglobeandmail.com/canada/article-alberta-separation-being-targeted-by-foreign-actors-seeking-to-stoke/",
-      "body_excerpt": "Early this year, Canadian researchers who track online influence campaigns and foreign propaganda happened upon something peculiar. Using\u00a0artificial intelligence\u00a0to catalogue the activity of Russian websites and social-media accounts known  ... (https://incidentdatabase.ai/cite/1481#7193)",
-      "release_date": "Sat, 09 Ma"
+      "id": "b19ec69689f33a5ca01dcf8fddeb116c",
+      "title": "Families of Canadian mass shooting victims sue OpenAI, CEO Altman in US court",
+      "url": "https://www.reuters.com/world/families-canadian-mass-shooting-victims-sue-openai-ceo-altman-us-court-2026-04-29/",
+      "body_excerpt": "April 29 (Reuters) - Family members of victims of one of Canada's deadliest mass shootings sued OpenAI and CEO Sam \u200bAltman in U.S. court on Wednesday, alleging the company knew eight months before the attack that the shooter was planning it ... (https://incidentdatabase.ai/cite/1375#7214)",
+      "release_date": "Thu, 14 Ma"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "f3d0f32f6a64c2306592a3137ca6be3a",
-      "title": "AI \u2018slopaganda\u2019 pushing Alberta separatism content: report",
-      "url": "https://calgary.citynews.ca/2026/04/22/ai-slopaganda-content-alberta-separatism-report/",
-      "body_excerpt": "Researchers call it \"slopaganda,\" an explosion of AI-generated disinformation, fuelling the discussion of Alberta separating to join the U.S.\n\nAround 20 accounts are attached and have been spreading this misinformation for over a year, accu ... (https://incidentdatabase.ai/cite/1481#7194)",
-      "release_date": "Sat, 09 Ma"
+      "id": "861d10435fedf955555d53600d310132",
+      "title": "OpenAI's ban of Canada school shooting suspect's account raises scrutiny of other online activity",
+      "url": "https://www.reuters.com/world/openais-ban-canada-school-shooters-account-raises-scrutiny-other-online-activity-2026-02-25/",
+      "body_excerpt": "OTTAWA, Feb 25 (Reuters) - OpenAI's admission that it banned the ChatGPT account of mass shooting suspect Jesse Van Rootselaar months before the 18-year-old allegedly killed eight people and herself is drawing scrutiny to her past online ac ... (https://incidentdatabase.ai/cite/1375#7215)",
+      "release_date": "Thu, 14 Ma"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "b40fe06aa6a2ec5598cc1494d032acdc",
-      "title": "South Korea police arrest man for posting AI photo of runaway wolf",
-      "url": "https://www.bbc.com/news/articles/c4gx1n0dl9no",
-      "body_excerpt": "South Korean police have arrested a man for sharing an AI-generated image that misled authorities who were searching for a wolf that had broken out of a zoo in Daejeon city.\n\nThe 40-year-old unnamed man is accused of disrupting the search b ... (https://incidentdatabase.ai/cite/1484#7199)",
-      "release_date": "Fri, 08 Ma"
+      "id": "eb4871ec1bde99112af05180c822a6e6",
+      "title": "OpenAI\u2019s handling of Tumbler Ridge shooter info opens regulation questions",
+      "url": "https://globalnews.ca/news/11687903/openai-tumbler-ridge-shooting-duty-to-inform/",
+      "body_excerpt": "Scrutiny over how OpenAI handled information about the Tumbler Ridge, B.C., mass shooter months before the deadly tragedy provides an opportunity for Canada to consider regulating artificial intelligence companies to inform police in simila ... (https://incidentdatabase.ai/cite/1375#7216)",
+      "release_date": "Thu, 14 Ma"
+    },
+    {
+      "source_id": "aiid",
+      "type": "rss_entry",
+      "id": "e522d3ce9b38db2764ded02703894631",
+      "title": "Family sues ChatGPT-maker OpenAI over school shooting in Canada",
+      "url": "https://apnews.com/article/canada-mass-shooting-chatgpt-openai-lawsuit-de6c2b89cea94bde3b1c288b0e1581ca",
+      "body_excerpt": "VANCOUVER, British Columbia (AP) --- The parents of a girl critically wounded in a school shooting in Canada alleged in a civil lawsuit Monday that ChatGPT-maker OpenAI knew the shooter was planning a mass attack.\n\nOpenAI has said it consid ... (https://incidentdatabase.ai/cite/1375#7217)",
+      "release_date": "Thu, 14 Ma"
+    },
+    {
+      "source_id": "aiid",
+      "type": "rss_entry",
+      "id": "63fa90f9aa32e0b6ae5c63c09a0b8f20",
+      "title": "Canadian officials express disappointment to OpenAI representatives in wake of school shooting",
+      "url": "https://www.reuters.com/world/americas/canada-press-openai-safety-officials-wake-school-shooting-2026-02-24/",
+      "body_excerpt": "OTTAWA, Feb 24 (Reuters) - Canadian officials expressed disappointment that OpenAI representatives did not present new safety measures in a meeting on Tuesday after the ChatGPT maker said it did not contact police about an account it banned ... (https://incidentdatabase.ai/cite/1375#7218)",
+      "release_date": "Thu, 14 Ma"
+    },
+    {
+      "source_id": "aiid",
+      "type": "rss_entry",
+      "id": "d49b25a9920ae9ccf0ca997f795f5a1d",
+      "title": "OpenAI agrees to strengthen safeguards following B.C. mass shooting: minister",
+      "url": "https://globalnews.ca/news/11717336/openai-mass-shooting/",
+      "body_excerpt": "Federal Artificial Intelligence Minister Evan Solomon says the CEO of OpenAI has agreed to take several actions to bolster safety, including providing a report outlining the new systems the firm is developing to identify high-risk offenders ... (https://incidentdatabase.ai/cite/1375#7219)",
+      "release_date": "Thu, 14 Ma"
+    },
+    {
+      "source_id": "aiid",
+      "type": "rss_entry",
+      "id": "d8465751de70bbc0d6104f48a282237a",
+      "title": "OpenAI apologizes to Tumbler Ridge",
+      "url": "https://tumblerridgelines.com/2026/04/24/openai-apologizes-to-tumbler-ridge/",
+      "body_excerpt": "It's been a month since OpenAI's Sam Altman promised Premier David Eby and Mayor Darryl Krakowka that he would apologize to the community of Tumbler Ridge.\u00a0\n\nThat apology was made public on April 24.\u00a0\n\n\"To the community of Tumbler Ridge,\" ... (https://incidentdatabase.ai/cite/1375#7220)",
+      "release_date": "Thu, 14 Ma"
+    },
+    {
+      "source_id": "aiid",
+      "type": "rss_entry",
+      "id": "6712920f6736e0dede05dec29b59cfe3",
+      "title": "Altman apologizes after OpenAI failed to alert police before Tumbler Ridge killings",
+      "url": "https://apnews.com/article/openai-altman-tumbler-ridge-killings-apology-dec2adaad3946583519370eede6a99e2",
+      "body_excerpt": "VANCOUVER, British Columbia (AP) --- The head of OpenAI has written a letter apologizing that his company didn't alert law enforcement about the online behavior of a person who shot and killed eight people in Tumbler Ridge, British Columbia ... (https://incidentdatabase.ai/cite/1375#7221)",
+      "release_date": "Thu, 14 Ma"
+    },
+    {
+      "source_id": "aiid",
+      "type": "rss_entry",
+      "id": "9bc21048acbc199dc5552b9bac41b409",
+      "title": "OpenAI chief apologizes for not reporting shooting suspect to police",
+      "url": "https://www.reuters.com/sustainability/society-equity/openai-chief-apologizes-not-reporting-shooting-suspect-police-2026-04-25/",
+      "body_excerpt": "April 25 (Reuters) - OpenAI Chief Sam Altman apologized to the Canadian community of Tumbler \u200bRidge for failing to alert police \u200cabout a banned account linked to Jesse Van Rootselaar, who police say killed eight \u200bpeople in a school in \u200bFebr ... (https://incidentdatabase.ai/cite/1375#7222)",
+      "release_date": "Thu, 14 Ma"
+    },
+    {
+      "source_id": "aiid",
+      "type": "rss_entry",
+      "id": "2cad0276afdd14b561e301432d8debe8",
+      "title": "Families of Canada school shooting victims sue OpenAI over shooter\u2019s use of ChatGPT",
+      "url": "https://apnews.com/article/openai-chatgpt-tumbler-ridge-26d632a065e8420a263655c8ee29f961",
+      "body_excerpt": "The families of victims of a school shooting in a Canadian Rockies town are suing artificial intelligence company OpenAI in U.S. federal court, seeking to hold the ChatGPT maker responsible for failing to alert police to the shooter's alarm ... (https://incidentdatabase.ai/cite/1375#7223)",
+      "release_date": "Thu, 14 Ma"
+    },
+    {
+      "source_id": "aiid",
+      "type": "rss_entry",
+      "id": "c14253f7163b0dfaf5f6a29fd505dab0",
+      "title": "OpenAI debated calling police about suspected Canadian shooter\u2019s chats",
+      "url": "https://techcrunch.com/2026/02/21/openai-debated-calling-police-about-suspected-canadian-shooters-chats/",
+      "body_excerpt": "An 18-year-old who allegedly killed eight people in a mass shooting in Tumbler Ridge, Canada, reportedly used OpenAI's ChatGPT in ways that alarmed the company's staff.\n\nJesse Van Rootselaar's chats describing gun violence were flagged by t ... (https://incidentdatabase.ai/cite/1375#7224)",
+      "release_date": "Thu, 14 Ma"
+    },
+    {
+      "source_id": "aiid",
+      "type": "rss_entry",
+      "id": "969eceb635599fb19e295f5813955ccf",
+      "title": "OpenAI CEO apologizes to Tumbler Ridge community",
+      "url": "https://techcrunch.com/2026/04/25/openai-ceo-apologizes-to-tumbler-ridge-community/",
+      "body_excerpt": "In a letter to the residents of Tumbler Ridge, Canada, OpenAI CEO Sam Altman said he is \"deeply sorry\" that his company failed to alert law enforcement about the suspect in a recent mass shooting.\n\nAfter police identified 18-year-old Jesse  ... (https://incidentdatabase.ai/cite/1375#7225)",
+      "release_date": "Thu, 14 Ma"
+    },
+    {
+      "source_id": "aiid",
+      "type": "rss_entry",
+      "id": "af353c4bf5887757d7a55621a6b07047",
+      "title": "Tumbler Ridge families are suing OpenAI",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/920479/tumbler-ridge-chagpt-openai-lawsuit",
+      "body_excerpt": "Seven families of victims injured or killed in the Tumbler Ridge school shooting in Canada have filed lawsuits against OpenAI and CEO Sam Altman, accusing the company and its leadership of negligence after they failed to alert police to the ... (https://incidentdatabase.ai/cite/1375#7226)",
+      "release_date": "Thu, 14 Ma"
+    },
+    {
+      "source_id": "aiid",
+      "type": "rss_entry",
+      "id": "affd8368392daf8c3c88a51892144969",
+      "title": "Victims\u2019 families sue OpenAI over school shooting that ChatGPT failed to flag",
+      "url": "https://www.sfchronicle.com/politics/article/openai-school-shooting-lawsuit-22232661.php",
+      "body_excerpt": "OpenAI and its chief executive, Sam Altman, have been sued by the families of five children and a teacher who were killed, plus a seventh youth who was wounded, in a mass shooting at a Canadian elementary school this year. In seven separate ... (https://incidentdatabase.ai/cite/1375#7227)",
+      "release_date": "Thu, 14 Ma"
+    },
+    {
+      "source_id": "aiid",
+      "type": "rss_entry",
+      "id": "9321ffd97f3819f4f6b94cc1c1ac1c4b",
+      "title": "OpenAI Back in Court Over Canada School Shooter\u2019s Use of ChatGPT",
+      "url": "https://www.kqed.org/news/12082064/openai-back-in-court-over-canada-school-shooters-use-of-chatgpt",
+      "body_excerpt": "The families of victims of a school shooting in a British Columbia town sued artificial intelligence company OpenAI in a San Francisco court this week, alleging that the company behind ChatGPT failed to alert police of the shooter's alarmin ... (https://incidentdatabase.ai/cite/1375#7228)",
+      "release_date": "Thu, 14 Ma"
+    },
+    {
+      "source_id": "aiid",
+      "type": "rss_entry",
+      "id": "2b10c5a4edb03dae347943262d8349c0",
+      "title": "British Columbia chief coroner orders inquest into Tumbler Ridge mass shooting",
+      "url": "https://www.jurist.org/news/2026/03/british-columbia-chief-coroner-orders-inquest-into-tumbler-ridge-mass-shooting/",
+      "body_excerpt": "British Columbia's chief coroner issued a statement on Monday announcing a formal inquest into potential systemic and procedural issues raised following a mass shooting that resulted in nine deaths in the small town of Tumbler Ridge.\n\nCoron ... (https://incidentdatabase.ai/cite/1375#7229)",
+      "release_date": "Thu, 14 Ma"
+    },
+    {
+      "source_id": "aiid",
+      "type": "rss_entry",
+      "id": "8bc9a10a3bd6d2b9b7d26217fff3a020",
+      "title": "Minister says AI safety institute now looking at OpenAI protocols",
+      "url": "https://kitchener.citynews.ca/2026/04/10/minister-says-ai-safety-institute-now-looking-at-openai-protocols/",
+      "body_excerpt": "OTTAWA --- Canada's AI safety institute has now gained access to all of OpenAI's \"protocols,\" Artificial Intelligence Minister Evan Solomon said Friday.\n\nSolomon added the AI Safety Institute is working on a report and promised that \"we wil ... (https://incidentdatabase.ai/cite/1375#7230)",
+      "release_date": "Thu, 14 Ma"
     }
   ]
 }
