@@ -47,12 +47,12 @@ A practitioner reference covering 32 AI risk entries across 7 domains, with four
 ai-risk-kb/
 ├── docs/
 │   ├── domain-a-technical/       # A1–A4
-│   ├── domain-b-governance/      # B1–B4
-│   ├── domain-c-security/        # C1–C5
+│   ├── domain-b-governance/      # B1–B5
+│   ├── domain-c-security/        # C1–C8
 │   ├── domain-d-data/            # D1–D3
 │   ├── domain-e-fairness/        # E1–E3
-│   ├── domain-f-deployment/      # F1–F3
-│   ├── domain-g-systemic/        # G1–G4
+│   ├── domain-f-deployment/      # F1–F4
+│   ├── domain-g-systemic/        # G1–G5
 │   ├── how-to-use.md
 │   ├── about.md
 │   ├── schema.md
