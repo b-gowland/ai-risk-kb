@@ -632,7 +632,7 @@ class GapDetectionEngine:
                     fix_prompt=None,
                 )
             )
-        if "## Layer 1 — Executive card" not in content:
+        if "## Layer 1 — Start here" not in content:
             gaps.append(
                 GapReport(
                     entry_id=entry_id,
