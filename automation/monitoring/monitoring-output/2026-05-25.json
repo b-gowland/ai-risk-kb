@@ -1,0 +1,123 @@
+{
+  "run_date": "2026-05-25",
+  "items_reviewed": 16,
+  "classifications": [
+    {
+      "item_id": "70ce0799b48a9e4f3cbc352dda8af70b",
+      "item_title": "Fake AI satellite imagery spurs US-Iran war disinformation",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "E3",
+          "confidence": "high",
+          "rationale": "AI-generated fake satellite imagery used to spread wartime disinformation directly matches E3's scope."
+        },
+        {
+          "kb_id": "C4",
+          "confidence": "high",
+          "rationale": "AI-generated synthetic imagery used to deceive and manipulate public perception of real-world events."
+        }
+      ],
+      "evidence_quote": "AI-generated fake, underscoring the accelerating threat of tech-enabled disinformation during wartime",
+      "recommended_action": "Update E3 and C4 to include geopolitical/wartime use of AI-generated imagery as an emerging high-risk pattern, citing this incident as an example."
+    },
+    {
+      "item_id": "9296ea68653354cda54f81dce5de43c8",
+      "item_title": "Netanyahu posts video in response to Iran rumours that he is dead",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "E3",
+          "confidence": "high",
+          "rationale": "AI-amplified false rumours about a head of state's death represent disinformation at scale in a conflict context."
+        },
+        {
+          "kb_id": "C4",
+          "confidence": "medium",
+          "rationale": "Fabricated claims about public figures in conflict align with deepfake/synthetic media fraud risk patterns."
+        }
+      ],
+      "evidence_quote": "rumours that he was dead or injured were aired by Iranian state media",
+      "recommended_action": "Update E3 to note the use of AI-amplified disinformation targeting political leaders during active conflicts, referencing this incident."
+    },
+    {
+      "item_id": "4bac419883c537b7b7bec2c83d9d1b18",
+      "item_title": "Netanyahu denies death rumours in social media clip which Grok falsely branded AI",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "A1",
+          "confidence": "high",
+          "rationale": "Grok falsely labelling a genuine video as AI-generated is a hallucination/confabulation error with real-world political consequences."
+        },
+        {
+          "kb_id": "E3",
+          "confidence": "high",
+          "rationale": "The false AI label compounded existing disinformation narratives about a political leader's death."
+        }
+      ],
+      "evidence_quote": "social media clip which Grok falsely branded AI",
+      "recommended_action": "Update A1 to include the risk of AI tools falsely classifying real content as AI-generated, and update E3 to note how such misclassifications amplify disinformation."
+    },
+    {
+      "item_id": "c0acd5824c776d3e5f2ffc936035879e",
+      "item_title": "Pro-Iran propaganda network gains traction with posts about Epstein",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "E3",
+          "confidence": "high",
+          "rationale": "Coordinated AI-assisted propaganda network spreading fabricated content about political figures matches E3 disinformation at scale."
+        },
+        {
+          "kb_id": "C4",
+          "confidence": "medium",
+          "rationale": "Grainy AI-generated video depicting political figures in compromising scenarios is a synthetic media fraud technique."
+        }
+      ],
+      "evidence_quote": "A grainy video appears to show a line of blindfolded young girls parading past an underwear-clad Donald Trump",
+      "recommended_action": "Update E3 and C4 to reference coordinated AI-enabled propaganda networks using synthetic video to target political figures during geopolitical conflicts."
+    },
+    {
+      "item_id": "d4bbf4e981b62bca01c4af9b8c6ab535",
+      "item_title": "Pro-Iran groups have used AI to troll Trump and try to control the war narrative",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "E3",
+          "confidence": "high",
+          "rationale": "AI-generated memes used by state-aligned groups to shape war narrative is a direct example of AI-enabled disinformation at scale."
+        },
+        {
+          "kb_id": "C5",
+          "confidence": "medium",
+          "rationale": "State-sponsored use of AI for influence operations can be framed as an AI-enabled adversarial attack on information environments."
+        }
+      ],
+      "evidence_quote": "Pro-Iran groups have used artificial intelligence to create slick internet memes in English to try to shape the narrative",
+      "recommended_action": "Update E3 to explicitly include state-sponsored AI-generated influence operations targeting foreign audiences, and consider noting overlap with C5 for state-actor adversarial AI use."
+    },
+    {
+      "item_id": "9018af9c9e9a4a16f25206f9c29aad54",
+      "item_title": "Os instrutores de fitness criados com IA que prometem resultados irreais",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "E2",
+          "confidence": "high",
+          "rationale": "AI-generated fitness influencers promoting unrealistic body transformation claims constitute harmful content generation targeting consumers."
+        },
+        {
+          "kb_id": "C4",
+          "confidence": "medium",
+          "rationale": "AI-generated synthetic personas posing as real fitness instructors is a form of synthetic media fraud."
+        }
+      ],
+      "evidence_quote": "v\u00eddeos de fitness sofisticados que prometem transforma\u00e7\u00f5es corporais impressionantes em poucas semanas",
+      "recommended_action": "Update E2 to include AI-generated synthetic influencers promoting harmful or unrealistic health/fitness content, and note overlap with C4 for fake persona creation."
+    }
+  ],
+  "source_counts": {
+    "aiid": 16
+  }
+}
