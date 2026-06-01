@@ -1,0 +1,72 @@
+{
+  "run_date": "2026-06-01",
+  "items_reviewed": 13,
+  "classifications": [
+    {
+      "item_id": "3d83b53fa5efe9dc64c2ece5193a1a4d",
+      "item_title": "Book on Truth in the Age of A.I. Contains Quotes Made Up by A.I.",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "A1",
+          "confidence": "high",
+          "rationale": "AI fabricated quotes that were presented as real in a published nonfiction book, a direct example of hallucination/confabulation causing real-world harm."
+        },
+        {
+          "kb_id": "E3",
+          "confidence": "medium",
+          "rationale": "Made-up or misattributed quotes in a published book constitute AI-generated misinformation that reached an audience at scale."
+        },
+        {
+          "kb_id": "F1",
+          "confidence": "low",
+          "rationale": "Author over-relied on AI-generated content without sufficient independent verification, illustrating automation bias."
+        }
+      ],
+      "evidence_quote": "he had included numerous made-up or misattributed quotes concocted by A.I.",
+      "recommended_action": "Update A1 (Hallucination) with this as a concrete real-world case study where AI-fabricated quotes were published in a nonfiction book, and note the downstream E3 misinformation risk."
+    },
+    {
+      "item_id": "28ce16129f23c01febba2f6153cb5ce4",
+      "item_title": "Bay Area mom out thousands after scammers use AI to mimic daughter's voice in fake kidnapping",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "C4",
+          "confidence": "high",
+          "rationale": "Scammers used AI to clone a person's voice for impersonation in a fraudulent kidnapping scheme, directly matching the deepfakes and synthetic media fraud entry."
+        }
+      ],
+      "evidence_quote": "scammers used artificial intelligence to mimic her daughter's voice in what authorities describe as a growing type of fraud",
+      "recommended_action": "Update C4 (Deepfakes & Synthetic Media Fraud) to explicitly include AI voice cloning used in virtual kidnapping and phone-based financial fraud as a documented and growing attack vector."
+    },
+    {
+      "item_id": "v2026.05",
+      "item_title": "MITRE ATLAS v2026.05",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "B3",
+          "confidence": "medium",
+          "rationale": "MITRE ATLAS is a key reference framework for AI threat governance; a major versioning update with new platform categorisations is relevant to AI lifecycle governance tooling."
+        },
+        {
+          "kb_id": "G4",
+          "confidence": "medium",
+          "rationale": "New ATLAS platform tag 'Agentic AI' signals expanded threat coverage for autonomous AI systems, relevant to the loss-of-control risk entry."
+        },
+        {
+          "kb_id": "C2",
+          "confidence": "low",
+          "rationale": "ATLAS technique updates covering Generative and Agentic AI platforms expand the adversarial threat landscape that includes prompt injection."
+        }
+      ],
+      "evidence_quote": "All techniques are updated to include one or more platforms (Predictive AI, Generative AI, Agentic AI, Enterprise)",
+      "recommended_action": "Update B3 and G4 to reference MITRE ATLAS v2026.05 as an updated authoritative framework, noting the new Agentic AI platform categorisation and revised versioning scheme for ongoing monitoring."
+    }
+  ],
+  "source_counts": {
+    "aiid": 12,
+    "mitre_atlas": 1
+  }
+}
