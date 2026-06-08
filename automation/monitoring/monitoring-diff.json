@@ -1,124 +1,160 @@
 {
-  "run_date": "2026-06-01",
-  "run_timestamp": "2026-06-01T15:48:13.286206+00:00",
-  "total_new_items": 13,
+  "run_date": "2026-06-08",
+  "run_timestamp": "2026-06-08T13:57:51.093095+00:00",
+  "total_new_items": 17,
   "items": [
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "eb2627a0033b53380d0c452ebac3ccf1",
-      "title": "I was starting my first job in September \u2014 then they gave it to AI",
-      "url": "https://www.thetimes.com/business/companies-markets/article/graduate-jobs-alan-milburn-neets-wmgsjw7df",
-      "body_excerpt": "A university student's graduate job offer was withdrawn because of the company's push for artificial intelligence.\n\nA boutique consultancy which specialises in commercial due diligence offered four graduates analyst roles in December 2025 t ... (report_number: 7330)",
-      "release_date": "Sun, 31 Ma"
+      "id": "2cc39c0e119a937657976537ef818412",
+      "title": "No title",
+      "url": "",
+      "body_excerpt": "... (report_number: 7352)",
+      "release_date": "Fri, 05 Ju"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "b375784cb5ca757752d458fb13a59389",
-      "title": "CBSE says OnMark portal \u2018vulnerabilities\u2019 contained amid security concerns",
-      "url": "https://www.thehindu.com/news/national/cbse-says-onmark-portal-vulnerabilities-contained-amid-security-concerns/article71044420.ece",
-      "body_excerpt": "After public posts by ethical hackers exposed vulnerabilities in the Central Board of Secondary Education's On-Screen Marking platform OnMark, the board on Sunday (May 31, 2026) stated that the identified vulnerabilities \"have been containe ... (https://incidentdatabase.ai/cite/1507#7331)",
-      "release_date": "Sun, 31 Ma"
+      "id": "b8dfd92cf9fca8339eeed93d15ad3438",
+      "title": "Hackers Simply Asked Meta AI to Give Them Access to High-Profile Instagram Accounts. It Worked",
+      "url": "https://www.404media.co/hackers-simply-asked-meta-ai-to-give-them-access-to-high-profile-instagram-accounts-it-worked/",
+      "body_excerpt": "Hackers say that they used Meta's AI support chatbot to break into a host of high-profile Instagram profiles by asking the support bot to change the email address associated with the target account. The claims coincide with a series of high ... (https://incidentdatabase.ai/cite/1510#7338)",
+      "release_date": "Thu, 04 Ju"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "0934bb159d6c0ce7e2e911a9829516f7",
-      "title": "\u201cSiamo tutti in un mare di guai, noi e i nostri figli. Hanno rubato la mia immagine con l\u2019AI per chiedere soldi, molte persone sono cadute nella truffa\u201d: la denuncia di Safiria Leccese",
-      "url": "https://www.ilfattoquotidiano.it/2026/05/31/siamo-tutti-in-un-mare-di-guai-noi-e-i-nostri-figli-hanno-rubato-la-mia-immagine-con-lai-per-chiedere-soldi-molte-persone-sono-cadute-nella-truffa-la-denuncia-di-safiria-leccese/8404552/",
-      "body_excerpt": "Safiria Leccese fa ancora fatica ad accettare di essere finita al centro di un raggiro. Uno dei volti al femminile pi\u00f9 apprezzati di Mediaset \u00e8 apparsa in un video diffuso in rete in cui all'interno del \"suo\" studio di Super partes -- il pr ... (https://incidentdatabase.ai/cite/1508#7332)",
-      "release_date": "Sun, 31 Ma"
+      "id": "bee8769f57ee1af39a9f8cee2f43f783",
+      "title": "How Much of Data-Center Activism Is Really AI Slop?",
+      "url": "https://www.theatlantic.com/technology/2026/06/data-centers-activism-ai-slop/687396/",
+      "body_excerpt": "Americans are wary of AI in general, and they are especially suspicious of the AI data centers that are popping up across the country like enormous mushrooms. A majority do not want a new data center built in their town. Across the country, ... (report_number: 7339)",
+      "release_date": "Thu, 04 Ju"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "58329167cf22ef3cb6b9073c143ecd3a",
-      "title": "Safiria Leccese Caught in Deepfake Loan Scam",
-      "url": "https://www.ilmessaggero.it/en/safiria_leccese_caught_in_deepfake_loan_scam-9565595.html",
-      "body_excerpt": "Artificial Intelligence has struck her as well. Safiria Leccese has also fallen victim to a scam---one that involved her personally, without her knowledge. She is mortified about it. In an interview with the weekly magazine Nuovo, the Media ... (https://incidentdatabase.ai/cite/1508#7333)",
-      "release_date": "Sun, 31 Ma"
+      "id": "994b0b8bee30f53667d822bb5424e84e",
+      "title": "Epstein Files: X Users Are Asking Grok to 'Unblur' Photos of Children",
+      "url": "https://www.bellingcat.com/news/2026/02/10/grok-epstein-photos/",
+      "body_excerpt": "In the days after the US Department of Justice (DOJ) published 3.5 million pages of documents related to the late sex offender Jeffrey Epstein, multiple users on X have asked Grok to \"unblur\" or remove the black boxes covering the faces of  ... (https://incidentdatabase.ai/cite/1511#7340)",
+      "release_date": "Thu, 04 Ju"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "00267d5c007a67ee7e80c08c7739f4ec",
-      "title": "Artificial Intelligence Floods Court Dockets with Home-Brewed Lawsuits",
-      "url": "https://www.nytimes.com/2026/05/25/us/politics/artificial-intelliegence-courts.html",
-      "body_excerpt": "The complaint Donald Sauve submitted in Minnesota last year  was a familiar type in the nation's federal courts.\n\nIn legal parlance, Mr. Sauve filed \"pro se,\" Latin for \"for oneself,\" meaning he had no lawyer as he sued his ex-wife, her law ... (report_number: 7325)",
-      "release_date": "Sat, 30 Ma"
+      "id": "693ff39cd1857204c46e7dac4bef74eb",
+      "title": "\u2018Odd choices of words\u2019: How an academic\u2019s AI use was exposed by her peers",
+      "url": "https://www.smh.com.au/national/uni-academic-admits-she-used-ai-to-write-opinion-piece-in-defence-of-ai-20260602-p6038j.html",
+      "body_excerpt": "AIID editor's note: The original source embeds the the retracted article in question. It is also located here.\n\nWhen a professor specialising in academic integrity wrote an opinion piece that defended universities against claims that artifi ... (https://incidentdatabase.ai/cite/1512#7341)",
+      "release_date": "Thu, 04 Ju"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "cde9d428eb9ce53b30c44b9580305242",
-      "title": "ChatGPT Gave Me Chilling Advice\u2014as I Simulated Planning a Mass Shooting",
-      "url": "https://www.motherjones.com/media/2026/05/openai-chatgpt-mass-shooting-guardrails-fail/",
-      "body_excerpt": "On April 14, I created a free account on ChatGPT and asked for some help. It resisted me at first, but after some pushing the responses turned shocking. During a conversation lasting about 20 minutes, OpenAI's chatbot gave me extensive advi ... (https://incidentdatabase.ai/cite/1375#7326)",
-      "release_date": "Sat, 30 Ma"
+      "id": "b1bc2639b5d22730f4042a1d135a4f0f",
+      "title": "Scientists Find Way to Supercharge Dangerous Computer \u2018Worms\u2019 With A.I.",
+      "url": "https://www.nytimes.com/2026/06/02/technology/scientists-find-way-to-supercharge-dangerous-computer-worms-with-ai.html",
+      "body_excerpt": "Researchers at the University of Toronto say they have found a way to use artificial intelligence to create a dangerous computer \"worm\" capable of targeting any known flaw in the world's computers and quickly spreading mayhem throughout the ... (report_number: 7342)",
+      "release_date": "Thu, 04 Ju"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "63993e130a07927534e5592c41aabf0a",
-      "title": "The Chilling Role of ChatGPT in Mass Shootings and Other Violence",
-      "url": "https://www.motherjones.com/media/2026/04/chatgpt-tumbler-ridge-fsu-openai-chatbots-mass-shootings/",
-      "body_excerpt": "In June 2025, a safety team at OpenAI grew alarmed. The company's automated review system had flagged extensive activity by a ChatGPT user describing scenarios that involved gun violence. A group of staffers debated whether law enforcement  ... (https://incidentdatabase.ai/cite/1375#7327)",
-      "release_date": "Sat, 30 Ma"
+      "id": "e70b49c40f4d0aeb219b19b55241ebf8",
+      "title": "Edinburgh Festival Fringe acts to get AI 'transparency' guidelines",
+      "url": "https://www.heraldscotland.com/news/26149682.edinburgh-festival-fringe-acts-get-ai-transparency-guidelines/",
+      "body_excerpt": "Artists, performers and companies taking shows to the Edinburgh Festival Fringe are being urged to be up front about their use of artificial intelligence.\n\nOrganisers of the 79-year-old cultural celebration want all participants to be \"full ... (report_number: 7343)",
+      "release_date": "Thu, 04 Ju"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "6e6054eab36e9b3b11059639790f15b2",
-      "title": "ChatGPT Told a Violent Stalker to Embrace the \u2018Haters,\u2019 Indictment Says",
-      "url": "https://www.courtwatch.news/p/chatgpt-told-a-violent-stalker-to-embrace-the-haters-indictment-says",
-      "body_excerpt": "This article was produced in collaboration with 404 Media, a new independent technology investigations site.\n\nA Pittsburgh man who allegedly made 11 women's lives hell across more than five states used ChatGPT as his \"therapist\" and \"best f ... (https://incidentdatabase.ai/cite/1506#7328)",
-      "release_date": "Sat, 30 Ma"
+      "id": "0632be7c43e6d08df9d4a7d94c4d0801",
+      "title": "AI-Generated Content Threatens Information Credibility in Kosovo",
+      "url": "https://prishtinainsight.com/ai-generated-content-threaten-information-credibility-in-kosovo-mag/",
+      "body_excerpt": "Content generated by artificial intelligence, AI, is spreading rapidly across platforms like Facebook and TikTok, threatening the credibility of information in Kosovo and raising concerns of deeper polarisation and mistrust of the country's ... (https://incidentdatabase.ai/cite/1513#7344)",
+      "release_date": "Thu, 04 Ju"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "daf2e7cb39a71abdd35cfb9d7b9152a1",
-      "title": "Whitehall Borough Resident Pleads Guilty to 11 Counts of Cyberstalking, Interstate Stalking and Threats",
-      "url": "https://www.justice.gov/usao-wdpa/pr/whitehall-borough-resident-pleads-guilty-11-counts-cyberstalking-interstate-stalking",
-      "body_excerpt": "PITTSBURGH, Pa. - A resident of Whitehall Borough, Pennsylvania, pleaded guilty in federal court on March 19, 2026, to charges of cyberstalking, interstate stalking, and interstate threats, United States Attorney Troy Rivetti announced toda ... (https://incidentdatabase.ai/cite/1506#7329)",
-      "release_date": "Sat, 30 Ma"
+      "id": "0c9d773d429cb6e98af70171f52ff46d",
+      "title": "P\u00ebrmbajtja e gjeneruar me Inteligjenc\u00eb Artificiale k\u00ebrc\u00ebnon besueshm\u00ebrin\u00eb e informacionit n\u00eb Kosov\u00eb",
+      "url": "https://kallxo.com/lajm/permbajtja-e-gjeneruar-me-inteligjence-artificiale-kercenon-besueshmerine-e-informacionit-ne-kosove/",
+      "body_excerpt": "P\u00ebrmbajtja e gjeneruar prej Inteligjenc\u00ebs Artificiale (AI) po p\u00ebrhapet rrufesh\u00ebm n\u00eb mbar\u00eb platformat, si Facebook dhe TikTok, duke k\u00ebrc\u00ebnuar besueshm\u00ebrin\u00eb e informacionit n\u00eb Kosov\u00eb dhe duke ngritur shqet\u00ebsim p\u00ebr polarizim dhe mosbesim m\u00eb t\u00eb ... (https://incidentdatabase.ai/cite/1513#7345)",
+      "release_date": "Thu, 04 Ju"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "2f8b59ed1bfc7c8287c4b67f5eed8482",
-      "title": "With AI now reading student names at graduation, not everyone is applauding",
-      "url": "https://www.washingtonpost.com/education/2026/05/24/schools-turn-ai-graduation-ceremonies-drawing-mixed-success/",
-      "body_excerpt": "A new accessory is joining the traditional cap-and-gown ensemble as droves of graduates line up to accept their diplomas this spring. Clutched in the hands of students waiting to cross the stage is a QR code, either on paper or a phone, tha ... (https://incidentdatabase.ai/cite/1503#7322)",
-      "release_date": "Thu, 28 Ma"
+      "id": "a124ab8c5113fc0722abf4457bfdaf4f",
+      "title": "Fabrikimi me inteligjenc\u00eb artificiale: Hykmete Bajrami sh\u00ebnjest\u00ebr e nj\u00eb videoje t\u00eb rreme",
+      "url": "https://kallxo.com/krypometer/fabrikimi-me-inteligjence-artificiale-hykmete-bajrami-shenjester-e-nje-videoje-te-rreme/",
+      "body_excerpt": "Deklarata\n\nVideo n\u00eb t\u00eb cil\u00ebn pretendohet se jan\u00eb kapur p\u00ebr dore kryetarja e Grupit Parlamentar t\u00eb Lidhjes Demokratike t\u00eb Kosov\u00ebs, Hykmete Bajrami dhe ish-kryetari i List\u00ebs Serbe, Goran Rakiq\n\nFaqet n\u00eb Facebook\n\nVler\u00ebsimi\n\n\n\nRren\u00eb\n\n\u00cbsht\u00eb e f ... (https://incidentdatabase.ai/cite/1514#7346)",
+      "release_date": "Thu, 04 Ju"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "3d83b53fa5efe9dc64c2ece5193a1a4d",
-      "title": "Book on Truth in the Age of A.I. Contains Quotes Made Up by A.I.",
-      "url": "https://www.nytimes.com/2026/05/19/business/media/future-of-truth-ai-quotes.html",
-      "body_excerpt": "The author of a nonfiction book about the effects of artificial intelligence on truth acknowledged on Monday that he had included numerous made-up or misattributed quotes concocted by A.I.\n\nThe author, Steven Rosenbaum, whose book \"The Futu ... (https://incidentdatabase.ai/cite/1504#7323)",
-      "release_date": "Thu, 28 Ma"
+      "id": "394e29adcd73c811145e897137e18bad",
+      "title": "Artificial intelligence video claiming that migrants will arrive on December 28 to vote for Albin Kurti",
+      "url": "https://hibrid.info/en/artificial-intelligence-video-claiming-that-migrants-will-arrive-on-December-28-to-vote-for-Albin-Kurti/",
+      "body_excerpt": "On November 23 and 24, two Facebook pages published videos showing a person with a microphone asking expatriate citizens if they would come and vote on December 28 in the early parliamentary elections in Kosovo.\n\nIn the videos, some citizen ... (https://incidentdatabase.ai/cite/1515#7347)",
+      "release_date": "Thu, 04 Ju"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "28ce16129f23c01febba2f6153cb5ce4",
-      "title": "Bay Area mom out thousands after scammers use AI to mimic daughter's voice in fake kidnapping",
-      "url": "https://abc7news.com/post/bay-area-mom-thousands-scammers-use-ai-mimic-daughters-voice-fake-kidnapping-part-growing-trend/19154381/",
-      "body_excerpt": "MARTINEZ, Calif. (KGO) -- Thousands of dollars were stolen from a Bay Area woman after scammers used artificial intelligence to mimic her daughter's voice in what authorities describe as a growing type of fraud.\n\nDeborah Del Mastro said the ... (https://incidentdatabase.ai/cite/1505#7324)",
-      "release_date": "Thu, 28 Ma"
+      "id": "e35eb70a71306a527d16a1f2e70144ad",
+      "title": "T\u00eb rreme: Videot e fabrikuara t\u00eb m\u00ebrgimtareve duke folur p\u00ebr zgjedhje",
+      "url": "https://kallxo.com/krypometer/te-rreme-videot-e-fabrikuara-te-mergimtareve-duke-folur-per-zgjedhje/",
+      "body_excerpt": "Deklarata\n\n\"Po patjet\u00ebr q\u00eb do t\u00eb vij\u00eb. Do ta votoj t\u00eb mirin q\u00eb ka punuar p\u00ebr k\u00ebt\u00eb vend, ky vend nuk do ishte zhvilluar pa Albin Kurtin\"\n\nFaqet n\u00eb Facebook\n\nVler\u00ebsimi\n\n\n\nRren\u00eb\n\nDisa faqe n\u00eb Facebook kan\u00eb publikuar disa video t\u00eb ndryshme: t\u00eb  ... (https://incidentdatabase.ai/cite/1515#7348)",
+      "release_date": "Thu, 04 Ju"
     },
     {
-      "source_id": "mitre_atlas",
-      "type": "release",
-      "id": "v2026.05",
-      "title": "MITRE ATLAS v2026.05",
-      "url": "https://atlas.mitre.org/updates/",
-      "body_excerpt": "Starting with this release, there is a split in versioning between the ATLAS Knowledge Base content and the ATLAS Data Format. Monthly ATLAS content releases will follow a YYYY.MM.N versioning scheme with the version stored in the Collection object. ATLAS data format changes will follow semantic versioning. Previously, changes to either content or format were conflated in a single SemVer version.\n\n##### Content v2026.05\n\n- All techniques are updated to include one or more platforms (Predictive AI, Generative AI, Agentic AI, Enterprise).\n\n##### Format v6.0.0\n\n- Introduced a new ATLAS YAML format (v6.0.0)\n  - stronger consistency, normalized object modeling, and first-class relationship representation\n  - added platforms field to techniques\n- Added full validation and data management tooling\n  - Pydantic schemas for strict schema validation\n  - SQLAlchemy ORM models for persistent versioned content management\n  - FastAPI REST API for managing and updating ATLAS data\n- Removed the old wor",
-      "release_date": "2026-05-27"
+      "source_id": "aiid",
+      "type": "rss_entry",
+      "id": "6419660ddb1ce8aa2c4fd8acfa9276b3",
+      "title": "Weekly Review: Fake AI-produced videos about the December 28 elections and conspiratorial claims in Serbian media about pressure on Kosovo Serbs",
+      "url": "https://hibrid.info/en/Review-of-the-week%3A-fake-videos-produced-with-IA-for-the-December-28-elections-and-conspiratorial-claims-in-the-Serbian-media-about-pressure-on-Kosovo-Serbs/",
+      "body_excerpt": "During the period 24--29 November 2025, media and social networks in Kosovo were dominated by disinformation, which formed the main part of the misinformation sphere in this period.\n\nDuring this period, disinformation spread mainly on Faceb ... (https://incidentdatabase.ai/cite/1515#7349)",
+      "release_date": "Thu, 04 Ju"
+    },
+    {
+      "source_id": "aiid",
+      "type": "rss_entry",
+      "id": "928e4ef17f91ed712e04c89afa610151",
+      "title": "Artificial intelligence video claiming that expatriates will not vote for Albin Kurti on December 28th",
+      "url": "https://hibrid.info/en/artificial-intelligence-video-claiming-that-migrants-will-not-vote-for-albin-kurti-on-december-28/",
+      "body_excerpt": "A Facebook page called \"Tana t'zezat\" and with over 40 followers, has recently published three videos (on Thursday and Friday) with electoral content, featuring people who are supposedly immigrants, speaking against Albin Kurti and warning  ... (https://incidentdatabase.ai/cite/1516#7350)",
+      "release_date": "Thu, 04 Ju"
+    },
+    {
+      "source_id": "aiid",
+      "type": "rss_entry",
+      "id": "77ecbb3d240c36c792ce61f5bb777b48",
+      "title": "Weekly Review: Exit Polls and Fake Polls and AI Videos for Elections",
+      "url": "https://hibrid.info/en/Review-of-the-week%27s-exit-polls-and-fake-polls-and-videos-with-him-about-the-elections/",
+      "body_excerpt": "During the period 22--27 December 2025, media and social networks in Kosovo faced a significant intensification of misinformation, where fake news and distortion of facts took a central role, especially in content related to the early parli ... (https://incidentdatabase.ai/cite/1516#7351)",
+      "release_date": "Thu, 04 Ju"
+    },
+    {
+      "source_id": "aiid",
+      "type": "rss_entry",
+      "id": "be97c2535d122ad56bb87896c57b905c",
+      "title": "OpenAI Sued by Florida\u2019s Attorney General Over AI Harms",
+      "url": "https://www.wsj.com/tech/ai/openai-sued-by-floridas-attorney-general-over-ai-harms-8a5113a8",
+      "body_excerpt": "Florida fired a new broadside in a growing rebellion against alleged safety failings of artificial-intelligence chatbots, becoming the first state to file a lawsuit against OpenAI and its chief executive, Sam Altman.\n\nThe lawsuit, filed Mon ... (https://incidentdatabase.ai/cite/1253#7336)",
+      "release_date": "Mon, 01 Ju"
+    },
+    {
+      "source_id": "aiid",
+      "type": "rss_entry",
+      "id": "26d38f9416bee84b503880906d61332f",
+      "title": "China TV variety show exposes scam linking \u2018peace\u2019 sign selfies to privacy risks",
+      "url": "https://www.scmp.com/news/people-culture/trending-china/article/3352777/china-tv-variety-show-exposes-scam-linking-peace-sign-selfies-privacy-risks",
+      "body_excerpt": "A casual peace sign in a selfie has become China's latest online privacy concern after experts warned that the popular pose could expose users' fingerprints.\n\nIn a mainland workplace reality show aired in April, financial expert Li Chang us ... (report_number: 7337)",
+      "release_date": "Mon, 01 Ju"
     }
   ]
 }

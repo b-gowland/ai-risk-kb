@@ -1,0 +1,137 @@
+{
+  "run_date": "2026-06-08",
+  "items_reviewed": 17,
+  "classifications": [
+    {
+      "item_id": "394e29adcd73c811145e897137e18bad",
+      "item_title": "Artificial intelligence video claiming that migrants will arrive on December 28 to vote for Albin Kurti",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "C4",
+          "confidence": "high",
+          "rationale": "AI-generated synthetic videos used to fabricate political statements by fake migrants for electoral manipulation."
+        },
+        {
+          "kb_id": "E3",
+          "confidence": "high",
+          "rationale": "Deepfake videos spreading political disinformation during Kosovo elections on social media."
+        }
+      ],
+      "evidence_quote": "videos showing a person with a microphone asking expatriate citizens if they would come and vote",
+      "recommended_action": "Update C4 and E3 with this example of AI-generated deepfake videos used specifically for electoral disinformation in Kosovo."
+    },
+    {
+      "item_id": "e35eb70a71306a527d16a1f2e70144ad",
+      "item_title": "T\u00eb rreme: Videot e fabrikuara t\u00eb m\u00ebrgimtareve duke folur p\u00ebr zgjedhje",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "C4",
+          "confidence": "high",
+          "rationale": "Fabricated AI videos of migrants speaking about elections represent synthetic media fraud."
+        },
+        {
+          "kb_id": "E3",
+          "confidence": "high",
+          "rationale": "Fact-checked as false disinformation spread via Facebook during Kosovo elections."
+        }
+      ],
+      "evidence_quote": "Disa faqe n\u00eb Facebook kan\u00eb publikuar disa video t\u00eb ndryshme",
+      "recommended_action": "This is a duplicate/companion report to 394e29ad covering the same incident; note as corroborating source in C4/E3 update."
+    },
+    {
+      "item_id": "6419660ddb1ce8aa2c4fd8acfa9276b3",
+      "item_title": "Weekly Review: Fake AI-produced videos about the December 28 elections and conspiratorial claims in Serbian media about pressure on Kosovo Serbs",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "C4",
+          "confidence": "high",
+          "rationale": "Describes AI-produced fake videos used as part of an election disinformation campaign on social media."
+        },
+        {
+          "kb_id": "E3",
+          "confidence": "high",
+          "rationale": "Weekly review documenting AI-amplified disinformation dominating Kosovo's information sphere during election period."
+        }
+      ],
+      "evidence_quote": "disinformation spread mainly on Facebook...fake AI-produced videos about the December 28 elections",
+      "recommended_action": "Update C4 and E3 entries with this broader weekly review documenting AI deepfake videos as a systematic election disinformation tactic."
+    },
+    {
+      "item_id": "928e4ef17f91ed712e04c89afa610151",
+      "item_title": "Artificial intelligence video claiming that expatriates will not vote for Albin Kurti on December 28th",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "C4",
+          "confidence": "high",
+          "rationale": "AI-generated videos impersonating immigrants to spread anti-Kurti electoral messaging."
+        },
+        {
+          "kb_id": "E3",
+          "confidence": "high",
+          "rationale": "Fabricated AI videos deployed on Facebook to influence Kosovo election outcomes through disinformation."
+        }
+      ],
+      "evidence_quote": "featuring people who are supposedly immigrants, speaking against Albin Kurti",
+      "recommended_action": "Add to C4 and E3 as another instance in the Kosovo election AI deepfake disinformation cluster, noting both pro- and anti-Kurti fabrications occurred."
+    },
+    {
+      "item_id": "77ecbb3d240c36c792ce61f5bb777b48",
+      "item_title": "Weekly Review: Exit Polls and Fake Polls and AI Videos for Elections",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "C4",
+          "confidence": "high",
+          "rationale": "AI videos combined with fake polls form a coordinated election disinformation campaign."
+        },
+        {
+          "kb_id": "E3",
+          "confidence": "high",
+          "rationale": "Significant intensification of AI-enabled misinformation during Kosovo parliamentary election period."
+        }
+      ],
+      "evidence_quote": "significant intensification of misinformation, where fake news and distortion of facts took a central role",
+      "recommended_action": "Update C4 and E3 to include this summary report showing escalation of AI-generated electoral disinformation up to election day in Kosovo."
+    },
+    {
+      "item_id": "be97c2535d122ad56bb87896c57b905c",
+      "item_title": "OpenAI Sued by Florida's Attorney General Over AI Harms",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "B2",
+          "confidence": "high",
+          "rationale": "State-level lawsuit against OpenAI represents regulatory enforcement action for alleged AI safety failures."
+        },
+        {
+          "kb_id": "B1",
+          "confidence": "medium",
+          "rationale": "Lawsuit highlights accountability gaps in AI development and deployment by a major provider."
+        }
+      ],
+      "evidence_quote": "Florida...becoming the first state to file a lawsuit against OpenAI...over alleged safety failings",
+      "recommended_action": "Update B2 with this landmark first state AG lawsuit against OpenAI as an example of emerging US state-level regulatory enforcement against AI providers."
+    },
+    {
+      "item_id": "26d38f9416bee84b503880906d61332f",
+      "item_title": "China TV variety show exposes scam linking 'peace' sign selfies to privacy risks",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "D2",
+          "confidence": "medium",
+          "rationale": "AI-enabled fingerprint extraction from selfie photos represents a novel personal biometric data exfiltration vector."
+        }
+      ],
+      "evidence_quote": "peace sign in a selfie...experts warned that the popular pose could expose users' fingerprints",
+      "recommended_action": "Update D2 to note AI-enabled biometric extraction from ordinary photographs (e.g. fingerprints from selfies) as an emerging privacy risk vector."
+    }
+  ],
+  "source_counts": {
+    "aiid": 17
+  }
+}
