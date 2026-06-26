@@ -4,7 +4,7 @@ title: "F4 — Irreversibility & Scope Creep in Autonomous Systems"
 sidebar_label: "F4 — Irreversibility & Scope Creep"
 sidebar_position: 4
 tags: [deployment, agentic-ai, high-severity]
-last_verified: 2026-05-10
+last_verified: 2026-06-26
 next_review: 2026-11-10
 ---
 
@@ -18,7 +18,7 @@ import TabItem from '@theme/TabItem';
   <span className="framework-chip">OWASP LLM06</span>
   <span className="framework-chip">NIST AI 600-1</span>
   <span className="framework-chip">EU AI Act Art. 14</span>
-  <span className="framework-chip">MITRE ATLAS v5.3</span>
+  <span className="framework-chip">MITRE ATLAS</span>
 </div>
 
 **Domain:** F — Deployment | **Jurisdiction:** Global
@@ -48,7 +48,7 @@ Before any agentic AI system goes live, you need a completed irreversible action
   </TabItem>
   <TabItem value="analyst" label="Security Analyst">
 
-Your focus is the execution layer. Every irreversible action type (send, delete, deploy, pay, modify permissions) needs a technical gate — not a prompt instruction, not a guideline, a technical gate that cannot be bypassed by model output. Additionally, implement scope monitoring: detect when an agent's activity starts touching systems, data, or people outside its defined perimeter. OWASP LLM06 Excessive Agency is the canonical framing for this risk class. MITRE ATLAS v5.3 documents specific techniques for exploiting overly permissioned agents.
+Your focus is the execution layer. Every irreversible action type (send, delete, deploy, pay, modify permissions) needs a technical gate — not a prompt instruction, not a guideline, a technical gate that cannot be bypassed by model output. Additionally, implement scope monitoring: detect when an agent's activity starts touching systems, data, or people outside its defined perimeter. OWASP LLM06 Excessive Agency is the canonical framing for this risk class. MITRE ATLAS documents specific techniques for exploiting overly permissioned agents.
 
   </TabItem>
 </Tabs>
