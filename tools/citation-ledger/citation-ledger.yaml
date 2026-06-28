@@ -1,0 +1,119 @@
+# citation-ledger.yaml
+#
+# Tier-0 citation ledger for AI Risk Practice.
+# Canonical registry of enumerable framework IDs (the low-redundancy fact class
+# that LLMs assert confidently and store unreliably — the Issue #19 / F-1 failure
+# mode). A deterministic checker (check_citations.py) verifies every cited ID in
+# the KB and the training scenarios against this registry. No LLM is in the loop.
+#
+# PRINCIPLE: this ledger is a CHECKER, never an ORACLE. Every entry is either
+# `verified` (confirmed against an authoritative source, named below) or
+# `cannot_verify` (could not be confirmed this cycle — the checker flags it for a
+# human to check against the primary source; it is NEVER given a guessed value).
+#
+# Verified during the 2026-06-28 build session against: MITRE ATLAS knowledge-base
+# JSON (MISP galaxy mirror) + Splunk ATLAS detection mapping; the official EU AI
+# Act text (artificialintelligenceact.eu / euaiact.com / EC AI Act Service Desk);
+# OWASP Top 10 for LLM Applications 2025 (v2.0, published 2024-11-18).
+#
+# To refresh: re-verify against the source, bump `verified_on`, change status.
+# Sub-technique IDs are volatile (ATLAS went 66->84 techniques Oct2025->Feb2026):
+# prefer citing the stable parent in prose and pinning the precise ID here.
+
+meta:
+  version: "0.1"
+  built_on: "2026-06-28"
+  note: "Prototype seed scoped to IDs actually cited across the KB and training corpora."
+
+mitre-atlas:
+  source: "MITRE ATLAS knowledge base (MISP galaxy mirror) + Splunk ATLAS mapping"
+  verified_on: "2026-06-28"
+  ids:
+    AML.T0005:
+      name: "Create Proxy ML Model"
+      status: verified
+    AML.T0020:
+      name: "Poison Training Data"
+      aliases: ["Training Data Poisoning"]
+      status: verified
+    AML.T0051:
+      name: "LLM Prompt Injection"
+      status: verified
+    AML.T0051.000:
+      name: "LLM Prompt Injection: Direct"
+      aliases: ["Direct Prompt Injection"]
+      status: verified
+    AML.T0051.001:
+      name: "LLM Prompt Injection: Indirect"
+      aliases: ["Indirect Prompt Injection via Retrieved Content", "Indirect Prompt Injection"]
+      status: verified
+    AML.T0054:
+      name: "LLM Jailbreak"
+      status: verified
+    AML.T0054.003:
+      name: null
+      status: cannot_verify
+      note: "Sub-technique of LLM Jailbreak cited in KB; name could not be confirmed this cycle (atlas.mitre.org/techniques/AML.T0054 returned 404 to fetch). Verify against the live ATLAS matrix before relying on it."
+
+owasp-llm:
+  source: "OWASP Top 10 for LLM Applications 2025 (v2.0, 2024-11-18)"
+  version: "2025"
+  verified_on: "2026-06-28"
+  note: "LLM06 and LLM09 changed meaning between the 2023 and 2025 lists. A bare 'LLM06' is only correct if it means Excessive Agency (2025)."
+  ids:
+    LLM01: { name: "Prompt Injection", status: verified }
+    LLM02: { name: "Sensitive Information Disclosure", status: verified }
+    LLM03: { name: "Supply Chain", status: verified }
+    LLM04: { name: "Data and Model Poisoning", status: verified }
+    LLM05: { name: "Improper Output Handling", status: verified }
+    LLM06: { name: "Excessive Agency", status: verified }
+    LLM07: { name: "System Prompt Leakage", status: verified }
+    LLM08: { name: "Vector and Embedding Weaknesses", status: verified }
+    LLM09: { name: "Misinformation", status: verified }
+    LLM10: { name: "Unbounded Consumption", status: verified }
+
+eu-ai-act:
+  source: "Regulation (EU) 2024/1689, Official Journal version 2024-06-13"
+  verified_on: "2026-06-28"
+  ids:
+    article-5:  { name: "Prohibited AI Practices", status: verified }
+    article-9:  { name: "Risk Management System", status: verified }
+    article-10: { name: "Data and Data Governance", status: verified }
+    article-11: { name: "Technical Documentation", status: verified }
+    article-12: { name: "Record-Keeping", status: verified }
+    article-13: { name: "Transparency and Provision of Information to Deployers", status: verified }
+    article-14: { name: "Human Oversight", status: verified }
+    article-15: { name: "Accuracy, Robustness and Cybersecurity", status: verified }
+    article-29:
+      name: null
+      status: cannot_verify
+      note: "Cited in KB (f2-shadow-ai) as 'EU AI Act Art. 29 - deployers'. Deployer obligations are Article 26; Art. 29 may be a miscitation. Verify against Regulation (EU) 2024/1689 before relying on it."
+    article-50: { name: "Transparency Obligations for Providers and Deployers of Certain AI Systems", status: verified }
+    article-53: { name: "Obligations for Providers of General-Purpose AI Models", status: verified }
+    article-26: { name: "Obligations of Deployers of High-Risk AI Systems", status: verified }
+    article-86: { name: "Right to Explanation of Individual Decision-Making", status: verified }
+    annex-iii:  { name: "High-Risk AI Systems (incl. employment and worker management)", status: verified }
+    annex-iv:   { name: "Technical Documentation", status: verified }
+
+iso-42001:
+  source: "ISO/IEC 42001:2023 (Harmonized Structure clauses 4-10)"
+  verified_on: "2026-06-28"
+  note: "Clause titles are the HS structure. Annex A control COUNT is contested across sources (38 vs 42) — do not pin a count here; describe Annex A qualitatively."
+  ids:
+    clause-4:  { name: "Context of the organization", status: verified }
+    clause-5:  { name: "Leadership", status: verified }
+    clause-6:  { name: "Planning", status: verified }
+    clause-7:  { name: "Support", status: verified }
+    clause-8:  { name: "Operation", status: verified }
+    clause-9:  { name: "Performance evaluation", status: verified }
+    clause-10: { name: "Improvement", status: verified }
+
+nist-ai-rmf:
+  source: "NIST AI RMF 1.0 (NIST AI 100-1, Jan 2023)"
+  verified_on: "2026-06-28"
+  note: "The four functions are verified. Specific subcategory TITLES (e.g. govern-2.x) are NOT pinned in this prototype — the checker confirms the function is valid and flags the subcategory for title-level human verification."
+  functions:
+    govern:  { name: "Govern", status: verified }
+    map:     { name: "Map", status: verified }
+    measure: { name: "Measure", status: verified }
+    manage:  { name: "Manage", status: verified }

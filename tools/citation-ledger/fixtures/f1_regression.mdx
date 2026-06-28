@@ -1,0 +1,16 @@
+---
+id: f1-regression-fixture
+title: F-1 Regression Fixture (do not publish)
+---
+
+# F-1 regression fixture
+
+This file deliberately reproduces the F-1 error caught in the 2026-06 QA run.
+The Tier-0 checker MUST flag the line below as NAME_MISMATCH, because
+MITRE ATLAS AML.T0054 is "LLM Jailbreak", not indirect prompt injection.
+
+The threat model covered direct prompt injection but not indirect injection via
+tool responses. MITRE ATLAS AML.T0054 documents indirect injection specifically.
+
+A correct citation for comparison (should pass): the indirect variant is
+<span className="framework-chip">MITRE ATLAS AML.T0051.001 Indirect Prompt Injection via Retrieved Content</span>.

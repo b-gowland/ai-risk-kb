@@ -1,0 +1,62 @@
+name: citation-ledger (advisory)
+
+# Tier-0 citation ledger check. ADVISORY: reports, does not block merges.
+# Flip to enforcing later by adding --strict to the run command, once the
+# false-positive rate is known low (see tools/citation-ledger/README.md).
+
+on:
+  push:
+    paths:
+      - "docs/**/*.mdx"
+      - "docs/**/*.md"
+      - "tools/citation-ledger/**"
+  pull_request:
+    paths:
+      - "docs/**/*.mdx"
+      - "docs/**/*.md"
+      - "tools/citation-ledger/**"
+  workflow_dispatch:
+
+jobs:
+  citation-ledger:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deps
+        run: pip install pyyaml
+
+      - name: Run citation ledger check (advisory) on KB
+        run: |
+          python3 tools/citation-ledger/check_citations.py \
+            --ledger tools/citation-ledger/citation-ledger.yaml \
+            docs | tee citation-report.txt
+
+      - name: Self-test (F-1 regression)
+        run: |
+          python3 tools/citation-ledger/check_citations.py --self-test
+
+      - name: Surface report in job summary
+        if: always()
+        run: |
+          {
+            echo '## Citation ledger (advisory)';
+            echo '```';
+            cat citation-report.txt;
+            echo '```';
+          } >> "$GITHUB_STEP_SUMMARY"
+
+# To extend to the training scenarios, add a step that checks out
+# b-gowland/ai-risk-training and runs the same checker against its
+# src/scenarios directory:
+#
+#   - uses: actions/checkout@v4
+#     with: { repository: b-gowland/ai-risk-training, path: _training }
+#   - run: |
+#       python3 tools/citation-ledger/check_citations.py \
+#         --ledger tools/citation-ledger/citation-ledger.yaml \
+#         _training/src/scenarios | tee -a citation-report.txt
