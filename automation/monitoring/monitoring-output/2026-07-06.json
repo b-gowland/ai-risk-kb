@@ -1,0 +1,158 @@
+{
+  "run_date": "2026-07-06",
+  "items_reviewed": 23,
+  "classifications": [
+    {
+      "item_id": "f9ae0b9121d5105893436c93ebd97eca",
+      "item_title": "Lawsuit claims 7-Eleven, BP and Walmart using AI to manipulate California gas prices",
+      "action": "NEW_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "E1",
+          "confidence": "medium",
+          "rationale": "Algorithmic pricing harms consumers systematically, similar to discriminatory outcomes but targeting economic rather than protected-characteristic bias."
+        },
+        {
+          "kb_id": "B2",
+          "confidence": "medium",
+          "rationale": "Use of AI pricing tools alleged to breach antitrust laws constitutes regulatory non-compliance."
+        }
+      ],
+      "evidence_quote": "using data collected by AI to manipulate gas prices",
+      "recommended_action": "Create a new KB entry in Domain B or E covering AI-enabled algorithmic price-fixing and antitrust violations, as this represents a distinct risk pattern not currently captured."
+    },
+    {
+      "item_id": "90b989aedf59bd8af90b3630eede3ced",
+      "item_title": "New culprit in California's sky-high gas prices? Lawsuit blames AI price-fixing",
+      "action": "NO_ACTION",
+      "kb_matches": [],
+      "evidence_quote": "one reason they're not falling, according to a newly filed lawsuit, i...",
+      "recommended_action": "Duplicate coverage of the same incident as f9ae0b9121d5105893436c93ebd97eca; no separate action needed beyond the first item's handling."
+    },
+    {
+      "item_id": "bf9264cb0b8a7376ba57dee609b6eb81",
+      "item_title": "Californians sue over AI-based price fixing at gas pump",
+      "action": "NO_ACTION",
+      "kb_matches": [],
+      "evidence_quote": "artificial intelligence-based pricing system that has wrung more money out of drivers",
+      "recommended_action": "Duplicate coverage of the same incident; consolidate with first item's KB update recommendation."
+    },
+    {
+      "item_id": "45364a542351087dbf3dec360a6c448d",
+      "item_title": "ANTITRUST NEWS: AI software allowed California gas stations to raise prices, suit alleges",
+      "action": "NO_ACTION",
+      "kb_matches": [],
+      "evidence_quote": "illegal algorithmic price-fixing scheme orchestrated by an algorithmic pricing company",
+      "recommended_action": "Duplicate coverage of the same incident; consolidate with first item's KB update recommendation."
+    },
+    {
+      "item_id": "1c7eb0594d9f31cc4573f050a55ff568",
+      "item_title": "Slew Of California Gas Stations Illegally Used AI To Raise Prices, Lawsuit Claims",
+      "action": "NO_ACTION",
+      "kb_matches": [],
+      "evidence_quote": "using an AI tool developed by a company called Kalibrate to artificially inflate prices",
+      "recommended_action": "Duplicate coverage of the same incident; consolidate with first item's KB update recommendation."
+    },
+    {
+      "item_id": "444d22dc8d89a27a2905095d6d725ac1",
+      "item_title": "California drivers sue BP, Marathon, and Walmart over AI gas price-fixing",
+      "action": "NO_ACTION",
+      "kb_matches": [],
+      "evidence_quote": "alleging they used an artificial intelligence pricing tool to fix pump prices",
+      "recommended_action": "Duplicate coverage of the same incident; consolidate with first item's KB update recommendation."
+    },
+    {
+      "item_id": "6a8f6f7932c8aa0028f712c1fea378c4",
+      "item_title": "Class-Action Lawsuit Blames AI for Causing Gas Price Inflation in California",
+      "action": "NO_ACTION",
+      "kb_matches": [],
+      "evidence_quote": "AI to collect and compare non-public pricing and sales figures from participating s...",
+      "recommended_action": "Duplicate coverage of the same incident; consolidate with first item's KB update recommendation."
+    },
+    {
+      "item_id": "5b10a2f6d0a10486e1d34b60b49e4839",
+      "item_title": "California drivers accuse gas station operators of using AI to boost pump prices \u2014 lawsuit seeks damages for antitrust violations",
+      "action": "NO_ACTION",
+      "kb_matches": [],
+      "evidence_quote": "AI tool that smartly squeezes customers for the best profits",
+      "recommended_action": "Duplicate coverage of the same incident; consolidate with first item's KB update recommendation."
+    },
+    {
+      "item_id": "94a2e44b57bcb0dbeaf65780a38db2ef",
+      "item_title": "7-Eleven, Circle K named in lawsuit over using AI to boost gas prices",
+      "action": "NO_ACTION",
+      "kb_matches": [],
+      "evidence_quote": "using an AI-powered fuel pricing algorithm to increase gas prices",
+      "recommended_action": "Duplicate coverage of the same incident; consolidate with first item's KB update recommendation."
+    },
+    {
+      "item_id": "f19b131245b61b7a33467fcc47c75ec3",
+      "item_title": "California Drivers File Suit Over AI Use to Set Gas Prices",
+      "action": "NO_ACTION",
+      "kb_matches": [],
+      "evidence_quote": "accusing them of using AI to boost fuel prices",
+      "recommended_action": "Duplicate coverage of the same incident; consolidate with first item's KB update recommendation."
+    },
+    {
+      "item_id": "v2026.06",
+      "item_title": "MITRE ATLAS v2026.06",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "C2",
+          "confidence": "high",
+          "rationale": "LLM Jailbreak technique update directly relates to prompt injection and hijacking of AI systems."
+        },
+        {
+          "kb_id": "C3",
+          "confidence": "medium",
+          "rationale": "AI Service Web Interface and session cookie theft techniques relate to model/service extraction risks."
+        },
+        {
+          "kb_id": "B3",
+          "confidence": "medium",
+          "rationale": "Updated mitigations for Generative AI Guardrails, Guidelines, and Telemetry Logging relate to AI lifecycle governance."
+        },
+        {
+          "kb_id": "G4",
+          "confidence": "low",
+          "rationale": "New agentic and web interface attack techniques touch on loss-of-control risks for AI systems."
+        }
+      ],
+      "evidence_quote": "Updated existing techniques - [LLM Jailbreak]; Added [AI Service Web Interface]; Updated [Generative AI Guardrails]",
+      "recommended_action": "Update KB entries C2, C3, B3 to reference MITRE ATLAS v2026.06 techniques and mitigations, including the new LLM Jailbreak updates and Generative AI Guardrails/Guidelines mitigations."
+    },
+    {
+      "item_id": "/blog/ai-incident-tracker-june-2026-update",
+      "item_title": "MIT AI Risk Repository: AI Incident Tracker June 2026 Update",
+      "action": "NO_ACTION",
+      "kb_matches": [],
+      "evidence_quote": "pilot study to compare the performance of eight LLMs against expert human reviewers",
+      "recommended_action": "No KB update needed; this item covers methodology for an AI incident classification tool rather than a new or evolving AI risk category."
+    },
+    {
+      "item_id": "/blog/announcing-flare-ai",
+      "item_title": "MIT AI Risk Repository: AI Needs a Better Way to Report Flaws, So We Built One",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "B3",
+          "confidence": "medium",
+          "rationale": "A structured flaw-reporting system (FLARE-AI) is a governance and lifecycle management tool relevant to AI lifecycle governance failure risks."
+        },
+        {
+          "kb_id": "B1",
+          "confidence": "low",
+          "rationale": "Improving flaw reporting addresses accountability gaps by creating clearer ownership of identified AI defects."
+        }
+      ],
+      "evidence_quote": "AI Needs a Better Way to Report Flaws, So We Built One",
+      "recommended_action": "Update KB entry B3 to reference FLARE-AI as an emerging best practice for structured AI flaw reporting within AI lifecycle governance frameworks."
+    }
+  ],
+  "source_counts": {
+    "aiid": 20,
+    "mitre_atlas": 1,
+    "mit_airr": 2
+  }
+}
