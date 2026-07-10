@@ -52,8 +52,9 @@ mitre-atlas:
       status: verified
     AML.T0054.003:
       name: null
-      status: cannot_verify
-      note: "Sub-technique of LLM Jailbreak cited in KB; name could not be confirmed this cycle (atlas.mitre.org/techniques/AML.T0054 returned 404 to fetch). Verify against the live ATLAS matrix before relying on it."
+      status: retired
+      note: "RESOLVED 2026-07-10: nonexistent ID. c2-prompt-injection cited AML.T0054.003 for indirect injection via MCP/tool responses; correct technique is AML.T0051.001 (LLM Prompt Injection: Indirect). Corrected in the entry. Grounding: OWASP GenAI LLM01 cross-references and MISP ATLAS galaxy both list AML.T0051 sub-techniques .000 Direct / .001 Indirect / .002 Triggered; AML.T0054 is LLM Jailbreak with no .003. Matches ai-risk-training fix (commit e18bed5)."
+    AML.T0051.001: { name: "LLM Prompt Injection: Indirect", status: verified }
 
 owasp-llm:
   source: "OWASP Top 10 for LLM Applications 2025 (v2.0, 2024-11-18)"
@@ -86,8 +87,8 @@ eu-ai-act:
     article-15: { name: "Accuracy, Robustness and Cybersecurity", status: verified }
     article-29:
       name: null
-      status: cannot_verify
-      note: "Cited in KB (f2-shadow-ai) as 'EU AI Act Art. 29 - deployers'. Deployer obligations are Article 26; Art. 29 may be a miscitation. Verify against Regulation (EU) 2024/1689 before relying on it."
+      status: retired
+      note: "RESOLVED 2026-07-10: f2-shadow-ai miscited deployer obligations as 'EU AI Act Art. 29' (stale Parliament-draft numbering); corrected to Art. 26 in the entry (chip + controls section). NOTE: f2 also cites GDPR Art. 29 (processing under authority of controller) — that citation is correct and was deliberately left unchanged. No KB entry should cite EU AI Act Art. 29."
     article-50: { name: "Transparency Obligations for Providers and Deployers of Certain AI Systems", status: verified }
     article-53: { name: "Obligations for Providers of General-Purpose AI Models", status: verified }
     article-26: { name: "Obligations of Deployers of High-Risk AI Systems", status: verified }

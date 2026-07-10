@@ -1,8 +1,9 @@
-name: citation-ledger (advisory)
+name: citation-ledger (strict)
 
-# Tier-0 citation ledger check. ADVISORY: reports, does not block merges.
-# Flip to enforcing later by adding --strict to the run command, once the
-# false-positive rate is known low (see tools/citation-ledger/README.md).
+# Tier-0 citation ledger check. STRICT: blocks on NAME_MISMATCH, UNKNOWN_ID,
+# or CANNOT_VERIFY. Flipped 2026-07-10 after the gate cleared: both
+# human-check items resolved (f2 Art. 29->26; c2 AML.T0054.003->AML.T0051.001)
+# and 36/36 citations verify clean.
 
 on:
   push:
@@ -30,9 +31,9 @@ jobs:
       - name: Install deps
         run: pip install pyyaml
 
-      - name: Run citation ledger check (advisory) on KB
+      - name: Run citation ledger check (strict) on KB
         run: |
-          python3 tools/citation-ledger/check_citations.py \
+          python3 tools/citation-ledger/check_citations.py --strict \
             --ledger tools/citation-ledger/citation-ledger.yaml \
             docs | tee citation-report.txt
 
