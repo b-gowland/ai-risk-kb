@@ -1,214 +1,169 @@
 {
-  "run_date": "2026-07-06",
-  "run_timestamp": "2026-07-06T13:37:04.050265+00:00",
-  "total_new_items": 23,
+  "run_date": "2026-07-13",
+  "run_timestamp": "2026-07-13T12:25:27.763367+00:00",
+  "total_new_items": 18,
   "items": [
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "5dc195ebeb7b90515bfd488986bda2cb",
-      "title": "Longtime spokeswoman sues Fred\u2019s Appliance over use of AI likeness",
-      "url": "https://www.spokesman.com/stories/2026/jul/01/longtime-spokeswoman-sues-freds-appliance-over-use/",
-      "body_excerpt": "For the past 14 years, Spokane residents learned about upcoming sales and promotions at locally owned Fred's Appliance through the voice and smiling face of Amber George.\n\nBut in February, George noticed on social media that Fred's, and pro ... (https://incidentdatabase.ai/cite/1565#7484)",
-      "release_date": "Sat, 04 Ju"
+      "id": "e0981017d33b960c1dc92fdfba4aaba8",
+      "title": "Maryborough teenager allegedly told police he had planned mass murder for months",
+      "url": "https://www.abc.net.au/news/2026-07-09/qld-teen-terror-extremism-murder-plan/106896932",
+      "body_excerpt": "A 13-year-old boy charged with plotting a school massacre in Queensland, allegedly told police he \"wanted to kill people for months\", and had asked AI to write him a Bondi-style \"mass-shooting story\".\n\nAccording to police, the teenager firs ... (report_number: 7499)",
+      "release_date": "Thu, 09 Ju"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "af4adcc1e7e25715c3bae2a974b47a82",
-      "title": "Indore resident loses Rs 1.83 lakh to AI-generated voice fraud",
-      "url": "https://timesofindia.indiatimes.com/city/indore/indore-resident-loses-rs-1-83-lakh-to-ai-generated-voice-fraud/articleshow/125598857.cms",
-      "body_excerpt": "Indore: A local resident was defrauded of approximately Rs 1.80 lakh by cybercriminals who used AI-generated voice to impersonate his relative living abroad.\n\n\"The Indore crime branch has launched an investigation into the case after the vi ... (https://incidentdatabase.ai/cite/1566#7485)",
-      "release_date": "Sat, 04 Ju"
+      "id": "f60cbec924f42f99c2b46a214d647f49",
+      "title": "Most nurses say AI isn\u2019t good enough to trust with patient care, survey finds",
+      "url": "https://www.washingtonpost.com/technology/2026/07/07/most-nurses-say-ai-isnt-good-enough-trust-with-patient-care-survey/",
+      "body_excerpt": "Nurses across the United States are increasingly using artificial intelligence in their day-to-day work, but over 80 percent of those who participated in a new survey said the tech isn't accurate enough to rely on without verification.\n\nAbo ... (report_number: 7500)",
+      "release_date": "Thu, 09 Ju"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "33063330797f51e713b4083d498bba80",
-      "title": "Food Delivery Robot Says Sorry For Smashing Bus Shelter In New Ad",
-      "url": "https://blockclubchicago.org/2026/04/14/food-delivery-robot-says-sorry-for-smashing-bus-shelter-in-new-ad/",
-      "body_excerpt": "WEST TOWN \u2014 In what\u2019s either a mea culpa, a bit of clever marketing or maybe both, a company whose food delivery robot smashed through the glass at a West Town bus shelter last month is now running an apology ad \u2014 at the very same bus shelt ... (https://incidentdatabase.ai/cite/1567#7486)",
-      "release_date": "Sat, 04 Ju"
+      "id": "772a67dbde9e54aabfd741ea27c97fdf",
+      "title": "China Is Abusing AI",
+      "url": "https://www.theatlantic.com/international/2026/07/xi-jinping-censorship-ai-training/687696/",
+      "body_excerpt": "China's release of yet another impressive open-source AI model has lately raised urgent questions in Silicon Valley about which country will dominate the AI market. What has received less attention are the ways that Chinese actors are alrea ... (report_number: 7501)",
+      "release_date": "Thu, 09 Ju"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "3b27740b00520eec0408399622916ee7",
-      "title": "Robots Gone Wild: Food Delivery Robots Smash 2 Bus Shelters In Chicago",
-      "url": "https://blockclubchicago.org/2026/03/25/robots-gone-wild-food-delivery-robots-smash-2-bus-shelters-in-chicago/",
-      "body_excerpt": "OLD TOWN \u2014 For the second time in a week, a self-driving food delivery robot has crashed into a CTA bus shelter, sending shards of glass all over the sidewalk.\n\nA Coco robot collided with the glass at a bus shelter about 4 p.m. Tuesday at t ... (https://incidentdatabase.ai/cite/1568#7487)",
-      "release_date": "Sat, 04 Ju"
+      "id": "09ff2951f23cfd4cd2c5e7e9c2b45f8c",
+      "title": "11 arrested over alleged AI deepfake scam impersonating President Mahama",
+      "url": "https://theheraldghana.com/11-arrested-over-alleged-ai-deepfake-scam-impersonating-president-mahama/",
+      "body_excerpt": "The Inspector-General of Police's Cyber Vetting and Enforcement Team (CVET) of the Ghana Police Service has arrested 11 individuals, including Nigerian nationals, over allegations of using AI-generated deepfake videos to impersonate John Dr ... (https://incidentdatabase.ai/cite/1579#7502)",
+      "release_date": "Thu, 09 Ju"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "503991a5d2a423a689d606b7ac461701",
-      "title": "California man with bipolar disorder says ChatGPT fueled delusions, led to self-harm in new lawsuit",
-      "url": "https://www.reuters.com/legal/government/california-man-with-bipolar-disorder-says-chatgpt-fueled-delusions-led-self-harm-2026-07-01/",
-      "body_excerpt": "July 1 (Reuters) - A California man sued OpenAI and its CEO Sam Altman on Wednesday, claiming the company's ChatGPT platform exacerbated his bipolar disorder due to a lack of safeguards for users with mental illness.\n\nMichael Lines, 34, sai ... (https://incidentdatabase.ai/cite/1569#7488)",
-      "release_date": "Sat, 04 Ju"
+      "id": "78d9153e2ec38ebc54a99856b32ef281",
+      "title": "PRC-linked influence operations are targeting AI debates in the US",
+      "url": "https://openai.com/index/prc-linked-influence-operations-ai-debates/",
+      "body_excerpt": "Our mission is to ensure that artificial general intelligence benefits all of humanity. We advance this mission by deploying our innovations to build democratic AI: AI shaped by democratic principles, governed by common-sense rules and desi ... (https://incidentdatabase.ai/cite/1580#7503)",
+      "release_date": "Thu, 09 Ju"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "5ca3a2c673be0a475928c02e6d8e5e6d",
-      "title": "Facebook page introduced by Anderson Cooper talking about an Alzheimer treatment of Dr. Sanjay Gupta, 1089143",
-      "url": "https://www.bbb.org/scamtracker/lookupscam/1089143",
-      "body_excerpt": "This content is based on victim and potential victim accounts. Government agencies and legitimate business names and phone numbers are often used by scam artists to take advantage of people.\n\nDescription\n\nThe scam showed Anderson Cooper tal ... (https://incidentdatabase.ai/cite/1564#7482)",
-      "release_date": "Thu, 02 Ju"
+      "id": "fd9b8e77c84c4d488e572b690e85a55d",
+      "title": "China, Russia and Others Seek to Inflame Debate Over A.I. Data Centers",
+      "url": "https://www.nytimes.com/2026/07/09/business/china-russia-ai-data-centers.html",
+      "body_excerpt": "A state-owned newspaper in China recently published a satellite image of a data center in Gainesville, Va., writing in English that the development of artificial intelligence posed a threat to Americans' physical and financial well-being.\n\n ... (https://incidentdatabase.ai/cite/1581#7504)",
+      "release_date": "Thu, 09 Ju"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "73ea7ada079007608d6ec0638fa8bbf1",
-      "title": "Deepfake scam targets Alzheimer's patients with false promise of honey-based cure",
-      "url": "https://www.nbcchicago.com/consumer/deepfake-scam-targets-alzheimers-patients-with-false-promises-of-honey-based-cure/3955606/",
-      "body_excerpt": "A social media scam is using deepfakes of celebrities to promote products they falsely claim could cure Alzheimer's disease and dementia, the Better Business Bureau warned. Some victims they even found reoccurring charges after buying the h ... (https://incidentdatabase.ai/cite/1564#7483)",
-      "release_date": "Thu, 02 Ju"
+      "id": "038d8bef8eed82b8beb4397ebad66086",
+      "title": "All Politics are Local, Until There\u2019s a Foreign Megaphone: How State Actors & AI Slop Are Amplifying the Homegrown Data Center Revolt Ahead of the Midterms",
+      "url": "https://alethea.com/insights/how-state-actors-and-ai-slop-are-amplifying-data-center-revolt",
+      "body_excerpt": "With opposition to data centers cutting across traditional political lines, and multiple high-profile projects already blocked or delayed, the data center fight has become volatile at the hyperlocal level, creating the conditions that forei ... (https://incidentdatabase.ai/cite/1581#7505)",
+      "release_date": "Thu, 09 Ju"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "1bf93108ba9314ba6f32dc7c59fed7b3",
-      "title": "Chasing the Hallucinations: KPMG's AI-Powered Attempt at \"Redefining Excellence\"",
-      "url": "https://gptzero.me/news/investigations-kpmg/",
-      "body_excerpt": "AIID editor's note: Please see the original source for the full report and all of its findings.\n\nOver the past year, a team of GPTZero investigators has used our Hallucination Check tool to uncover hallucinated citations in government repor ... (https://incidentdatabase.ai/cite/1563#7481)",
-      "release_date": "Tue, 30 Ju"
+      "id": "b70b585d3df222459e734e7443175b38",
+      "title": "Life in <U.S. state>, according to spammers from Bangladesh",
+      "url": "https://www.conspirator0.com/p/life-in-us-state-according-to-spammers",
+      "body_excerpt": "In recent months, Facebook has been flooded with U.S. state-themed AI-generated image posts from a swarm of suspiciously similar accounts with names such as \"Life in Nevada\", \"I grew up in Iowa\", and \"Utah Life\". The content posted by these ... (https://incidentdatabase.ai/cite/1582#7506)",
+      "release_date": "Thu, 09 Ju"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "f1ceb9647b835663328d5e599f78c7a5",
-      "title": "Navy experiment cut short after unmanned vessel flipped a support boat",
-      "url": "https://defensescoop.com/2025/07/01/navy-unmanned-vessel-accident-boat-ventura-channel-islands-california/",
-      "body_excerpt": "The Navy stopped a maritime drone test early and urgently requested support from the Coast Guard and local harbor patrol agents to help rescue a participating tugboat captain from waters off the California coast last week, multiple sources  ... (https://incidentdatabase.ai/cite/1561#7459)",
-      "release_date": "Mon, 29 Ju"
+      "id": "5d92382742a0fca39c18f64ef117478a",
+      "title": "AI company Eightfold sued for helping companies secretly score job seekers",
+      "url": "https://www.reuters.com/sustainability/boards-policy-regulation/ai-company-eightfold-sued-helping-companies-secretly-score-job-seekers-2026-01-21/",
+      "body_excerpt": "Jan 21 (Reuters) - Eightfold AI, a venture capital-backed artificial intelligence hiring platform used by Microsoft, PayPal\u00a0and many other Fortune 500 companies, is being sued in California for allegedly compiling reports used to screen job ... (https://incidentdatabase.ai/cite/1575#7495)",
+      "release_date": "Wed, 08 Ju"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "4273ae86361123f58f055ce46e1a5794",
-      "title": "AI is helping gas stations collude to raise California fuel prices, lawsuit says",
-      "url": "https://apnews.com/article/gas-price-california-lawsuit-kalibrate-collusion-fbf2c03bb69b53da4ede72044ce5e41f",
-      "body_excerpt": "AI-powered software has allowed gas station operators across California to illegally collude and drive up prices at the pump, according to a federal lawsuit.\n\nThe proposed class action lawsuit, filed Monday, accuses gas station giants inclu ... (https://incidentdatabase.ai/cite/1559#7460)",
-      "release_date": "Mon, 29 Ju"
+      "id": "3c842fe45cc4c58f8a3fceb0793980c0",
+      "title": "Judge fines lawyers $12,000 over AI-generated submissions in patent case",
+      "url": "https://www.reuters.com/legal/litigation/judge-fines-lawyers-12000-over-ai-generated-submissions-patent-case-2026-02-03/",
+      "body_excerpt": "Feb 3 (Reuters) - A Kansas federal judge has fined lawyers representing a patent holding company a combined $12,000 for filing documents with non-existent quotations and case citations that were generated by artificial intelligence, in the  ... (https://incidentdatabase.ai/cite/1576#7496)",
+      "release_date": "Wed, 08 Ju"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "f9ae0b9121d5105893436c93ebd97eca",
-      "title": "Lawsuit claims 7-Eleven, BP and Walmart using AI to manipulate California gas prices",
-      "url": "https://www.nbcbayarea.com/news/local/gas-prices-artificial-intelligence-lawsuit/4103399/",
-      "body_excerpt": "Artificial intelligence is costing motorists in California more money at the gas pump, according to a new lawsuit.\n\nThe lawsuit claims companies in the state are using data collected by AI to manipulate gas prices. Companies mentioned in th ... (https://incidentdatabase.ai/cite/1559#7461)",
-      "release_date": "Mon, 29 Ju"
+      "id": "c9b785bb082846e069b6de070c8e2356",
+      "title": "10th Circuit orders lawyer to pay $1,000 for faulty AI citations",
+      "url": "https://www.coloradopolitics.com/2026/02/09/10th-circuit-orders-lawyer-to-pay-1000-for-faulty-ai-citations/",
+      "body_excerpt": "The Denver-based federal appeals court ordered a lawyer on Monday to pay $1,000 to the opposing side for submitting a legal filing with fake case citations generated by artificial intelligence.\n\nA three-judge panel of the U.S. Court of Appe ... (https://incidentdatabase.ai/cite/1577#7497)",
+      "release_date": "Wed, 08 Ju"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "90b989aedf59bd8af90b3630eede3ced",
-      "title": "New culprit in California\u2019s sky-high gas prices? Lawsuit blames AI price-fixing",
-      "url": "https://www.sfchronicle.com/california/article/ai-gas-california-lawsuit-22317334.php",
-      "body_excerpt": "Gasoline prices have soared nationwide since the U.S. launched a war on Iran, but they remain far higher in California than other states, a dollar or more per gallon. And one reason they're not falling, according to a newly filed lawsuit, i ... (https://incidentdatabase.ai/cite/1559#7462)",
-      "release_date": "Mon, 29 Ju"
+      "id": "1ad11e551fa8ddd1d63a78ca587f54ec",
+      "title": "JADEPUFFER: Agentic ransomware for automated database extortion",
+      "url": "https://www.sysdig.com/blog/jadepuffer-agentic-ransomware-for-automated-database-extortion",
+      "body_excerpt": "Ransomware has had a human at the keyboard, or at least a human writing its script, since it was first established as a category of threat. The Sysdig Threat Research Team (TRT) has captured what we assess to be the first documented case of ... (https://incidentdatabase.ai/cite/1578#7498)",
+      "release_date": "Wed, 08 Ju"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "bf9264cb0b8a7376ba57dee609b6eb81",
-      "title": "Californians sue over AI-based price fixing at gas pump",
-      "url": "https://www.courthousenews.com/californians-sue-over-ai-based-price-fixing-at-gas-pump/",
-      "body_excerpt": "SACRAMENTO, Calif. (CN) --- Three Californians filed a class action over what they call an artificial intelligence-based pricing system that has wrung more money out of drivers in a time of explosive gas prices.\n\nThe plaintiffs sued Knowled ... (https://incidentdatabase.ai/cite/1559#7463)",
-      "release_date": "Mon, 29 Ju"
+      "id": "8b746f630aab035574418933eb709358",
+      "title": "AI hallucinated judgments: Why Supreme Court set aside a tribunal order",
+      "url": "https://indianexpress.com/article/legal-news/ai-hallucinated-judgments-explained-supreme-court-nclt-order-fake-precedents-10771396/",
+      "body_excerpt": "Six AI-hallucinated judgments formed the basis for the Supreme Court's striking down of an order passed by the National Company Law Tribunal (NCLT) on Thursday.\n\nThree of the cited judgments did not exist, while the remaining three either d ... (https://incidentdatabase.ai/cite/1573#7493)",
+      "release_date": "Tue, 07 Ju"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "45364a542351087dbf3dec360a6c448d",
-      "title": "ANTITRUST NEWS: AI software allowed California gas stations to raise prices, suit alleges, (Jun 25, 2026)",
-      "url": "https://www.vitallaw.com/news/antitrust-news-ai-software-allowed-california-gas-stations-to-raise-prices-suit-alleges/ald01f54a677fa33c4834a13b9fd615833985",
-      "body_excerpt": "The proposed class argues that California's fuel prices are high due to an illegal algorithmic price-fixing scheme orchestrated by an algorithmic pricing company and the largest fuel retailers.\n\nAI software used by gas stations across Calif ... (https://incidentdatabase.ai/cite/1559#7464)",
-      "release_date": "Mon, 29 Ju"
+      "id": "3af544de42d2368884a0a0a9aa2d6403",
+      "title": "\u2018Disturbing incident\u2019: Police investigating after Lake Zurich High School students distribute AI-generated nude images of classmates",
+      "url": "https://www.lakemchenryscanner.com/2026/04/03/disturbing-incident-police-investigating-after-lake-zurich-high-school-students-distribute-ai-generated-nude-images-of-classmates/",
+      "body_excerpt": "A police investigation is underway after students at Lake Zurich High School were reported to have used AI to generate sexually explicit images of female classmates, with school officials calling it \"disturbing.\"\n\nLake Zurich Community Unit ... (https://incidentdatabase.ai/cite/1574#7494)",
+      "release_date": "Tue, 07 Ju"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "1c7eb0594d9f31cc4573f050a55ff568",
-      "title": "Slew Of California Gas Stations Illegally Used AI To Raise Prices, Lawsuit Claims",
-      "url": "https://www.forbes.com/sites/zacharyfolk/2026/06/22/slew-of-california-gas-stations-illegally-used-ai-to-raise-prices-lawsuit-claims/",
-      "body_excerpt": "Topline\n\nA new lawsuit accuses a slew of gas station owners in California, including Walmart, Speedway and Albertsons, of using an AI tool developed by a company called Kalibrate to artificially inflate prices at the pump---causing prices t ... (https://incidentdatabase.ai/cite/1559#7465)",
-      "release_date": "Mon, 29 Ju"
+      "id": "e9cbcea41b1f69b9698dd327df4ea893",
+      "title": "No title",
+      "url": "",
+      "body_excerpt": "... (report_number: 7489)",
+      "release_date": "Mon, 06 Ju"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "444d22dc8d89a27a2905095d6d725ac1",
-      "title": "California drivers sue BP, Marathon, and Walmart over AI gas price-fixing",
-      "url": "https://qz.com/california-drivers-sue-bp-marathon-walmart-ai-gas-price-fixing-062326",
-      "body_excerpt": "California drivers have filed a proposed class action against BP, Marathon, Walmart, and other major gas station operators, alleging they used an artificial intelligence pricing tool to fix pump prices across the state, according to Reuters ... (https://incidentdatabase.ai/cite/1559#7466)",
-      "release_date": "Mon, 29 Ju"
+      "id": "98d94fe28580fcbd8362756bc594f375",
+      "title": "AI romance scam impersonating Dubai prince ensnares victims",
+      "url": "https://www.enca.com/lifestyle/ai-romance-scam-impersonating-dubai-prince-ensnares-victims",
+      "body_excerpt": "WASHINGTON - Maria believed she was romancing a prince from Dubai, captivated by his flirtatious smile and declarations of affection he showered on her during live video calls. But the suitor was an AI deepfake, making her yet another victi ... (https://incidentdatabase.ai/cite/1570#7490)",
+      "release_date": "Mon, 06 Ju"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "6a8f6f7932c8aa0028f712c1fea378c4",
-      "title": "Class-Action Lawsuit Blames AI for Causing Gas Price Inflation in California",
-      "url": "https://www.caranddriver.com/news/a71709512/california-ai-gas-price-inflation-class-action/",
-      "body_excerpt": "Gas station operators in California are being accused of colluding to keep fuel prices artificially high. The alleged culprit? A piece of software that uses AI to collect and compare non-public pricing and sales figures from participating s ... (https://incidentdatabase.ai/cite/1559#7467)",
-      "release_date": "Mon, 29 Ju"
+      "id": "1985ac91729f3880de3530168a032c2e",
+      "title": "US appeals court sanctions lawyers over AI \u2018hallucinations,\u2019 lack of candor",
+      "url": "https://www.reuters.com/legal/litigation/us-appeals-court-sanctions-lawyers-over-ai-hallucinations-lack-candor-2026-06-03/",
+      "body_excerpt": "WASHINGTON, June 3 (Reuters) - A U.S. appeals court on Wednesday sanctioned two lawyers for filing briefs riddled with nonexistent cases it said were AI-generated, rejected their claims \u200bthat the errors were typographical mistakes and warne ... (https://incidentdatabase.ai/cite/1571#7491)",
+      "release_date": "Mon, 06 Ju"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "5b10a2f6d0a10486e1d34b60b49e4839",
-      "title": "California drivers accuse gas station operators of using AI to boost pump prices \u2014 lawsuit seeks damages for antitrust violations",
-      "url": "https://www.tomshardware.com/tech-industry/artificial-intelligence/california-drivers-accuse-gas-station-operators-of-using-ai-to-boost-pump-prices-lawsuit-seeks-damages-for-antitrust-violations",
-      "body_excerpt": "Californians pay the highest gas prices in the U.S., and a proposed class action says that the issue has been exacerbated by an AI tool that smartly squeezes customers for the best profits. A newly filed lawsuit at the Sacramento, \u200bCaliforn ... (https://incidentdatabase.ai/cite/1559#7468)",
-      "release_date": "Mon, 29 Ju"
-    },
-    {
-      "source_id": "aiid",
-      "type": "rss_entry",
-      "id": "94a2e44b57bcb0dbeaf65780a38db2ef",
-      "title": "7-Eleven, Circle K named in lawsuit over using AI to boost gas prices",
-      "url": "https://www.cstoredive.com/news/7-eleven-circle-k-named-in-lawsuit-over-using-ai-to-boost-gas-prices/823558/",
-      "body_excerpt": "Dive Brief:\n\nSeveral California residents have sued 7-Eleven, Circle K, BP and other retailers for allegedly using an AI-powered fuel pricing algorithm to increase gas prices in the state, according to a lawsuit filed in the U.S. District C ... (https://incidentdatabase.ai/cite/1559#7469)",
-      "release_date": "Mon, 29 Ju"
-    },
-    {
-      "source_id": "aiid",
-      "type": "rss_entry",
-      "id": "f19b131245b61b7a33467fcc47c75ec3",
-      "title": "California Drivers File Suit Over AI Use to Set Gas Prices",
-      "url": "https://csnews.com/california-drivers-file-suit-over-ai-use-set-gas-prices",
-      "body_excerpt": "SACRAMENTO, Calif. --- Gas station operators including bp, Circle K, Marathon Petroleum, 7-Eleven, Walmart and Albertsons face a proposed class action lawsuit from California drivers accusing them of using AI to boost fuel prices.\n\nAccordin ... (https://incidentdatabase.ai/cite/1559#7470)",
-      "release_date": "Mon, 29 Ju"
-    },
-    {
-      "source_id": "mitre_atlas",
-      "type": "release",
-      "id": "v2026.06",
-      "title": "MITRE ATLAS v2026.06",
-      "url": "https://atlas.mitre.org/updates/",
-      "body_excerpt": "##### Content v2026.06\n\n###### Techniques\n\n- Added new techniques\n\n  - [Steal Web Session Cookie](/studies/AML.T0113)\n  - [Use Alternate Authentication Material: Web Session Cookie](/studies/AML.T0091.001)\n  - [AI Service Web Interface](/studies/AML.T0114)\n\n- Updated existing techniques\n\n  - [LLM Jailbreak](/studies/AML.T0054)\n\n###### Mitigations\n\n- Updated existing mitigations\n\n  - [Generative AI Guardrails](/mitigations/AML.M0020)\n  - [Generative AI Guidelines](/mitigations/AML.M0021)\n  - [AI Telemetry Logging](/mitigations/AML.M0024)\n\n###### Case Studies\n\n- Added new case studies\n\n  - [Storm-2139 Azure OpenAI Guardrail Bypass](/studies/AML.CS0057)\n  - [Google Photos AI Model Extraction](/studies/AML.CS0058)\n  - [EchoLeak: Zero-Click Prompt Injection Targeting M365 Copilot for Data Exfiltration](/studies/AML.CS0059)\n  - [Cross-Site Scripting via Prompt Manipulation in Lenovo\u2019s AI Chatbot](/studies/AML.CS0060)\n  - [AI in the Middle: Web-Based AI Services as C2 Relays](/studies/AML.CS0",
-      "release_date": "2026-06-30"
-    },
-    {
-      "source_id": "mit_airr",
-      "type": "blog_post",
-      "id": "/blog/ai-incident-tracker-june-2026-update",
-      "title": "MIT AI Risk Repository: AI Incident Tracker June 2026 Update",
-      "url": "https://airisk.mit.edu/blog/ai-incident-tracker-june-2026-update",
-      "body_excerpt": "The AI Incident Tracker uses large language models (LLMs) to process incident reports from the AI Incident Database (AIID) and classify them along five taxonomies, producing standardized data that policymakers and researchers can use to track trends. Because the tracker relies on automated LLM classification rather than manual review, we need to understand whether LLMs can classify incidents as consistently as expert humans. This report describes a pilot study to compare the performance of eight LLMs against expert human reviewers and identify opportunities to improve the incident tracker pipe",
-      "release_date": "2026-07-01"
-    },
-    {
-      "source_id": "mit_airr",
-      "type": "blog_post",
-      "id": "/blog/announcing-flare-ai",
-      "title": "MIT AI Risk Repository: AI Needs a Better Way to Report Flaws, So We Built One",
-      "url": "https://airisk.mit.edu/blog/announcing-flare-ai",
-      "body_excerpt": "Cross-posted by the MIT AI Risk Initiative with permission because we contributed to FLARE-AI and support its development. See the original post here.",
-      "release_date": "2026-07-02"
+      "id": "876f26773204137fab59c02b6c9aa6ba",
+      "title": "\"The First Tell Was the File Name of the Principal Brief: 'Cocounsel Skill Results'\"",
+      "url": "https://reason.com/volokh/2026/04/09/the-first-tell-was-the-file-name-of-the-principal-brief-cocounsel-skill-results/",
+      "body_excerpt": "From Friday's Sixth Circuit decision in U.S. v. Farris, by Judges Eric Clay, Julia Gibbons, and Whitney Hermandorfer:\n\nHowe \\[a court-appointed criminal defense lawyer appealing a drug trafficking sentence] filed two briefs---a principal br ... (https://incidentdatabase.ai/cite/1572#7492)",
+      "release_date": "Mon, 06 Ju"
     }
   ]
 }
