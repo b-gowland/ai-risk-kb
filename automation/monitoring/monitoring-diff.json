@@ -1,169 +1,178 @@
 {
-  "run_date": "2026-07-13",
-  "run_timestamp": "2026-07-13T12:25:27.763367+00:00",
-  "total_new_items": 18,
+  "run_date": "2026-07-20",
+  "run_timestamp": "2026-07-20T12:08:00.368936+00:00",
+  "total_new_items": 19,
   "items": [
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "e0981017d33b960c1dc92fdfba4aaba8",
-      "title": "Maryborough teenager allegedly told police he had planned mass murder for months",
-      "url": "https://www.abc.net.au/news/2026-07-09/qld-teen-terror-extremism-murder-plan/106896932",
-      "body_excerpt": "A 13-year-old boy charged with plotting a school massacre in Queensland, allegedly told police he \"wanted to kill people for months\", and had asked AI to write him a Bondi-style \"mass-shooting story\".\n\nAccording to police, the teenager firs ... (report_number: 7499)",
-      "release_date": "Thu, 09 Ju"
+      "id": "c50c674ca932cf0127f128624586f7ae",
+      "title": "Teen catfish victim wins \u00a310k court payout after identity stolen by girl in her town",
+      "url": "https://www.the-independent.com/news/uk/home-news/glamorgan-sasha-davies-catfish-this-morning-b3015176.html",
+      "body_excerpt": "A teenage student subjected to a four-year \"catfishing\" nightmare after her identity was stolen by another teenage girl in her town has won a \u00a310,000 High Court damages payout.\n\nStarting when she was only 16, Sasha Davies was targeted by \"c ... (https://incidentdatabase.ai/cite/1592#7520)",
+      "release_date": "Thu, 16 Ju"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "f60cbec924f42f99c2b46a214d647f49",
-      "title": "Most nurses say AI isn\u2019t good enough to trust with patient care, survey finds",
-      "url": "https://www.washingtonpost.com/technology/2026/07/07/most-nurses-say-ai-isnt-good-enough-trust-with-patient-care-survey/",
-      "body_excerpt": "Nurses across the United States are increasingly using artificial intelligence in their day-to-day work, but over 80 percent of those who participated in a new survey said the tech isn't accurate enough to rely on without verification.\n\nAbo ... (report_number: 7500)",
-      "release_date": "Thu, 09 Ju"
+      "id": "ee6bca72668f7b2cafb349b3fdfbaeb9",
+      "title": "Statement in Open Court in \u201cCatfishing\u201d Case \u2013 Davies v Weston",
+      "url": "https://www.5rb.com/statement-in-open-court-in-catfishing-case-davies-v-weston/",
+      "body_excerpt": "A statement in open court was read out today before Mr Justice Fordham in Davies v Weston, following the acceptance of a settlement offer which consisted of the making of the statement in open court on behalf of both parties, the payment of ... (https://incidentdatabase.ai/cite/1592#7521)",
+      "release_date": "Thu, 16 Ju"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "772a67dbde9e54aabfd741ea27c97fdf",
-      "title": "China Is Abusing AI",
-      "url": "https://www.theatlantic.com/international/2026/07/xi-jinping-censorship-ai-training/687696/",
-      "body_excerpt": "China's release of yet another impressive open-source AI model has lately raised urgent questions in Silicon Valley about which country will dominate the AI market. What has received less attention are the ways that Chinese actors are alrea ... (report_number: 7501)",
-      "release_date": "Thu, 09 Ju"
+      "id": "85da6ac8ce3ab48549f71a293dfd0924",
+      "title": "The New York nurses replaced by AI: \u2018It should concern every patient who cares about quality of care\u2019",
+      "url": "https://www.theguardian.com/technology/2026/jul/13/nurses-new-york-ai",
+      "body_excerpt": "Marilyn Shuler has worked as a utilization review nurse for 39 years at Montefiore hospital in the Bronx in New York City, helping to read patient charts and communicate with insurance companies over coverage.\n\nAfter nearly four decades in  ... (https://incidentdatabase.ai/cite/1593#7522)",
+      "release_date": "Thu, 16 Ju"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "09ff2951f23cfd4cd2c5e7e9c2b45f8c",
-      "title": "11 arrested over alleged AI deepfake scam impersonating President Mahama",
-      "url": "https://theheraldghana.com/11-arrested-over-alleged-ai-deepfake-scam-impersonating-president-mahama/",
-      "body_excerpt": "The Inspector-General of Police's Cyber Vetting and Enforcement Team (CVET) of the Ghana Police Service has arrested 11 individuals, including Nigerian nationals, over allegations of using AI-generated deepfake videos to impersonate John Dr ... (https://incidentdatabase.ai/cite/1579#7502)",
-      "release_date": "Thu, 09 Ju"
+      "id": "b7a732c11fa217a0b80c02a958474b98",
+      "title": "THE BRONX NEEDS REAL NURSES, NOT AI!",
+      "url": "https://www.nysna.org/press/bronx-needs-real-nurses-not-ai",
+      "body_excerpt": "Bronx, NY-- Montefiore is planning to lay off real nurses and replace them with artificial intelligence (AI)-powered software. These are nurses who use their decades of bedside experience and clinical judgement to review insurance denials a ... (https://incidentdatabase.ai/cite/1593#7523)",
+      "release_date": "Thu, 16 Ju"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "78d9153e2ec38ebc54a99856b32ef281",
-      "title": "PRC-linked influence operations are targeting AI debates in the US",
-      "url": "https://openai.com/index/prc-linked-influence-operations-ai-debates/",
-      "body_excerpt": "Our mission is to ensure that artificial general intelligence benefits all of humanity. We advance this mission by deploying our innovations to build democratic AI: AI shaped by democratic principles, governed by common-sense rules and desi ... (https://incidentdatabase.ai/cite/1580#7503)",
-      "release_date": "Thu, 09 Ju"
+      "id": "3820372adf3566b06f6094bb8a249a6b",
+      "title": "NYSNA Allege Montefiore Plans to Replace Some Nurses with AI Systems",
+      "url": "https://www.norwoodnews.org/nysna-allege-montefiore-plans-to-replace-some-nurses-with-ai-systems/",
+      "body_excerpt": "The New York State Nurses Association (NYSNA) alleged Wednesday, July 1, that Montefiore Health System, a private hospital system operating in The Bronx and Westchester Counties, is planning to lay off real nurses and replace them with arti ... (https://incidentdatabase.ai/cite/1593#7524)",
+      "release_date": "Thu, 16 Ju"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "fd9b8e77c84c4d488e572b690e85a55d",
-      "title": "China, Russia and Others Seek to Inflame Debate Over A.I. Data Centers",
-      "url": "https://www.nytimes.com/2026/07/09/business/china-russia-ai-data-centers.html",
-      "body_excerpt": "A state-owned newspaper in China recently published a satellite image of a data center in Gainesville, Va., writing in English that the development of artificial intelligence posed a threat to Americans' physical and financial well-being.\n\n ... (https://incidentdatabase.ai/cite/1581#7504)",
-      "release_date": "Thu, 09 Ju"
+      "id": "7ce07d457efdc09c99097f4fc47d3123",
+      "title": "AI-slop pages targeting the Geelong Cats, Meta asked to step in",
+      "url": "https://www.geelongadvertiser.com.au/sport/afl/geelong-cats/aislop-pages-targeting-the-geelong-cats-meta-asked-to-step-in/news-story/b323efc1d8dd2f654031279301f959ea",
+      "body_excerpt": "The Cats have asked Facebook to take action against pages that are repeatedly posting false and malicious AI-generated content about the club and its players.\n\nThe club has warned fans to stick to official news sources for updates, as it be ... (https://incidentdatabase.ai/cite/1594#7525)",
+      "release_date": "Thu, 16 Ju"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "038d8bef8eed82b8beb4397ebad66086",
-      "title": "All Politics are Local, Until There\u2019s a Foreign Megaphone: How State Actors & AI Slop Are Amplifying the Homegrown Data Center Revolt Ahead of the Midterms",
-      "url": "https://alethea.com/insights/how-state-actors-and-ai-slop-are-amplifying-data-center-revolt",
-      "body_excerpt": "With opposition to data centers cutting across traditional political lines, and multiple high-profile projects already blocked or delayed, the data center fight has become volatile at the hyperlocal level, creating the conditions that forei ... (https://incidentdatabase.ai/cite/1581#7505)",
-      "release_date": "Thu, 09 Ju"
+      "id": "f1f12fcf4cf3da3381cf2319983eafe7",
+      "title": "Deceptive by Design: The AI-Enabled Tools Fueling the Scam Industry",
+      "url": "https://c4ads.org/issue-briefs/deceptive-by-design/",
+      "body_excerpt": "AIID editor's note: This is the executive summary for the following investigation: https://c4ads.org/wp-content/uploads/2026/02/DeceptiveByDesign-C4ADS.pdf.\n\nCriminal networks running scam compounds across Southeast Asia are using AI-powere ... (https://incidentdatabase.ai/cite/1589#7517)",
+      "release_date": "Wed, 15 Ju"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "b70b585d3df222459e734e7443175b38",
-      "title": "Life in <U.S. state>, according to spammers from Bangladesh",
-      "url": "https://www.conspirator0.com/p/life-in-us-state-according-to-spammers",
-      "body_excerpt": "In recent months, Facebook has been flooded with U.S. state-themed AI-generated image posts from a swarm of suspiciously similar accounts with names such as \"Life in Nevada\", \"I grew up in Iowa\", and \"Utah Life\". The content posted by these ... (https://incidentdatabase.ai/cite/1582#7506)",
-      "release_date": "Thu, 09 Ju"
+      "id": "55b8aee8b8b30514f53380b0df472010",
+      "title": "Philip Morris used AI to flood the European tobacco consultation",
+      "url": "https://www.generationsanstabac.org/en/actualites/philip-morris-a-utilise-lia-pour-inonder-la-consultation-europeenne-sur-le-tabac/",
+      "body_excerpt": "The European Commission is currently revising two major directives on tobacco products and related advertising. As part of this process, it launched a public consultation which received nearly 90,000 responses. A Dutch journalistic investig ... (https://incidentdatabase.ai/cite/1590#7518)",
+      "release_date": "Wed, 15 Ju"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "5d92382742a0fca39c18f64ef117478a",
-      "title": "AI company Eightfold sued for helping companies secretly score job seekers",
-      "url": "https://www.reuters.com/sustainability/boards-policy-regulation/ai-company-eightfold-sued-helping-companies-secretly-score-job-seekers-2026-01-21/",
-      "body_excerpt": "Jan 21 (Reuters) - Eightfold AI, a venture capital-backed artificial intelligence hiring platform used by Microsoft, PayPal\u00a0and many other Fortune 500 companies, is being sued in California for allegedly compiling reports used to screen job ... (https://incidentdatabase.ai/cite/1575#7495)",
-      "release_date": "Wed, 08 Ju"
+      "id": "0dd8c7a905caff044fb85bde0f6c0ec5",
+      "title": "Police say AI-related teen suicide occurred earlier this year",
+      "url": "https://www.lmtonline.com/local/article/laredo-police-clarify-timeline-of-ai-teenager-22335915.php",
+      "body_excerpt": "The Laredo Police Department Mental Evaluation Outreach Unit clarified during a recent Suicide Prevention Committee meeting that a teen suicide previously referenced by Police Chief Miguel Rodriguez during a City Council meeting did not occ ... (https://incidentdatabase.ai/cite/1591#7519)",
+      "release_date": "Wed, 15 Ju"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "3c842fe45cc4c58f8a3fceb0793980c0",
-      "title": "Judge fines lawyers $12,000 over AI-generated submissions in patent case",
-      "url": "https://www.reuters.com/legal/litigation/judge-fines-lawyers-12000-over-ai-generated-submissions-patent-case-2026-02-03/",
-      "body_excerpt": "Feb 3 (Reuters) - A Kansas federal judge has fined lawyers representing a patent holding company a combined $12,000 for filing documents with non-existent quotations and case citations that were generated by artificial intelligence, in the  ... (https://incidentdatabase.ai/cite/1576#7496)",
-      "release_date": "Wed, 08 Ju"
+      "id": "02e9265916f3e73eb8455b338147d117",
+      "title": "Meta removes controversial AI feature on Instagram after backlash",
+      "url": "https://techcrunch.com/2026/07/10/meta-removes-controversial-ai-feature-on-instagram-after-backlash/",
+      "body_excerpt": "Meta has axed a controversial feature that allowed users to modify photos from public Instagram accounts using AI. The feature, which was rolled out earlier this week along with a batch of other AI tools, \"missed the mark\" and is no longer  ... (report_number: 7508)",
+      "release_date": "Tue, 14 Ju"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "c9b785bb082846e069b6de070c8e2356",
-      "title": "10th Circuit orders lawyer to pay $1,000 for faulty AI citations",
-      "url": "https://www.coloradopolitics.com/2026/02/09/10th-circuit-orders-lawyer-to-pay-1000-for-faulty-ai-citations/",
-      "body_excerpt": "The Denver-based federal appeals court ordered a lawyer on Monday to pay $1,000 to the opposing side for submitting a legal filing with fake case citations generated by artificial intelligence.\n\nA three-judge panel of the U.S. Court of Appe ... (https://incidentdatabase.ai/cite/1577#7497)",
-      "release_date": "Wed, 08 Ju"
+      "id": "7fb26b7213b947ae8c238722be09cf91",
+      "title": "Waymo vehicle catches fire during chaotic San Francisco Fourth of July",
+      "url": "https://www.sfchronicle.com/sf/article/waymo-firework-fire-san-francisco-22333244.php",
+      "body_excerpt": "An unoccupied Waymo vehicle caught fire in San Francisco after driving over a firework Saturday night, adding another complication to a chaotic Fourth of July marked by fog, gridlock, transit delays and illegal fireworks across the city.\n\nT ... (https://incidentdatabase.ai/cite/1583#7509)",
+      "release_date": "Tue, 14 Ju"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "1ad11e551fa8ddd1d63a78ca587f54ec",
-      "title": "JADEPUFFER: Agentic ransomware for automated database extortion",
-      "url": "https://www.sysdig.com/blog/jadepuffer-agentic-ransomware-for-automated-database-extortion",
-      "body_excerpt": "Ransomware has had a human at the keyboard, or at least a human writing its script, since it was first established as a category of threat. The Sysdig Threat Research Team (TRT) has captured what we assess to be the first documented case of ... (https://incidentdatabase.ai/cite/1578#7498)",
-      "release_date": "Wed, 08 Ju"
+      "id": "59c2415d28c025edb2492ed7b7bef797",
+      "title": "Meta used AI to target workers with medical conditions for layoffs, lawsuit claims",
+      "url": "https://www.reuters.com/world/meta-used-ai-target-workers-with-medical-conditions-layoffs-former-employees-2026-07-14/",
+      "body_excerpt": "July 14 (Reuters) - Twenty-six employees of Meta \u200cPlatforms\u00a0have filed a novel lawsuit accusing the tech giant of using AI-powered software that disproportionately targeted people with disabilities or who took medical leave in selecting wor ... (https://incidentdatabase.ai/cite/1584#7510)",
+      "release_date": "Tue, 14 Ju"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "8b746f630aab035574418933eb709358",
-      "title": "AI hallucinated judgments: Why Supreme Court set aside a tribunal order",
-      "url": "https://indianexpress.com/article/legal-news/ai-hallucinated-judgments-explained-supreme-court-nclt-order-fake-precedents-10771396/",
-      "body_excerpt": "Six AI-hallucinated judgments formed the basis for the Supreme Court's striking down of an order passed by the National Company Law Tribunal (NCLT) on Thursday.\n\nThree of the cited judgments did not exist, while the remaining three either d ... (https://incidentdatabase.ai/cite/1573#7493)",
-      "release_date": "Tue, 07 Ju"
+      "id": "ff9ac1e53419487f90defa21054c6b41",
+      "title": "Discord accidentally banned over 8,000 people for posting grids and other \u2018benign\u2019 images",
+      "url": "https://www.theverge.com/games/962156/discord-accidental-bans-grid-images",
+      "body_excerpt": "Discord says a bug affecting its safety system caused it to mistakenly ban more than 8,000 accounts since May. The platform's statement follows a wave of reports from users over the past week, who say they've been banned for posting images  ... (https://incidentdatabase.ai/cite/1585#7511)",
+      "release_date": "Tue, 14 Ju"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "3af544de42d2368884a0a0a9aa2d6403",
-      "title": "\u2018Disturbing incident\u2019: Police investigating after Lake Zurich High School students distribute AI-generated nude images of classmates",
-      "url": "https://www.lakemchenryscanner.com/2026/04/03/disturbing-incident-police-investigating-after-lake-zurich-high-school-students-distribute-ai-generated-nude-images-of-classmates/",
-      "body_excerpt": "A police investigation is underway after students at Lake Zurich High School were reported to have used AI to generate sexually explicit images of female classmates, with school officials calling it \"disturbing.\"\n\nLake Zurich Community Unit ... (https://incidentdatabase.ai/cite/1574#7494)",
-      "release_date": "Tue, 07 Ju"
+      "id": "7ad34104f0f6ed0a9824ce972398ab12",
+      "title": "Discord's acknowledgment of the incident",
+      "url": "https://x.com/discord_support/status/2074282860123767135",
+      "body_excerpt": "AIID editor's note: Please visit the original thread on X by Discord Support.\n\nThis weekend, our safety systems incorrectly triggered and banned around 200 accounts. Everyone affected has been reinstated.\n\nHere's what happened. A thread \ud83e\uddf5\n ... (https://incidentdatabase.ai/cite/1585#7512)",
+      "release_date": "Tue, 14 Ju"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "e9cbcea41b1f69b9698dd327df4ea893",
-      "title": "No title",
-      "url": "",
-      "body_excerpt": "... (report_number: 7489)",
-      "release_date": "Mon, 06 Ju"
+      "id": "b5ae5c9cb4a8fbba6f713a1925fde170",
+      "title": "Inside an AI-Assisted Cloud Attack: Familiar Techniques at Unfamiliar Speed",
+      "url": "https://www.sygnia.co/blog/inside-an-ai-assisted-cloud-attack/",
+      "body_excerpt": "Key Observations\n\nThis case study shows that AI-enabled attackers do not necessarily need novel malware or zero-days. The real shift is speed, scale, and orchestration: familiar cloud attack techniques were executed faster and across more s ... (https://incidentdatabase.ai/cite/1586#7513)",
+      "release_date": "Tue, 14 Ju"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "98d94fe28580fcbd8362756bc594f375",
-      "title": "AI romance scam impersonating Dubai prince ensnares victims",
-      "url": "https://www.enca.com/lifestyle/ai-romance-scam-impersonating-dubai-prince-ensnares-victims",
-      "body_excerpt": "WASHINGTON - Maria believed she was romancing a prince from Dubai, captivated by his flirtatious smile and declarations of affection he showered on her during live video calls. But the suitor was an AI deepfake, making her yet another victi ... (https://incidentdatabase.ai/cite/1570#7490)",
-      "release_date": "Mon, 06 Ju"
+      "id": "27c5f798446b42306c1772e5424579cc",
+      "title": "Lawsuit accuses AI security company of publishing hallucinated findings",
+      "url": "https://www.axios.com/2026/06/29/palo-alto-networks-meeting-tv-ai-cyber-lawsuit",
+      "body_excerpt": "MeetingTV, an online videoconferencing and webinar startup, is suing Palo Alto Networks and recently acquired threat-intelligence firm Koi Security over a security research report that linked its infrastructure to a Chinese hacking operatio ... (https://incidentdatabase.ai/cite/1587#7514)",
+      "release_date": "Tue, 14 Ju"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "1985ac91729f3880de3530168a032c2e",
-      "title": "US appeals court sanctions lawyers over AI \u2018hallucinations,\u2019 lack of candor",
-      "url": "https://www.reuters.com/legal/litigation/us-appeals-court-sanctions-lawyers-over-ai-hallucinations-lack-candor-2026-06-03/",
-      "body_excerpt": "WASHINGTON, June 3 (Reuters) - A U.S. appeals court on Wednesday sanctioned two lawyers for filing briefs riddled with nonexistent cases it said were AI-generated, rejected their claims \u200bthat the errors were typographical mistakes and warne ... (https://incidentdatabase.ai/cite/1571#7491)",
-      "release_date": "Mon, 06 Ju"
+      "id": "d9123b60ff5bdedef96e3c3edaa7e6e7",
+      "title": "Startup sues Palo Alto Networks' Koi Security, saying an AI-hallucinated report falsely linked it to Chinese espionage",
+      "url": "https://www.theregister.com/legal/2026/07/02/startup-sues-palo-alto-networks-koi-security-saying-an-ai-hallucinated-report-falsely-linked-it-to-chinese-espionage/5266201",
+      "body_excerpt": "MeetingTV has sued Palo Alto Networks after its newly acquired Koi Security threat-intelligence biz published a blog that linked the video conferencing and webinar startup to a Chinese corporate espionage operation.\n\nThe legal complaint fil ... (https://incidentdatabase.ai/cite/1587#7515)",
+      "release_date": "Tue, 14 Ju"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "876f26773204137fab59c02b6c9aa6ba",
-      "title": "\"The First Tell Was the File Name of the Principal Brief: 'Cocounsel Skill Results'\"",
-      "url": "https://reason.com/volokh/2026/04/09/the-first-tell-was-the-file-name-of-the-principal-brief-cocounsel-skill-results/",
-      "body_excerpt": "From Friday's Sixth Circuit decision in U.S. v. Farris, by Judges Eric Clay, Julia Gibbons, and Whitney Hermandorfer:\n\nHowe \\[a court-appointed criminal defense lawyer appealing a drug trafficking sentence] filed two briefs---a principal br ... (https://incidentdatabase.ai/cite/1572#7492)",
-      "release_date": "Mon, 06 Ju"
+      "id": "6315bf4b446d99d1a190566d22c1f922",
+      "title": "Four days to make victims fall in love: How global scammers use US tech to fleece people",
+      "url": "https://apnews.com/article/scams-fraud-technology-ai-impostor-scam-phishing-12f549d5203abd38857c4e2f2fb1c986",
+      "body_excerpt": "The instructions were clear: He had four days to make each victim fall in love.\n\nAnd there were a lot of victims. Online, Safeer Mohammed Koorimannil, who was trafficked to a scam center in Myanmar, impersonated a 28-year-old Singaporean wo ... (https://incidentdatabase.ai/cite/1588#7516)",
+      "release_date": "Tue, 14 Ju"
+    },
+    {
+      "source_id": "aiid",
+      "type": "rss_entry",
+      "id": "5f53ef94f71888146bae9bd4e55ff361",
+      "title": "Meta AI image detector fails to identify some of its own cropped AI images, Reuters analysis finds",
+      "url": "https://www.reuters.com/business/meta-ai-image-detector-fails-identify-some-its-own-cropped-ai-images-reuters-2026-07-10/",
+      "body_excerpt": "July 10 (Reuters) - A new AI detection tool from Meta, which the tech company previewed this week alongside the launch of its image-generation model, Muse \u200cImage, failed to identify some of its own AI-generated images once they were cropped ... (report_number: 7507)",
+      "release_date": "Mon, 13 Ju"
     }
   ]
 }
