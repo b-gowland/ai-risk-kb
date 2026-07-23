@@ -45,9 +45,13 @@ jobs:
         with:
           path: build
 
+  # Deploys only on push to main (or manual dispatch) — never from a PR, so
+  # unreviewed branches cannot reach production. Mirrors the ai-risk-training
+  # fix (PR #18). Also stops Dependabot PRs failing on the read-only token.
   deploy:
     name: Deploy to GitHub Pages
     needs: build
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
