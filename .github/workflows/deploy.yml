@@ -14,8 +14,12 @@ permissions:
   pages: write
   id-token: write
 
+# Keyed per ref: every PR gets its own lane, so a batch of PRs no longer
+# cancels its own siblings (a cancelled run is easily misread as a failure).
+# Real deploys all run on refs/heads/main and so still serialise against
+# each other, which is the property this concurrency block exists to protect.
 concurrency:
-  group: "pages"
+  group: "pages-${{ github.ref }}"
   cancel-in-progress: false
 
 jobs:
