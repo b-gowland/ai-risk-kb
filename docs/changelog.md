@@ -40,7 +40,7 @@ Six new entries covering risks specific to agentic AI systems:
 - Live URL updated to [library.airiskpractice.org](https://library.airiskpractice.org/)
 - All internal links updated to new domain
 - Companion training app now at [app.airiskpractice.org](https://app.airiskpractice.org/)
-- Fork everyday track now at [app.airiskpractice.org/#/everyday](https://app.airiskpractice.org/#/everyday)
+- Fork everyday track now at [app.airiskpractice.org/#/everyday](https://app.airiskpractice.org/)
 
 ### Design
 - Full visual re-skin: Playfair Display + DM Sans typography, amber accent, white background
@@ -54,7 +54,7 @@ Six new entries covering risks specific to agentic AI systems:
 - Schema reference updated to reflect new heading name
 
 ### New content
-- **Everyday tab** added to three entries linked from the [Fork everyday track](https://app.airiskpractice.org/#/everyday):
+- **Everyday tab** added to three entries linked from the [Fork everyday track](https://app.airiskpractice.org/):
   - **A1 — Hallucination**: plain language explanation of AI confident wrong answers, safe vs risky use patterns, link to Fork hallucination scenario
   - **C4 — Deepfakes**: plain language explanation of voice cloning scams, out-of-band verification, Scamwatch reporting, link to Fork deepfake scenario
   - **E1 — Algorithmic Bias**: plain language explanation of AI in hiring decisions, right to ask for reasons, link to Fork employment scenario

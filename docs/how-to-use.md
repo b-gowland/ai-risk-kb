@@ -14,7 +14,7 @@ This resource is designed for everyone involved in AI governance, deployment, an
 
 **Executives and board members** — use the Layer 1 **Start here** tab to understand what a risk means, what the consequence of inaction is, and what question to ask about it.
 
-**General public** — three entries (A1 Hallucination, C4 Deepfakes, E1 Algorithmic Bias) have an **Everyday** tab written in plain language with no jargon. These link to the [Fork everyday scenarios](https://app.airiskpractice.org/#/everyday) if you want to explore the risk through a real-life situation.
+**General public** — three entries (A1 Hallucination, C4 Deepfakes, E1 Algorithmic Bias) have an **Everyday** tab written in plain language with no jargon. These link to the [Fork everyday scenarios](https://app.airiskpractice.org/) if you want to explore the risk through a real-life situation.
 
 **Risk managers and compliance leads** — use Layer 2 to understand the risk mechanism, which controls apply, who owns each control, and what done looks like before a system goes live.
 
@@ -64,4 +64,4 @@ The [AI Risk Training](https://app.airiskpractice.org/) app is live and free. It
 
 Total content: approximately 5–6 hours across 32 scenarios. No account required.
 
-**Fork — everyday track:** Three of the most common everyday AI risks — deepfake voice scams, AI hallucination, and algorithmic hiring — are also available as public-facing scenarios at [app.airiskpractice.org/#/everyday](https://app.airiskpractice.org/#/everyday). These are written for general readers rather than practitioners and take 4–5 minutes each.
+**At Home scenarios:** Several of the most common personal AI risks — voice-clone scams, AI hallucination, and algorithmic hiring — are playable as public scenarios at [app.airiskpractice.org](https://app.airiskpractice.org/). These are written for a general audience and take about five minutes each.
