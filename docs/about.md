@@ -18,7 +18,7 @@ This knowledge base aims to bridge that gap: authoritative enough to be credible
 
 **32 risk entries** are organised across **7 domains** (A through G), each with four layers of depth:
 
-- **Layer 1 — Start here** — Plain English summary for any audience, with persona-specific tabs for executives, project managers, and security analysts — plus an **Everyday** tab for general public readers arriving from the [Fork everyday track](https://app.airiskpractice.org/)
+- **Layer 1 — Start here** — Plain English summary for any audience, with tabs for executives, project managers, and security analysts, plus a general-audience tab for readers arriving from the [training app](https://app.airiskpractice.org/)
 - **Layer 2** — Practitioner overview with controls ownership, effort estimates, and go-live criteria — designed for risk managers, compliance leads, and project managers
 - **Layer 3** — Full actionable controls with KPIs and jurisdiction notes — designed for risk practitioners and internal audit
 - **Layer 4** — Technical implementation with code examples and tool references — designed for security analysts and engineers
@@ -44,9 +44,7 @@ All factual claims are verified against primary sources before publication. Clai
 
 ## Companion training app
 
-Each risk entry includes a **scenario seed** — a structured workplace scenario used as the basis for the companion training module. The [AI Risk Training](https://app.airiskpractice.org/) app is live with **32 interactive practitioner scenarios** across all 32 KB entries, using a choose-your-own-adventure format with up to four professional personas per scenario.
-
-A separate **everyday track** — [Fork](https://app.airiskpractice.org/) — offers three public-facing scenarios on deepfake voice scams, AI hallucination, and algorithmic hiring decisions, designed for anyone who uses AI in daily life rather than in a professional risk context.
+Each risk entry includes a **scenario seed** — a structured situation used as the basis for the companion training app. The [AI Risk Practice](https://app.airiskpractice.org/) app is a free, choose-your-own-adventure trainer built around two doors: **At home** (personal AI risk — scams, deepfakes, chatbot harm, data exposure) and **At work** (AI risk in a job, from general staff through specialists). You are the person the situation is happening to; you make the calls and see what follows. The library is the reference layer behind the At Work scenarios, and more scenarios are added over time.
 
 ## Licence
 
