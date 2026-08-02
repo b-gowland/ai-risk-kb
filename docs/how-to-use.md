@@ -60,8 +60,8 @@ See the [Contributing guide](/docs/contributing) for how to raise an issue or su
 
 ## Companion training app
 
-The [AI Risk Training](https://app.airiskpractice.org/) app is live and free. It contains **32 interactive practitioner scenarios** across all 32 KB entries — using a choose-your-own-adventure format with up to four professional personas per scenario (Executive, Project Manager, Analyst, Business User). Each scenario presents workplace situations drawn from the entry's scenario seed, with branching decision paths, outcome feedback, and controls explanations.
+[AI Risk Practice](https://app.airiskpractice.org/) is the free training app that sits alongside this reference layer. It runs branching decision scenarios: you are put in a situation, you make the calls under incomplete information, and you see what follows. Nothing is scored and there is no login.
 
-Total content: approximately 5–6 hours across 32 scenarios. No account required.
+There are two doors. **At Work** covers AI risk in a job — shadow AI, hallucination, privacy, intellectual property, bias, automation bias. **At Home** covers personal AI risk — voice-clone scams, trusting an AI answer, algorithmic decisions. At Home scenarios take about five minutes; At Work scenarios run a little longer.
 
-**At Home scenarios:** Several of the most common personal AI risks — voice-clone scams, AI hallucination, and algorithmic hiring — are playable as public scenarios at [app.airiskpractice.org](https://app.airiskpractice.org/). These are written for a general audience and take about five minutes each.
+Nine scenarios are live. Entries in this knowledge base that have a matching scenario link straight to it; the rest are marked as coming soon.
