@@ -1,0 +1,34 @@
+{
+  "run_date": "2026-08-17",
+  "items_reviewed": 21,
+  "classifications": [
+    {
+      "item_id": "v2026.07",
+      "item_title": "MITRE ATLAS v2026.07",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "C1",
+          "confidence": "high",
+          "rationale": "Publish Poisoned AI Artifacts and AI Agent Tool Poisoning techniques directly extend data/model poisoning attack vectors covered in C1."
+        },
+        {
+          "kb_id": "C2",
+          "confidence": "high",
+          "rationale": "AI Agent Tool Poisoning (definition, implementation, runtime response) and Manipulate AI Model: Modify Prompt Construction Logic are advanced prompt/input injection variants covered in C2."
+        },
+        {
+          "kb_id": "G4",
+          "confidence": "medium",
+          "rationale": "AI Agent Tool Poisoning techniques target agentic AI systems, directly relevant to loss-of-control and unauthorised action risks in G4."
+        }
+      ],
+      "evidence_quote": "AI Agent Tool Poisoning: Definition and Instructions / Implementation / Runtime Response; Publish Poisoned AI Artifacts",
+      "recommended_action": "Update C1, C2, and G4 entries to reference MITRE ATLAS v2026.07 techniques, adding AI agent tool poisoning and poisoned artifact publication as specific sub-techniques editors should document."
+    }
+  ],
+  "source_counts": {
+    "aiid": 20,
+    "mitre_atlas": 1
+  }
+}

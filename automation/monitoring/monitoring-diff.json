@@ -1,187 +1,196 @@
 {
-  "run_date": "2026-08-03",
-  "run_timestamp": "2026-08-03T12:48:05.193070+00:00",
-  "total_new_items": 20,
+  "run_date": "2026-08-17",
+  "run_timestamp": "2026-08-17T10:19:53.916641+00:00",
+  "total_new_items": 21,
   "items": [
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "7979362097ca033e99dd01acd35a9e0b",
-      "title": "ChatGPT Led to a Man\u2019s Near-Fatal Health Crisis, Lawsuit Claims",
-      "url": "https://www.nytimes.com/2026/07/22/well/openai-chatgpt-health-lawsuit.html",
-      "body_excerpt": "A Florida pastor sued OpenAI on Wednesday, claiming that its chatbot, ChatGPT, had offered him \"extremely dangerous medical recommendations\" that led to delayed care for a life-threatening pulmonary embolism last year.\n\nThe lawsuit claims t ... (https://incidentdatabase.ai/cite/1609#7610)",
-      "release_date": "Thu, 30 Ju"
+      "id": "b18c9fbf614388a1c3c60f2a2174b77a",
+      "title": "Everybody needs a personal AI policy. Just ask Hank Green.",
+      "url": "https://www.vox.com/future-perfect/498851/hank-green-ai-controversy-research",
+      "body_excerpt": "Everyone is wrong about Hank Green.\n\nIn case you missed the controversy: The veteran YouTube star, writer, and science comms entrepreneur was recently \"canceled\" after he acknowledged using AI for research.\n\n\"I have been relying too heavily ... (report_number: 7709)",
+      "release_date": "Sat, 15 Au"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "d6f7a0a47f14d7c416462b87f0b01385",
-      "title": "Women \u2018listed for sex\u2019 on alleged AI deepfake posters",
-      "url": "https://aapnews.aap.com.au/glance/news/charges-over-deepfake-sexual-images-posted-in-public",
-      "body_excerpt": "Women's faces have been stolen and pasted onto pornographic images then advertised for sex in a \"callous and sickening\" deepfake campaign spanning years, police say.\n\nA man has been accused of using artificial intelligence to turn women int ... (https://incidentdatabase.ai/cite/1610#7611)",
-      "release_date": "Thu, 30 Ju"
+      "id": "110c8211bb546678c54cde5cc166002a",
+      "title": "Hank has started using AI generated images in his educational videos",
+      "url": "https://www.reddit.com/r/nerdfighters/comments/1v404vj/hank_has_started_using_ai_generated_images_in_his/",
+      "body_excerpt": "AIID editor's note: Please consult the full Reddit thread for Hank Green's response (as ecogeek), which provides important context for understanding how the AI-generated image came to be used in the video.\n\nEDIT: Hank has removed the image  ... (https://incidentdatabase.ai/cite/1637#7710)",
+      "release_date": "Sat, 15 Au"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "9d6067ffeeb5356f21d9f1dfabf36809",
-      "title": "Intimate Image, Stalking Charges in SE Queensland",
-      "url": "https://www.miragenews.com/intimate-image-stalking-charges-in-se-queensland-1715380/",
-      "body_excerpt": "A man has been charged following an extensive investigation into the creation and distribution of Artificial Intelligence (AI) generated posters targeting multiple women across South East Queensland since February 2021.\n\nInvestigations comm ... (https://incidentdatabase.ai/cite/1610#7612)",
-      "release_date": "Thu, 30 Ju"
+      "id": "5650051aa774c33c489e146d84d0f8bd",
+      "title": "Yapay zeka videolar\u0131 ile 33 ki\u015fiyi doland\u0131rd\u0131lar. 15 milyon TL'lik vurgun",
+      "url": "https://www.ntv.com.tr/turkiye/yapay-zeka-videolari-ile-33-kisiyi-dolandirdilar-15-milyon-tllik-vurgun-1709764",
+      "body_excerpt": "Yozgat'ta \u00fcrettikleri yapay zeka videolar\u0131 ile 33 ki\u015fiyi yakla\u015f\u0131k 15 milyon lira doland\u0131ran \u015f\u00fcpheliler yakaland\u0131.\n\nEdinilen bilgiye g\u00f6re, Yozgat Emniyet M\u00fcd\u00fcrl\u00fc\u011f\u00fc Ka\u00e7ak\u00e7\u0131l\u0131k ve Organize Su\u00e7larla M\u00fccadele ekipleri, Yozgat merkezli Antalya, H ... (https://incidentdatabase.ai/cite/1638#7711)",
+      "release_date": "Sat, 15 Au"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "caa8cab54221047e09407ac46c09be27",
-      "title": "ChatGPT's advice kept man from seeking medical treatment for dangerous condition, lawsuit claims",
-      "url": "https://www.reuters.com/legal/government/chatgpts-advice-kept-man-seeking-medical-treatment-dangerous-condition-lawsuit-2026-07-22/",
-      "body_excerpt": "July 22 (Reuters) - A Florida pastor sued OpenAI and \u200bits chief executive, Sam Altman, on Wednesday claiming ChatGPT's inaccurate medical advice kept him from seeking treatment for recurrent dizzy spells, \u200cleading him to suffer a pulmonary  ... (https://incidentdatabase.ai/cite/1609#7613)",
-      "release_date": "Thu, 30 Ju"
+      "id": "b508448685db95bbe5d7c98c3a363ae5",
+      "title": "Kendini 'Trump'\u0131n dan\u0131\u015fman\u0131' olarak tan\u0131tan T\u00fcrk vatanda\u015f\u0131 g\u00f6zalt\u0131na al\u0131nd\u0131",
+      "url": "https://tr.euronews.com/2026/08/14/kendini-trumpin-danismani-olarak-tanitan-turk-vatandasi-gozaltina-alindi",
+      "body_excerpt": "Beyaz Saray'dan bir yetkilinin T\u00fcrkiye Today'e verdi\u011fi bilgiye g\u00f6re, ABD'de vize doland\u0131r\u0131c\u0131l\u0131\u011f\u0131 yapt\u0131\u011f\u0131 iddia edilen Melih G\u00f6\u011febakan, 28 Temmuz'da d\u00fczenlenen operasyonda yakaland\u0131.\n\nABD Ba\u015fkan\u0131 Donald Trump'\u0131n siyasi dan\u0131\u015fman\u0131 oldu\u011funu \u00f6ne ... (https://incidentdatabase.ai/cite/1639#7712)",
+      "release_date": "Sat, 15 Au"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "b9025110e9b11241d81394adf56d7e79",
-      "title": "Pastor Seeks Accountability After ChatGPT Allegedly Discouraged Him From Seeking Medical Care During Life-Threatening Blood Clots",
-      "url": "https://techjusticelaw.org/press-releases/pastor-sues-after-openai-ai-chatgpt-allegedly-discouraged-him-from-seeking-medical-care-during-life-threatening-blood-clots/",
-      "body_excerpt": "Lawsuit claims ChatGPT used Scott Winters' faith and trust against him, coaching him away from the hospital as he developed a bilateral pulmonary embolism.\n\n(San Francisco, CA) --- Tech Justice Law, the Social Media Victims Law Center and t ... (https://incidentdatabase.ai/cite/1609#7614)",
-      "release_date": "Thu, 30 Ju"
+      "id": "3dd890abbad27ea1fd3d2fd6148d913a",
+      "title": "Avrupa'y\u0131 \u0130stanbul'dan doland\u0131rd\u0131lar. Maslak'ta yapay zekal\u0131 vurgun",
+      "url": "https://www.ntv.com.tr/turkiye/galeri-avrupayi-istanbuldan-dolandirdilar-maslakta-yapay-zekali-vurgun-1731237/1",
+      "body_excerpt": "\u0130stanbul Maslak'ta yapay zeka destekli yaz\u0131l\u0131mlarla kurduklar\u0131 \u00e7a\u011fr\u0131 merkezi \u00fczerinden Avrupa ve \u00c7ekya vatanda\u015flar\u0131n\u0131 doland\u0131ran \u00e7ete yakaland\u0131.\n\nAdalet Bakan\u0131 Ak\u0131n G\u00fcrlek, uluslararas\u0131 su\u00e7 organizasyonlar\u0131na, siber doland\u0131r\u0131c\u0131l\u0131k a\u011flar\u0131na  ... (https://incidentdatabase.ai/cite/1640#7713)",
+      "release_date": "Sat, 15 Au"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "4e48aec2c6d907f7e2b6eaab70edc7a8",
-      "title": "Woman arrested for AI nude photos, extortion, after LPSO deputies initially thought she was victim",
-      "url": "https://www.wbrz.com/news/marrero-woman-arrested-for-ai-nude-photos-extortion-after-deputies-initially-thought-she-was-victim/",
-      "body_excerpt": "LIVINGSTON --- A Marrero woman who was initially considered a victim in an online threats and extortion case has been arrested after investigators discovered she was actually behind the scheme herself, the Livingston Parish Sheriff's Office ... (https://incidentdatabase.ai/cite/1611#7615)",
-      "release_date": "Thu, 30 Ju"
+      "id": "f68f2b3bfbff3d08915139c346761a59",
+      "title": "Congresswoman denies staff used AI to write defense funding amendment",
+      "url": "https://www.theverge.com/policy/956394/florida-anna-paulina-luna-anthropic-claude",
+      "body_excerpt": "Rep. Anna Paulina Luna (R-FL) says her staff used AI for \"spellcheck\" in an amendment summary for a major defense bill, but denies it was used for the bill text itself and says \"NO Legislation is ever drafted with AI.\"\n\nLuna issued the resp ... (https://incidentdatabase.ai/cite/1641#7714)",
+      "release_date": "Sat, 15 Au"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "5633ff5b42ea7dbac9e33f80ebefa4b9",
-      "title": "Police investigate AI-generated explicit images linked to Gold Coast teacher",
-      "url": "https://www.abc.net.au/news/2026-07-23/police-investigate-ai-generated-explicit-images/106950646",
-      "body_excerpt": "Police are investigating explicit AI-generated content falsely depicting members of the A.B. Paterson school community, the school has said.\n\nIn a letter sent to parents of A.B. Paterson College on Thursday afternoon, principal Joanne Sheeh ... (https://incidentdatabase.ai/cite/1612#7616)",
-      "release_date": "Thu, 30 Ju"
+      "id": "085e3c84df7d775d430c4b123e1a64da",
+      "title": "Chatbots are doing the work of Congress with little oversight",
+      "url": "https://www.washingtonpost.com/politics/2026/08/13/chatbots-are-doing-work-congress-with-little-oversight/",
+      "body_excerpt": "The amendment was one of hundreds filed this summer to an annual defense bill making its way through Congress. Along with her proposed change, Rep. Anna Paulina Luna's office had sent a summary of what it would do.\n\nBut the first line made  ... (https://incidentdatabase.ai/cite/1641#7715)",
+      "release_date": "Sat, 15 Au"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "a3bd0caa2352bc04919c329f9e441fb0",
-      "title": "Former Gold Coast teacher Robert John Thomas charged with making explicit images of children using artificial intelligence",
-      "url": "https://7news.com.au/news/former-gold-coast-teacher-robert-john-thomas-charged-with-making-explicit-images-of-children-using-artificial-intelligence-c-22624094.amp",
-      "body_excerpt": "A Gold Coast school teacher has been charged after allegedly generating explicit images of children and adults using artificial intelligence.\n\nRobert John Thomas, 73, a former teacher at A.B. Paterson College in Arundel, has been accused of ... (https://incidentdatabase.ai/cite/1612#7617)",
-      "release_date": "Thu, 30 Ju"
+      "id": "0d2e9d25dae46a9b77868e6513a383e0",
+      "title": "AI assistant hacks gym website in first known Australian autonomous cyber attack",
+      "url": "https://www.abc.net.au/news/2026-08-10/ai-assistant-hacks-gym-website-aus-cyber-attack/107007986",
+      "body_excerpt": "Andrew asked his personal assistant to book him a spot in one of his gym's coveted morning classes.\n\nIt was a task he thought was well suited to this particular assistant because the booking form was online and because his assistant was not ... (https://incidentdatabase.ai/cite/1642#7716)",
+      "release_date": "Sat, 15 Au"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "ba68aaad140a0339cd8621d1449ad0f1",
-      "title": "Anthropic's Claude Mythos Finds Thousands of Zero-Day Flaws Across Major Systems",
-      "url": "https://thehackernews.com/2026/04/anthropics-claude-mythos-finds.html",
-      "body_excerpt": "Artificial Intelligence (AI) company Anthropic announced a new cybersecurity initiative called Project Glasswing that will use a preview version of its new frontier model, Claude Mythos, to find and address security vulnerabilities.\n\nThe mo ... (https://incidentdatabase.ai/cite/1613#7618)",
-      "release_date": "Thu, 30 Ju"
+      "id": "560ea8ca7e092a82f7e1401415c7b910",
+      "title": "When my AI agent hacked my gym, Mythos stopped feeling theoretical",
+      "url": "https://www.affinda.com/expert-insights/when-my-ai-agent-hacked-my-gym-mythos-stopped-feeling-theoretical/",
+      "body_excerpt": "I recently built a bot to help me book popular gym classes.\n\nThis was not a grand research project. It was a practical little automation. The classes fill up fast, I got tired of playing refresh roulette, and I figured an agent running on O ... (https://incidentdatabase.ai/cite/1642#7717)",
+      "release_date": "Sat, 15 Au"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "67dabfc3a75ed9b9b34e4d9bf315f51e",
-      "title": "System Card: Claude Mythos Preview",
-      "url": "https://www-cdn.anthropic.com/7624816413e9b4d2e3ba620c5a5e091b98b190a5/Claude%20Mythos%20Preview%20System%20Card.pdf",
-      "body_excerpt": "AIID editor's note: For the full PDF report, please visit the following URL: https://www-cdn.anthropic.com/7624816413e9b4d2e3ba620c5a5e091b98b190a5/Claude%20Mythos%20Preview%20System%20Card.pdf.\n\nAbstract\n\nThis System Card describes Claude  ... (https://incidentdatabase.ai/cite/1613#7619)",
-      "release_date": "Thu, 30 Ju"
+      "id": "70ba70d22fc0eb237a48e005094ef10f",
+      "title": "Her childhood photo. Thousands of explicit images. One woman\u2019s nightmare.",
+      "url": "https://www.washingtonpost.com/technology/2026/08/15/woman-alleges-grok-made-thousands-sexual-abuse-images-childhood-snap/",
+      "body_excerpt": "When Jane Doe 4, as she is identified in legal filings, arrived at her parents' house in Wyoming to set up a family party earlier this year, the familiar street in her small hometown was filled with state and local law enforcement.\n\nA man w ... (https://incidentdatabase.ai/cite/1643#7718)",
+      "release_date": "Sat, 15 Au"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "6d2db4082a0452e3b9d68ee00866437b",
-      "title": "Anthropic\u2019s Claude Mythos model escapes test sandbox during testing",
-      "url": "https://technewsday.com/anthropics-claude-mythos-model-escapes-test-sandbox-during-testing/",
-      "body_excerpt": "Anthropic says its new Claude Mythos Preview model successfully escaped a restricted sandbox environment during testing and accessed the internet without authorisation. The model then sent a direct message to a researcher and published deta ... (https://incidentdatabase.ai/cite/1613#7620)",
-      "release_date": "Thu, 30 Ju"
+      "id": "ca1d677bda376e971a691d63a7935c20",
+      "title": "No title",
+      "url": "",
+      "body_excerpt": "... (report_number: 7694)",
+      "release_date": "Thu, 13 Au"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "0459edd15173626ff865ed95c221c931",
-      "title": "Ya son 18 las denuncias de j\u00f3venes de Silleda por desnudos falsos con IA",
-      "url": "https://media.lavozdegalicia.es/noticia/deza/silleda/2026/06/11/18-denuncias-jovenes-silleda-desnudos-falsos-ia/0003_202606D11C19914.htm",
-      "body_excerpt": "Son ya 18 las denuncias que de momento han sido ya presentadas por j\u00f3venes de Silleda por la divulgaci\u00f3n de im\u00e1genes suyas falsas en las que aparecen desnudas, creadas con inteligencia artificial. Desde el instituto armado apuntan que la in ... (https://incidentdatabase.ai/cite/1614#7621)",
-      "release_date": "Thu, 30 Ju"
+      "id": "21fd471d076f40e824c9c083d1ba94fc",
+      "title": "Anthropic's AI hacked three companies during tests, highlighting growing security risks",
+      "url": "https://www.reuters.com/legal/litigation/anthropic-says-claude-ai-models-accessed-three-companies-during-tests-2026-07-30/",
+      "body_excerpt": "SAN FRANCISCO, July 30 (Reuters) - Anthropic said on Thursday some of its Claude AI models had hacked into the systems of three companies during cybersecurity tests, a disclosure that comes days after rival OpenAI revealed that one of its A ... (https://incidentdatabase.ai/cite/1627#7682)",
+      "release_date": "Thu, 13 Au"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "1b153304540a0725628c4ae4296bc5cc",
-      "title": "Investigados dos hombres por las fotos falsas por IA de desnudos de m\u00e1s de 20 mujeres en Silleda",
-      "url": "https://www.europapress.es/galicia/noticia-investigados-dos-hombres-fotos-falsas-ia-desnudos-mas-20-mujeres-silleda-20260716094338.html",
-      "body_excerpt": "PONTEVEDRA, 16 Jul. (EUROPA PRESS) -\n\nLa Guardia Civil ha localizado a dos hombres como presuntos responsables de la creaci\u00f3n y divulgaci\u00f3n de fotos falsas por inteligencia artificial (IA) de desnudos y en escenas de contenido sexual de un  ... (https://incidentdatabase.ai/cite/1614#7622)",
-      "release_date": "Thu, 30 Ju"
+      "id": "3e7d37fe5ab50cc95fb16fac72dec72c",
+      "title": "Anthropic says its AI models hacked 3 organizations during testing",
+      "url": "https://apnews.com/article/anthropic-ai-models-hack-cybersecurity-b0a2c284b981de79c55e2a33712f4bec",
+      "body_excerpt": "Anthropic said its artificial intelligence models hacked into three other organizations during testing, just days after ChatGPT maker OpenAI raised concerns over AI controls after it disclosed its rogue models hacked another company.\n\nAnthr ... (https://incidentdatabase.ai/cite/1627#7683)",
+      "release_date": "Thu, 13 Au"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "a80780c4c354682bc04836ad00897ad9",
-      "title": "Identifican a autores de desnudos creados por IA que afectaron a 22 mujeres de Pontevedra",
-      "url": "https://www.infobae.com/espana/agencias/2026/07/16/identifican-a-autores-de-desnudos-creados-por-ia-que-afectaron-a-22-mujeres-de-pontevedra/",
-      "body_excerpt": "Pontevedra, 16 jul (EFE).- La Guardia Civil ha identificado a dos hombres que crearon y difundieron por internet im\u00e1genes elaboradas con inteligencia artificial en las que 22 mujeres de la provincia de Pontevedra aparec\u00edan desnudas.\n\nLa inv ... (https://incidentdatabase.ai/cite/1614#7623)",
-      "release_date": "Thu, 30 Ju"
+      "id": "403d9497afccaeb3cde8334a3720fc3d",
+      "title": "Anthropic says it found 3 cases where AI programs hacked into real companies",
+      "url": "https://www.npr.org/2026/07/31/g-s1-136563/anthropic-ai-hacking-openai",
+      "body_excerpt": "The AI company Anthropic says it has found three cases where its artificial intelligence programs left testing environments, accessed the internet and hacked into real companies. This comes after competitor, OpenAI, reported a similar incid ... (https://incidentdatabase.ai/cite/1627#7684)",
+      "release_date": "Thu, 13 Au"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "8f9b3f50863c41076051b0bcb8ccdb13",
-      "title": "Boone County Sheriff\u2019s Office warns residents after AI swatting call",
-      "url": "https://abc17news.com/news/boone/2026/07/19/boone-county-sheriffs-office-warns-residents-after-ai-swatting-call/",
-      "body_excerpt": "COLUMBIA, Mo. (KMIZ)\n\nA scam that makes people believe their loved ones are in danger using artificial intelligence has hit Boone County, and the sheriff's office is warning people after a resident reported a call.\n\nAccording to a Facebook  ... (https://incidentdatabase.ai/cite/1615#7624)",
-      "release_date": "Thu, 30 Ju"
+      "id": "d6ed719a9fc4d876b3587ebc938cea93",
+      "title": "Anthropic Says Its A.I. Systems Broke Into Computers at 3 Organizations",
+      "url": "https://www.nytimes.com/2026/07/30/technology/anthropic-ai-hack.html",
+      "body_excerpt": "Several of Anthropic's state-of-the-art artificial intelligence models recently broke into the systems of three outside organizations, the start-up said on Thursday, a surprise revelation nine days after a similar incident at the rival star ... (https://incidentdatabase.ai/cite/1627#7685)",
+      "release_date": "Thu, 13 Au"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "60a7aacb392d533f5f1fd88de527f021",
-      "title": "Boone County Sheriff's Office - MO's Post, Swatting Incident Information",
-      "url": "https://www.facebook.com/BooneCoSO/posts/1493196872850318",
-      "body_excerpt": "Swatting Incident Information\n\nOn 07/17/2026, the Boone County Sheriff\u2019s Office responded to an incident that involved a victim receiving a phone call from a person they believed to be their daughter.  The caller ID even showed their daught ... (https://incidentdatabase.ai/cite/1615#7625)",
-      "release_date": "Thu, 30 Ju"
+      "id": "44d10bf5b9da928e1f0afe2209c9e6b0",
+      "title": "Anthropic says its Claude models escaped a testing environment and hacked three real companies",
+      "url": "https://fortune.com/2026/07/31/anthropic-claude-escaped-test-hacked-three-companies-openai/",
+      "body_excerpt": "Anthropic has said that its Claude models broke out of what was supposed to be an isolated testing environment and gained unauthorized access to the systems of three real organizations. If that sounds familiar, it's because it's the second  ... (https://incidentdatabase.ai/cite/1627#7686)",
+      "release_date": "Thu, 13 Au"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "47a8e0af190e064b5c469395ec732f06",
-      "title": "US government map of Africa mislabels every country at global conference",
-      "url": "https://www.reuters.com/world/africa/us-government-map-africa-mislabels-every-country-global-conference-2026-07-30/",
-      "body_excerpt": "July 30 (Reuters) - A U.S. government map of Africa mislabeled every country during a State Department presentation at \u200ca global conference taking place in Brazil this week, causing a stir among attendees who took screenshots and posted the ... (https://incidentdatabase.ai/cite/1616#7626)",
-      "release_date": "Thu, 30 Ju"
+      "id": "ae3275f12329a28d8b91c4cc6f1a997f",
+      "title": "Anthropic says its own AI models breached three companies during security tests",
+      "url": "https://techcrunch.com/2026/07/30/anthropic-says-its-own-ai-models-breached-three-companies-during-security-tests/",
+      "body_excerpt": "Anthropic said Thursday that an internal investigation uncovered three incidents in which its AI model Claude breached the systems of three organizations while conducting cybersecurity tests. The investigation, and disclosure, comes more th ... (https://incidentdatabase.ai/cite/1627#7688)",
+      "release_date": "Thu, 13 Au"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "72e566626dbd3d59ba64055df5f386ad",
-      "title": "Why This Startup Is Strapping Cameras To Housekeepers\u2019 Heads In India",
-      "url": "https://www.forbes.com/sites/rashishrivastava/2026/07/29/why-this-startup-is-strapping-cameras-to-housekeepers-heads-in-india/",
-      "body_excerpt": "On a Tuesday evening in early July, Anushka Ahuja, a dentist in Gurgaon, India, opens the door for the house help she booked ten minutes ago on Pronto, an app that provides instant professional cleaning services like sweeping, mopping and l ... (report_number: 7627)",
-      "release_date": "Thu, 30 Ju"
+      "id": "ac0a82f81e0e159421133da2c6f6e101",
+      "title": "Anthropic\u2019s Claude AI Broke Into Three Companies During Security Tests",
+      "url": "https://www.forbes.com/sites/craigsmith/2026/07/31/anthropics-claude-models-broke-into-three-real-companies/",
+      "body_excerpt": "Anthropic disclosed Thursday that three of its Claude models gained unauthorized access to the production systems of three organizations during cybersecurity testing --- not test servers or staging copies, but the live machines those compan ... (https://incidentdatabase.ai/cite/1627#7689)",
+      "release_date": "Thu, 13 Au"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "0ea7bd86d8d5196486d7605b703ae55d",
-      "title": "Meta sued over AI smart glasses\u2019 privacy concerns, after workers reviewed nudity, sex, and other footage",
-      "url": "https://techcrunch.com/2026/03/05/meta-sued-over-ai-smartglasses-privacy-concerns-after-workers-reviewed-nudity-sex-and-other-footage/",
-      "body_excerpt": "Meta is facing a new class action lawsuit over its AI smart glasses and their lack of privacy, after an investigation by Swedish newspapers found that workers at a Kenya-based subcontractor are reviewing footage from customers' glasses, whi ... (https://incidentdatabase.ai/cite/1418#7628)",
-      "release_date": "Thu, 30 Ju"
+      "id": "39abb9cf0e8ed861e9326b3912b5e8a5",
+      "title": "Anthropic Says Claude Hacked Into 3 Organizations During Cybersecurity Tests",
+      "url": "https://www.wired.com/story/anthropic-says-claude-hacked-real-systems-during-cybersecurity-tests/",
+      "body_excerpt": "Anthropic disclosed on Thursday that its AI models gained unauthorized access to the systems of three different unnamed organizations during cybersecurity testing. The company says Claude reached the internet \"from within or while interacti ... (https://incidentdatabase.ai/cite/1627#7690)",
+      "release_date": "Thu, 13 Au"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "6b4018945820f2cba7562a07a6ce9f0c",
-      "title": "Meta\u2019s AI glasses reportedly send sensitive footage to human reviewers in Kenya",
-      "url": "https://www.theverge.com/tech/889637/meta-ai-smart-glasses-human-reviewers-kenya",
-      "body_excerpt": "Meta's AI-powered smart glasses could be sending sensitive footage to human reviewers in Nairobi, Kenya, according to an investigation by the Swedish outlets Svenska Dagbladet and G\u00f6teborgs-Posten. The report, which was published last week, ... (https://incidentdatabase.ai/cite/1418#7629)",
-      "release_date": "Thu, 30 Ju"
+      "id": "0f49543ef2103c8f2a3badf44b870bf3",
+      "title": "Anthropic says its models went rogue and hacked 3 companies during testing",
+      "url": "https://www.businessinsider.com/anthropic-says-claude-models-went-rogue-hacked-3-companies-testing-2026-7",
+      "body_excerpt": "Anthropic says it found multiple cases of Claude models gaining unauthorized access to other organizations' systems, the latest AI hacking incident to prompt concern and skepticism.\n\nIn a blog post on Thursday, Anthropic said it proactively ... (https://incidentdatabase.ai/cite/1627#7691)",
+      "release_date": "Thu, 13 Au"
+    },
+    {
+      "source_id": "mitre_atlas",
+      "type": "release",
+      "id": "v2026.07",
+      "title": "MITRE ATLAS v2026.07",
+      "url": "https://atlas.mitre.org/updates/",
+      "body_excerpt": "##### Content v2026.07\n\nThis version of ATLAS data contains 1 matrix, 16 tactics, 101 techniques, 77 sub-techniques, 37 mitigations, and 68 case studies.\n\n###### Techniques\n\n- Added new techniques\n\n  - [Publish Poisoned AI Artifacts](/techniques/AML.T0115)\n  - [Manipulate AI Model: Modify Prompt Construction Logic](/techniques/AML.T0018.003)\n  - [AI Agent Tool Poisoning: Definition and Instructions](/techniques/AML.T0110.000)\n  - [AI Agent Tool Poisoning: Implementation](/techniques/AML.T0110.001)\n  - [AI Agent Tool Poisoning: Runtime Response](/techniques/AML.T0110.002)\n\n- Updated existing techniques\n\n  - [Publish Poisoned AI Artifacts: Datasets](/techniques/AML.T0115.000)\n    - Previously \"Publish Poisoned Datasets\" (AML.T0019)\n  - [Publish Poisoned AI Artifacts: Models](/techniques/AML.T0115.000)\n    - Previously \"Publish Poisoned Models\" (AML.T0058)\n  - [Publish Poisoned AI Artifacts: AI Agent Tools](/techniques/AML.T0115.000)\n    - Previously \"Publish Poisoned AI Agent Tool\" (AML.",
+      "release_date": "2026-08-07"
     }
   ]
 }
