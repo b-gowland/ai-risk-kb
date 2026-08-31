@@ -1,187 +1,187 @@
 {
-  "run_date": "2026-08-24",
-  "run_timestamp": "2026-08-24T10:26:29.102304+00:00",
+  "run_date": "2026-08-31",
+  "run_timestamp": "2026-08-31T17:17:01.537190+00:00",
   "total_new_items": 20,
   "items": [
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "734c3dfc549ba5f74357fb2022e7ac66",
-      "title": "Battery or fake charges? Woman seeks new law to prevent arrests based on artificial intelligence",
-      "url": "https://www.naplespress.com/local-news/battery-or-fake-charges-woman-seeks-new-law-to-prevent/article_01017a99-3a7a-44d6-8f34-325e99bd2211.html",
-      "body_excerpt": "Melissa Sims thought she'd found her soulmate when she met her boyfriend. He seemed kind, compassionate and fun --- and they both played pickleball and shared many interests.\u00a0\u00a0\n\nBut after a few breakups, their one-year romance came to a hal ... (https://incidentdatabase.ai/cite/1379#7776)",
-      "release_date": "Fri, 21 Au"
+      "id": "c05bdcdf7f8ec88179908a0244ec2f35",
+      "title": "Russian-speaking cybercriminals used SpaceX\u2019s Cursor AI tool to hack seven companies",
+      "url": "https://www.reuters.com/world/russian-speaking-cybercriminals-used-spacexs-cursor-ai-tool-hack-seven-companies-2026-08-27/",
+      "body_excerpt": "Russian-speaking hackers used SpaceX's (SPCX.O), opens new tab\u00a0AI coding assistant, Cursor, to help break in to a Belgian chemical company and at least six other firms earlier this year, according to data reviewed by Reuters and reports iss ... (https://incidentdatabase.ai/cite/1661#7853)",
+      "release_date": "Sat, 29 Au"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "4f0a1962c1d26673dcfc1762d54c3e4a",
-      "title": "Jury clears nurse in domestic violence case",
-      "url": "https://www.naplespress.com/local-news/jury-clears-the-name-in-sensational-domestic-assault-case/article_c1f4678a-9b42-4751-9ef9-ac91b5c15f77.html",
-      "body_excerpt": "North Naples resident Melissa Sims was living in a legal nightmare.\u00a0\n\nShe spent two nights in county jail after being arrested twice on domestic violence charges filed by her ex-boyfriend --- and she faced the potential loss of her state nu ... (https://incidentdatabase.ai/cite/1379#7777)",
-      "release_date": "Fri, 21 Au"
+      "id": "4a689594ebfcc6590f669eebd7890238",
+      "title": "Aurora ransomware targets ESXi, abuses Cursor Agent for exploitation",
+      "url": "https://gambit.security/blog-posts/aurora-ransomware-targets-esxi-abuses-cursor-agent-for-exploitation",
+      "body_excerpt": "Gambit Security's Threat Intelligence team investigates emerging attacker tradecraft and the evolving ways threat actors disrupt organizations. As part of this research, we track threat actors and their operations to identify new techniques ... (https://incidentdatabase.ai/cite/1661#7854)",
+      "release_date": "Sat, 29 Au"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "cfaddacc2bc3b2a6439ddbe53962d3d0",
-      "title": "AI-generated fake evidence is landing people in jail as courts struggle with new technology",
-      "url": "https://www.tampabay28.com/news/local-news/i-team-investigates/ai-generated-fake-evidence-is-landing-people-in-jail-as-courts-struggle-with-new-technology",
-      "body_excerpt": "FLORIDA --- We're all trying to figure out artificial intelligence, and when it comes to the courtroom, what's real is proving to have potentially serious consequences.\n\nIn fact, one Florida woman says AI was used to help land her in jail.\n ... (https://incidentdatabase.ai/cite/1379#7778)",
-      "release_date": "Fri, 21 Au"
+      "id": "287e32b33354f93877af0017cd87fc9d",
+      "title": "Caught in 4K: The Aurora Files",
+      "url": "https://www.cloudsek.com/blog/aurora-ransomware-affiliate-ai-attack-planning-crypto-payments",
+      "body_excerpt": "Executive Summary\n\nAn exposed open directory revealed months of activity from belonging to a Russian speaking Aurora ransomware affiliate, active against more than twenty organisations between April and July 2026. The directory included the ... (https://incidentdatabase.ai/cite/1661#7855)",
+      "release_date": "Sat, 29 Au"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "9b74c57840014c11dfdb9c5e90cd5c7b",
-      "title": "Woman jailed after alleged AI-generated text messages",
-      "url": "https://www.wftv.com/news/local/woman-jailed-after-alleged-ai-generated-text-messages/C34GTYM63FCHFODIPYJ7LVEBHM/",
-      "body_excerpt": "ORLANDO, Fla. --- A Florida woman says she was arrested and jailed based on what investigators later determined may have been fabricated evidence created using artificial intelligence, raising new concerns about how emerging technology coul ... (https://incidentdatabase.ai/cite/1379#7779)",
-      "release_date": "Fri, 21 Au"
+      "id": "b1c84c179fd0040312dab2f6669f2349",
+      "title": "Pizza Hut's AI system caused 'cascading' problems and $100M in damages, franchisee alleges in new suit",
+      "url": "https://www.businessinsider.com/pizza-hut-ai-system-dragontail-lawsuit-franchisee-2026-5",
+      "body_excerpt": "A top Pizza Hut franchisee says the chain's rollout of an AI-powered delivery system turned once-speedy pizza orders into a cold, late-arriving mess --- and cratered a business that had been outperforming nearly every other operator in the  ... (https://incidentdatabase.ai/cite/1662#7857)",
+      "release_date": "Sat, 29 Au"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "e6b5912b8cb95960d8ab4f945dbef1bf",
-      "title": "Innocent woman thrown in jail due to fake AI texts",
-      "url": "https://www.dailymail.com/news/article-15449079/florida-woman-jail-ai-text-messages.html",
-      "body_excerpt": "An innocent\u00a0Florida nurse was sent to jail on two separate occasions after her ex-boyfriend allegedly fabricated abusive text messages he claimed were sent from her.\n\nMelissa Mullin Sims, 57, was thrown in a 'horrific' Collier County jail a ... (https://incidentdatabase.ai/cite/1379#7780)",
-      "release_date": "Fri, 21 Au"
+      "id": "c3059f05d30541023d6b55bf10e810b9",
+      "title": "Pizza Hut franchisee says AI caused $100M in damages",
+      "url": "https://www.restaurantdive.com/news/pizza-hut-franchisee-sues-over-ai-delivery-aggregator-deployment/820118/",
+      "body_excerpt": "Dive Brief:\n\nPizza Hut franchisee Chaac Pizza Northeast has sued the franchisor, alleging the chain's Dragontail Artificial Intelligence system caused \"cascading operational breakdowns,\" slowed down order times and disrupted integrations wi ... (https://incidentdatabase.ai/cite/1662#7858)",
+      "release_date": "Sat, 29 Au"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "e80ff2aeb79dbc72a821b365f7c2c3d0",
-      "title": "The Melissa Sims Case Is Exactly Why Screenshots Should Not Be Treated Like Scripture",
-      "url": "https://jacobengels.substack.com/p/the-melissa-sims-case-is-exactly",
-      "body_excerpt": "A Florida nurse says an allegedly fake text helped put her in jail. Her case should terrify anyone who thinks digital evidence is automatically real.\n\nThe Melissa Sims case should make every person with a phone deeply uncomfortable.\n\nNot be ... (https://incidentdatabase.ai/cite/1379#7781)",
-      "release_date": "Fri, 21 Au"
+      "id": "9fb6744dbcb6ac90b1e4994ae096756d",
+      "title": "Frustrated franchisee sues Pizza Hut over crappy kitchen AI",
+      "url": "https://www.theregister.com/ai-ml/2026/05/19/frustrated-franchisee-sues-pizza-hut-over-crappy-kitchen-ai/5242899",
+      "body_excerpt": "The back-of-house AI system that Pizza Hut has mandated its restaurants to adopt has been so poorly received by some franchisees, that one is suing the company for $100 million in losses tied to the technology. Put that in your crust and st ... (https://incidentdatabase.ai/cite/1662#7859)",
+      "release_date": "Sat, 29 Au"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "07e036969c34d1ad43355b13dd906639",
-      "title": "The Naples Frame Up: How a Florida Nurse Was Jailed Twice on Evidence That Did Not Exist, and Why Melissa's Law Is the America First Answer",
-      "url": "https://steveedwardfarley.substack.com/p/the-naples-frame-up-how-a-florida",
-      "body_excerpt": "America First is not flags and parades. It is the line that says the American citizen, in her own town, on her own phone, cannot be locked up on a piece of software and a man with a grudge. The line broke in Naples, Florida on November 23,  ... (https://incidentdatabase.ai/cite/1379#7782)",
-      "release_date": "Fri, 21 Au"
+      "id": "e538190ea83aedc2af62d4f2da392fe5",
+      "title": "A Pizza Hut franchisee is suing over a forced AI system it says wrecked deliveries",
+      "url": "https://qz.com/pizza-hut-franchisee-lawsuit-dragontail-ai-delivery-052126",
+      "body_excerpt": "A lawsuit filed May 6 in Texas Business Court puts Chaac Pizza Northeast --- a franchisee running roughly 111 Pizza Hut locations spanning New York, New Jersey, Maryland, Washington, D.C., and Pennsylvania --- at the center of a dispute ove ... (https://incidentdatabase.ai/cite/1662#7860)",
+      "release_date": "Sat, 29 Au"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "d0948bcf45c6a8e6ac6eeb1b6dbe9a45",
-      "title": "When Algorithms Become Evidence: A Warning on AI Deepfakes and Due Process",
-      "url": "https://nybaynews.com/2026/01/10/pennsylvania-ai-deepfake-texts-due-process-warning/",
-      "body_excerpt": "A troubling case tied to Pennsylvania is sounding a national alarm about how quickly artificial intelligence is outpacing the justice system --- and how ordinary Americans can lose their freedom when courts fail to slow down and verify digi ... (https://incidentdatabase.ai/cite/1379#7783)",
-      "release_date": "Fri, 21 Au"
+      "id": "38ac903184c5c878f794b632a0421057",
+      "title": "\u2018Too good to be true?\u2019: No, WHYY\u2019s Terry Gross did not personally email you to be a guest on \u2018Fresh Air\u2019",
+      "url": "https://whyy.org/articles/scam-emails-terry-gross-fresh-air/",
+      "body_excerpt": "An email offering an interview with Terry Gross may sound like a career-making opportunity. But a string of messages using the name of the longtime \"Fresh Air\" host has instead led recipients into an increasingly elaborate scam.\n\nAuthors, e ... (https://incidentdatabase.ai/cite/1663#7861)",
+      "release_date": "Sat, 29 Au"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "9c17aa7c81d649208bae85b7d1d56801",
-      "title": "Unverified AI Deepfake Text Allegedly Leads to Woman\u2019s Incarceration, Investigation Reveals",
-      "url": "https://internewscast.com/news/us/unverified-ai-deepfake-text-allegedly-leads-to-womans-incarceration-investigation-reveals/",
-      "body_excerpt": "PHILADELPHIA (WPVI) --- The legal system is increasingly being challenged by the rise of AI-generated deepfakes.\n\nMelissa Sims claims her former boyfriend fabricated AI-generated text messages, which led to her wrongful imprisonment.\n\n\"It w ... (https://incidentdatabase.ai/cite/1379#7784)",
-      "release_date": "Fri, 21 Au"
+      "id": "658ef193564b9f04e963a5531afa3302",
+      "title": "Inside the Fake Celebrity Podcast Scam Fooling Hollywood",
+      "url": "https://www.hollywoodreporter.com/news/general-news/celebrity-podcast-scam-bruce-vilanch-seth-rudetsky-1236676601/",
+      "body_excerpt": "When Seth Rudetsky received an invitation to appear on Nikki Glaser's podcast, he had no particular reason to think it wasn't real.\n\nRudetsky, the Broadway performer and SiriusXM host, gets asked to do podcasts all the time. Better yet, thi ... (https://incidentdatabase.ai/cite/1663#7862)",
+      "release_date": "Sat, 29 Au"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "589279306a5e7684d3edc2fae0321777",
-      "title": "Woman Jailed Over Unverified AI-Generated Deepfake Text Evidence (USA)",
-      "url": "https://www.reviewofailaw.com/Tool/Evidenza/Single/view_html?id_evidenza=5036",
-      "body_excerpt": "Source: 6abc\n\n6abc reports on a disturbing investigation released on January 8, 2026, concerning Melissa Sims, a woman who alleges she was wrongfully incarcerated in Florida due to AI-generated evidence. Sims claims her ex-boyfriend used ar ... (https://incidentdatabase.ai/cite/1379#7785)",
-      "release_date": "Fri, 21 Au"
+      "id": "e8dd9a3df5398502d66a064212a472c3",
+      "title": "Fake US thinktank set up and funded by Israel sought to game AI for propaganda",
+      "url": "https://www.theguardian.com/world/2026/aug/26/fake-thinktank-israel-ai-propaganda",
+      "body_excerpt": "A pro-Israel messaging website badged with the name of a thinktank that does not exist has published more than half a million words in nine days, built on a commercial platform that promises to optimize content so that AI chatbots will cite ... (https://incidentdatabase.ai/cite/1659#7851)",
+      "release_date": "Thu, 27 Au"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "87d594656c7e7a64a6af9f0f50a0c434",
-      "title": "\u201cIt\u2019s out of control\u201d: A startling case where a woman faced arrest due to fake AI evidence",
-      "url": "https://www.survivalworld.com/news/its-out-of-control-a-startling-case-where-a-woman-faced-arrest-due-to-fake-ai-evidence/",
-      "body_excerpt": "WFTV Channel 9 investigative reporter Daralene Jones said she was skeptical when she first received a tip about a Florida woman who claimed she had been arrested because of fake evidence created with artificial intelligence, but after revie ... (https://incidentdatabase.ai/cite/1379#7786)",
-      "release_date": "Fri, 21 Au"
+      "id": "cc208c850a78ddb9c1bc110fd22cbd2a",
+      "title": "Legal resident loses thousands seeking citizenship to AI immigration attorney",
+      "url": "https://abc7ny.com/amp/post/legal-resident-loses-thousands-seeking-citizenship-ai-immigration-attorney-7-side-investiates/19704074/",
+      "body_excerpt": "NEW YORK (WABC) -- It's a perfect storm where online scammers use artificial intelligence to victimize vulnerable people out of thousands of dollars, with many losing their life savings, and immigrants are increasingly the target.\n\nNot only ... (https://incidentdatabase.ai/cite/1660#7852)",
+      "release_date": "Thu, 27 Au"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "f56594855a72460db0f1d8e3a4e092d1",
-      "title": "Woman jailed after alleged AI-generated text messages - WFTV",
-      "url": "https://www.detectdeepfakes.com/examples/melissa-sims-1gpya4",
-      "body_excerpt": "A Florida woman, Melissa Sims, was jailed for 24 hours after allegedly violating a no-contact order, but she claimed the incriminating text messages were fake. The messages, which appeared to be from Sims to her ex-boyfriend, were later sus ... (https://incidentdatabase.ai/cite/1379#7787)",
-      "release_date": "Fri, 21 Au"
+      "id": "f87064bd49db2249c3f5575978169956",
+      "title": "Listen to the AI-Generated Ripoff Songs That Got Udio and Suno Sued",
+      "url": "https://www.404media.co/listen-to-the-ai-generated-ripoff-songs-that-got-udio-and-suno-sued/",
+      "body_excerpt": "Some of the world's largest record labels sued both Udio and Suno, two of the most popular AI music generators, accusing them of not only scraping huge amounts of music without permission or compensation but also of directly reproducing sec ... (https://incidentdatabase.ai/cite/1655#7797)",
+      "release_date": "Tue, 25 Au"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "c3085940dc9a2ae0fe8ab0b60694fa1e",
-      "title": "\uff3b\u30cb\u30e5\u30fc\u30b9\u89e3\u8aac\uff3dAI\u751f\u6210\u306e\u507d\u30c6\u30ad\u30b9\u30c8\u3067\u6295\u7344\u3055\u308c\u305f\u7c73\u56fd\u5973\u6027\u306e\u4e8b\u4f8b\u2014\u2014\u53f8\u6cd5\u306b\u304a\u3051\u308b\u8a3c\u62e0\u691c\u8a3c\u306e\u8ab2\u984c",
-      "url": "https://jobirun.com/ai-deepfake-text-false-imprisonment-case/",
-      "body_excerpt": "\u76ee\u6b21\n\n\u306f\u3058\u3081\u306b\n\n\u53c2\u8003\u8a18\u4e8b\n\n\u8981\u70b9\n\n\u8a73\u7d30\u89e3\u8aac\n\n\u4e8b\u4ef6\u306e\u7d4c\u7def\n\n\u53f8\u6cd5\u5236\u5ea6\u306b\u304a\u3051\u308bAI\u30c7\u30a3\u30fc\u30d7\u30d5\u30a7\u30a4\u30af\u306e\u8105\u5a01\n\nAI\u691c\u51fa\u6280\u8853\u306e\u9650\u754c\n\n\u4e8b\u4ef6\u306e\u7d50\u672b\u3068\u4eca\u5f8c\u306e\u5c55\u671b\n\n\u307e\u3068\u3081\n\n\u306f\u3058\u3081\u306b\n\n\u3000\u7c73\u56fd\u30d5\u30a3\u30e9\u30c7\u30eb\u30d5\u30a3\u30a2\u306e\u30cb\u30e5\u30fc\u30b9\u5c40WPVI\u304c2026\u5e741\u67089\u65e5\u306b\u5831\u3058\u305f\u5185\u5bb9\u306b\u3088\u308c\u3070\u3001AI\u751f\u6210\u306e\u507d\u30c6\u30ad\u30b9\u30c8\u30e1\u30c3\u30bb\u30fc\u30b8\u306b\u3088\u3063\u3066\u5973\u6027\u304c\u6295\u7344\u3055\u308c\u308b\u3068\u3044\u3046\u4e8b\u4f8b\u304c\u767a\u751f\u3057\u307e\u3057\u305f\u3002\u672c\u7a3f\u3067\u306f\u3001\u3053\u306e\u4e8b\u4f8b\u3092\u901a\u3058\u3066\u3001AI\u30c7\u30a3\u30fc\u30d7\u30d5\u30a7\u30a4\u30af\u304c\u53f8\u6cd5\u5236\u5ea6\u306b\u4e0e\u3048\u308b\u5f71\u97ff\u3068\u3001\u8a3c\u62e0\u691c\u8a3c\u306b\u304a\u3051\u308b\u65b0\u305f\u306a\u8ab2\u984c\u306b\u3064\u3044\u3066\u89e3\u8aac\u3057\u307e\u3059\u3002\n\n\u53c2\u8003\u8a18\u4e8b\n ... (https://incidentdatabase.ai/cite/1379#7788)",
-      "release_date": "Fri, 21 Au"
+      "id": "30ae1fc5a7a8ed9d11571bda350715cf",
+      "title": "AI Music Generator Suno Admits It Was Trained on \u2018Essentially All Music Files on the Internet\u2019",
+      "url": "https://www.404media.co/ai-music-generator-suno-admits-it-was-trained-on-essentially-all-music-files-on-the-internet/",
+      "body_excerpt": "The AI music generator company Suno has admitted that its product was trained on \"essentially all music files of reasonable quality that are accessible on the open internet,\" which included a total of \"tens of millions of recordings.\"\u00a0\n\nWhi ... (https://incidentdatabase.ai/cite/1655#7798)",
+      "release_date": "Tue, 25 Au"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "c72ccd216cf563f2b50a6e87a64a59f9",
-      "title": "AI-generated fake evidence is landing people in jail as courts struggle with new technology",
-      "url": "https://www.yahoo.com/news/videos/ai-generated-fake-evidence-landing-233352079.html",
-      "body_excerpt": "AIID editor's note: Yahoo News mirror of the WFTS/Tampa Bay 28 video report. AIID does not archive video; visit the source URL to view.\n\nFrom fabricated texts in domestic violence cases to fake photos in assault claims, artificial intellige ... (https://incidentdatabase.ai/cite/1379#7789)",
-      "release_date": "Fri, 21 Au"
+      "id": "f6521761a71b67be41f4a4eeb9738bdd",
+      "title": "Suno AI Music Generation Copyright Class Action",
+      "url": "https://www.hbsslaw.com/cases/suno-ai-music-generation-copyright-class-action",
+      "body_excerpt": "Related Documents\n\nOrder on Motion to Dismiss 08/20/26\n\nWHAT'S THE ISSUE?\n\nHagens Berman's legal team has joined forces with Delgado Entertainment Law PLLC to represent independent music artists whose copyrighted songs were allegedly copied ... (https://incidentdatabase.ai/cite/1655#7799)",
+      "release_date": "Tue, 25 Au"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "986bae2c1bbd7aca39c4bb1869595674",
-      "title": "An AI-Faked Text Got Her Arrested. Now She's Fighting for Legal Reform.",
-      "url": "https://podcasts.apple.com/fr/podcast/an-ai-faked-text-got-her-arrested-now-shes-fighting/id1849274080?i=1000746050539",
-      "body_excerpt": "AIID editor's note: Please visit the original source to listen to the podcast episode.\n\nWhat happens when a single AI-faked text \u201creceipt\u201d can land you in jail?\n\nMelissa Sims, a Florida nurse, says she was arrested for allegedly violating a ... (https://incidentdatabase.ai/cite/1379#7790)",
-      "release_date": "Fri, 21 Au"
+      "id": "0c65a522ef70aef703dd0a4170e47b5b",
+      "title": "Record labels claim AI generator Suno illegally ripped their songs from YouTube",
+      "url": "https://www.theverge.com/news/782448/riaa-suno-ai-lawsuit-update-stream-ripping-youtube",
+      "body_excerpt": "Major record labels have escalated their lawsuit against Suno, alleging that the AI startup knowingly pirated songs from YouTube to train its generative AI music models. In the amended complaint filed on September 19th, the Recording Indust ... (https://incidentdatabase.ai/cite/1655#7800)",
+      "release_date": "Tue, 25 Au"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "44f643d6eca2b6d3edec94f73ff948bc",
-      "title": "The trillion-dollar space war",
-      "url": "https://www.komando.com/episode/the-trillion-dollar-space-war/",
-      "body_excerpt": "AIID editor's note: Please visit the original source to listen to the podcast episode.\n\nJeff Bezos and Elon Musk are battling for control of the internet from space. I break down who\u2019s winning and why China just filed to launch 200,000 sate ... (https://incidentdatabase.ai/cite/1379#7791)",
-      "release_date": "Fri, 21 Au"
+      "id": "7337439b2d2688d87aedf1c030155a7b",
+      "title": "Warner Music Group and Suno Forge Groundbreaking Partnership",
+      "url": "https://www.wmg.com/news/warner-music-group-and-suno-forge-groundbreaking-partnership",
+      "body_excerpt": "Companies will collaborate on next-generation licensed AI music that empowers the creative community and opens new revenue opportunities for artists and songwriters\n\nWarner Music Group (Nasdaq: WMG), one of the world's largest music compani ... (https://incidentdatabase.ai/cite/1655#7801)",
+      "release_date": "Tue, 25 Au"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "1dd7113a992403db5853a7cd24ca7515",
-      "title": "AI Deepfakes",
-      "url": "https://theswflchronicle.com/ai-deepfakes/",
-      "body_excerpt": "Dear Editor:\u00a0\n\nI wanted to bring to your attention a growing and urgent issue here in Florida as the state considers its Artificial Intelligence Bill of Rights.\n\nLast year, I was arrested and jailed based on a fabricated \"text message\" that ... (https://incidentdatabase.ai/cite/1379#7792)",
-      "release_date": "Fri, 21 Au"
+      "id": "4fe963985b70eaf3864ae22ba6969985",
+      "title": "Warner Music Group settles lawsuit with AI firm Suno",
+      "url": "https://www.latimes.com/entertainment-arts/business/story/2025-11-25/warner-music-group-suno-ai-lawsuit-settlement",
+      "body_excerpt": "Warner Music Group on Tuesday announced a partnership with AI business Suno that will compensate music artists and songwriters, ending a legal battle between the two companies.\n\nSuno allows users to write text prompts to create songs. Last  ... (https://incidentdatabase.ai/cite/1655#7802)",
+      "release_date": "Tue, 25 Au"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "f70af7c6a00ddbc7a6387bc27649a34d",
-      "title": "'No one verified the evidence': Woman says AI-generated deepfake text sent her to jail",
-      "url": "https://www.yahoo.com/news/articles/no-one-verified-evidence-woman-044409209.html",
-      "body_excerpt": "Courts are now facing a growing threat: AI-generated deepfakes.\n\nMelissa Sims said her ex-boyfriend created fake AI-generated texts that put her behind bars.\n\n\"It was horrific,\" she said.\n\nSims said she spent two days of hell in a Florida j ... (https://incidentdatabase.ai/cite/1379#7793)",
-      "release_date": "Fri, 21 Au"
+      "id": "96672ac0d23a33995bdabed74b7c8416",
+      "title": "Hack Reveals Suno AI Music Generator Scraped YouTube, Deezer, and Genius",
+      "url": "https://www.404media.co/hack-reveals-suno-ai-music-generator-scraped-youtube-deezer-and-genius/",
+      "body_excerpt": "The AI music generation tool Suno scraped millions of songs and lyrics from YouTube Music, Deezer, and Genius, as well as from the stock music libraries Pond5, Jamendo, Freesound, the International Music Score Library Project, and podcasts  ... (https://incidentdatabase.ai/cite/1655#7803)",
+      "release_date": "Tue, 25 Au"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "9a43a11b3623f421e48f910d7ddbe93e",
-      "title": "AI-generated fake evidence is landing people in jail as courts struggle with new technology",
-      "url": "https://www.wptv.com/wptv-investigates/ai-generated-fake-evidence-is-landing-people-in-jail-as-courts-struggle-with-new-technology",
-      "body_excerpt": "FLORIDA --- We're all trying to figure out artificial intelligence, and when it comes to the courtroom, what's real is proving to have potentially serious consequences.\n\nIn fact, one Florida woman says AI was used to help land her in jail.\n ... (https://incidentdatabase.ai/cite/1379#7794)",
-      "release_date": "Fri, 21 Au"
+      "id": "63afa6a66745f0e612fcc77f99e48556",
+      "title": "Gericht entscheidet pro Musikschaffende: GEMA setzt sich gegen SUNO durch und definiert Ma\u00dfst\u00e4be f\u00fcr internationales Urheberrecht",
+      "url": "https://www.gema.de/de/w/suno-entscheidung-2026",
+      "body_excerpt": "Die GEMA hat im Rechtsstreit gegen SUNO, eine US-amerikanische Anbieterin von KI-generierten Audioinhalten, einen weiteren wegweisenden Erfolg erzielt. Das Landgericht M\u00fcnchen stellte fest, dass SUNO durch das Training mit weltbekannten Son ... (https://incidentdatabase.ai/cite/1655#7804)",
+      "release_date": "Tue, 25 Au"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "ccac6e4e37f921c5fede4b55746e1593",
-      "title": "'No one verified the evidence': Woman says AI-generated deepfake text sent her to jail",
-      "url": "https://abc11.com/post/no-verified-evidence-woman-says-ai-generated-deepfake-text-sent-jail-action-news-investigation/18373467/",
-      "body_excerpt": "PHILADELPHIA -- Courts are now facing a growing threat: AI-generated deepfakes.\n\nMelissa Sims said her ex-boyfriend created fake AI-generated texts that put her behind bars.\n\n\"It was horrific,\" she said.\n\nSims said she spent two days of hel ... (https://incidentdatabase.ai/cite/1379#7795)",
-      "release_date": "Fri, 21 Au"
+      "id": "54ff7bbb7b3963bb6d49834c6b4e8959",
+      "title": "Suno loses copyright infringement lawsuit brought by GEMA in Germany",
+      "url": "https://www.musicbusinessworldwide.com/suno-infringed-copyright-in-gema-case-german-court-rules/",
+      "body_excerpt": "AI music generator Suno has lost the copyright infringement lawsuit brought by German collecting society GEMA.\n\nThe collecting society alleged that Suno used, stored and reproduced copyrighted music to train its AI tool without a license or ... (https://incidentdatabase.ai/cite/1655#7805)",
+      "release_date": "Tue, 25 Au"
     }
   ]
 }
