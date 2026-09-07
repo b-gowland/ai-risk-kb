@@ -1,187 +1,196 @@
 {
-  "run_date": "2026-08-31",
-  "run_timestamp": "2026-08-31T17:17:01.537190+00:00",
-  "total_new_items": 20,
+  "run_date": "2026-09-07",
+  "run_timestamp": "2026-09-07T15:21:46.200767+00:00",
+  "total_new_items": 21,
   "items": [
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "c05bdcdf7f8ec88179908a0244ec2f35",
-      "title": "Russian-speaking cybercriminals used SpaceX\u2019s Cursor AI tool to hack seven companies",
-      "url": "https://www.reuters.com/world/russian-speaking-cybercriminals-used-spacexs-cursor-ai-tool-hack-seven-companies-2026-08-27/",
-      "body_excerpt": "Russian-speaking hackers used SpaceX's (SPCX.O), opens new tab\u00a0AI coding assistant, Cursor, to help break in to a Belgian chemical company and at least six other firms earlier this year, according to data reviewed by Reuters and reports iss ... (https://incidentdatabase.ai/cite/1661#7853)",
-      "release_date": "Sat, 29 Au"
+      "id": "a89a00631bb71470a163d146b67d02da",
+      "title": "When AI Takes Notes: Court Allows Privacy Claims Against Otter.ai to Proceed",
+      "url": "https://www.sheppard.com/insights/blogs/when-ai-takes-notes-court-allows-privacy-claims-against-otterai-to-proceed",
+      "body_excerpt": "Otter.ai's AI notetaker tool has been accused of violating Illinois's biometric privacy law, and the California court hearing the case recently let the proceedings move forward. As we have previously written in our sister blog, AI notetaker ... (https://incidentdatabase.ai/cite/1650#7893)",
+      "release_date": "Sat, 05 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "4a689594ebfcc6590f669eebd7890238",
-      "title": "Aurora ransomware targets ESXi, abuses Cursor Agent for exploitation",
-      "url": "https://gambit.security/blog-posts/aurora-ransomware-targets-esxi-abuses-cursor-agent-for-exploitation",
-      "body_excerpt": "Gambit Security's Threat Intelligence team investigates emerging attacker tradecraft and the evolving ways threat actors disrupt organizations. As part of this research, we track threat actors and their operations to identify new techniques ... (https://incidentdatabase.ai/cite/1661#7854)",
-      "release_date": "Sat, 29 Au"
+      "id": "b24aa8ba5fdb29aa0c01969f4320b095",
+      "title": "California regulators rushed their decision on driverless trucks, Teamsters\u2019 lawsuit says",
+      "url": "https://www.latimes.com/business/story/2026-08-29/california-regulators-rushed-their-decision-on-driverless-trucks-teamsters-lawsuit-says",
+      "body_excerpt": "As self-driving vehicles spread across the country, a major California labor union is taking a stand against state regulators who say autonomous trucks are ready for the road.\n\nTeamsters California sued the California Department of Motor Ve ... (report_number: 7894)",
+      "release_date": "Sat, 05 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "287e32b33354f93877af0017cd87fc9d",
-      "title": "Caught in 4K: The Aurora Files",
-      "url": "https://www.cloudsek.com/blog/aurora-ransomware-affiliate-ai-attack-planning-crypto-payments",
-      "body_excerpt": "Executive Summary\n\nAn exposed open directory revealed months of activity from belonging to a Russian speaking Aurora ransomware affiliate, active against more than twenty organisations between April and July 2026. The directory included the ... (https://incidentdatabase.ai/cite/1661#7855)",
-      "release_date": "Sat, 29 Au"
+      "id": "bc6264f1b4fce773a1ec867a583df761",
+      "title": "OpenAI agents hijacked German website in previously undisclosed AI breakout this spring",
+      "url": "https://www.reuters.com/world/europe/openai-agents-hijacked-german-website-previously-undisclosed-ai-breakout-this-2026-09-04/",
+      "body_excerpt": "A swarm of rogue OpenAI agents hijacked a German website this spring and transformed it into a bulletin board for other AI agents, according to new research published Friday and two people familiar with the matter.\n\nOpenAI officials learned ... (https://incidentdatabase.ai/cite/1668#7873)",
+      "release_date": "Fri, 04 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "b1c84c179fd0040312dab2f6669f2349",
-      "title": "Pizza Hut's AI system caused 'cascading' problems and $100M in damages, franchisee alleges in new suit",
-      "url": "https://www.businessinsider.com/pizza-hut-ai-system-dragontail-lawsuit-franchisee-2026-5",
-      "body_excerpt": "A top Pizza Hut franchisee says the chain's rollout of an AI-powered delivery system turned once-speedy pizza orders into a cold, late-arriving mess --- and cratered a business that had been outperforming nearly every other operator in the  ... (https://incidentdatabase.ai/cite/1662#7857)",
-      "release_date": "Sat, 29 Au"
+      "id": "a5d4954619c72f9bc92a787c08069e24",
+      "title": "Another swarm of OpenAI agents reached the open internet without the frontier lab\u2019s knowledge",
+      "url": "https://techcrunch.com/2026/09/04/another-swarm-of-openai-agents-reached-the-open-internet-without-the-frontier-labs-knowledge/",
+      "body_excerpt": "A group of independent AI researchers discovered that internally deployed OpenAI agents began posting on an obscure German wiki forum in order to collaborate on evaluations. They appear to have worked together for over a month without OpenA ... (https://incidentdatabase.ai/cite/1668#7874)",
+      "release_date": "Fri, 04 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "c3059f05d30541023d6b55bf10e810b9",
-      "title": "Pizza Hut franchisee says AI caused $100M in damages",
-      "url": "https://www.restaurantdive.com/news/pizza-hut-franchisee-sues-over-ai-delivery-aggregator-deployment/820118/",
-      "body_excerpt": "Dive Brief:\n\nPizza Hut franchisee Chaac Pizza Northeast has sued the franchisor, alleging the chain's Dragontail Artificial Intelligence system caused \"cascading operational breakdowns,\" slowed down order times and disrupted integrations wi ... (https://incidentdatabase.ai/cite/1662#7858)",
-      "release_date": "Sat, 29 Au"
+      "id": "ea15878c166970e2a0bafb46096afba9",
+      "title": "Thailand's Ministry of Finance Targeted With Hermes AI Agent Running Unattended, Hades Implant Staged",
+      "url": "https://hunt.io/blog/thailand-ministry-finance-targeted-with-hermes-ai-agent",
+      "body_excerpt": "Disclosure note: This research was conducted jointly by Hunt.io and Bob Diachenko, security researcher and journalist. Thailand's national CERT and NCSA were notified on July 15, 2026, and acknowledged receipt the same day. Publication was  ... (https://incidentdatabase.ai/cite/1669#7875)",
+      "release_date": "Fri, 04 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "9fb6744dbcb6ac90b1e4994ae096756d",
-      "title": "Frustrated franchisee sues Pizza Hut over crappy kitchen AI",
-      "url": "https://www.theregister.com/ai-ml/2026/05/19/frustrated-franchisee-sues-pizza-hut-over-crappy-kitchen-ai/5242899",
-      "body_excerpt": "The back-of-house AI system that Pizza Hut has mandated its restaurants to adopt has been so poorly received by some franchisees, that one is suing the company for $100 million in losses tied to the technology. Put that in your crust and st ... (https://incidentdatabase.ai/cite/1662#7859)",
-      "release_date": "Sat, 29 Au"
+      "id": "aa3351116672d80fee8b03e62b89a624",
+      "title": "Hermes AI agent used to automate attack on Thai Finance Ministry",
+      "url": "https://www.bleepingcomputer.com/news/security/hermes-ai-agent-used-to-automate-attack-on-thai-finance-ministry/",
+      "body_excerpt": "A threat actor used the open-source Hermes AI agent in unattended \"YOLO\" mode to automate post-exploitation activity during an alleged breach of Thailand's Ministry of Finance.\n\nThe activity was uncovered by threat intelligence company Hunt ... (https://incidentdatabase.ai/cite/1669#7876)",
+      "release_date": "Fri, 04 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "e538190ea83aedc2af62d4f2da392fe5",
-      "title": "A Pizza Hut franchisee is suing over a forced AI system it says wrecked deliveries",
-      "url": "https://qz.com/pizza-hut-franchisee-lawsuit-dragontail-ai-delivery-052126",
-      "body_excerpt": "A lawsuit filed May 6 in Texas Business Court puts Chaac Pizza Northeast --- a franchisee running roughly 111 Pizza Hut locations spanning New York, New Jersey, Maryland, Washington, D.C., and Pennsylvania --- at the center of a dispute ove ... (https://incidentdatabase.ai/cite/1662#7860)",
-      "release_date": "Sat, 29 Au"
+      "id": "fabf34e9581de04dd8bfe1b04786a9ad",
+      "title": "Hackers used autonomous AI agent to spy on Thailand's finance ministry",
+      "url": "https://therecord.media/thailand-hackers-ai-finance-ministry",
+      "body_excerpt": "Hackers used an autonomous artificial intelligence agent to carry out a cyber-espionage campaign against Thailand's Ministry of Finance, according to researchers who uncovered a hacker-controlled server that exposed the inner workings of th ... (https://incidentdatabase.ai/cite/1669#7877)",
+      "release_date": "Fri, 04 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "38ac903184c5c878f794b632a0421057",
-      "title": "\u2018Too good to be true?\u2019: No, WHYY\u2019s Terry Gross did not personally email you to be a guest on \u2018Fresh Air\u2019",
-      "url": "https://whyy.org/articles/scam-emails-terry-gross-fresh-air/",
-      "body_excerpt": "An email offering an interview with Terry Gross may sound like a career-making opportunity. But a string of messages using the name of the longtime \"Fresh Air\" host has instead led recipients into an increasingly elaborate scam.\n\nAuthors, e ... (https://incidentdatabase.ai/cite/1663#7861)",
-      "release_date": "Sat, 29 Au"
+      "id": "c52e522233e3e588618cabe939b503c1",
+      "title": "Hacker Runs Hermes AI Agent Unattended for Post-Exploitation at Thai Finance Ministry",
+      "url": "https://thehackernews.com/2026/07/hacker-runs-hermes-ai-agent-unattended.html",
+      "body_excerpt": "Someone installed a popular AI assistant on a rented server, switched off the setting that makes it ask permission before running risky commands, and pointed it at Thailand's Ministry of Finance, which runs the country's treasury and tax co ... (https://incidentdatabase.ai/cite/1669#7878)",
+      "release_date": "Fri, 04 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "658ef193564b9f04e963a5531afa3302",
-      "title": "Inside the Fake Celebrity Podcast Scam Fooling Hollywood",
-      "url": "https://www.hollywoodreporter.com/news/general-news/celebrity-podcast-scam-bruce-vilanch-seth-rudetsky-1236676601/",
-      "body_excerpt": "When Seth Rudetsky received an invitation to appear on Nikki Glaser's podcast, he had no particular reason to think it wasn't real.\n\nRudetsky, the Broadway performer and SiriusXM host, gets asked to do podcasts all the time. Better yet, thi ... (https://incidentdatabase.ai/cite/1663#7862)",
-      "release_date": "Sat, 29 Au"
+      "id": "56cea8ef71cc23cb88258e77e45b9a5c",
+      "title": "AI agent at the wheel: How an attacker used LLMs to move from a CVE to an internal database in 4 pivots",
+      "url": "https://www.sysdig.com/blog/ai-agent-at-the-wheel-how-an-attacker-used-llms-to-move-from-a-cve-to-an-internal-database-in-4-pivots",
+      "body_excerpt": "Key Findings\n\nAn LLM agent executed the post-compromise actions in real time rather than running a pre-built playbook. This is the first AI-agent-driven intrusion the Sysdig TRT has captured.\n\nThe full attack chain --- marimo notebook compr ... (https://incidentdatabase.ai/cite/1670#7879)",
+      "release_date": "Fri, 04 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "e8dd9a3df5398502d66a064212a472c3",
-      "title": "Fake US thinktank set up and funded by Israel sought to game AI for propaganda",
-      "url": "https://www.theguardian.com/world/2026/aug/26/fake-thinktank-israel-ai-propaganda",
-      "body_excerpt": "A pro-Israel messaging website badged with the name of a thinktank that does not exist has published more than half a million words in nine days, built on a commercial platform that promises to optimize content so that AI chatbots will cite ... (https://incidentdatabase.ai/cite/1659#7851)",
-      "release_date": "Thu, 27 Au"
+      "id": "c373faed8e2c551b38186f9ccd5883a0",
+      "title": "AI Agent Conducted a Cyberattack on Its Own \u2014 It Took Less Than One Hour",
+      "url": "https://www.securitymagazine.com/articles/102325-ai-agent-conducted-a-cyberattack-on-its-own-it-took-less-than-one-hour",
+      "body_excerpt": "AIID editor's note: Please visit the original source for the full report.\n\nResearchers discovered an intrusion conducted by a large language model (LLM) agent while it was in the post-exploitation phase. According to the researchers, this c ... (https://incidentdatabase.ai/cite/1670#7880)",
+      "release_date": "Fri, 04 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "cc208c850a78ddb9c1bc110fd22cbd2a",
-      "title": "Legal resident loses thousands seeking citizenship to AI immigration attorney",
-      "url": "https://abc7ny.com/amp/post/legal-resident-loses-thousands-seeking-citizenship-ai-immigration-attorney-7-side-investiates/19704074/",
-      "body_excerpt": "NEW YORK (WABC) -- It's a perfect storm where online scammers use artificial intelligence to victimize vulnerable people out of thousands of dollars, with many losing their life savings, and immigrants are increasingly the target.\n\nNot only ... (https://incidentdatabase.ai/cite/1660#7852)",
-      "release_date": "Thu, 27 Au"
+      "id": "d204a024b33af5f3c264d1d52356fb11",
+      "title": "Attackers Use LLM Agent for Post-Exploitation After Marimo CVE-2026-39987 Exploit",
+      "url": "https://thehackernews.com/2026/05/attackers-use-llm-agent-for-post.html",
+      "body_excerpt": "An unknown threat actor has been observed using a large language model (LLM) agent to conduct post-compromise actions after obtaining initial access following the exploitation of a publicly-accessible Marimo network using a recently disclos ... (https://incidentdatabase.ai/cite/1670#7881)",
+      "release_date": "Fri, 04 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "f87064bd49db2249c3f5575978169956",
-      "title": "Listen to the AI-Generated Ripoff Songs That Got Udio and Suno Sued",
-      "url": "https://www.404media.co/listen-to-the-ai-generated-ripoff-songs-that-got-udio-and-suno-sued/",
-      "body_excerpt": "Some of the world's largest record labels sued both Udio and Suno, two of the most popular AI music generators, accusing them of not only scraping huge amounts of music without permission or compensation but also of directly reproducing sec ... (https://incidentdatabase.ai/cite/1655#7797)",
-      "release_date": "Tue, 25 Au"
+      "id": "c23019533f6de91a09c472e24f4002a9",
+      "title": "The Warning Was in the Manual: GPT-5.6 Sol and the Deleted Database",
+      "url": "https://paddo.dev/blog/the-warning-was-in-the-manual/",
+      "body_excerpt": "Matt Shumer's Friday started with a tweet that has now been seen 4.5 million times: \"GPT-5.6-Sol just accidentally deleted almost ALL of my Mac's files.\" Three days later, Bruno Lemos followed with the sequel: \"GPT-5.6 Sol just deleted my w ... (https://incidentdatabase.ai/cite/1672#7882)",
+      "release_date": "Fri, 04 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "30ae1fc5a7a8ed9d11571bda350715cf",
-      "title": "AI Music Generator Suno Admits It Was Trained on \u2018Essentially All Music Files on the Internet\u2019",
-      "url": "https://www.404media.co/ai-music-generator-suno-admits-it-was-trained-on-essentially-all-music-files-on-the-internet/",
-      "body_excerpt": "The AI music generator company Suno has admitted that its product was trained on \"essentially all music files of reasonable quality that are accessible on the open internet,\" which included a total of \"tens of millions of recordings.\"\u00a0\n\nWhi ... (https://incidentdatabase.ai/cite/1655#7798)",
-      "release_date": "Tue, 25 Au"
+      "id": "7f93c8a67c97c0879b2910d607b8e971",
+      "title": "OpenAI\u2019s new flagship model deletes files on its own, people keep warning",
+      "url": "https://techcrunch.com/2026/07/14/openais-new-flagship-model-deletes-files-on-its-own-people-keep-warning/",
+      "body_excerpt": "Users of OpenAI's latest coding and cybersecurity-oriented flagship model, GPT-5.6 Sol, are posting horrifying accounts on social media, claiming the model just up and deleted their files, data, even entire databases on its own, without ask ... (https://incidentdatabase.ai/cite/1672#7883)",
+      "release_date": "Fri, 04 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "f6521761a71b67be41f4a4eeb9738bdd",
-      "title": "Suno AI Music Generation Copyright Class Action",
-      "url": "https://www.hbsslaw.com/cases/suno-ai-music-generation-copyright-class-action",
-      "body_excerpt": "Related Documents\n\nOrder on Motion to Dismiss 08/20/26\n\nWHAT'S THE ISSUE?\n\nHagens Berman's legal team has joined forces with Delgado Entertainment Law PLLC to represent independent music artists whose copyrighted songs were allegedly copied ... (https://incidentdatabase.ai/cite/1655#7799)",
-      "release_date": "Tue, 25 Au"
+      "id": "edee40d3ccd68919c1946438faa55b4e",
+      "title": "OpenAI admits GPT-5.6 occasionally deletes files \u2013 but it's an 'honest mistake'",
+      "url": "https://www.theregister.com/ai-and-ml/2026/07/16/openai-admits-gpt-56-occasionally-deletes-files-but-its-an-honest-mistake/5274008",
+      "body_excerpt": "penAI has confirmed reports that GPT-5.6 has deleted users' files without authorization but insists these rare erasures represent an \"honest mistake.\"\n\nFollowing the release of OpenAI's GPT\u20115.6 family of models on July 9, 2026, tech investo ... (https://incidentdatabase.ai/cite/1672#7884)",
+      "release_date": "Fri, 04 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "0c65a522ef70aef703dd0a4170e47b5b",
-      "title": "Record labels claim AI generator Suno illegally ripped their songs from YouTube",
-      "url": "https://www.theverge.com/news/782448/riaa-suno-ai-lawsuit-update-stream-ripping-youtube",
-      "body_excerpt": "Major record labels have escalated their lawsuit against Suno, alleging that the AI startup knowingly pirated songs from YouTube to train its generative AI music models. In the amended complaint filed on September 19th, the Recording Indust ... (https://incidentdatabase.ai/cite/1655#7800)",
-      "release_date": "Tue, 25 Au"
+      "id": "a894459d1dc080fc06c4cb2898fd5b2c",
+      "title": "OpenAI\u2019s GPT-5.6 Sol users report missing files, deleted databases: Here\u2019s what we know",
+      "url": "https://indianexpress.com/article/technology/artificial-intelligence/openai-gpt-5-6-sol-ai-users-missing-files-10787913/",
+      "body_excerpt": "Amid the buzz and excitement surrounding GPT-5.6 Sol, OpenAI's latest coding and cybersecurity-focused flagship AI model, recent posts across social media suggest that the model's rollout may have hit a few bumps.\n\nSeveral users on X and Re ... (https://incidentdatabase.ai/cite/1672#7885)",
+      "release_date": "Fri, 04 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "7337439b2d2688d87aedf1c030155a7b",
-      "title": "Warner Music Group and Suno Forge Groundbreaking Partnership",
-      "url": "https://www.wmg.com/news/warner-music-group-and-suno-forge-groundbreaking-partnership",
-      "body_excerpt": "Companies will collaborate on next-generation licensed AI music that empowers the creative community and opens new revenue opportunities for artists and songwriters\n\nWarner Music Group (Nasdaq: WMG), one of the world's largest music compani ... (https://incidentdatabase.ai/cite/1655#7801)",
-      "release_date": "Tue, 25 Au"
+      "id": "7aa5c6531a98cb399ca7e1c129d4d1c2",
+      "title": "Gemini accused of 30,000-line code purge and fake recovery report",
+      "url": "https://www.theregister.com/ai-and-ml/2026/05/21/gemini-accused-of-30000-line-code-purge-and-fake-recovery-report/5244219",
+      "body_excerpt": "A developer claims Google's Gemini coding assistant deleted nearly 30,000 lines of working production code while making changes to a live application -- the sort of productivity boost usually associated with ransomware.\n\nThe now-viral Reddi ... (https://incidentdatabase.ai/cite/1673#7886)",
+      "release_date": "Fri, 04 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "4fe963985b70eaf3864ae22ba6969985",
-      "title": "Warner Music Group settles lawsuit with AI firm Suno",
-      "url": "https://www.latimes.com/entertainment-arts/business/story/2025-11-25/warner-music-group-suno-ai-lawsuit-settlement",
-      "body_excerpt": "Warner Music Group on Tuesday announced a partnership with AI business Suno that will compensate music artists and songwriters, ending a legal battle between the two companies.\n\nSuno allows users to write text prompts to create songs. Last  ... (https://incidentdatabase.ai/cite/1655#7802)",
-      "release_date": "Tue, 25 Au"
+      "id": "a6bc945558e492e72731137f9cddc8dd",
+      "title": "Gemini allegedly broke production, then wrote itself the hero",
+      "url": "https://www.digitaltrends.com/computing/gemini-allegedly-broke-production-then-wrote-itself-the-hero/",
+      "body_excerpt": "A developer claims a Gemini coding agent knocked a live portal offline for 33 minutes, then generated recovery notes that made it sound as if it had fixed the failure itself.\n\nThe incident, described in a viral Reddit post centers on a requ ... (https://incidentdatabase.ai/cite/1673#7887)",
+      "release_date": "Fri, 04 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "96672ac0d23a33995bdabed74b7c8416",
-      "title": "Hack Reveals Suno AI Music Generator Scraped YouTube, Deezer, and Genius",
-      "url": "https://www.404media.co/hack-reveals-suno-ai-music-generator-scraped-youtube-deezer-and-genius/",
-      "body_excerpt": "The AI music generation tool Suno scraped millions of songs and lyrics from YouTube Music, Deezer, and Genius, as well as from the stock music libraries Pond5, Jamendo, Freesound, the International Music Score Library Project, and podcasts  ... (https://incidentdatabase.ai/cite/1655#7803)",
-      "release_date": "Tue, 25 Au"
+      "id": "99e34cc0d56e211b551256d2e0474efb",
+      "title": "Instinct\u2019s powerful AI assistant is raising privacy and security concerns",
+      "url": "https://techcrunch.com/2026/08/24/instincts-powerful-ai-assistant-is-raising-privacy-and-security-concerns/",
+      "body_excerpt": "AIID editor's note: Please visit the original source for the numerous embedded social media posts.\n\nEveryone is buzzing about Instinct, an AI personal assistant still in private access, not only for its incredible capabilities, but also for ... (https://incidentdatabase.ai/cite/1674#7888)",
+      "release_date": "Fri, 04 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "63afa6a66745f0e612fcc77f99e48556",
-      "title": "Gericht entscheidet pro Musikschaffende: GEMA setzt sich gegen SUNO durch und definiert Ma\u00dfst\u00e4be f\u00fcr internationales Urheberrecht",
-      "url": "https://www.gema.de/de/w/suno-entscheidung-2026",
-      "body_excerpt": "Die GEMA hat im Rechtsstreit gegen SUNO, eine US-amerikanische Anbieterin von KI-generierten Audioinhalten, einen weiteren wegweisenden Erfolg erzielt. Das Landgericht M\u00fcnchen stellte fest, dass SUNO durch das Training mit weltbekannten Son ... (https://incidentdatabase.ai/cite/1655#7804)",
-      "release_date": "Tue, 25 Au"
+      "id": "13be4eb598f33afee72802c6965d03a1",
+      "title": "Is Instinct safe to use? Three things to know before you sign up",
+      "url": "https://us.norton.com/blog/ai/is-instinct-safe",
+      "body_excerpt": "Artificial intelligence capabilities are rapidly evolving, and it seems like there's always a new buzzy use case emerging that's leaps and bounds more advanced than what came before. AI is now finding its way from workplaces into people's d ... (https://incidentdatabase.ai/cite/1675#7889)",
+      "release_date": "Fri, 04 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "54ff7bbb7b3963bb6d49834c6b4e8959",
-      "title": "Suno loses copyright infringement lawsuit brought by GEMA in Germany",
-      "url": "https://www.musicbusinessworldwide.com/suno-infringed-copyright-in-gema-case-german-court-rules/",
-      "body_excerpt": "AI music generator Suno has lost the copyright infringement lawsuit brought by German collecting society GEMA.\n\nThe collecting society alleged that Suno used, stored and reproduced copyrighted music to train its AI tool without a license or ... (https://incidentdatabase.ai/cite/1655#7805)",
-      "release_date": "Tue, 25 Au"
+      "id": "3257996cb05f46b45aff785c0ed87111",
+      "title": "An AI coding agent wiped a production database",
+      "url": "https://www.exemplar.dev/why-harness/reddit-database-wipe",
+      "body_excerpt": "Summary. In early August 2026, a developer connected Claude Opus 5, running in Ultracode mode, to a production Supabase database with unrestricted access. A migration command intended for a disposable test database instead targeted producti ... (https://incidentdatabase.ai/cite/1676#7890)",
+      "release_date": "Fri, 04 Se"
+    },
+    {
+      "source_id": "mitre_atlas",
+      "type": "release",
+      "id": "v2026.08",
+      "title": "MITRE ATLAS v2026.08",
+      "url": "https://atlas.mitre.org/updates/",
+      "body_excerpt": "##### Content v2026.08\n\nThis version of ATLAS data contains 1 matrix, 16 tactics, 114 techniques, 83 sub-techniques, 39 mitigations, and 72 case studies.\n\nATLAS is a globally accessible, living knowledge base of adversary tactics and techniques involving AI, including attacks against AI-enabled systems, abuse or manipulation of AI capabilities, and harmful autonomous behavior materially enabled by AI. ATLAS is based on empirical evidence from observations of real-world attacks as well as realistic demonstrations from AI red teams and security groups.\n\n###### Matrices\n\n- Updated existing matrices\n\n  - [ATLAS Matrix](/matrices/ATLAS-matrix)\n\n###### Tactics\n\n- Updated existing tactics\n\n  - [AI Attack Adaptation](/techniques/AML.TA0001)\n    - Previously \"AI Attack Staging\"\n\n###### Techniques\n\n- Added new techniques\n\n  - [Autonomous Reconnaissance](/techniques/AML.T0116)\n  - [Autonomous Attack-Path Adaptation](/techniques/AML.T0117)\n  - [Autonomous AI Agent Communication](/techniques/AML.T0",
+      "release_date": "2026-09-01"
     }
   ]
 }

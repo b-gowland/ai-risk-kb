@@ -1,0 +1,44 @@
+{
+  "run_date": "2026-09-07",
+  "items_reviewed": 21,
+  "classifications": [
+    {
+      "item_id": "v2026.08",
+      "item_title": "MITRE ATLAS v2026.08",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "C1",
+          "confidence": "high",
+          "rationale": "ATLAS documents adversary techniques including data poisoning attacks against AI systems."
+        },
+        {
+          "kb_id": "C2",
+          "confidence": "high",
+          "rationale": "ATLAS covers prompt injection and related AI-targeted attack techniques."
+        },
+        {
+          "kb_id": "C3",
+          "confidence": "high",
+          "rationale": "ATLAS includes model extraction/theft as a documented adversary technique."
+        },
+        {
+          "kb_id": "C5",
+          "confidence": "high",
+          "rationale": "ATLAS explicitly covers AI-enabled and AI-targeting cyber attacks with empirical case studies."
+        },
+        {
+          "kb_id": "G4",
+          "confidence": "medium",
+          "rationale": "ATLAS includes harmful autonomous behavior materially enabled by AI as a documented threat category."
+        }
+      ],
+      "evidence_quote": "adversary tactics and techniques involving AI...attacks against AI-enabled systems, abuse or manipulation of AI",
+      "recommended_action": "Update entries C1, C2, C3, C5, and G4 to reference MITRE ATLAS v2026.08 as an authoritative source, noting the expanded coverage of 114 techniques, 83 sub-techniques, and 72 real-world case studies."
+    }
+  ],
+  "source_counts": {
+    "aiid": 20,
+    "mitre_atlas": 1
+  }
+}
