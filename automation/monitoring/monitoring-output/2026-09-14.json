@@ -1,0 +1,148 @@
+{
+  "run_date": "2026-09-14",
+  "items_reviewed": 20,
+  "classifications": [
+    {
+      "item_id": "45f37aba278d3b5ec36fcdae257f03ac",
+      "item_title": "No title",
+      "action": "NO_ACTION",
+      "kb_matches": [],
+      "evidence_quote": "report_number: 7953",
+      "recommended_action": "Insufficient content to classify \u2014 no action required."
+    },
+    {
+      "item_id": "a57cff78d4153c5963cecdc1c421df3a",
+      "item_title": "Un adolescente planific\u00f3 con la Inteligencia Artificial matar a sus compa\u00f1eros de colegio",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "E2",
+          "confidence": "high",
+          "rationale": "AI (ChatGPT) was used to plan a school massacre, exemplifying harmful content generation enabling real-world violence planning."
+        }
+      ],
+      "evidence_quote": "adolescente de 15 a\u00f1os hab\u00eda planificado con la Inteligencia Artificial protagonizar para 2027 un tiroteo",
+      "recommended_action": "Update E2 (Harmful/Toxic Content Generation) to include real-world incident of AI being used to plan a school shooting, noting FBI-detected case."
+    },
+    {
+      "item_id": "8a2dd80ec7857a49ee8a1eddda4b3305",
+      "item_title": "C\u00f3mo descubri\u00f3 el FBI al chico de 15 a\u00f1os que organizaba con IA una masacre escolar en Quilmes",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "E2",
+          "confidence": "high",
+          "rationale": "ChatGPT conversation triggered FBI alert after being used to plan a violent school attack, illustrating harmful content enabling violence."
+        }
+      ],
+      "evidence_quote": "inquietante conversaci\u00f3n con ChatGPT, que dispar\u00f3 una alarma en Estados Unidos",
+      "recommended_action": "Update E2 with this additional report on the same incident, noting how platform monitoring flagged the harmful planning conversation."
+    },
+    {
+      "item_id": "49741ec24e70f4ee093bfc9f3cb7a574",
+      "item_title": "Un adolescente planific\u00f3 con Inteligencia Artificial matar a sus compa\u00f1eros",
+      "action": "NO_ACTION",
+      "kb_matches": [
+        {
+          "kb_id": "E2",
+          "confidence": "high",
+          "rationale": "Duplicate coverage of the same Quilmes school shooting planning incident already covered by prior items."
+        }
+      ],
+      "evidence_quote": "adolescente de 15 a\u00f1os habr\u00eda usado un modelo de Inteligencia Artificial (IA)",
+      "recommended_action": "Duplicate of the same incident \u2014 no additional KB update needed beyond the earlier E2 update."
+    },
+    {
+      "item_id": "6f384a52848041a129327bfc260933a7",
+      "item_title": "Plane\u00f3 una masacre escolar con ChatGPT, intervino el FBI y no recibir\u00e1 ninguna pena",
+      "action": "NO_ACTION",
+      "kb_matches": [
+        {
+          "kb_id": "E2",
+          "confidence": "high",
+          "rationale": "Same Quilmes school massacre planning incident, fourth report \u2014 already covered by prior items."
+        }
+      ],
+      "evidence_quote": "hab\u00eda averiguado a trav\u00e9s del ChatGPT c\u00f3mo organizar una masacre en su colegio",
+      "recommended_action": "Duplicate coverage of same incident \u2014 no additional KB update required."
+    },
+    {
+      "item_id": "3abd1a20b2007e2175c7b678fb781f6e",
+      "item_title": "Houthis used Anthropic AI to try to build ballistic missiles",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "C5",
+          "confidence": "high",
+          "rationale": "State-affiliated militants used an AI model to develop ballistic missile guidance software, directly illustrating AI-enabled sophisticated attacks."
+        },
+        {
+          "kb_id": "E2",
+          "confidence": "medium",
+          "rationale": "AI misuse for weapons development represents harmful content/capability generation at a severe level."
+        }
+      ],
+      "evidence_quote": "Yemeni militants sought to use Anthropic's Claude AI model to develop guidance, control and navigation software for ballistic missiles",
+      "recommended_action": "Update C5 (AI-Enabled Cyber Attacks) to include weapons development use case, and consider noting this as an example of AI misuse for kinetic warfare in E2."
+    },
+    {
+      "item_id": "b1484d8af6c7e29d1ea0d4bb7141f99e",
+      "item_title": "Deepfake pornovideo's schokken medialandschap: BN'ers en politici doen aangifte",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "C4",
+          "confidence": "high",
+          "rationale": "Deepfake pornographic videos of Dutch celebrities and politicians circulating online is a direct instance of synthetic media fraud and non-consensual intimate imagery."
+        }
+      ],
+      "evidence_quote": "BN'ers en politici doen aangifte",
+      "recommended_action": "Update C4 (Deepfakes & Synthetic Media Fraud) to add non-consensual intimate deepfake imagery of public figures as a distinct harm vector with this Dutch case as an example."
+    },
+    {
+      "item_id": "a16eefed2c55e4a4c83da0302941276f",
+      "item_title": "Vrouwelijke BN'ers overwegen aangifte vanwege deepfake pornovideo's",
+      "action": "NO_ACTION",
+      "kb_matches": [
+        {
+          "kb_id": "C4",
+          "confidence": "high",
+          "rationale": "Duplicate coverage of the same Dutch deepfake pornography incident already captured by the prior item."
+        }
+      ],
+      "evidence_quote": "gemanipuleerde pornovideo's",
+      "recommended_action": "Duplicate of the same Dutch deepfake pornography incident \u2014 no additional KB update needed."
+    },
+    {
+      "item_id": "f33e01228a3f26a01e10b2edef02162d",
+      "item_title": "Wel of niet zeggen dat je in een neppornovideo zit? BN'ers worstelen ermee",
+      "action": "NO_ACTION",
+      "kb_matches": [
+        {
+          "kb_id": "C4",
+          "confidence": "high",
+          "rationale": "Same Dutch deepfake pornography incident, third report \u2014 already covered."
+        }
+      ],
+      "evidence_quote": "deepfake pornovideo's",
+      "recommended_action": "Duplicate coverage of the same incident \u2014 no additional KB update required."
+    },
+    {
+      "item_id": "881fe5b2eefe2b75ac9c5ef567fb5bd8",
+      "item_title": "Bekende Nederlanders doen massaal aangifte in zaak deepfakepornovideo's",
+      "action": "NO_ACTION",
+      "kb_matches": [
+        {
+          "kb_id": "C4",
+          "confidence": "high",
+          "rationale": "Same Dutch deepfake pornography incident, fourth report with legal proceedings update \u2014 core risk already captured."
+        }
+      ],
+      "evidence_quote": "vijftien aangiftes gedaan",
+      "recommended_action": "Duplicate coverage of the same incident \u2014 no additional KB update required beyond the earlier C4 update."
+    }
+  ],
+  "source_counts": {
+    "aiid": 20
+  }
+}

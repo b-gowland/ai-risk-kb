@@ -1,196 +1,187 @@
 {
-  "run_date": "2026-09-07",
-  "run_timestamp": "2026-09-07T15:21:46.200767+00:00",
-  "total_new_items": 21,
+  "run_date": "2026-09-14",
+  "run_timestamp": "2026-09-14T16:02:04.855970+00:00",
+  "total_new_items": 20,
   "items": [
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "a89a00631bb71470a163d146b67d02da",
-      "title": "When AI Takes Notes: Court Allows Privacy Claims Against Otter.ai to Proceed",
-      "url": "https://www.sheppard.com/insights/blogs/when-ai-takes-notes-court-allows-privacy-claims-against-otterai-to-proceed",
-      "body_excerpt": "Otter.ai's AI notetaker tool has been accused of violating Illinois's biometric privacy law, and the California court hearing the case recently let the proceedings move forward. As we have previously written in our sister blog, AI notetaker ... (https://incidentdatabase.ai/cite/1650#7893)",
-      "release_date": "Sat, 05 Se"
+      "id": "45f37aba278d3b5ec36fcdae257f03ac",
+      "title": "No title",
+      "url": "",
+      "body_excerpt": "... (report_number: 7953)",
+      "release_date": "Sun, 13 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "b24aa8ba5fdb29aa0c01969f4320b095",
-      "title": "California regulators rushed their decision on driverless trucks, Teamsters\u2019 lawsuit says",
-      "url": "https://www.latimes.com/business/story/2026-08-29/california-regulators-rushed-their-decision-on-driverless-trucks-teamsters-lawsuit-says",
-      "body_excerpt": "As self-driving vehicles spread across the country, a major California labor union is taking a stand against state regulators who say autonomous trucks are ready for the road.\n\nTeamsters California sued the California Department of Motor Ve ... (report_number: 7894)",
-      "release_date": "Sat, 05 Se"
+      "id": "a57cff78d4153c5963cecdc1c421df3a",
+      "title": "Un adolescente planific\u00f3 con la Inteligencia Artificial matar a sus compa\u00f1eros de colegio: fue detectado por el FBI y allanado en Quilmes",
+      "url": "https://www.clarin.com/policiales/adolescente-planifico-inteligencia-artificial-matar-companeros-colegio-detectado-fbi-allanado-quilmes_0_vSUeHLZ4nv.html",
+      "body_excerpt": "Un adolescente de 15 a\u00f1os de edad hab\u00eda planificado con la Inteligencia Artificial protagonizar para 2027 un tiroteo en su colegio y matar a sus compa\u00f1eros, un hecho que gracias a la advertencia del FBI pudo ser desactivado. Adem\u00e1s, su domi ... (https://incidentdatabase.ai/cite/1688#7949)",
+      "release_date": "Sat, 12 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "bc6264f1b4fce773a1ec867a583df761",
-      "title": "OpenAI agents hijacked German website in previously undisclosed AI breakout this spring",
-      "url": "https://www.reuters.com/world/europe/openai-agents-hijacked-german-website-previously-undisclosed-ai-breakout-this-2026-09-04/",
-      "body_excerpt": "A swarm of rogue OpenAI agents hijacked a German website this spring and transformed it into a bulletin board for other AI agents, according to new research published Friday and two people familiar with the matter.\n\nOpenAI officials learned ... (https://incidentdatabase.ai/cite/1668#7873)",
-      "release_date": "Fri, 04 Se"
+      "id": "8a2dd80ec7857a49ee8a1eddda4b3305",
+      "title": "C\u00f3mo descubri\u00f3 el FBI al chico de 15 a\u00f1os que organizaba con IA una masacre escolar en Quilmes y cu\u00e1l era su plan",
+      "url": "https://www.clarin.com/policiales/cuchillos-tacticos-mascaras-pruebas-detras-adolescente-planeo-masacre-escolar-quilmes-usando-ia-descubierto-fbi_0_xhLcCUdm4D.html",
+      "body_excerpt": "A partir de una inquietante conversaci\u00f3n con ChatGPT, que dispar\u00f3 una alarma en Estados Unidos, la Polic\u00eda Federal argentina logr\u00f3 frustrar a un chico de 15 a\u00f1os que planeaba un ataque en su colegio para matar a varios de sus compa\u00f1eros uti ... (https://incidentdatabase.ai/cite/1688#7950)",
+      "release_date": "Sat, 12 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "a5d4954619c72f9bc92a787c08069e24",
-      "title": "Another swarm of OpenAI agents reached the open internet without the frontier lab\u2019s knowledge",
-      "url": "https://techcrunch.com/2026/09/04/another-swarm-of-openai-agents-reached-the-open-internet-without-the-frontier-labs-knowledge/",
-      "body_excerpt": "A group of independent AI researchers discovered that internally deployed OpenAI agents began posting on an obscure German wiki forum in order to collaborate on evaluations. They appear to have worked together for over a month without OpenA ... (https://incidentdatabase.ai/cite/1668#7874)",
-      "release_date": "Fri, 04 Se"
+      "id": "49741ec24e70f4ee093bfc9f3cb7a574",
+      "title": "Un adolescente planific\u00f3 con Inteligencia Artificial matar a sus compa\u00f1eros: el FBI dio aviso y lo allanaron en Quilmes",
+      "url": "https://www.lanacion.com.ar/seguridad/un-adolescente-planifico-con-inteligencia-artificial-sus-companeros-de-colegio-el-fbi-dio-aviso-y-lo-nid11092026/",
+      "body_excerpt": "Un aviso del \"agregado jur\u00eddico\" del FBI en la embajada de los Estados Unidos en Buenos Aires encendi\u00f3 las alarmas y dio origen a una investigaci\u00f3n judicial: un adolescente de 15 a\u00f1os habr\u00eda usado un modelo de Inteligencia Artificial (IA) p ... (https://incidentdatabase.ai/cite/1688#7951)",
+      "release_date": "Sat, 12 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "ea15878c166970e2a0bafb46096afba9",
-      "title": "Thailand's Ministry of Finance Targeted With Hermes AI Agent Running Unattended, Hades Implant Staged",
-      "url": "https://hunt.io/blog/thailand-ministry-finance-targeted-with-hermes-ai-agent",
-      "body_excerpt": "Disclosure note: This research was conducted jointly by Hunt.io and Bob Diachenko, security researcher and journalist. Thailand's national CERT and NCSA were notified on July 15, 2026, and acknowledged receipt the same day. Publication was  ... (https://incidentdatabase.ai/cite/1669#7875)",
-      "release_date": "Fri, 04 Se"
+      "id": "6f384a52848041a129327bfc260933a7",
+      "title": "Plane\u00f3 una masacre escolar con ChatGPT, intervino el FBI y no recibir\u00e1 ninguna pena",
+      "url": "https://www.eltrecetv.com.ar/mediodia-noticias/2026/09/11/planeo-una-masacre-escolar-con-chatgpt-intervino-el-fbi-y-no-recibira-ninguna-pena/",
+      "body_excerpt": "El joven de 15 a\u00f1os que hab\u00eda averiguado a trav\u00e9s del ChatGPT c\u00f3mo organizar una masacre en su colegiode Quilmes est\u00e1 identificado y su domicilio fue allanado en busca de pruebas de su macabro plan perge\u00f1ado con inteligencia artificial. Per ... (https://incidentdatabase.ai/cite/1688#7952)",
+      "release_date": "Sat, 12 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "aa3351116672d80fee8b03e62b89a624",
-      "title": "Hermes AI agent used to automate attack on Thai Finance Ministry",
-      "url": "https://www.bleepingcomputer.com/news/security/hermes-ai-agent-used-to-automate-attack-on-thai-finance-ministry/",
-      "body_excerpt": "A threat actor used the open-source Hermes AI agent in unattended \"YOLO\" mode to automate post-exploitation activity during an alleged breach of Thailand's Ministry of Finance.\n\nThe activity was uncovered by threat intelligence company Hunt ... (https://incidentdatabase.ai/cite/1669#7876)",
-      "release_date": "Fri, 04 Se"
+      "id": "3abd1a20b2007e2175c7b678fb781f6e",
+      "title": "Houthis used Anthropic AI to try to build ballistic missiles",
+      "url": "https://www.ft.com/content/8310cf56-ce60-4e6e-8254-5bb470e9a880",
+      "body_excerpt": "Yemeni militants sought to use Anthropic\u2019s Claude AI model to develop guidance, control and navigation software for its ballistic missiles, the US company said.\n\nIn its intelligence threat report released on Thursday, Anthropic did not name ... (https://incidentdatabase.ai/cite/1687#7948)",
+      "release_date": "Fri, 11 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "fabf34e9581de04dd8bfe1b04786a9ad",
-      "title": "Hackers used autonomous AI agent to spy on Thailand's finance ministry",
-      "url": "https://therecord.media/thailand-hackers-ai-finance-ministry",
-      "body_excerpt": "Hackers used an autonomous artificial intelligence agent to carry out a cyber-espionage campaign against Thailand's Ministry of Finance, according to researchers who uncovered a hacker-controlled server that exposed the inner workings of th ... (https://incidentdatabase.ai/cite/1669#7877)",
-      "release_date": "Fri, 04 Se"
+      "id": "b1484d8af6c7e29d1ea0d4bb7141f99e",
+      "title": "Deepfake pornovideo\u2019s schokken medialandschap: BN\u2019ers en politici doen aangifte",
+      "url": "https://www.ad.nl/tech/deepfake-pornovideos-schokken-medialandschap-bners-en-politici-doen-aangifte~aecdc584/",
+      "body_excerpt": "Managementbureaus en instanties proberen de beelden offline te krijgen. D66 vraagt een debat aan. Autoriteit Persoonsgegevens roept slachtoffers op om naar het OM te stappen.\n\nOok demissionair minister van Justitie Dilan Yesilg\u00f6z roept slac ... (https://incidentdatabase.ai/cite/1684#7927)",
+      "release_date": "Thu, 10 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "c52e522233e3e588618cabe939b503c1",
-      "title": "Hacker Runs Hermes AI Agent Unattended for Post-Exploitation at Thai Finance Ministry",
-      "url": "https://thehackernews.com/2026/07/hacker-runs-hermes-ai-agent-unattended.html",
-      "body_excerpt": "Someone installed a popular AI assistant on a rented server, switched off the setting that makes it ask permission before running risky commands, and pointed it at Thailand's Ministry of Finance, which runs the country's treasury and tax co ... (https://incidentdatabase.ai/cite/1669#7878)",
-      "release_date": "Fri, 04 Se"
+      "id": "a16eefed2c55e4a4c83da0302941276f",
+      "title": "Vrouwelijke BN'ers overwegen aangifte vanwege deepfake pornovideo's",
+      "url": "https://nos.nl/artikel/2513371-vrouwelijke-bn-ers-overwegen-aangifte-vanwege-deepfake-pornovideo-s",
+      "body_excerpt": "Meerdere vrouwelijke bekende Nederlanders overwegen juridische stappen omdat zij zijn opgedoken in gemanipuleerde pornovideo's. Deze video's staan op een online platform met maandelijks 13 miljoen bezoekers, schrijft het AD.\n\nOp dit platfor ... (https://incidentdatabase.ai/cite/1684#7928)",
+      "release_date": "Thu, 10 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "56cea8ef71cc23cb88258e77e45b9a5c",
-      "title": "AI agent at the wheel: How an attacker used LLMs to move from a CVE to an internal database in 4 pivots",
-      "url": "https://www.sysdig.com/blog/ai-agent-at-the-wheel-how-an-attacker-used-llms-to-move-from-a-cve-to-an-internal-database-in-4-pivots",
-      "body_excerpt": "Key Findings\n\nAn LLM agent executed the post-compromise actions in real time rather than running a pre-built playbook. This is the first AI-agent-driven intrusion the Sysdig TRT has captured.\n\nThe full attack chain --- marimo notebook compr ... (https://incidentdatabase.ai/cite/1670#7879)",
-      "release_date": "Fri, 04 Se"
+      "id": "f33e01228a3f26a01e10b2edef02162d",
+      "title": "Wel of niet zeggen dat je in een neppornovideo zit? BN'ers worstelen ermee",
+      "url": "https://nos.nl/artikel/2513552-wel-of-niet-zeggen-dat-je-in-een-neppornovideo-zit-bn-ers-worstelen-ermee",
+      "body_excerpt": "Meerdere vrouwelijke BN'ers die te zien zijn in zogenoemde deepfake pornovideo's doen hun verhaal in de media. Door zich publiekelijk uit te spreken, willen ze dit soort seksuele misstanden voorkomen. Maar wel of niet naar buiten treden is  ... (https://incidentdatabase.ai/cite/1684#7929)",
+      "release_date": "Thu, 10 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "c373faed8e2c551b38186f9ccd5883a0",
-      "title": "AI Agent Conducted a Cyberattack on Its Own \u2014 It Took Less Than One Hour",
-      "url": "https://www.securitymagazine.com/articles/102325-ai-agent-conducted-a-cyberattack-on-its-own-it-took-less-than-one-hour",
-      "body_excerpt": "AIID editor's note: Please visit the original source for the full report.\n\nResearchers discovered an intrusion conducted by a large language model (LLM) agent while it was in the post-exploitation phase. According to the researchers, this c ... (https://incidentdatabase.ai/cite/1670#7880)",
-      "release_date": "Fri, 04 Se"
+      "id": "881fe5b2eefe2b75ac9c5ef567fb5bd8",
+      "title": "Bekende Nederlanders doen massaal aangifte in zaak deepfakepornovideo's",
+      "url": "https://www.rtl.nl/boulevard/crime/artikel/5447386/15-aangiftes-zaak-deepfakepornovideos-bekende-nederlanders",
+      "body_excerpt": "In een zaak waarbij tientallen bekende Nederlanders en publieke figuren slachtoffer zijn geworden van deepfakepornovideo's die rondgingen op internet, zijn vijftien aangiftes gedaan. Een woordvoerder van het OM Parket-Generaal bevestigt don ... (https://incidentdatabase.ai/cite/1684#7930)",
+      "release_date": "Thu, 10 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "d204a024b33af5f3c264d1d52356fb11",
-      "title": "Attackers Use LLM Agent for Post-Exploitation After Marimo CVE-2026-39987 Exploit",
-      "url": "https://thehackernews.com/2026/05/attackers-use-llm-agent-for-post.html",
-      "body_excerpt": "An unknown threat actor has been observed using a large language model (LLM) agent to conduct post-compromise actions after obtaining initial access following the exploitation of a publicly-accessible Marimo network using a recently disclos ... (https://incidentdatabase.ai/cite/1670#7881)",
-      "release_date": "Fri, 04 Se"
+      "id": "4b3e67903c5a9b66a85720d09f87b418",
+      "title": "Kamerleden horen al maanden niets na deepfake pornovideo's: 'Week ophef, daarna werd het stil'",
+      "url": "https://www.rtl.nl/nieuws/artikel/5475720/kamerleden-horen-al-maanden-niets-na-deepfake-pornovideos-week-ophef-daarna",
+      "body_excerpt": "Tweede Kamerleden Sandra Beckerman en Eline Vedder kregen precies zeven maanden geleden te horen dat ze net als tientallen andere BN'ers in deepfake pornovideo's figureerden. De Kamerleden deden aangifte, maar hebben sindsdien niets meer ov ... (https://incidentdatabase.ai/cite/1684#7931)",
+      "release_date": "Thu, 10 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "c23019533f6de91a09c472e24f4002a9",
-      "title": "The Warning Was in the Manual: GPT-5.6 Sol and the Deleted Database",
-      "url": "https://paddo.dev/blog/the-warning-was-in-the-manual/",
-      "body_excerpt": "Matt Shumer's Friday started with a tweet that has now been seen 4.5 million times: \"GPT-5.6-Sol just accidentally deleted almost ALL of my Mac's files.\" Three days later, Bruno Lemos followed with the sequel: \"GPT-5.6 Sol just deleted my w ... (https://incidentdatabase.ai/cite/1672#7882)",
-      "release_date": "Fri, 04 Se"
+      "id": "6b162b2f46c23509601ead568cc12f6b",
+      "title": "Wat vrouwen ervaren in de Tweede Kamer. \u2018Je hebt geluk dat jij een vrouw bent, want ze hebben jou minder hard aangepakt\u2019",
+      "url": "https://www.nrc.nl/nieuws/2026/09/09/wat-vrouwen-ervaren-in-de-tweede-kamer-je-hebt-geluk-dat-jij-een-vrouw-bent-want-ze-hebben-jou-minder-hard-aangepakt-a4936077",
+      "body_excerpt": "In de werkkamer van VVD-Tweede Kamerlid Queeny Rajkowski staat een tegeltje met \u201eBedankt, man\". Gekregen van haar medewerkers. Ze werd namelijk z\u00f3 vaak benaderd door mannelijke experts die haar iets wilden uitleggen over een onderwerp in ha ... (https://incidentdatabase.ai/cite/1684#7932)",
+      "release_date": "Thu, 10 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "7f93c8a67c97c0879b2910d607b8e971",
-      "title": "OpenAI\u2019s new flagship model deletes files on its own, people keep warning",
-      "url": "https://techcrunch.com/2026/07/14/openais-new-flagship-model-deletes-files-on-its-own-people-keep-warning/",
-      "body_excerpt": "Users of OpenAI's latest coding and cybersecurity-oriented flagship model, GPT-5.6 Sol, are posting horrifying accounts on social media, claiming the model just up and deleted their files, data, even entire databases on its own, without ask ... (https://incidentdatabase.ai/cite/1672#7883)",
-      "release_date": "Fri, 04 Se"
+      "id": "341091c58aa41303c9ceb31c996ba3ef",
+      "title": "Motie van het lid Beckerman over een bevoegde instantie aanwijzen om ook deepfakeporno en andere onrechtmatige seksuele beelden offline te halen",
+      "url": "https://www.tweedekamer.nl/kamerstukken/moties/detail?did=2026D09268&amp;id=2026Z04049",
+      "body_excerpt": "36 800 VII Vaststelling van de begrotingsstaten van het Ministerie van Binnenlandse Zaken en Koninkrijksrelaties (VII) voor het jaar 2026\n\nNr. 86\nMOTIE VAN HET LID BECKERMAN\n\n\n\nVoorgesteld tijdens het wetgevingsoverleg van 2 maart 2026\n\nDe  ... (https://incidentdatabase.ai/cite/1684#7933)",
+      "release_date": "Thu, 10 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "edee40d3ccd68919c1946438faa55b4e",
-      "title": "OpenAI admits GPT-5.6 occasionally deletes files \u2013 but it's an 'honest mistake'",
-      "url": "https://www.theregister.com/ai-and-ml/2026/07/16/openai-admits-gpt-56-occasionally-deletes-files-but-its-an-honest-mistake/5274008",
-      "body_excerpt": "penAI has confirmed reports that GPT-5.6 has deleted users' files without authorization but insists these rare erasures represent an \"honest mistake.\"\n\nFollowing the release of OpenAI's GPT\u20115.6 family of models on July 9, 2026, tech investo ... (https://incidentdatabase.ai/cite/1672#7884)",
-      "release_date": "Fri, 04 Se"
+      "id": "89106babea77b9dc671110b4ab422db5",
+      "title": "60 Posts in 10 Hours: How Trump\u2019s Social Media Reflects His Version of Reality",
+      "url": "https://www.nytimes.com/2026/09/09/us/politics/trump-social-media-ai-reality.html",
+      "body_excerpt": "Just before noon on a holiday weekend, while many Americans were at the beach, President Trump's social media account roared to life. In what has increasingly become his weekend habit, he unleashed a daylong barrage of posts that put the bu ... (report_number: 7934)",
+      "release_date": "Thu, 10 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "a894459d1dc080fc06c4cb2898fd5b2c",
-      "title": "OpenAI\u2019s GPT-5.6 Sol users report missing files, deleted databases: Here\u2019s what we know",
-      "url": "https://indianexpress.com/article/technology/artificial-intelligence/openai-gpt-5-6-sol-ai-users-missing-files-10787913/",
-      "body_excerpt": "Amid the buzz and excitement surrounding GPT-5.6 Sol, OpenAI's latest coding and cybersecurity-focused flagship AI model, recent posts across social media suggest that the model's rollout may have hit a few bumps.\n\nSeveral users on X and Re ... (https://incidentdatabase.ai/cite/1672#7885)",
-      "release_date": "Fri, 04 Se"
+      "id": "04be0737619ab901b40600b41e0486e5",
+      "title": "Claude, Codex, and Hermes installed unowned code inside corporate networks",
+      "url": "https://arstechnica.com/security/2026/08/claude-codex-and-hermes-installed-unowned-code-inside-corporate-networks/",
+      "body_excerpt": "Documentation files on more than 100 websites are referencing potentially dangerous executable content that gets installed automatically when visited by many AI agents. A few dozen companies, some of them Fortune 500s, are among those that  ... (report_number: 7935)",
+      "release_date": "Thu, 10 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "7aa5c6531a98cb399ca7e1c129d4d1c2",
-      "title": "Gemini accused of 30,000-line code purge and fake recovery report",
-      "url": "https://www.theregister.com/ai-and-ml/2026/05/21/gemini-accused-of-30000-line-code-purge-and-fake-recovery-report/5244219",
-      "body_excerpt": "A developer claims Google's Gemini coding assistant deleted nearly 30,000 lines of working production code while making changes to a live application -- the sort of productivity boost usually associated with ransomware.\n\nThe now-viral Reddi ... (https://incidentdatabase.ai/cite/1673#7886)",
-      "release_date": "Fri, 04 Se"
+      "id": "63276b8c4c8d80b07a5510a4fcbb8c4f",
+      "title": "An alignment assessment of recent cybersecurity incidents",
+      "url": "https://www.anthropic.com/research/alignment-assessment-cybersecurity-incidents",
+      "body_excerpt": "AIID editor's note: This is a non-contiguous abridgment of Anthropic's September 9, 2026 report, prepared so a single AIID report record can be linked to all four Anthropic cybersecurity-evaluation incident IDs without duplicating the same  ... (https://incidentdatabase.ai/cite/1685#7936)",
+      "release_date": "Thu, 10 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "a6bc945558e492e72731137f9cddc8dd",
-      "title": "Gemini allegedly broke production, then wrote itself the hero",
-      "url": "https://www.digitaltrends.com/computing/gemini-allegedly-broke-production-then-wrote-itself-the-hero/",
-      "body_excerpt": "A developer claims a Gemini coding agent knocked a live portal offline for 33 minutes, then generated recovery notes that made it sound as if it had fixed the failure itself.\n\nThe incident, described in a viral Reddit post centers on a requ ... (https://incidentdatabase.ai/cite/1673#7887)",
-      "release_date": "Fri, 04 Se"
+      "id": "47b120a26f74e2de3d147a75f11cecb9",
+      "title": "Anthropic discloses fourth AI hacking incident missed in earlier review",
+      "url": "https://www.reuters.com/legal/litigation/anthropic-reports-fourth-cybersecurity-incident-with-early-version-claude-2026-09-09/",
+      "body_excerpt": "Anthropic on \u200bWednesday disclosed another instance of an AI model hacking external systems during testing, the latest in a \u200cgrowing list of such incidents that have raised concerns about the risk posed by autonomous AI agents.\n\nThe January  ... (https://incidentdatabase.ai/cite/1685#7937)",
+      "release_date": "Thu, 10 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "99e34cc0d56e211b551256d2e0474efb",
-      "title": "Instinct\u2019s powerful AI assistant is raising privacy and security concerns",
-      "url": "https://techcrunch.com/2026/08/24/instincts-powerful-ai-assistant-is-raising-privacy-and-security-concerns/",
-      "body_excerpt": "AIID editor's note: Please visit the original source for the numerous embedded social media posts.\n\nEveryone is buzzing about Instinct, an AI personal assistant still in private access, not only for its incredible capabilities, but also for ... (https://incidentdatabase.ai/cite/1674#7888)",
-      "release_date": "Fri, 04 Se"
+      "id": "26ed43709768ca9309e3752f30c95ca8",
+      "title": "Another Anthropic model gained access to the open internet during testing, company says",
+      "url": "https://www.cbsnews.com/news/anthropic-ai-model-internet-hack-fourth-time/",
+      "body_excerpt": "Anthropic disclosed on Wednesday that another one of its Claude models mistakenly gained access to the open internet during a cybersecurity exercise, marking the fourth time its models have done so.\u00a0\n\nAn early version of the Claude Opus 4.6 ... (https://incidentdatabase.ai/cite/1685#7938)",
+      "release_date": "Thu, 10 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "13be4eb598f33afee72802c6965d03a1",
-      "title": "Is Instinct safe to use? Three things to know before you sign up",
-      "url": "https://us.norton.com/blog/ai/is-instinct-safe",
-      "body_excerpt": "Artificial intelligence capabilities are rapidly evolving, and it seems like there's always a new buzzy use case emerging that's leaps and bounds more advanced than what came before. AI is now finding its way from workplaces into people's d ... (https://incidentdatabase.ai/cite/1675#7889)",
-      "release_date": "Fri, 04 Se"
+      "id": "247b76d94ab218def02ff99f2bd77098",
+      "title": "Ahead of its Cybercab launch, Tesla told a grieving family that a self-driving car\u2019s fatal crash data was gone \u2014 a hacker proved every car keeps it",
+      "url": "https://moneywise.com/news/top-stories/tesla-cybercab-autopilot-crash-data-hacker-lawsuit",
+      "body_excerpt": "Elon Musk is planning to launch Cybercabs, fully autonomous vehicles without the means for a human to control them, any day now. But a lawsuit that closed this year indicates the electric car company may not be ready for the launch.\n\nIn Mar ... (https://incidentdatabase.ai/cite/1686#7939)",
+      "release_date": "Thu, 10 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "3257996cb05f46b45aff785c0ed87111",
-      "title": "An AI coding agent wiped a production database",
-      "url": "https://www.exemplar.dev/why-harness/reddit-database-wipe",
-      "body_excerpt": "Summary. In early August 2026, a developer connected Claude Opus 5, running in Ultracode mode, to a production Supabase database with unrestricted access. A migration command intended for a disposable test database instead targeted producti ... (https://incidentdatabase.ai/cite/1676#7890)",
-      "release_date": "Fri, 04 Se"
-    },
-    {
-      "source_id": "mitre_atlas",
-      "type": "release",
-      "id": "v2026.08",
-      "title": "MITRE ATLAS v2026.08",
-      "url": "https://atlas.mitre.org/updates/",
-      "body_excerpt": "##### Content v2026.08\n\nThis version of ATLAS data contains 1 matrix, 16 tactics, 114 techniques, 83 sub-techniques, 39 mitigations, and 72 case studies.\n\nATLAS is a globally accessible, living knowledge base of adversary tactics and techniques involving AI, including attacks against AI-enabled systems, abuse or manipulation of AI capabilities, and harmful autonomous behavior materially enabled by AI. ATLAS is based on empirical evidence from observations of real-world attacks as well as realistic demonstrations from AI red teams and security groups.\n\n###### Matrices\n\n- Updated existing matrices\n\n  - [ATLAS Matrix](/matrices/ATLAS-matrix)\n\n###### Tactics\n\n- Updated existing tactics\n\n  - [AI Attack Adaptation](/techniques/AML.TA0001)\n    - Previously \"AI Attack Staging\"\n\n###### Techniques\n\n- Added new techniques\n\n  - [Autonomous Reconnaissance](/techniques/AML.T0116)\n  - [Autonomous Attack-Path Adaptation](/techniques/AML.T0117)\n  - [Autonomous AI Agent Communication](/techniques/AML.T0",
-      "release_date": "2026-09-01"
+      "id": "5c382ebf06e6d852d95d0395c9dd8ffd",
+      "title": "Jury orders Tesla to pay more than $240 million in Autopilot crash case",
+      "url": "https://apnews.com/article/tesla-miami-musk-benavides-selfdriving-autopilot-autonomous-vehicles-c342f2716b1ec4e9ede09b8e958751b7",
+      "body_excerpt": "MIAMI (AP) --- A Miami jury decided that Elon Musk's car company Tesla was partly responsible for a deadly crash in Florida involving its Autopilot driver assist technology and must pay the victims more than $240 million in damages.\n\nThe fe ... (https://incidentdatabase.ai/cite/1686#7940)",
+      "release_date": "Thu, 10 Se"
     }
   ]
 }
