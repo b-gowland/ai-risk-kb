@@ -6,6 +6,7 @@ sidebar_position: 4
 tags: [c, high-severity]
 last_verified: 2026-05-10
 next_review: 2026-11-10
+description: "AI-generated synthetic audio, video, and images used to impersonate individuals, fabricate evidence, and manipulate financial decisions — now accessible to attackers with no specialised expertise."
 ---
 
 import Tabs from '@theme/Tabs';
@@ -42,7 +43,7 @@ Do our high-value financial transaction approval processes require verification 
   <TabItem value="analyst" label="Security Analyst">
   Your focus is detection and verification infrastructure. Deepfake detection tooling should be evaluated for high-risk communication channels. C2PA content authentication standards should be considered for official organisational media. Verify your incident response playbook covers deepfake-enabled fraud scenarios.
   </TabItem>
-  <TabItem value="everyday" label="Everyday">
+  <TabItem value="everyday" label="At home">
   AI can clone anyone's voice from a short audio clip — a birthday video, a voicemail, a social media post. Scammers use this to impersonate family members in distress, creating fake urgency to get you to send money fast.
 
   **The defence is simple:** hang up and call back on the number you already have. If it was really them, they'll answer. If it wasn't, the scam is over.
@@ -278,4 +279,4 @@ async def check_video_authenticity(
 
 **Difficulty:** Foundational | **Jurisdictions:** AU, EU, US, Global
 
-**[▶ Interactive scenario — coming soon](https://app.airiskpractice.org/#/scenario/c4-deepfakes)** — Deepfakes & Synthetic Media Fraud.
+**[▶ Play this scenario](https://app.airiskpractice.org/#/scenario/home-voice-clone)** — Deepfakes & Synthetic Media Fraud.

@@ -6,6 +6,7 @@ sidebar_position: 1
 tags: [technical, llm, high-severity]
 last_verified: 2026-03-28
 next_review: 2026-09-28
+description: "AI systems produce outputs that are factually wrong or fabricated, presented with confidence and no indication of uncertainty."
 ---
 
 import Tabs from '@theme/Tabs';
@@ -44,7 +45,7 @@ Do we have mandatory verification requirements before AI-generated content is ac
   <TabItem value="analyst" label="Security Analyst">
   Hallucination becomes a security problem when AI-generated content drives automated workflows or populates compliance reports. Ensure AI systems in security contexts have RAG grounding applied, and that outputs feeding automated pipelines have a validation layer before action is taken.
   </TabItem>
-  <TabItem value="everyday" label="Everyday">
+  <TabItem value="everyday" label="At home">
   AI assistants answer confidently even when they're wrong. They don't say "I'm not sure" — they produce a specific, authoritative-sounding answer that may be completely fabricated. This is called hallucination, and it's most dangerous when you ask about specific facts: laws, prices, drug interactions, insurance coverage, legal provisions.
 
   **The pattern to recognise:** the AI gave you a specific answer with what sounds like a real citation. That citation may not exist. The law it named may not be real. The policy term it quoted may not be in your actual document.
@@ -161,4 +162,6 @@ qa_chain = RetrievalQA.from_chain_type(
 
 **Difficulty:** Foundational | **Jurisdictions:** AU, Global
 
-**[▶ Play this scenario](https://app.airiskpractice.org/#/scenario/a1-hallucination)** — Hallucination & Confabulation.
+**[▶ Play the at-work scenario](https://app.airiskpractice.org/#/scenario/a1-hallucination)** — Hallucination & Confabulation.
+
+**[▶ Play the at-home scenario](https://app.airiskpractice.org/#/scenario/home-ai-answer)** — The Answer That Wasn’t.

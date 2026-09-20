@@ -6,6 +6,7 @@ sidebar_position: 3
 tags: [c, medium-severity]
 last_verified: 2026-06-26
 next_review: 2026-09-28
+description: "Adversaries reconstruct a proprietary AI model by querying it repeatedly and using the outputs to train a surrogate — stealing the IP without accessing model weights."
 ---
 
 import Tabs from '@theme/Tabs';
@@ -268,5 +269,3 @@ def obfuscate_output(
 **Trigger:** Security monitoring detects a single API key making 50,000 requests in 24 hours, systematically varying input features.
 
 **Difficulty:** Intermediate | **Jurisdictions:** Global
-
-**[▶ Interactive scenario — coming soon](https://app.airiskpractice.org/#/scenario/c3-model-theft)** — Model Theft & Intellectual Property Extraction.

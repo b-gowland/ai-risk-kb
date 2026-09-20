@@ -35,6 +35,32 @@ const config = {
       attributes: {},
       innerHTML: `window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()`,
     },
+    // Site-level structured data. No personal name — the publisher is the
+    // project, not an individual. Per-entry Article/dateModified data is a
+    // separate, later addition (see NEXT_SESSION_BRIEF item 9, P3).
+    {
+      tagName: 'script',
+      attributes: { type: 'application/ld+json' },
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'WebSite',
+            name: 'AI Risk Practice Library',
+            url: 'https://library.airiskpractice.org',
+            description: 'A free, open-source practitioner library mapping AI risks to actionable controls.',
+            publisher: { '@id': 'https://airiskpractice.org/#org' },
+          },
+          {
+            '@type': 'Organization',
+            '@id': 'https://airiskpractice.org/#org',
+            name: 'AI Risk Practice',
+            url: 'https://airiskpractice.org',
+            logo: 'https://library.airiskpractice.org/img/social-card.png',
+          },
+        ],
+      }),
+    },
   ],
 
   presets: [
@@ -64,7 +90,7 @@ const config = {
       navbar: {
         title: 'AI Risk Practice Library',
         logo: {
-          alt: 'AI Risk Knowledge Base',
+          alt: 'AI Risk Practice Library',
           src: 'img/logo.svg',
         },
         items: [
@@ -75,17 +101,12 @@ const config = {
             label: 'Risk Taxonomy',
           },
           {
-            to: '/docs/how-to-use',
-            label: 'How to Use',
-            position: 'left',
-          },
-          {
             to: '/docs/about',
             label: 'About',
             position: 'left',
           },
           {
-            label: 'Training Module',
+            label: 'Practice scenarios',
             position: 'left',
             href: 'https://app.airiskpractice.org/',
           },
