@@ -1,187 +1,196 @@
 {
-  "run_date": "2026-09-14",
-  "run_timestamp": "2026-09-14T16:02:04.855970+00:00",
-  "total_new_items": 20,
+  "run_date": "2026-09-21",
+  "run_timestamp": "2026-09-21T16:04:01.269677+00:00",
+  "total_new_items": 21,
   "items": [
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "45f37aba278d3b5ec36fcdae257f03ac",
-      "title": "No title",
-      "url": "",
-      "body_excerpt": "... (report_number: 7953)",
-      "release_date": "Sun, 13 Se"
+      "id": "cc8c6d09d3b93927906c85b64efbfd8d",
+      "title": "Former Costa Mesa Police Officer Pleads Guilty to Contacting His Mistress Thousands of Times Through Text, Phone Calls, and Social Media Messages, Including More than 100 Times in a Day, Illegally Accessing Confidential Law Enforcement Databases to Track Romantic Rivals, Ex-girlfriend, and Wife",
+      "url": "https://ocdistrictattorney.gov/press/former-orange-county-sheriffs-deputy-charged-with-possession-of-child-pornography-illegally-accessing-confidential-law-enforcement-database-to-look-up-romantic-rival-ex-girlfriend-and-vio-2/",
+      "body_excerpt": "SANTA ANA, Calif. --\u00a0 A former Costa Mesa police officer pleaded guilty to contacting his mistress thousands of times through text, telephone calls, and social media messages, sometimes more than 100 times in a day, over nine months and use ... (https://incidentdatabase.ai/cite/1697#7977)",
+      "release_date": "Sat, 19 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "a57cff78d4153c5963cecdc1c421df3a",
-      "title": "Un adolescente planific\u00f3 con la Inteligencia Artificial matar a sus compa\u00f1eros de colegio: fue detectado por el FBI y allanado en Quilmes",
-      "url": "https://www.clarin.com/policiales/adolescente-planifico-inteligencia-artificial-matar-companeros-colegio-detectado-fbi-allanado-quilmes_0_vSUeHLZ4nv.html",
-      "body_excerpt": "Un adolescente de 15 a\u00f1os de edad hab\u00eda planificado con la Inteligencia Artificial protagonizar para 2027 un tiroteo en su colegio y matar a sus compa\u00f1eros, un hecho que gracias a la advertencia del FBI pudo ser desactivado. Adem\u00e1s, su domi ... (https://incidentdatabase.ai/cite/1688#7949)",
-      "release_date": "Sat, 12 Se"
+      "id": "7bcdf0fe27ba72acf53a78562814ba88",
+      "title": "Sisters sue Espa\u00f1ola over traffic stop they say was illegal",
+      "url": "https://www.santafenewmexican.com/news/local_news/sisters-sue-espa-ola-over-traffic-stop-they-say-was-illegal/article_1c949c30-ae3e-11ee-ad85-f71a8c9ecb1e.html/",
+      "body_excerpt": "Two Rio Arriba County sisters have filed lawsuits against the city of Espa\u00f1ola, contending they were subjected to an illegal traffic stop after a surveillance camera mistakenly flagged their car as one that had been stolen in Rio Rancho.\n\nE ... (https://incidentdatabase.ai/cite/1698#7978)",
+      "release_date": "Sat, 19 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "8a2dd80ec7857a49ee8a1eddda4b3305",
-      "title": "C\u00f3mo descubri\u00f3 el FBI al chico de 15 a\u00f1os que organizaba con IA una masacre escolar en Quilmes y cu\u00e1l era su plan",
-      "url": "https://www.clarin.com/policiales/cuchillos-tacticos-mascaras-pruebas-detras-adolescente-planeo-masacre-escolar-quilmes-usando-ia-descubierto-fbi_0_xhLcCUdm4D.html",
-      "body_excerpt": "A partir de una inquietante conversaci\u00f3n con ChatGPT, que dispar\u00f3 una alarma en Estados Unidos, la Polic\u00eda Federal argentina logr\u00f3 frustrar a un chico de 15 a\u00f1os que planeaba un ataque en su colegio para matar a varios de sus compa\u00f1eros uti ... (https://incidentdatabase.ai/cite/1688#7950)",
-      "release_date": "Sat, 12 Se"
+      "id": "48766ce0e7331856cb91c8f07c9bcf16",
+      "title": "US woman falsely charged with bank theft sues for $10m over AI facial recognition",
+      "url": "https://www.theguardian.com/us-news/2026/sep/18/tennessee-woman-falsely-charged-bank-theft-lawsuit",
+      "body_excerpt": "A Tennessee woman who was falsely charged with bank theft in North Dakota and jailed for six months has sued for $10m in damages, alleging in a federal lawsuit that Fargo police improperly relied on an artificial intelligence (AI) facial re ... (https://incidentdatabase.ai/cite/1416#7979)",
+      "release_date": "Sat, 19 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "49741ec24e70f4ee093bfc9f3cb7a574",
-      "title": "Un adolescente planific\u00f3 con Inteligencia Artificial matar a sus compa\u00f1eros: el FBI dio aviso y lo allanaron en Quilmes",
-      "url": "https://www.lanacion.com.ar/seguridad/un-adolescente-planifico-con-inteligencia-artificial-sus-companeros-de-colegio-el-fbi-dio-aviso-y-lo-nid11092026/",
-      "body_excerpt": "Un aviso del \"agregado jur\u00eddico\" del FBI en la embajada de los Estados Unidos en Buenos Aires encendi\u00f3 las alarmas y dio origen a una investigaci\u00f3n judicial: un adolescente de 15 a\u00f1os habr\u00eda usado un modelo de Inteligencia Artificial (IA) p ... (https://incidentdatabase.ai/cite/1688#7951)",
-      "release_date": "Sat, 12 Se"
+      "id": "668367a4aeff5f4f2ec3e5178b41d573",
+      "title": "Error by AI scribe during medical appointment leaves patient devastated",
+      "url": "https://www.abc.net.au/news/2026-08-14/ai-medical-scribe-error-leaves-patient-devastated/107031672",
+      "body_excerpt": "Artificial Intelligence is listening to many people's medical appointments, but it is not always hearing things correctly.\n\nWhen Rebecca Green arrived for her first appointment with a urologist, she was asked whether she consented to having ... (https://incidentdatabase.ai/cite/1695#7975)",
+      "release_date": "Fri, 18 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "6f384a52848041a129327bfc260933a7",
-      "title": "Plane\u00f3 una masacre escolar con ChatGPT, intervino el FBI y no recibir\u00e1 ninguna pena",
-      "url": "https://www.eltrecetv.com.ar/mediodia-noticias/2026/09/11/planeo-una-masacre-escolar-con-chatgpt-intervino-el-fbi-y-no-recibira-ninguna-pena/",
-      "body_excerpt": "El joven de 15 a\u00f1os que hab\u00eda averiguado a trav\u00e9s del ChatGPT c\u00f3mo organizar una masacre en su colegiode Quilmes est\u00e1 identificado y su domicilio fue allanado en busca de pruebas de su macabro plan perge\u00f1ado con inteligencia artificial. Per ... (https://incidentdatabase.ai/cite/1688#7952)",
-      "release_date": "Sat, 12 Se"
+      "id": "5419021bc3114b1d706c73b1c46e1a6b",
+      "title": "Vero Beach man arrested in explicit deepfake investigation; police fear more victims",
+      "url": "https://cbs12.com/news/local/vero-beach-man-arrested-in-ai-generated-sexual-image-investigation",
+      "body_excerpt": "VERO BEACH, Fla. (CBS12) \u2014 A Vero Beach man was arrested and is being held on a $1 million bond after creating and distributing AI-generated sexually explicit images of women without consent.\n\nOfficers with the Vero Beach Police Department  ... (https://incidentdatabase.ai/cite/1696#7976)",
+      "release_date": "Fri, 18 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "3abd1a20b2007e2175c7b678fb781f6e",
-      "title": "Houthis used Anthropic AI to try to build ballistic missiles",
-      "url": "https://www.ft.com/content/8310cf56-ce60-4e6e-8254-5bb470e9a880",
-      "body_excerpt": "Yemeni militants sought to use Anthropic\u2019s Claude AI model to develop guidance, control and navigation software for its ballistic missiles, the US company said.\n\nIn its intelligence threat report released on Thursday, Anthropic did not name ... (https://incidentdatabase.ai/cite/1687#7948)",
-      "release_date": "Fri, 11 Se"
+      "id": "535cc9f31ab71d12b9248c08533f5eef",
+      "title": "Smith v. Flock Safety, Memorandum of Opinion and Order",
+      "url": "https://cases.justia.com/federal/district-courts/ohio/ohndce/5%3A2023cv02198/301907/38/0.pdf?ts=1713283874",
+      "body_excerpt": "Smith v. Flock Safety\n\nUnited States District Court\nNorthern District of Ohio, Eastern Division\nCase No. 5:23-CV-2198\nJudge: Benita Y. Pearson\nDocument: Memorandum of Opinion and Order\nResolving: ECF Nos. 7, 11, 12, 14, 22, 26, 31\nDate: Apr ... (https://incidentdatabase.ai/cite/1694#7974)",
+      "release_date": "Thu, 17 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "b1484d8af6c7e29d1ea0d4bb7141f99e",
-      "title": "Deepfake pornovideo\u2019s schokken medialandschap: BN\u2019ers en politici doen aangifte",
-      "url": "https://www.ad.nl/tech/deepfake-pornovideos-schokken-medialandschap-bners-en-politici-doen-aangifte~aecdc584/",
-      "body_excerpt": "Managementbureaus en instanties proberen de beelden offline te krijgen. D66 vraagt een debat aan. Autoriteit Persoonsgegevens roept slachtoffers op om naar het OM te stappen.\n\nOok demissionair minister van Justitie Dilan Yesilg\u00f6z roept slac ... (https://incidentdatabase.ai/cite/1684#7927)",
-      "release_date": "Thu, 10 Se"
+      "id": "076b6ece61a3d6eef0d6c1c4fb56a708",
+      "title": "Fort Bend County Sheriff's Office lieutenant admits to improper use of Flock cameras per docs",
+      "url": "https://abc13.com/post/fort-bend-county-sheriffs-office-lieutenant-admits-improper-use-flock-cameras-docs/19528986/",
+      "body_excerpt": "FORT BEND COUNTY, Texas (KTRK) -- Documents obtained by ABC13 show a Fort Bend County Sheriff's Office lieutenant used Flock cameras to look up one license plate 41 times and another plate 148 times from January 2022 through December 2025.\n ... (https://incidentdatabase.ai/cite/1689#7954)",
+      "release_date": "Wed, 16 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "a16eefed2c55e4a4c83da0302941276f",
-      "title": "Vrouwelijke BN'ers overwegen aangifte vanwege deepfake pornovideo's",
-      "url": "https://nos.nl/artikel/2513371-vrouwelijke-bn-ers-overwegen-aangifte-vanwege-deepfake-pornovideo-s",
-      "body_excerpt": "Meerdere vrouwelijke bekende Nederlanders overwegen juridische stappen omdat zij zijn opgedoken in gemanipuleerde pornovideo's. Deze video's staan op een online platform met maandelijks 13 miljoen bezoekers, schrijft het AD.\n\nOp dit platfor ... (https://incidentdatabase.ai/cite/1684#7928)",
-      "release_date": "Thu, 10 Se"
+      "id": "31ab51e46694f24bb402312a13fd130b",
+      "title": "Critics warned about Flock surveillance. Three Houston-area investigations are fueling those concerns.",
+      "url": "https://www.chron.com/texas/article/flock-houston-area-misuse-22367312.php",
+      "body_excerpt": "Three Houston area law-enforcement agencies conducted \u00a0internal investigations this summer over officers' alleged abuse of the Flock license plate surveillance database.\u00a0\n\nAlthough law enforcement agencies statewide have repeatedly emphasiz ... (https://incidentdatabase.ai/cite/1689#7955)",
+      "release_date": "Wed, 16 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "f33e01228a3f26a01e10b2edef02162d",
-      "title": "Wel of niet zeggen dat je in een neppornovideo zit? BN'ers worstelen ermee",
-      "url": "https://nos.nl/artikel/2513552-wel-of-niet-zeggen-dat-je-in-een-neppornovideo-zit-bn-ers-worstelen-ermee",
-      "body_excerpt": "Meerdere vrouwelijke BN'ers die te zien zijn in zogenoemde deepfake pornovideo's doen hun verhaal in de media. Door zich publiekelijk uit te spreken, willen ze dit soort seksuele misstanden voorkomen. Maar wel of niet naar buiten treden is  ... (https://incidentdatabase.ai/cite/1684#7929)",
-      "release_date": "Thu, 10 Se"
+      "id": "e3087c182e700768d2ff43d17407c20f",
+      "title": "Kechi police lieutenant arrested for using police technology to stalk wife",
+      "url": "https://www.kwch.com/2022/10/31/kechi-police-lieutenant-arrested-using-police-technology-stalk-wife/",
+      "body_excerpt": "WICHITA, Kan. (KWCH) - Kechi Police Lieutenant Victor Heiar was arrested by the Wichita Police Department after it was discovered he utilized his position within the police department to unlawfully access WPD\u2019s flock license plate reader te ... (https://incidentdatabase.ai/cite/1690#7956)",
+      "release_date": "Wed, 16 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "881fe5b2eefe2b75ac9c5ef567fb5bd8",
-      "title": "Bekende Nederlanders doen massaal aangifte in zaak deepfakepornovideo's",
-      "url": "https://www.rtl.nl/boulevard/crime/artikel/5447386/15-aangiftes-zaak-deepfakepornovideos-bekende-nederlanders",
-      "body_excerpt": "In een zaak waarbij tientallen bekende Nederlanders en publieke figuren slachtoffer zijn geworden van deepfakepornovideo's die rondgingen op internet, zijn vijftien aangiftes gedaan. Een woordvoerder van het OM Parket-Generaal bevestigt don ... (https://incidentdatabase.ai/cite/1684#7930)",
-      "release_date": "Thu, 10 Se"
+      "id": "8095165186405977e36fa383a72ee50c",
+      "title": "Former Kechi police lieutenant convicted on stalking charges",
+      "url": "https://www.kwch.com/2023/04/05/former-kechi-police-lieutenant-convicted-stalking-charges/",
+      "body_excerpt": "WICHITA, Kan. (KWCH) - A former police officer has been sentenced in Sedgwick County District Court.\n\nJudge David Kaufman sentenced Victor Heiar, 32 of Park City, to a controlling term of 24 months in jail from which he was granted probatio ... (https://incidentdatabase.ai/cite/1690#7957)",
+      "release_date": "Wed, 16 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "4b3e67903c5a9b66a85720d09f87b418",
-      "title": "Kamerleden horen al maanden niets na deepfake pornovideo's: 'Week ophef, daarna werd het stil'",
-      "url": "https://www.rtl.nl/nieuws/artikel/5475720/kamerleden-horen-al-maanden-niets-na-deepfake-pornovideos-week-ophef-daarna",
-      "body_excerpt": "Tweede Kamerleden Sandra Beckerman en Eline Vedder kregen precies zeven maanden geleden te horen dat ze net als tientallen andere BN'ers in deepfake pornovideo's figureerden. De Kamerleden deden aangifte, maar hebben sindsdien niets meer ov ... (https://incidentdatabase.ai/cite/1684#7931)",
-      "release_date": "Thu, 10 Se"
+      "id": "872dff830f5d3081edfebe0a33353003",
+      "title": "A former police officer has been sentenced in Sedgwick County District Court",
+      "url": "https://www.sedgwickcounty.org/media/63863/heiar-sentenced-news-release.pdf",
+      "body_excerpt": "WICHITA, KAN. -- A former police officer has been sentenced in Sedgwick County District Court. Judge David Kaufman sentenced Victor Heiar, 32 of Park City, to a controlling term of 24 months in jail from which he was granted probation for 1 ... (https://incidentdatabase.ai/cite/1690#7958)",
+      "release_date": "Wed, 16 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "6b162b2f46c23509601ead568cc12f6b",
-      "title": "Wat vrouwen ervaren in de Tweede Kamer. \u2018Je hebt geluk dat jij een vrouw bent, want ze hebben jou minder hard aangepakt\u2019",
-      "url": "https://www.nrc.nl/nieuws/2026/09/09/wat-vrouwen-ervaren-in-de-tweede-kamer-je-hebt-geluk-dat-jij-een-vrouw-bent-want-ze-hebben-jou-minder-hard-aangepakt-a4936077",
-      "body_excerpt": "In de werkkamer van VVD-Tweede Kamerlid Queeny Rajkowski staat een tegeltje met \u201eBedankt, man\". Gekregen van haar medewerkers. Ze werd namelijk z\u00f3 vaak benaderd door mannelijke experts die haar iets wilden uitleggen over een onderwerp in ha ... (https://incidentdatabase.ai/cite/1684#7932)",
-      "release_date": "Thu, 10 Se"
+      "id": "b3dbcb22b9efa1d26b8409f857674b64",
+      "title": "\u2018You were spotted\u2019: KS officer who used police cameras to stalk estranged wife sentenced",
+      "url": "https://www.kansas.com/news/local/crime/article274003460.html",
+      "body_excerpt": "A former Kechi police lieutenant was sentenced Wednesday to probation for using Wichita police cameras to stalk his estranged wife, the Sedgwick County District Attorney\u2019s Office said.\n\nVictor Heiar, who accessed the cameras while working f ... (https://incidentdatabase.ai/cite/1690#7959)",
+      "release_date": "Wed, 16 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "341091c58aa41303c9ceb31c996ba3ef",
-      "title": "Motie van het lid Beckerman over een bevoegde instantie aanwijzen om ook deepfakeporno en andere onrechtmatige seksuele beelden offline te halen",
-      "url": "https://www.tweedekamer.nl/kamerstukken/moties/detail?did=2026D09268&amp;id=2026Z04049",
-      "body_excerpt": "36 800 VII Vaststelling van de begrotingsstaten van het Ministerie van Binnenlandse Zaken en Koninkrijksrelaties (VII) voor het jaar 2026\n\nNr. 86\nMOTIE VAN HET LID BECKERMAN\n\n\n\nVoorgesteld tijdens het wetgevingsoverleg van 2 maart 2026\n\nDe  ... (https://incidentdatabase.ai/cite/1684#7933)",
-      "release_date": "Thu, 10 Se"
+      "id": "1447f8b8931d483c87ada3e76de8ad0a",
+      "title": "Wichita moves to tighten access, increase oversight on secretive police surveillance program",
+      "url": "https://www.kansas.com/news/politics-government/article268186392.html",
+      "body_excerpt": "Where are you going, where have you been \u2014 and where are you right now?\n\nIf the answer is Wichita, and you got there by motor vehicle, it\u2019s likely the Wichita Police Department already knows. Or it can find out with a reasonable degree of c ... (https://incidentdatabase.ai/cite/1690#7960)",
+      "release_date": "Wed, 16 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "89106babea77b9dc671110b4ab422db5",
-      "title": "60 Posts in 10 Hours: How Trump\u2019s Social Media Reflects His Version of Reality",
-      "url": "https://www.nytimes.com/2026/09/09/us/politics/trump-social-media-ai-reality.html",
-      "body_excerpt": "Just before noon on a holiday weekend, while many Americans were at the beach, President Trump's social media account roared to life. In what has increasingly become his weekend habit, he unleashed a daylong barrage of posts that put the bu ... (report_number: 7934)",
-      "release_date": "Thu, 10 Se"
+      "id": "a6d2e0f8d639947f0dc6799f46ccb011",
+      "title": "How rogue officers turned a nationwide camera network into a tool for stalking",
+      "url": "https://www.washingtonpost.com/technology/2026/08/02/how-police-officers-used-vast-network-cameras-spy-their-exes/",
+      "body_excerpt": "JEFFERSON, Ga. --- Marci Bakely couldn't understand how her ex-boyfriend always seemed to know where she was.\n\nWhen she went to buy groceries or on a date or to the doctor, he'd text her about it, sometimes within minutes, despite working 1 ... (https://incidentdatabase.ai/cite/1690#7961)",
+      "release_date": "Wed, 16 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "04be0737619ab901b40600b41e0486e5",
-      "title": "Claude, Codex, and Hermes installed unowned code inside corporate networks",
-      "url": "https://arstechnica.com/security/2026/08/claude-codex-and-hermes-installed-unowned-code-inside-corporate-networks/",
-      "body_excerpt": "Documentation files on more than 100 websites are referencing potentially dangerous executable content that gets installed automatically when visited by many AI agents. A few dozen companies, some of them Fortune 500s, are among those that  ... (report_number: 7935)",
-      "release_date": "Thu, 10 Se"
+      "id": "c93787cb31dfd7b45670c4970bcf79c3",
+      "title": "Messerangriff auf Kinder: T\u00e4ter \u00abkaufte Rindfleisch, um zu \u00fcben\u00bb",
+      "url": "https://www.20min.ch/story/messerangriff-zuerich-oerlikon-taeter-uebte-stiche-an-rohem-rindfleisch-103632247",
+      "body_excerpt": "Messerangriff auf Kinder: T\u00e4ter \u00abkaufte Rindfleisch, um zu \u00fcben\u00bb\n\nEin chinesischer Student, der im Herbst 2024 in Z\u00fcrich-Oerlikon auf drei Buben eingestochen hat, steht am Donnerstag wegen versuchten Mordes vor Gericht. Die Anklageschrift e ... (https://incidentdatabase.ai/cite/1691#7962)",
+      "release_date": "Wed, 16 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "63276b8c4c8d80b07a5510a4fcbb8c4f",
-      "title": "An alignment assessment of recent cybersecurity incidents",
-      "url": "https://www.anthropic.com/research/alignment-assessment-cybersecurity-incidents",
-      "body_excerpt": "AIID editor's note: This is a non-contiguous abridgment of Anthropic's September 9, 2026 report, prepared so a single AIID report record can be linked to all four Anthropic cybersecurity-evaluation incident IDs without duplicating the same  ... (https://incidentdatabase.ai/cite/1685#7936)",
-      "release_date": "Thu, 10 Se"
+      "id": "b3a750484be1c7d13f34a71ff14dfdbe",
+      "title": "Chinese hatte Tat zusammen mit ChatGPT geplant!",
+      "url": "https://www.blick.ch/schweiz/zuerich/drei-kindergaertler-in-zuerich-oerlikon-mit-messer-attackiert-und-schwer-verletzt-chinese-hatte-tat-zusammen-mit-chatgpt-geplant-id22244459.html",
+      "body_excerpt": "Drei Kinderg\u00e4rtler in Z\u00fcrich mit Messer attackiert und schwer verletzt\n\nChinese hatte Tat zusammen mit ChatGPT geplant!\n\nEr plante die Tat \u00fcber Wochen und soll daf\u00fcr sogar ChatGPT genutzt haben. N\u00e4chste Woche steht Han L.\\* (24) wegen des M ... (https://incidentdatabase.ai/cite/1691#7963)",
+      "release_date": "Wed, 16 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "47b120a26f74e2de3d147a75f11cecb9",
-      "title": "Anthropic discloses fourth AI hacking incident missed in earlier review",
-      "url": "https://www.reuters.com/legal/litigation/anthropic-reports-fourth-cybersecurity-incident-with-early-version-claude-2026-09-09/",
-      "body_excerpt": "Anthropic on \u200bWednesday disclosed another instance of an AI model hacking external systems during testing, the latest in a \u200cgrowing list of such incidents that have raised concerns about the risk posed by autonomous AI agents.\n\nThe January  ... (https://incidentdatabase.ai/cite/1685#7937)",
-      "release_date": "Thu, 10 Se"
+      "id": "3a51bc0a711aaffe1fc5ce80d412eb61",
+      "title": "Z\u00fcrich-Oerlikon: Angriff auf Kinder eines Kinderhortes mit Verletzungsfolgen",
+      "url": "https://www.zh.ch/de/news-uebersicht/medienmitteilungen/2024/10/241002_medienmitteilung_osta_oerlikon.html",
+      "body_excerpt": "Am 01. Oktober 2024 verletzte eine m\u00e4nnliche Person an der Berninastrasse in Oerlikon mit einer Stichwaffe mehrere Kinder.\n\nBeim T\u00e4ter handelt es sich um einen 23-j\u00e4hrigen chinesischen Staatsangeh\u00f6rigen, der sich seit dem Sommer 2023 zu Stu ... (https://incidentdatabase.ai/cite/1691#7964)",
+      "release_date": "Wed, 16 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "26ed43709768ca9309e3752f30c95ca8",
-      "title": "Another Anthropic model gained access to the open internet during testing, company says",
-      "url": "https://www.cbsnews.com/news/anthropic-ai-model-internet-hack-fourth-time/",
-      "body_excerpt": "Anthropic disclosed on Wednesday that another one of its Claude models mistakenly gained access to the open internet during a cybersecurity exercise, marking the fourth time its models have done so.\u00a0\n\nAn early version of the Claude Opus 4.6 ... (https://incidentdatabase.ai/cite/1685#7938)",
-      "release_date": "Thu, 10 Se"
+      "id": "5d2ccf569ceed36a3025f71c7d5e9279",
+      "title": "L'homme qui a attaqu\u00e9 une garderie suisse a trouv\u00e9 ses victimes sur ChatGPT",
+      "url": "https://www.watson.ch/fr/suisse/justice/158071647-il-a-utilise-chatgpt-pour-poignarder-des-enfants-en-suisse",
+      "body_excerpt": "L'homme qui a attaqu\u00e9 une garderie suisse a trouv\u00e9 ses victimes sur ChatGPT\n\nEn octobre 2024, un Chinois avait poignard\u00e9 en pleine rue des enfants qui se rendaient \u00e0 l\u2019accueil parascolaire \u00e0 Zurich. Jeudi, l\u2019homme, aujourd\u2019hui \u00e2g\u00e9 de 25 ans ... (https://incidentdatabase.ai/cite/1691#7965)",
+      "release_date": "Wed, 16 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "247b76d94ab218def02ff99f2bd77098",
-      "title": "Ahead of its Cybercab launch, Tesla told a grieving family that a self-driving car\u2019s fatal crash data was gone \u2014 a hacker proved every car keeps it",
-      "url": "https://moneywise.com/news/top-stories/tesla-cybercab-autopilot-crash-data-hacker-lawsuit",
-      "body_excerpt": "Elon Musk is planning to launch Cybercabs, fully autonomous vehicles without the means for a human to control them, any day now. But a lawsuit that closed this year indicates the electric car company may not be ready for the launch.\n\nIn Mar ... (https://incidentdatabase.ai/cite/1686#7939)",
-      "release_date": "Thu, 10 Se"
+      "id": "271c980126534cb0eba380839305e2e5",
+      "title": "Columbus man sentenced to 15 years in prison for cyberstalking exes, creating AI-generated obscene material of adults & children",
+      "url": "https://www.justice.gov/usao-sdoh/pr/columbus-man-sentenced-15-years-prison-cyberstalking-exes-creating-ai-generated",
+      "body_excerpt": "Defendant was first in nation convicted of violating new Take It Down Act\n\nCOLUMBUS, Ohio -- James Strahler II, 37, of Columbus, was sentenced today in U.S. District Court to 180 months in prison for cybercrimes that included both real and  ... (https://incidentdatabase.ai/cite/1448#7966)",
+      "release_date": "Wed, 16 Se"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "5c382ebf06e6d852d95d0395c9dd8ffd",
-      "title": "Jury orders Tesla to pay more than $240 million in Autopilot crash case",
-      "url": "https://apnews.com/article/tesla-miami-musk-benavides-selfdriving-autopilot-autonomous-vehicles-c342f2716b1ec4e9ede09b8e958751b7",
-      "body_excerpt": "MIAMI (AP) --- A Miami jury decided that Elon Musk's car company Tesla was partly responsible for a deadly crash in Florida involving its Autopilot driver assist technology and must pay the victims more than $240 million in damages.\n\nThe fe ... (https://incidentdatabase.ai/cite/1686#7940)",
-      "release_date": "Thu, 10 Se"
+      "id": "a661065098bd8ee72a35aeb57666983f",
+      "title": "Parkview High receives 4th AI-generated bomb threat this year",
+      "url": "https://www.fox5atlanta.com/news/parkview-high-receives-4th-ai-generated-bomb-threat-year",
+      "body_excerpt": "GWINNETT COUNTY, Ga. - Gwinnett County school police are working with state and federal investigators after Parkview High School received its fourth AI-generated bomb threat of the school year.\n\nPREVIOUS STORY: Masked AI call forces Parkvie ... (https://incidentdatabase.ai/cite/1692#7967)",
+      "release_date": "Wed, 16 Se"
+    },
+    {
+      "source_id": "mitre_atlas",
+      "type": "release",
+      "id": "v2026.09",
+      "title": "MITRE ATLAS v2026.09",
+      "url": "https://atlas.mitre.org/updates/",
+      "body_excerpt": "##### Content v2026.09\n\nThis version of ATLAS data contains 1 matrix, 16 tactics, 120 techniques, 88 sub-techniques, 40 mitigations, and 73 case studies.\n\n###### Techniques\n\n- Added new techniques\n\n  - [Triggers in Multimodal Inputs](/techniques/AML.T0129)\n  - [AI Agent Response Biasing](/techniques/AML.T0130)\n  - [Crafted AI Assistant Links](/techniques/AML.T0131)\n  - [Misconfigured or Publicly Exposed AI Services](/techniques/AML.T0132)\n  - [Discover AI Agent Runtime Capabilities](/techniques/AML.T0133)\n  - [AI Targeted Cloaking](/techniques/AML.T0134)\n  - [Search Open Technical Databases: Scan Databases](/techniques/AML.T0000.003)\n  - [Active Scanning: Enumerate Hosted AI Resources](/techniques/AML.T0006.000)\n  - [Active Scanning: Query Platform Metadata APIs](/techniques/AML.T0006.001)\n  - [Active Scanning: Scan for Exposed AI Infrastructure](/techniques/AML.T0006.002)\n  - [Active Scanning: Probe AI Agent Trigger Channels](/techniques/AML.T0006.003)\n\n- Updated existing techniques\n\n",
+      "release_date": "2026-09-15"
     }
   ]
 }

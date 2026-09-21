@@ -1,0 +1,9 @@
+{
+  "run_date": "2026-09-21",
+  "items_reviewed": 21,
+  "classifications": [],
+  "source_counts": {
+    "aiid": 20,
+    "mitre_atlas": 1
+  }
+}
