@@ -38,7 +38,7 @@ if (!liveArg) {
 const LIVE = new Set(liveArg.slice('--live='.length).split(',').map((s) => s.trim()).filter(Boolean));
 
 const DOCS = join(process.cwd(), 'docs');
-const APP_RE = APP.replace(/[.]/g, '\\.');
+const APP_RE = APP.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
 // [label](/#/scenario/<id>) usually wrapped in ** with a bold-close and a
 // " — <descriptor>." after it. Capture optional leading **, optional trailing

@@ -18,6 +18,9 @@ on:
       - "tools/citation-ledger/**"
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   citation-ledger:
     runs-on: ubuntu-latest
