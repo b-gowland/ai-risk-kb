@@ -109,9 +109,9 @@ SOURCES: list[dict] = [
         "max_items": 5,
     },
     # Regulators and standards bodies.
-# Not polled: cyber.gov.au (ACSC), industry.gov.au (DISR), asic.gov.au and
-# cisa.gov block or time out GitHub Actions runners (verified by dry runs);
-# follow those by email subscription instead.
+# Not polled (verified by dry runs from GitHub Actions): cyber.gov.au (ACSC),
+# industry.gov.au (DISR), asic.gov.au and cisa.gov block or time out runners;
+# oaic.gov.au renders its news list with JavaScript. Follow those by email.
     {
         "id": "nist_ai_rmf", "name": "NIST AI RMF", "type": "rss",
         "url": "https://www.nist.gov/news-events/news/rss.xml",
@@ -127,12 +127,6 @@ SOURCES: list[dict] = [
         "url": "https://www.apra.gov.au/news-and-publications",
         "link_pattern": r"^/news-and-publications/[a-z0-9-]+$",
         "include": AI_KW + r"|CPS ?23[04]|operational risk|cyber", "max_items": 3,
-    },
-    {
-        "id": "oaic", "name": "OAIC AI and Privacy", "type": "html_links",
-        "url": "https://www.oaic.gov.au/news/media-centre",
-        "link_pattern": r"^/news/media-centre/[a-z0-9-]+$",
-        "include": AI_KW + r"|privacy act|ADM", "max_items": 3,
     },
 ]
 
