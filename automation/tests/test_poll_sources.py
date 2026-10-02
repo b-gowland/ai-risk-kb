@@ -171,3 +171,11 @@ def test_feed_with_bare_ampersand_is_recovered():
     (entry,) = poll.parse_feed(feed)
     assert entry['title'] == 'AI & you'
     assert entry['url'] == 'https://x/?a=1&b=2'
+
+
+def test_malformed_feed_falls_back_to_lenient_parser():
+    feed = (b'<rss><channel><item><title>AI rules</title><link>https://x/a</link>'
+            b'<description>line<br>break</description><pubDate>Mon, 28 Sep 2026 10:00:00 GMT</pubDate>'
+            b'</item></channel></rss>')
+    (entry,) = poll.parse_feed(feed)
+    assert (entry['title'], entry['url'], entry['date']) == ('AI rules', 'https://x/a', '2026-09-28')

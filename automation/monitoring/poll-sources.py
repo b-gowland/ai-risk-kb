@@ -131,20 +131,17 @@ SOURCES: list[dict] = [
         "include": AI_KW, "max_items": 3,
     },
     {
-        "id": "disr_ai_safety", "name": "DISR AI Safety", "type": "html_links",
-        "url": "https://www.industry.gov.au/news",
-        "link_pattern": r"^/news/[a-z0-9-]+$", "include": AI_KW, "max_items": 3,
-    },
-    {
         "id": "oaic", "name": "OAIC AI and Privacy", "type": "html_links",
         "url": "https://www.oaic.gov.au/news/media-centre",
         "link_pattern": r"^/news/media-centre/[a-z0-9-]+$",
         "include": AI_KW + r"|privacy act|ADM", "max_items": 3,
     },
     {
-        "id": "acsc", "name": "ACSC AI Security", "type": "rss",
-        # Joint guides co-sealed with CISA/NCSC etc. are published here too.
-        "url": "https://www.cyber.gov.au/rss/publications",
+        "id": "cisa", "name": "CISA (incl. joint Five Eyes guidance)", "type": "rss",
+        # cyber.gov.au (ACSC) and industry.gov.au (DISR) time out from GitHub
+        # Actions runners. Joint AI guidance co-sealed by ASD's ACSC is published
+        # by CISA too, so CISA news (AI-filtered) stands in for ACSC.
+        "url": "https://www.cisa.gov/news.xml",
         "include": AI_KW, "max_items": 5,
     },
 ]
@@ -262,6 +259,9 @@ def parse_feed(data: bytes) -> list[dict]:
         try:
             root = ET.fromstring(re.sub(rb"&(?!#?\w+;)", b"&amp;", data))
         except ET.ParseError as exc:
+            entries = _parse_feed_leniently(data.decode("utf-8", errors="replace"))
+            if entries:
+                return entries
             raise SourceError(f"not a parseable feed: {exc}") from exc
     entries = []
     for el in root.iter():
@@ -278,6 +278,29 @@ def parse_feed(data: bytes) -> list[dict]:
             "url": url,
             "date": to_iso_date(_child_text(el, "pubdate", "published", "updated", "date")),
             "summary": clean_text(_child_text(el, "description", "summary", "encoded", "content")),
+        })
+    return entries
+
+
+def _parse_feed_leniently(text: str) -> list[dict]:
+    """Regex fallback for feeds that are not well-formed XML."""
+    def tag(name: str, blob: str) -> str:
+        pattern = rf"<{name}\b[^>]*>(?:<!\[CDATA\[)?(.*?)(?:\]\]>)?</{name}>"
+        m = re.search(pattern, blob, re.S | re.I)
+        return m.group(1).strip() if m else ""
+
+    entries = []
+    for blob in re.findall(r"<item\b[^>]*>(.*?)</item>", text, re.S | re.I):
+        url = clean_text(tag("link", blob), 500)
+        guid = tag("guid", blob) or url
+        if not guid:
+            continue
+        entries.append({
+            "key": md5(guid),
+            "title": clean_text(tag("title", blob), 300),
+            "url": url,
+            "date": to_iso_date(tag("pubDate", blob)),
+            "summary": clean_text(tag("description", blob)),
         })
     return entries
 
@@ -402,9 +425,13 @@ def poll_rss(source: dict, sstate: dict) -> list[dict]:
 
 
 def poll_html_links(source: dict, sstate: dict) -> list[dict]:
-    entries = parse_links(fetch_text(source["url"]), source["url"], source["link_pattern"])
+    page = fetch_text(source["url"])
+    entries = parse_links(page, source["url"], source["link_pattern"])
     if not entries:
-        raise SourceError("no links matched link_pattern (page layout changed?)")
+        sample = sorted({urlparse(urljoin(source["url"], h)).path
+                         for h in re.findall(r'href=["\']([^"\']+)', page)})
+        raise SourceError(f"no links matched link_pattern (page layout changed?); page has "
+                          f"{len(sample)} links, e.g. {sample[:8]}")
     return diff_entries(source, entries, sstate, "new_link")
 
 
