@@ -14,9 +14,12 @@ Per-citation verdicts:
   CANNOT_VERIFY — ID is in the ledger but its value was never confirmed; a human
                   must check it against the primary source.
   UNKNOWN_ID    — ID not in the ledger at all (typo, or ledger needs extending).
+  AMBIGUOUS_EDITION — an OWASP LLM ID cited without its edition (e.g. "LLM06"
+                  instead of "LLM06:2025" or "LLM03:2026"). IDs change meaning
+                  between editions, so a bare ID cannot be checked.
 
 Exit code: 0 by default (ADVISORY — report only). With --strict, exit 1 if any
-NAME_MISMATCH or UNKNOWN_ID is found. CANNOT_VERIFY never fails the build; it is
+NAME_MISMATCH, UNKNOWN_ID or AMBIGUOUS_EDITION is found. CANNOT_VERIFY never fails the build; it is
 a standing human-review flag.
 
 Usage:
@@ -42,7 +45,7 @@ ROMAN = {"i": "i", "ii": "ii", "iii": "iii", "iv": "iv", "v": "v",
 # ---- ID extraction patterns -------------------------------------------------
 
 RE_ATLAS   = re.compile(r"AML\.T\d{4}(?:\.\d{3})?")
-RE_OWASP   = re.compile(r"\bLLM\d{2}\b")
+RE_OWASP   = re.compile(r"\bLLM\d{2}(?::\d{4})?\b")  # optional edition, e.g. LLM03:2026
 RE_ART     = re.compile(r"(?:Article|Art\.?)\s*(\d+)", re.IGNORECASE)
 RE_ANNEX   = re.compile(r"Annex\s+([IVXLC]+)", re.IGNORECASE)
 RE_TAG_ART = re.compile(r"eu-ai-act-article-(\d+)")
@@ -156,6 +159,13 @@ def lookup(led, framework, cid):
     block = led.get(framework, {})
     if framework == "nist-ai-rmf":
         return block.get("functions", {}).get(cid)
+    if framework == "owasp-llm" and "editions" in block:
+        base, _, edition = cid.partition(":")
+        if not edition:
+            return {"status": "ambiguous_edition",
+                    "note": "edition missing — cite as %s:YYYY (current edition: %s)" % (
+                        base, block.get("current", "?"))}
+        return block["editions"].get(edition, {}).get("ids", {}).get(base)
     return block.get("ids", {}).get(cid)
 
 
@@ -163,6 +173,8 @@ def check_cite(c, led):
     entry = lookup(led, c.framework, c.cid)
     if entry is None:
         return "UNKNOWN_ID", "%s %s not in ledger" % (c.framework, c.cid)
+    if entry.get("status") == "ambiguous_edition":
+        return "AMBIGUOUS_EDITION", entry.get("note")
     if entry.get("status") == "cannot_verify":
         return "CANNOT_VERIFY", entry.get("note", "unverified — check primary source")
     if c.asserted_name and not name_matches(c.asserted_name, entry):
@@ -191,25 +203,28 @@ def gather(paths):
 def run(ledger_path, paths, strict):
     led = yaml.safe_load(open(ledger_path, encoding="utf-8"))
     cites = gather(paths)
-    buckets = {"OK": [], "NAME_MISMATCH": [], "CANNOT_VERIFY": [], "UNKNOWN_ID": []}
+    buckets = {"OK": [], "NAME_MISMATCH": [], "CANNOT_VERIFY": [], "UNKNOWN_ID": [],
+               "AMBIGUOUS_EDITION": []}
     for c in cites:
         verdict, detail = check_cite(c, led)
         buckets[verdict].append((c, detail))
 
     print("== Citation ledger check ==")
     print("scanned %d citation(s) across %d path(s)\n" % (len(cites), len(paths)))
-    for v in ("NAME_MISMATCH", "UNKNOWN_ID", "CANNOT_VERIFY"):
+    for v in ("NAME_MISMATCH", "UNKNOWN_ID", "AMBIGUOUS_EDITION", "CANNOT_VERIFY"):
         if buckets[v]:
             print("%s (%d):" % (v, len(buckets[v])))
             for c, detail in buckets[v]:
                 print("  - %s %s  [%s]\n      %s" % (
                     c.framework, c.cid, os.path.relpath(c.where), detail))
             print()
-    print("OK: %d   NAME_MISMATCH: %d   UNKNOWN_ID: %d   CANNOT_VERIFY: %d" % (
+    print("OK: %d   NAME_MISMATCH: %d   UNKNOWN_ID: %d   AMBIGUOUS_EDITION: %d   CANNOT_VERIFY: %d" % (
         len(buckets["OK"]), len(buckets["NAME_MISMATCH"]),
-        len(buckets["UNKNOWN_ID"]), len(buckets["CANNOT_VERIFY"])))
+        len(buckets["UNKNOWN_ID"]), len(buckets["AMBIGUOUS_EDITION"]),
+        len(buckets["CANNOT_VERIFY"])))
 
-    fail = bool(buckets["NAME_MISMATCH"] or buckets["UNKNOWN_ID"])
+    fail = bool(buckets["NAME_MISMATCH"] or buckets["UNKNOWN_ID"]
+                or buckets["AMBIGUOUS_EDITION"])
     if strict and fail:
         print("\nSTRICT: failing build on mismatch/unknown id.")
         return 1
@@ -238,6 +253,11 @@ def main():
         cites = extract_mdx(open(fx, encoding="utf-8").read(), fx)
         verdicts = [check_cite(c, led)[0] for c in cites]
         print("self-test verdicts:", verdicts)
+        bare = [check_cite(c, led)[0] for c in extract_mdx(
+            '<span className="framework-chip">OWASP LLM06</span>', "self-test")]
+        if bare != ["AMBIGUOUS_EDITION"]:
+            print("FAIL — an unversioned OWASP ID was not flagged AMBIGUOUS_EDITION:", bare)
+            return 1
         if "NAME_MISMATCH" in verdicts:
             print("PASS — checker catches the F-1 class (T0054 mislabelled as indirect injection).")
             return 0

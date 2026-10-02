@@ -31,6 +31,7 @@ Per-citation verdicts:
 | `NAME_MISMATCH` | ID verified, but the asserted name disagrees — the F-1 class. |
 | `CANNOT_VERIFY` | ID in ledger but value unconfirmed; human must check the source. |
 | `UNKNOWN_ID` | ID not in the ledger — a typo, or the ledger needs extending. |
+| `AMBIGUOUS_EDITION` | OWASP LLM ID cited without its edition (`LLM06` rather than `LLM06:2025` / `LLM03:2026`); IDs change meaning between editions. Fails `--strict`. |
 
 ## Usage
 

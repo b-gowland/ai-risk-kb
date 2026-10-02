@@ -5,7 +5,7 @@ sidebar_label: "B5 — Agentic Logging"
 sidebar_position: 5
 tags: [governance, agentic-ai, high-severity]
 last_verified: 2026-10-02
-next_review: 2026-11-10
+next_review: 2027-04-02
 description: "Agentic AI systems take real actions — but conventional logging was designed for human-operated systems. When an agent makes a bad decision or is exploited, the question \"what happened and why?\" often cannot be answered."
 ---
 
@@ -17,7 +17,7 @@ import TabItem from '@theme/TabItem';
 <div style={{display:'flex', gap:'0.5rem', flexWrap:'wrap', marginBottom:'1.5rem'}}>
   <span className="severity-badge severity-high">High severity</span>
   <span className="framework-chip">EU AI Act Art. 12</span>
-  <span className="framework-chip">NIST AI RMF GOVERN 1.7</span>
+  <span className="framework-chip">NIST AI RMF MEASURE 2.8</span>
   <span className="framework-chip">NIST AI 600-1</span>
   <span className="framework-chip">MITRE ATLAS</span>
 </div>
@@ -109,7 +109,7 @@ Technology · Security · Legal / Compliance · Risk
 | **EU** | AI Act Art. 26(6) — deployers of high-risk AI must retain logs for minimum 6 months | Yes (high-risk AI deployers) |
 | **AU** | APRA CPS 234 — capability to detect, respond to, and investigate information security incidents | Yes |
 | **AU** | Privacy Act APP 11 — reasonable steps to protect personal information; auditability supports breach response | Yes (personal data) |
-| **Global** | NIST AI RMF GOVERN 1.7 — AI systems should produce audit trails | Voluntary |
+| **Global** | NIST AI RMF MEASURE 2.8 — transparency and accountability risks examined and documented (Playbook: maintain histories and audit logs); MANAGE 4.1 — post-deployment monitoring plans | Voluntary |
 
 ---
 
@@ -125,7 +125,7 @@ Where the model provides reasoning traces (chain-of-thought, scratchpad), log th
 
 Implement the log schema at the agent framework level — not as an afterthought in individual tool implementations — so it applies consistently to all agents built on the framework.
 
-**Jurisdiction notes:** EU — EU AI Act Art. 12 and Art. 26(6) | AU — APRA CPS 234 | US — NIST AI RMF GOVERN 1.7
+**Jurisdiction notes:** EU — EU AI Act Art. 12 and Art. 26(6) | AU — APRA CPS 234 | US — NIST AI RMF MEASURE 2.8
 
 ---
 
@@ -247,7 +247,7 @@ def log_agent_action(
 
 **Injection attack leaves no forensic trace (documented risk pattern):** Security researchers have documented that standard application logs for agentic systems typically capture the tool call that resulted from a successful injection attack but not the injected instruction that caused it. Post-incident investigation cannot distinguish an agent acting on legitimate instructions from an agent that was compromised. This is the canonical auditability gap for agentic systems and is the driver for the EU AI Act Art. 12 logging requirements. Source: OWASP LLM Top 10 2025; MITRE ATLAS documentation.
 
-**EU AI Act Art. 12 enforcement context (2025):** EU AI Act Art. 12 logging requirements for high-risk AI systems came into force in August 2025. The article requires that high-risk AI systems be capable of automatically generating logs enabling verification of compliance throughout their lifetime. Standard agentic system deployments that rely on application-layer logging typically do not meet this requirement without deliberate logging design. Source: EU AI Act Art. 12, Regulation (EU) 2024/1689; EU AI Office guidance.
+**EU AI Act Art. 12 application timeline:** EU AI Act Art. 12 logging requirements apply with the other high-risk obligations — originally from 2 August 2026 for Annex III systems, and since the Digital Omnibus (Regulation (EU) 2026/1744) from 2 December 2027 for Annex III systems and 2 August 2028 for Annex I systems. The article requires that high-risk AI systems be capable of automatically generating logs enabling verification of compliance throughout their lifetime. Standard agentic system deployments that rely on application-layer logging typically do not meet this requirement without deliberate logging design. Source: EU AI Act Art. 12, Regulation (EU) 2024/1689, as amended by Regulation (EU) 2026/1744; EU AI Office guidance.
 
 ---
 
