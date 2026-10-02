@@ -26,15 +26,17 @@ meta:
   note: "Prototype seed scoped to IDs actually cited across the KB and training corpora."
 
 mitre-atlas:
-  source: "MITRE ATLAS knowledge base (MISP galaxy mirror) + Splunk ATLAS mapping"
-  verified_on: "2026-06-28"
+  source: "MITRE ATLAS data v2026.09 (github.com/mitre-atlas/atlas-data, dist/ATLAS-latest.yaml, release 2026-09-14 per CHANGELOG). Calendar-versioned monthly releases since v2026.05 (May 2026)."
+  verified_on: "2026-10-02"
   ids:
     AML.T0005:
-      name: "Create Proxy ML Model"
+      name: "Create Proxy AI Model"
+      aliases: ["Create Proxy ML Model"]
       status: verified
     AML.T0020:
-      name: "Poison Training Data"
-      aliases: ["Training Data Poisoning"]
+      name: "Training Data Poisoning"
+      aliases: ["Poison Training Data"]
+      note: "Renamed from 'Poison Training Data' in ATLAS v2026.07."
       status: verified
     AML.T0051:
       name: "LLM Prompt Injection"
@@ -57,21 +59,37 @@ mitre-atlas:
     AML.T0051.001: { name: "LLM Prompt Injection: Indirect", status: verified }
 
 owasp-llm:
-  source: "OWASP Top 10 for LLM Applications 2025 (v2.0, 2024-11-18)"
-  version: "2025"
-  verified_on: "2026-06-28"
-  note: "LLM06 and LLM09 changed meaning between the 2023 and 2025 lists. A bare 'LLM06' is only correct if it means Excessive Agency (2025)."
-  ids:
-    LLM01: { name: "Prompt Injection", status: verified }
-    LLM02: { name: "Sensitive Information Disclosure", status: verified }
-    LLM03: { name: "Supply Chain", status: verified }
-    LLM04: { name: "Data and Model Poisoning", status: verified }
-    LLM05: { name: "Improper Output Handling", status: verified }
-    LLM06: { name: "Excessive Agency", status: verified }
-    LLM07: { name: "System Prompt Leakage", status: verified }
-    LLM08: { name: "Vector and Embedding Weaknesses", status: verified }
-    LLM09: { name: "Misinformation", status: verified }
-    LLM10: { name: "Unbounded Consumption", status: verified }
+  current: "2026"
+  note: "IDs are edition-specific: 7 of 10 IDs changed meaning between the 2025 and 2026 lists (and LLM06/LLM09 between 2023 and 2025). Cite as LLMxx:YYYY. An unversioned LLMxx is reported as AMBIGUOUS_EDITION and fails --strict."
+  editions:
+    "2025":
+      source: "OWASP Top 10 for LLM Applications 2025 (v2.0, 2024-11-18)"
+      verified_on: "2026-06-28"
+      ids:
+        LLM01: { name: "Prompt Injection", status: verified }
+        LLM02: { name: "Sensitive Information Disclosure", status: verified }
+        LLM03: { name: "Supply Chain", status: verified }
+        LLM04: { name: "Data and Model Poisoning", status: verified }
+        LLM05: { name: "Improper Output Handling", status: verified }
+        LLM06: { name: "Excessive Agency", status: verified }
+        LLM07: { name: "System Prompt Leakage", status: verified }
+        LLM08: { name: "Vector and Embedding Weaknesses", status: verified }
+        LLM09: { name: "Misinformation", status: verified }
+        LLM10: { name: "Unbounded Consumption", status: verified }
+    "2026":
+      source: "OWASP Top 10 for LLM Applications 2026 (published 2026-08-04). Canonical source: github.com/GenAI-Security-Project/GenAI-LLM-Top10 2026/final/ (commit 9253e38); version DOI 10.5281/zenodo.22109015"
+      verified_on: "2026-10-02"
+      ids:
+        LLM01: { name: "Prompt Injection", status: verified }
+        LLM02: { name: "Sensitive Information Disclosure", status: verified }
+        LLM03: { name: "Excessive Agency", status: verified }
+        LLM04: { name: "Supply Chain", status: verified }
+        LLM05: { name: "Data and Model Poisoning", status: verified }
+        LLM06: { name: "Unbounded Consumption", status: verified }
+        LLM07: { name: "Misinformation", status: verified }
+        LLM08: { name: "Hidden Context Exposure", status: verified, note: "Successor to LLM07:2025 System Prompt Leakage, with wider scope (tool schemas, retrieved policy text, other hidden context)." }
+        LLM09: { name: "Vector and Embedding Weaknesses", status: verified }
+        LLM10: { name: "Improper Output Handling", status: verified }
 
 eu-ai-act:
   source: "Regulation (EU) 2024/1689, Official Journal version 2024-06-13"

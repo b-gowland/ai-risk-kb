@@ -5,7 +5,7 @@ sidebar_label: "E1 — Algorithmic Bias"
 sidebar_position: 1
 tags: [e, high-severity]
 last_verified: 2026-10-02
-next_review: 2026-11-10
+next_review: 2027-04-02
 description: "AI models produce systematically different outcomes for individuals based on protected characteristics — even when those characteristics are not explicit inputs."
 ---
 
@@ -126,7 +126,7 @@ Fairness can degrade post-deployment without any change to the model — through
 
 Implementation requirements: (1) include disaggregated fairness metrics in the production monitoring dashboard alongside standard accuracy/performance metrics; (2) define alert thresholds — typically: any statistically significant degradation from baseline fairness metrics triggers a review; (3) schedule regular fairness review cadence (minimum quarterly for high-risk use cases, monthly for credit/insurance/employment); (4) route fairness alerts to Risk and Compliance, not only to the technology team; (5) document the response process — what triggers remediation vs. accepted variance.
 
-**Jurisdiction notes:** AU — APRA CPG 229 established the principle that risk monitoring must be dynamic and forward-looking; the same principle applies to algorithmic fairness under APRA's broader prudential framework | EU — EU AI Act Art. 72 — post-market monitoring is mandatory for high-risk AI systems; providers must establish and document a monitoring plan | US — OCC guidance on model risk management (SR 11-7) requires ongoing monitoring of model performance including any evidence of disparate outcomes
+**Jurisdiction notes:** AU — APRA CPS 220 — the risk management framework must keep pace with changes in the risk profile; APRA's letter to industry on AI (30 April 2026) found point-in-time, sample-based assurance ill-suited to AI that can degrade over time, which applies equally to fairness monitoring | EU — EU AI Act Art. 72 — post-market monitoring is mandatory for high-risk AI systems; providers must establish and document a monitoring plan | US — Federal Reserve SR 11-7 model risk management guidance (adopted by the OCC as Bulletin 2011-12) requires ongoing monitoring of model performance including any evidence of disparate outcomes
 
 ---
 
@@ -271,7 +271,7 @@ The following features frequently act as proxies for protected characteristics i
 
 **Australia:** Racial Discrimination Act 1975 s.9 — indirect discrimination covers facially neutral criteria with disproportionate impact. AI systems producing disparate impact without justification are exposed. Prepare a business justification analysis for any features that produce disparate impact. ASIC RG 271 — monitor complaint data for demographic patterns in AI-influenced decisions.
 
-**EU:** EU AI Act high-risk provisions take effect **2 August 2026**. Credit scoring (Annex III 5(b)), employment screening (Annex III 4), and essential services (Annex III 5) all require conformity assessment including bias testing before deployment. Technical documentation (Art. 11, Annex IV) must include bias testing methodology and results. Begin documentation now if deploying in these categories.
+**EU:** EU AI Act high-risk provisions for Annex III systems apply from **2 December 2027** (deferred from 2 August 2026 by the Digital Omnibus, Regulation (EU) 2026/1744). Credit scoring (Annex III 5(b)), employment screening (Annex III 4), and essential services (Annex III 5) all require conformity assessment including bias testing before deployment. Technical documentation (Art. 11, Annex IV) must include bias testing methodology and results. Begin documentation now if deploying in these categories.
 
 **US:** ECOA / Regulation B — adverse action notices must explain AI-driven credit decisions in human-understandable terms. CFPB 2022 circular on AI in credit decisions confirms that "complex algorithm" is not an acceptable reason code. Fair Housing Act — disparate impact liability applies to AI-driven housing decisions. Colorado SB21-169 (effective 2023) — life insurers must conduct annual external bias audits for AI systems.
 

@@ -29,9 +29,9 @@ Content draws on and cross-references:
 
 - MIT AI Risk Repository (v5, December 2025)
 - NIST AI RMF 1.0 and AI 600-1 (GenAI)
-- EU AI Act (Regulation 2024/1689)
+- EU AI Act (Regulation 2024/1689, as amended by Regulation 2026/1744)
 - ISO 42001:2023
-- OWASP LLM Top 10 (2025)
+- OWASP LLM Top 10 (2026)
 - MITRE ATLAS
 - AI Incident Database (AIID) and OECD AI Incidents Monitor
 - Stanford HAI AI Index 2025

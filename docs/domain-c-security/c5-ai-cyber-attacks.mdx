@@ -4,8 +4,8 @@ title: "C5 — AI-Enabled Cyber Attacks"
 sidebar_label: "C5 — AI Cyber Attacks"
 sidebar_position: 5
 tags: [c, high-severity]
-last_verified: 2026-05-10
-next_review: 2026-11-10
+last_verified: 2026-10-02
+next_review: 2027-04-02
 description: "Adversaries using AI to enhance the scale, sophistication, and effectiveness of cyber attacks — permanently raising the baseline threat level."
 ---
 
@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 
 <div style={{display:'flex',gap:'0.5rem',flexWrap:'wrap',marginBottom:'1.5rem'}}>
   <span className="severity-badge severity-high severity">High severity</span>
-  <span className="framework-chip">NIST CSF 2.0</span> <span className="framework-chip">APRA CPS 234</span> <span className="framework-chip">ACSC Essential Eight</span> <span className="framework-chip">NIST Cyber AI Profile IR 8596</span>
+  <span className="framework-chip">NIST CSF 2.0</span> <span className="framework-chip">APRA CPS 234</span> <span className="framework-chip">ACSC Essential Eight</span> <span className="framework-chip">ACSC AI-enabled attacks 2026</span> <span className="framework-chip">NIST Cyber AI Profile IR 8596</span>
 </div>
 
 **Domain:** C — Security & Adversarial | **Jurisdiction:** AU, EU, US, Global
@@ -301,7 +301,7 @@ def evaluate_access_request(
 
 ### Compliance implementation
 
-**Australia:** APRA CPS 234 is the primary framework for regulated entities — it requires information security capability commensurate with the size and nature of threats. ACSC Essential Eight controls (patch OS, patch applications, MFA, restrict admin privileges, application control, disable macros, user application hardening, daily backups) are the Australian government baseline; for APRA-regulated entities, these are effectively mandatory. The ACSC's updated guidance on AI-enhanced phishing (2024–2025) specifically recommends the shift from content-based to metadata-based email security signals described in C5-001.
+**Australia:** APRA CPS 234 is the primary framework for regulated entities — it requires information security capability commensurate with the size and nature of threats. ACSC Essential Eight controls (patch OS, patch applications, MFA, restrict admin privileges, application control, disable macros, user application hardening, daily backups) are the Australian government baseline; for APRA-regulated entities, these are effectively mandatory. ASD's ACSC guidance *Defending against AI-enabled cyber attacks* (6 July 2026, with editions for government, critical infrastructure and large enterprises, and for medium and small businesses) warns that adversaries can use AI to discover vulnerabilities, develop exploits within hours, target many victims at once and chain lower-severity vulnerabilities, and sets out immediate, short-, medium- and long-term actions.
 
 **EU:** NIS2 Directive (effective October 2024) applies to essential and important entities across a broad range of sectors — financial services, healthcare, digital infrastructure, and others. NIS2 Art. 21 requires: multi-factor authentication, encryption, supply chain security, incident response, and security awareness training. Entities in scope should treat C5-001 through C5-004 as NIS2 Art. 21 implementation measures. DORA (Digital Operational Resilience Act, effective January 2025) imposes specific requirements on financial sector entities including ICT risk management, incident reporting, and resilience testing.
 

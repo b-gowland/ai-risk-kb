@@ -5,7 +5,7 @@ sidebar_label: "E3 — Misinformation"
 sidebar_position: 3
 tags: [e, medium-severity]
 last_verified: 2026-10-02
-next_review: 2026-11-10
+next_review: 2027-04-02
 description: "AI systems generate or amplify false, misleading, or deceptive information at scale — creating systemic information integrity risk."
 ---
 
@@ -27,10 +27,10 @@ import TabItem from '@theme/TabItem';
 
 > AI systems generate or amplify false, misleading, or deceptive information at scale — creating systemic information integrity risk.
 
-AI dramatically lowers the cost of producing convincing false content at scale. An AI-generated false news article about a pharmaceutical company's clinical trial failure reportedly erased $100 billion in shareholder value before being debunked. The EU AI Act Art. 50 creates mandatory disclosure obligations for AI-generated content presented to natural persons.
+AI dramatically lowers the cost of producing convincing false content at scale. In May 2023, an apparently AI-generated image of an explosion near the Pentagon, spread by a verified account impersonating Bloomberg News, briefly pushed the S&P 500 down about 0.3% before officials confirmed there had been no explosion. EU AI Act Art. 50 sets targeted transparency duties: chatbots must tell people they are dealing with an AI, providers must machine-mark synthetic content, and deployers must disclose deep fakes and AI-generated text published to inform the public.
 
 <div className="key-question">
-Do we have synthetic content disclosure mechanisms in place for AI-generated content presented to natural persons, as required by EU AI Act Art. 50?
+Do we know which EU AI Act Art. 50 transparency duties apply to each of our AI systems — and do we meet them?
 </div>
 
 <Tabs>
@@ -38,7 +38,7 @@ Do we have synthetic content disclosure mechanisms in place for AI-generated con
   AI can generate convincing false information at scale — fake news, fabricated quotes, synthetic personas. The EU AI Act Art. 50 creates mandatory disclosure obligations. Your organisation faces risk in two directions: AI systems may generate misinformation inadvertently, and synthetic content attributed to your organisation may be used against you.
   </TabItem>
   <TabItem value="pm" label="Project Manager">
-  Before any system generating content for external consumption goes live, confirm: AI-generated content is disclosed per EU AI Act Art. 50; content authentication is considered for official organisational media; a monitoring process exists for AI-generated content misrepresenting your organisation.
+  Before any system generating content for external consumption goes live, confirm: the EU AI Act Art. 50 duties that apply (chatbot disclosure, machine-readable marking, deep fake and public-interest text disclosure) are met; content authentication is considered for official organisational media; a monitoring process exists for AI-generated content misrepresenting your organisation.
   </TabItem>
   <TabItem value="analyst" label="Security Analyst">
   Misinformation is primarily Communications and Compliance domain. Your contribution is technical: C2PA content authentication for official media, watermarking for AI-generated outputs, and detection tooling for identifying AI-generated content submitted to your organisation in regulatory filings or customer communications.
@@ -70,7 +70,7 @@ Communications · Legal · Compliance · Risk · Marketing
 
 | Control | Owner | Effort | Go-live? | Definition of done |
 |---------|-------|--------|----------|--------------------|
-| Synthetic content disclosure | Compliance | Low | <span className="required-badge required-golive">Required</span> | All AI-generated content presented to natural persons disclosed as such per EU AI Act Art. 50. Mechanism implemented and tested before go-live. |
+| Synthetic content disclosure | Compliance | Low | <span className="required-badge required-golive">Required</span> | Applicable EU AI Act Art. 50 duties mapped to each touchpoint and met; organisational policy covers disclosure of other AI-generated content. Mechanism implemented and tested before go-live. |
 | Content provenance (C2PA) | Technology | Medium | <span className="required-badge required-post">Post-launch</span> | C2PA content authentication evaluated. Deployment decision documented. If deployed, official organisational media signed with organisational certificate. |
 | AI content detection for inbound content | Compliance | Medium | <span className="required-badge required-post">Post-launch</span> | AI-generated content detection deployed for high-stakes inbound content. Results reviewed as part of content processing workflow. |
 | Media literacy and staff training | HR | Low | <span className="required-badge required-post">Post-launch</span> | Staff educated on identifying AI-generated content. Training completed and tracked. |
@@ -82,11 +82,11 @@ Communications · Legal · Compliance · Risk · Marketing
 ### E3-001 — Synthetic content disclosure
 **Owner:** Compliance | **Type:** Preventive | **Effort:** Low | **Go-live required:** Yes
 
-Any AI system that generates text, images, audio, or video presented to natural persons must disclose that the content is AI-generated. This is both an EU AI Act legal obligation (Art. 50) and an ethical requirement — a person interacting with AI-generated content has a right to know they are not interacting with a human author.
+EU AI Act Art. 50 does not require every piece of AI-generated content to be labelled. It requires: (1) providers to design AI systems that interact directly with people so that those people are told they are dealing with an AI, unless this is obvious from the context (Art. 50(1)); (2) providers of AI systems generating synthetic audio, image, video or text to mark outputs in a machine-readable format so they are detectable as AI-generated (Art. 50(2)); and (3) deployers to disclose deep fake image, audio or video content, and AI-generated or manipulated text published to inform the public on matters of public interest — unless the text has undergone human review or editorial control and someone holds editorial responsibility (Art. 50(4)). Art. 50(3) separately covers emotion recognition and biometric categorisation. Many organisations disclose all AI-generated content as a matter of policy, because a person interacting with AI-generated content has a reasonable expectation of knowing it is not human-authored.
 
 Implementation requirements: (1) **Scope definition** — identify every touchpoint in the product or service where AI-generated content is presented to natural persons: chatbot responses, AI-generated documents, synthetic images, audio narration, video content. Disclosure must be applied consistently — selective disclosure that only covers some touchpoints creates both legal risk and user trust damage; (2) **Disclosure mechanism** — implement disclosure in a manner that is clear, prominent, and understandable. Acceptable mechanisms: (a) inline label on generated content ("Generated by AI"); (b) system-level disclosure at session start for AI chatbots; (c) metadata embedding for synthetic media (C2PA standard — see E3-002); (d) watermark for synthetic audio and video. Buried disclosures in terms and conditions do not satisfy the EU AI Act requirement; (3) **Chatbot identity disclosure** — AI chatbots must not deceive users into believing they are human. On direct inquiry ("Are you a human?", "Am I talking to a person?"), the system must disclose it is an AI. This obligation applies even when the chatbot has a persona or human-sounding name; (4) **Implementation testing** — test the disclosure mechanism before go-live: confirm it appears consistently across all touchpoints, is visible on all device types (mobile, desktop), and cannot be disabled by users in ways that create a misleading impression; (5) **Documentation** — document the disclosure mechanism, when it was implemented, and how compliance was confirmed. Retain as evidence of EU AI Act Art. 50 compliance.
 
-**Jurisdiction notes:** AU — no mandatory AI content disclosure obligation as of 2026; OAIC has noted AI disclosure as an emerging expectation in privacy policy and consumer communications | EU — EU AI Act Art. 50 — mandatory disclosure for AI chatbots and AI-generated synthetic media presented to natural persons; applies from August 2, 2026 (Art. 113) | US — FTC Act Section 5 — undisclosed AI-generated content in consumer contexts may constitute deceptive practice; no federal mandate as of 2026. Several states considering disclosure requirements
+**Jurisdiction notes:** AU — no mandatory AI content disclosure obligation as of 2026; OAIC has noted AI disclosure as an emerging expectation in privacy policy and consumer communications | EU — EU AI Act Art. 50 — chatbot disclosure (Art. 50(1)), machine-readable marking of synthetic content by providers (Art. 50(2)) and deployer disclosure of deep fakes and AI-generated public-interest text (Art. 50(4)); applies from 2 August 2026 (Art. 113), except that providers of generative systems placed on the market before that date have until 2 December 2026 to meet Art. 50(2) (Art. 111(4), inserted by Regulation (EU) 2026/1744) | US — FTC Act Section 5 — undisclosed AI-generated content in consumer contexts may constitute deceptive practice; no federal mandate as of 2026. Several states considering disclosure requirements
 
 ---
 
@@ -97,7 +97,7 @@ C2PA (Coalition for Content Provenance and Authenticity) is an open technical st
 
 Implementation requirements: (1) **Standard evaluation** — assess whether C2PA is appropriate for the organisation's content types and workflows. C2PA is well-suited to: images, video, audio, and documents. Assess current tool and platform support for C2PA in the content creation and publishing pipeline; (2) **Signing infrastructure** — if C2PA is deployed, obtain a C2PA certificate from an accredited issuer. All AI-generated official organisational media (press imagery, video content, official publications) should be signed with the organisational certificate. Maintain the private key in a secure key management system; (3) **Provenance display** — implement a mechanism for readers to verify content provenance (C2PA-compatible viewer, or reference to verification tools). The value of C2PA is only realised if recipients can verify signatures; (4) **Inbound content** — for organisations that receive external content as part of operations (journalism, research, procurement), C2PA metadata on received content should be checked as part of content processing. Absence of C2PA metadata is not confirmation of inauthenticity, but presence of authentic C2PA metadata is confirmatory; (5) **Decision documentation** — if C2PA is not deployed, document the assessment and rationale. The decision to defer should reflect a genuine assessment of applicability, not a default non-decision.
 
-**Jurisdiction notes:** EU — EU AI Act Art. 50(2) — AI systems generating synthetic media must mark outputs with machine-readable format. C2PA is the emerging implementation standard for this requirement | AU — no mandatory C2PA requirement; voluntary adoption aligns with DISR voluntary AI Safety Standard | US — NIST AI 600-1 — content provenance is identified as a key mitigation for synthetic content risks
+**Jurisdiction notes:** EU — EU AI Act Art. 50(2) — providers of AI systems generating synthetic audio, image, video or text must mark outputs in a machine-readable format so they are detectable as AI-generated (from 2 August 2026; 2 December 2026 for systems placed on the market before that date, Art. 111(4)). C2PA is the emerging implementation standard for this requirement | AU — no mandatory C2PA requirement; voluntary adoption aligns with DISR voluntary AI Safety Standard | US — NIST AI 600-1 — content provenance is identified as a key mitigation for synthetic content risks
 
 ---
 
@@ -211,7 +211,7 @@ def chatbot_identity_check(user_message: str) -> bool:
 
 **Australia:** No mandatory AI content disclosure legislation as of 2026. However, the Australian Consumer Law prohibits misleading or deceptive conduct — presenting AI-generated content in a way that creates a false impression of human authorship may constitute a breach. OAIC guidance expects organisations to be transparent about AI use in privacy policies and communications. The voluntary DISR AI Safety Standard includes transparency as a core principle.
 
-**EU:** EU AI Act Art. 50 is the most prescriptive disclosure requirement globally. Key obligations: (1) AI chatbot systems must disclose they are AI unless obvious from context; (2) AI systems generating synthetic images, audio, or video must ensure outputs are marked in machine-readable format; (3) Persons disseminating AI-generated content must disclose the AI origin. Applies to both providers and deployers from August 2, 2026 (Art. 113). C2PA is the emerging implementation mechanism for machine-readable marking.
+**EU:** EU AI Act Art. 50 is the most prescriptive disclosure requirement globally. Key obligations: (1) providers must design AI systems that interact with people so those people are told they are dealing with an AI, unless obvious from context (Art. 50(1)); (2) providers of systems generating synthetic audio, image, video or text must mark outputs in a machine-readable format (Art. 50(2)); (3) deployers must disclose deep fakes, and AI-generated text published to inform the public on matters of public interest unless it is under human review or editorial control with editorial responsibility (Art. 50(4)). Applies to providers and deployers from 2 August 2026 (Art. 113); providers of systems placed on the market before that date have until 2 December 2026 to meet Art. 50(2) (Art. 111(4), inserted by Regulation (EU) 2026/1744). C2PA is the emerging implementation mechanism for machine-readable marking.
 
 **US:** No federal AI disclosure mandate as of 2026. FTC guidance on AI and deception (2023) indicates that undisclosed AI personas in consumer contexts may constitute deceptive practice under Section 5. Political advertising: several states require disclosure of AI-generated political content (California AB 2655, Texas HB 4337). The FTC has brought enforcement actions against companies for deceptive AI chatbot practices — including cases where chatbots impersonated humans in consumer interactions.
 
@@ -219,7 +219,7 @@ def chatbot_identity_check(user_message: str) -> bool:
 
 ## Incident examples
 
-**AI-generated false news pharmaceutical (illustrative, documented risk):** An AI-generated fake news article about a pharmaceutical company's clinical trial failure reportedly erased significant shareholder value before being debunked — demonstrating the market manipulation potential of AI-generated misinformation.
+**Fake Pentagon explosion image moves markets (May 2023):** On 22 May 2023 an apparently AI-generated image of an explosion near the Pentagon spread on Twitter, amplified by a verified account impersonating Bloomberg News. The S&P 500 fell about 0.3% within minutes and recovered once Arlington County fire and police officials confirmed there had been no explosion — possibly the first time an AI-generated image moved the market. Source: Bloomberg (22 May 2023); NPR (22 May 2023).
 
 **EU election deepfakes (2024):** AI-generated deepfake videos of politicians making inflammatory statements were distributed during EU elections to manipulate voter perception.
 

@@ -4,8 +4,8 @@ title: "G5 — Excessive Agency & Uncontrolled Action Chains"
 sidebar_label: "G5 — Excessive Agency"
 sidebar_position: 5
 tags: [systemic, agentic-ai, high-severity]
-last_verified: 2026-05-10
-next_review: 2026-11-10
+last_verified: 2026-10-02
+next_review: 2027-04-02
 description: "AI agents given too much capability, too much autonomy, or too few oversight mechanisms will use those capabilities in ways that exceed what their deployers intended — creating systemic risks that accumulate across organisations and sectors."
 ---
 
@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 
 <div style={{display:'flex', gap:'0.5rem', flexWrap:'wrap', marginBottom:'1.5rem'}}>
   <span className="severity-badge severity-high">High severity</span>
-  <span className="framework-chip">OWASP LLM06</span>
+  <span className="framework-chip">OWASP LLM03:2026 Excessive Agency</span>
   <span className="framework-chip">NIST AI 600-1</span>
   <span className="framework-chip">EU AI Act Art. 14</span>
   <span className="framework-chip">MITRE ATLAS</span>
@@ -30,7 +30,7 @@ import TabItem from '@theme/TabItem';
 
 > AI agents given too much capability, too much autonomy, or too few oversight mechanisms will use those capabilities in ways that exceed what their deployers intended — creating systemic risks that accumulate across organisations and sectors.
 
-Excessive agency is not a single incident. It is a pattern that emerges when AI systems are given capabilities beyond what their task requires, when oversight mechanisms are minimal, and when the humans responsible have limited visibility into what the agent is doing. Individually, each deployment may seem manageable. Systemically — across thousands of organisations each deploying agents with similar over-provisioning patterns — the aggregate risk is significant. OWASP identifies Excessive Agency as one of the top vulnerabilities in LLM applications.
+Excessive agency is not a single incident. It is a pattern that emerges when AI systems are given capabilities beyond what their task requires, when oversight mechanisms are minimal, and when the humans responsible have limited visibility into what the agent is doing. Individually, each deployment may seem manageable. Systemically — across thousands of organisations each deploying agents with similar over-provisioning patterns — the aggregate risk is significant. OWASP ranks Excessive Agency third (LLM03:2026) in its 2026 Top 10 for LLM Applications, up from sixth (LLM06:2025).
 
 <div className="key-question">
 Do we have a consistent organisational standard for what autonomous actions AI agents may take without human approval, and are those standards applied consistently across every agentic deployment in our organisation?
@@ -60,7 +60,7 @@ Excessive agency creates a broad attack surface: every capability an agent has i
 
 ### Risk description
 
-OWASP LLM06 Excessive Agency describes a class of vulnerabilities where an LLM-based agent is granted more capability, more autonomy, or more access than its task requires. OWASP identifies three enabling conditions: excessive functionality (permissions the agent doesn't need), excessive permissions (more rights than needed within allowed functions), and excessive autonomy (acting without required human oversight).
+OWASP LLM03:2026 Excessive Agency (LLM06 in the 2025 list) describes a class of vulnerabilities where an LLM-based agent is granted more capability, more autonomy, or more access than its task requires. OWASP identifies three enabling conditions: excessive functionality (permissions the agent doesn't need), excessive permissions (more rights than needed within allowed functions), and excessive autonomy (acting without required human oversight).
 
 The systemic dimension: as AI agents proliferate across organisations, the aggregate capability being deployed autonomously grows. Organisations that have not established an enterprise-wide policy for autonomous action governance are making this decision implicitly, project by project, with no visibility into the cumulative exposure.
 
@@ -106,7 +106,7 @@ Technology · Security · Risk · Legal / Compliance · All business units deplo
 | **EU** | AI Act Art. 9 — risk management system for high-risk AI must address foreseeable misuse | Yes (high-risk AI) |
 | **AU** | APRA CPS 234 — information security capability commensurate with threat | Yes |
 | **AU** | Privacy Act APP 6 — use and disclosure limitation applies to agent-initiated data handling | Yes (personal data) |
-| **Global** | OWASP LLM06 — Excessive Agency | Voluntary |
+| **Global** | OWASP LLM03:2026 — Excessive Agency | Voluntary |
 
 ---
 
@@ -126,7 +126,7 @@ Establish an enterprise policy that classifies autonomous actions into three tie
 
 Apply this classification consistently across all agentic deployments. New action types default to Tier 2 unless explicitly reclassified following a documented risk assessment.
 
-**Jurisdiction notes:** EU — EU AI Act Art. 14 human oversight | AU — APRA CPS 234 | US — NIST AI RMF GOVERN 1.7
+**Jurisdiction notes:** EU — EU AI Act Art. 14 human oversight | AU — APRA CPS 234; *Careful Adoption of Agentic AI Services* (ASD's ACSC with CISA, NSA, CCCS, NCSC-NZ and NCSC-UK, May 2026) recommends limiting agentic deployments to low-risk, non-sensitive tasks | US — NIST AI RMF MAP 3.5 (human oversight processes)
 
 ---
 
@@ -167,7 +167,7 @@ For each identified prohibited action chain: (1) assess likelihood given the age
 
 ## Incident examples
 
-**OWASP LLM06 Excessive Agency — documented vulnerability class (2025):** OWASP's 2025 LLM Top 10 identifies Excessive Agency as a top vulnerability, documenting real-world cases where agents granted broad capabilities used them in ways deployers did not intend. Documented patterns include: agents with email access forwarding internal data externally as part of task completion; agents with database write access modifying records to resolve a constraint that blocked their goal; agents with API access making calls to external services to fulfil a request in ways that exposed organisation data. Source: OWASP LLM Top 10 2025.
+**OWASP Excessive Agency — documented vulnerability class (2025–2026):** OWASP lists Excessive Agency as LLM06:2025 and, in the 2026 edition, raises it to LLM03:2026 — a move the 2026 preface calls the most consequential on the list. Its attack scenarios describe how broad capabilities are turned against deployers: for example, an email-summarising assistant whose tool can also send mail is driven by an indirect prompt injection in an incoming email to forward sensitive messages to an attacker. OWASP traces the risk to excessive functionality, excessive permissions and excessive autonomy. These are illustrative scenarios, not reported incidents. Source: OWASP Top 10 for LLM Applications 2025 (LLM06) and 2026 (LLM03).
 
 **Meta AI agent security incident (2025):** An AI agent at Meta provided inaccurate technical advice that led an employee to take actions causing a security incident — demonstrating that excessive trust in agentic outputs, combined with insufficient oversight, can produce real-world consequences even when the agent's direct action capability is limited. The incident illustrates the G5 risk at a specific organisational level. Source: AIID monitoring run, May 2026.
 

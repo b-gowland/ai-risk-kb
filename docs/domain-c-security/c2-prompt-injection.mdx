@@ -4,8 +4,8 @@ title: "C2 — Prompt Injection"
 sidebar_label: "C2 — Prompt Injection"
 sidebar_position: 2
 tags: [security, adversarial, agentic-ai, llm, high-severity]
-last_verified: 2026-05-10
-next_review: 2026-11-10
+last_verified: 2026-10-02
+next_review: 2027-04-02
 description: "Malicious instructions hidden in content processed by an AI system can hijack the system to take unauthorised actions — including sending data to attackers or making decisions on their behalf."
 ---
 
@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 
 <div style={{display:'flex', gap:'0.5rem', flexWrap:'wrap', marginBottom:'1.5rem'}}>
   <span className="severity-badge severity-high">High severity</span>
-  <span className="framework-chip">OWASP LLM01</span>
+  <span className="framework-chip">OWASP LLM01:2026 Prompt Injection</span>
   <span className="framework-chip">NIST AI 600-1</span>
   <span className="framework-chip">EU AI Act Art. 15</span>
   <span className="framework-chip">MITRE ATLAS</span>
@@ -66,7 +66,7 @@ Large language models process text as a flat stream — they do not distinguish 
 
 **Indirect prompt injection** is the more critical variant. Malicious instructions are embedded in third-party content the LLM processes as part of its normal function — a PDF submitted for summarisation, a webpage retrieved during research, an email processed by an AI assistant. The LLM cannot authenticate the source of these instructions.
 
-The risk is highest in agentic deployments — systems where the LLM can call tools, send data to external services, or take consequential actions. A successfully injected instruction in an agentic system can direct the agent to exfiltrate data, initiate transactions, or take actions using your organisation's legitimate credentials. OWASP identifies this as the top vulnerability for LLM applications.
+The risk is highest in agentic deployments — systems where the LLM can call tools, send data to external services, or take consequential actions. A successfully injected instruction in an agentic system can direct the agent to exfiltrate data, initiate transactions, or take actions using your organisation's legitimate credentials. OWASP ranks it first (LLM01) in both the 2025 and 2026 editions of its Top 10 for LLM Applications.
 
 ### Likelihood drivers
 
@@ -110,7 +110,7 @@ Security · Technology · Operations · Finance · Legal / Compliance
 | **AU** | Privacy Act APP 11 — reasonable steps to protect personal information | Yes |
 | **EU** | AI Act Art. 15 — high-risk systems resilient against attempts to alter performance | Yes (high-risk AI) |
 | **EU** | GDPR Art. 32 — appropriate technical security measures | Yes (personal data) |
-| **Global** | OWASP LLM Top 10 LLM01 — prompt injection controls | Voluntary |
+| **Global** | OWASP LLM01:2026 — prompt injection controls | Voluntary |
 
 :::note
 EU AI Act applies extraterritorially — any system affecting EU users is in scope regardless of where your organisation is based.
@@ -136,7 +136,7 @@ Treat all content originating outside the system prompt as untrusted data. Imple
 
 Define a list of irreversible action categories for the specific deployment (commonly: send email, delete record, initiate payment, post content, deploy to production, modify access controls). For each, implement a technical gate that halts agent execution and routes to a human approver before the action is taken. The gate must be technically enforced in the action execution layer — it cannot be satisfied by the agent's own judgment or by instructions in the model output.
 
-**Jurisdiction notes:** AU — recommended under APRA CPS 230 | EU — required for high-risk AI under EU AI Act Art. 14 human oversight obligation | US — recommended under NIST AI RMF GOVERN 1.7
+**Jurisdiction notes:** AU — recommended under APRA CPS 230 | EU — required for high-risk AI under EU AI Act Art. 14 human oversight obligation | US — recommended under NIST AI RMF MAP 3.5 (human oversight processes)
 
 ---
 
