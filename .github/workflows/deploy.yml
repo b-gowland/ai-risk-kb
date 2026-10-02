@@ -9,10 +9,10 @@ on:
       - main
   workflow_dispatch:
 
+# Build (which runs npm ci / PR code) gets read-only; only the deploy job
+# receives the Pages write + OIDC scopes.
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 # Keyed per ref: every PR gets its own lane, so a batch of PRs no longer
 # cancels its own siblings (a cancelled run is easily misread as a failure).
@@ -57,6 +57,9 @@ jobs:
     needs: build
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

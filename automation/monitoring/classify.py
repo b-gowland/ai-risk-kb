@@ -39,6 +39,14 @@ except ImportError:
 # ============================================================
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(REPO_ROOT / "automation"))
+from claude_client import (  # noqa: E402
+    MODEL_SONNET,
+    check_stop_reason,
+    message_kwargs,
+    response_text,
+)
+
 MONITORING_DIR = REPO_ROOT / "automation" / "monitoring"
 DIFF_FILE = MONITORING_DIR / "monitoring-diff.json"
 OUTPUT_DIR = MONITORING_DIR / "monitoring-output"
@@ -134,8 +142,23 @@ Be conservative: prefer UPDATE_ENTRY or NO_ACTION over NEW_ENTRY or NEW_DOMAIN_N
 unless the gap is clear and significant."""
 
 
+def parse_json_array(text: str) -> list:
+    """Extract the first JSON array from model text, tolerating fences and prose."""
+    cleaned = text.strip().removeprefix("```json").removeprefix("```").removesuffix("```")
+    start = cleaned.find("[")
+    if start == -1:
+        raise ValueError("no JSON array found in classifier response")
+    obj, _end = json.JSONDecoder().raw_decode(cleaned[start:])
+    if not isinstance(obj, list):
+        raise ValueError("classifier response is not a JSON array")
+    return obj
+
+
 def classify_batch(items: list[dict], client: anthropic.Anthropic) -> list[dict]:
-    """Classify a batch of monitoring items against the KB index."""
+    """Classify a batch of monitoring items against the KB index.
+
+    Raises on API errors, truncation, unparseable output or missing items.
+    """
     if not items:
         return []
 
@@ -172,20 +195,19 @@ Return a JSON array. One object per item:
 For NO_ACTION items, kb_matches may be empty. For UPDATE_ENTRY, list all affected entry IDs.
 Return only the JSON array."""
 
-    try:
-        response = client.messages.create(
-            model="claude-sonnet-4-6",
-            max_tokens=2000,
-            system=CLASSIFY_SYSTEM,
-            messages=[{"role": "user", "content": prompt}],
-        )
-        text = response.content[0].text.strip()
-        # Strip markdown fences if present
-        text = text.removeprefix("```json").removeprefix("```").removesuffix("```").strip()
-        return json.loads(text)
-    except Exception as exc:
-        print(f"  [ERROR] Classification API call failed: {exc}")
-        return []
+    # Errors propagate: main() must know a batch failed so it can exit non-zero
+    # and the workflow does not commit advanced last-seen state (which would
+    # silently drop these items forever).
+    response = client.beta.messages.create(
+        **message_kwargs(MODEL_SONNET, prompt, effort="low", system=CLASSIFY_SYSTEM)
+    )
+    check_stop_reason(response)  # refusal / truncation
+    results = parse_json_array(response_text(response))
+    returned_ids = {r.get("item_id") for r in results if isinstance(r, dict)}
+    missing = [item.get("id", "") for item in items if item.get("id", "") not in returned_ids]
+    if missing:
+        raise ValueError(f"{len(missing)} item(s) missing from response: {missing[:3]}")
+    return [r for r in results if isinstance(r, dict)]
 
 
 # ============================================================
@@ -244,7 +266,7 @@ def generate_report(
         ]
         for c in new_entry:
             matches = c.get("kb_matches", [])
-            domain = matches[0]["kb_id"][0] if matches else "?"
+            domain = (matches[0].get("kb_id") or "?")[0] if matches else "?"
             lines += [
                 f"### {c.get('item_title', 'Untitled')} → Domain {domain}",
                 f"**Action:** {c.get('recommended_action', '')}",
@@ -260,14 +282,17 @@ def generate_report(
         ]
         for c in update_entry:
             matches = c.get("kb_matches", [])
-            affected = ", ".join(m["kb_id"] for m in matches)
+            affected = ", ".join(m.get("kb_id", "?") for m in matches)
             lines += [
                 f"### {c.get('item_title', 'Untitled')} → {affected}",
                 f"**Action:** {c.get('recommended_action', '')}",
                 f"**Evidence:** {c.get('evidence_quote', '')}",
             ]
             for m in matches:
-                lines.append(f"- **{m['kb_id']}** ({m['confidence']}): {m['rationale']}")
+                lines.append(
+                    f"- **{m.get('kb_id', '?')}** ({m.get('confidence', '?')}): "
+                    f"{m.get('rationale', '')}"
+                )
             lines.append("")
 
     if not action_count:
@@ -324,11 +349,17 @@ def main() -> None:
     # Classify in batches of 10 (keeps prompt size manageable)
     BATCH_SIZE = 10
     all_classifications: list[dict] = []
+    failed_batches = 0
 
     for i in range(0, len(all_items), BATCH_SIZE):
         batch = all_items[i:i + BATCH_SIZE]
         print(f"  Classifying batch {i // BATCH_SIZE + 1} ({len(batch)} items)...")
-        results = classify_batch(batch, client)
+        try:
+            results = classify_batch(batch, client)
+        except Exception as exc:
+            print(f"  [ERROR] Batch {i // BATCH_SIZE + 1} failed: {exc}")
+            failed_batches += 1
+            continue
         all_classifications.extend(results)
         if i + BATCH_SIZE < len(all_items):
             time.sleep(2)  # avoid rate limiting
@@ -363,6 +394,12 @@ def main() -> None:
     print(f"  Items reviewed:        {len(all_items)}")
     print(f"  Requiring action:      {action_count}")
     print(f"  Report: {out_path}")
+
+    if failed_batches:
+        # Exit 1 (not 2): the workflow skips the state commit, so these items
+        # are re-polled and re-classified on the next run instead of being lost.
+        print(f"\n[classify] ERROR: {failed_batches} batch(es) failed; state not advanced.")
+        sys.exit(1)
 
     # Exit with non-zero if action items found (signals workflow to open issue)
     if action_count > 0:
