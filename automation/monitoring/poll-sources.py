@@ -42,7 +42,7 @@ import sys
 import time
 import urllib.request
 import xml.etree.ElementTree as ET
-from datetime import UTC, datetime
+from datetime import UTC, datetime, timedelta
 from email.utils import parsedate_to_datetime
 from html.parser import HTMLParser
 from pathlib import Path
@@ -59,6 +59,9 @@ OUTPUT_FILE = MONITORING_DIR / "monitoring-diff.json"
 
 HEALTH_FAIL_THRESHOLD = 3
 DEFAULT_MAX_ITEMS = 5
+# Dated entries older than this are recorded as seen, not emitted, so a newly
+# reachable or newly migrated feed never dumps its back catalogue.
+DEFAULT_MAX_AGE_DAYS = 30
 SEEN_KEYS_KEPT = 500
 
 
@@ -173,7 +176,9 @@ def md5(text: str) -> str:
 # ============================================================
 
 HEADERS = {
-    "User-Agent": "ai-risk-kb-monitor/2.0 (github.com/b-gowland/ai-risk-kb)",
+    # Browser-compatible prefix: several AU government WAFs drop unknown agents.
+    "User-Agent": "Mozilla/5.0 (compatible; ai-risk-kb-monitor/2.0; "
+                  "+https://github.com/b-gowland/ai-risk-kb)",
     "Accept": "application/rss+xml, application/atom+xml, application/xml, text/html, */*",
 }
 
@@ -182,7 +187,7 @@ class SourceError(Exception):
     """A source could not be fetched or yielded nothing usable."""
 
 
-def fetch_bytes(url: str, timeout: int = 30) -> bytes:
+def fetch_bytes(url: str, timeout: int = 60) -> bytes:
     try:
         req = urllib.request.Request(url, headers=HEADERS)
         with urllib.request.urlopen(req, timeout=timeout) as resp:
@@ -191,7 +196,7 @@ def fetch_bytes(url: str, timeout: int = 30) -> bytes:
         raise SourceError(f"fetch failed: {exc}") from exc
 
 
-def fetch_text(url: str, timeout: int = 30) -> str:
+def fetch_text(url: str, timeout: int = 60) -> str:
     return fetch_bytes(url, timeout).decode("utf-8", errors="replace")
 
 
@@ -252,8 +257,12 @@ def parse_feed(data: bytes) -> list[dict]:
     """Parse RSS 2.0, Atom or RDF into dicts: key, title, url, date, summary."""
     try:
         root = ET.fromstring(data)
-    except ET.ParseError as exc:
-        raise SourceError(f"not a parseable feed: {exc}") from exc
+    except ET.ParseError:
+        # Common publisher bug: bare '&' in titles/URLs. Escape and retry once.
+        try:
+            root = ET.fromstring(re.sub(rb"&(?!#?\w+;)", b"&amp;", data))
+        except ET.ParseError as exc:
+            raise SourceError(f"not a parseable feed: {exc}") from exc
     entries = []
     for el in root.iter():
         if _local(el.tag) not in ("item", "entry"):
@@ -301,7 +310,7 @@ def parse_links(page: str, base_url: str, link_pattern: str) -> list[dict]:
     parser.feed(page)
     found: dict[str, str] = {}
     for href, text in parser.links:
-        absolute = urljoin(base_url, href).split("#", 1)[0]
+        absolute = urljoin(base_url, href).split("#", 1)[0].split("?", 1)[0].rstrip("/")
         if not re.search(link_pattern, urlparse(absolute).path, re.I):
             continue
         if absolute not in found or (text and not found[absolute]):
@@ -329,7 +338,8 @@ def _item(source: dict, entry: dict, kind: str) -> dict:
 def diff_entries(source: dict, entries: list[dict], sstate: dict, kind: str) -> list[dict]:
     """Return new entries as items and record them as seen.
 
-    Entries filtered out by `include` are recorded as seen; new entries beyond
+    Entries filtered out by `include` or older than `max_age_days` are recorded
+    as seen; new entries beyond
     `max_items` are left unseen so they are picked up on a later run.
     """
     # Legacy state: seen_guids (md5 of RSS guid) / seen_links (MIT AIRR paths).
@@ -346,6 +356,8 @@ def diff_entries(source: dict, entries: list[dict], sstate: dict, kind: str) -> 
         groups.setdefault(gkey, []).append(entry)
 
     include = re.compile(source["include"], re.I) if source.get("include") else None
+    max_age = source.get("max_age_days", DEFAULT_MAX_AGE_DAYS)
+    cutoff = (datetime.now(UTC) - timedelta(days=max_age)).date().isoformat()
     fresh: list[tuple[str, dict]] = []
     for gkey, members in groups.items():
         member_keys = {m["key"] for m in members}
@@ -353,7 +365,10 @@ def diff_entries(source: dict, entries: list[dict], sstate: dict, kind: str) -> 
             seen |= member_keys | {gkey}
             continue
         head = members[0]
-        if seeding or (include and not include.search(f"{head['title']} {head['summary']}")):
+        stale = bool(head["date"]) and head["date"] < cutoff
+        if seeding or stale or (
+            include and not include.search(f"{head['title']} {head['summary']}")
+        ):
             seen |= member_keys | {gkey}
             continue
         fresh.append((gkey, head))

@@ -2,6 +2,7 @@
 # ruff: noqa: E501  (XML/HTML fixtures below keep realistic single-line entries)
 import importlib.util
 import json
+from datetime import UTC, datetime, timedelta
 from pathlib import Path
 
 import pytest
@@ -38,7 +39,7 @@ RDF = b"""<?xml version="1.0"?>
 
 PAGE = """<html><body>
 <a href="/news-and-publications/apra-letter-on-artificial-intelligence">APRA letter on AI</a>
-<a href="/news-and-publications/annual-report">Annual report</a>
+<a href="/news-and-publications/annual-report/?utm=x">Annual report</a>
 <a href="/about">About</a>
 <a href="https://www.apra.gov.au/news-and-publications/apra-letter-on-artificial-intelligence#x"></a>
 </body></html>"""
@@ -63,7 +64,7 @@ def test_unparseable_feed_is_a_source_error():
 
 
 def test_first_run_seeds_without_emitting_then_emits_new():
-    source = {'id': 's', 'name': 'S'}
+    source = {'id': 's', 'name': 'S', 'max_age_days': 36500}
     entries = poll.parse_feed(RSS)
     sstate = {}
     assert poll.diff_entries(source, entries[:2], sstate, 'rss_entry') == []
@@ -73,7 +74,7 @@ def test_first_run_seeds_without_emitting_then_emits_new():
 
 
 def test_group_by_collapses_reports_and_migrates_legacy_guids():
-    source = {'id': 'aiid', 'name': 'AIID', 'group_by': r'/cite/(\d+)'}
+    source = {'id': 'aiid', 'name': 'AIID', 'group_by': r'/cite/(\d+)', 'max_age_days': 36500}
     entries = poll.parse_feed(RSS)
     # Legacy state: md5 of report guids already seen for incident 7 only.
     sstate = {'seen_guids': [poll.md5('https://incidentdatabase.ai/cite/7#1')]}
@@ -86,7 +87,8 @@ def test_include_filter_and_max_items_defer_overflow():
     entries = [{'key': str(i), 'title': f'AI item {i}', 'url': '', 'summary': '',
                 'date': f'2026-09-{10 + i}'} for i in range(4)]
     entries.append({'key': 'x', 'title': 'Annual report', 'url': '', 'summary': '', 'date': ''})
-    source = {'id': 's', 'name': 'S', 'include': poll.AI_KW, 'max_items': 2}
+    source = {'id': 's', 'name': 'S', 'include': poll.AI_KW, 'max_items': 2,
+              'max_age_days': 36500}
     sstate = {'seen': []}
     first = poll.diff_entries(source, entries, sstate, 'rss_entry')
     assert [i['title'] for i in first] == ['AI item 3', 'AI item 2']  # newest first
@@ -148,3 +150,24 @@ def test_registry_is_well_formed():
         assert s['url'].startswith('https://')
         if s['type'] == 'html_links':
             assert s['link_pattern'].startswith('^/')
+
+
+def test_stale_entries_are_marked_seen_not_emitted():
+    today = datetime.now(UTC).date()
+    entries = [
+        {'key': 'old', 'title': 'Old', 'url': '', 'summary': '',
+         'date': (today - timedelta(days=poll.DEFAULT_MAX_AGE_DAYS + 5)).isoformat()},
+        {'key': 'new', 'title': 'New', 'url': '', 'summary': '',
+         'date': (today - timedelta(days=1)).isoformat()},
+    ]
+    sstate = {'seen': []}
+    items = poll.diff_entries({'id': 's', 'name': 'S'}, entries, sstate, 'rss_entry')
+    assert [i['title'] for i in items] == ['New']
+    assert 'old' in sstate['seen']
+
+
+def test_feed_with_bare_ampersand_is_recovered():
+    feed = b'<rss><channel><item><title>AI & you</title><link>https://x/?a=1&b=2</link></item></channel></rss>'
+    (entry,) = poll.parse_feed(feed)
+    assert entry['title'] == 'AI & you'
+    assert entry['url'] == 'https://x/?a=1&b=2'
