@@ -84,6 +84,8 @@ jobs:
           if-no-files-found: warn
 
       - name: Create GitHub issue if human review required
+        # Off main (e.g. a test dispatch on a branch) nothing is published.
+        if: github.ref == 'refs/heads/main'
         uses: actions/github-script@v9
         with:
           script: |
