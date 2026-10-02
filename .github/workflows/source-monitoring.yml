@@ -25,12 +25,12 @@ jobs:
       # (which run third-party packages and process untrusted feed content);
       # it is supplied only to the final push.
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           persist-credentials: false
 
       - name: Setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: '3.11'
 
@@ -86,7 +86,7 @@ jobs:
 
       - name: Upload reports
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: monitoring-reports-${{ github.run_id }}
           path: |
@@ -101,7 +101,7 @@ jobs:
         if: >-
           github.ref == 'refs/heads/main' &&
           (steps.classify.outputs.action_items_found == 'true' || env.ACTION_ITEMS_FOUND == 'true')
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             const fs = require('fs');
@@ -184,7 +184,7 @@ jobs:
 
       - name: Open issue on failure
         if: failure() && github.event_name == 'schedule'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             const title = `[Source monitoring] run failed`;
