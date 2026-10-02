@@ -13,9 +13,9 @@ Design principles:
 
 Run modes:
   python automation_engine.py --mode verify        # Fact-check all flagged claims
-  python automation_engine.py --mode monitor       # Check monitoring sources for new incidents
+  python automation_engine.py --mode monitor       # LLM-only source check (no fetching; not in full)
   python automation_engine.py --mode gap-check     # Detect content that needs updating
-  python automation_engine.py --mode full          # All of the above
+  python automation_engine.py --mode full          # gap-check + verify
   python automation_engine.py --mode single --entry C2  # Single entry verification
 """
 
@@ -1226,8 +1226,11 @@ class AutomationOrchestrator:
                         }
                     )
 
-        # STEP 3: Monitoring (runs in monitor and full modes)
-        if mode in ("monitor", "full"):
+        # STEP 3: Monitoring (explicit monitor mode only). This asks the model to
+        # guess from training data whether sources changed — nothing is fetched —
+        # so it is not part of `full`; real source monitoring is the weekly
+        # automation/monitoring pipeline (poll-sources.py + classify.py).
+        if mode == "monitor":
             if self.monitor is None:
                 raise RuntimeError("Monitoring mode requires the Anthropic client.")
             print(f"[{run_id}] Checking monitoring sources...", flush=True)

@@ -2,18 +2,28 @@
 """
 Workflow 2 — Source-driven monitoring: poll-sources.py
 =======================================================
-Deterministic per-source poller. Reads monitoring-sources.md, fetches each
-source using the appropriate strategy, diffs against last-seen state, and
-writes monitoring-diff.json for classify.py to consume.
+Deterministic per-source poller. Fetches each source in SOURCES, diffs against
+last-seen state, and writes monitoring-diff.json for classify.py to consume.
 
 No LLM calls here. This is pure fetch-and-diff.
 
-Strategies per source type:
-  - github_releases: GitHub Releases API (OWASP, ATLAS)
-  - github_changelog: clone --depth 1, parse CHANGELOG.md (MITRE ATLAS data repo)
-  - rss_feed: fetch RSS/Atom feed, diff against last-seen entry GUIDs
-  - html_index: fetch page, extract links/headings, diff against last snapshot
-  - mit_airr: MIT AI Risk Repository blog index (quarterly, high signal)
+Source types:
+  - rss:        RSS 2.0 / Atom / RDF feed; one item per new entry
+                (optionally grouped, e.g. AIID reports -> one item per incident)
+  - html_links: listing page without a feed; one item per new matching link
+  - file_watch: a value extracted from a raw file (e.g. "Current release: 2026")
+  - mit_airr:   MIT AI Risk Repository blog (fetches each new post for an excerpt)
+
+Per-source options: `include` (regex over title + summary), `max_items`.
+
+A source's first successful poll seeds its state without emitting items, so
+adding a source never floods the classifier with its back catalogue.
+
+Source health (last success, consecutive failures, last error) is tracked in
+the state file and written to the diff. A fetch error, or a feed/page that
+yields nothing parseable, counts as a failure.
+  python poll-sources.py --health-check
+exits 1 when any source has failed HEALTH_FAIL_THRESHOLD runs in a row.
 
 State file: automation/monitoring/last-seen-state.json
 Output:     automation/monitoring/monitoring-diff.json
@@ -25,17 +35,18 @@ Run:
 from __future__ import annotations
 
 import hashlib
+import html
 import json
-import os
 import re
-import subprocess
-import tempfile
+import sys
 import time
-import urllib.error
 import urllib.request
-from datetime import UTC, datetime
+import xml.etree.ElementTree as ET
+from datetime import UTC, datetime, timedelta
+from email.utils import parsedate_to_datetime
+from html.parser import HTMLParser
 from pathlib import Path
-from typing import Any
+from urllib.parse import urljoin, urlparse
 
 # ============================================================
 # PATHS
@@ -45,9 +56,13 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 MONITORING_DIR = REPO_ROOT / "automation" / "monitoring"
 STATE_FILE = MONITORING_DIR / "last-seen-state.json"
 OUTPUT_FILE = MONITORING_DIR / "monitoring-diff.json"
-MONITORING_SOURCES_MD = REPO_ROOT / "docs" / "monitoring-sources.md"
 
-MONITORING_DIR.mkdir(parents=True, exist_ok=True)
+HEALTH_FAIL_THRESHOLD = 3
+DEFAULT_MAX_ITEMS = 5
+# Dated entries older than this are recorded as seen, not emitted, so a newly
+# reachable or newly migrated feed never dumps its back catalogue.
+DEFAULT_MAX_AGE_DAYS = 30
+SEEN_KEYS_KEPT = 500
 
 
 def utc_now() -> str:
@@ -55,7 +70,69 @@ def utc_now() -> str:
 
 
 # ============================================================
-# STATE MANAGEMENT
+# SOURCES
+# ============================================================
+
+AI_KW = (
+    r"\bAI\b|artificial intelligence|machine learning|generative|\bLLMs?\b|agentic"
+    r"|automated decision|algorithm"
+)
+
+SOURCES: list[dict] = [
+    # Incidents
+    {
+        "id": "aiid", "name": "AI Incident Database", "type": "rss",
+        "url": "https://incidentdatabase.ai/rss.xml",
+        # The feed is per report; collapse reports to one item per incident.
+        "group_by": r"/cite/(\d+)", "max_items": 15,
+    },
+    # Security frameworks
+    {
+        "id": "mitre_atlas", "name": "MITRE ATLAS", "type": "rss",
+        "url": "https://github.com/mitre-atlas/atlas-data/releases.atom", "max_items": 3,
+    },
+    {
+        "id": "owasp_llm", "name": "OWASP LLM Top 10", "type": "file_watch",
+        "url": "https://raw.githubusercontent.com/GenAI-Security-Project/GenAI-LLM-Top10/main/README.md",
+        "pattern": r"Current release:\s*([^\n]+)",
+        "item_url": "https://genai.owasp.org/llm-top-10/",
+    },
+    # Research
+    {
+        "id": "mit_airr", "name": "MIT AI Risk Repository", "type": "mit_airr",
+        "url": "https://airisk.mit.edu/blog", "max_items": 5,
+    },
+    {
+        "id": "uk_aisi", "name": "UK AI Security Institute", "type": "rss",
+        # Community-maintained mirror of the AISI blog (AISI publishes no feed).
+        "url": "https://raw.githubusercontent.com/alan-turing-institute/ai-rss-feeds/main/feeds/aisi-blog.xml",
+        "max_items": 5,
+    },
+    # Regulators and standards bodies.
+# Not polled (verified by dry runs from GitHub Actions): cyber.gov.au (ACSC),
+# industry.gov.au (DISR), asic.gov.au and cisa.gov block or time out runners;
+# oaic.gov.au renders its news list with JavaScript. Follow those by email.
+    {
+        "id": "nist_ai_rmf", "name": "NIST AI RMF", "type": "rss",
+        "url": "https://www.nist.gov/news-events/news/rss.xml",
+        "include": AI_KW + r"|CAISI|RMF", "max_items": 5,
+    },
+    {
+        "id": "eu_ai_office", "name": "EU AI Office", "type": "html_links",
+        "url": "https://digital-strategy.ec.europa.eu/en/policies/ai-office",
+        "link_pattern": r"^/en/(news|library|events)/[a-z0-9-]+$", "max_items": 5,
+    },
+    {
+        "id": "apra", "name": "APRA", "type": "html_links",
+        "url": "https://www.apra.gov.au/news-and-publications",
+        "link_pattern": r"^/news-and-publications/[a-z0-9-]+$",
+        "include": AI_KW + r"|CPS ?23[04]|operational risk|cyber", "max_items": 3,
+    },
+]
+
+
+# ============================================================
+# STATE
 # ============================================================
 
 def load_state() -> dict:
@@ -68,437 +145,380 @@ def load_state() -> dict:
 
 
 def save_state(state: dict) -> None:
-    STATE_FILE.write_text(json.dumps(state, indent=2))
+    STATE_FILE.write_text(json.dumps(state, indent=2) + "\n")
+
+
+def md5(text: str) -> str:
+    return hashlib.md5(text.encode()).hexdigest()
 
 
 # ============================================================
-# HTTP HELPERS
+# FETCH + TEXT HELPERS
 # ============================================================
 
 HEADERS = {
-    "User-Agent": "ai-risk-kb-monitor/1.0 (github.com/b-gowland/ai-risk-kb)",
-    "Accept": "application/json, application/xml, text/html, */*",
+    # Browser-compatible prefix: several AU government WAFs drop unknown agents.
+    "User-Agent": "Mozilla/5.0 (compatible; ai-risk-kb-monitor/2.0; "
+                  "+https://github.com/b-gowland/ai-risk-kb)",
+    "Accept": "application/rss+xml, application/atom+xml, application/xml, text/html, */*",
 }
 
 
-def fetch_url(url: str, timeout: int = 30) -> str | None:
-    """Fetch a URL and return text content, or None on failure."""
+class SourceError(Exception):
+    """A source could not be fetched or yielded nothing usable."""
+
+
+def fetch_bytes(url: str, timeout: int = 60) -> bytes:
     try:
         req = urllib.request.Request(url, headers=HEADERS)
         with urllib.request.urlopen(req, timeout=timeout) as resp:
-            raw = resp.read()
-            charset = resp.headers.get_content_charset() or "utf-8"
-            return raw.decode(charset, errors="replace")
+            return resp.read()
     except Exception as exc:
-        print(f"  [WARN] fetch failed for {url}: {exc}")
-        return None
+        raise SourceError(f"fetch failed: {exc}") from exc
 
 
-def fetch_json(url: str, timeout: int = 30) -> Any | None:
-    """Fetch a URL and parse as JSON."""
-    text = fetch_url(url, timeout)
-    if text is None:
-        return None
+def fetch_text(url: str, timeout: int = 60) -> str:
+    return fetch_bytes(url, timeout).decode("utf-8", errors="replace")
+
+
+def clean_text(fragment: str, limit: int = 800) -> str:
+    """Strip tags, unescape entities, collapse whitespace."""
+    text = re.sub(r"<[^>]+>", " ", html.unescape(fragment or ""))
+    return re.sub(r"\s+", " ", html.unescape(text)).strip()[:limit]
+
+
+def to_iso_date(value: str) -> str:
+    value = (value or "").strip()
+    if not value:
+        return ""
     try:
-        return json.loads(text)
-    except Exception as exc:
-        print(f"  [WARN] JSON parse failed for {url}: {exc}")
-        return None
+        return parsedate_to_datetime(value).date().isoformat()
+    except (TypeError, ValueError, IndexError):
+        pass
+    try:
+        return datetime.fromisoformat(value.replace("Z", "+00:00")).date().isoformat()
+    except ValueError:
+        m = re.match(r"\d{4}-\d{2}-\d{2}", value)
+        return m.group(0) if m else ""
 
 
 # ============================================================
-# SOURCE STRATEGIES
+# FEED PARSING
 # ============================================================
 
-def poll_github_releases(source_id: str, repo: str, state: dict) -> list[dict]:
-    """
-    Poll GitHub Releases API. Returns new releases since last-seen tag.
-    repo: 'owner/repo'
-    """
-    url = f"https://api.github.com/repos/{repo}/releases?per_page=10"
-    # Add auth header if available (avoids rate limiting)
-    gh_token = os.environ.get("GITHUB_TOKEN", "")
-    headers = {**HEADERS, "Accept": "application/vnd.github+json"}
-    if gh_token:
-        headers["Authorization"] = f"Bearer {gh_token}"
+def _local(tag: str) -> str:
+    return tag.rsplit("}", 1)[-1].lower()
 
-    try:
-        req = urllib.request.Request(url, headers=headers)
-        with urllib.request.urlopen(req, timeout=30) as resp:
-            releases = json.loads(resp.read())
-    except Exception as exc:
-        print(f"  [WARN] GitHub releases fetch failed for {repo}: {exc}")
-        return []
 
-    last_seen = state.get(source_id, {}).get("last_seen_tag", "")
-    new_releases = []
+def _child_text(entry: ET.Element, *names: str) -> str:
+    for name in names:
+        for child in entry:
+            if _local(child.tag) == name:
+                text = "".join(child.itertext()).strip()
+                if text:
+                    return text
+    return ""
 
-    for rel in releases:
-        tag = rel.get("tag_name", "")
-        if tag == last_seen:
-            break
-        if rel.get("draft") or rel.get("prerelease"):
+
+def _entry_link(entry: ET.Element) -> str:
+    alternates = []
+    for child in entry:
+        if _local(child.tag) != "link":
             continue
-        new_releases.append({
-            "source_id": source_id,
-            "type": "release",
-            "id": tag,
-            "title": rel.get("name") or tag,
-            "url": rel.get("html_url", ""),
-            "body_excerpt": (rel.get("body") or "")[:1000],
-            "release_date": rel.get("published_at", "")[:10],
-        })
-
-    if releases:
-        # Update state to most recent tag
-        state.setdefault(source_id, {})["last_seen_tag"] = releases[0].get("tag_name", "")
-
-    return new_releases
+        if child.get("href"):  # Atom
+            if child.get("rel", "alternate") == "alternate":
+                return child.get("href")
+            alternates.append(child.get("href"))
+        elif (child.text or "").strip():  # RSS / RDF
+            return child.text.strip()
+    return alternates[0] if alternates else ""
 
 
-def poll_mitre_atlas_changelog(source_id: str, state: dict) -> list[dict]:
-    """
-    Clone mitre-atlas/atlas-data at depth 1, parse CHANGELOG.md for new versions.
-    Falls back to GitHub Releases API if clone fails.
-    """
-    last_seen_version = state.get(source_id, {}).get("last_seen_version", "")
-
-    # Try GitHub Releases first (faster, no clone needed)
-    items = poll_github_releases(source_id + "_releases", "mitre-atlas/atlas-data", state)
-    # Map release tags to changelog-style entries
-    results = []
-    for item in items:
-        results.append({
-            "source_id": source_id,
-            "type": "release",
-            "id": item["id"],
-            "title": f"MITRE ATLAS {item['id']}",
-            "url": "https://atlas.mitre.org/updates/",
-            "body_excerpt": item["body_excerpt"],
-            "release_date": item["release_date"],
-        })
-
-    # Also try fetching CHANGELOG.md directly from GitHub
-    changelog_url = "https://raw.githubusercontent.com/mitre-atlas/atlas-data/main/CHANGELOG.md"
-    changelog_text = fetch_url(changelog_url)
-    if changelog_text:
-        # Parse version headers: ## vX.Y.Z or ## Version X.Y.Z
-        versions = re.findall(
-            r'^#{1,3}\s+(?:v|Version\s+)?(\d+\.\d+\.\d+)[^\n]*\n(.*?)(?=\n#{1,3}\s|\Z)',
-            changelog_text, re.M | re.S
-        )
-        new_versions = []
-        for ver, body in versions:
-            if ver == last_seen_version:
-                break
-            new_versions.append({
-                "source_id": source_id,
-                "type": "changelog_entry",
-                "id": f"atlas-v{ver}",
-                "title": f"MITRE ATLAS v{ver}",
-                "url": "https://atlas.mitre.org/updates/",
-                "body_excerpt": body.strip()[:1000],
-                "release_date": "",  # not always in changelog
-            })
-
-        if versions:
-            state.setdefault(source_id, {})["last_seen_version"] = versions[0][0]
-
-        # Deduplicate with release entries
-        seen_ids = {r["id"] for r in results}
-        for item in new_versions:
-            if item["id"] not in seen_ids:
-                results.append(item)
-
-    return results
-
-
-def poll_owasp_llm(source_id: str, state: dict) -> list[dict]:
-    """
-    Poll OWASP LLM Top 10 GitHub repo releases.
-    Also checks for new documents in the llmtop10 releases.
-    """
-    items = poll_github_releases(source_id, "OWASP/www-project-top-10-for-large-language-model-applications", state)
-    # Supplement: check the releases page via API
-    if not items:
-        # Try alternate repo slug
-        items = poll_github_releases(source_id + "_alt", "OWASP/www-project-llm-ai-security", state)
-    return items
-
-
-def poll_rss_feed(source_id: str, url: str, state: dict) -> list[dict]:
-    """
-    Fetch an RSS or Atom feed, return new entries since last-seen GUIDs.
-    """
-    text = fetch_url(url)
-    if not text:
-        return []
-
-    # Extract items — handle both RSS <item> and Atom <entry>
-    item_pattern = re.compile(r'<(?:item|entry)>(.*?)</(?:item|entry)>', re.S)
-    items_raw = item_pattern.findall(text)
-
-    def extract(tag: str, blob: str) -> str:
-        m = re.search(rf'<{tag}[^>]*>(?:<!\[CDATA\[)?(.*?)(?:\]\]>)?</{tag}>', blob, re.S)
-        return m.group(1).strip() if m else ""
-
-    last_seen_guids = set(state.get(source_id, {}).get("seen_guids", []))
-    new_items = []
-    new_guids = []
-
-    for raw in items_raw[:20]:  # cap at 20 per run
-        guid = extract("guid", raw) or extract("id", raw) or extract("link", raw)
+def parse_feed(data: bytes) -> list[dict]:
+    """Parse RSS 2.0, Atom or RDF into dicts: key, title, url, date, summary."""
+    try:
+        root = ET.fromstring(data)
+    except ET.ParseError:
+        # Common publisher bug: bare '&' in titles/URLs. Escape and retry once.
+        try:
+            root = ET.fromstring(re.sub(rb"&(?!#?\w+;)", b"&amp;", data))
+        except ET.ParseError as exc:
+            entries = _parse_feed_leniently(data.decode("utf-8", errors="replace"))
+            if entries:
+                return entries
+            raise SourceError(f"not a parseable feed: {exc}") from exc
+    entries = []
+    for el in root.iter():
+        if _local(el.tag) not in ("item", "entry"):
+            continue
+        title = clean_text(_child_text(el, "title"), 300)
+        url = _entry_link(el)
+        guid = _child_text(el, "guid", "id") or url or title
         if not guid:
             continue
-        guid_hash = hashlib.md5(guid.encode()).hexdigest()
-        new_guids.append(guid_hash)
-        if guid_hash in last_seen_guids:
-            continue
-
-        title = extract("title", raw)
-        link = extract("link", raw)
-        pub_date = extract("pubDate", raw) or extract("published", raw) or extract("updated", raw)
-        description = extract("description", raw) or extract("summary", raw) or extract("content", raw)
-
-        new_items.append({
-            "source_id": source_id,
-            "type": "rss_entry",
-            "id": guid_hash,
+        entries.append({
+            "key": md5(guid),
             "title": title,
-            "url": link,
-            "body_excerpt": re.sub(r'<[^>]+>', '', description)[:800],
-            "release_date": pub_date[:10] if pub_date else "",
+            "url": url,
+            "date": to_iso_date(_child_text(el, "pubdate", "published", "updated", "date")),
+            "summary": clean_text(_child_text(el, "description", "summary", "encoded", "content")),
         })
-
-    # Update state — keep last 100 GUIDs
-    all_guids = new_guids + list(last_seen_guids)
-    state.setdefault(source_id, {})["seen_guids"] = all_guids[:100]
-
-    return new_items
+    return entries
 
 
-def poll_mit_airr(source_id: str, state: dict) -> list[dict]:
+def _parse_feed_leniently(text: str) -> list[dict]:
+    """Regex fallback for feeds that are not well-formed XML."""
+    def tag(name: str, blob: str) -> str:
+        pattern = rf"<{name}\b[^>]*>(?:<!\[CDATA\[)?(.*?)(?:\]\]>)?</{name}>"
+        m = re.search(pattern, blob, re.S | re.I)
+        return m.group(1).strip() if m else ""
+
+    entries = []
+    for blob in re.findall(r"<item\b[^>]*>(.*?)</item>", text, re.S | re.I):
+        url = clean_text(tag("link", blob), 500)
+        guid = tag("guid", blob) or url
+        if not guid:
+            continue
+        entries.append({
+            "key": md5(guid),
+            "title": clean_text(tag("title", blob), 300),
+            "url": url,
+            "date": to_iso_date(tag("pubDate", blob)),
+            "summary": clean_text(tag("description", blob)),
+        })
+    return entries
+
+
+class _LinkParser(HTMLParser):
+    def __init__(self) -> None:
+        super().__init__()
+        self.links: list[tuple[str, str]] = []
+        self._href: str | None = None
+        self._text: list[str] = []
+
+    def handle_starttag(self, tag, attrs):
+        if tag == "a":
+            self._href = dict(attrs).get("href")
+            self._text = []
+
+    def handle_data(self, data):
+        if self._href is not None:
+            self._text.append(data)
+
+    def handle_endtag(self, tag):
+        if tag == "a" and self._href is not None:
+            self.links.append((self._href, clean_text("".join(self._text), 300)))
+            self._href = None
+
+
+def parse_links(page: str, base_url: str, link_pattern: str) -> list[dict]:
+    """Unique links whose path matches link_pattern, with their anchor text."""
+    parser = _LinkParser()
+    parser.feed(page)
+    found: dict[str, str] = {}
+    for href, text in parser.links:
+        absolute = urljoin(base_url, href).split("#", 1)[0].split("?", 1)[0].rstrip("/")
+        if not re.search(link_pattern, urlparse(absolute).path, re.I):
+            continue
+        if absolute not in found or (text and not found[absolute]):
+            found[absolute] = text
+    return [{"key": url, "title": text or urlparse(url).path.rsplit("/", 1)[-1],
+             "url": url, "date": "", "summary": ""} for url, text in found.items()]
+
+
+# ============================================================
+# DIFF
+# ============================================================
+
+def _item(source: dict, entry: dict, kind: str) -> dict:
+    return {
+        "source_id": source["id"],
+        "type": kind,
+        "id": entry["key"],
+        "title": entry["title"] or "(untitled)",
+        "url": entry["url"],
+        "body_excerpt": entry["summary"],
+        "release_date": entry["date"],
+    }
+
+
+def diff_entries(source: dict, entries: list[dict], sstate: dict, kind: str) -> list[dict]:
+    """Return new entries as items and record them as seen.
+
+    Entries filtered out by `include` or older than `max_age_days` are recorded
+    as seen; new entries beyond
+    `max_items` are left unseen so they are picked up on a later run.
     """
-    Poll MIT AI Risk Repository blog for new posts.
+    # Legacy state: seen_guids (md5 of RSS guid) / seen_links (MIT AIRR paths).
+    seen = set(sstate.get("seen", [])) | set(sstate.get("seen_guids", []))
+    seeding = not seen and "seen" not in sstate
 
-    MIT AIRR publishes updates via blog posts at airisk.mit.edu/blog — this is
-    the authoritative signal for taxonomy updates, new subdomains, and dataset
-    releases. The April 2025 post ("new subdomain: multi-agent risks") is the
-    canonical example of what we need to catch.
+    group_re = re.compile(source["group_by"]) if source.get("group_by") else None
+    groups: dict[str, list[dict]] = {}
+    for entry in entries:
+        gkey = entry["key"]
+        if group_re:
+            m = group_re.search(entry["url"]) or group_re.search(entry["key"])
+            gkey = f"group:{m.group(1)}" if m else entry["key"]
+        groups.setdefault(gkey, []).append(entry)
 
-    Strategy: fetch the /blog index, extract post links and titles, diff against
-    last-seen. For each new post, fetch the post itself to extract a meaningful
-    excerpt for the classifier.
-    """
-    results = []
-    blog_url = "https://airisk.mit.edu/blog"
-    text = fetch_url(blog_url)
-    if not text:
+    include = re.compile(source["include"], re.I) if source.get("include") else None
+    max_age = source.get("max_age_days", DEFAULT_MAX_AGE_DAYS)
+    cutoff = (datetime.now(UTC) - timedelta(days=max_age)).date().isoformat()
+    fresh: list[tuple[str, dict]] = []
+    for gkey, members in groups.items():
+        member_keys = {m["key"] for m in members}
+        if gkey in seen or member_keys & seen:
+            seen |= member_keys | {gkey}
+            continue
+        head = members[0]
+        stale = bool(head["date"]) and head["date"] < cutoff
+        if seeding or stale or (
+            include and not include.search(f"{head['title']} {head['summary']}")
+        ):
+            seen |= member_keys | {gkey}
+            continue
+        fresh.append((gkey, head))
+
+    fresh.sort(key=lambda pair: pair[1]["date"], reverse=True)
+    cap = source.get("max_items", DEFAULT_MAX_ITEMS)
+    emitted = fresh[:cap]
+    if len(fresh) > cap:
+        print(f"   ({len(fresh) - cap} more new item(s) deferred by max_items={cap})")
+    for gkey, _head in emitted:
+        seen |= {gkey} | {m["key"] for m in groups[gkey]}
+
+    # Keep keys still present in the feed first, so trimming drops only old ones.
+    live = {e["key"] for e in entries} | set(groups)
+    sstate["seen"] = (sorted(seen & live) + sorted(seen - live))[:SEEN_KEYS_KEPT]
+    sstate.pop("seen_guids", None)
+    if seeding:
+        print(f"   seeded state with {len(groups)} existing item(s); nothing emitted")
+    return [_item(source, head, kind) for _, head in emitted]
+
+
+# ============================================================
+# SOURCE TYPES
+# ============================================================
+
+def poll_rss(source: dict, sstate: dict) -> list[dict]:
+    entries = parse_feed(fetch_bytes(source["url"]))
+    if not entries:
+        raise SourceError("feed contained no entries")
+    return diff_entries(source, entries, sstate, "rss_entry")
+
+
+def poll_html_links(source: dict, sstate: dict) -> list[dict]:
+    page = fetch_text(source["url"])
+    entries = parse_links(page, source["url"], source["link_pattern"])
+    if not entries:
+        sample = sorted({path for h in re.findall(r'href=["\']([^"\']+)', page)
+                         if (path := urlparse(urljoin(source["url"], h)).path).count("/") >= 2
+                         and not path.startswith("/__")})
+        raise SourceError(f"no links matched link_pattern (page layout changed?); page has "
+                          f"{len(sample)} links, e.g. {sample[:8]}")
+    return diff_entries(source, entries, sstate, "new_link")
+
+
+def poll_file_watch(source: dict, sstate: dict) -> list[dict]:
+    m = re.search(source["pattern"], fetch_text(source["url"]))
+    if not m:
+        raise SourceError("watched pattern not found")
+    value = m.group(1).strip(" *_.`")  # drop markdown emphasis around the value
+    previous = sstate.get("value")
+    sstate["value"] = value
+    if previous is None:
+        print(f"   seeded value: {value!r}")
         return []
+    if value == previous:
+        return []
+    return [{
+        "source_id": source["id"],
+        "type": "version_change",
+        "id": md5(value),
+        "title": f"{source['name']}: {previous} -> {value}",
+        "url": source.get("item_url", source["url"]),
+        "body_excerpt": f"{source['name']} now reports '{value}' (previously '{previous}').",
+        "release_date": utc_now()[:10],
+    }]
 
-    # Extract blog post links — typically /blog/post-slug pattern
-    post_links = re.findall(r'href=["\'](/blog/[a-z0-9][a-z0-9\-]+)["\']', text)
-    # Deduplicate preserving order
-    seen = set()
-    unique_links = []
-    for link in post_links:
-        if link not in seen and link != "/blog":
-            seen.add(link)
-            unique_links.append(link)
 
-    last_seen_links = set(state.get(source_id, {}).get("seen_links", []))
-    new_links = [l for l in unique_links if l not in last_seen_links]
+def poll_mit_airr(source: dict, sstate: dict) -> list[dict]:
+    """MIT AIRR blog: diff post links, fetch each new post for title/excerpt."""
+    index = fetch_text(source["url"])
+    links: list[str] = []
+    for link in re.findall(r'href=["\'](/blog/[a-z0-9][a-z0-9\-]+)["\']', index):
+        if link not in links:
+            links.append(link)
+    if not links:
+        raise SourceError("no blog post links found")
 
-    for link in new_links[:5]:  # cap at 5 new posts per run
-        full_url = f"https://airisk.mit.edu{link}"
-        post_text = fetch_url(full_url)
-
-        # Extract title
-        title_m = re.search(r'<h1[^>]*>(.*?)</h1>', post_text or "", re.S | re.I)
-        title = re.sub(r'<[^>]+>', '', title_m.group(1)).strip() if title_m else link
-
-        # Extract first substantive paragraph as excerpt
-        excerpt = ""
-        if post_text:
-            paras = re.findall(r'<p[^>]*>(.*?)</p>', post_text, re.S | re.I)
-            for p in paras:
-                clean = re.sub(r'<[^>]+>', '', p).strip()
-                if len(clean) > 80:  # skip nav/short paras
-                    excerpt = clean[:600]
-                    break
-
-        # Extract date if present
-        date_m = re.search(r'(\d{4}-\d{2}-\d{2})', post_text or "")
-        pub_date = date_m.group(1) if date_m else utc_now()[:10]
-
-        results.append({
-            "source_id": source_id,
+    if not sstate.get("seen_links"):
+        sstate["seen_links"] = sorted(links)
+        print(f"   seeded state with {len(links)} existing post(s); nothing emitted")
+        return []
+    seen = set(sstate["seen_links"])
+    new_links = [link for link in links if link not in seen]
+    items = []
+    for link in new_links[: source.get("max_items", DEFAULT_MAX_ITEMS)]:
+        url = f"https://airisk.mit.edu{link}"
+        try:
+            post = fetch_text(url)
+        except SourceError:
+            post = ""
+        title_m = re.search(r"<h1[^>]*>(.*?)</h1>", post, re.S | re.I)
+        title = clean_text(title_m.group(1), 300) if title_m else link
+        excerpt = next(
+            (clean_text(p) for p in re.findall(r"<p[^>]*>(.*?)</p>", post, re.S | re.I)
+             if len(clean_text(p)) > 80),
+            "New blog post. Check for taxonomy updates, new subdomains or dataset releases.",
+        )
+        date_m = re.search(r"\d{4}-\d{2}-\d{2}", post)
+        items.append({
+            "source_id": source["id"],
             "type": "blog_post",
             "id": link,
             "title": f"MIT AI Risk Repository: {title}",
-            "url": full_url,
-            "body_excerpt": excerpt or "New blog post published. Check for taxonomy updates, new subdomains, or dataset releases.",
-            "release_date": pub_date,
-        })
-        time.sleep(1)
-
-    # Update state — store all seen links
-    all_links = list(set(unique_links) | last_seen_links)
-    state.setdefault(source_id, {})["seen_links"] = all_links[:200]
-
-    return results
-
-
-def poll_html_index(source_id: str, url: str, state: dict, link_pattern: str = None) -> list[dict]:
-    """
-    Fetch an HTML page, extract all links matching a pattern, diff against last-seen.
-    Used for government/regulatory sites that don't have RSS.
-    """
-    text = fetch_url(url)
-    if not text:
-        return []
-
-    # Extract all href values
-    links = re.findall(r'href=["\']([^"\']+)["\']', text)
-    if link_pattern:
-        links = [l for l in links if re.search(link_pattern, l, re.I)]
-
-    # Hash the set of links for change detection
-    links_hash = hashlib.md5("|".join(sorted(set(links))).encode()).hexdigest()
-    last_hash = state.get(source_id, {}).get("links_hash", "")
-
-    results = []
-    if links_hash != last_hash and last_hash:
-        # Extract page title for context
-        title_m = re.search(r'<title[^>]*>(.*?)</title>', text, re.S | re.I)
-        page_title = re.sub(r'<[^>]+>', '', title_m.group(1)).strip() if title_m else url
-
-        results.append({
-            "source_id": source_id,
-            "type": "page_update",
-            "id": links_hash,
-            "title": f"{page_title} — page updated",
             "url": url,
-            "body_excerpt": f"Page content has changed. New or removed links detected. Review {url} for new guidance, consultations, or enforcement actions.",
-            "release_date": utc_now()[:10],
+            "body_excerpt": excerpt,
+            "release_date": date_m.group(0) if date_m else utc_now()[:10],
         })
-
-    state.setdefault(source_id, {})["links_hash"] = links_hash
-    return results
-
-
-def poll_aiid(source_id: str, state: dict) -> list[dict]:
-    """
-    Poll AI Incident Database for recent incidents via their API/RSS.
-    """
-    # AIID has a public RSS feed for new incidents
-    rss_url = "https://incidentdatabase.ai/rss.xml"
-    return poll_rss_feed(source_id, rss_url, state)
+        seen.add(link)
+        time.sleep(1)
+    sstate["seen_links"] = sorted(seen)[:SEEN_KEYS_KEPT]
+    return items
 
 
-# ============================================================
-# SOURCE REGISTRY
-# Maps source_id → polling function call
-# Derived from monitoring-sources.md categories
-# ============================================================
-
-def build_source_registry() -> list[dict]:
-    """
-    Returns the list of sources to poll, aligned with monitoring-sources.md.
-    Each entry has: id, label, poll_fn (callable → list[dict])
-    """
-    return [
-        # Incident databases
-        {"id": "aiid", "label": "AI Incident Database"},
-        {"id": "mit_incident_tracker", "label": "MIT AI Incident Tracker"},
-        # Regulatory
-        {"id": "eu_ai_office", "label": "EU AI Office"},
-        {"id": "nist_ai_rmf", "label": "NIST AI RMF"},
-        {"id": "apra", "label": "APRA"},
-        {"id": "disr_ai_safety", "label": "DISR AI Safety"},
-        # Security frameworks
-        {"id": "mitre_atlas", "label": "MITRE ATLAS"},
-        {"id": "owasp_llm", "label": "OWASP LLM Top 10"},
-        # Academic / research
-        {"id": "mit_airr", "label": "MIT AI Risk Repository"},
-        # Industry
-        {"id": "iapp", "label": "IAPP AI Governance Centre"},
-        # AU-specific
-        {"id": "oaic", "label": "OAIC AI and Privacy"},
-        {"id": "acsc", "label": "ACSC AI Security"},
-    ]
+POLLERS = {
+    "rss": poll_rss,
+    "html_links": poll_html_links,
+    "file_watch": poll_file_watch,
+    "mit_airr": poll_mit_airr,
+}
 
 
-def poll_source(source_id: str, state: dict) -> list[dict]:
-    """Dispatch to the right polling strategy for each source."""
-    print(f"  Polling: {source_id}")
+def poll_source(source: dict, state: dict) -> list[dict]:
+    """Poll one source, updating its state and health. Never raises."""
+    sstate = state.setdefault(source["id"], {})
+    health = sstate.setdefault("health", {"consecutive_failures": 0})
     try:
-        if source_id == "aiid":
-            return poll_aiid(source_id, state)
-        elif source_id == "mit_incident_tracker":
-            return poll_html_index(
-                source_id,
-                "https://incidentdatabase.ai/summaries/incidents",
-                state,
-                link_pattern=r"/cite/\d+"
-            )
-        elif source_id == "mitre_atlas":
-            return poll_mitre_atlas_changelog(source_id, state)
-        elif source_id == "owasp_llm":
-            return poll_github_releases(source_id, "OWASP/www-project-top-10-for-large-language-model-applications", state)
-        elif source_id == "mit_airr":
-            return poll_mit_airr(source_id, state)
-        elif source_id == "eu_ai_office":
-            return poll_rss_feed(
-                source_id,
-                "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai/rss",
-                state
-            )
-        elif source_id == "nist_ai_rmf":
-            return poll_html_index(
-                source_id,
-                "https://airc.nist.gov/News",
-                state,
-                link_pattern=r"ai|artificial.intelligence|risk.management|rmf"
-            )
-        elif source_id == "apra":
-            return poll_html_index(
-                source_id,
-                "https://www.apra.gov.au/news-releases",
-                state,
-                link_pattern=r"ai|artificial|technology|cps.?230|data|operational"
-            )
-        elif source_id == "disr_ai_safety":
-            return poll_html_index(
-                source_id,
-                "https://www.industry.gov.au/science-technology-and-innovation/technology/artificial-intelligence",
-                state
-            )
-        elif source_id == "iapp":
-            # Use IAPP AI Governance feed (more targeted than general news RSS)
-            return poll_rss_feed(
-                source_id,
-                "https://iapp.org/resources/topics/artificial-intelligence/feed/",
-                state
-            )
-        elif source_id == "oaic":
-            return poll_html_index(
-                source_id,
-                "https://www.oaic.gov.au/privacy/your-privacy-rights/artificial-intelligence",
-                state
-            )
-        elif source_id == "acsc":
-            return poll_html_index(
-                source_id,
-                "https://www.cyber.gov.au/resources-business-and-government/governance-and-user-education/artificial-intelligence",
-                state
-            )
-        else:
-            print(f"  [WARN] No polling strategy for {source_id}")
-            return []
+        items = POLLERS[source["type"]](source, sstate)
     except Exception as exc:
-        print(f"  [ERROR] Polling failed for {source_id}: {exc}")
+        health["consecutive_failures"] = health.get("consecutive_failures", 0) + 1
+        health["last_error"] = str(exc)[:300]
+        print(f"   [WARN] {source['id']}: {exc} "
+              f"({health['consecutive_failures']} consecutive failure(s))")
         return []
+    health.update(consecutive_failures=0, last_success=utc_now(), last_error=None)
+    return items
+
+
+def unhealthy_sources(state: dict) -> dict[str, dict]:
+    return {
+        s["id"]: state[s["id"]]["health"] for s in SOURCES
+        if state.get(s["id"], {}).get("health", {}).get("consecutive_failures", 0)
+        >= HEALTH_FAIL_THRESHOLD
+    }
 
 
 # ============================================================
@@ -506,36 +526,42 @@ def poll_source(source_id: str, state: dict) -> list[dict]:
 # ============================================================
 
 def main() -> None:
-    print(f"[poll-sources] Starting run at {utc_now()}")
-    print(f"[poll-sources] State file: {STATE_FILE}")
-
     state = load_state()
-    sources = build_source_registry()
 
+    if "--health-check" in sys.argv:
+        bad = unhealthy_sources(state)
+        for sid, health in bad.items():
+            print(f"[health] {sid}: {health['consecutive_failures']} consecutive failures; "
+                  f"last error: {health.get('last_error')}")
+        if bad:
+            print(f"[health] {len(bad)} source(s) failing — fix or replace their URLs "
+                  f"in automation/monitoring/poll-sources.py")
+            sys.exit(1)
+        print("[health] all sources healthy")
+        return
+
+    print(f"[poll-sources] Starting run at {utc_now()}")
     all_new_items: list[dict] = []
-
-    for source in sources:
-        source_id = source["id"]
-        label = source["label"]
-        print(f"\n── {label} ({source_id})")
-        items = poll_source(source_id, state)
+    for source in SOURCES:
+        print(f"\n── {source['name']} ({source['id']})")
+        items = poll_source(source, state)
         print(f"   → {len(items)} new item(s)")
         all_new_items.extend(items)
         time.sleep(1)  # be polite to external servers
 
-    # Write output — always, even if no items found
     output = {
         "run_date": utc_now()[:10],
         "run_timestamp": utc_now(),
         "total_new_items": len(all_new_items),
         "items": all_new_items,
+        "source_health": {s["id"]: state[s["id"]]["health"] for s in SOURCES},
     }
-    OUTPUT_FILE.write_text(json.dumps(output, indent=2))
+    OUTPUT_FILE.write_text(json.dumps(output, indent=2) + "\n")
     save_state(state)
 
-    print(f"\n[poll-sources] Complete. {len(all_new_items)} new item(s) across {len(sources)} sources.")
-    print(f"[poll-sources] Output: {OUTPUT_FILE}")
-    print(f"[poll-sources] State:  {STATE_FILE}")
+    failing = [sid for sid, h in output["source_health"].items() if h["consecutive_failures"]]
+    print(f"\n[poll-sources] Complete. {len(all_new_items)} new item(s) across "
+          f"{len(SOURCES)} sources; failing this run: {', '.join(failing) or 'none'}.")
 
 
 if __name__ == "__main__":
