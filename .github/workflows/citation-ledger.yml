@@ -1,7 +1,7 @@
 name: citation-ledger (strict)
 
 # Tier-0 citation ledger check. STRICT: blocks on NAME_MISMATCH, UNKNOWN_ID,
-# or CANNOT_VERIFY. Flipped 2026-07-10 after the gate cleared: both
+# or AMBIGUOUS_EDITION (CANNOT_VERIFY is reported but never blocks). Flipped 2026-07-10 after the gate cleared: both
 # human-check items resolved (f2 Art. 29->26; c2 AML.T0054.003->AML.T0051.001)
 # and 36/36 citations verify clean.
 

@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 
 <div style={{display:'flex',gap:'0.5rem',flexWrap:'wrap',marginBottom:'1.5rem'}}>
   <span className="severity-badge severity-critical severity">Critical severity</span>
-  <span className="framework-chip">EU AI Act Art. 14</span> <span className="framework-chip">NIST AI RMF MANAGE 4.2</span> <span className="framework-chip">UK AISI Safety Evals</span> <span className="framework-chip">Anthropic AI Safety</span>
+  <span className="framework-chip">EU AI Act Art. 14</span> <span className="framework-chip">NIST AI RMF MEASURE 2.6</span> <span className="framework-chip">UK AISI Safety Evals</span> <span className="framework-chip">Anthropic AI Safety</span>
 </div>
 
 **Domain:** G — Systemic & Macro | **Jurisdiction:** Global
@@ -110,7 +110,7 @@ Every deployed AI agent must have a tested, documented, and accessible mechanism
 
 Implementation requirements: (1) **Mechanism design** — the kill switch must: (a) halt the agent's current actions immediately; (b) prevent the agent from initiating new actions; (c) preserve the agent's current state for post-incident review; (d) be executable without requiring access to the agent's underlying infrastructure (i.e. not require SSH access to the production server — it should be accessible through an operations dashboard); (2) **Authorised operators** — document who is authorised to use the kill switch: which roles, under what circumstances, and what the approval chain is for use outside of an emergency. For true emergencies, any authorised operator should be able to use it without needing another person's approval; (3) **Response time definition** — define the maximum acceptable time from a decision to halt the agent to the agent actually halting. For agents with access to external systems (sending emails, making payments), this must be short — minutes, not hours; (4) **Annual testing** — the kill switch must be tested at least annually, in conditions that simulate an actual emergency (not just a calm scheduled test). The test must confirm: the mechanism is functional, authorised operators know how to use it, and the response time is within the defined target; (5) **Post-halt procedure** — define what happens after the kill switch is used: how the agent's state is preserved, who conducts the post-incident review, what criteria must be met before the agent is restarted, and who authorises restart.
 
-**Jurisdiction notes:** EU — EU AI Act Art. 14(4) — the ability to interrupt the AI system is a legal obligation for high-risk AI oversight. Art. 9 — risk management must address the ability to take corrective action | AU — APRA CPS 230 — incident response capability must include ability to contain operational disruptions caused by AI systems | US — NIST AI RMF RESPOND function — incident response for AI includes ability to halt operation; NIST AI 600-1 — kill switch is an explicit control recommendation for agentic AI
+**Jurisdiction notes:** EU — EU AI Act Art. 14(4) — the ability to interrupt the AI system is a legal obligation for high-risk AI oversight. Art. 9 — risk management must address the ability to take corrective action | AU — APRA CPS 230 — incident response capability must include ability to contain operational disruptions caused by AI systems | US — NIST AI RMF MANAGE 2.4 — mechanisms and assigned responsibilities to supersede, disengage or deactivate AI systems whose outcomes are inconsistent with intended use; NIST AI 600-1 — kill switch is an explicit control recommendation for agentic AI
 
 ---
 

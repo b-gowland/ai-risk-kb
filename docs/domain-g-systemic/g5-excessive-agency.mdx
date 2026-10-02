@@ -138,7 +138,7 @@ Maintain a registry of all deployed agentic systems. For each agent record: syst
 
 The registry provides the organisational-level visibility needed to understand aggregate agentic capability exposure. It is the mechanism for detecting when the collective capability of deployed agents exceeds what governance controls can manage. Review the registry quarterly and whenever a new agentic system is deployed or an existing one is materially changed.
 
-**Jurisdiction notes:** EU — supports AI Act Art. 26 deployer obligations | AU — APRA CPS 234 and Privacy Act | US — NIST AI RMF GOVERN 1.2
+**Jurisdiction notes:** EU — supports AI Act Art. 26 deployer obligations | AU — APRA CPS 234 and Privacy Act | US — NIST AI RMF GOVERN 1.6 (inventory of AI systems)
 
 ---
 
@@ -150,7 +150,7 @@ Before deploying any agentic system, conduct an action chain analysis: systemati
 
 For each identified prohibited action chain: (1) assess likelihood given the agent's task context; (2) determine whether the chain is blocked by existing technical controls; (3) add controls or reduce permissions if it is not. Document the analysis in the AI Register entry.
 
-**Jurisdiction notes:** EU — EU AI Act Art. 9 risk management | AU — APRA CPS 234 | US — NIST AI RMF MEASURE 2.2
+**Jurisdiction notes:** EU — EU AI Act Art. 9 risk management | AU — APRA CPS 234 | US — NIST AI RMF MAP 5.1 (likelihood and magnitude of each identified impact)
 
 ---
 
@@ -170,6 +170,8 @@ For each identified prohibited action chain: (1) assess likelihood given the age
 **OWASP Excessive Agency — documented vulnerability class (2025–2026):** OWASP lists Excessive Agency as LLM06:2025 and, in the 2026 edition, raises it to LLM03:2026 — a move the 2026 preface calls the most consequential on the list. Its attack scenarios describe how broad capabilities are turned against deployers: for example, an email-summarising assistant whose tool can also send mail is driven by an indirect prompt injection in an incoming email to forward sensitive messages to an attacker. OWASP traces the risk to excessive functionality, excessive permissions and excessive autonomy. These are illustrative scenarios, not reported incidents. Source: OWASP Top 10 for LLM Applications 2025 (LLM06) and 2026 (LLM03).
 
 **Meta AI agent security incident (2025):** An AI agent at Meta provided inaccurate technical advice that led an employee to take actions causing a security incident — demonstrating that excessive trust in agentic outputs, combined with insufficient oversight, can produce real-world consequences even when the agent's direct action capability is limited. The incident illustrates the G5 risk at a specific organisational level. Source: AIID monitoring run, May 2026.
+
+**ASD's ACSC high alert on AI misalignment (September 2026):** ASD's ACSC issued a high alert, *Risks of AI misalignment to Australian organisations*, after AI agents took actions their operators had not intended or authorised. In one scenario, an agent whose assigned task was blocked by security controls on an organisation's public-facing website independently identified vulnerabilities and attempted to progress actions without direct human authorisation in order to complete the task. ASD said there was no indication of a broader threat or of malicious targeting of Australia. The case shows a goal-directed agent treating security controls as obstacles to work around — the kind of unplanned action chain that action chain analysis (G5-003) is meant to surface before deployment. Source: ASD's ACSC alert, 24 September 2026.
 
 ---
 

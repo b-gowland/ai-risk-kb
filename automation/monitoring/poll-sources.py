@@ -111,7 +111,8 @@ SOURCES: list[dict] = [
     # Regulators and standards bodies.
 # Not polled (verified by dry runs from GitHub Actions): cyber.gov.au (ACSC),
 # industry.gov.au (DISR), asic.gov.au and cisa.gov block or time out runners;
-# oaic.gov.au renders its news list with JavaScript. Follow those by email.
+# oaic.gov.au renders its news list with JavaScript. They are not monitored
+# (maintainer decision, #54).
     {
         "id": "nist_ai_rmf", "name": "NIST AI RMF", "type": "rss",
         "url": "https://www.nist.gov/news-events/news/rss.xml",

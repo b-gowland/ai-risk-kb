@@ -17,8 +17,9 @@ import TabItem from '@theme/TabItem';
 <div style={{display:'flex', gap:'0.5rem', flexWrap:'wrap', marginBottom:'1.5rem'}}>
   <span className="severity-badge severity-high">High severity</span>
   <span className="framework-chip">MITRE ATLAS v5.3</span>
+  <span className="framework-chip">MITRE ATLAS AML.T0110 AI Agent Tool Poisoning</span>
   <span className="framework-chip">OWASP LLM03:2026 Excessive Agency</span>
-  <span className="framework-chip">NIST AI RMF GOVERN 1.6</span>
+  <span className="framework-chip">NIST AI RMF GOVERN 6.1</span>
 </div>
 
 **Domain:** C — Security & Adversarial | **Jurisdiction:** Global
@@ -110,7 +111,7 @@ Security · Technology · Operations · Legal / Compliance · Finance
 | **AU** | Privacy Act APP 11 — reasonable steps to protect personal data | Yes |
 | **EU** | AI Act Art. 15 — high-risk AI systems resilient against adversarial inputs | Yes (high-risk AI) |
 | **EU** | GDPR Art. 32 — appropriate technical security measures | Yes (personal data) |
-| **Global** | NIST AI RMF GOVERN 1.6 — supply chain risk including AI tool integrations | Voluntary |
+| **Global** | NIST AI RMF GOVERN 6.1 — policies and procedures for AI risks from third-party entities, including AI tool integrations | Voluntary |
 
 ---
 
@@ -124,7 +125,7 @@ Maintain an explicit allowlist of MCP servers that AI agents are permitted to co
 
 Review the allowlist at least quarterly and whenever a new agent is deployed or an existing agent's toolset changes. Remove servers that are no longer actively maintained or whose publisher can no longer be identified. An empty allowlist (no MCP connections) is the correct default for any new agent deployment — connections are added as needed, not assumed.
 
-**Jurisdiction notes:** AU — recommended under APRA CPS 234 service provider risk management | EU — required for high-risk AI under EU AI Act Art. 9 risk management | US — NIST AI RMF GOVERN 1.6
+**Jurisdiction notes:** AU — recommended under APRA CPS 234 service provider risk management | EU — required for high-risk AI under EU AI Act Art. 9 risk management | US — NIST AI RMF GOVERN 6.1
 
 ---
 

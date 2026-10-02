@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 
 <div style={{display:'flex',gap:'0.5rem',flexWrap:'wrap',marginBottom:'1.5rem'}}>
   <span className="severity-badge severity-high">High severity</span>
-  <span className="framework-chip">EU AI Act Art. 53/55</span> <span className="framework-chip">NIST AI RMF GOVERN 1.6</span> <span className="framework-chip">APRA CPS 230</span> <span className="framework-chip">ISO 27001/27036</span>
+  <span className="framework-chip">EU AI Act Art. 53/55</span> <span className="framework-chip">NIST AI RMF GOVERN 6.1</span> <span className="framework-chip">APRA CPS 230</span> <span className="framework-chip">ISO 27001/27036</span>
 </div>
 
 **Domain:** B — Governance | **Jurisdiction:** AU, EU, US, Global
@@ -103,7 +103,7 @@ Minimum AI-BOM content: (1) foundation model(s) used — name, version, provider
 
 The AI-BOM is an emerging standard — many vendors do not yet produce one in a structured format. Where a full AI-BOM is not available, request the information in the DDQ (B4-001) and document what was disclosed. The ability to obtain an AI-BOM is itself a signal of vendor maturity.
 
-**Jurisdiction notes:** AU — no specific AI-BOM requirement; APRA CPS 230 due diligence obligations support requesting this information | EU — EU AI Act Art. 53 — providers of GPAI models must provide technical documentation to downstream users. Art. 13 — deployers of high-risk AI must have access to documentation sufficient to understand the system's capabilities and limitations. This is the regulatory basis for requiring an AI-BOM | US — NIST AI RMF GOVERN 1.6 — AI risk management should include understanding of the AI supply chain. Executive Order 14110 (2023) — requirements for AI safety documentation align with AI-BOM concept
+**Jurisdiction notes:** AU — no specific AI-BOM requirement; APRA CPS 230 due diligence obligations support requesting this information | EU — EU AI Act Art. 53 — providers of GPAI models must provide technical documentation to downstream users. Art. 13 — deployers of high-risk AI must have access to documentation sufficient to understand the system's capabilities and limitations. This is the regulatory basis for requiring an AI-BOM | US — NIST AI RMF MAP 4.1 — approaches for mapping the technology and legal risks of AI components, including third-party data and software, should be in place and documented. Executive Order 14110 (2023) — requirements for AI safety documentation align with AI-BOM concept
 
 ---
 
@@ -264,7 +264,7 @@ class AIBillOfMaterials:
 
 **EU:** EU AI Act Art. 53 — providers of general-purpose AI models must provide technical documentation (equivalent to an AI-BOM) to downstream providers and deployers. Art. 25 — deployers who place high-risk AI on the market under their own name must comply with the same obligations as providers. GDPR Art. 28 — sub-processor chain must be documented and covered by appropriate agreements. The full B4 control set is required for any organisation deploying high-risk AI with EU nexus.
 
-**US:** OCC third-party risk management guidance (2023) — due diligence requirements extend to sub-contractors and critical fourth parties, which includes AI sub-processors. NIST AI RMF GOVERN 1.6 — policies should address AI supply chain risks. NIST AI 100-1 — AI risk management framework explicitly addresses supply chain risk including upstream model providers.
+**US:** OCC third-party risk management guidance (2023) — due diligence requirements extend to sub-contractors and critical fourth parties, which includes AI sub-processors. NIST AI RMF GOVERN 6.1 — policies and procedures should address AI risks associated with third-party entities. NIST AI 100-1 — AI risk management framework explicitly addresses supply chain risk including upstream model providers.
 
 **Tools and references:** CISA AI-BOM guidance · SPDX standard (Software Package Data Exchange — adaptable for AI-BOM) · EU AI Act Art. 53 technical documentation requirements · NIST AI 100-1 · APRA CPS 230 third-party guidance
 

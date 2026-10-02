@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 
 <div style={{display:'flex',gap:'0.5rem',flexWrap:'wrap',marginBottom:'1.5rem'}}>
   <span className="severity-badge severity-high severity">High severity</span>
-  <span className="framework-chip">NIST AI 600-1 Human-AI Config</span> <span className="framework-chip">EU AI Act Art. 14</span> <span className="framework-chip">NIST AI RMF MAP 1.6</span> <span className="framework-chip">AI6 Practice 5</span>
+  <span className="framework-chip">NIST AI 600-1 Human-AI Config</span> <span className="framework-chip">EU AI Act Art. 14</span> <span className="framework-chip">NIST AI RMF MAP 3.4</span> <span className="framework-chip">AI6 Practice 5</span>
 </div>
 
 **Domain:** F — HCI & Deployment | **Jurisdiction:** Global
@@ -207,7 +207,7 @@ class UncertaintyDisplay:
 
 ### Compliance implementation
 
-**Australia:** APRA has no dedicated model-risk prudential standard for AI; AI-assisted decisions fall under CPS 220 (Risk Management) and CPS 230 (Operational Risk Management). APRA's letter to industry on AI (30 April 2026) found boards still building the literacy to challenge AI risk and assurance relying on point-in-time sampling. Neither prescribes technical mechanisms — the verification gate and audit spot-check programme provide evidence of ongoing human oversight. ASIC Regulatory Guide 255 on digital financial product advice (robo-advice) requires that automated financial advice systems have appropriate oversight mechanisms; this extends to any AI-assisted advice process. Professional licensing obligations for financial advisers, credit assessors, and clinicians may impose independent professional obligations on top of organisational controls.
+**Australia:** APRA has no dedicated model-risk prudential standard for AI; AI-assisted decisions fall under CPS 220 (Risk Management) and CPS 230 (Operational Risk Management). APRA's letter to industry on AI (30 April 2026) found boards still building the literacy to challenge AI risk and relying heavily on vendor presentations and summaries (a governance finding). Under change management and assurance, it found point-in-time, sample-based assurance ill-suited to AI with few entities continuously validating AI to detect drift, bias or control breakdowns, and it expects AI that supports critical operations to have credible fallback processes that have actually been tested. Neither prescribes technical mechanisms — the verification gate and audit spot-check programme provide evidence of ongoing human oversight. ASIC Regulatory Guide 255 on digital financial product advice (robo-advice) requires that automated financial advice systems have appropriate oversight mechanisms; this extends to any AI-assisted advice process. Professional licensing obligations for financial advisers, credit assessors, and clinicians may impose independent professional obligations on top of organisational controls.
 
 **EU:** EU AI Act Art. 14 is the primary obligation. Human oversight must be such that the human can: understand the capabilities and limitations of the system, detect and address malfunctions and unexpected outputs, and when necessary refrain from using or override the AI output. Art. 14(4) requires that human overseers be able to intervene in or interrupt the system. The verification gate technically implements this capability. Art. 26 places responsibility on deployers to implement and maintain the human oversight design in practice — the audit spot-check provides the monitoring evidence.
 

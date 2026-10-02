@@ -6,61 +6,32 @@ sidebar_position: 4
 
 # Monitoring sources
 
-The AI risk landscape changes rapidly. The following sources are used to maintain currency of this knowledge base. They are also recommended for practitioners maintaining their own AI risk programs.
+The knowledge base tracks a fixed set of sources that a scheduled job can check automatically. A source is listed here only if the automation polls it. The list is defined in [`automation/monitoring/poll-sources.py`](https://github.com/b-gowland/ai-risk-kb/blob/main/automation/monitoring/poll-sources.py).
 
-## Incident databases
+## Sources polled weekly
 
-| Source | URL | Cadence | Use |
-|--------|-----|---------|-----|
-| AI Incident Database (AIID) | [incidentdatabase.ai](https://incidentdatabase.ai) | Weekly | Primary source for real-world AI incidents. Subscribe to monthly digest. |
-| MIT AI Incident Tracker | [airisk.mit.edu](https://airisk.mit.edu/ai-incident-tracker) | Monthly | Severity-classified tracker with harm taxonomy linked to MIT Risk Repository. |
-| OECD AI Incidents Monitor | [oecd.ai/en/incidents](https://oecd.ai/en/incidents) | Monthly | Cross-jurisdiction incident monitoring with policy context. |
-| Stanford HAI AI Index | [aiindex.stanford.edu](https://aiindex.stanford.edu) | Annually (March) | Comprehensive annual survey of AI incidents, regulation, and safety developments. |
+Each source is checked every Monday at 10:00 UTC.
 
-## Regulatory and standards bodies
+| Source | What it covers | How it is checked |
+|--------|----------------|-------------------|
+| [AI Incident Database](https://incidentdatabase.ai) | Real-world AI incidents, used for incident examples | RSS feed; reports are grouped so each incident appears once |
+| [MITRE ATLAS](https://atlas.mitre.org) | Adversarial techniques, mitigations and case studies for AI systems | Release feed of the `mitre-atlas/atlas-data` GitHub repository |
+| [OWASP Top 10 for LLM Applications](https://genai.owasp.org/llm-top-10/) | Vulnerability list for LLM applications | Watches the "Current release" line in the project's GitHub README, so a new edition is flagged |
+| [MIT AI Risk Repository](https://airisk.mit.edu) | Taxonomy and database of AI risks | New posts on the repository's blog |
+| [UK AI Security Institute](https://www.aisi.gov.uk) | Research and evaluations on frontier AI safety and security | Community-maintained RSS mirror of the AISI blog, because AISI publishes no feed |
+| [NIST](https://www.nist.gov/news-events/news) | US standards and guidance, including the AI RMF and its profiles | NIST news RSS feed, filtered to AI-related items |
+| [EU AI Office](https://digital-strategy.ec.europa.eu/en/policies/ai-office) | EU AI Act implementation, guidance and codes of practice | New news, library and event links on the AI Office page |
+| [APRA](https://www.apra.gov.au/news-and-publications) | Australian prudential regulation, including CPS 230 and CPS 234 | New items in News and publications, filtered to AI, CPS 230/234, operational risk and cyber topics |
 
-| Source | URL | Cadence | Use |
-|--------|-----|---------|-----|
-| NIST AI RMF and AI 600-1 | [nist.gov/itl/ai-risk-management-framework](https://www.nist.gov/itl/ai-risk-management-framework) | As published | Foundational US voluntary framework. Monitor for profile updates and IR 8596 final release. |
-| EU AI Office | [digital-strategy.ec.europa.eu/ai-act](https://digital-strategy.ec.europa.eu/ai-act) | Monthly | Implementation guidance, GPAI Code of Practice, enforcement updates. Critical for EU AI Act tracking. |
-| APRA | [apra.gov.au](https://www.apra.gov.au) | Monthly | CPS 230 guidance, AI-related speeches and supervisory statements. |
-| ASIC Digital Finance | [asic.gov.au/digital-finance](https://www.asic.gov.au/digital-finance) | Monthly | AI governance reviews and enforcement actions in Australian financial services. |
-| ISO/IEC JTC 1/SC 42 | [iso.org/committee/6794475.html](https://www.iso.org/committee/6794475.html) | As published | ISO 42001 (AI Management Systems), ISO 42005 (Impact Assessment), ISO 23894 (AI Risk). |
-| DISR AI Safety | [industry.gov.au/ai-safety](https://www.industry.gov.au/policies-and-initiatives/ai-safety) | Monthly | Australian AI Safety Standards, VAISS guardrails, voluntary AI governance initiatives. |
+## How monitoring works
 
-## Security and adversarial AI
+1. **Weekly poll.** The poller fetches each source and compares it with the last-seen state. The first poll of a new source only records what is already there, and entries older than 30 days are recorded without being reported. No AI model is involved in this step.
+2. **Classification.** Claude classifies each new item against the knowledge base: new domain needed, new entry needed, update to a named entry, or no action.
+3. **Human review.** If any item needs action, the workflow opens a GitHub issue labelled `human-review-required`. A maintainer decides what to change. Nothing in the knowledge base is edited automatically.
+4. **Source health.** If a source fails three runs in a row, the workflow fails and opens an issue so the feed can be fixed or replaced.
 
-| Source | URL | Cadence | Use |
-|--------|-----|---------|-----|
-| MITRE ATLAS | [atlas.mitre.org](https://atlas.mitre.org) | Quarterly | Adversarial threat landscape for AI/ML. Track new tactics and techniques. |
-| OWASP LLM Top 10 | [owasp.org/www-project-top-10-for-large-language-model-applications](https://owasp.org/www-project-top-10-for-large-language-model-applications) | Annually | LLM-specific vulnerability list. Current version: 2026 (published 4 August 2026). IDs change between editions, so cite them with the edition suffix (e.g. LLM03:2026). |
-| NIST Cyber AI Profile IR 8596 | [csrc.nist.gov](https://csrc.nist.gov) | As published | AI-specific cybersecurity controls. December 2025 draft — monitor for final release. |
-| SANS AI Security | [sans.org](https://www.sans.org) | As published | Practical security guidance for AI systems. |
+A separate **monthly maintenance pass** (1st of the month) re-checks flagged claims in the entries and looks for content gaps. It also opens an issue when it finds something for human review. The claim check relies on the model's existing knowledge and has no web access, so recent developments still need a human to verify them.
 
-## Academic and research
+## Sources that are not monitored
 
-| Source | URL | Cadence | Use |
-|--------|-----|---------|-----|
-| MIT AI Risk Repository | [airisk.mit.edu](https://airisk.mit.edu) | Quarterly | Living database of 1,700+ categorised AI risks. Track version updates. |
-| Anthropic / DeepMind / OpenAI Safety Research | Various | As published | Frontier AI safety research. Alignment Forum for broader community research. |
-| ArXiv cs.AI / cs.LG | [arxiv.org](https://arxiv.org) | Weekly (curated) | Pre-print research on AI risks, safety, alignment, and governance. |
-
-## Industry and professional bodies
-
-| Source | URL | Cadence | Use |
-|--------|-----|---------|-----|
-| IAPP AI Governance Centre | [iapp.org](https://iapp.org/resources/article/ai-governance) | Weekly | Privacy and AI governance practitioner community. Regulatory roundups. |
-| ISACA AI Governance | [isaca.org/topics/artificial-intelligence](https://www.isaca.org/topics/artificial-intelligence) | Monthly | COBIT for AI, practitioner guidance, audit frameworks. |
-| Partnership on AI | [partnershiponai.org](https://partnershiponai.org) | Monthly | Multi-stakeholder responsible AI research and guidance. |
-
-## Australian-specific
-
-| Source | URL | Cadence | Use |
-|--------|-----|---------|-----|
-| ACSC AI Security Guidance | [cyber.gov.au](https://www.cyber.gov.au) | As published | ACSC guidance on AI security. Practical operational security. |
-| OAIC AI and Privacy | [oaic.gov.au](https://www.oaic.gov.au/privacy/privacy-guidance-for-organisations-and-government-agencies/artificial-intelligence) | As published | OAIC guidance on AI and privacy obligations under the Privacy Act. |
-| Tech Council of Australia | [techcouncil.com.au](https://techcouncil.com.au) | Monthly | Australian industry perspective on AI governance and workforce implications. |
-
-## Automation
-
-The knowledge base automation engine checks these sources on a defined schedule and generates proposed content updates for human review. See the [automation configuration](https://github.com/b-gowland/ai-risk-kb/blob/main/automation/automation_config.md) for the full maintenance schedule.
+Sources without machine-readable access are not monitored. This includes sites that block or time out automated requests from the workflow's runners, and sites that load their content with JavaScript. They are not treated as monitoring sources. Entries may still cite them; a maintainer checks those citations by hand when the entry is next reviewed.

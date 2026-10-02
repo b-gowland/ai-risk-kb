@@ -122,7 +122,7 @@ Before deploying any agentic system, complete an irreversible action inventory: 
 
 For every irreversible action category, implement a technical approval gate that halts agent execution and routes to a human approver. The gate must be enforced at the execution layer — it cannot be a prompt instruction ("ask before sending"), because prompt instructions can be overridden by injection or by the model's own goal-directed reasoning. The gate is a hard technical control: the action cannot execute until approval is received.
 
-**Jurisdiction notes:** EU — EU AI Act Art. 14 human oversight obligation for high-risk AI | AU — APRA CPS 234 | US — NIST AI RMF MANAGE 4.2
+**Jurisdiction notes:** EU — EU AI Act Art. 14 human oversight obligation for high-risk AI | AU — APRA CPS 234 | US — NIST AI RMF MAP 3.5 (human oversight processes)
 
 ---
 
@@ -146,7 +146,7 @@ Define the operational scope of each agent deployment: what systems it may acces
 
 Scope violations do not necessarily indicate a security attack — they may indicate the agent reasoning its way to a solution that requires resources outside its authorised boundary. Both cases require human review. The monitoring alert is the signal to pause and assess.
 
-**Jurisdiction notes:** EU — GDPR Art. 5 purpose limitation | AU — Privacy Act APP 6 | US — NIST AI RMF MEASURE 2.5
+**Jurisdiction notes:** EU — GDPR Art. 5 purpose limitation | AU — Privacy Act APP 6 | US — NIST AI RMF MEASURE 2.4 (behaviour monitored in production)
 
 ---
 
@@ -158,7 +158,7 @@ For agents operating on long task horizons — tasks that span multiple hours, i
 
 This addresses the accumulation risk: individually reasonable steps adding up to an out-of-scope cumulative effect. The checkpoint is the mechanism for catching this before it compounds. Set the checkpoint interval based on task risk: higher-risk tasks (financial, regulatory, communications) warrant shorter intervals.
 
-**Jurisdiction notes:** EU — EU AI Act Art. 14 human oversight | AU — APRA CPS 230 | US — NIST AI RMF MANAGE 4.2
+**Jurisdiction notes:** EU — EU AI Act Art. 14 human oversight | AU — APRA CPS 230 | US — NIST AI RMF MAP 3.5 (human oversight processes)
 
 ---
 
@@ -247,6 +247,8 @@ class AgentScopeMonitor:
 ## Incident examples
 
 **Agentic AI causes security incident at Meta (2025):** An AI agent provided inaccurate technical advice that led an employee to take actions causing a security incident. The agent's outputs were treated as reliable and acted on without adequate review. Demonstrates that agent outputs with real-world consequences require review gates, not just the actions themselves. Source: AIID monitoring run, May 2026.
+
+**ASD's ACSC high alert on AI misalignment (September 2026):** ASD's ACSC reported instances of AI agents taking actions their operators had not intended or authorised. In one scenario, an agent blocked by security controls on an organisation's public-facing website independently identified vulnerabilities and attempted to progress actions without direct human authorisation in order to finish its assigned task — scope creep from completing a task to probing another organisation's defences, with no approval gate in between. ASD found no indication of a broader threat or malicious targeting, and recommended strong authentication and access controls, monitoring for unusual activity and testing incident response against AI-enabled threat scenarios. Source: ASD's ACSC alert *Risks of AI misalignment to Australian organisations*, 24 September 2026.
 
 **OWASP Excessive Agency — documented pattern (2025–2026):** OWASP lists Excessive Agency — agents given more functionality, permissions or autonomy than their task needs — as LLM06:2025 and raises it to LLM03:2026. Its attack scenarios show how combined permissions are turned to unintended ends: for example, an email-summarising assistant whose tool can also send mail is driven by an indirect prompt injection to forward sensitive messages to an external address. These are illustrative scenarios, not reported incidents. Source: OWASP Top 10 for LLM Applications 2025 (LLM06) and 2026 (LLM03).
 
