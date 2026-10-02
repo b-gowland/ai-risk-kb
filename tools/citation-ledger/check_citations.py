@@ -226,7 +226,7 @@ def run(ledger_path, paths, strict):
     fail = bool(buckets["NAME_MISMATCH"] or buckets["UNKNOWN_ID"]
                 or buckets["AMBIGUOUS_EDITION"])
     if strict and fail:
-        print("\nSTRICT: failing build on mismatch/unknown id.")
+        print("\nSTRICT: failing build on name mismatch, unknown id or ambiguous edition.")
         return 1
     if fail:
         print("\nADVISORY: issues found above (build not failed; re-run with --strict to enforce).")

@@ -34,8 +34,9 @@ schedule:
   monthly:
     - name: full_maintenance_pass
       description: >
-        Complete monthly pass — verification of flagged claims and monitoring
-        of all 8 configured sources. Runs on the 1st of each month at 03:00 UTC.
+        Complete monthly pass — gap check plus verification of factual claims
+        (source monitoring is the separate weekly workflow). Runs on the 1st of
+        each month at 03:00 UTC.
         Requires ANTHROPIC_API_KEY. Claude reasons from training knowledge —
         no live web search. Generates a GitHub Issue for human review if any
         action items are found.
@@ -47,9 +48,9 @@ schedule:
       estimated_cost_per_run: ~$2.70 USD
       estimated_annual_cost: ~$32 USD (~$50 AUD)
       note: >
-        Cost confirmed April 2026. web_search_20250305 tool is NOT used —
-        it is unavailable via the Anthropic API. Claude reasons from training
-        knowledge for both verification and monitoring passes.
+        Cost estimate predates the October 2026 move to Opus 5.5 / Sonnet 5.5.
+        No web search tool is configured: Claude verifies from training
+        knowledge, so post-cutoff facts can be flagged wrongly (see #54).
 
   manually_triggered:
     - name: single_entry_pass
@@ -308,8 +309,8 @@ optional:
 services:
   - Anthropic API key (set as ANTHROPIC_API_KEY environment variable)
   - Required for monthly full run only — weekly gap check needs no API key
-  - Note: web_search_20250305 tool is NOT used — unavailable via Anthropic API.
-    Claude reasons from training knowledge for verification and monitoring.
+  - Note: no web search tool is configured; Claude verifies from training
+    knowledge. Weekly source monitoring fetches sources directly (poll-sources.py).
 
 # To run locally:
 quickstart: |

@@ -116,11 +116,11 @@ Implementation: (1) use structured message schemas for inter-agent communication
 
 **Owner:** Technology | **Type:** Preventive | **Effort:** Medium | **Go-live required:** Yes
 
-Define the maximum capability set for each agent in the system. Enforce a rule: a downstream agent cannot be directed to exercise a capability that the directing upstream agent itself possesses. This prevents privilege escalation through the chain.
+Define the maximum capability set for each agent in the system. Enforce a rule: a downstream agent cannot be directed to exercise a capability that the directing upstream agent does not itself possess. This prevents privilege escalation through the chain.
 
 Implementation: maintain a capability manifest for each agent specifying what tools and actions it can invoke. When Agent A directs Agent B to take an action, verify that the action is within A's capability manifest — not just B's. If A directs B to do something A cannot do itself, treat it as a potential injection and halt.
 
-**Jurisdiction notes:** AU — recommended under APRA CPS 234 | EU — EU AI Act Art. 14 human oversight obligations | US — NIST AI RMF MANAGE 2.2
+**Jurisdiction notes:** AU — recommended under APRA CPS 234 | EU — EU AI Act Art. 14 human oversight obligations | US — NIST SP 800-53 AC-6 (least privilege)
 
 ---
 

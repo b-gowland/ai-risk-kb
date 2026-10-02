@@ -56,7 +56,14 @@ mitre-atlas:
       name: null
       status: retired
       note: "RESOLVED 2026-07-10: nonexistent ID. c2-prompt-injection cited AML.T0054.003 for indirect injection via MCP/tool responses; correct technique is AML.T0051.001 (LLM Prompt Injection: Indirect). Corrected in the entry. Grounding: OWASP GenAI LLM01 cross-references and MISP ATLAS galaxy both list AML.T0051 sub-techniques .000 Direct / .001 Indirect / .002 Triggered; AML.T0054 is LLM Jailbreak with no .003. Matches ai-risk-training fix (commit e18bed5)."
-    AML.T0051.001: { name: "LLM Prompt Injection: Indirect", status: verified }
+    AML.T0110:
+      name: "AI Agent Tool Poisoning"
+      note: "Added in ATLAS v5.5.0 (2026-03-30); sub-techniques .000-.002 added in v2026.07."
+      status: verified
+    AML.T0134:
+      name: "AI Targeted Cloaking"
+      note: "Added in ATLAS v2026.09."
+      status: verified
 
 owasp-llm:
   current: "2026"
