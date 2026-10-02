@@ -4,8 +4,8 @@ title: "C1 — Data Poisoning"
 sidebar_label: "C1 — Data Poisoning"
 sidebar_position: 1
 tags: [c, high-severity]
-last_verified: 2026-05-10
-next_review: 2026-11-10
+last_verified: 2026-10-02
+next_review: 2027-04-02
 description: "Adversaries corrupt an AI model's training data to produce a model that behaves maliciously in targeted scenarios while appearing normal in testing."
 ---
 
@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 
 <div style={{display:'flex',gap:'0.5rem',flexWrap:'wrap',marginBottom:'1.5rem'}}>
   <span className="severity-badge severity-high severity">High severity</span>
-  <span className="framework-chip">NIST AI 600-1</span> <span className="framework-chip">MITRE ATLAS AML.T0020 Poison Training Data</span> <span className="framework-chip">OWASP ML01</span> <span className="framework-chip">ISO 42001 Cl. 6.3.1</span>
+  <span className="framework-chip">NIST AI 600-1</span> <span className="framework-chip">MITRE ATLAS AML.T0020 Training Data Poisoning</span> <span className="framework-chip">OWASP ML01</span> <span className="framework-chip">ISO 42001 Cl. 6.3.1</span>
 </div>
 
 **Domain:** C — Security & Adversarial | **Jurisdiction:** Global
@@ -108,7 +108,7 @@ Systems that retrain on live data — fraud detection, recommendation systems, c
 
 Implementation requirements: (1) **Baseline profiling** — for each training feature and label, establish statistical baselines: expected value distributions, label class proportions, inter-feature correlations, and temporal patterns. Document the baseline at model deployment and update it on each verified-clean training run; (2) **Incoming data monitoring** — before data is admitted to the training store, run automated statistical comparison against the baseline. Key checks: (a) label distribution — unexpected shift in class proportions (e.g. sudden decrease in fraud labels in a fraud detection system); (b) feature distribution drift — features shifting outside established bounds; (c) correlation changes — unexpected new correlations between features and labels; (d) cluster analysis — new dense clusters of highly similar samples (indicative of synthetic injection); (3) **Alert thresholds** — define alert thresholds at two levels: warning (human review triggered) and critical (training halted, security alerted). Thresholds must be tuned to the specific dataset to avoid alert fatigue; (4) **Triggered manual review** — flagged samples should be held in a quarantine buffer, not admitted to training data. A human reviewer with domain expertise reviews flagged samples before they are approved or rejected; (5) **Retrospective analysis** — periodically rescan historical training data against current statistical models. Poisoning attacks may be designed to evade real-time detection but become visible with retrospective analysis.
 
-**Jurisdiction notes:** AU — APRA CPG 229 — model monitoring expectations include data quality monitoring for continuously learning models | EU — EU AI Act Art. 72 — post-market monitoring requirements for high-risk AI include data monitoring | US — NIST AI 600-1 — adversarial ML attack mitigation for generative AI; SR 11-7 — ongoing model monitoring includes data monitoring
+**Jurisdiction notes:** AU — APRA CPG 235 (Managing Data Risk) — data quality should be assessed regularly, which covers data feeding continuously learning models; APRA CPS 234 — training data is an information asset | EU — EU AI Act Art. 72 — post-market monitoring requirements for high-risk AI include data monitoring | US — NIST AI 600-1 — adversarial ML attack mitigation for generative AI; SR 11-7 — ongoing model monitoring includes data monitoring
 
 ---
 
@@ -308,9 +308,9 @@ def detect_synthetic_injection(
 
 ### Compliance implementation
 
-**Australia:** APRA CPS 234 requires that information assets — including AI training data — are protected with controls commensurate with their criticality. For AI systems making material decisions (credit, fraud, claims), training data integrity controls should be treated as critical infrastructure security. APRA CPG 229 model risk management guidance expects documentation of data inputs and controls over data quality and integrity. ACSC Essential Eight — application control and privileged access management controls directly apply to training pipeline access.
+**Australia:** APRA CPS 234 requires that information assets — including AI training data — are protected with controls commensurate with their criticality. For AI systems making material decisions (credit, fraud, claims), training data integrity controls should be treated as critical infrastructure security. APRA CPG 235 (Managing Data Risk) expects data quality requirements to be specified and assessed regularly, and data to be auditable — this covers training data integrity. ACSC Essential Eight — application control and privileged access management controls directly apply to training pipeline access.
 
-**EU:** EU AI Act Art. 10 requires that training, validation, and testing data for high-risk AI systems be subject to appropriate data governance practices including measures to examine possible biases and ensure data integrity. For high-risk systems (effective August 2, 2026), data poisoning controls are not optional — Art. 9 risk management must address adversarial attacks as a known risk to system integrity. ENISA's AI Threat Landscape report identifies data poisoning as a primary AI security threat.
+**EU:** EU AI Act Art. 10 requires that training, validation, and testing data for high-risk AI systems be subject to appropriate data governance practices including measures to examine possible biases and ensure data integrity. For high-risk systems (from 2 December 2027 for Annex III and 2 August 2028 for Annex I, under Regulation (EU) 2026/1744), data poisoning controls are not optional — Art. 9 risk management must address adversarial attacks as a known risk to system integrity. ENISA's AI Threat Landscape report identifies data poisoning as a primary AI security threat.
 
 **US:** NIST AI 600-1 (Generative AI Risk Management) explicitly addresses data poisoning as a risk requiring mitigation. NIST Cyber AI Profile IR 8596 provides technical controls including data pipeline integrity verification. For financial services: SR 11-7 model risk management guidance requires documentation of training data sources and controls; OCC guidance on model risk management in banks extends to AI models used in credit and fraud decisions.
 

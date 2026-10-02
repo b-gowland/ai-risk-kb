@@ -4,8 +4,8 @@ title: "F4 — Irreversibility & Scope Creep in Autonomous Systems"
 sidebar_label: "F4 — Irreversibility & Scope Creep"
 sidebar_position: 4
 tags: [deployment, agentic-ai, high-severity]
-last_verified: 2026-06-26
-next_review: 2026-11-10
+last_verified: 2026-10-02
+next_review: 2027-04-02
 description: "Agentic AI systems can take sequences of actions that individually appear reasonable but cumulatively exceed what was authorised — and some of those actions cannot be undone once taken."
 ---
 
@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 
 <div style={{display:'flex', gap:'0.5rem', flexWrap:'wrap', marginBottom:'1.5rem'}}>
   <span className="severity-badge severity-high">High severity</span>
-  <span className="framework-chip">OWASP LLM06</span>
+  <span className="framework-chip">OWASP LLM03:2026 Excessive Agency</span>
   <span className="framework-chip">NIST AI 600-1</span>
   <span className="framework-chip">EU AI Act Art. 14</span>
   <span className="framework-chip">MITRE ATLAS</span>
@@ -49,7 +49,7 @@ Before any agentic AI system goes live, you need a completed irreversible action
   </TabItem>
   <TabItem value="analyst" label="Security Analyst">
 
-Your focus is the execution layer. Every irreversible action type (send, delete, deploy, pay, modify permissions) needs a technical gate — not a prompt instruction, not a guideline, a technical gate that cannot be bypassed by model output. Additionally, implement scope monitoring: detect when an agent's activity starts touching systems, data, or people outside its defined perimeter. OWASP LLM06 Excessive Agency is the canonical framing for this risk class. MITRE ATLAS documents specific techniques for exploiting overly permissioned agents.
+Your focus is the execution layer. Every irreversible action type (send, delete, deploy, pay, modify permissions) needs a technical gate — not a prompt instruction, not a guideline, a technical gate that cannot be bypassed by model output. Additionally, implement scope monitoring: detect when an agent's activity starts touching systems, data, or people outside its defined perimeter. OWASP LLM03:2026 Excessive Agency (LLM06 in the 2025 list) is the canonical framing for this risk class. MITRE ATLAS documents specific techniques for exploiting overly permissioned agents.
 
   </TabItem>
 </Tabs>
@@ -64,7 +64,7 @@ Agentic AI systems operate with greater autonomy than conventional AI: they purs
 
 **Irreversibility:** Actions taken by an agent may have real-world consequences that cannot be reversed. Unlike a human operator who might draft an email before sending it, an agent with email permissions can send immediately. Unlike a human who knows to check before deleting a record, an agent may delete to free up processing capacity. Each action individually may seem locally justified to the agent's goal-directed reasoning, but the action itself is done.
 
-**Scope creep:** Agents pursuing goals over long task horizons have a tendency to expand their operational scope. To complete its assigned task, the agent may access systems it wasn't intended to touch, invoke permissions it wasn't intended to use, or take actions that are technically within its permission set but outside the intended scope of its deployment. OWASP LLM06 Excessive Agency describes the pattern where an agent is given more permissions than it needs and uses them beyond the intended context.
+**Scope creep:** Agents pursuing goals over long task horizons have a tendency to expand their operational scope. To complete its assigned task, the agent may access systems it wasn't intended to touch, invoke permissions it wasn't intended to use, or take actions that are technically within its permission set but outside the intended scope of its deployment. OWASP LLM03:2026 Excessive Agency describes the pattern where an agent is given more permissions than it needs and uses them beyond the intended context.
 
 These two risks interact: an out-of-scope action may also be irreversible, combining the consequences of both.
 
@@ -108,7 +108,7 @@ Technology · Security · Operations · Legal / Compliance · Finance
 | **AU** | APRA CPS 234 — security controls commensurate with risk | Yes |
 | **EU** | AI Act Art. 14 — human oversight for high-risk AI systems | Yes (high-risk AI) |
 | **EU** | GDPR Art. 5(1)(b) — purpose limitation for personal data | Yes (personal data) |
-| **Global** | OWASP LLM06 — Excessive Agency controls | Voluntary |
+| **Global** | OWASP LLM03:2026 — Excessive Agency controls | Voluntary |
 
 ---
 
@@ -134,7 +134,7 @@ Grant agents the minimum tool permissions required for their defined task — no
 
 Review tool permissions at the start of each deployment and whenever the agent's task scope changes. Permissions granted at deployment tend to persist and expand over time; review is needed to counteract this tendency. Any request to expand agent permissions should be treated as a significant change requiring documented approval from Technology and Security.
 
-**Jurisdiction notes:** AU — recommended under APRA CPS 234 | EU — EU AI Act Art. 9 risk management | US — NIST AI RMF GOVERN 1.7
+**Jurisdiction notes:** AU — recommended under APRA CPS 234 and *Careful Adoption of Agentic AI Services* (ASD's ACSC with CISA, NSA, CCCS, NCSC-NZ and NCSC-UK, May 2026) | EU — EU AI Act Art. 9 risk management | US — NIST SP 800-53 AC-6 (least privilege)
 
 ---
 
@@ -240,7 +240,7 @@ class AgentScopeMonitor:
         pass
 ```
 
-**Tools:** LangGraph (human-in-the-loop checkpoints) · LangSmith (agent observability) · Prefect / Temporal (workflow orchestration with approval gates) · OWASP LLM06 guidance
+**Tools:** LangGraph (human-in-the-loop checkpoints) · LangSmith (agent observability) · Prefect / Temporal (workflow orchestration with approval gates) · OWASP LLM03:2026 guidance
 
 ---
 
@@ -248,7 +248,7 @@ class AgentScopeMonitor:
 
 **Agentic AI causes security incident at Meta (2025):** An AI agent provided inaccurate technical advice that led an employee to take actions causing a security incident. The agent's outputs were treated as reliable and acted on without adequate review. Demonstrates that agent outputs with real-world consequences require review gates, not just the actions themselves. Source: AIID monitoring run, May 2026.
 
-**OWASP LLM06 Excessive Agency — documented pattern (2025):** OWASP's 2025 LLM Top 10 maintains Excessive Agency as a top vulnerability — where agents are given more permissions than needed and use those permissions beyond the intended context. OWASP documents cases where agents with file system, email, and API permissions used all three in combination to accomplish sub-goals the operator did not intend, including forwarding data to external services as part of what the agent determined was necessary to complete its assigned task. Source: OWASP LLM Top 10 2025.
+**OWASP Excessive Agency — documented pattern (2025–2026):** OWASP lists Excessive Agency — agents given more functionality, permissions or autonomy than their task needs — as LLM06:2025 and raises it to LLM03:2026. Its attack scenarios show how combined permissions are turned to unintended ends: for example, an email-summarising assistant whose tool can also send mail is driven by an indirect prompt injection to forward sensitive messages to an external address. These are illustrative scenarios, not reported incidents. Source: OWASP Top 10 for LLM Applications 2025 (LLM06) and 2026 (LLM03).
 
 ---
 

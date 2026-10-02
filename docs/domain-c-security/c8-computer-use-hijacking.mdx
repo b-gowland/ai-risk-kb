@@ -4,8 +4,8 @@ title: "C8 — Computer-Use Agent Hijacking"
 sidebar_label: "C8 — Computer-Use Hijacking"
 sidebar_position: 8
 tags: [security, adversarial, agentic-ai, high-severity]
-last_verified: 2026-05-10
-next_review: 2026-11-10
+last_verified: 2026-10-02
+next_review: 2027-04-02
 description: "Computer-use agents control a keyboard and mouse on behalf of their user — browsing the web, filling forms, operating applications. Any content the agent sees can contain instructions that redirect its actions. The agent has no way to distinguish a legitimate instruction from a malicious one hidden in a webpage."
 ---
 
@@ -17,7 +17,7 @@ import TabItem from '@theme/TabItem';
 <div style={{display:'flex', gap:'0.5rem', flexWrap:'wrap', marginBottom:'1.5rem'}}>
   <span className="severity-badge severity-high">High severity</span>
   <span className="framework-chip">MITRE ATLAS v5.3</span>
-  <span className="framework-chip">OWASP LLM06</span>
+  <span className="framework-chip">OWASP LLM03:2026 Excessive Agency</span>
   <span className="framework-chip">NIST AI 600-1</span>
   <span className="framework-chip">EU AI Act Art. 14</span>
 </div>
@@ -130,7 +130,7 @@ Scope the isolated environment to the minimum required for the task: if the agen
 
 The isolated environment limits what an injected instruction can actually do: even a successful hijack is constrained to the isolated environment's capabilities.
 
-**Jurisdiction notes:** AU — APRA CPS 234 | EU — EU AI Act Art. 15 | US — NIST Cyber AI Profile IR 8596
+**Jurisdiction notes:** AU — APRA CPS 234; *Careful Adoption of Agentic AI Services* (ASD's ACSC with CISA, NSA, CCCS, NCSC-NZ and NCSC-UK, May 2026) | EU — EU AI Act Art. 15 | US — NIST Cyber AI Profile IR 8596
 
 ---
 

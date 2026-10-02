@@ -4,8 +4,8 @@ title: "C7 — Multi-Agent Trust & Prompt Injection Chains"
 sidebar_label: "C7 — Multi-Agent Trust"
 sidebar_position: 7
 tags: [security, adversarial, agentic-ai, high-severity]
-last_verified: 2026-05-10
-next_review: 2026-11-10
+last_verified: 2026-10-02
+next_review: 2027-04-02
 description: "When multiple AI agents work together — one orchestrating others, each calling tools and passing results — a malicious instruction injected at any point in the chain can propagate through the entire system, escalating in impact as it passes through agents with progressively broader permissions."
 ---
 
@@ -17,7 +17,7 @@ import TabItem from '@theme/TabItem';
 <div style={{display:'flex', gap:'0.5rem', flexWrap:'wrap', marginBottom:'1.5rem'}}>
   <span className="severity-badge severity-high">High severity</span>
   <span className="framework-chip">MITRE ATLAS v5.3</span>
-  <span className="framework-chip">OWASP LLM06</span>
+  <span className="framework-chip">OWASP LLM03:2026 Excessive Agency</span>
   <span className="framework-chip">NIST AI 600-1</span>
   <span className="framework-chip">EU AI Act Art. 15</span>
 </div>
@@ -144,7 +144,7 @@ Red team scenarios must include multi-agent chain propagation — not just singl
 
 Test at a minimum: inject at the most restricted agent and attempt to reach the most privileged; inject at an intermediate agent; attempt to fabricate a message appearing to come from the orchestrator.
 
-**Jurisdiction notes:** AU — recommended under ACSC AI Security Guidance | EU — EU AI Act Art. 9 risk management
+**Jurisdiction notes:** AU — recommended under *Careful Adoption of Agentic AI Services* (ASD's ACSC with CISA, NSA, CCCS, NCSC-NZ and NCSC-UK, May 2026) | EU — EU AI Act Art. 9 risk management
 
 ---
 

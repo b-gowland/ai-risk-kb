@@ -5,7 +5,7 @@ sidebar_label: "B2 — Regulatory Compliance"
 sidebar_position: 2
 tags: [b, high-severity]
 last_verified: 2026-10-02
-next_review: 2026-09-28
+next_review: 2027-04-02
 description: "AI systems breach applicable laws, regulations, or standards — increasingly across multiple jurisdictions simultaneously."
 ---
 
@@ -27,7 +27,7 @@ import TabItem from '@theme/TabItem';
 
 > AI systems breach applicable laws, regulations, or standards — increasingly across multiple jurisdictions simultaneously.
 
-AI regulation has shifted from theory to active enforcement. EU AI Act prohibited practices enforceable February 2025; GPAI obligations August 2025; high-risk AI system requirements August 2026 (Annex III). APRA CPS 230 effective July 2025. Workday faces class action (filed 2023, N.D. Cal. ruling allowing disparate impact claims to proceed July 2024) over AI hiring tools. The compliance surface is expanding rapidly.
+AI regulation has shifted from theory to active enforcement. EU AI Act prohibited practices enforceable February 2025; GPAI obligations August 2025; transparency obligations (Art. 50) August 2026; high-risk AI system requirements deferred by the Digital Omnibus (Regulation (EU) 2026/1744) to 2 December 2027 (Annex III) and 2 August 2028 (Annex I). APRA CPS 230 effective July 2025. Workday faces class action (filed 2023, N.D. Cal. ruling allowing disparate impact claims to proceed July 2024) over AI hiring tools. The compliance surface is expanding rapidly.
 
 <div className="key-question">
 Does our organisation have a current, complete mapping of all AI systems to their applicable regulatory obligations — and is that mapping maintained as regulations change?
@@ -87,7 +87,7 @@ Implementation requirements: (1) inventory all AI systems — include systems wh
 
 The mapping is the foundation for all other B2 controls — without it, pre-deployment sign-off and classification work cannot be done systematically.
 
-**Jurisdiction notes:** AU — APRA CPS 230 requires material service arrangements to be identified and managed; AI systems providing material functions are in scope. Privacy Act APP 1 — privacy policy obligations require disclosure of AI-assisted decisions involving personal information | EU — EU AI Act Art. 6, 11, 49 — providers and deployers of high-risk AI systems must maintain technical documentation (Annex IV) and register systems in the EU database (Art. 71) from August 2, 2026 | US — no single federal AI registration requirement; sector-specific obligations apply (ECOA for credit, EEOC guidance for employment, FDA for medical devices)
+**Jurisdiction notes:** AU — APRA CPS 230 requires material service arrangements to be identified and managed; AI systems providing material functions are in scope. Privacy Act APP 1 — from 10 December 2026, privacy policies must describe automated decisions (AI or otherwise) that use personal information and could significantly affect individuals' rights or interests (APP 1.7) | EU — EU AI Act Art. 6, 11, 49 — providers and deployers of high-risk AI systems must maintain technical documentation (Annex IV) and register systems in the EU database (Art. 71) — from 2 December 2027 for Annex III systems (deferred from 2 August 2026 by Regulation (EU) 2026/1744) | US — no single federal AI registration requirement; sector-specific obligations apply (ECOA for credit, EEOC guidance for employment, FDA for medical devices)
 
 ---
 
@@ -109,9 +109,9 @@ Classify every AI system against the EU AI Act framework before deployment. This
 
 Classification categories: (1) **Prohibited** — unacceptable risk practices banned under Art. 5 (e.g. social scoring, real-time biometric surveillance in public spaces, manipulation of vulnerable persons); (2) **High-risk** — Annex III systems including: credit scoring, employment screening, access to essential services, biometric categorisation, critical infrastructure; (3) **Limited-risk** — transparency obligations apply (chatbots must disclose AI identity); (4) **Minimal risk** — no specific obligations.
 
-For high-risk classification, the following must be in place before August 2, 2026: conformity assessment, technical documentation (Annex IV), human oversight controls, accuracy and robustness testing, registration in the EU AI database.
+For high-risk classification, the following must be in place before the high-risk obligations apply — 2 December 2027 for Annex III systems and 2 August 2028 for Annex I (product-safety) systems, under Regulation (EU) 2026/1744: conformity assessment, technical documentation (Annex IV), human oversight controls, accuracy and robustness testing, registration in the EU AI database.
 
-**Jurisdiction notes:** EU — EU AI Act Art. 6 — definition of high-risk AI systems. Art. 5 — prohibited practices enforceable from February 2, 2025. Art. 49 — high-risk AI system registration (EU database, Art. 71). Annex III — exhaustive list of high-risk use cases. **Key date: August 2, 2026 — high-risk provisions come into force** | AU — no equivalent mandatory classification requirement; however, APRA-regulated entities with EU operations or EU clients are directly in scope for EU AI Act
+**Jurisdiction notes:** EU — EU AI Act Art. 6 — definition of high-risk AI systems. Art. 5 — prohibited practices enforceable from 2 February 2025; new bans on AI systems that generate non-consensual intimate imagery or child sexual abuse material apply from 2 December 2026. Art. 49 — high-risk AI system registration (EU database, Art. 71). Annex III — exhaustive list of high-risk use cases. **Key dates (Regulation (EU) 2026/1744): 2 December 2027 — Annex III high-risk obligations apply; 2 August 2028 — Annex I high-risk obligations apply** | AU — no equivalent mandatory classification requirement; however, APRA-regulated entities with EU operations or EU clients are directly in scope for EU AI Act
 
 ---
 
@@ -132,7 +132,7 @@ Implementation requirements: (1) assign a named compliance officer or legal coun
 |--------|--------|-----------|
 | AI systems with current regulatory mapping | 100% of production AI systems | Reviewed quarterly |
 | Pre-deployment compliance sign-offs on file | 100% of AI systems deployed in last 24 months | Audited annually |
-| EU AI Act classification completed | 100% of systems with EU nexus | Before August 2, 2026 |
+| EU AI Act classification completed | 100% of systems with EU nexus | Before 2 December 2027 (Annex III) |
 | Regulatory updates escalated within 30 days | 100% of material regulatory changes | Continuous |
 | AI regulatory mapping last full review | Within 12 months | Annual |
 
@@ -257,16 +257,16 @@ def classify_eu_ai_act(system: AISystemRegulatoryRecord) -> dict:
         "classification": system.eu_ai_act_category,
         "applicable_annexes": system.eu_ai_act_annexes,
         "obligations": OBLIGATIONS.get(system.eu_ai_act_category, []),
-        "key_deadline": "2026-08-02" if system.eu_ai_act_category == "high-risk" else None,
+        "key_deadline": "2027-12-02" if system.eu_ai_act_category == "high-risk" else None,  # Annex III; Annex I: 2028-08-02 (Reg. (EU) 2026/1744)
         "legal_review_required": True,
     }
 ```
 
 ### Compliance implementation
 
-**Australia:** APRA CPS 230 (effective July 2025) — material AI systems must be captured in operational risk management framework; board approval required for material outsourcing including AI vendor arrangements. Privacy Act 1988 APP 1 — update privacy policy to disclose AI-assisted decision-making. ASIC RG 271 — AI systems influencing complaints handling or financial advice are in scope for internal dispute resolution obligations.
+**Australia:** APRA CPS 230 (effective July 2025) — material AI systems must be captured in operational risk management framework; board approval required for material outsourcing including AI vendor arrangements. Privacy Act 1988 APP 1 — from 10 December 2026 (new APP 1.7), privacy policies must set out the kinds of personal information used and the kinds of decisions made where a computer program makes, or does something substantially and directly related to making, a decision that could reasonably be expected to significantly affect an individual's rights or interests. The duty covers any computer program, not only AI. APRA's letter to industry on AI (30 April 2026) applies existing prudential standards (CPS 220, CPS 230, CPS 234) to AI and sets out observations in four areas: governance (boards still building the AI literacy to challenge AI risk, and over-reliance on vendor presentations and summaries), cyber and information security, supplier risk (dependence on a single AI provider without mapping third- and fourth-party concentration) and change management and assurance (point-in-time, sample-based assurance is ill-suited to AI). ASIC RG 271 — AI systems influencing complaints handling or financial advice are in scope for internal dispute resolution obligations.
 
-**EU:** EU AI Act enforcement timeline: prohibited practices from February 2, 2025; GPAI obligations from August 2, 2025; high-risk AI system obligations (Annex III) from **August 2, 2026**. Deployers of high-risk AI (organisations using, not just building, these systems) have obligations under Art. 26 — including human oversight, monitoring, and incident reporting. Financial services firms using AI for credit scoring, insurance underwriting, or employment are high-risk deployers.
+**EU:** EU AI Act enforcement timeline: prohibited practices from 2 February 2025; GPAI obligations from 2 August 2025; transparency obligations (Art. 50) from 2 August 2026; high-risk AI system obligations from **2 December 2027** (Annex III) and **2 August 2028** (Annex I), as deferred by the Digital Omnibus (Regulation (EU) 2026/1744, in force 27 July 2026). Deployers of high-risk AI (organisations using, not just building, these systems) have obligations under Art. 26 — including human oversight, monitoring, and incident reporting. Financial services firms using AI for credit scoring, insurance underwriting, or employment are high-risk deployers.
 
 **US:** No federal AI Act equivalent as of 2026. Patchwork of sector obligations applies: EEOC technical assistance (2023) on AI in employment decisions; CFPB guidance on AI in credit; FTC Act Section 5 for unfair or deceptive AI practices; Colorado SB21-169 for insurance AI; New York City Local Law 144 for employment AI. For financial services: SR 11-7 model risk management guidance applies to AI models used in credit and risk decisions.
 
@@ -276,7 +276,7 @@ def classify_eu_ai_act(system: AISystemRegulatoryRecord) -> dict:
 
 ## Incident examples
 
-**EU AI Act high-risk provisions (August 2026):** Organisations that have not completed conformity assessments, technical documentation, and human oversight systems for high-risk AI face enforcement from August 2, 2026. Note: a proposed Digital Omnibus may extend some Annex III deadlines — August 2026 remains the legally binding date until any amendment is adopted.
+**EU AI Act high-risk deadline deferred (July 2026):** The Digital Omnibus on AI (Regulation (EU) 2026/1744, published in the Official Journal on 24 July 2026, in force 27 July 2026) deferred the high-risk obligations before they applied: Annex III systems from 2 December 2027 and Annex I systems from 2 August 2028. The new dates are fixed; they are not conditional on harmonised standards being ready. Art. 50 transparency obligations still applied from 2 August 2026. Organisations that have not completed conformity assessments, technical documentation and human oversight systems have a deferral, not an exemption. Source: Regulation (EU) 2026/1744; Council of the EU press release (29 June 2026).
 
 **Workday AI hiring lawsuit (2023–2024):** Workday faces class action (Mobley v. Workday) over AI hiring tools alleged to discriminate against protected classes based on race, age, and disability. N.D. Cal. ruling of July 12, 2024 allowed disparate impact claims to proceed under Title VII, ADEA, and ADA under an "agent of employer" theory. Case ongoing. (Seyfarth Shaw analysis, July 2024; Civil Rights Litigation Clearinghouse, Case No. 3:23-cv-00770)
 

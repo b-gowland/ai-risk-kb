@@ -33,7 +33,7 @@ The AI risk landscape changes rapidly. The following sources are used to maintai
 | Source | URL | Cadence | Use |
 |--------|-----|---------|-----|
 | MITRE ATLAS | [atlas.mitre.org](https://atlas.mitre.org) | Quarterly | Adversarial threat landscape for AI/ML. Track new tactics and techniques. |
-| OWASP LLM Top 10 | [owasp.org/www-project-top-10-for-large-language-model-applications](https://owasp.org/www-project-top-10-for-large-language-model-applications) | Annually | LLM-specific vulnerability list. Current version: 2025. |
+| OWASP LLM Top 10 | [owasp.org/www-project-top-10-for-large-language-model-applications](https://owasp.org/www-project-top-10-for-large-language-model-applications) | Annually | LLM-specific vulnerability list. Current version: 2026 (published 4 August 2026). IDs change between editions, so cite them with the edition suffix (e.g. LLM03:2026). |
 | NIST Cyber AI Profile IR 8596 | [csrc.nist.gov](https://csrc.nist.gov) | As published | AI-specific cybersecurity controls. December 2025 draft — monitor for final release. |
 | SANS AI Security | [sans.org](https://www.sans.org) | As published | Practical security guidance for AI systems. |
 

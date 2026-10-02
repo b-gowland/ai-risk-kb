@@ -4,8 +4,8 @@ title: "C6 — MCP Attack Surface"
 sidebar_label: "C6 — MCP Attack Surface"
 sidebar_position: 6
 tags: [security, adversarial, agentic-ai, mcp, high-severity]
-last_verified: 2026-05-10
-next_review: 2026-11-10
+last_verified: 2026-10-02
+next_review: 2027-04-02
 description: "Model Context Protocol (MCP) servers give AI agents access to tools, data, and external services — and every connected MCP server is a potential attack surface that can be used to hijack, poison, or exfiltrate through the agent."
 ---
 
@@ -17,7 +17,7 @@ import TabItem from '@theme/TabItem';
 <div style={{display:'flex', gap:'0.5rem', flexWrap:'wrap', marginBottom:'1.5rem'}}>
   <span className="severity-badge severity-high">High severity</span>
   <span className="framework-chip">MITRE ATLAS v5.3</span>
-  <span className="framework-chip">OWASP LLM06</span>
+  <span className="framework-chip">OWASP LLM03:2026 Excessive Agency</span>
   <span className="framework-chip">NIST AI RMF GOVERN 1.6</span>
 </div>
 
@@ -148,7 +148,7 @@ Treat all MCP server responses as untrusted external data. Apply the same struct
 
 Where the MCP server provides structured data (JSON, database records), parse and validate the structure before passing to the agent rather than passing raw text. This limits the injection surface to structured data fields rather than arbitrary text.
 
-**Jurisdiction notes:** AU — recommended under ACSC AI Security Guidance | EU — EU AI Act Art. 15 | US — NIST Cyber AI Profile IR 8596
+**Jurisdiction notes:** AU — recommended under *Careful Adoption of Agentic AI Services* (ASD's ACSC with CISA, NSA, CCCS, NCSC-NZ and NCSC-UK, May 2026) | EU — EU AI Act Art. 15 | US — NIST Cyber AI Profile IR 8596
 
 ---
 
