@@ -108,7 +108,10 @@ SOURCES: list[dict] = [
         "url": "https://raw.githubusercontent.com/alan-turing-institute/ai-rss-feeds/main/feeds/aisi-blog.xml",
         "max_items": 5,
     },
-    # Regulators and standards bodies
+    # Regulators and standards bodies.
+# Not polled: cyber.gov.au (ACSC), industry.gov.au (DISR), asic.gov.au and
+# cisa.gov block or time out GitHub Actions runners (verified by dry runs);
+# follow those by email subscription instead.
     {
         "id": "nist_ai_rmf", "name": "NIST AI RMF", "type": "rss",
         "url": "https://www.nist.gov/news-events/news/rss.xml",
@@ -126,23 +129,10 @@ SOURCES: list[dict] = [
         "include": AI_KW + r"|CPS ?23[04]|operational risk|cyber", "max_items": 3,
     },
     {
-        "id": "asic", "name": "ASIC", "type": "rss",
-        "url": "https://newshub.asic.gov.au/feed/asic/media_en-au",
-        "include": AI_KW, "max_items": 3,
-    },
-    {
         "id": "oaic", "name": "OAIC AI and Privacy", "type": "html_links",
         "url": "https://www.oaic.gov.au/news/media-centre",
         "link_pattern": r"^/news/media-centre/[a-z0-9-]+$",
         "include": AI_KW + r"|privacy act|ADM", "max_items": 3,
-    },
-    {
-        "id": "cisa", "name": "CISA (incl. joint Five Eyes guidance)", "type": "rss",
-        # cyber.gov.au (ACSC) and industry.gov.au (DISR) time out from GitHub
-        # Actions runners. Joint AI guidance co-sealed by ASD's ACSC is published
-        # by CISA too, so CISA news (AI-filtered) stands in for ACSC.
-        "url": "https://www.cisa.gov/news.xml",
-        "include": AI_KW, "max_items": 5,
     },
 ]
 
@@ -428,8 +418,9 @@ def poll_html_links(source: dict, sstate: dict) -> list[dict]:
     page = fetch_text(source["url"])
     entries = parse_links(page, source["url"], source["link_pattern"])
     if not entries:
-        sample = sorted({urlparse(urljoin(source["url"], h)).path
-                         for h in re.findall(r'href=["\']([^"\']+)', page)})
+        sample = sorted({path for h in re.findall(r'href=["\']([^"\']+)', page)
+                         if (path := urlparse(urljoin(source["url"], h)).path).count("/") >= 2
+                         and not path.startswith("/__")})
         raise SourceError(f"no links matched link_pattern (page layout changed?); page has "
                           f"{len(sample)} links, e.g. {sample[:8]}")
     return diff_entries(source, entries, sstate, "new_link")
