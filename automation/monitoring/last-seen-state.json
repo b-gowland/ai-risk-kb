@@ -103,17 +103,8 @@
       "8357bcbb8a4637c611eea8e63a319920"
     ]
   },
-  "mit_incident_tracker": {
-    "links_hash": "d41d8cd98f00b204e9800998ecf8427e"
-  },
-  "eu_ai_office": {
-    "seen_guids": []
-  },
-  "mitre_atlas_releases": {
-    "last_seen_tag": "v2026.09"
-  },
   "owasp_llm": {
-    "last_seen_tag": "2024"
+    "value": "2025"
   },
   "mit_airr": {
     "seen_links": [
@@ -164,8 +155,5 @@
       "/blog/ai-trism",
       "/blog/explore-the-frameworks-behind-the-ai-risk-repository"
     ]
-  },
-  "iapp": {
-    "seen_guids": []
   }
 }

@@ -4,7 +4,7 @@ Workflow 2 — Source-driven monitoring: classify.py
 ===================================================
 Reads monitoring-diff.json (from poll-sources.py) and kb-entry-index.json,
 makes one Claude API call per source batch to classify each new item against
-the 26 KB entry IDs, and writes a human-readable monitoring report.
+the KB entry IDs (read from docs/ frontmatter), and writes a human-readable monitoring report.
 
 Classification outputs per item:
   NEW_DOMAIN_NEEDED  — new risk category not covered by any existing entry
@@ -23,6 +23,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import sys
 import time
 from datetime import UTC, datetime
@@ -55,65 +56,27 @@ REPORTS_DIR = REPO_ROOT / "automation" / "reports"
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 REPORTS_DIR.mkdir(parents=True, exist_ok=True)
 
-# KB entry index — built inline from docs (no separate file needed)
-KB_ENTRIES = [
-    {"id": "A1", "title": "Hallucination / Confabulation", "domain": "A — Technical",
-     "topic": "AI produces factually wrong or fabricated outputs presented with confidence."},
-    {"id": "A2", "title": "Model Drift / Performance Degradation", "domain": "A — Technical",
-     "topic": "Model performance degrades over time as real world shifts from training conditions."},
-    {"id": "A3", "title": "Robustness & Brittleness", "domain": "A — Technical",
-     "topic": "AI fails unpredictably on unusual inputs, edge cases, or conditions not seen in training."},
-    {"id": "A4", "title": "Explainability & Interpretability Gaps", "domain": "A — Technical",
-     "topic": "AI models cannot explain why they produced a given output — blocking audit and transparency."},
-    {"id": "B1", "title": "Accountability Gaps", "domain": "B — Governance",
-     "topic": "No identifiable person or function is responsible for AI system decisions or outcomes."},
-    {"id": "B2", "title": "Regulatory Non-Compliance", "domain": "B — Governance",
-     "topic": "AI systems breach applicable laws, regulations, or standards across jurisdictions."},
-    {"id": "B3", "title": "AI Lifecycle Governance Failure", "domain": "B — Governance",
-     "topic": "Inadequate governance across development, deployment, monitoring, and decommissioning."},
-    {"id": "B4", "title": "Third-Party / Supply Chain AI Risk", "domain": "B — Governance",
-     "topic": "AI risk introduced through vendors, suppliers, open-source components, upstream models."},
-    {"id": "C1", "title": "Data Poisoning", "domain": "C — Security",
-     "topic": "Adversaries corrupt training data to produce a model that behaves maliciously in targeted scenarios."},
-    {"id": "C2", "title": "Prompt Injection", "domain": "C — Security",
-     "topic": "Malicious instructions in content hijack an AI system to take unauthorised actions."},
-    {"id": "C3", "title": "Model Theft / Extraction", "domain": "C — Security",
-     "topic": "Adversaries reconstruct a proprietary AI model by querying it and training a surrogate."},
-    {"id": "C4", "title": "Deepfakes & Synthetic Media Fraud", "domain": "C — Security",
-     "topic": "AI-generated synthetic audio/video used to impersonate individuals and manipulate decisions."},
-    {"id": "C5", "title": "AI-Enabled Cyber Attacks", "domain": "C — Security",
-     "topic": "Adversaries use AI to enhance scale and sophistication of cyber attacks."},
-    {"id": "D1", "title": "Training Data Quality & Representativeness", "domain": "D — Data",
-     "topic": "Biased or unrepresentative training data produces models that fail for underrepresented groups."},
-    {"id": "D2", "title": "Privacy & Data Protection", "domain": "D — Data",
-     "topic": "AI systems create vectors for personal information breaches through memorisation and exfiltration."},
-    {"id": "D3", "title": "Intellectual Property & Copyright", "domain": "D — Data",
-     "topic": "AI systems may reproduce copyrighted material or carry licence contamination risks."},
-    {"id": "E1", "title": "Algorithmic Bias & Discrimination", "domain": "E — Fairness",
-     "topic": "AI models produce systematically different outcomes based on protected characteristics."},
-    {"id": "E2", "title": "Harmful / Toxic Content Generation", "domain": "E — Fairness",
-     "topic": "AI systems generate harmful, offensive, or illegal content at scale."},
-    {"id": "E3", "title": "Misinformation & Disinformation", "domain": "E — Fairness",
-     "topic": "AI systems generate or amplify false, misleading, or deceptive information at scale."},
-    {"id": "F1", "title": "Over-Reliance & Automation Bias", "domain": "F — Deployment",
-     "topic": "Users excessively trust AI outputs, reducing independent verification even when AI is wrong."},
-    {"id": "F2", "title": "Shadow AI", "domain": "F — Deployment",
-     "topic": "Employees use unauthorised AI tools, submitting sensitive data outside organisational control."},
-    {"id": "F3", "title": "Scope Creep & Deployment Beyond Intended Use", "domain": "F — Deployment",
-     "topic": "AI systems used beyond their intended, tested, approved scope — invalidating the risk assessment."},
-    {"id": "G1", "title": "Operational Dependency & Concentration Risk", "domain": "G — Systemic",
-     "topic": "Over-reliance on a small number of hyperscale AI providers creates systemic single points of failure."},
-    {"id": "G2", "title": "Environmental Impact", "domain": "G — Systemic",
-     "topic": "Training and operating large AI models consumes significant energy and water."},
-    {"id": "G3", "title": "Workforce Displacement & Socioeconomic Impact", "domain": "G — Systemic",
-     "topic": "AI-driven automation displaces roles, creating operational and reputational risk."},
-    {"id": "G4", "title": "AI System Safety & Loss of Control", "domain": "G — Systemic",
-     "topic": "Agentic and autonomous AI systems take actions beyond the scope intended or authorised."},
-]
+DOCS_DIR = REPO_ROOT / "docs"
 
+
+def load_kb_entries(docs_dir: Path = DOCS_DIR) -> list[dict]:
+    """Build the KB entry index from each entry's frontmatter (title, description)."""
+    entries = []
+    for path in sorted(docs_dir.glob("domain-*/*.mdx")):
+        front = path.read_text(encoding="utf-8").split("---", 2)[1]
+        fields = dict(re.findall(r'^(title|description):\s*"?(.*?)"?\s*$', front, re.M))
+        title = fields.get("title", path.stem)
+        entry_id, _, name = title.partition(" — ")
+        domain = path.parent.name.removeprefix("domain-")
+        entries.append({"id": entry_id.strip(), "title": name.strip() or title,
+                        "domain": f"{entry_id[:1]} — {domain.split('-', 1)[-1].title()}",
+                        "topic": fields.get("description", "")[:240]})
+    return entries
+
+
+KB_ENTRIES = load_kb_entries()
 KB_INDEX_TEXT = "\n".join(
-    f"  {e['id']} | {e['title']} | {e['domain']} | {e['topic']}"
-    for e in KB_ENTRIES
+    f"  {e['id']} | {e['title']} | {e['domain']} | {e['topic']}" for e in KB_ENTRIES
 )
 
 
@@ -129,7 +92,7 @@ CLASSIFY_SYSTEM = """You are a classifier for an AI risk knowledge base (KB).
 Your job is to read new items from AI risk monitoring sources and determine 
 whether each item should trigger a KB update.
 
-The KB has 26 entries across 7 domains (A–G). Your output must be valid JSON only — 
+The KB has {n} entries across 7 domains (A–G). Your output must be valid JSON only — 
 no preamble, no markdown fences, no explanation outside the JSON structure.
 
 For each item, classify as one of:
@@ -140,6 +103,7 @@ For each item, classify as one of:
 
 Be conservative: prefer UPDATE_ENTRY or NO_ACTION over NEW_ENTRY or NEW_DOMAIN_NEEDED 
 unless the gap is clear and significant."""
+CLASSIFY_SYSTEM = CLASSIFY_SYSTEM.replace("{n}", str(len(KB_ENTRIES)))
 
 
 def parse_json_array(text: str) -> list:
@@ -219,6 +183,7 @@ def generate_report(
     all_items: list[dict],
     classifications: list[dict],
     source_counts: dict[str, int],
+    source_health: dict[str, dict] | None = None,
 ) -> str:
     """Generate human-readable markdown report."""
 
@@ -241,6 +206,14 @@ def generate_report(
     ]
     for source_id, count in sorted(source_counts.items()):
         lines.append(f"- {source_id}: {count} new item(s)")
+
+    failing = {sid: h for sid, h in (source_health or {}).items()
+               if h.get("consecutive_failures")}
+    if failing:
+        lines += ["", "**Sources that failed to poll this run:**"]
+        for sid, h in sorted(failing.items()):
+            lines.append(f"- {sid}: {h['consecutive_failures']} consecutive failure(s); "
+                         f"last error: {h.get('last_error')}")
 
     lines += ["", "---", ""]
 
@@ -330,7 +303,7 @@ def main() -> None:
 
     if not all_items:
         print("[classify] Nothing to classify. Writing empty report.")
-        report = generate_report(run_date, [], [], {})
+        report = generate_report(run_date, [], [], {}, diff_data.get("source_health"))
         out_path = OUTPUT_DIR / f"{run_date}.md"
         out_path.write_text(report)
         # Also write to reports/ for workflow compatibility
@@ -367,7 +340,8 @@ def main() -> None:
     print(f"  Classified {len(all_classifications)} item(s)")
 
     # Generate report
-    report = generate_report(run_date, all_items, all_classifications, source_counts)
+    report = generate_report(run_date, all_items, all_classifications, source_counts,
+                             diff_data.get("source_health"))
 
     # Write outputs
     out_path = OUTPUT_DIR / f"{run_date}.md"

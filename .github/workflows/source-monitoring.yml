@@ -173,6 +173,12 @@ jobs:
             git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:main
           fi
 
+      # Runs after the state commit so new items are never held back by one
+      # dead source; failing here opens the "run failed" issue below.
+      - name: Check source health
+        if: success()
+        run: python automation/monitoring/poll-sources.py --health-check
+
       - name: Open issue on failure
         if: failure() && github.event_name == 'schedule'
         uses: actions/github-script@v7
