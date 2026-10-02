@@ -4,7 +4,7 @@ title: "B5 — Agentic Logging & Auditability Gaps"
 sidebar_label: "B5 — Agentic Logging"
 sidebar_position: 5
 tags: [governance, agentic-ai, high-severity]
-last_verified: 2026-05-10
+last_verified: 2026-10-02
 next_review: 2026-11-10
 description: "Agentic AI systems take real actions — but conventional logging was designed for human-operated systems. When an agent makes a bad decision or is exploited, the question \"what happened and why?\" often cannot be answered."
 ---
@@ -39,7 +39,7 @@ For each agentic AI system we operate, can we reconstruct the complete sequence 
 <Tabs>
   <TabItem value="executive" label="Executive / Board">
 
-Regulatory frameworks including the EU AI Act, APRA, and NIST require that AI system decisions be explainable and auditable. Agentic systems — which act autonomously over long task horizons — create significant auditability challenges that conventional application logging does not address. If a regulator or legal proceeding requires you to explain why an AI agent took a specific action, you need logs that capture the reasoning chain, not just the final action. The question to ask your technology team: for every agentic system we run, can we answer "why did the agent do that" for any specific action it took?
+The EU AI Act (Art. 12) mandates automatic logging for high-risk AI systems; APRA CPS 234 and CPS 230 require incident investigation capability and operational risk management; and the voluntary NIST AI RMF treats accountability and transparency as characteristics of trustworthy AI. Agentic systems — which act autonomously over long task horizons — create significant auditability challenges that conventional application logging does not address. If a regulator or legal proceeding requires you to explain why an AI agent took a specific action, you need logs that capture the reasoning chain, not just the final action. The question to ask your technology team: for every agentic system we run, can we answer "why did the agent do that" for any specific action it took?
 
   </TabItem>
   <TabItem value="pm" label="Project Manager">

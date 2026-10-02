@@ -4,7 +4,7 @@ title: "D2 — Privacy & Data Protection"
 sidebar_label: "D2 — Privacy"
 sidebar_position: 2
 tags: [d, high-severity]
-last_verified: 2026-03-28
+last_verified: 2026-10-02
 next_review: 2026-09-28
 description: "AI systems create multiple vectors for personal information breaches — through model memorisation, inference data transmission, and agent exfiltration."
 ---
@@ -38,7 +38,7 @@ Has a Privacy Impact Assessment been completed for every AI system processing pe
   AI systems create privacy risks that go beyond traditional data handling. The Samsung case (2023) demonstrates that employees have submitted sensitive data to public AI tools — in three separate incidents within 20 days of being granted access. The audit finding means your privacy controls for AI deployments are insufficient. Approving remediation means funding PIAs for AI systems, enterprise API tier requirements, and an acceptable use policy.
   </TabItem>
   <TabItem value="pm" label="Project Manager">
-  Any AI system processing personal information requires a Privacy Impact Assessment before go-live — mandatory under the Privacy Act and GDPR. Confirm: (1) PIA completed and approved; (2) vendor DPA confirms data not used for model training; (3) data minimisation applied. Legal and Compliance own the PIA; Technology owns data minimisation.
+  Any AI system processing personal information requires a Privacy Impact Assessment before go-live — required under GDPR Art. 35 where processing is likely to be high-risk (most AI profiling); treated as standard practice by the OAIC under the Privacy Act (and mandatory for Australian Government agencies for high privacy risk projects). Confirm: (1) PIA completed and approved; (2) vendor DPA confirms data not used for model training; (3) data minimisation applied. Legal and Compliance own the PIA; Technology owns data minimisation.
   </TabItem>
   <TabItem value="analyst" label="Security Analyst">
   Privacy controls are security controls in AI contexts. Ensure PII detection is implemented on inputs to external AI APIs; confirm enterprise API tiers are in use; implement access controls and audit logging on all AI system inputs and outputs. Model inversion attacks — where training data can be reconstructed from model outputs — are a documented threat.
