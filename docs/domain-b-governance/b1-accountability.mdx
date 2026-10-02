@@ -4,7 +4,7 @@ title: "B1 — Accountability Gaps"
 sidebar_label: "B1 — Accountability"
 sidebar_position: 1
 tags: [b, high-severity]
-last_verified: 2026-06-26
+last_verified: 2026-10-02
 next_review: 2026-09-28
 description: "No identifiable person or function is responsible for an AI system's decisions, behaviour, or outcomes."
 ---
@@ -35,7 +35,7 @@ Can we name a specific individual accountable for each AI system in production, 
 
 <Tabs>
   <TabItem value="executive" label="Executive / Board">
-  If APRA or ASIC asks who is accountable for an AI system making credit decisions and the answer is unclear, that is a direct breach. You are being asked to approve an AI Register with named owners and a RACI mapping each system to your accountability framework.
+  If APRA or ASIC asks who is accountable for an AI system making credit decisions and the answer is unclear, that signals a gap in your FAR accountability map and CPS 230 operational risk governance — a finding regulators will act on. You are being asked to approve an AI Register with named owners and a RACI mapping each system to your accountability framework.
   </TabItem>
   <TabItem value="pm" label="Project Manager">
   Before any AI system goes live, an AI Register entry must exist with a named system owner. That entry is your go-live prerequisite. Confirm with Risk or Governance that the entry is created and the owner has acknowledged their responsibilities before you sign off.
@@ -96,7 +96,7 @@ Map each AI system in the AI Register to the applicable accountability framework
 
 Implementation requirements: (1) for each AI system, identify: which Accountable Person's accountability statement covers decisions made or influenced by this system; (2) confirm the Accountable Person is aware of and has acknowledged their accountability for this system; (3) document the mapping in a format that can be provided to a regulator on request; (4) update the mapping when Accountable Persons change roles; (5) for systems that span multiple accountability boundaries (e.g. a credit AI that touches both the Chief Risk Officer and Chief Data Officer domains), document the primary accountable person and any shared accountability explicitly.
 
-**Jurisdiction notes:** AU — Financial Accountability Regime (FAR, effective July 2025 for ADIs) — accountable persons must take reasonable steps to manage accountability obligations, which now includes AI systems within their domain. APRA CPS 230 — board and senior management are accountable for material operational risks including AI | EU — EU AI Act Art. 26 — deployers must designate responsible human oversight. Senior Managers and Certification Regime (SMCR) in UK — equivalent obligation | US — no direct equivalent to FAR; SEC Cybersecurity Rules require board-level disclosure of material AI risks; OCC guidance requires board oversight of model risk
+**Jurisdiction notes:** AU — Financial Accountability Regime (FAR, in force for ADIs from 15 March 2024) — accountable persons must take reasonable steps to manage accountability obligations, which now includes AI systems within their domain. APRA CPS 230 — board and senior management are accountable for material operational risks including AI | EU — EU AI Act Art. 26 — deployers must designate responsible human oversight. Senior Managers and Certification Regime (SMCR) in UK — equivalent obligation | US — no direct equivalent to FAR; SEC Cybersecurity Rules require board-level disclosure of material AI risks; OCC guidance requires board oversight of model risk
 
 ---
 
@@ -224,7 +224,7 @@ AI_INCIDENT_RACI = {
 
 ### Compliance implementation
 
-**Australia:** Financial Accountability Regime (FAR, effective July 2025 for ADIs, July 2026 for insurers and superannuation) — accountable persons must have clearly documented accountability for material functions including AI-driven decisions. APRA CPS 230 — outsourcing and third-party arrangements involving AI must have clear accountability allocation and cannot reduce the entity's obligations to APRA. ASIC regulatory guidance on AI in financial services — ASIC expects firms to be able to demonstrate clear governance and accountability for AI systems used in financial advice, credit, and insurance.
+**Australia:** Financial Accountability Regime (FAR, in force for ADIs from 15 March 2024 and for insurers and superannuation trustees from 15 March 2025) — accountable persons must have clearly documented accountability for material functions including AI-driven decisions. APRA CPS 230 — outsourcing and third-party arrangements involving AI must have clear accountability allocation and cannot reduce the entity's obligations to APRA. ASIC regulatory guidance on AI in financial services — ASIC expects firms to be able to demonstrate clear governance and accountability for AI systems used in financial advice, credit, and insurance.
 
 **EU:** EU AI Act Art. 26 — deployers of high-risk AI systems must assign human oversight responsibility to a named person with the competence, authority, and resources to exercise that oversight. Art. 71 — registration of high-risk AI systems in the EU AI database is mandatory from August 2, 2026. ISO 42001 Cl. 5.3 — AI management system standard requires documented roles, responsibilities, and authorities for all AI-related activities.
 
