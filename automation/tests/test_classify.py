@@ -14,13 +14,18 @@ spec.loader.exec_module(classify)
 ITEMS = [{'id': 'a', 'title': 'A'}, {'id': 'b', 'title': 'B'}]
 
 
-def fake_client(text, stop_reason='end_turn', exc=None):
-    def create(**_kwargs):
+def fake_client(text, stop_reason='end_turn', exc=None, calls=None):
+    def create(**kwargs):
+        if calls is not None:
+            calls.append(kwargs)
         if exc:
             raise exc
-        return SimpleNamespace(stop_reason=stop_reason,
-                               content=[SimpleNamespace(text=text)])
-    return SimpleNamespace(messages=SimpleNamespace(create=create))
+        # Thinking models lead with a thinking block before the text.
+        return SimpleNamespace(stop_reason=stop_reason, stop_details=None, content=[
+            SimpleNamespace(type='thinking', thinking=''),
+            SimpleNamespace(type='text', text=text),
+        ])
+    return SimpleNamespace(beta=SimpleNamespace(messages=SimpleNamespace(create=create)))
 
 
 def ok_response(ids=('a', 'b')):
@@ -32,9 +37,19 @@ def test_parses_fenced_response_with_prose():
     assert len(classify.classify_batch(ITEMS, fake_client(text))) == 2
 
 
+def test_request_uses_current_sonnet_with_fallbacks():
+    calls = []
+    classify.classify_batch(ITEMS, fake_client(ok_response(), calls=calls))
+    (kwargs,) = calls
+    assert kwargs['model'] == 'claude-sonnet-5-5'
+    assert kwargs['extra_body'] == {'fallbacks': 'default'}
+    assert 'temperature' not in kwargs
+
+
 @pytest.mark.parametrize('client', [
     fake_client('', exc=RuntimeError('credit balance is too low')),
     fake_client(ok_response()[:-5], stop_reason='max_tokens'),
+    fake_client('', stop_reason='refusal'),
     fake_client('not json at all'),
     fake_client(ok_response(ids=('a',))),
 ])

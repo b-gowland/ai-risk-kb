@@ -29,6 +29,8 @@ from dataclasses import asdict, dataclass, field
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
 
+from claude_client import MODEL_OPUS, MODEL_SONNET, check_stop_reason, message_kwargs
+
 try:
     import anthropic
 except ImportError:  # pragma: no cover - exercised only when the SDK is absent.
@@ -91,6 +93,9 @@ def parse_json_from_response(response):
     value in the text and ignore anything after it. Raises json.JSONDecodeError
     if no parseable JSON value is found.
     """
+    # Refused / truncated responses fail here, inside each caller's per-item
+    # try block, so one bad item is flagged rather than aborting the run.
+    check_stop_reason(response)
     raw = extract_text_from_response(response)
     # Strip markdown fences if present (single pass, in either order)
     cleaned = raw.strip()
@@ -162,6 +167,13 @@ def _api_call_with_backoff(client_fn, *args, **kwargs):
             last_exc = exc
 
     raise last_exc  # unreachable but satisfies type checkers
+
+
+def _create_message(client, model: str, prompt: str, effort: str):
+    """Send one prompt via the shared model settings (see claude_client.py)."""
+    return _api_call_with_backoff(
+        client.beta.messages.create, **message_kwargs(model, prompt, effort)
+    )
 
 
 # Monitoring sources — checked on each monitor run
@@ -372,11 +384,7 @@ Do not include opinions or general statements.
 Entry content:
 {content[:4000]}
 """
-        response = _api_call_with_backoff(self.client.messages.create,
-            model="claude-sonnet-4-6",
-            max_tokens=2000,
-            messages=[{"role": "user", "content": prompt}],
-        )
+        response = _create_message(self.client, MODEL_SONNET, prompt, effort="medium")
         try:
             claims = parse_json_from_response(response)
         except Exception as e:
@@ -413,11 +421,7 @@ Return ONLY a JSON object with no preamble or markdown fences:
   "notes": "brief explanation of your assessment"
 }}
 """
-        response = _api_call_with_backoff(self.client.messages.create,
-            model="claude-sonnet-4-6",
-            max_tokens=1000,
-            messages=[{"role": "user", "content": search_prompt}],
-        )
+        response = _create_message(self.client, MODEL_OPUS, search_prompt, effort="high")
         try:
             data = parse_json_from_response(response)
             return VerificationResult(
@@ -489,11 +493,7 @@ Return ONLY a JSON object with no preamble or markdown fences:
   "human_review_required": true
 }}
 """
-        response = _api_call_with_backoff(self.client.messages.create,
-            model="claude-sonnet-4-6",
-            max_tokens=1000,
-            messages=[{"role": "user", "content": prompt}],
-        )
+        response = _create_message(self.client, MODEL_SONNET, prompt, effort="low")
         try:
             data = parse_json_from_response(response)
             return MonitoringResult(source_name=source["name"], checked_at=utc_isoformat(), **data)
@@ -895,11 +895,7 @@ Return as JSON:
 Entry content:
 {entry_content[:5000]}
 """
-        response = _api_call_with_backoff(self.client.messages.create,
-            model="claude-sonnet-4-6",
-            max_tokens=1000,
-            messages=[{"role": "user", "content": prompt}],
-        )
+        response = _create_message(self.client, MODEL_SONNET, prompt, effort="medium")
         try:
             return parse_json_from_response(response)
         except Exception as e:
@@ -927,11 +923,7 @@ Return as JSON array.
 Entry content:
 {entry_content[:5000]}
 """
-        response = _api_call_with_backoff(self.client.messages.create,
-            model="claude-sonnet-4-6",
-            max_tokens=2000,
-            messages=[{"role": "user", "content": prompt}],
-        )
+        response = _create_message(self.client, MODEL_SONNET, prompt, effort="medium")
         try:
             return parse_json_from_response(response)
         except Exception as e:

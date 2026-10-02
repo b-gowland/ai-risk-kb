@@ -39,6 +39,14 @@ except ImportError:
 # ============================================================
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(REPO_ROOT / "automation"))
+from claude_client import (  # noqa: E402
+    MODEL_SONNET,
+    check_stop_reason,
+    message_kwargs,
+    response_text,
+)
+
 MONITORING_DIR = REPO_ROOT / "automation" / "monitoring"
 DIFF_FILE = MONITORING_DIR / "monitoring-diff.json"
 OUTPUT_DIR = MONITORING_DIR / "monitoring-output"
@@ -134,10 +142,6 @@ Be conservative: prefer UPDATE_ENTRY or NO_ACTION over NEW_ENTRY or NEW_DOMAIN_N
 unless the gap is clear and significant."""
 
 
-# 10 items x ~250 output tokens each overflowed the old 2000-token budget.
-MAX_TOKENS = 8000
-
-
 def parse_json_array(text: str) -> list:
     """Extract the first JSON array from model text, tolerating fences and prose."""
     cleaned = text.strip().removeprefix("```json").removeprefix("```").removesuffix("```")
@@ -194,15 +198,11 @@ Return only the JSON array."""
     # Errors propagate: main() must know a batch failed so it can exit non-zero
     # and the workflow does not commit advanced last-seen state (which would
     # silently drop these items forever).
-    response = client.messages.create(
-        model="claude-sonnet-4-6",
-        max_tokens=MAX_TOKENS,
-        system=CLASSIFY_SYSTEM,
-        messages=[{"role": "user", "content": prompt}],
+    response = client.beta.messages.create(
+        **message_kwargs(MODEL_SONNET, prompt, effort="low", system=CLASSIFY_SYSTEM)
     )
-    if response.stop_reason == "max_tokens":
-        raise ValueError(f"response truncated at max_tokens={MAX_TOKENS}")
-    results = parse_json_array(response.content[0].text)
+    check_stop_reason(response)  # refusal / truncation
+    results = parse_json_array(response_text(response))
     returned_ids = {r.get("item_id") for r in results if isinstance(r, dict)}
     missing = [item.get("id", "") for item in items if item.get("id", "") not in returned_ids]
     if missing:
