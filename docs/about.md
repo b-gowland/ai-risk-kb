@@ -44,7 +44,7 @@ All factual claims are verified against primary sources before publication. Clai
 
 ## Companion training app
 
-Each risk entry includes a **scenario seed** — a structured situation used as the basis for the companion training app. The [AI Risk Practice](https://app.airiskpractice.org/) app is a free, choose-your-own-adventure trainer built around two doors: **At home** (personal AI risk — scams, deepfakes, chatbot harm, data exposure) and **At work** (AI risk in a job, from general staff through specialists). You are the person the situation is happening to; you make the calls and see what follows. The library is the reference layer behind the scenarios, and more scenarios are added over time.
+Each risk entry includes a **scenario seed** — a structured situation used as the basis for the companion training app. The [AI Risk Practice](https://app.airiskpractice.org/) app is a free, choose-your-own-adventure trainer built around two doors: **At home** (personal AI risk — scams, deepfakes, chatbot harm, data exposure) and **At work** (AI risk in a job). You are the person the situation is happening to; you make the calls and see what follows. The library is the reference layer behind the scenarios, and more scenarios are added over time.
 
 ## Licence
 
