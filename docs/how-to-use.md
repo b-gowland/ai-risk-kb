@@ -14,7 +14,7 @@ This resource is designed for everyone involved in AI governance, deployment, an
 
 **Executives and board members** — use the Layer 1 **Start here** tab to understand what a risk means, what the consequence of inaction is, and what question to ask about it.
 
-**General public** — three entries (A1 Hallucination, C4 Deepfakes, E1 Algorithmic Bias) have an **Everyday** tab written in plain language with no jargon. These link to the [Fork everyday scenarios](https://app.airiskpractice.org/) if you want to explore the risk through a real-life situation.
+**General public** — three entries (A1 Hallucination, C4 Deepfakes, E1 Algorithmic Bias) have an **At home** tab written in plain language with no jargon. These link to the matching [At Home scenarios](https://app.airiskpractice.org/) if you want to explore the risk through a real-life situation.
 
 **Risk managers and compliance leads** — use Layer 2 to understand the risk mechanism, which controls apply, who owns each control, and what done looks like before a system goes live.
 
@@ -28,7 +28,7 @@ Every risk entry has four layers. You do not need to read all four — read to t
 
 | Layer | Audience | What you get |
 |-------|----------|--------------|
-| **1 — Start here** | All audiences | Plain English summary, severity, key question to ask, persona-specific tabs (Executive, PM, Analyst, Everyday) |
+| **1 — Start here** | All audiences | Plain English summary, severity, key question to ask, persona-specific tabs (Executive, PM, Analyst, At home) |
 | **2 — Practitioner overview** | Risk, compliance, PMs | Risk mechanism, likelihood drivers, controls summary with owner/effort/done criteria |
 | **3 — Controls detail** | Risk practitioners, audit | Full control descriptions, KPIs, jurisdiction-specific obligations |
 | **4 — Technical implementation** | Engineers, security analysts | Code examples, tool references, compliance implementation steps |
@@ -64,4 +64,4 @@ See the [Contributing guide](/docs/contributing) for how to raise an issue or su
 
 There are two doors. **At Work** covers AI risk in a job — shadow AI, hallucination, privacy, intellectual property, bias, automation bias. **At Home** covers personal AI risk — voice-clone scams, trusting an AI answer, algorithmic decisions. At Home scenarios take about five minutes; At Work scenarios run a little longer.
 
-Nine scenarios are live. Entries in this knowledge base that have a matching scenario link straight to it; the rest are marked as coming soon.
+Nine scenarios are live. Entries with a matching scenario link straight to it.
