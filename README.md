@@ -37,7 +37,7 @@ A practitioner reference covering 32 AI risk entries across 7 domains, with four
 - NIST AI RMF 1.0 and AI 600-1 (GenAI)
 - EU AI Act (Regulation 2024/1689)
 - ISO 42001:2023
-- OWASP LLM Top 10 (2025)
+- OWASP LLM Top 10 (2026)
 - MITRE ATLAS
 - AI Incident Database (AIID) and OECD AI Incidents Monitor
 
