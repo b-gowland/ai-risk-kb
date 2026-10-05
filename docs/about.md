@@ -19,7 +19,7 @@ This knowledge base aims to bridge that gap: authoritative enough to be credible
 **32 risk entries** are organised across **7 domains** (A through G), each with four layers of depth:
 
 - **Layer 1 — Start here** — Plain English summary for any audience, with tabs for executives, project managers, and security analysts, plus a general-audience tab for readers arriving from the [training app](https://app.airiskpractice.org/)
-- **Layer 2** — Practitioner overview with controls ownership, effort estimates, and go-live criteria — designed for risk managers, compliance leads, and project managers
+- **Layer 2** — Overview with controls ownership, effort estimates, and go-live criteria — designed for risk managers, compliance leads, and project managers
 - **Layer 3** — Full actionable controls with KPIs and jurisdiction notes — designed for risk practitioners and internal audit
 - **Layer 4** — Technical implementation with code examples and tool references — designed for security analysts and engineers
 

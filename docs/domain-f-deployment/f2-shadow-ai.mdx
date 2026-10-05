@@ -4,8 +4,8 @@ title: "F2 — Shadow AI"
 sidebar_label: "F2 — Shadow AI"
 sidebar_position: 2
 tags: [f, high-severity]
-last_verified: 2026-03-28
-next_review: 2026-09-28
+last_verified: 2026-10-05
+next_review: 2027-04-05
 description: "Employees use unauthorised, unmanaged AI tools for work tasks — submitting sensitive data to systems outside organisational control."
 ---
 
@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 
 <div style={{display:'flex',gap:'0.5rem',flexWrap:'wrap',marginBottom:'1.5rem'}}>
   <span className="severity-badge severity-high severity">High severity</span>
-  <span className="framework-chip">APRA CPS 234</span> <span className="framework-chip">Privacy Act 1988 (Cth)</span> <span className="framework-chip">NIST AI RMF GOVERN 2</span> <span className="framework-chip">EU AI Act Art. 26</span>
+  <span className="framework-chip">APRA CPS 234</span> <span className="framework-chip">Privacy Act 1988 (Cth)</span> <span className="framework-chip">NIST AI RMF GOVERN 2</span> <span className="framework-chip">EU AI Act Art. 4</span>
 </div>
 
 **Domain:** F — HCI & Deployment | **Jurisdiction:** AU, EU, US, Global
@@ -28,6 +28,8 @@ import TabItem from '@theme/TabItem';
 > Employees use unauthorised, unmanaged AI tools for work tasks — submitting sensitive data to systems outside organisational control.
 
 Shadow AI describes the use of unauthorised AI tools by employees for work tasks — typically accessing public consumer LLM interfaces. When employees do this, they frequently submit confidential data: customer records, financial models, proprietary code, strategic plans. The Samsung case (2023) is the canonical example. The primary risk is data that leaves your organisation's control, potentially entering AI training pipelines.
+
+**▶ Practise this:** [The Shortcut](https://app.airiskpractice.org/#/scenario/f2-shadow-ai) (at work, about ten minutes). Free, no login.
 
 <div className="key-question">
 Do we have DLP controls detecting submission of sensitive data to unapproved AI endpoints, and an approved AI tools register giving staff sanctioned alternatives that meet their productivity needs?
@@ -47,7 +49,7 @@ Do we have DLP controls detecting submission of sensitive data to unapproved AI 
 
 ---
 
-## Layer 2 — Practitioner overview
+## Layer 2 — Overview
 
 ### Likelihood drivers
 - Approved AI tools unavailable or inadequate for employee needs
@@ -113,7 +115,7 @@ Minimum policy content: (1) definition of approved and unapproved AI tools (cros
 
 Obtain individual staff acknowledgement (not just publication). Include in new starter onboarding. Review annually or when significant new AI tool categories become available.
 
-**Jurisdiction notes:** AU — Fair Work Act 2009 — for disciplinary action to be supportable, the policy must have been communicated and acknowledged; a policy buried in an appendix to the IT security manual is unlikely to meet this standard | EU — GDPR Art. 29 / Art. 32(4) — employees must act only on documented instructions of the controller; the AUP is that documented instruction for AI tool usage | US — for financial services, document AI AUP as part of information security programme under Gramm-Leach-Bliley Act
+**Jurisdiction notes:** AU — Fair Work Act 2009 — in unfair dismissal matters the Fair Work Commission generally looks at whether the employee knew about the policy, and a documented acknowledgement is the usual evidence; a policy buried in an appendix to the IT security manual is weak on that test | EU — GDPR Art. 29 / Art. 32(4) — employees must act only on documented instructions of the controller; the AUP is that documented instruction for AI tool usage | US — for financial services, document AI AUP as part of information security programme under Gramm-Leach-Bliley Act
 
 ---
 
@@ -124,7 +126,7 @@ The most effective long-term control against shadow AI is removing the incentive
 
 Implementation requirements: (1) survey staff on AI tool needs before procuring — avoid deploying tools that do not match the actual use cases driving shadow AI adoption; (2) negotiate data processing terms — enterprise tiers of major AI providers typically include: no training on submitted content, data residency commitments, DPA included; (3) confirm the enterprise tool's data handling terms explicitly before approving for Confidential data — do not rely on consumer-tier terms with an enterprise billing plan; (4) communicate availability actively — staff may continue using shadow tools if they are unaware approved alternatives exist.
 
-⚠️ **[VERIFY BEFORE PUBLISH]** Enterprise AI data processing terms vary by provider, region, and contract tier and change frequently. Confirm current terms directly with providers before approving tools for sensitive data. Do not rely on vendor marketing materials.
+⚠️ **Check before relying on it:** enterprise AI data processing terms vary by provider, region, and contract tier and change frequently. Confirm current terms directly with providers before approving tools for sensitive data. Do not rely on vendor marketing materials.
 
 **Jurisdiction notes:** AU — Privacy Act 1988 APP 8 — cross-border data disclosure obligations apply to offshore AI processing; enterprise agreements should address data residency | EU — GDPR Art. 44–49 — international data transfer requirements; enterprise AI agreements must include Standard Contractual Clauses or equivalent where processing occurs outside EEA | US — sector-specific contractual requirements may apply (HIPAA BAA for health data, etc.)
 
@@ -151,9 +153,12 @@ Implementation requirements: (1) survey staff on AI tool needs before procuring 
 # Use as basis for DLP rules and web filtering policies
 
 CONSUMER_AI_ENDPOINTS = [
-    "chat.openai.com", "api.openai.com",   # OpenAI consumer
+    "chatgpt.com", "chat.openai.com",      # OpenAI consumer (chatgpt.com since 2024)
+    "api.openai.com",                       # OpenAI API (personal keys)
     "claude.ai",                            # Anthropic consumer
     "gemini.google.com",                    # Google consumer
+    "copilot.microsoft.com",                # Microsoft consumer Copilot
+    "chat.deepseek.com",                    # DeepSeek consumer
     "meta.ai",                              # Meta
     "chat.mistral.ai",                      # Mistral consumer
     "perplexity.ai",
@@ -168,7 +173,7 @@ ENTERPRISE_APPROVED_ENDPOINTS = [
 
 def is_unapproved_ai_endpoint(url: str) -> bool:
     from urllib.parse import urlparse
-    domain = urlparse(url).netloc.lower().lstrip("www.")
+    domain = urlparse(url).netloc.lower().removeprefix("www.")  # not lstrip: that strips characters, not a prefix
     if any(domain == ep or domain.endswith("." + ep)
            for ep in ENTERPRISE_APPROVED_ENDPOINTS):
         return False
@@ -257,11 +262,11 @@ SHADOW_AI_INCIDENT_TIERS = {
 
 ### Compliance implementation
 
-**Australia:** Privacy Act 1988 APP 11 — take reasonable steps to protect personal information; DLP controls on AI endpoints directly address this. APP 8 — submitting personal information to an overseas AI provider triggers cross-border disclosure obligations; the approved tools register must confirm data residency for any tool processing personal information. APRA CPS 234 — information security capability must address shadow AI as an identified threat vector; include in annual CPS 234 attestation. Notifiable Data Breaches scheme — a shadow AI incident involving personal information may trigger NDB notification obligations.
+**Australia:** Privacy Act 1988 APP 11 — take reasonable steps to protect personal information; DLP controls on AI endpoints directly address this. APP 8 — submitting personal information to an overseas AI provider that can use it for its own purposes is likely a cross-border disclosure, which brings APP 8 obligations; the approved tools register must confirm data residency for any tool processing personal information. APRA CPS 234 — information security capability must address shadow AI as an identified threat vector, and it belongs within the control testing and internal audit coverage CPS 234 requires. Notifiable Data Breaches scheme — a shadow AI incident involving personal information may trigger NDB notification obligations.
 
-**EU:** GDPR Art. 28 — any tool processing personal data on behalf of your organisation requires a Data Processing Agreement. Consumer-tier AI tools typically do not offer a DPA. Art. 32 — technical and organisational measures for data security must address unauthorised processing pathways. Art. 83 — fines for Art. 32 violations up to €10M or 2% of global annual turnover. EU AI Act Art. 26 — deployers of AI systems must implement appropriate technical and organisational measures; an approved tools governance framework is part of this obligation.
+**EU:** GDPR Art. 28 — any tool processing personal data on behalf of your organisation requires a Data Processing Agreement. Consumer-tier AI tools typically do not offer a DPA. Art. 32 — technical and organisational measures for data security must address unauthorised processing pathways. Art. 83 — fines for Art. 32 violations up to €10M or 2% of global annual turnover. EU AI Act Art. 4 (as amended from 27 July 2026 by Regulation (EU) 2026/1744) asks providers and deployers to take measures to support the development of AI literacy; an acceptable use policy and approved tools register are typical measures. Art. 26 deployer obligations apply only to high-risk systems, which a general-purpose chatbot used for drafting typically is not.
 
-**US:** Gramm-Leach-Bliley Act (financial services) — information security programme must address third-party data processing risks including AI tools. HIPAA (health sector) — submitting PHI to a non-BAA-covered AI tool is a reportable breach. FTC Act Section 5 — failure to protect customer data through inadequate shadow AI controls has been the basis for FTC enforcement actions.
+**US:** Gramm-Leach-Bliley Act (financial services) — information security programme must address third-party data processing risks including AI tools. HIPAA (health sector) — submitting PHI to an AI tool with no business associate agreement is an impermissible disclosure, presumed to be a reportable breach unless a documented risk assessment shows a low probability that the information was compromised. FTC Act Section 5 — the FTC has brought enforcement actions over unreasonable data security; uncontrolled shadow AI data pathways fall within that exposure.
 
 **Tools and references:** Microsoft Purview (DLP + CASB) · Netskope (CASB) · Zscaler (web filtering + DLP) · OAIC NDB assessment guidance · OWASP AI Security and Privacy Guide
 
@@ -269,7 +274,7 @@ SHADOW_AI_INCIDENT_TIERS = {
 
 ## Incident examples
 
-**Samsung / ChatGPT (March 2023):** Three separate incidents within 20 days of Samsung permitting ChatGPT use. Engineers submitted proprietary source code for bug fixing, code optimisation, and meeting transcription. Prompted Samsung to ban external AI tool use entirely. (CIO Dive, April 2023; Gizmodo, April 2023; AI Incident Database #768)
+**Samsung / ChatGPT (March 2023):** Three separate incidents within 20 days of Samsung permitting ChatGPT use. Engineers submitted proprietary source code for bug fixing, code optimisation, and meeting transcription. Samsung then restricted generative AI tools on company devices and internal networks (May 2023). (CIO Dive, April 2023; Gizmodo, April 2023; AI Incident Database #768)
 
 **Confidential product roadmap submitted to public chatbot (illustrative):** An employee pastes a confidential product roadmap into a public chatbot to improve wording. Data may be retained by the provider and used in model training.
 
@@ -283,4 +288,4 @@ SHADOW_AI_INCIDENT_TIERS = {
 
 **Difficulty:** Foundational | **Jurisdictions:** AU, EU, Global
 
-**[▶ Play this scenario](https://app.airiskpractice.org/#/scenario/f2-shadow-ai)** — Shadow AI & Data Exposure.
+**[▶ Play this scenario](https://app.airiskpractice.org/#/scenario/f2-shadow-ai)** — The Shortcut.

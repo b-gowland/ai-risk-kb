@@ -29,7 +29,7 @@ Every risk entry has four layers. You do not need to read all four — read to t
 | Layer | Audience | What you get |
 |-------|----------|--------------|
 | **1 — Start here** | All audiences | Plain English summary, severity, key question to ask, persona-specific tabs (Executive, PM, Analyst, At home) |
-| **2 — Practitioner overview** | Risk, compliance, PMs | Risk mechanism, likelihood drivers, controls summary with owner/effort/done criteria |
+| **2 — Overview** | Risk, compliance, PMs | Risk mechanism, likelihood drivers, controls summary with owner/effort/done criteria |
 | **3 — Controls detail** | Risk practitioners, audit | Full control descriptions, KPIs, jurisdiction-specific obligations |
 | **4 — Technical implementation** | Engineers, security analysts | Code examples, tool references, compliance implementation steps |
 

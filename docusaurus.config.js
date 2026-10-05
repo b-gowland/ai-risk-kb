@@ -75,6 +75,12 @@ const config = {
           showLastUpdateAuthor: false,
         },
         blog: false,
+        // Tag pages are auto-generated lists with no content of their own.
+        // Google crawled one and declined to index it (5 Oct); on a
+        // low-authority site, thin pages in the sitemap cost the whole site.
+        sitemap: {
+          ignorePatterns: ['/docs/tags/**'],
+        },
         theme: {
           customCss: './src/css/custom.css',
         },

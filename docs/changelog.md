@@ -8,6 +8,21 @@ sidebar_position: 6
 
 All material changes to the knowledge base are documented here. Changes are version-controlled in the [GitHub repository](https://github.com/b-gowland/ai-risk-kb).
 
+## [1.4.1] — October 2026
+
+### Corrected — F2 Shadow AI (re-verified 5 October 2026)
+- EU AI Act reference moved from Art. 26 (deployers of high-risk systems only) to Art. 4 as amended by Regulation (EU) 2026/1744
+- APRA CPS 234: removed a reference to an "annual attestation", which CPS 234 does not require
+- HIPAA, FTC Act and Fair Work Act notes reworded to match what each actually requires
+- APP 8 note now distinguishes disclosure from use
+- Samsung incident: restriction described accurately (company devices and networks, May 2023)
+- Endpoint catalogue: added chatgpt.com, consumer Copilot and DeepSeek; fixed a domain-matching bug in the example code
+
+### Changed — all entries
+- "Layer 2 — Practitioner overview" renamed "Layer 2 — Overview"
+- Entries with a practice scenario now link to it at the top of Layer 1, under its real title
+- Tag pages removed from the sitemap
+
 ## [1.4.0] — May 2026
 
 ### Added — Agentic AI risk entries
