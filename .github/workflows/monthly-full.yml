@@ -195,12 +195,13 @@ jobs:
         if: always()
         env:
           ENTRY_ID: ${{ github.event.inputs.entry }}
+          JOB_STATUS: ${{ job.status }}
         run: |
-          echo "## Monthly maintenance run complete" >> $GITHUB_STEP_SUMMARY
+          echo "## Monthly maintenance run: $JOB_STATUS" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "**Run date:** $(date -u +%Y-%m-%d)" >> $GITHUB_STEP_SUMMARY
           echo "**Mode:** ${ENTRY_ID:+single-entry ($ENTRY_ID)}${ENTRY_ID:-full}" >> $GITHUB_STEP_SUMMARY
-          echo "**Estimated cost:** ~\$2.70 USD" >> $GITHUB_STEP_SUMMARY
+          echo "**Cost:** depends on entry length and extracted claim count" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           if [ -d "automation/reports" ]; then
             echo "**Reports generated:**" >> $GITHUB_STEP_SUMMARY

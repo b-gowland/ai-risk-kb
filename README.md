@@ -65,7 +65,9 @@ ai-risk-kb/
 
 ## Maintenance
 
-Gap detection runs weekly (zero cost). Full maintenance pass runs monthly via Anthropic API (~$2.70/run). All changes go through GitHub Issues for human review before publication.
+Gap detection runs weekly (zero cost). Full maintenance runs monthly via the Anthropic API; cost depends on entry length and the number of extracted claims. All changes require human review before publication.
+
+Verification extracts claims from the complete entry, then assesses them using model training knowledge; it does not retrieve live primary sources. Failed or malformed extraction/assessment responses are recorded as incomplete checks, retained in the review reports, and make the command exit nonzero after saving its reports. Flagged and unverifiable claims also enter the human review queue. Failed scheduled runs raise a failure issue; their reports remain available in the workflow artifacts. No KB content is changed automatically.
 
 ## Contributing
 
