@@ -67,7 +67,7 @@ ai-risk-kb/
 
 Gap detection runs weekly (zero cost). Full maintenance runs monthly via the Anthropic API; cost depends on entry length and the number of extracted claims. All changes require human review before publication.
 
-Verification extracts claims from the complete entry, then assesses them using model training knowledge; it does not retrieve live primary sources. Failed or malformed extraction/assessment responses are recorded as incomplete checks, retained in the review reports, and make the command exit nonzero after saving its reports. Flagged and unverifiable claims also enter the human review queue. Failed scheduled runs raise a failure issue; their reports remain available in the workflow artifacts. No KB content is changed automatically.
+Verification extracts claims from the complete entry. By default it assesses them using model training knowledge; opt-in web verification retrieves primary-source citation excerpts. Failed or malformed extraction/assessment responses are recorded as incomplete checks, retained in the review reports, and make the command exit nonzero after saving its reports. Flagged and unverifiable claims also enter the human review queue. Failed scheduled runs raise a failure issue; their reports remain available in the workflow artifacts. No KB content is changed automatically.
 
 ## Contributing
 
@@ -82,3 +82,22 @@ Content: MIT licence. You are free to use, adapt, and redistribute with attribut
 - **Companion training app:** https://app.airiskpractice.org/
 - **Training repo:** https://github.com/b-gowland/ai-risk-training
 - **Project home:** https://airiskpractice.org/
+
+### Opt-in web verification pilot
+
+After setting `ANTHROPIC_API_KEY`, run from `automation/`:
+
+```sh
+uv run --frozen python automation_engine.py --mode single --entry A2 \
+  --web-verify --web-max-claims 5 --web-searches-per-claim 2 --web-max-tokens 4096
+```
+
+The monthly workflow also exposes a manual `web_verify` switch, requiring a single entry. Scheduled runs keep their existing behavior. No live pilot is run as part of tests or PR validation.
+
+Each searched claim uses one retrieval request and, when usable citations are returned, one evidence-assessment request. Defaults cap a run at five searched claims and two searches per claim, with a 4,096 output-token limit per web request. These are request limits, not a dollar budget: normal claim extraction and input tokens also cost money. Web requests disable SDK retries and the shared refusal fallback, and do not resume paused turns. Extra claims, failed searches, refusals and truncated responses are recorded as incomplete; remaining claims are not silently assessed from model knowledge.
+
+The source allowlist lives in `automation/web_verification.py`. Repeated `--primary-domain nist.gov` options replace it for a scoped pilot. The allowlist bounds search sources; the model must still explain why selected evidence is primary and supports the particular claim. Short citation excerpts can be insufficient, in which case the result remains unverifiable. Domain membership alone never establishes accuracy.
+
+JSON run records retain tool-returned URLs, citation excerpts, queries, retrieval timestamps, response IDs, token/search usage and selected evidence IDs. Human-review reports include the evidence even for supported claims. Search errors or exhausted limits make the command fail after reports are saved. Nothing changes KB content automatically.
+
+API contract: [Anthropic web search documentation](https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool). Live provider behavior and retrieval quality still require a bounded pilot; the regressions use simulated API responses.
