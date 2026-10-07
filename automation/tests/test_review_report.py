@@ -81,4 +81,3 @@ def test_source_links_cannot_insert_markup_or_unsafe_schemes():
     assert "javascript:" not in link("Read", "javascript:alert(1)")
     assert "%29" in link("Read", "https://example.org/a)bad")
     assert "\\[fake\\]" in link("[fake]", "https://example.org")
-
