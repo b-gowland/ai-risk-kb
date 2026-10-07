@@ -35,6 +35,11 @@ jobs:
         run: pip install pyyaml
 
       - name: Run citation ledger check (strict) on KB
+        # Without an explicit shell, GitHub runs this as `bash -e` with no
+        # pipefail, so `| tee` turned the checker's exit 1 into tee's exit 0 and
+        # the gate never blocked (see the 2026-10-05 run on 9418fdc, which printed
+        # STRICT: failing but passed). `shell: bash` gives `-eo pipefail`.
+        shell: bash
         run: |
           python3 tools/citation-ledger/check_citations.py --strict \
             --ledger tools/citation-ledger/citation-ledger.yaml \
