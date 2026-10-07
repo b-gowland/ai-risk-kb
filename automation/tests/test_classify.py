@@ -70,6 +70,12 @@ def test_main_exits_1_when_a_batch_fails(tmp_path, monkeypatch):
     with pytest.raises(SystemExit) as excinfo:
         classify.main()
     assert excinfo.value.code == 1
+    saved = json.loads((tmp_path / '2099-01-01.json').read_text())
+    assert saved['items'] == ITEMS
+    assert saved['items_received'] == 2
+    assert saved['items_reviewed'] == 0
+    assert saved['failed_batches'] == 1
+    assert 'Incomplete classification' in (tmp_path / '2099-01-01.md').read_text()
 
 
 def test_report_tolerates_malformed_matches():
@@ -78,3 +84,16 @@ def test_report_tolerates_malformed_matches():
         {'item_title': 'Y', 'action': 'NEW_ENTRY', 'kb_matches': [{'confidence': 'low'}]},
     ], {})
     assert 'Update existing entry' in report
+
+
+@pytest.mark.parametrize('rows', [
+    [{'item_id': 'a', 'action': 'NO_ACTION', 'kb_matches': []}] * 2,
+    json.loads(ok_response()) + [{'item_id': 'invented', 'action': 'NO_ACTION', 'kb_matches': []}],
+    [{'item_id': 'a', 'action': 'UNKNOWN', 'kb_matches': []},
+     {'item_id': 'b', 'action': 'NO_ACTION', 'kb_matches': []}],
+    [{'item_id': 'a', 'action': 'NO_ACTION', 'kb_matches': None},
+     {'item_id': 'b', 'action': 'NO_ACTION', 'kb_matches': []}],
+])
+def test_invalid_classifications_fail_instead_of_disappearing_from_report(rows):
+    with pytest.raises(ValueError):
+        classify.classify_batch(ITEMS, fake_client(json.dumps(rows)))
