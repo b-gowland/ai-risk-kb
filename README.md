@@ -4,6 +4,7 @@ A free, open-source reference for understanding, assessing, and controlling AI r
 
 **Live site:** https://library.airiskpractice.org/
 **Companion training app:** https://app.airiskpractice.org/
+**Governance baseline:** https://baseline.airiskpractice.org/
 **Project home:** https://airiskpractice.org/
 
 ---
@@ -79,4 +80,5 @@ Content: MIT licence. You are free to use, adapt, and redistribute with attribut
 
 - **Companion training app:** https://app.airiskpractice.org/
 - **Training repo:** https://github.com/b-gowland/ai-risk-training
+- **Governance baseline:** https://baseline.airiskpractice.org/ ([repo](https://github.com/b-gowland/ai-risk-baseline))
 - **Project home:** https://airiskpractice.org/
