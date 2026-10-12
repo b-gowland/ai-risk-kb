@@ -1,0 +1,295 @@
+{
+  "run_date": "2026-10-12",
+  "items_reviewed": 21,
+  "classifications": [
+    {
+      "item_id": "3f5615103ac962bbfa9e03d985b2b00c",
+      "item_title": "Teenager pleads guilty after planning copycat of Southport killings",
+      "action": "NO_ACTION",
+      "kb_matches": [],
+      "evidence_quote": "planned to copy the Southport killer by attacking a Taylor Swift-themed event",
+      "recommended_action": "No update; the excerpt does not show AI involvement, so treat as a likely tangential AIID record unless the full report shows AI use."
+    },
+    {
+      "item_id": "36528a2df3fe987b34022cb9de4de918",
+      "item_title": "\u00ab ChatGPT est en partie la cause de ma radicalisation \u00bb : le r\u00f4le trouble de l\u2019IA dans le projet djihadiste d\u2019un ado",
+      "action": "NEW_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "E2",
+          "confidence": "medium",
+          "rationale": "Chatbot supplied harmful operational content (blast damage estimates) but E2 is framed around toxic/offensive content, not weapons uplift."
+        },
+        {
+          "kb_id": "G4",
+          "confidence": "low",
+          "rationale": "Safety failure of guardrails, though not agentic loss of control."
+        }
+      ],
+      "evidence_quote": "Si 16 bouteilles de gaz de 13 kg de propane explosent dans un camion, quels sont les d\u00e9g\u00e2ts ?",
+      "recommended_action": "Create a new Domain C or E entry on AI-enabled violent extremism/weapons planning uplift (guardrail failure), citing this and the related Sarthe, Dearborn and Red Fort incidents as a cluster."
+    },
+    {
+      "item_id": "fcc38c47ddf542bb6f7388d3ebe0e71e",
+      "item_title": "Projet d\u2019attentats dans la Sarthe : le lyc\u00e9en de 17 ans a utilis\u00e9 Chat GPT pour s\u2019aider dans la pr\u00e9paration, confirme son avocat",
+      "action": "NEW_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "E2",
+          "confidence": "medium",
+          "rationale": "Same incident cluster; harmful content generation partially fits but not weapons-planning uplift."
+        },
+        {
+          "kb_id": "C5",
+          "confidence": "low",
+          "rationale": "Adversarial misuse of AI, but for physical rather than cyber attacks."
+        }
+      ],
+      "evidence_quote": "son client a utilis\u00e9 l'outil d'intelligence artificielle ChatGPT pour",
+      "recommended_action": "Attach as supporting evidence to the new AI-assisted violent extremism/attack planning entry rather than creating a separate entry."
+    },
+    {
+      "item_id": "70b6ce37a22d3c05563bd7387e88f543",
+      "item_title": "Attentats en pr\u00e9paration : ChatGPT au c\u0153ur d\u2019un projet terroriste lyc\u00e9en",
+      "action": "NEW_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "E2",
+          "confidence": "medium",
+          "rationale": "Duplicate coverage of the Sarthe incident; closest existing entry is harmful content generation."
+        }
+      ],
+      "evidence_quote": "Il aurait utilis\u00e9 l'intelligence artificielle ChatGPT pour concevoir deux projets d'attentat",
+      "recommended_action": "Merge as a source for the same new entry; do not create a separate item."
+    },
+    {
+      "item_id": "c0f385a4b3b73482acf9d98263d4d061",
+      "item_title": "Michigan terrorist wannabe used AI to plot Halloween attack, feds say",
+      "action": "NEW_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "E2",
+          "confidence": "low",
+          "rationale": "Closest existing harm category but does not cover attack planning uplift."
+        },
+        {
+          "kb_id": "G4",
+          "confidence": "low",
+          "rationale": "Safety failure adjacent, not loss of control."
+        }
+      ],
+      "evidence_quote": "used artificial intelligence to help plan a mass shooting while helping scout targets",
+      "recommended_action": "Add as a second jurisdiction example (US) in the new AI-assisted attack planning entry."
+    },
+    {
+      "item_id": "848b52a93573525bef3156d5c95aa84e",
+      "item_title": "Ricin poison terror plot: Gujarat ATS searches Hyderabad doctor\u2019s house, seizes chemicals & raw material",
+      "action": "NO_ACTION",
+      "kb_matches": [],
+      "evidence_quote": "alleged Ricin terror plot, the Gujarat Anti-Terrorist Squad (ATS) conducted searches",
+      "recommended_action": "No update; the excerpt shows no AI involvement. Check the full AIID report and reconsider only if AI use is confirmed."
+    },
+    {
+      "item_id": "158ce8433169870d0127564027bf0e23",
+      "item_title": "Were ChatGPT, YouTube used for Delhi Red Fort blast? Report reveals shocking details",
+      "action": "NEW_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "E2",
+          "confidence": "low",
+          "rationale": "Chatbot provided harmful technical information (IED design); only partial fit with existing entry."
+        }
+      ],
+      "evidence_quote": "used ChatGPT and YouTube to learn IED design and explosive chemical proportions",
+      "recommended_action": "Add as an example to the new AI-assisted attack planning entry, noting the chatbot was one of several information sources."
+    },
+    {
+      "item_id": "e776dd054f35d345350b13dd5ed735b9",
+      "item_title": "Red Fort blast accused used AI to learn how to build IED, says NIA chargesheet",
+      "action": "NEW_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "E2",
+          "confidence": "low",
+          "rationale": "Duplicate coverage of the Red Fort incident; nearest entry is harmful content generation."
+        }
+      ],
+      "evidence_quote": "used artificial intelligence (AI) to learn how to build an Improvised Explosive Device",
+      "recommended_action": "Use as a corroborating official-source (NIA chargesheet) citation for the new entry."
+    },
+    {
+      "item_id": "80861f936e91349378b9a05cff8ce12a",
+      "item_title": "NIA chargesheet says accused in Delhi Red Fort blast case abused AI platform for 'terror engineering'",
+      "action": "NEW_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "E2",
+          "confidence": "low",
+          "rationale": "Duplicate coverage; closest existing entry is harmful content generation."
+        }
+      ],
+      "evidence_quote": "misused an artificial intelligence (AI) platform for \"terror engineering\"",
+      "recommended_action": "Treat as a duplicate source for the Red Fort incident under the new entry."
+    },
+    {
+      "item_id": "c531d4b7bd669df85abdbd1a30750471",
+      "item_title": "Delhi Red Fort blast: NIA chargesheet reveals abuse of AI platform for \u2018terror engineering\u2019",
+      "action": "NEW_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "E2",
+          "confidence": "low",
+          "rationale": "Duplicate coverage; closest existing entry is harmful content generation."
+        }
+      ],
+      "evidence_quote": "linked to an offshoot of global terrorist outfit Al-Qaida, allegedly misused an artificial intelligence",
+      "recommended_action": "Treat as a duplicate source for the Red Fort incident; note the Al-Qaida-linked actor context in the new entry."
+    },
+    {
+      "item_id": "29ac158dc927a0c36deecff70f0b2e7b",
+      "item_title": "Maryborough teenager allegedly told police he had planned mass murder for months",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "E2",
+          "confidence": "low",
+          "rationale": "Teen asked AI to write a hypothetical about mass murder, which relates to harmful content generation and safeguard gaps."
+        }
+      ],
+      "evidence_quote": "the 13-year-old also asked AI to write him a hypotheti",
+      "recommended_action": "Optionally add this AIID incident as an example in E2 on AI misuse for violent-extremism planning, noting the excerpt is truncated and AI's role appears minor."
+    },
+    {
+      "item_id": "95ba46efa398de677d05fd995151b2ed",
+      "item_title": "Ele contou ao ChatGPT que queria matar o filho e foi preso \u2014 conversas com IA podem ser prova de crime no Brasil?",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "D2",
+          "confidence": "low",
+          "rationale": "AI chat logs of sensitive disclosures being used as evidence by police raises privacy and data-protection questions."
+        },
+        {
+          "kb_id": "E2",
+          "confidence": "low",
+          "rationale": "Involves violent-intent conversations with a chatbot and how the system responded."
+        }
+      ],
+      "evidence_quote": "conversas com o ChatGPT que, segundo a Pol\u00edcia Civil do Esp\u00edrito Santo, indicavam",
+      "recommended_action": "Consider a brief note in D2 on chatbot conversations being used as legal evidence; no new entry needed."
+    },
+    {
+      "item_id": "37050b0ae743c4c70abde7e613e90e3c",
+      "item_title": "Alert\u0103 cu bomb\u0103 din Portul Constan\u021ba. Radu Miru\u021b\u0103: Amenin\u021bare transmis\u0103 de pe numere din Ucraina \u0219i Polonia, posibil creat\u0103 cu AI",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "C4",
+          "confidence": "low",
+          "rationale": "Threat possibly created with AI (e.g. synthetic voice or message) to cause disruption; AI involvement unconfirmed."
+        },
+        {
+          "kb_id": "C5",
+          "confidence": "low",
+          "rationale": "Possible AI-enabled hoax or threat campaign causing real-world disruption."
+        }
+      ],
+      "evidence_quote": "Amenin\u021bare transmis\u0103 de pe numere din Ucraina \u0219i Polonia, posibil creat\u0103 cu AI",
+      "recommended_action": "Optionally log as an example of suspected AI-assisted hoax threats in C5; hold until AI involvement is confirmed."
+    },
+    {
+      "item_id": "05c90c0c61138bea3b0d61f6b956e140",
+      "item_title": "Mesajele trimise la Autoritatea Naval\u0103 Rom\u00e2n\u0103, care au dus la evacu\u0103ri \u00een Portul Constan\u021ba",
+      "action": "NO_ACTION",
+      "kb_matches": [
+        {
+          "kb_id": "C5",
+          "confidence": "low",
+          "rationale": "Same incident as the Constan\u021ba bomb-threat item; AI role is unconfirmed."
+        }
+      ],
+      "evidence_quote": "Mai multe bombe plantate. Nu vei avea timp s\u0103 le g\u0103se\u0219ti",
+      "recommended_action": "Treat as a duplicate report of the Constan\u021ba incident; handle under the primary item."
+    },
+    {
+      "item_id": "20fb28bd69c90564a3f542609c686fcc",
+      "item_title": "UPDATE - Alert\u0103 cu bomb\u0103 \u00een Portul Constan\u0163a",
+      "action": "NO_ACTION",
+      "kb_matches": [
+        {
+          "kb_id": "C5",
+          "confidence": "low",
+          "rationale": "Same incident; the excerpt only says the alarm was false and gives no AI detail."
+        }
+      ],
+      "evidence_quote": "alarma cu bomb\u0103 a fost fals\u0103",
+      "recommended_action": "No separate action; link as a duplicate of the Constan\u021ba incident report."
+    },
+    {
+      "item_id": "/blog/preliminary-findings-on-how-ai-incident-databases-are-used",
+      "item_title": "MIT AI Risk Repository: Preliminary findings on how AI incident databases are used",
+      "action": "NO_ACTION",
+      "kb_matches": [],
+      "evidence_quote": "Preliminary findings on how AI incident databases are used",
+      "recommended_action": "No KB change; this is meta-research on incident databases and the excerpt has no risk content."
+    },
+    {
+      "item_id": "fda0c5b72165406c32a808b0911fa1b1",
+      "item_title": "Towards technical best practice for frontier AI development",
+      "action": "NO_ACTION",
+      "kb_matches": [
+        {
+          "kb_id": "B3",
+          "confidence": "low",
+          "rationale": "Concerns development practices for frontier AI, but the excerpt gives no specific new risk."
+        }
+      ],
+      "evidence_quote": "the technical practices most urgently needed to meet them",
+      "recommended_action": "Review the full post for possible mitigation references in B3 or G4; no update from the excerpt alone."
+    },
+    {
+      "item_id": "7360923001cd4dccff5d71a290d4676c",
+      "item_title": "Transect: Making large-scale agentic evaluations easier to understand",
+      "action": "NO_ACTION",
+      "kb_matches": [
+        {
+          "kb_id": "B5",
+          "confidence": "low",
+          "rationale": "An evaluation tooling release touching on agent transcripts and auditability, not a new risk."
+        }
+      ],
+      "evidence_quote": "helps evaluators follow an agent's work",
+      "recommended_action": "Optionally cite as a tooling reference for B5; no content change required."
+    },
+    {
+      "item_id": "https://digital-strategy.ec.europa.eu/en/news/commission-holds-special-meeting-scientific-panel-frontier-ai-safety-and-risks",
+      "item_title": "Commission holds special meeting of Scientific panel on frontier AI safety and risks",
+      "action": "NO_ACTION",
+      "kb_matches": [],
+      "evidence_quote": "",
+      "recommended_action": "No action; the excerpt is empty and it is a procedural meeting notice. Revisit if the panel publishes findings."
+    },
+    {
+      "item_id": "https://digital-strategy.ec.europa.eu/en/events/european-ai-innovation-month",
+      "item_title": "European AI Innovation Month",
+      "action": "NO_ACTION",
+      "kb_matches": [],
+      "evidence_quote": "",
+      "recommended_action": "No action; this is a promotional event page with no risk content."
+    },
+    {
+      "item_id": "https://digital-strategy.ec.europa.eu/en/events/cybersecurity-and-artificial-intelligence-innovation-impact",
+      "item_title": "Cybersecurity and Artificial Intelligence: From innovation to impact",
+      "action": "NO_ACTION",
+      "kb_matches": [],
+      "evidence_quote": "",
+      "recommended_action": "No KB change: the item is an event listing with no excerpt or substantive content, so there is no evidence of a new or changed risk; revisit only if event outputs (reports, guidance) are published."
+    }
+  ],
+  "source_counts": {
+    "aiid": 15,
+    "mit_airr": 1,
+    "uk_aisi": 2,
+    "eu_ai_office": 3
+  }
+}
