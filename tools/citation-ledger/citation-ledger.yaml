@@ -102,6 +102,10 @@ eu-ai-act:
   source: "Regulation (EU) 2024/1689, Official Journal version 2024-06-13"
   verified_on: "2026-06-28"
   ids:
+    article-4:
+      name: "AI Literacy"
+      status: verified
+      note: "Added 2026-10-08 after f2-shadow-ai cited 'EU AI Act Art. 4' (chip + EU jurisdiction note) on 2026-10-05. Title verified against artificialintelligenceact.eu/article/4/ ('Article 4: AI literacy'). f2 also describes the Regulation (EU) 2026/1744 amendment to this article; the ledger verifies the article title only, not the amendment text."
     article-5:  { name: "Prohibited AI Practices", status: verified }
     article-9:  { name: "Risk Management System", status: verified }
     article-10: { name: "Data and Data Governance", status: verified }
