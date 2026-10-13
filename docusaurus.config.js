@@ -116,6 +116,11 @@ const config = {
             position: 'left',
             href: 'https://app.airiskpractice.org/',
           },
+          {
+            label: 'Governance baseline',
+            position: 'left',
+            href: 'https://baseline.airiskpractice.org/',
+          },
         ],
       },
 
