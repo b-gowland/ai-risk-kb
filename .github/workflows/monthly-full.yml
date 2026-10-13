@@ -10,6 +10,15 @@ on:
         description: 'Optional: single entry ID to run (e.g. C2). Leave blank for all.'
         required: false
         default: ''
+      web_verify:
+        description: 'Opt-in web pilot (requires one entry; adds search/token costs)'
+        type: boolean
+        required: false
+        default: false
+      web_max_claims:
+        description: 'Web pilot claim cap (1-100); remaining claims are marked incomplete'
+        required: false
+        default: '5'
 
 # Explicit minimum permissions
 permissions:
@@ -60,11 +69,21 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           ENTRY_ID: ${{ github.event.inputs.entry }}
+          WEB_VERIFY: ${{ github.event.inputs.web_verify }}
+          WEB_MAX_CLAIMS: ${{ github.event.inputs.web_max_claims }}
         run: |
           cd automation
+          WEB_ARGS=()
+          if [ "$WEB_VERIFY" = "true" ]; then
+            if [ -z "$ENTRY_ID" ]; then
+              echo "Web verification pilots require a single entry."
+              exit 1
+            fi
+            WEB_ARGS=(--web-verify --web-max-claims "${WEB_MAX_CLAIMS:-5}")
+          fi
           if [ -n "$ENTRY_ID" ]; then
             echo "Running single-entry mode for: $ENTRY_ID"
-            python automation_engine.py --mode single --entry "$ENTRY_ID"
+            python automation_engine.py --mode single --entry "$ENTRY_ID" "${WEB_ARGS[@]}"
           else
             echo "Running full maintenance pass across all entries"
             python automation_engine.py --mode full
