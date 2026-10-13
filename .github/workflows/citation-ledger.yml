@@ -11,11 +11,13 @@ on:
       - "docs/**/*.mdx"
       - "docs/**/*.md"
       - "tools/citation-ledger/**"
+      - ".github/workflows/citation-ledger.yml"
   pull_request:
     paths:
       - "docs/**/*.mdx"
       - "docs/**/*.md"
       - "tools/citation-ledger/**"
+      - ".github/workflows/citation-ledger.yml"
   workflow_dispatch:
 
 permissions:
