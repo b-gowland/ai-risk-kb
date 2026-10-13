@@ -2,8 +2,9 @@
 """
 AI Risk Knowledge Base — Automation Engine
 ==========================================
-Handles: verification passes, monitoring source checks, regulatory date
-tracking, content gap detection, and automated draft generation triggers.
+Handles: verification passes, regulatory date tracking, content gap detection,
+and automated draft generation triggers. Source monitoring lives in
+automation/monitoring/ (poll-sources.py + classify.py).
 
 Design principles:
 - Every function is idempotent — safe to run multiple times
@@ -13,7 +14,6 @@ Design principles:
 
 Run modes:
   python automation_engine.py --mode verify        # Fact-check all flagged claims
-  python automation_engine.py --mode monitor       # LLM-only source check (no fetching; not in full)
   python automation_engine.py --mode gap-check     # Detect content that needs updating
   python automation_engine.py --mode full          # gap-check + verify
   python automation_engine.py --mode single --entry C2  # Single entry verification
@@ -26,7 +26,7 @@ import json
 import re
 import time
 from dataclasses import asdict, dataclass, field
-from datetime import UTC, datetime, timedelta
+from datetime import UTC, datetime
 from pathlib import Path
 from urllib.parse import quote
 
@@ -117,8 +117,8 @@ REVIEW_CADENCE_DAYS = {
 
 # ---------------------------------------------------------------------------
 # Rate limit helpers
-# The automation makes many sequential API calls (monitoring: 8 sources;
-# verification: ~26 entries × ~4 claims each). Firing them back-to-back
+# The automation makes many sequential API calls (verification:
+# ~32 entries × several claims each). Firing them back-to-back
 # exceeds the 30,000 input tokens/minute limit on standard tier accounts.
 # _api_call_with_backoff wraps every messages.create call with:
 #   - a mandatory inter-call pause (INTER_CALL_DELAY_S seconds)
@@ -171,97 +171,6 @@ def _create_message(client, model: str, prompt: str, effort: str):
     )
 
 
-# Monitoring sources — checked on each monitor run
-MONITORING_SOURCES = [
-    {
-        "name": "AI Incident Database",
-        "url": "https://incidentdatabase.ai",
-        "search_url": "https://incidentdatabase.ai/summaries/incidents/",
-        "cadence": "weekly",
-        "purpose": "New real-world AI incidents for risk event examples",
-    },
-    {
-        "name": "OECD AI Incidents Monitor",
-        "url": "https://oecd.ai/en/incidents",
-        "cadence": "monthly",
-        "purpose": "Cross-jurisdiction incident coverage",
-    },
-    {
-        "name": "EU AI Office",
-        "url": "https://digital-strategy.ec.europa.eu/ai-act",
-        "cadence": "monthly",
-        "purpose": "EU AI Act enforcement updates, GPAI Code of Practice",
-    },
-    {
-        "name": "APRA",
-        "url": "https://www.apra.gov.au",
-        "cadence": "monthly",
-        "purpose": "CPS 230 guidance, supervisory statements",
-    },
-    {
-        "name": "NIST AI RMF",
-        "url": "https://www.nist.gov/itl/ai-risk-management-framework",
-        "cadence": "as_published",
-        "purpose": "AI RMF updates, IR 8596 final release",
-    },
-    {
-        "name": "MITRE ATLAS",
-        "url": "https://atlas.mitre.org",
-        "cadence": "quarterly",
-        "purpose": "New adversarial AI tactics and techniques",
-    },
-    {
-        "name": "OWASP LLM Top 10",
-        "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications",
-        "cadence": "annually",
-        "purpose": "LLM vulnerability list updates",
-    },
-    {
-        "name": "Stanford HAI AI Index",
-        "url": "https://aiindex.stanford.edu",
-        "cadence": "annually",
-        "purpose": "Incident statistics, regulatory landscape",
-    },
-]
-
-# Domain-to-monitoring-source mapping
-# When a new incident appears in a source, these are the entry IDs to check
-DOMAIN_SOURCE_MAP = {
-    "AI Incident Database": [
-        "A1",
-        "A2",
-        "A3",
-        "A4",
-        "B1",
-        "B2",
-        "B3",
-        "B4",
-        "C1",
-        "C2",
-        "C3",
-        "C4",
-        "C5",
-        "D1",
-        "D2",
-        "D3",
-        "E1",
-        "E2",
-        "E3",
-        "F1",
-        "F2",
-        "F3",
-        "G1",
-        "G2",
-        "G3",
-        "G4",
-    ],
-    "EU AI Office": ["B2", "B3", "D2", "E1", "E2", "G4"],
-    "APRA": ["B1", "B2", "B3", "B4", "F2", "G1"],
-    "MITRE ATLAS": ["C1", "C2", "C3", "C5"],
-    "OWASP LLM Top 10": ["C1", "C2", "A1"],
-    "NIST AI RMF": ["A1", "A2", "A3", "A4", "B1", "G4"],
-}
-
 # ============================================================
 # DATA MODELS
 # ============================================================
@@ -287,18 +196,6 @@ class VerificationResult:
 
 
 @dataclass
-class MonitoringResult:
-    source_name: str
-    checked_at: str
-    new_content_detected: bool
-    relevant_entries: list[str]
-    summary: str
-    recommended_action: str  # none | flag_for_review | draft_update
-    content_excerpt: str
-    human_review_required: bool
-
-
-@dataclass
 class GapReport:
     entry_id: str
     gap_type: str  # missing_persona_hook | missing_owner_tag |
@@ -319,7 +216,6 @@ class AutomationRun:
     completed_at: str | None
     entries_processed: list[str]
     verification_results: list[VerificationResult]
-    monitoring_results: list[MonitoringResult]
     gap_reports: list[GapReport]
     human_review_items: list[dict]
     status: str  # running | completed | failed | awaiting_review
@@ -337,7 +233,9 @@ class VerificationEngine:
     All corrections require human approval before being written to entries.
     """
 
-    def __init__(self, client: anthropic.Anthropic, web_config: WebVerificationConfig | None = None):
+    def __init__(
+        self, client: anthropic.Anthropic, web_config: WebVerificationConfig | None = None,
+    ):
         self.client = client
         self.web = WebVerifier(client, web_config, parse_json_from_response) if web_config else None
 
@@ -480,80 +378,6 @@ Return ONLY a JSON object with no preamble or markdown fences:
                     exc, "metadata", data.get("verification_metadata", {}),
                 )
             return result
-
-
-# ============================================================
-# MONITORING ENGINE
-# ============================================================
-
-
-class MonitoringEngine:
-    """
-    Checks monitoring sources for new incidents, regulatory changes,
-    and framework updates. Generates structured recommendations for
-    human review.
-    """
-
-    def __init__(self, client: anthropic.Anthropic):
-        self.client = client
-
-    def check_source(self, source: dict, last_checked: str | None = None) -> MonitoringResult:
-        """
-        Check a monitoring source for new content since last check.
-        Returns structured result with relevance assessment.
-        """
-        since_date = last_checked or (utc_now() - timedelta(days=30)).strftime("%Y-%m-%d")
-
-        prompt = f"""
-You are monitoring an AI risk knowledge base. Based on your training knowledge,
-assess whether this source is likely to have published new content relevant to
-AI risk management since {since_date}:
-
-Source: {source["name"]}
-URL: {source["url"]}
-Purpose: {source["purpose"]}
-
-Using what you know about this organisation and its publication patterns, determine:
-1. Has this source likely published new content relevant to AI risk since {since_date}?
-2. Which of these KB entry IDs is most likely affected:
-   {", ".join(DOMAIN_SOURCE_MAP.get(source["name"], ["all entries"]))}
-3. Should a human reviewer check this source?
-
-Return ONLY a JSON object with no preamble or markdown fences:
-{{
-  "new_content_detected": true,
-  "relevant_entries": ["A1", "C2"],
-  "summary": "brief description of what this source typically publishes and whether new content is likely",
-  "recommended_action": "none|flag_for_review|draft_update",
-  "content_excerpt": "description of likely new content based on training knowledge",
-  "human_review_required": true
-}}
-"""
-        response = _create_message(self.client, MODEL_SONNET, prompt, effort="low")
-        try:
-            data = parse_json_from_response(response)
-            return MonitoringResult(source_name=source["name"], checked_at=utc_isoformat(), **data)
-        except Exception as e:
-            return MonitoringResult(
-                source_name=source["name"],
-                checked_at=utc_isoformat(),
-                new_content_detected=False,
-                relevant_entries=[],
-                summary=f"Check failed: {str(e)}",
-                recommended_action="none",
-                content_excerpt="",
-                human_review_required=True,
-            )
-
-    def run_all_sources(self, last_run_log: dict | None = None) -> list[MonitoringResult]:
-        results = []
-        for source in MONITORING_SOURCES:
-            last_checked = None
-            if last_run_log:
-                last_checked = last_run_log.get(source["name"])
-            result = self.check_source(source, last_checked)
-            results.append(result)
-        return results
 
 
 # ============================================================
@@ -1056,7 +880,9 @@ class ReportGenerator:
         ]
 
         if not corrections:
-            lines.append("No corrections proposed. Unresolved and incomplete checks are listed below.")
+            lines.append(
+                "No corrections proposed. Unresolved and incomplete checks are listed below."
+            )
         else:
             for r in corrections:
                 lines.append(f"\n### {r.entry_id} — {r.claim_location}")
@@ -1107,44 +933,11 @@ class ReportGenerator:
             lines.append(f"  Excerpt: {plain(item['excerpt'])}")
         if not evidence:
             lines.append("No usable primary-source citation evidence was retrieved.")
-        lines.append(f"Supporting IDs: {', '.join(metadata.get('supporting_evidence_ids', [])) or 'none'}")
-        lines.append(f"Primary-source rationale: {plain(metadata.get('primary_source_reason', 'none'))}")
+        supporting = ', '.join(metadata.get('supporting_evidence_ids', [])) or 'none'
+        lines.append(f"Supporting IDs: {supporting}")
+        reason = plain(metadata.get('primary_source_reason', 'none'))
+        lines.append(f"Primary-source rationale: {reason}")
         return lines
-
-    def generate_monitoring_report(self, results: list[MonitoringResult]) -> str:
-        action_items = [r for r in results if r.recommended_action != "none"]
-        failed = [r for r in results if r.summary.startswith("Check failed")]
-        clean = [r for r in results if not r.new_content_detected
-                 and not r.summary.startswith("Check failed")]
-
-        lines = [
-            "# Monitoring Report",
-            f"Generated: {utc_now().strftime('%Y-%m-%d %H:%M UTC')}",
-            f"Sources checked: {len(results)}",
-            f"Action items: {len(action_items)}",
-            f"Failed checks: {len(failed)}",
-            "",
-        ]
-
-        if action_items:
-            lines.append("## Action items")
-            for r in action_items:
-                lines.append(f"\n### {r.source_name}")
-                lines.append(f"Action: {r.recommended_action}")
-                lines.append(f"Relevant entries: {', '.join(r.relevant_entries)}")
-                lines.append(f"Summary: {r.summary}")
-                lines.append(f"Human review required: {r.human_review_required}")
-
-        if failed:
-            lines.extend(["", "## Failed checks"])
-            for r in failed:
-                lines.append(f"- {r.source_name} — {r.summary}")
-
-        lines.extend(["", "## Sources with no new content"])
-        for r in clean:
-            lines.append(f"- {r.source_name} — checked {r.checked_at[:10]}")
-
-        return "\n".join(lines)
 
     def generate_gap_report(self, gap_map: dict[str, list[GapReport]]) -> str:
         all_gaps = [g for gaps in gap_map.values() for g in gaps]
@@ -1237,18 +1030,16 @@ class AutomationOrchestrator:
     def __init__(self, require_api: bool = True, web_config: WebVerificationConfig | None = None):
         self.client = None
         self.verifier = None
-        self.monitor = None
         self.gap_detector = GapDetectionEngine()
         self.draft_gen = None
         self.reporter = ReportGenerator()
         if require_api:
             if anthropic is None:
                 raise RuntimeError(
-                    "The anthropic package is required for verification and monitoring modes.",
+                    "The anthropic package is required for verification modes.",
                 )
             self.client = anthropic.Anthropic()
             self.verifier = VerificationEngine(self.client, web_config)
-            self.monitor = MonitoringEngine(self.client)
             self.draft_gen = DraftGenerator(self.client)
 
     def run(self, mode: str = "full", entry_filter: str | None = None) -> AutomationRun:
@@ -1262,7 +1053,6 @@ class AutomationOrchestrator:
             completed_at=None,
             entries_processed=[],
             verification_results=[],
-            monitoring_results=[],
             gap_reports=[],
             human_review_items=[],
             status="running",
@@ -1320,27 +1110,13 @@ class AutomationOrchestrator:
                         }
                     )
 
-        # STEP 3: Monitoring (explicit monitor mode only). This asks the model to
-        # guess from training data whether sources changed — nothing is fetched —
-        # so it is not part of `full`; real source monitoring is the weekly
-        # automation/monitoring pipeline (poll-sources.py + classify.py).
-        if mode == "monitor":
-            if self.monitor is None:
-                raise RuntimeError("Monitoring mode requires the Anthropic client.")
-            print(f"[{run_id}] Checking monitoring sources...", flush=True)
-            run.monitoring_results = self.monitor.run_all_sources()
-
-        # STEP 4: Generate reports
+        # STEP 3: Generate reports
         print(f"[{run_id}] Generating reports...", flush=True)
         timestamp = utc_now().strftime("%Y%m%d_%H%M")
 
         if mode in ("verify", "full", "single"):
             report = self.reporter.generate_verification_report(run.verification_results)
             (REPORTS_PATH / f"verification_{timestamp}.md").write_text(report)
-
-        if run.monitoring_results:
-            report = self.reporter.generate_monitoring_report(run.monitoring_results)
-            (REPORTS_PATH / f"monitoring_{timestamp}.md").write_text(report)
 
         if gap_map:
             report = self.reporter.generate_gap_report(gap_map)
@@ -1349,7 +1125,8 @@ class AutomationOrchestrator:
         if run.human_review_items:
             review_doc = self.reporter.generate_human_review_summary(run)
             (REPORTS_PATH / f"human_review_{timestamp}.md").write_text(review_doc)
-            print(f"[{run_id}] {len(run.human_review_items)} items require human review", flush=True)
+            count = len(run.human_review_items)
+            print(f"[{run_id}] {count} items require human review", flush=True)
             print(f"[{run_id}] Review document: reports/human_review_{timestamp}.md", flush=True)
 
         # Save full run record as JSON
@@ -1375,7 +1152,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="AI Risk Knowledge Base Automation Engine")
     parser.add_argument(
         "--mode",
-        choices=["verify", "monitor", "gap-check", "full", "single"],
+        choices=["verify", "gap-check", "full", "single"],
         default="gap-check",
         help="Automation mode to run",
     )

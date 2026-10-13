@@ -11,11 +11,13 @@ on:
       - "docs/**/*.mdx"
       - "docs/**/*.md"
       - "tools/citation-ledger/**"
+      - ".github/workflows/citation-ledger.yml"
   pull_request:
     paths:
       - "docs/**/*.mdx"
       - "docs/**/*.md"
       - "tools/citation-ledger/**"
+      - ".github/workflows/citation-ledger.yml"
   workflow_dispatch:
 
 permissions:
@@ -45,6 +47,21 @@ jobs:
             --ledger tools/citation-ledger/citation-ledger.yaml \
             docs | tee citation-report.txt
 
+      # The training app cites the same frameworks, so its scenarios are held to
+      # the same ledger. Public repo, so the default token can check it out.
+      - uses: actions/checkout@v7
+        with:
+          repository: b-gowland/ai-risk-training
+          path: _training
+          persist-credentials: false
+
+      - name: Run citation ledger check (strict) on training scenarios
+        shell: bash
+        run: |
+          python3 tools/citation-ledger/check_citations.py --strict \
+            --ledger tools/citation-ledger/citation-ledger.yaml \
+            _training/src/scenarios | tee -a citation-report.txt
+
       - name: Self-test (F-1 regression)
         run: |
           python3 tools/citation-ledger/check_citations.py --self-test
@@ -53,19 +70,8 @@ jobs:
         if: always()
         run: |
           {
-            echo '## Citation ledger (advisory)';
+            echo '## Citation ledger (strict)';
             echo '```';
             cat citation-report.txt;
             echo '```';
           } >> "$GITHUB_STEP_SUMMARY"
-
-# To extend to the training scenarios, add a step that checks out
-# b-gowland/ai-risk-training and runs the same checker against its
-# src/scenarios directory:
-#
-#   - uses: actions/checkout@v7
-#     with: { repository: b-gowland/ai-risk-training, path: _training }
-#   - run: |
-#       python3 tools/citation-ledger/check_citations.py \
-#         --ledger tools/citation-ledger/citation-ledger.yaml \
-#         _training/src/scenarios | tee -a citation-report.txt

@@ -47,7 +47,6 @@ from claude_client import (  # noqa: E402
     message_kwargs,
     response_text,
 )
-
 from monitoring.review_report import generate_report  # noqa: E402
 
 MONITORING_DIR = REPO_ROOT / "automation" / "monitoring"
@@ -90,23 +89,25 @@ def utc_now() -> str:
 # CLASSIFICATION
 # ============================================================
 
-CLASSIFY_SYSTEM = """You are a classifier for an AI risk knowledge base (KB). 
-Your job is to read new items from AI risk monitoring sources and determine 
+CLASSIFY_SYSTEM = """You are a classifier for an AI risk knowledge base (KB).
+Your job is to read new items from AI risk monitoring sources and determine
 whether each item should trigger a KB update.
 
-The KB has {n} entries across 7 domains (A–G). Your output must be valid JSON only — 
+The KB has {n} entries across 7 domains (A–G). Your output must be valid JSON only —
 no preamble, no markdown fences, no explanation outside the JSON structure.
 
 For each item, classify as one of:
   NEW_DOMAIN_NEEDED  — item describes a risk category with no matching KB entry
-  NEW_ENTRY          — item warrants a new entry within an existing domain  
+  NEW_ENTRY          — item warrants a new entry within an existing domain
   UPDATE_ENTRY       — item warrants updating one or more existing entries
   NO_ACTION          — item is not relevant to the KB or is already well-covered
 
-Be conservative: prefer UPDATE_ENTRY or NO_ACTION over NEW_ENTRY or NEW_DOMAIN_NEEDED 
+Be conservative: prefer UPDATE_ENTRY or NO_ACTION over NEW_ENTRY or NEW_DOMAIN_NEEDED
 unless the gap is clear and significant."""
 CLASSIFY_SYSTEM = CLASSIFY_SYSTEM.replace("{n}", str(len(KB_ENTRIES)))
 
+
+VALID_ACTIONS = {"NEW_DOMAIN_NEEDED", "NEW_ENTRY", "UPDATE_ENTRY", "NO_ACTION"}
 
 def parse_json_array(text: str) -> list:
     """Extract the first JSON array from model text, tolerating fences and prose."""
@@ -175,7 +176,7 @@ Return only the JSON array."""
             or sorted(returned_ids, key=str) != sorted(expected_ids, key=str)):
         raise ValueError("classifier must return exactly one result per input item")
     for result in results:
-        if result.get("action") not in {"NEW_DOMAIN_NEEDED", "NEW_ENTRY", "UPDATE_ENTRY", "NO_ACTION"}:
+        if result.get("action") not in VALID_ACTIONS:
             raise ValueError("classifier returned an invalid action")
         matches = result.get("kb_matches")
         if not isinstance(matches, list) or any(not isinstance(m, dict) for m in matches):
@@ -271,7 +272,7 @@ def main() -> None:
         if c.get("action") in ("NEW_DOMAIN_NEEDED", "NEW_ENTRY", "UPDATE_ENTRY")
     )
 
-    print(f"\n[classify] Complete.")
+    print("\n[classify] Complete.")
     print(f"  Items reviewed:        {len(all_items)}")
     print(f"  Requiring action:      {action_count}")
     print(f"  Report: {out_path}")

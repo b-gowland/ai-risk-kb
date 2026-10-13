@@ -70,21 +70,6 @@ Gap detection runs weekly (zero cost). Full maintenance runs monthly via the Ant
 
 Verification extracts claims from the complete entry. By default it assesses them using model training knowledge; opt-in web verification retrieves primary-source citation excerpts. Failed or malformed extraction/assessment responses are recorded as incomplete checks, retained in the review reports, and make the command exit nonzero after saving its reports. Flagged and unverifiable claims also enter the human review queue. Failed scheduled runs raise a failure issue; their reports remain available in the workflow artifacts. No KB content is changed automatically.
 
-## Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for how to raise an issue, suggest an update, or submit a pull request.
-
-## Licence
-
-Content: MIT licence. You are free to use, adapt, and redistribute with attribution.
-
-## Related
-
-- **Companion training app:** https://app.airiskpractice.org/
-- **Training repo:** https://github.com/b-gowland/ai-risk-training
-- **Governance baseline:** https://baseline.airiskpractice.org/ ([repo](https://github.com/b-gowland/ai-risk-baseline))
-- **Project home:** https://airiskpractice.org/
-
 ### Opt-in web verification pilot
 
 After setting `ANTHROPIC_API_KEY`, run from `automation/`:
@@ -103,3 +88,18 @@ The source allowlist lives in `automation/web_verification.py`. Repeated `--prim
 JSON run records retain tool-returned URLs, citation excerpts, queries, retrieval timestamps, response IDs, token/search usage and selected evidence IDs. Human-review reports include the evidence even for supported claims. Search errors or exhausted limits make the command fail after reports are saved. Nothing changes KB content automatically.
 
 API contract: [Anthropic web search documentation](https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool). Live provider behavior and retrieval quality still require a bounded pilot; the regressions use simulated API responses.
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for how to raise an issue, suggest an update, or submit a pull request.
+
+## Licence
+
+Content: MIT licence. You are free to use, adapt, and redistribute with attribution.
+
+## Related
+
+- **Companion training app:** https://app.airiskpractice.org/
+- **Training repo:** https://github.com/b-gowland/ai-risk-training
+- **Governance baseline:** https://baseline.airiskpractice.org/ ([repo](https://github.com/b-gowland/ai-risk-baseline))
+- **Project home:** https://airiskpractice.org/
