@@ -1,0 +1,32 @@
+name: Automation tests
+
+on:
+  pull_request:
+    paths: ['automation/**', '.github/workflows/automation-tests.yml']
+  push:
+    branches: [main]
+    paths: ['automation/**', '.github/workflows/automation-tests.yml']
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.11'
+      - name: Install locked dependencies
+        working-directory: automation
+        run: |
+          python -m pip install uv==0.8.17
+          uv sync --frozen
+      - name: Offline regressions and gap check
+        working-directory: automation
+        run: |
+          uv run --frozen pytest -q
+          uv run --frozen python automation_engine.py --mode gap-check

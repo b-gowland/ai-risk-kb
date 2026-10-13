@@ -277,7 +277,7 @@ class VerificationResult:
     entry_id: str
     claim: str
     claim_location: str  # e.g. "layer_1.plain_english_summary"
-    status: str  # verified | corrected | flagged | unverifiable
+    status: str  # verified | corrected | flagged | unverifiable | incomplete
     original_value: str
     verified_value: str | None
     source: str | None
@@ -334,8 +334,8 @@ class AutomationRun:
 
 class VerificationEngine:
     """
-    Verifies factual claims in knowledge base entries against primary sources.
-    Uses web search to check incident details, regulatory dates, and statistics.
+    Extracts claims from complete entries and assesses them using model knowledge.
+    This is not live primary-source verification; web retrieval is separate work.
     All corrections require human approval before being written to entries.
     """
 
@@ -347,12 +347,25 @@ class VerificationEngine:
         with open(entry_path, encoding="utf-8") as f:
             content = f.read()
 
-        claims = self._extract_verifiable_claims(content, parse_entry_id(entry_path))
+        entry_id = parse_entry_id(entry_path)
+        try:
+            claims = self._extract_verifiable_claims(content, entry_id)
+        except Exception as exc:
+            return [self._incomplete(entry_id, "Claim extraction", "entire entry", exc)]
         results = []
         for claim in claims:
             result = self._verify_claim(claim, content)
             results.append(result)
         return results
+
+    @staticmethod
+    def _incomplete(entry_id: str, claim: str, location: str, exc: Exception):
+        return VerificationResult(
+            entry_id=entry_id, claim=claim, claim_location=location,
+            status="incomplete", original_value=claim, verified_value=None,
+            source=None, source_url=None, confidence="low", action_required=True,
+            notes=f"Check incomplete ({type(exc).__name__}): {exc}. Retry required.",
+        )
 
     def _extract_verifiable_claims(self, content: str, entry_id: str) -> list[dict]:
         """
@@ -382,15 +395,18 @@ Only include claims that can be verified against external sources.
 Do not include opinions or general statements.
 
 Entry content:
-{content[:4000]}
+{content}
 """
         response = _create_message(self.client, MODEL_SONNET, prompt, effort="medium")
-        try:
-            claims = parse_json_from_response(response)
-        except Exception as e:
-            print(f"[verify] Claim extraction failed for {entry_id}: {e}", flush=True)
-            return []
+        claims = parse_json_from_response(response)
+        if not isinstance(claims, list):
+            raise ValueError("claim extraction must return a JSON array")
         for claim in claims:
+            if not isinstance(claim, dict) or any(
+                not isinstance(claim.get(key), str) or not claim[key].strip()
+                for key in ("claim", "location", "claim_type", "search_query")
+            ):
+                raise ValueError("claim extraction returned an invalid claim")
             claim["entry_id"] = entry_id
         return claims
 
@@ -421,28 +437,36 @@ Return ONLY a JSON object with no preamble or markdown fences:
   "notes": "brief explanation of your assessment"
 }}
 """
-        response = _create_message(self.client, MODEL_OPUS, search_prompt, effort="high")
         try:
+            response = _create_message(self.client, MODEL_OPUS, search_prompt, effort="high")
             data = parse_json_from_response(response)
+            if not isinstance(data, dict):
+                raise ValueError("claim verification must return a JSON object")
+            if data.get("status") not in {"verified", "corrected", "flagged", "unverifiable"}:
+                raise ValueError("invalid verification status")
+            if data.get("confidence") not in {"high", "medium", "low"}:
+                raise ValueError("invalid verification confidence")
+            if not isinstance(data.get("action_required"), bool):
+                raise ValueError("action_required must be a boolean")
+            for key in ("original_value", "notes"):
+                if not isinstance(data.get(key), str):
+                    raise ValueError(f"{key} must be text")
+            for key in ("verified_value", "source", "source_url"):
+                if data.get(key) is not None and not isinstance(data[key], str):
+                    raise ValueError(f"{key} must be text or null")
+            if data["status"] == "corrected" and not data.get("verified_value"):
+                raise ValueError("a correction must supply a corrected value")
+            # The model cannot opt an unresolved claim out of human review.
+            data["action_required"] |= data["status"] != "verified"
             return VerificationResult(
                 entry_id=claim.get("entry_id", "unknown"),
                 claim=claim["claim"],
                 claim_location=claim["location"],
                 **data,
             )
-        except Exception as e:
-            return VerificationResult(
-                entry_id=claim.get("entry_id", "unknown"),
-                claim=claim["claim"],
-                claim_location=claim["location"],
-                status="flagged",
-                original_value=claim["claim"],
-                verified_value=None,
-                source=None,
-                source_url=None,
-                confidence="low",
-                action_required=True,
-                notes=f"Verification failed: {str(e)}",
+        except Exception as exc:
+            return self._incomplete(
+                claim.get("entry_id", "unknown"), claim["claim"], claim["location"], exc,
             )
 
 
@@ -1001,20 +1025,24 @@ class ReportGenerator:
 
     def generate_verification_report(self, results: list[VerificationResult]) -> str:
         corrections = [r for r in results if r.status == "corrected"]
-        flags = [r for r in results if r.status == "flagged"]
+        flags = [r for r in results if r.status in {"flagged", "unverifiable"}
+                 or (r.status == "verified" and r.action_required)]
+        incomplete = [r for r in results if r.status == "incomplete"]
         verified = [r for r in results if r.status == "verified"]
 
         lines = [
             "# Verification Report",
             f"Generated: {utc_now().strftime('%Y-%m-%d %H:%M UTC')}",
-            f"Claims checked: {len(results)}",
+            "Assessment basis: model training knowledge; no live sources retrieved.",
+            f"Claims assessed: {len(results) - len(incomplete)}",
+            f"Incomplete checks: {len(incomplete)}",
             f"Verified: {len(verified)} | Corrections: {len(corrections)} | Flags: {len(flags)}",
             "",
             "## Required corrections",
         ]
 
         if not corrections:
-            lines.append("None — all checked claims verified accurate.")
+            lines.append("No corrections proposed. Unresolved and incomplete checks are listed below.")
         else:
             for r in corrections:
                 lines.append(f"\n### {r.entry_id} — {r.claim_location}")
@@ -1030,6 +1058,13 @@ class ReportGenerator:
             for r in flags:
                 lines.append(f"\n- **{r.entry_id}** ({r.claim_location}): {r.claim}")
                 lines.append(f"  Notes: {r.notes}")
+
+        lines.extend(["", "## Incomplete checks (retry required)"])
+        if not incomplete:
+            lines.append("None.")
+        for result in incomplete:
+            lines.append(f"- **{result.entry_id}** ({result.claim_location}): {result.claim}")
+            lines.append(f"  Notes: {result.notes}")
 
         return "\n".join(lines)
 
@@ -1128,7 +1163,12 @@ class ReportGenerator:
             else:
                 lines.append(f"  {value}")
             lines.append("")
-            lines.append("**Decision:** [ ] Approve  [ ] Reject  [ ] Modify")
+            if item.get("type") == "verification_review":
+                lines.append(f"**Assessment:** {item.get('status', 'unresolved')}")
+                lines.append(f"**Notes:** {item.get('notes', '')}")
+                lines.append("**Decision:** [ ] Investigate / retry  [ ] Resolve with evidence")
+            else:
+                lines.append("**Decision:** [ ] Approve  [ ] Reject  [ ] Modify")
             lines.append("**Notes:**")
             lines.append("")
             lines.append("---")
@@ -1210,16 +1250,20 @@ class AutomationOrchestrator:
             for path in entry_paths:
                 results = self.verifier.verify_entry(path)
                 run.verification_results.extend(results)
-                # Add corrections to human review queue
-                corrections = [r for r in results if r.status == "corrected"]
-                for c in corrections:
+                # Corrections, unresolved claims and failed checks must all be visible.
+                review = [r for r in results if r.action_required or r.status != "verified"]
+                for c in review:
                     run.human_review_items.append(
                         {
-                            "type": "verification_correction",
+                            "type": ("verification_correction" if c.status == "corrected"
+                                     else "verification_review"),
+                            "status": c.status,
+                            "notes": c.notes,
                             "entry_id": c.entry_id,
                             "field": c.claim_location,
                             "current_value": c.original_value,
-                            "proposed_value": c.verified_value,
+                            "proposed_value": (c.verified_value if c.status == "corrected"
+                                               else c.claim),
                             "source": c.source,
                             "source_url": c.source_url,
                             "requires_human_review": True,
@@ -1240,7 +1284,7 @@ class AutomationOrchestrator:
         print(f"[{run_id}] Generating reports...", flush=True)
         timestamp = utc_now().strftime("%Y%m%d_%H%M")
 
-        if run.verification_results:
+        if mode in ("verify", "full", "single"):
             report = self.reporter.generate_verification_report(run.verification_results)
             (REPORTS_PATH / f"verification_{timestamp}.md").write_text(report)
 
@@ -1260,7 +1304,10 @@ class AutomationOrchestrator:
 
         # Save full run record as JSON
         run.completed_at = utc_isoformat()
-        run.status = "awaiting_review" if run.human_review_items else "completed"
+        run.status = (
+            "failed" if any(r.status == "incomplete" for r in run.verification_results)
+            else "awaiting_review" if run.human_review_items else "completed"
+        )
         run_data = asdict(run)
         (REPORTS_PATH / f"run_{run_id}_{timestamp}.json").write_text(json.dumps(run_data, indent=2))
 
@@ -1292,3 +1339,5 @@ if __name__ == "__main__":
     print(f"Status: {run.status}")
     print(f"Entries processed: {len(run.entries_processed)}")
     print(f"Human review items: {len(run.human_review_items)}")
+    if run.status == "failed":
+        raise SystemExit(1)
