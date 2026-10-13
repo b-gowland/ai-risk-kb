@@ -18,7 +18,7 @@ on:
       web_max_claims:
         description: 'Web pilot claim cap (1-100); remaining claims are marked incomplete'
         required: false
-        default: '5'
+        default: '25'
 
 # Explicit minimum permissions
 permissions:
@@ -104,8 +104,12 @@ jobs:
 
       - name: Create GitHub issue if human review required
         # Off main (e.g. a test dispatch on a branch) nothing is published.
-        if: github.ref == 'refs/heads/main'
+        # always(): a run with incomplete checks exits nonzero after saving its
+        # reports, and its review items still need a human.
+        if: always() && github.ref == 'refs/heads/main'
         uses: actions/github-script@v9
+        env:
+          JOB_STATUS: ${{ job.status }}
         with:
           script: |
             const fs = require('fs');
@@ -140,7 +144,6 @@ jobs:
             let summary = '';
             const verifyFiles = files.filter(f => f.startsWith('verification_')).sort().reverse();
             const gapFiles = files.filter(f => f.startsWith('gaps_')).sort().reverse();
-            const monitorFiles = files.filter(f => f.startsWith('monitoring_')).sort().reverse();
 
             if (verifyFiles.length > 0) {
               const vReport = fs.readFileSync(path.join(reportsDir, verifyFiles[0]), 'utf8');
@@ -152,11 +155,6 @@ jobs:
               const blocking = (gReport.match(/\*\*[A-G]\d\*\*/g) || []).length;
               summary += `- **Gap detection:** ${blocking} gap(s) flagged\n`;
             }
-            if (monitorFiles.length > 0) {
-              const mReport = fs.readFileSync(path.join(reportsDir, monitorFiles[0]), 'utf8');
-              const actions = (mReport.match(/flag_for_review|draft_update/g) || []).length;
-              summary += `- **Monitoring:** ${actions} source(s) with new content\n`;
-            }
 
             const runDate = new Date().toISOString().split('T')[0];
             const issueBody = [
@@ -165,6 +163,10 @@ jobs:
               `Run date: ${runDate}`,
               `Run ID: ${context.runId}`,
               '',
+              ...(process.env.JOB_STATUS === 'success' ? [] : [
+                '> **This run did not complete every check.** Items marked `incomplete` need a retry (for a web pilot, raise `web_max_claims`). Full reports are in the run artifacts.',
+                '',
+              ]),
               '### Summary',
               summary || '- See full review document below',
               '',

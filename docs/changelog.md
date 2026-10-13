@@ -8,6 +8,18 @@ sidebar_position: 6
 
 All material changes to the knowledge base are documented here. Changes are version-controlled in the [GitHub repository](https://github.com/b-gowland/ai-risk-kb).
 
+## [1.4.2] — October 2026
+
+### Added — incidents from source monitoring (#61, #67)
+- **A1 — Hallucination:** a judge's order citing non-existent cases (Oklahoma, 2026); F1 cross-references it
+- **B1 — Accountability:** a driverless vehicle that Colorado law gave police no way to cite (Denver, 2026)
+- **B4 — Supply Chain:** undisclosed detection logic in an AI coding tool, later removed by the vendor (Claude Code, 2026)
+- **C2 — Prompt Injection:** Salesforce Agentforce exploited twice through the same public Web-to-Lead form (ForcedLeak 2025, SalesBleed 2026)
+- **E2 — Harmful Content:** general-purpose chatbots used in attack planning (Delhi Red Fort NIA chargesheet, 2026; Sarthe, France, 2025)
+
+### Changed — E2 Harmful Content
+- E2-003 incident response now covers escalating credible threats of violence found in user conversations, with legal confirming the basis for referral before go-live
+
 ## [1.4.1] — October 2026
 
 ### Corrected — F2 Shadow AI (re-verified 5 October 2026)

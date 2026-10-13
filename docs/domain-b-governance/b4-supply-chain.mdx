@@ -282,6 +282,8 @@ class AIBillOfMaterials:
 
 **MCP server supply chain compromise (ATLAS v5.3, 2025):** MITRE ATLAS v5.3 documented compromise of MCP (Model Context Protocol) servers as a supply chain attack vector. A compromised MCP server can inject malicious instructions into an agent's context, cause data exfiltration, or redirect agent actions. Organisations deploying AI agents that connect to third-party MCP servers inherit the security posture of those servers. Source: MITRE ATLAS v5.3.0 (2025).
 
+**Undisclosed detection logic in an AI coding tool (Claude Code, 2026):** In June 2026 a developer found that Claude Code, Anthropic's coding agent, contained obfuscated logic that subtly altered the system prompt for some users, based on their system timezone and proxy settings. The changes were invisible to those users and were not described in the product's documentation or release notes. Anthropic said it was an experiment begun in March to counter unauthorised resellers and model distillation, and removed it in early July 2026. Whatever the intent, it shows that an agentic tool with broad file, shell and network access can change its behaviour through a vendor update without the customer being told. Tool inventories, release-note review and contractual transparency terms need to cover these tools. (Developer disclosure and Anthropic statement, as reported by The Register and Decrypt, July 2026)
+
 ---
 
 ## Scenario seed
