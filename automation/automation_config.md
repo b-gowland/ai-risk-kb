@@ -80,8 +80,8 @@ triggers:
     description: >
       Triggered when a significant AI incident is identified (AIID severity
       high, or major media coverage of an AI failure)
-    detection: Weekly monitoring run flags new_content_detected == true
-              with severity == high
+    detection: Weekly source monitoring (classify.py) returns NEW_ENTRY or
+              UPDATE_ENTRY for an incident with major coverage
     action:
       - Run single-entry verification on affected entries
       - Generate draft incident example for human review
@@ -94,7 +94,8 @@ triggers:
     description: >
       Triggered when a material regulatory change is detected —
       new effective date, new enforcement action, new guidance
-    detection: Monthly regulatory monitoring flags recommended_action != none
+    detection: Weekly source monitoring flags a regulator item (e.g. EU AI Office)
+              as UPDATE_ENTRY or NEW_ENTRY
     action:
       - Identify all entries referencing the changed regulation
       - Generate summary of required content updates for human review
@@ -309,8 +310,10 @@ optional:
 services:
   - Anthropic API key (set as ANTHROPIC_API_KEY environment variable)
   - Required for monthly full run only — weekly gap check needs no API key
-  - Note: no web search tool is configured; Claude verifies from training
-    knowledge. Weekly source monitoring fetches sources directly (poll-sources.py).
+  - Note: by default Claude verifies from training knowledge. The opt-in
+    --web-verify pilot uses the web search tool against a primary-source
+    allowlist (see README). Weekly source monitoring fetches sources directly
+    (poll-sources.py).
 
 # To run locally:
 quickstart: |

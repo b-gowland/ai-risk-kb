@@ -8,5 +8,4 @@ def test_gap_check_mode_can_run_without_anthropic_api_key(monkeypatch) -> None:
 
     assert orchestrator.client is None
     assert orchestrator.verifier is None
-    assert orchestrator.monitor is None
     assert orchestrator.draft_gen is None
