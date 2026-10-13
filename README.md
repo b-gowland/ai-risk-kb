@@ -79,13 +79,13 @@ uv run --frozen python automation_engine.py --mode single --entry A2 \
   --web-verify --web-max-claims 5 --web-searches-per-claim 2 --web-max-tokens 4096
 ```
 
-The monthly workflow also exposes a manual `web_verify` switch, requiring a single entry. Scheduled runs keep their existing behavior. No live pilot is run as part of tests or PR validation.
+The monthly workflow also exposes a manual `web_verify` switch, requiring a single entry; its `web_max_claims` defaults to 25 so a typical entry is checked in full. Scheduled runs keep their existing behavior. No live pilot is run as part of tests or PR validation.
 
 Each searched claim uses one retrieval request and, when usable citations are returned, one evidence-assessment request. Defaults cap a run at five searched claims and two searches per claim, with a 4,096 output-token limit per web request. These are request limits, not a dollar budget: normal claim extraction and input tokens also cost money. Web requests disable SDK retries and the shared refusal fallback, and do not resume paused turns. Extra claims, failed searches, refusals and truncated responses are recorded as incomplete; remaining claims are not silently assessed from model knowledge.
 
 The source allowlist lives in `automation/web_verification.py`. Repeated `--primary-domain nist.gov` options replace it for a scoped pilot. The allowlist bounds search sources; the model must still explain why selected evidence is primary and supports the particular claim. Short citation excerpts can be insufficient, in which case the result remains unverifiable. Domain membership alone never establishes accuracy.
 
-JSON run records retain tool-returned URLs, citation excerpts, queries, retrieval timestamps, response IDs, token/search usage and selected evidence IDs. Human-review reports include the evidence even for supported claims. Search errors or exhausted limits make the command fail after reports are saved. Nothing changes KB content automatically.
+JSON run records retain tool-returned URLs, citation excerpts, queries, retrieval timestamps, response IDs, token/search usage and selected evidence IDs. Human-review reports include the evidence even for supported claims. Search errors or exhausted limits make the command fail after reports are saved; on `main` the workflow still opens the review issue, flagged as incomplete. Nothing changes KB content automatically.
 
 API contract: [Anthropic web search documentation](https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool). Live provider behavior and retrieval quality still require a bounded pilot; the regressions use simulated API responses.
 
