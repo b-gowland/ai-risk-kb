@@ -4,8 +4,8 @@ title: "A4 — Explainability & Interpretability Gaps"
 sidebar_label: "A4 — Explainability"
 sidebar_position: 4
 tags: [technical, governance, high-severity, regulated-industries]
-last_verified: 2026-10-02
-next_review: 2026-09-28
+last_verified: 2026-10-14
+next_review: 2027-04-14
 description: "AI models cannot explain in plain language why they produced a given output — making it impossible to audit decisions, detect bias, or satisfy legal requirements for decision transparency."
 ---
 
@@ -18,7 +18,7 @@ import TabItem from '@theme/TabItem';
   <span className="severity-badge severity-high">High severity</span>
   <span className="framework-chip">EU AI Act Art. 13</span>
   <span className="framework-chip">NIST AI RMF MEASURE 2.9</span>
-  <span className="framework-chip">ASIC AI Governance 2024</span>
+  <span className="framework-chip">ASIC REP 798</span>
 </div>
 
 **Domain:** A — Technical | **Jurisdiction:** AU, EU, US, Global
@@ -29,7 +29,7 @@ import TabItem from '@theme/TabItem';
 
 > AI models cannot explain in plain language why they produced a given output — making it impossible to audit decisions, detect bias, or satisfy legal requirements for decision transparency.
 
-If your organisation uses AI to make or inform decisions that affect people — loan approvals, insurance decisions, employment, benefits eligibility — and you cannot explain why the AI reached a specific decision in human-readable terms, you have a regulatory and legal exposure. The SafeRent settlement ($2.275M, December 2024 final approval) demonstrates this concretely: the opaque nature of the scoring system made discriminatory patterns harder to detect and defend against until a legal challenge surfaced them.
+If your organisation uses AI to make or inform decisions that affect people — loan approvals, insurance decisions, employment, benefits eligibility — and you cannot explain why the AI reached a specific decision in human-readable terms, you have a regulatory and legal exposure. The SafeRent settlement (US$2.275M, final approval November 2024) shows the exposure: applicants and landlords could not see how scores were produced, and the alleged discriminatory effect only surfaced through litigation.
 
 <div className="key-question">
 For every AI system that makes or influences decisions affecting individuals, can we produce a plain-language explanation of that specific decision if required by a regulator, court, or individual?
@@ -37,7 +37,7 @@ For every AI system that makes or influences decisions affecting individuals, ca
 
 <Tabs>
   <TabItem value="executive" label="Executive / Board">
-  AI systems that make decisions affecting people — credit, insurance, employment, healthcare — are subject to legal requirements for explanation in most jurisdictions. "The model said so" is not a legally acceptable explanation and creates significant liability exposure. The audit finding means your AI decision systems do not currently meet explainability requirements. You are approving investment in XAI tooling, logging infrastructure, and adverse action notice processes.
+  AI systems that make decisions affecting people — credit, insurance, employment, healthcare — increasingly carry legal duties to explain: US credit law requires specific reasons for adverse decisions, the EU's highest court has confirmed a right to an intelligible explanation of automated decisions, and Australia's automated-decision transparency duty starts in December 2026. "The model said so" is not an acceptable explanation and creates significant liability exposure. The audit finding means your AI decision systems do not currently meet explainability requirements. You are approving investment in XAI tooling, logging infrastructure, and adverse action notice processes.
   </TabItem>
   <TabItem value="pm" label="Project Manager">
   If the AI system you are deploying makes or influences decisions about individuals, explainability is a go-live requirement. You need: (1) a defined method for explaining individual decisions; (2) a decision logging system recording inputs, outputs, and explanations; (3) a process for generating adverse action notices if required. Technology owns implementation; Legal and Compliance must sign off that the explanation method satisfies applicable regulatory requirements before launch.
@@ -53,7 +53,7 @@ For every AI system that makes or influences decisions affecting individuals, ca
 
 ### Risk description
 
-Deep learning and LLM-based models produce outputs through mathematical transformations across billions of parameters. This is called the "black box" problem. The explainability gap has two dimensions: regulatory (the obligation to explain decisions to affected individuals) and governance (the inability to detect errors, bias, or drift without understanding why the model behaves as it does). The SafeRent case illustrates both: the black-box nature precluded earlier detection of discriminatory proxy variables.
+Deep learning and LLM-based models produce outputs through mathematical transformations across billions of parameters. This is called the "black box" problem. The explainability gap has two dimensions: regulatory (the obligation to explain decisions to affected individuals) and governance (the inability to detect errors, bias, or drift without understanding why the model behaves as it does). The SafeRent case illustrates both: neither applicants nor landlords could see what drove the scores, so an alleged discriminatory effect on housing-voucher holders went unexamined until it was litigated.
 
 ### Likelihood drivers
 - Complex model architecture chosen without considering explainability requirements
@@ -99,7 +99,9 @@ Log every material AI decision with: decision ID (UUID), timestamp, model versio
 ### A4-003 — Adverse action notice process
 **Owner:** Legal | **Type:** Preventive | **Effort:** Medium | **Go-live required:** Yes
 
-For credit, insurance, and employment use cases: design a compliant adverse action notice process using SHAP-derived reason codes. Map feature names to human-readable reason codes. Test with sample decisions before go-live.
+For credit, insurance, and employment use cases: design a compliant adverse action notice process using SHAP-derived reason codes. Map feature names to human-readable reason codes. Test with sample decisions before go-live. Check that the stated reasons are the ones that actually drove the decision — attribution methods approximate the model, so validate reason codes against counterfactual tests on sample cases.
+
+**Jurisdiction notes:** US — Equal Credit Opportunity Act and Regulation B (12 CFR 1002.9) — a creditor taking adverse action must give the specific principal reasons; a complex model is not an excuse | EU — GDPR Art. 15(1)(h) and Art. 22 — in *CK v Dun & Bradstreet Austria* (C-203/22, 27 February 2025) the CJEU held that a person subject to automated decision-making is entitled to an intelligible explanation of the procedure and principles actually applied to their data, without the controller having to disclose the algorithm; EU AI Act Art. 86 — right to explanation for decisions by deployers of Annex III high-risk systems (application deferred to 2 December 2027 by Regulation (EU) 2026/1744 — see B2) | AU — Privacy Act 1988 APP 1 — automated-decision transparency obligations commence 10 December 2026 (see B2); s 21P — a credit provider refusing credit on the basis of a credit report must notify the applicant
 
 ### KPIs
 | Metric | Target | Frequency |
@@ -114,24 +116,27 @@ For credit, insurance, and employment use cases: design a compliant adverse acti
 ```python
 import shap
 
-# SHAP for tree-based models
+# SHAP for a tree-based model whose output is the probability of APPROVAL
 explainer = shap.TreeExplainer(model)
-shap_values = explainer.shap_values(X_test)
+explanation = explainer(X_test)            # shap.Explanation: .values, .feature_names
 
 # Global feature importance
-shap.summary_plot(shap_values, X_test)
+shap.plots.beeswarm(explanation)
 
-# Adverse action reasons — top 4 negative factors
-def get_adverse_reasons(shap_values_i, feature_names, n=4):
-    factors = sorted(zip(feature_names, shap_values_i), key=lambda x: x[1])
-    adverse = factors[:n]  # Most negative SHAP values
-    return [{"feature": f, "shap": v, "reason_code": REASON_CODES[f]}
+# Adverse action reasons: features that pushed this applicant AWAY from approval.
+# With approval as the positive class these are the most negative SHAP values;
+# if the model scores probability of default, flip the sign.
+def get_adverse_reasons(values_i, feature_names, n=4):
+    factors = sorted(zip(feature_names, values_i), key=lambda x: x[1])
+    adverse = [(f, v) for f, v in factors[:n] if v < 0]
+    return [{"feature": f, "shap": float(v), "reason_code": REASON_CODES[f]}
             for f, v in adverse]
 
-# DiCE for counterfactual explanations
+# DiCE for counterfactual explanations ("what would have changed the outcome?")
 import dice_ml
-exp = dice_ml.Dice(data, model_wrapper)
-counterfactuals = exp.generate_counterfactuals(
+d = dice_ml.Data(dataframe=train_df, continuous_features=CONTINUOUS, outcome_name="approved")
+m = dice_ml.Model(model=model, backend="sklearn")
+counterfactuals = dice_ml.Dice(d, m).generate_counterfactuals(
     query_instance, total_CFs=3, desired_class="opposite"
 )
 ```
@@ -142,16 +147,16 @@ counterfactuals = exp.generate_counterfactuals(
 
 ## Incident examples
 
-**SafeRent settlement $2.275M (2024):** SafeRent's AI tenant screening system scored rental applicants using factors opaque to landlords and applicants. The black-box nature precluded earlier detection of discriminatory patterns against housing voucher holders (disproportionately Black and Hispanic). Settlement certified April 2024, final court approval December 2024. (Louis et al. v. SafeRent Solutions, D. Mass., Case No. 1:22-cv-10800; Cohen Milstein case page; GAO-25-107196)
+**SafeRent settlement US$2.275M (2024):** Plaintiffs alleged that SafeRent's tenant-screening score, which landlords received without the reasons behind it, discriminated against Black and Hispanic applicants using housing vouchers by leaning on credit history and ignoring the voucher's guaranteed rent. SafeRent settled without admitting wrongdoing; the settlement bars it from issuing scores for voucher holders unless the scoring is independently validated. Preliminary approval April 2024; final approval November 2024. (Louis et al. v. SafeRent Solutions, D. Mass., No. 1:22-cv-10800; Cohen Milstein case page)
 
-**nH Predict algorithm care denials (2023):** UnitedHealth's nH Predict algorithm denied Medicare Advantage care with no explainable justification to patients or physicians. "The model said so" was not an acceptable legal or regulatory response. Subject of Senate HELP Committee investigation and ProPublica reporting.
+**nH Predict and post-acute care denials (2023–2024):** A November 2023 class action alleges UnitedHealth relied on naviHealth's nH Predict algorithm to cut Medicare Advantage patients' post-acute care, with patients and their doctors unable to see or contest the basis for the predictions; UnitedHealth denies the claims. A US Senate Permanent Subcommittee on Investigations staff report ("Refusal of Recovery", 17 October 2024) found UnitedHealthcare's post-acute denial rate rose sharply over the period it used the tool. (Estate of Lokken v. UnitedHealth Group, D. Minn., 2023; STAT News investigation, 2023; Senate PSI report, October 2024)
 
 ---
 
 ## Scenario seed
 **Context:** A financial services firm uses an ML credit scoring model. A customer calls to dispute a declined application.
 
-**Trigger:** The customer requests an explanation of why they were declined, as required under ECOA (US) / RG 271 (AU). The model owner discovers SHAP has not been implemented. The only available explanation is "score was below threshold."
+**Trigger:** The customer requests an explanation of why they were declined — in the US a specific-reasons notice is mandatory under ECOA and Regulation B; in Australia, from December 2026, the firm's automated-decision transparency obligations also apply. The model owner discovers SHAP has not been implemented. The only available explanation is "score was below threshold."
 
 **Complicating factor:** The compliance team confirms this is a regulatory breach requiring remediation. A second review discovers the model's top adverse feature is strongly correlated with postcode — a potential proxy for race.
 

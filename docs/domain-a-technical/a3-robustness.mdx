@@ -4,8 +4,8 @@ title: "A3 — Robustness & Brittleness"
 sidebar_label: "A3 — Robustness"
 sidebar_position: 3
 tags: [technical, testing, medium-severity]
-last_verified: 2026-10-02
-next_review: 2026-09-28
+last_verified: 2026-10-14
+next_review: 2027-04-14
 description: "AI systems that pass testing can still fail unpredictably on unusual inputs, edge cases, or conditions not seen during training — and those failures may only surface in production."
 ---
 
@@ -18,7 +18,7 @@ import TabItem from '@theme/TabItem';
   <span className="severity-badge severity-medium">Medium severity</span>
   <span className="framework-chip">NIST AI RMF MEASURE 2.6</span>
   <span className="framework-chip">EU AI Act Art. 15</span>
-  <span className="framework-chip">ISO 42001 Cl. 8.4</span>
+  <span className="framework-chip">ISO 42001 Cl. 8.2</span>
 </div>
 
 **Domain:** A — Technical | **Jurisdiction:** Global
@@ -29,7 +29,7 @@ import TabItem from '@theme/TabItem';
 
 > AI systems that pass testing can still fail unpredictably on unusual inputs, edge cases, or conditions not seen during training — and those failures may only surface in production.
 
-A model can achieve high accuracy in testing and still fail catastrophically on specific input patterns that were absent from the test set. Waymo recalled 1,212 robotaxis in May 2025 after discovering a systematic failure on gates, chains, and gate-like roadway barriers that did not appear in testing. McDonald's IBM AI drive-thru system kept adding chicken nuggets to a single order — reaching 260 — while the customers tried to stop it. Both systems passed their original testing. Both failed in production.
+A model can achieve high accuracy in testing and still fail catastrophically on specific input patterns that were absent from the test set. Waymo recalled 1,212 robotaxis in May 2025 after its vehicles repeatedly struck gates, chains and similar barriers — an object class its software handled poorly, surfaced only by real-world driving. McDonald's IBM AI drive-thru kept adding chicken nuggets to a single order — reaching 260 — while the customers tried to stop it. Both systems were launched after testing. Both failed on inputs that real users and roads produced.
 
 <div className="key-question">
 Have our AI systems been tested against edge cases and adversarial inputs, and do they have a defined, safe fallback when they encounter inputs outside their design envelope?
@@ -89,7 +89,7 @@ Technology · Product · Operations · Customer Service · Risk
 ### A3-001 — Adversarial testing
 **Owner:** Technology | **Type:** Detective | **Effort:** Medium | **Go-live required:** Yes
 
-Systematically test models against edge cases, unexpected inputs, and adversarial examples before deployment. Include: boundary testing, noise injection, distribution shift testing, and semantic equivalence testing. Maintain a growing library of historical failure cases. Run on every model update.
+Systematically test models against edge cases, unexpected inputs, and adversarial examples before deployment. Include: boundary testing, noise injection, distribution shift testing, and semantic equivalence testing (the same request phrased differently should get the same answer). Maintain a growing library of historical failure cases, including every production failure, and run it as a regression suite on every model update. ISO/IEC 42001 Annex A control A.6.2.4 (AI system verification and validation) is the management-system anchor for this testing.
 
 ### A3-002 — OOD detection  
 **Owner:** Technology | **Type:** Preventive | **Effort:** Medium | **Go-live required:** Yes
@@ -112,18 +112,20 @@ Design systems to fail safely — revert to human decision, flag for review — 
 ## Layer 4 — Technical implementation
 
 ```python
-from sklearn.ensemble import IsolationForest
 import numpy as np
+from sklearn.ensemble import IsolationForest
 
-# OOD detection via Isolation Forest
-clf = IsolationForest(contamination=0.01, random_state=42)
-clf.fit(X_train)  # Fit on known-good training data
+# OOD detection via Isolation Forest, fitted on known-good training data
+clf = IsolationForest(random_state=42).fit(X_train)
+
+# Set the threshold from held-out in-distribution data, not by guesswork:
+# here, flag anything scoring below the 1st percentile of validation scores.
+OOD_THRESHOLD = np.percentile(clf.decision_function(X_val), 1)
 
 def check_ood(input_features):
-    score = clf.decision_function([input_features])[0]
-    is_ood = score < OOD_THRESHOLD
-    if is_ood:
-        return {"action": "flag_for_review", "ood_score": score}
+    score = float(clf.decision_function(np.asarray(input_features).reshape(1, -1))[0])
+    if score < OOD_THRESHOLD:
+        return {"action": "flag_for_review", "ood_score": score}   # route to the A3-003 fallback
     return {"action": "proceed", "ood_score": score}
 
 # Tools: Giskard (AI testing), DeepChecks, ART (IBM Adversarial Robustness Toolbox)
@@ -134,9 +136,9 @@ def check_ood(input_features):
 
 ## Incident examples
 
-**Waymo recall 1,212 robotaxis (May 2025):** Waymo's fifth-generation ADS software failed to correctly detect and respond to chains, gates, and gate-like roadway barriers. The failure mode was absent from testing but present in real-world deployment. 16 low-speed collisions occurred before software was updated. NHTSA recall filed May 2025. (NHTSA Recall Report 25E034; TechCrunch, May 2025)
+**Waymo recall 1,212 robotaxis (May 2025):** Waymo's fifth-generation automated driving software did not reliably detect and respond to chains, gates and gate-like roadway barriers. Sixteen low-speed collisions with such objects occurred between 2022 and late 2024, without injuries. A software update had reached the whole fleet by December 2024; the May 2025 recall filing with NHTSA formalised it. The failure class surfaced through real-world driving rather than pre-deployment testing. In September 2026 another Waymo drove around market barricades in Denver (see B1). (NHTSA recall filing, May 2025; TechCrunch and InsideEVs, May 2025)
 
-**McDonald's IBM AI drive-thru discontinued (2024):** McDonald's IBM automated order-taking system added unwanted items to orders under unusual inputs — including 260 chicken nuggets in one documented case. System was discontinued at all 100+ test locations by July 26, 2024 after viral incidents demonstrating brittleness under realistic but unusual user behaviour. (Fast Company, June 2024; AI Incident Database #475)
+**McDonald's IBM AI drive-thru discontinued (2024):** McDonald's IBM automated order-taking system added unwanted items to orders under unusual inputs — including 260 chicken nuggets in one documented case. McDonald's ended the test at its 100+ participating restaurants by 26 July 2024, after viral videos showed the system failing under realistic but unusual customer behaviour. (Restaurant Business and Fast Company, June 2024)
 
 ---
 

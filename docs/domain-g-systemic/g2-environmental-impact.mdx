@@ -3,9 +3,9 @@ id: g2-environmental-impact
 title: "G2 — Environmental Impact"
 sidebar_label: "G2 — Environmental Impact"
 sidebar_position: 2
-tags: [g, low-severity]
-last_verified: 2026-10-02
-next_review: 2026-09-28
+tags: [systemic, sustainability, esg, low-severity]
+last_verified: 2026-10-14
+next_review: 2027-04-14
 description: "Training and operating large AI models consumes significant energy and water — creating ESG reporting obligations, reputational risk, and emerging regulatory exposure."
 ---
 
@@ -15,7 +15,7 @@ import TabItem from '@theme/TabItem';
 # G2 — Environmental Impact
 
 <div style={{display:'flex',gap:'0.5rem',flexWrap:'wrap',marginBottom:'1.5rem'}}>
-  <span className="severity-badge severity-low severity">Low severity</span>
+  <span className="severity-badge severity-low">Low severity</span>
   <span className="framework-chip">NIST AI 600-1</span> <span className="framework-chip">ISSB IFRS S2</span> <span className="framework-chip">GRI Standards</span> <span className="framework-chip">APRA CPG 229</span>
 </div>
 
@@ -27,7 +27,7 @@ import TabItem from '@theme/TabItem';
 
 > Training and operating large AI models consumes significant energy and water — creating ESG reporting obligations, reputational risk, and emerging regulatory exposure.
 
-AI compute is a significant and growing source of energy consumption. Strubell et al. (2019) estimated that training a single Transformer model with neural architecture search produced roughly 626,000 lbs (~284 t) CO2e — about five times the lifetime emissions of an average US car. As organisations scale AI adoption, the aggregate footprint becomes material for ESG reporting and sustainability commitments.
+AI compute is a significant and growing source of energy consumption. The International Energy Agency estimates data centres used about 415 TWh of electricity in 2024 — around 1.5% of global consumption — and projects this to more than double to about 945 TWh by 2030, with AI the main driver. Google and Microsoft both reported emissions rising well above their baselines in 2024 as they expanded data centres for AI. As organisations scale AI adoption, their share of that footprint becomes material for ESG reporting and sustainability commitments.
 
 <div className="key-question">
 Is AI compute energy consumption captured in our sustainability reporting, and are we making model selection decisions that consider efficiency alongside capability?
@@ -48,6 +48,10 @@ Is AI compute energy consumption captured in our sustainability reporting, and a
 ---
 
 ## Layer 2 — Overview
+
+### Risk description
+
+Most organisations' AI footprint sits in someone else's data centre: it arrives as Scope 3 emissions from cloud and API providers, often without usable data. The risk is less that one model is damaging than that AI use grows quickly and invisibly — inflating emissions and energy costs, undermining published net-zero commitments, and leaving sustainability disclosures incomplete as mandatory climate reporting arrives in Australia and the EU.
 
 ### Likelihood drivers
 - AI compute not included in emissions tracking and reporting
@@ -87,7 +91,7 @@ AI compute — particularly large model training and high-volume inference — r
 
 Implementation requirements: (1) **Measurement scope** — capture energy consumption from: (a) cloud AI inference (API calls to hosted models — estimate via provider energy reporting or cost-based proxy if direct measurement unavailable); (b) self-hosted inference (GPU/CPU utilisation monitoring on AI serving infrastructure); (c) training runs (direct measurement from cloud provider dashboards or hardware power meters); (2) **Estimation methodology** — where direct measurement is unavailable (e.g. third-party API calls), document the estimation methodology. Acceptable proxies: provider-published energy intensity figures (tokens per kWh), hardware TDP-based estimates, or cloud provider sustainability APIs where available. Document methodology and assumptions; (3) **Reporting integration** — AI energy data must flow into the organisation's ESG reporting process. Agree with the ESG/sustainability team how AI energy data is categorised (Scope 2 for electricity, or Scope 3 for cloud-sourced compute), and ensure the data is available at the reporting timeline required; (4) **Baseline and trend** — establish a baseline in the first year of measurement. Report consumption and year-on-year trends. Rising consumption without commensurate business value growth is a governance signal; (5) **Granularity** — where feasible, attribute energy consumption to specific AI systems or use cases. This enables efficiency decisions — understanding that a specific inference pipeline consumes disproportionate energy can prompt architecture review.
 
-**Jurisdiction notes:** AU — NGER Act (National Greenhouse and Energy Reporting) — large energy users must report; AI compute may push organisations over reporting thresholds as usage scales. ASIC climate disclosure obligations — ASX-listed entities face mandatory climate disclosure under IFRS S2-equivalent standards | EU — CSRD (Corporate Sustainability Reporting Directive) — large organisations must report energy consumption including digital infrastructure from 2024/2025. EU AI Act Art. 99 — environmental impact is an explicit consideration in AI governance | US — SEC climate disclosure rules — mandatory GHG disclosure for large accelerated filers from 2026; AI compute contributes to Scope 2 emissions
+**Jurisdiction notes:** AU — NGER Act (National Greenhouse and Energy Reporting) — large energy users must report; self-hosted AI compute may push organisations over reporting thresholds as usage scales. Mandatory climate-related financial disclosures under the Corporations Act and AASB S2 apply to large entities by size threshold — Group 1 from reporting periods starting 1 January 2025, Group 2 from 1 July 2026, Group 3 from 1 July 2027 — with Scope 3 from each entity's second reporting year | EU — CSRD (Corporate Sustainability Reporting Directive) — in-scope companies report energy and GHG emissions under ESRS E1; the 2025 Omnibus simplification narrowed scope and delayed later waves, so confirm whether you are in scope. EU AI Act Art. 53 and Annex XI — providers of general-purpose AI models must document the model's known or estimated energy consumption | US — the SEC's 2024 climate disclosure rules are stayed and the SEC proposed rescinding them in May 2026; state laws (e.g. California's SB 253) and voluntary frameworks are the live drivers
 
 ---
 
@@ -98,7 +102,7 @@ The default in AI system design is to select the largest, most capable model ava
 
 Implementation requirements: (1) **Selection documentation** — at the system design stage, document why the selected model size is appropriate for the use case. The documentation must confirm that a smaller model was evaluated and why it was insufficient (or why it was sufficient and selected). Acceptable evaluation approaches: benchmark testing on representative use case inputs; cost/quality tradeoff analysis; published efficiency comparisons; (2) **Task-appropriate sizing** — provide guidance to AI system designers on task-appropriate model sizes: (a) classification, structured extraction, sentiment analysis — typically adequately served by small to medium models; (b) long-form generation, complex reasoning, multi-step tasks — may require larger models; (c) use-case-specific fine-tuning of a smaller model — often outperforms general-purpose larger models at lower energy cost; (3) **Inference optimisation** — for high-volume inference, document whether inference optimisation has been considered: quantisation (reducing precision of model weights), distillation (smaller model trained to replicate larger model behaviour), caching (storing results for repeated queries), batching (processing multiple queries simultaneously). These techniques often reduce energy cost with minimal quality impact; (4) **Annual review** — model landscape changes rapidly. Models that were uniquely capable when selected may now have efficient alternatives. Include model efficiency review in annual AI system reviews.
 
-**Jurisdiction notes:** EU — EU AI Act recital 69 — energy efficiency is explicitly noted as a consideration in AI system development; the AI Office may develop guidance on energy efficiency. CSRD — efficiency decisions feed into disclosure obligations | AU — voluntary DISR AI Safety Standard — environmental sustainability is a core principle
+**Jurisdiction notes:** EU — EU AI Act Annex XI — GPAI providers must document energy consumption, so ask model vendors for it at procurement. CSRD — efficiency decisions feed into disclosure obligations | AU — Australia's AI Ethics Principles (2019) include human, societal and environmental wellbeing
 
 ---
 
@@ -109,7 +113,7 @@ Where AI inference is cloud-sourced, the choice of cloud region materially affec
 
 Implementation requirements: (1) **Region carbon intensity assessment** — at infrastructure design stage, assess the carbon intensity of candidate cloud regions for AI inference workloads. All major cloud providers (AWS, Azure, Google Cloud) publish carbon intensity data by region and sustainability commitments by region; (2) **Selection criteria** — where operationally feasible (latency requirements, data residency requirements, regulatory constraints permit), prefer regions with higher renewable energy percentages. Document the selection rationale including any operational constraints that precluded a lower-carbon region; (3) **Data residency compatibility** — for Australian organisations, data residency requirements may constrain region choice. Where a lower-carbon region would require data to leave Australian jurisdiction, document the constraint and assess alternative mitigations (renewable energy credits, local renewable energy purchasing); (4) **Provider sustainability commitments** — at procurement, assess provider sustainability commitments: 100% renewable energy commitments, carbon neutrality timelines, energy efficiency targets. Include these in the vendor scorecard alongside cost and capability; (5) **Annual review** — cloud provider carbon intensity changes as their energy mix evolves. Review region selection annually against current provider data.
 
-**Jurisdiction notes:** AU — NGER Act — cloud compute emissions may be reportable; region selection affects Scope 2 and Scope 3 calculations | EU — CSRD — supply chain emissions reporting includes cloud compute; provider sustainability performance is a reportable input | US — SEC climate disclosure — Scope 3 emissions disclosure for large accelerated filers includes cloud compute
+**Jurisdiction notes:** AU — AASB S2 — cloud compute is Scope 3 for the customer; region selection affects the figures reported | EU — CSRD — value-chain (Scope 3) emissions reporting includes purchased cloud services; provider sustainability data is a reportable input | US — California SB 253 requires Scope 3 reporting from large companies doing business in the state; elsewhere disclosure is voluntary
 
 ---
 
@@ -164,19 +168,19 @@ class AIEnergyRecord:
 
 ### Compliance implementation
 
-**Australia:** NGER (National Greenhouse and Energy Reporting) Act 2007 — organisations exceeding threshold energy consumption must report to the Clean Energy Regulator. As AI compute scales, it may push organisations over NGER thresholds. ASIC mandatory climate disclosure obligations (from 2025/2026 for large entities) require Scope 1, 2, and 3 GHG emissions reporting; AI compute contributes to Scope 2 (self-hosted) and Scope 3 (cloud-sourced). The G2 controls enable the data collection required for compliance.
+**Australia:** NGER (National Greenhouse and Energy Reporting) Act 2007 — organisations exceeding threshold energy consumption must report to the Clean Energy Regulator. As self-hosted AI compute scales, it may push organisations over NGER thresholds. Mandatory climate-related financial disclosures (AASB S2, phased in from 1 January 2025 by entity size, regulated by ASIC) require Scope 1 and 2 emissions and, from the second reporting year, Scope 3; AI compute contributes to Scope 2 (self-hosted) and Scope 3 (cloud-sourced). The G2 controls enable the data collection required for compliance.
 
-**EU:** CSRD (Corporate Sustainability Reporting Directive) — in-scope organisations must report energy consumption and GHG emissions using ESRS E1 (Climate Change) standard. AI compute must be included. EU AI Act recital 69 — the Commission is to develop guidelines on the energy performance of AI models; organisations should prepare measurement capability before guidelines are finalised. EU Taxonomy Regulation — activities contributing to climate change mitigation may be assessed including digital infrastructure energy efficiency.
+**EU:** CSRD (Corporate Sustainability Reporting Directive) — in-scope organisations must report energy consumption and GHG emissions using the ESRS E1 (Climate Change) standard, which captures AI compute through energy use and value-chain emissions; the 2025 Omnibus package narrowed scope and delayed later reporting waves. EU AI Act Art. 53 and Annex XI — GPAI model providers must document known or estimated energy consumption, giving deployers something to request from vendors. EU Taxonomy Regulation — data-centre activities have technical screening criteria for climate change mitigation.
 
-**US:** SEC climate disclosure rules (final rule March 2024) — large accelerated filers must disclose Scope 1 and 2 GHG emissions from 2026; Scope 3 if material. AI compute is increasingly material to Scope 2. Voluntary reporting: CDP, TCFD, and ISSB S2 provide frameworks for AI energy disclosure ahead of mandatory requirements.
+**US:** The SEC adopted climate disclosure rules in March 2024 but stayed them pending litigation, stopped defending them in 2025, and proposed rescinding them in May 2026 — do not plan around them. California's Climate Corporate Data Accountability Act (SB 253) requires companies with over US$1 billion in revenue doing business in California to report Scope 1 and 2 emissions from 2026 and Scope 3 from 2027; the Scope 3 rules are still being finalised and the law faces a federal challenge. Voluntary reporting: CDP and ISSB S2 provide frameworks for AI energy disclosure.
 
 ---
 
 ## Incident examples
 
-**NIST AI 600-1 emissions estimate:** NIST AI 600-1 estimates that training a large transformer model may emit carbon equivalent to approximately 300 round-trip San Francisco–New York flights.
+**Big Tech emissions rising against net-zero targets (2024):** Google's 2024 environmental report showed greenhouse gas emissions of 14.3 MtCO2e in 2023, up 48% on 2019, which it attributed mainly to data-centre energy use and supply-chain emissions, warning that reducing emissions may be challenging as AI grows. Microsoft's 2024 sustainability report showed emissions 29% above its 2020 baseline, linked to building the infrastructure for AI. Both still hold 2030 climate targets. For their customers, AI services bought from these providers flow into Scope 3. (Google 2024 Environmental Report; Microsoft 2024 Environmental Sustainability Report)
 
-**Tech company data centre scrutiny (2024–2025):** Multiple major technology companies faced investor and regulatory scrutiny after AI data centre expansion increased total carbon emissions despite broader net-zero commitments.
+**Data-centre electricity set to double (2025):** The IEA's *Energy and AI* report estimated data centres consumed about 415 TWh in 2024 (around 1.5% of global electricity) and projected about 945 TWh by 2030, with the United States accounting for nearly half of the growth. The scale has moved AI energy from a corporate reporting question to a grid-planning one. (International Energy Agency, *Energy and AI*, April 2025)
 
 ---
 
@@ -185,5 +189,9 @@ class AIEnergyRecord:
 **Context:** An organisation announces ambitious net-zero targets. Three months later, it also announces a major AI capability investment requiring significant data centre expansion.
 
 **Trigger:** An investor raises a question at the AGM about whether AI compute is included in emissions forecasts and net-zero pathway modelling.
+
+**Complicating factor:** Most of the AI capability will be bought as cloud and API services, and the main provider supplies only annual, account-level emissions estimates with no per-workload data.
+
+**Discussion questions:** How would you estimate AI's contribution to Scope 3 with the data available? What should the procurement contract require from the provider? Should the net-zero pathway be restated before or after the investment? Who answers the investor, and what can they honestly say today?
 
 **Difficulty:** Foundational | **Jurisdictions:** AU, EU, Global

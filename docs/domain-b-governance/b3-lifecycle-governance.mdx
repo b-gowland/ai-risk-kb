@@ -3,9 +3,9 @@ id: b3-lifecycle-governance
 title: "B3 — AI Lifecycle Governance Failure"
 sidebar_label: "B3 — Lifecycle Governance"
 sidebar_position: 3
-tags: [b, medium-severity]
-last_verified: 2026-10-02
-next_review: 2026-09-28
+tags: [governance, lifecycle, medium-severity]
+last_verified: 2026-10-14
+next_review: 2027-04-14
 description: "Inadequate governance across the full AI lifecycle — from development through deployment, monitoring, and decommissioning."
 ---
 
@@ -15,7 +15,7 @@ import TabItem from '@theme/TabItem';
 # B3 — AI Lifecycle Governance Failure
 
 <div style={{display:'flex',gap:'0.5rem',flexWrap:'wrap',marginBottom:'1.5rem'}}>
-  <span className="severity-badge severity-medium severity">Medium severity</span>
+  <span className="severity-badge severity-medium">Medium severity</span>
   <span className="framework-chip">ISO 42001 Cl. 8</span> <span className="framework-chip">NIST AI RMF MANAGE 2</span> <span className="framework-chip">EU AI Act Art. 9</span> <span className="framework-chip">APRA CPS 230</span>
 </div>
 
@@ -48,6 +48,10 @@ Can we demonstrate that every AI system in production has passed a structured pr
 ---
 
 ## Layer 2 — Overview
+
+### Risk description
+
+AI systems keep changing after launch: data shifts, models are retrained, vendors swap the underlying model, and use spreads beyond the original purpose. Governance designed as a one-off approval at go-live misses all of this. Lifecycle governance failure is the absence of gates and ownership at each stage — design, testing, deployment, change, monitoring and retirement — so that a system can drift, change or outlive its approval without anyone deciding that it should.
 
 ### Likelihood drivers
 - No AISDLC framework adapted for AI-specific lifecycle
@@ -87,7 +91,7 @@ Minimum checklist items: (1) **Accuracy** — performance metrics on held-out te
 
 Note: Tiffany Treloar (Change Management, April 2026) specifically recommended adding **entry and exit criteria for AI pilots** as an explicit checklist item — the pilot phase is where real stress-testing happens and go/no-go criteria before production should be formally named. This should be a mandatory section for any system that ran as a pilot before production deployment.
 
-**Jurisdiction notes:** AU — APRA CPS 230 cl. 20 — material AI systems should meet equivalent testing standards to other technology changes; fairness and accuracy testing supports Privacy Act and anti-discrimination law obligations | EU — EU AI Act Art. 9 — risk management system for high-risk AI must include evaluation of the risk management measures before market placement. Art. 15 — accuracy, robustness, and cybersecurity measures must be demonstrated | Global — NIST AI RMF MEASURE 2.3 — performance and assurance criteria are measured and demonstrated for conditions similar to deployment; MANAGE 1.1 — a documented determination of whether deployment should proceed
+**Jurisdiction notes:** AU — APRA CPS 230 does not mention AI, but its operational risk and change management requirements apply to AI systems like any other technology supporting critical operations; APRA's letter to industry on AI (30 April 2026) sets expectations on governance, operational resilience and assurance (see B2). Fairness and accuracy testing supports Privacy Act and anti-discrimination law obligations | EU — EU AI Act Art. 9 — the risk management system for high-risk AI must include testing before the system is placed on the market or put into service. Art. 15 — accuracy, robustness, and cybersecurity measures must be demonstrated | Global — NIST AI RMF MEASURE 2.3 — performance and assurance criteria are measured and demonstrated for conditions similar to deployment; MANAGE 1.1 — a documented determination of whether deployment should proceed
 
 ---
 
@@ -100,7 +104,7 @@ Lifecycle phases and minimum governance requirements: (1) **Problem definition**
 
 The AISDLC is a post-launch control because building the framework takes longer than implementing the checklist. The checklist should be implemented immediately; the AISDLC formalises and extends it.
 
-**Jurisdiction notes:** AU — APRA CPS 230 — operational risk management obligation extends to the full lifecycle of AI systems. Model risk management expectations from APRA align with AISDLC lifecycle phases | EU — EU AI Act Art. 9 — risk management system must be continuous throughout the lifecycle. Art. 72 — post-market monitoring is mandatory for high-risk AI | Global — ISO 42001 Cl. 8 — AI system lifecycle management is a core requirement of the AI management system standard
+**Jurisdiction notes:** AU — APRA CPS 230 — operational risk management, including change management, applies across the life of the technology supporting critical operations, AI included | EU — EU AI Act Art. 9 — risk management system must be continuous throughout the lifecycle. Art. 72 — post-market monitoring is mandatory for high-risk AI | Global — ISO 42001 Cl. 8 — AI system lifecycle management is a core requirement of the AI management system standard
 
 ---
 
@@ -113,7 +117,7 @@ What constitutes a material change: (1) replacement of the underlying foundation
 
 Implementation: include in all new AI vendor contracts; audit existing contracts and negotiate amendments for material legacy vendors; treat notification as a trigger for change management — a vendor model update should go through the same change assessment as an internal model update.
 
-**Jurisdiction notes:** AU — APRA CPS 230 — material changes to outsourced arrangements require notification and reassessment. The entity cannot govern what it does not know has changed | EU — EU AI Act Art. 26 — deployers must monitor AI system performance and are responsible for changes in behaviour; vendor notification is necessary for this obligation to be dischargeable | Global — NIST AI RMF GOVERN 6.1 — policies for AI risks from third parties should include change notification requirements
+**Jurisdiction notes:** AU — APRA CPS 230 — entities must manage the risks of material service providers through formal agreements and ongoing monitoring; CPS 230 does not itself oblige a vendor to give notice of model changes, so the obligation has to be written into the contract | EU — EU AI Act Art. 26(5) — deployers of high-risk systems must monitor operation against the instructions for use and inform the provider of risks; Art. 25 — a deployer that substantially modifies a high-risk system can itself become its provider | Global — NIST AI RMF GOVERN 6.1 — policies addressing third-party AI risk; change notification is a practical way to meet it
 
 ---
 
@@ -124,7 +128,7 @@ Implement a formal process for retiring AI systems from production. Deprecated A
 
 Decommissioning checklist: (1) decommission decision documented and approved by accountable owner; (2) all data processed by the system handled according to retention policy — personal data deleted or anonymised per Privacy Act / GDPR obligations; (3) system removed from production environment (not just disabled — confirm removal); (4) AI Register entry updated with decommission date and status; (5) documentation archived — model card, testing records, incident log, retained for regulatory minimum period; (6) vendor contract terminated or amended; (7) monitoring and alerting configurations removed to prevent false alarms.
 
-**Jurisdiction notes:** AU — Privacy Act 1988 APP 11 — personal information no longer needed must be destroyed or de-identified. Retaining training data or inference logs beyond the required period creates ongoing compliance exposure | EU — GDPR Art. 5(1)(e) — storage limitation principle; data must not be kept longer than necessary. EU AI Act Art. 12 — logs must be retained for minimum periods depending on system category | US — CCPA right to deletion — AI systems processing California consumer data may receive deletion requests that require system-level response
+**Jurisdiction notes:** AU — Privacy Act 1988 APP 11 — personal information no longer needed must be destroyed or de-identified. Retaining training data or inference logs beyond the required period creates ongoing compliance exposure | EU — GDPR Art. 5(1)(e) — storage limitation principle; data must not be kept longer than necessary. EU AI Act Art. 12 — high-risk systems must log events automatically; Art. 19 (providers) and Art. 26(6) (deployers) require those logs to be kept for at least six months, longer where other law requires — reconcile this with deletion duties before decommissioning | US — CCPA right to deletion — AI systems processing California consumer data may receive deletion requests that require system-level response
 
 ---
 
@@ -174,8 +178,12 @@ class PreDeploymentChecklist:
     overall_status: CheckStatus = "pending"
 
     def is_go_live_approved(self) -> bool:
-        required = [c for c in self.checks if c.status not in ("pass", "not-applicable")]
-        return len(required) == 0 and self.compliance_signoff_obtained
+        if not self.checks:
+            return False                     # an empty checklist is not a passed one
+        covered = {c.category for c in self.checks}
+        missing = {cat for cat, _ in STANDARD_CHECKS if cat != "Pilot criteria"} - covered
+        outstanding = [c for c in self.checks if c.status not in ("pass", "not-applicable")]
+        return not missing and not outstanding and self.compliance_signoff_obtained
 
 # Example minimum checklist items
 STANDARD_CHECKS = [
@@ -199,7 +207,7 @@ STANDARD_CHECKS = [
 ### Vendor model change management — notification handler
 
 ```python
-from datetime import datetime
+from dataclasses import dataclass
 
 @dataclass
 class VendorModelChangeNotification:
@@ -241,11 +249,11 @@ def handle_vendor_change_notification(notification: VendorModelChangeNotificatio
 
 ### Compliance implementation
 
-**Australia:** APRA CPS 230 — the operational risk management obligation requires lifecycle governance for material AI systems: pre-deployment testing, ongoing monitoring, and formal decommissioning. APRA expects evidence that material model changes are managed through change management processes equivalent to those applied to other technology changes. ASIC — regulatory guidance on AI in financial services expects firms to maintain model inventories and governance documentation throughout the model lifecycle.
+**Australia:** APRA CPS 230 (in force 1 July 2025) — operational risk management, including change management and the management of material service providers, applies to AI systems supporting critical operations. APRA's letter to industry on AI (30 April 2026) sets expectations for boards and accountable executives on AI governance, operational resilience, supplier concentration and assurance. ASIC REP 798 *Beware the gap* (October 2024) reviewed 624 AI use cases at 23 licensees and found AI adoption outpacing governance and risk management.
 
 **EU:** EU AI Act Art. 9 — risk management system must be continuous and iterative across the full lifecycle of a high-risk AI system. Art. 72 — post-market monitoring plan is mandatory and must be proportionate to the risk. Art. 12 — logging requirements ensure auditability throughout the operational lifetime. ISO 42001 Cl. 8 — the AI management system standard specifies lifecycle management requirements including planning, implementation, monitoring, and continual improvement.
 
-**US:** OCC SR 11-7 (model risk management) — model governance requirements apply throughout the lifecycle: validation before use, ongoing monitoring, and formal model retirement. NIST AI RMF MANAGE function — specific practices for AI system lifecycle management including change monitoring and decommissioning. EEOC — employment AI systems should have documented review cycles and sunset processes.
+**US:** Federal Reserve SR 11-7 / OCC Bulletin 2011-12 (model risk management) — model governance applies throughout the life of a model: validation before use, ongoing monitoring, and an inventory that tracks models through retirement. NIST AI RMF MANAGE function — practices for responding to, monitoring and decommissioning AI systems (MANAGE 2.4 covers superseding, disengaging or deactivating systems).
 
 **Tools and references:** ISO 42001 · NIST AI RMF · APRA CPS 230 · MLflow (model lifecycle tracking) · DVC (data version control) · Weights & Biases (experiment tracking and model registry)
 
@@ -253,9 +261,9 @@ def handle_vendor_change_notification(notification: VendorModelChangeNotificatio
 
 ## Incident examples
 
-**Undisclosed vendor model update (illustrative):** A model update by a third-party vendor changes classification logic without customer notification. The organisation discovers this through unexplained output changes weeks later — by which time incorrect outputs have influenced decisions.
+**Vendor model update rolled back after release (April 2025):** OpenAI pushed an update to GPT-4o in ChatGPT that made the model markedly sycophantic — validating doubts, fuelling anger and encouraging impulsive decisions. It began rolling the update back within days and published two postmortems, acknowledging that its pre-release checks had not caught the problem and that it had over-weighted short-term user feedback. Every organisation building on the model inherited the change without notice; only those with their own regression tests would have seen it before their users did. (OpenAI, "Sycophancy in GPT-4o" and "Expanding on what we missed with sycophancy", April–May 2025)
 
-**Deprecated model still running in production (illustrative):** A deprecated AI model continues running after its intended decommission date. Outputs become increasingly unreliable; no monitoring exists to detect this.
+**Retired code that was never removed (Knight Capital, August 2012):** Knight Capital stopped using an automated order-routing function called Power Peg in 2003 but never deleted it. In 2012 a new release reused the flag that had activated it, and one of eight servers had not received the new code; the dormant logic woke up and sent more than 4 million executions in 154 stocks within about 45 minutes, causing losses that forced the firm's rescue. The SEC fined Knight US$12 million under the market access rule. The system was not machine learning, but the lesson is the decommissioning one: retire a model by removing it, not by switching it off. (SEC order and press release 2013-222, 16 October 2013)
 
 ---
 
@@ -264,5 +272,9 @@ def handle_vendor_change_notification(notification: VendorModelChangeNotificatio
 **Context:** A vendor silently upgrades the underlying LLM in a deployed AI product from one model version to another without notification.
 
 **Trigger:** Customer service staff notice the AI's responses have changed in tone and accuracy. The product owner investigates and discovers the change.
+
+**Complicating factor:** The vendor contract has no change-notification clause, and the organisation kept no baseline evaluation results, so it cannot show how much behaviour has changed or since when.
+
+**Discussion questions:** What should the contract have required? What evidence would let you detect and size the change yourself? Who decides whether to keep using the product while the change is assessed? Which customers may have been affected, and do any of them need to be told?
 
 **Difficulty:** Foundational | **Jurisdictions:** AU, EU, Global
