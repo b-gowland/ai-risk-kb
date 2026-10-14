@@ -4,8 +4,8 @@ title: "A2 — Model Drift / Performance Degradation"
 sidebar_label: "A2 — Model Drift"
 sidebar_position: 2
 tags: [technical, monitoring, medium-severity]
-last_verified: 2026-03-28
-next_review: 2026-09-28
+last_verified: 2026-10-14
+next_review: 2027-04-14
 description: "AI model performance degrades over time as the real world shifts away from training conditions — silently, without visible error, until the consequences become apparent downstream."
 ---
 
@@ -17,7 +17,7 @@ import TabItem from '@theme/TabItem';
 <div style={{display:'flex',gap:'0.5rem',flexWrap:'wrap',marginBottom:'1.5rem'}}>
   <span className="severity-badge severity-medium">Medium severity</span>
   <span className="framework-chip">ISO 42001 Cl. 9.1</span>
-  <span className="framework-chip">EU AI Act Art. 9(7)</span>
+  <span className="framework-chip">EU AI Act Art. 72</span>
   <span className="framework-chip">APRA CPS 230</span>
 </div>
 
@@ -29,7 +29,7 @@ import TabItem from '@theme/TabItem';
 
 > AI model performance degrades over time as the real world shifts away from training conditions — silently, without visible error, until the consequences become apparent downstream.
 
-Unlike traditional software, AI models can become less accurate over time as the world changes around them. A fraud detection model trained before COVID misclassified lockdown-era transactions. An underwriting model trained before interest rate rises mispriced risk. The model does not alert you — it continues producing outputs that are increasingly wrong.
+Unlike traditional software, AI models can become less accurate over time as the world changes around them. Models trained on pre-pandemic behaviour broke when spending patterns shifted in 2020. A hosted language model can change underneath you when the vendor updates it. The model does not alert you — it continues producing outputs that are increasingly wrong.
 
 <div className="key-question">
 Can we confirm that every deployed AI model has active performance monitoring and defined thresholds that trigger review or retraining?
@@ -60,6 +60,7 @@ AI models are trained at a point in time on data reflecting the world as it was.
 - No scheduled review dates in the AI Register
 - Rapidly changing external environment (inflation, economic shocks, regulatory change)
 - Continuous learning systems updating from potentially shifted incoming data
+- Vendor-hosted models (LLM APIs) updated or retired by the provider, often behind an unchanged model name
 
 ### Consequence types
 | Type | Example |
@@ -93,17 +94,21 @@ Track accuracy, precision, recall, F1, or domain-relevant KPIs on a rolling sche
 ### A2-002 — Statistical drift detection
 **Owner:** Technology | **Type:** Detective | **Effort:** Medium | **Go-live required:** Yes
 
-Implement PSI (Population Stability Index) on continuous features. PSI > 0.2 indicates significant drift. Apply KS test for distribution shift. SHAP value tracking detects concept drift. Alert threshold documented in model risk record.
+Implement PSI (Population Stability Index) on key input features and on the model's score distribution. A common rule of thumb treats PSI above 0.1 as worth investigating and above 0.25 as significant shift; these are conventions, not a standard, so calibrate them per model. A two-sample Kolmogorov–Smirnov test is an alternative for continuous features. Input drift does not prove concept drift: confirming that the relationship the model learned has changed needs ground-truth outcomes, so track performance on labelled outcomes as they arrive (A2-001). Shifts in feature attributions (e.g. SHAP) are a useful early signal where labels arrive late. Alert thresholds documented in the model risk record.
+
+For vendor-hosted LLMs, pin to a dated model version where the provider offers one, track the provider's deprecation schedule, and re-run a fixed evaluation set before any version change and on a schedule.
 
 ### A2-003 — Retraining triggers
 **Owner:** Risk | **Type:** Corrective | **Effort:** Low | **Go-live required:** Yes
 
-Define thresholds at which performance degradation triggers retraining or revalidation. Document in the model risk record. Include scheduled quarterly trigger regardless of metric status.
+Define thresholds at which performance degradation triggers retraining or revalidation. Document in the model risk record. Include a scheduled revalidation trigger regardless of metric status — quarterly for models driving customer or credit decisions, at least annually otherwise.
+
+**Jurisdiction notes:** AU — APRA CPS 230 (in force 1 July 2025) — operational risk management for critical operations, including the technology they depend on | EU — AI Act Art. 72 — providers of high-risk systems must run post-market monitoring (Annex III high-risk obligations apply from 2 December 2027 under Regulation (EU) 2026/1744 — see B2) | UK — PRA SS1/23 Model risk management principles for banks (effective 17 May 2024) — expects ongoing monitoring of model performance | US — Federal Reserve SR 11-7 — model risk guidance requires ongoing monitoring, including outcomes analysis
 
 ### KPIs
 | Metric | Target | Frequency |
 |--------|--------|-----------|
-| PSI on primary features | < 0.2 | Weekly |
+| PSI on primary features and score | < 0.1 (investigate 0.1–0.25) | Weekly |
 | Model performance vs baseline | < 5% degradation | Monthly |
 
 ---
@@ -111,20 +116,29 @@ Define thresholds at which performance degradation triggers retraining or revali
 ## Layer 4 — Technical implementation
 
 ```python
-from scipy import stats
 import numpy as np
+from scipy import stats
 
-def calculate_psi(expected, actual, buckets=10):
-    """Population Stability Index. PSI > 0.2 = significant drift."""
-    breakpoints = np.arange(0, buckets + 1) / buckets * 100
-    expected_percents = np.diff(np.percentile(expected, breakpoints)) / len(expected)
-    actual_percents = np.diff(np.percentile(actual, breakpoints)) / len(actual)
-    psi = np.sum((actual_percents - expected_percents) *
-                 np.log(actual_percents / expected_percents + 1e-10))
-    return psi
+def calculate_psi(expected, actual, buckets=10, eps=1e-6):
+    """Population Stability Index between a baseline and a current sample.
 
-# Monitoring stack: Evidently AI, WhyLabs, Arize Phoenix
-# Feature store: Feast, Tecton
+    Bins are fixed from the baseline's quantiles and applied to both samples.
+    Rule of thumb: < 0.1 stable, 0.1-0.25 investigate, > 0.25 significant shift.
+    """
+    expected, actual = np.asarray(expected), np.asarray(actual)
+    edges = np.unique(np.quantile(expected, np.linspace(0, 1, buckets + 1)))
+    edges[0], edges[-1] = -np.inf, np.inf          # catch values outside the baseline range
+    e = np.histogram(expected, edges)[0] / len(expected)
+    a = np.histogram(actual, edges)[0] / len(actual)
+    e, a = np.clip(e, eps, None), np.clip(a, eps, None)  # avoid log(0) for empty bins
+    return float(np.sum((a - e) * np.log(a / e)))
+
+def ks_shift(expected, actual, alpha=0.01):
+    """Two-sample Kolmogorov-Smirnov test; True if the distributions differ."""
+    return stats.ks_2samp(expected, actual).pvalue < alpha
+
+# Monitoring: Evidently AI, Arize Phoenix, NannyML (performance estimation without labels)
+# Feature store: Feast
 # Experiment tracking: MLflow, Weights & Biases
 ```
 
@@ -132,9 +146,11 @@ def calculate_psi(expected, actual, buckets=10):
 
 ## Incident examples
 
-**Fraud detection model post-COVID (2020):** Fraud detection models trained pre-COVID misclassified legitimate lockdown-era transactions as fraud due to shifted spending patterns. False positive rates spiked, causing customer experience degradation across multiple financial institutions before models were retrained.
+**Models broken by pandemic behaviour (2020):** When spending and shopping patterns shifted abruptly in early 2020, models trained on pre-pandemic data — demand forecasting, inventory, fraud and recommendation systems — produced unreliable outputs, and many organisations had to intervene manually or retrain. (MIT Technology Review, "Our weird behavior during the pandemic is messing with AI models", May 2020)
 
-**Underwriting model post-rate rises (2022–2023):** Multiple insurers' ML underwriting models trained on pre-rate-rise data continued to price policies using stale risk relationships. Actual loss ratios diverged materially from model predictions over 12–18 months.
+**Zillow Offers wind-down (November 2021):** Zillow closed its algorithm-driven home-buying business after its pricing models failed to keep up with a shifting housing market, writing down about US$304 million of inventory in Q3 2021 and cutting about a quarter of its workforce. Its CEO cited the unpredictability of forecasting home prices. (Zillow Group Q3 2021 shareholder letter; AP and Bisnow reporting, November 2021)
+
+**Same model name, different behaviour (2023):** Researchers compared the March and June 2023 versions of GPT-4 behind the same API and found large changes on fixed tasks; on identifying prime versus composite numbers, accuracy fell from 84% to 51%. Teams relying on a hosted model had no visibility of the change. (Chen, Zaharia and Zou, *Harvard Data Science Review*, 2024)
 
 ---
 

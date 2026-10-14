@@ -8,6 +8,19 @@ sidebar_position: 6
 
 All material changes to the knowledge base are documented here. Changes are version-controlled in the [GitHub repository](https://github.com/b-gowland/ai-risk-kb).
 
+## [1.5.0] — October 2026
+
+### Re-verified — A2, A3, A4, B3, C3, G2 (14 October 2026; closes #54)
+Full reviews of the six entries overdue since 28 September 2026 (F2 was re-verified on 5 October). Next review April 2027.
+- **A2 Model Drift:** PSI example code rewritten (it binned each sample separately, so its output was meaningless); thresholds described as conventions; covers drift in vendor-hosted LLMs; EU AI Act chip moved to Art. 72 (post-market monitoring); unsourced underwriting incident replaced with Zillow Offers (2021) and the GPT-4 behaviour-change study (2024)
+- **A3 Robustness:** Waymo recall corrected (failures surfaced in real-world driving 2022–24, fix deployed before the 2025 filing); OOD example code now sets its threshold from validation data; ISO 42001 anchor corrected
+- **A4 Explainability:** SafeRent final approval corrected to November 2024 and claims aligned with the case record; nH Predict now cites the Senate PSI report and the class action; RG 271 reference removed; adds CJEU *Dun & Bradstreet Austria* (2025), Regulation B and AU s 21P; SHAP sign convention made explicit
+- **B3 Lifecycle Governance:** removed claims that CPS 230 mentions AI testing or requires vendor change notice; Art. 12 log retention moved to Arts 19 and 26(6); SR 11-7 attributed to the Federal Reserve; withdrawn EEOC guidance removed; checklist code no longer approves an empty checklist; illustrative incidents replaced with the GPT-4o rollback (2025) and Knight Capital (2012)
+- **C3 Model Theft:** covers LLM distillation; trade-secret and CFAA statements corrected (*Van Buren*, 2021); NIST IR 8596 described as a preliminary draft; daily-cap and throttle bugs fixed in the example code; illustrative incidents replaced with Anthropic's distillation disclosure (2026) and Carlini et al. (2024)
+- **G2 Environmental Impact:** current IEA figures replace the 2019 estimate; EU AI Act reference corrected (Art. 99 is penalties; energy documentation is Annex XI); SEC climate rule shown as stayed and proposed for rescission; Australian mandatory climate disclosure and California SB 253 described accurately
+- B3, C3 and G2 gain the risk description and scenario discussion questions the schema requires
+- Citation ledger: EU AI Act Art. 72 added
+
 ## [1.4.2] — October 2026
 
 ### Added — incidents from source monitoring (#61, #67)
