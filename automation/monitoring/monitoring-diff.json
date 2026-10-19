@@ -1,237 +1,183 @@
 {
-  "run_date": "2026-10-12",
-  "run_timestamp": "2026-10-12T19:27:06.721551+00:00",
-  "total_new_items": 21,
+  "run_date": "2026-10-19",
+  "run_timestamp": "2026-10-19T16:39:57.578937+00:00",
+  "total_new_items": 15,
   "items": [
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "3f5615103ac962bbfa9e03d985b2b00c",
-      "title": "Teenager pleads guilty after planning copycat of Southport killings",
-      "url": "https://news.sky.com/story/teenager-pleads-guilty-after-planning-copycat-of-southport-killings-13492133",
-      "body_excerpt": "A teenager from Merseyside who planned to copy the Southport killer by attacking a Taylor Swift-themed event wearing a green hoodie has pleaded guilty to terrorism charges. The white teenager from Kirkby, who was 16 at the time and is now ... (report_number: 8086)",
-      "release_date": "2026-10-10"
+      "id": "f246b4030c4f470efd5dc4e99e4267e3",
+      "title": "Georgia police chief charged with using license plate readers to stalk and harass people",
+      "url": "https://apnews.com/article/georgia-plate-readers-stalk-harass-chief-arrested-39adb6f89fc2074da61f2801fef3f180",
+      "body_excerpt": "BRASELTON, Ga. (AP) \u2014 A police chief in suburban Atlanta has been arrested on charges that he used the city\u2019s automated license plate recognition cameras to stalk and harass multiple people. Michael Steffman, 49, had been the police chief ... (https://incidentdatabase.ai/cite/1760#8140)",
+      "release_date": "2026-10-18"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "36528a2df3fe987b34022cb9de4de918",
-      "title": "\u00ab ChatGPT est en partie la cause de ma radicalisation \u00bb : le r\u00f4le trouble de l\u2019IA dans le projet djihadiste d\u2019un ado",
-      "url": "https://www.leparisien.fr/faits-divers/chatgpt-est-en-partie-la-cause-de-ma-radicalisation-le-role-trouble-de-lia-dans-le-projet-djihadiste-dun-ado-28-10-2025-HEAARQCQFRG3DK43QLGYZ4THDM.php",
-      "body_excerpt": "\u00ab Si 16 bouteilles de gaz de 13 kg de propane explosent dans un camion, quels sont les d\u00e9g\u00e2ts ? \u00bb M. a 17 ans. Il est lyc\u00e9en scolaris\u00e9 dans la Sarthe et s\u2019il pose cette question \u00e0 l\u2019application ChatGPT, ce n\u2019est pas pour un cours de physiqu ... (https://incidentdatabase.ai/cite/1742#8087)",
-      "release_date": "2026-10-10"
+      "id": "0c70b15a596b27527df6447c83d4dd57",
+      "title": "GBI Arrests Braselton Police Chief for Harassment and Stalking",
+      "url": "https://gbi.georgia.gov/press-releases/2025-11-19/gbi-arrests-braselton-police-chief-harassment-and-stalking",
+      "body_excerpt": "Braselton, Jackson County, GA (November 19, 2025) -- The GBI has arrested and charged Braselton Police Department Chief Michael Steffman, age 49, of Braselton, GA, with Violation of Oath by Public Officer, Stalking, Harassing Communications ... (https://incidentdatabase.ai/cite/1759#8141)",
+      "release_date": "2026-10-18"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "fcc38c47ddf542bb6f7388d3ebe0e71e",
-      "title": "Projet d\u2019attentats dans la Sarthe : le lyc\u00e9en de 17 ans a utilis\u00e9 Chat GPT pour s\u2019aider dans la pr\u00e9paration, confirme son avocat",
-      "url": "https://france3-regions.franceinfo.fr/pays-de-la-loire/sarthe/le-mans/projet-d-attentats-dans-la-sarthe-le-lyceen-de-17-ans-a-utilise-chat-gpt-pour-s-aider-dans-la-preparation-confirme-son-avocat-3241366.html",
-      "body_excerpt": "L'avocat du lyc\u00e9en de 17 ans, interpell\u00e9 et \u00e9crou\u00e9 d\u00e9but septembre pour association de malfaiteurs terroristes, a affirm\u00e9 \u00e0 nos confr\u00e8res d'ICI Maine (ex France Bleu) que son client a utilis\u00e9 l'outil d'intelligence artificielle ChatGPT pour ... (https://incidentdatabase.ai/cite/1742#8088)",
-      "release_date": "2026-10-10"
+      "id": "cc500c15730243b9990d4ce6b575320a",
+      "title": "NEW DETAILS: Former Braselton Police Chief accused of stalking; judge denied protective order",
+      "url": "https://www.wsbtv.com/news/local/new-details-former-braselton-police-chief-accused-stalking-judge-denied-protective-order/DMECQENH7FGU5EQSD5XXUYZPYU/",
+      "body_excerpt": "BRASELTON, Ga. --- A woman accusing the Braselton police chief of stalking her was denied a protective order against him before his arrest. Channel 2 Action News reported last week when Michael Steffman, retired and resigned from his posit ... (https://incidentdatabase.ai/cite/1759#8142)",
+      "release_date": "2026-10-18"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "70b6ce37a22d3c05563bd7387e88f543",
-      "title": "Attentats en pr\u00e9paration : ChatGPT au c\u0153ur d\u2019un projet terroriste lyc\u00e9en",
-      "url": "https://www.sudradio.fr/sud-radio/attentats-en-preparation-chatgpt-au-coeur-dun-projet-terroriste-lyceen",
-      "body_excerpt": "Un adolescent sarthois de 17 ans, interpell\u00e9 le mois dernier, est mis en examen pour association de malfaiteurs terroriste. Il aurait utilis\u00e9 l'intelligence artificielle ChatGPT pour concevoir deux projets d'attentat, dont l'un visait des \u00e9 ... (https://incidentdatabase.ai/cite/1742#8089)",
-      "release_date": "2026-10-10"
+      "id": "6366a01ebe6564bba5d5fc10a0db9143",
+      "title": "Haines City officer arrested for misusing Flock cameras to track estranged wife: Officials",
+      "url": "https://www.fox13news.com/news/haines-city-officer-arrested-misusing-flock-cameras-track-estranged-wife-officials",
+      "body_excerpt": "HAINES CITY, Fla. - A Haines City police officer is accused of misusing Flock camera databases to track his estranged wife's car, according to officials. Haines City police investigation What we know: The Haines City Police Department s ... (https://incidentdatabase.ai/cite/1761#8143)",
+      "release_date": "2026-10-18"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "c0f385a4b3b73482acf9d98263d4d061",
-      "title": "Michigan terrorist wannabe used AI to plot Halloween attack, feds say",
-      "url": "https://www.arcamax.com/currentnews/newsheadlines/s-4281101",
-      "body_excerpt": "DETROIT --- Evidence suggests a wanna-be Islamic State terrorist from Dearborn used artificial intelligence to help plan a mass shooting while helping scout targets that included Cedar Point and a Ferndale dance club, according to federal p ... (report_number: 8090)",
-      "release_date": "2026-10-10"
+      "id": "96c6fa523000e23ae00fe1d103a309cc",
+      "title": "Haines City police officer accused of using FLOCK cameras to search estranged wife's vehicle over 700 times",
+      "url": "https://www.tampabay28.com/news/region-polk/haines-city-police-officer-accused-of-using-flock-cameras-to-search-estranged-wifes-vehicle-over-700-times",
+      "body_excerpt": "HAINES CITY, Fla. \u2014 Haines City Police said an officer has been arrested after an investigation revealed FLOCK camera misuse. According to an arrest affidavit from the Haines City Police Department, an investigation was opened on August 10 ... (https://incidentdatabase.ai/cite/1761#8144)",
+      "release_date": "2026-10-18"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "848b52a93573525bef3156d5c95aa84e",
-      "title": "Ricin poison terror plot: Gujarat ATS searches Hyderabad doctor\u2019s house, seizes chemicals & raw material",
-      "url": "https://indianexpress.com/article/cities/ahmedabad/ricin-poison-terror-plot-gujarat-ats-searches-hyderabad-doctors-house-seizes-chemicals-raw-material-10362269/",
-      "body_excerpt": "Updated: Nov 13, 2025 09:55 AM IST AS PART of its probe into the alleged Ricin terror plot, the Gujarat Anti-Terrorist Squad (ATS) conducted searches at the residence of the arrested Hyderabad doctor on Tuesday and Wednesday, said officers ... (report_number: 8091)",
-      "release_date": "2026-10-10"
+      "id": "4d819a20c169e821e96ca927d38ed02f",
+      "title": "Haines City police add new safeguards for Flock cameras after officer accused of misuse",
+      "url": "https://www.tampabay28.com/news/region-polk/haines-city-police-add-new-safeguards-for-flock-cameras-after-officer-accused-of-misuse",
+      "body_excerpt": "HAINES CITY, Fla. --- Haines City Police Department is changing how officers use Flock cameras after an officer was accused of repeatedly using the system to track his estranged wife's vehicle. The department is now requiring formal audits ... (https://incidentdatabase.ai/cite/1761#8145)",
+      "release_date": "2026-10-18"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "158ce8433169870d0127564027bf0e23",
-      "title": "Were ChatGPT, YouTube used for Delhi Red Fort blast? Report reveals shocking details",
-      "url": "https://www.theweek.in/news/india/2026/05/22/red-fort-blast-nia-chargesheet-jasir-bilal-wani-youtube-chatgpt.html",
-      "body_excerpt": "Highlights Accused Jasir Bilal Wani used ChatGPT and YouTube to learn IED design and explosive chemical proportions The terrorists used everyday items like commercial fertiliser, powdered sugar, and butane canisters to build explosives A ... (https://incidentdatabase.ai/cite/1743#8092)",
-      "release_date": "2026-10-10"
+      "id": "901f2df90ac0df9a1aa704967bb15d83",
+      "title": "Police departments weren\u2019t looking for officers abusing Flock. We did it for them.",
+      "url": "https://www.washingtonpost.com/technology/2026/08/19/we-found-cops-who-misused-flock-their-police-departments-didnt-know/",
+      "body_excerpt": "Last month, as Indianapolis residents called for tighter restrictions on police surveillance, Police Chief Tanya Terry sought to reassure the public that her officers were using the 301 Flock cameras spread throughout the city solely to in ... (https://incidentdatabase.ai/cite/1761#8146)",
+      "release_date": "2026-10-18"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "e776dd054f35d345350b13dd5ed735b9",
-      "title": "Red Fort blast accused used AI to learn how to build IED, says NIA chargesheet",
-      "url": "https://indianexpress.com/article/cities/delhi/red-fort-blast-nia-chargesheet-chatgpt-flipkart-10870612/",
-      "body_excerpt": "Updated: Sep 10, 2026 05:00 AM IST A key accused in the November 10, 2025 blast outside Red Fort used artificial intelligence (AI) to learn how to build an Improvised Explosive Device (IED), and ordered components for the bomb on Flipkart, ... (https://incidentdatabase.ai/cite/1743#8093)",
-      "release_date": "2026-10-10"
+      "id": "a1678cc0c3bc5822a0e3c64e2bf6cfe8",
+      "title": "Papua New Guinea moves to outlaw AI deepfakes as victims call for more protection",
+      "url": "https://www.abc.net.au/news/2026-07-21/new-laws-in-png-target-ai-deepfakes/106928414",
+      "body_excerpt": "An AI-generated image showing Jennifer Baing with a group of people holding cash standing behind another pile of cash. Jennifer Baing says AI-generated images of her have been used by scammers to impersonate her online. (Supplied) Jennif ... (https://incidentdatabase.ai/cite/1758#8138)",
+      "release_date": "2026-10-17"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "80861f936e91349378b9a05cff8ce12a",
-      "title": "NIA chargesheet says accused in Delhi Red Fort blast case abused AI platform for 'terror engineering'",
-      "url": "https://www.newindianexpress.com/india/2026/May/24/nia-chargesheet-says-accused-in-delhi-red-fort-blast-case-abused-ai-platform-for-terror-engineering",
-      "body_excerpt": "The National Investigation Agency (NIA) has found that an accused chargesheeted in the Red Fort area car blast case in Delhi allegedly misused an artificial intelligence (AI) platform for \"terror engineering\". The accused is linked to an o ... (https://incidentdatabase.ai/cite/1743#8094)",
-      "release_date": "2026-10-10"
+      "id": "d53b87a580f05df089fc13024bdc3c2b",
+      "title": "Mouvement des lyc\u00e9ens en France : faux, cette vid\u00e9o ne montre pas un manifestant recevant un coup violent d\u2019un policier",
+      "url": "https://africacheck.org/fr/fact-checks/meta-programme-fact-checks/mouvement-des-lyceens-en-france-faux-cette-video-ne-montre-pas-un-manifestant-frappe-par-un-policier-video-generee-par",
+      "body_excerpt": "EN BREF : Cette vid\u00e9o a \u00e9t\u00e9 g\u00e9n\u00e9r\u00e9e par intelligence artificielle et diffus\u00e9e sur les r\u00e9seaux sociaux depuis juin 2026. Sur Facebook, l\u2019activiste Natalie Yamb, tr\u00e8s critique du gouvernement d\u2019Emmanuel Macron a publi\u00e9 le 7 octobre 2026 cet ... (https://incidentdatabase.ai/cite/1759#8139)",
+      "release_date": "2026-10-17"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "c531d4b7bd669df85abdbd1a30750471",
-      "title": "Delhi Red Fort blast: NIA chargesheet reveals abuse of AI platform for \u2018terror engineering\u2019",
-      "url": "https://www.thehindubusinessline.com/news/delhi-red-fort-blast-nia-chargesheet-reveals-abuse-of-ai-platform-for-terror-engineering/article71017246.ece",
-      "body_excerpt": "The National Investigation Agency (NIA) probe into the Red Fort area car blast case in Delhi has found that a chargesheeted accused, linked to an offshoot of global terrorist outfit Al-Qaida, allegedly misused an artificial intelligence (AI ... (https://incidentdatabase.ai/cite/1743#8095)",
-      "release_date": "2026-10-10"
+      "id": "053bc9e4dfebab64ffc722c662ae36e7",
+      "title": "Lawsuit claims Sharp HealthCare secretly recorded exam room conversations without patient consent",
+      "url": "https://www.kpbs.org/news/health/2025/12/11/lawsuit-claims-sharp-healthcare-secretly-recorded-exam-room-conversations-without-patient-consent",
+      "body_excerpt": "A proposed class-action lawsuit filed in San Diego Superior Court claims Sharp HealthCare secretly recorded doctor-patient conversations using an artificial intelligence tool --- and falsely documented that patients had given consent. Shar ... (https://incidentdatabase.ai/cite/1754#8129)",
+      "release_date": "2026-10-15"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "29ac158dc927a0c36deecff70f0b2e7b",
-      "title": "Maryborough teenager allegedly told police he had planned mass murder for months",
-      "url": "https://www.abc.net.au/news/2026-07-09/qld-teen-terror-extremism-murder-plan/106896932",
-      "body_excerpt": "In short: A Maryborough teenager accused of plotting a school massacre allegedly told police he got an adrenaline rush from ideology related mass murder. According to court documents, the 13-year-old also asked AI to write him a hypotheti ... (report_number: 8096)",
-      "release_date": "2026-10-10"
+      "id": "b228ff7205a50285e5479cde4b9c8170",
+      "title": "\"\u0420\u0430\u0437\u0434\u0435\u043b\u0438\" \u0444\u043e\u0442\u043e\u0433\u0440\u0430\u0444\u0438\u044e \u0447\u0435\u0440\u0435\u0437 \u0418\u0418 \u0438 \u0440\u0430\u0437\u043e\u0441\u043b\u0430\u043b\u0438 \u0437\u043d\u0430\u043a\u043e\u043c\u044b\u043c\". \u0414\u0435\u0432\u0443\u0448\u043a\u0430 \u0436\u0430\u043b\u0443\u0435\u0442\u0441\u044f \u043d\u0430 \u0437\u0430\u0442\u044f\u0433\u0438\u0432\u0430\u043d\u0438\u0435 \u0434\u0435\u043b\u0430",
+      "url": "https://kaktus.media/doc/554280_razdeli_fotografiu_cherez_ii_i_razoslali_znakomym._devyshka_jalyetsia_na_zatiagivanie_dela.html",
+      "body_excerpt": "\u0412 \u0440\u0435\u0434\u0430\u043a\u0446\u0438\u044e Kaktus.media \u043e\u0431\u0440\u0430\u0442\u0438\u043b\u0430\u0441\u044c 23-\u043b\u0435\u0442\u043d\u044f\u044f \u0410\u0438\u043c\u0430 \u042e\u043d\u0443\u0441\u0431\u0430\u0435\u0432\u0430, \u043a\u043e\u0442\u043e\u0440\u0430\u044f \u0441\u0442\u0430\u043b\u0430 \u0436\u0435\u0440\u0442\u0432\u043e\u0439 \u0441\u0435\u043a\u0441\u0443\u0430\u043b\u0438\u0437\u0438\u0440\u043e\u0432\u0430\u043d\u043d\u043e\u0433\u043e \u0434\u0438\u043f\u0444\u0435\u0439\u043a\u0430. \u041e\u043d\u0430 \u043e\u043f\u0430\u0441\u0430\u0435\u0442\u0441\u044f, \u0447\u0442\u043e \u043d\u0435 \u0441\u043c\u043e\u0436\u0435\u0442 \u0437\u0430\u0449\u0438\u0442\u0438\u0442\u044c \u0441\u0432\u043e\u0438 \u043f\u0440\u0430\u0432\u0430, \u0430 \u0432\u0438\u043d\u043e\u0432\u043d\u0438\u043a \u0441\u043c\u043e\u0436\u0435\u0442 \u0438\u0437\u0431\u0435\u0436\u0430\u0442\u044c \u043d\u0430\u043a\u0430\u0437\u0430\u043d\u0438\u044f, \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u044f \u0441\u0432\u043e\u0438 \u0441\u0432\u044f\u0437\u0438. \u0414\u0435\u0432\u0443\u0448\u043a\u0430 \u0440\u0430\u0441\u0441\u043a\u0430\u0437\u0430 ... (https://incidentdatabase.ai/cite/1755#8130)",
+      "release_date": "2026-10-15"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "95ba46efa398de677d05fd995151b2ed",
-      "title": "Ele contou ao ChatGPT que queria matar o filho e foi preso \u2014 conversas com IA podem ser prova de crime no Brasil?",
-      "url": "https://www.bbc.com/portuguese/articles/c8dn1l7vr6ro",
-      "body_excerpt": "AVISO DE CONTE\u00daDO SENS\u00cdVEL: esta reportagem cont\u00e9m men\u00e7\u00f5es a viol\u00eancia e suic\u00eddio. Durante cerca de dois meses, Jo\u00e3o (nome fict\u00edcio), 36 anos, manteve conversas com o ChatGPT que, segundo a Pol\u00edcia Civil do Esp\u00edrito Santo, indicavam um pos ... (report_number: 8097)",
-      "release_date": "2026-10-10"
+      "id": "3e43e5eb4a522315d98e7a8d82fd8f5a",
+      "title": "Invasion of the Self-Replicating AI-Malware Botnet",
+      "url": "https://www.theatlantic.com/ideas/2026/10/ai-malware-botnet/688997/",
+      "body_excerpt": "Have you ever counted the computers in your house? Tally them up now. I'll wait. You're probably including your desktop and laptop computers, if you own some. I bet you're also including the smartphones and tablets. Depending on the size of ... (report_number: 8131)",
+      "release_date": "2026-10-15"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "37050b0ae743c4c70abde7e613e90e3c",
-      "title": "Alerta cu bomb\u0103 din Portul Constan\u021ba. Radu Miru\u021b\u0103: Amenin\u021bare transmis\u0103 de pe numere din Ucraina \u0219i Polonia, posibil creat\u0103 cu AI",
-      "url": "https://www.digi24.ro/stiri/actualitate/evenimente/alerta-cu-bomba-din-portul-constanta-radu-miruta-amenintare-transmisa-de-pe-numere-din-ucraina-si-polonia-ancheta-in-desfasurare-3883671",
-      "body_excerpt": "Radu Miru\u021b\u0103 a oferit clarific\u0103ri, \u00een exclusivitate pentru Digi24, despre alerta cu bomb\u0103, de miercuri diminea\u021b\u0103, din Portul Constan\u021ba. Ministrul interimar al Ap\u0103r\u0103rii a declarat c\u0103 amenin\u021barea a fost semnalat\u0103 de pe dou\u0103 numere de telefon d ... (https://incidentdatabase.ai/cite/1744#8098)",
-      "release_date": "2026-10-10"
+      "id": "094a8807d5eb51253a164ce60bfb1400",
+      "title": "Lawsuit: Reno police detective says she was told not to write a report about false facial recognition arrest (1 of 4)",
+      "url": "https://thisisreno.com/2026/10/killinger-civil-rights-lawsuit/",
+      "body_excerpt": "A Reno police detective testified she was ordered not to write a report after concluding that officer Richard Jager had wrongly jailed Jason Killinger, court records in Killinger's civil rights lawsuit show. The order came from her supervi ... (https://incidentdatabase.ai/cite/1311#8132)",
+      "release_date": "2026-10-15"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "05c90c0c61138bea3b0d61f6b956e140",
-      "title": "Mesajele trimise la Autoritatea Naval\u0103 Rom\u00e2n\u0103, care au dus la evacu\u0103ri \u00een Portul Constan\u021ba: \u201eMai multe bombe plantate. Nu vei avea timp s\u0103 le g\u0103se\u0219ti\u201d",
-      "url": "https://hotnews.ro/mesajele-trimise-la-autoritatea-navala-romana-care-a-dus-la-evacuari-in-portul-constanta-mai-multe-bombe-plantate-nu-vei-avea-timp-sa-le-gasesti-2312251",
-      "body_excerpt": "Dou\u0103 apeluri de amenin\u021bare de pe numere de Ucraina \u0219i Polonia au fost f\u0103cute la sediul Autorit\u0103\u021bii Navale Rom\u00e2ne, a transmis ministrul Ap\u0103r\u0103rii, Radu Miru\u021b\u0103. Digi24 public\u0103 \u0219i mesajul transmis, cel care a dus la evacu\u0103ri la mai multe cl\u0103dir ... (https://incidentdatabase.ai/cite/1744#8099)",
-      "release_date": "2026-10-10"
+      "id": "fcd796b767849dfc37c816d4256a79b9",
+      "title": "Firmware to Root in 30 Minutes: How AI is Changing Threat Intelligence",
+      "url": "https://www.claroty.com/team82/research/firmware-to-root-in-30-minutes-how-ai-is-changing-threat-intelligence",
+      "body_excerpt": "This week's cyberattacks affecting supermarket refrigeration systems in France underscores how disruptions and damage to industrial equipment can lead to, in this case, food waste and significant financial loss. It also demonstrates how an ... (report_number: 8133)",
+      "release_date": "2026-10-15"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "20fb28bd69c90564a3f542609c686fcc",
-      "title": "UPDATE - Alert\u0103 cu bomb\u0103 \u00een Portul Constan\u0163a / Amplasarea bombei, anun\u0163at\u0103 telefonic, Autorit\u0103\u0163ii Navale Rom\u00e2ne / Apelurile, f\u0103cute din Polonia \u015fi Ucraina / Mesajul prefectului - VIDEO",
-      "url": "https://www.news.ro/eveniment/update-alerta-cu-bomba-in-portul-constanta-amplasarea-bombei-anuntata-telefonic-autoritatii-navale-romane-apelurile-facute-din-polonia-si-ucraina-mesajul-prefectului-video-1922401729002026071222554464",
-      "body_excerpt": "O alert\u0103 cu bomb\u0103 a fost primit\u0103, miercuri, \u00een Portul Constan\u0163a, iar zona a fost evacuat\u0103. Prefectul jude\u0163ului Constan\u0163a, Adrian Picoiu, a declarat, pentru News.ro, c\u0103 alarma cu bomb\u0103 a fost fals\u0103. UPDATE: Prefectul jude\u0163ului Constan\u0163a, Ad ... (https://incidentdatabase.ai/cite/1744#8100)",
-      "release_date": "2026-10-10"
-    },
-    {
-      "source_id": "mit_airr",
-      "type": "blog_post",
-      "id": "/blog/preliminary-findings-on-how-ai-incident-databases-are-used",
-      "title": "MIT AI Risk Repository: Preliminary findings on how AI incident databases are used",
-      "url": "https://airisk.mit.edu/blog/preliminary-findings-on-how-ai-incident-databases-are-used",
-      "body_excerpt": "Priority Risks All Risks Incidents Responses Mitigations Governance Navigator About Blog Preliminary findings on how AI incident databases are used October 8, 2026",
-      "release_date": "2026-10-08"
-    },
-    {
-      "source_id": "uk_aisi",
-      "type": "rss_entry",
-      "id": "fda0c5b72165406c32a808b0911fa1b1",
-      "title": "Towards technical best practice for frontier AI development",
-      "url": "https://www.aisi.gov.uk/blog/towards-technical-best-practice-for-frontier-ai-development",
-      "body_excerpt": "Our view on the emerging challenges facing frontier AI organisations, the technical practices most urgently needed to meet them, and how we will work with industry and others to develop them.",
-      "release_date": "2026-10-12"
-    },
-    {
-      "source_id": "uk_aisi",
-      "type": "rss_entry",
-      "id": "7360923001cd4dccff5d71a290d4676c",
-      "title": "Transect: Making large-scale agentic evaluations easier to understand",
-      "url": "https://www.aisi.gov.uk/blog/transect-making-large-scale-agentic-evaluations-easier-to-understand",
-      "body_excerpt": "We introduce Transect, an open-source tool that helps evaluators follow an agent\u2019s work, identify what to investigate closely, and check their interpretation against the transcript.",
-      "release_date": "2026-10-07"
-    },
-    {
-      "source_id": "eu_ai_office",
-      "type": "new_link",
-      "id": "https://digital-strategy.ec.europa.eu/en/news/commission-holds-special-meeting-scientific-panel-frontier-ai-safety-and-risks",
-      "title": "Commission holds special meeting of Scientific panel on frontier AI safety and risks",
-      "url": "https://digital-strategy.ec.europa.eu/en/news/commission-holds-special-meeting-scientific-panel-frontier-ai-safety-and-risks",
-      "body_excerpt": "",
-      "release_date": ""
-    },
-    {
-      "source_id": "eu_ai_office",
-      "type": "new_link",
-      "id": "https://digital-strategy.ec.europa.eu/en/events/european-ai-innovation-month",
-      "title": "European AI Innovation Month",
-      "url": "https://digital-strategy.ec.europa.eu/en/events/european-ai-innovation-month",
-      "body_excerpt": "",
-      "release_date": ""
-    },
-    {
-      "source_id": "eu_ai_office",
-      "type": "new_link",
-      "id": "https://digital-strategy.ec.europa.eu/en/events/cybersecurity-and-artificial-intelligence-innovation-impact",
-      "title": "Cybersecurity and Artificial Intelligence: From innovation to impact",
-      "url": "https://digital-strategy.ec.europa.eu/en/events/cybersecurity-and-artificial-intelligence-innovation-impact",
-      "body_excerpt": "",
-      "release_date": ""
+      "id": "4b70ba2b2caeee2abd085447007bcc68",
+      "title": "UK Election Watchdog Develops AI System to Flag Deepfakes Within 3 Hours",
+      "url": "https://www.techpolicy.press/uk-election-watchdog-develops-ai-system-to-flag-deepfakes-within-3-hours/",
+      "body_excerpt": "The United Kingdom's election watchdog is developing an AI-powered system designed to notify candidates of significant deepfakes within three hours of posting to social media, the organization's chief executive said. In wide-ranging commen ... (https://incidentdatabase.ai/cite/1258#8134)",
+      "release_date": "2026-10-15"
     }
   ],
   "source_health": {
     "aiid": {
       "consecutive_failures": 0,
-      "last_success": "2026-10-12T19:26:55.270409+00:00",
+      "last_success": "2026-10-19T16:39:47.706698+00:00",
       "last_error": null
     },
     "mitre_atlas": {
       "consecutive_failures": 0,
-      "last_success": "2026-10-12T19:26:56.784694+00:00",
+      "last_success": "2026-10-19T16:39:49.212669+00:00",
       "last_error": null
     },
     "owasp_llm": {
       "consecutive_failures": 0,
-      "last_success": "2026-10-12T19:26:57.926835+00:00",
+      "last_success": "2026-10-19T16:39:50.375028+00:00",
       "last_error": null
     },
     "mit_airr": {
       "consecutive_failures": 0,
-      "last_success": "2026-10-12T19:27:00.137864+00:00",
+      "last_success": "2026-10-19T16:39:51.568310+00:00",
       "last_error": null
     },
     "uk_aisi": {
       "consecutive_failures": 0,
-      "last_success": "2026-10-12T19:27:01.479371+00:00",
+      "last_success": "2026-10-19T16:39:52.721016+00:00",
       "last_error": null
     },
     "nist_ai_rmf": {
       "consecutive_failures": 0,
-      "last_success": "2026-10-12T19:27:02.582475+00:00",
+      "last_success": "2026-10-19T16:39:53.890423+00:00",
       "last_error": null
     },
     "eu_ai_office": {
       "consecutive_failures": 0,
-      "last_success": "2026-10-12T19:27:03.981036+00:00",
+      "last_success": "2026-10-19T16:39:55.172830+00:00",
       "last_error": null
     },
     "apra": {
       "consecutive_failures": 0,
-      "last_success": "2026-10-12T19:27:05.721395+00:00",
+      "last_success": "2026-10-19T16:39:56.578802+00:00",
       "last_error": null
     }
   }
