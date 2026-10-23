@@ -319,6 +319,8 @@ def evaluate_access_request(
 
 **Machine Compromise via AI-enabled techniques (ATLAS v5.5, 2025):** MITRE ATLAS v5.5 documents Machine Compromise as a distinct technique where AI capabilities are used to identify and exploit vulnerabilities in target systems at a scale and speed not achievable manually — including OS credential dumping (ATLAS v5.1) and exploitation for credential access (ATLAS v5.4). Organisations relying on patch cycle timelines as their primary vulnerability management control face a compressed window when AI-assisted exploitation is in use. Sources: MITRE ATLAS v5.1.0, v5.4.0, v5.5.0 (2025).
 
+**Disclosed OT vulnerabilities reproduced by an AI agent in 30 minutes (Claroty Team82, October 2026):** Researchers gave a coding agent (Claude Sonnet 4.6 in Cursor, with a Ghidra MCP integration for decompilation) the public firmware of a Danfoss AK-SM 800A refrigeration controller and asked it to reproduce three vulnerabilities the team had disclosed earlier in 2026 (CVE-2025-41450, -41451, -41452). In about 28 minutes and roughly US$6 of usage it chained them into root command execution on a lab device. It needed expert redirection when it took a wrong approach to the authentication bypass. No new vulnerabilities were found; the finding is about speed. Internet scans showed thousands of potentially exposed devices. For OT operators the window between disclosure and a working exploit can no longer be assumed to be weeks, so exposure reduction and compensating controls have to be in place before the patch. (Claroty Team82, 13 October 2026)
+
 ---
 
 ## Scenario seed
