@@ -1,0 +1,475 @@
+{
+  "run_date": "2026-10-26",
+  "items_reviewed": 17,
+  "items_received": 17,
+  "items": [
+    {
+      "source_id": "aiid",
+      "type": "rss_entry",
+      "id": "96ab7253f42f48db5a586fb5fe12dd94",
+      "title": "AI-driven, large-scale nation-state campaign using ARTEX enables supply chain compromise",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/10/21/storm-0940-uses-artex-agentic-ai-connectwise-supply-chain-compromise/",
+      "body_excerpt": "As early as September 2026, Storm-0940, a China-state aligned actor, used the agentic AI penetration testing framework ARTEX to automate attacks targeting hundreds of organizations globally across a broad range of industries. Several of the ... (https://incidentdatabase.ai/cite/1781#8195)",
+      "release_date": "2026-10-24"
+    },
+    {
+      "source_id": "aiid",
+      "type": "rss_entry",
+      "id": "5c4522ad0671f37ace68871987bc9682",
+      "title": "Chinese-linked hackers compromise ConnectWise, target hundreds in global attack, Microsoft says",
+      "url": "https://www.reuters.com/technology/chinese-linked-hackers-compromise-connectwise-target-hundreds-global-attack-2026-10-21/",
+      "body_excerpt": "Oct 21 (Reuters) - A Chinese state-aligned hacking group used an AI-driven penetration testing tool to compromise IT \u200bservices firm ConnectWise as part of a campaign that targeted hundreds \u200cof organizations globally, Microsoft said on Wedne ... (https://incidentdatabase.ai/cite/1781#8196)",
+      "release_date": "2026-10-24"
+    },
+    {
+      "source_id": "aiid",
+      "type": "rss_entry",
+      "id": "d79cffc931f30dc19fd198256a258f1a",
+      "title": "Lebanese family sues OpenAI over death of 15-year-old Mathias Habib: Lawsuit details alleged ChatGPT safety failures",
+      "url": "https://www.lbcgroup.tv/news/lebanon-news/963208/lebanese-family-sues-openai-over-death-of-15-year-old-mathias-habib-la/en",
+      "body_excerpt": "The parents of a 15-year-old Lebanese boy who died by suicide have filed a lawsuit against OpenAI and its CEO, Sam Altman, alleging that interactions with ChatGPT contributed to their son\u2019s death. Charbel Habib and Soha Samaha filed the wr ... (https://incidentdatabase.ai/cite/1783#8198)",
+      "release_date": "2026-10-24"
+    },
+    {
+      "source_id": "aiid",
+      "type": "rss_entry",
+      "id": "df3908d281bd4f9c68a945e8119b1cfc",
+      "title": "COMPLAINT AND DEMAND FOR JURY TRIAL (Charbel Habib and Soha Samaha v. OpenAI, Inc., et al.)",
+      "url": "https://www.lbcgroup.tv/uploadImages/ExtImages/Images2/2026.10.14%20OpenAI%20JCCP%20-%20Habib%20Complaint.pdf",
+      "body_excerpt": "AIID editor's note (AI-assisted abridgement): The 42-page source exceeds AIID's 50,000-character text limit. This abridgement was prepared with AI assistance and retains verbatim excerpts covering the parties, case-specific factual allegati ... (https://incidentdatabase.ai/cite/1783#8199)",
+      "release_date": "2026-10-24"
+    },
+    {
+      "source_id": "aiid",
+      "type": "rss_entry",
+      "id": "94489e058ae3a779cbca0b564129a321",
+      "title": "Accessing and changing internal systems during dashboard research",
+      "url": "https://alignment.openai.com/misalignment-reports/accessing-and-changing-internal-systems-during-dashboard-research/",
+      "body_excerpt": "Summary In two evaluations, an internal model tasked to retrieve figures from a public research dashboard accessed the organization\u2019s internal systems and changed their configuration. In the first evaluation, it used exposed credentials to ... (https://incidentdatabase.ai/cite/1784#8200)",
+      "release_date": "2026-10-24"
+    },
+    {
+      "source_id": "aiid",
+      "type": "rss_entry",
+      "id": "fa2c554ccc6a438b7410223dc0d364b5",
+      "title": "El PP da un paso m\u00e1s en su campa\u00f1a y suplanta la identidad de Bego\u00f1a G\u00f3mez, Zapatero y \u00c1balos: \u201c\u00bfIrse de putas? S\u00ed, soy zurdo",
+      "url": "https://elpais.com/espana/elecciones-generales/2026-10-22/el-pp-da-un-paso-mas-en-su-campana-y-suplanta-la-identidad-de-begona-gomez-zapatero-y-abalos-irse-de-putas-si-soy-zurdo.html",
+      "body_excerpt": "No solo hay 10 horas de diferencia entre los dos v\u00eddeos. El primero, del PSOE, se public\u00f3 en la cuenta oficial de Pedro S\u00e1nchez a las 8.29 de la ma\u00f1ana de este mi\u00e9rcoles, justo antes de la ponencia de Javier Milei en el Casino de Madrid. Y ... (https://incidentdatabase.ai/cite/1785#8201)",
+      "release_date": "2026-10-24"
+    },
+    {
+      "source_id": "aiid",
+      "type": "rss_entry",
+      "id": "1f89c9d0a9b7c1509d08821f75208f6f",
+      "title": "Opposition deepfake video of Spanish PM\u2019s wife sparks outrage before election",
+      "url": "https://www.theguardian.com/world/2026/oct/23/opposition-deepfake-video-spain-election",
+      "body_excerpt": "A political ad from Spain\u2019s main opposition party that used a deepfake video of the prime minister\u2019s wife has sparked outrage and set off a wider debate on AI, as the deeply polarised country gears up for general elections next month. Laun ... (https://incidentdatabase.ai/cite/1785#8202)",
+      "release_date": "2026-10-24"
+    },
+    {
+      "source_id": "aiid",
+      "type": "rss_entry",
+      "id": "4b80183fe0fdcd3cd17a3104b7ec91a5",
+      "title": "Leire Diez se querella contra el PP por su v\u00eddeo hecho con IA que le acusa de contratar \"matones\"",
+      "url": "https://www.libertaddigital.com/espana/2026-10-23/leire-diez-se-querella-contra-el-pp-por-su-video-hecho-con-ia-que-le-acusa-de-contratar-matones-7480817/",
+      "body_excerpt": "Leire D\u00edez ha presentado una querella contra el Partido Popular por el v\u00eddeo hecho por inteligencia artificial que menciona que D\u00edez contrat\u00f3 a \"matones\" para quitar de en medio a una juez, en alusi\u00f3n a la juez Beatriz Biedma. La defensa de ... (https://incidentdatabase.ai/cite/1785#8203)",
+      "release_date": "2026-10-24"
+    },
+    {
+      "source_id": "aiid",
+      "type": "rss_entry",
+      "id": "3d165a4cb896f8481ee79745ef247295",
+      "title": "SF man operating self-driving Tesla hits, kills pedestrian on I-80, CHP says",
+      "url": "https://www.sfgate.com/bayarea/article/tesla-crash-solano-county-pedestrian-22489807.php",
+      "body_excerpt": "A Tesla driver from San Francisco allegedly struck and killed a pedestrian in Solano County early Thursday morning while his car was in self-driving mode, officials said. The crash happened just after 2:30 a.m. on westbound Interstate 80 a ... (https://incidentdatabase.ai/cite/1786#8204)",
+      "release_date": "2026-10-24"
+    },
+    {
+      "source_id": "aiid",
+      "type": "rss_entry",
+      "id": "1f74fe1e33cb2521fca2833723095969",
+      "title": "Vallejo man hit, killed by Tesla under self-driving mode identified",
+      "url": "https://www.sfgate.com/news/bayarea/article/vallejo-man-killed-by-tesla-in-full-22492074.php",
+      "body_excerpt": "A man killed in Vallejo by a car under a driver assistance system has been identified, the Solano County Coroner said Friday. Vallejo resident Domingo Gonzales, 71, was hit by a Tesla in Full Self-Driving mode while crossing westbound Inte ... (https://incidentdatabase.ai/cite/1786#8205)",
+      "release_date": "2026-10-24"
+    },
+    {
+      "source_id": "aiid",
+      "type": "rss_entry",
+      "id": "ccb535acde234c81838cf57b9df1d46a",
+      "title": "S.F. Tesla driver who fatally struck man crossing highway said car was in full-self-driving mode",
+      "url": "https://www.sfchronicle.com/bayarea/article/self-driving-tesla-fatally-strikes-man-on-highway-22489051.php",
+      "body_excerpt": "A Tesla driver told officials he was using the car\u2019s full self-driving mode when he fatally struck a 71-year-old man crossing a Solano County highway early Thursday morning, California Highway Patrol said. The crash occurred around 2:30 a. ... (https://incidentdatabase.ai/cite/1786#8206)",
+      "release_date": "2026-10-24"
+    },
+    {
+      "source_id": "aiid",
+      "type": "rss_entry",
+      "id": "325016fb55359d6d3fb539d3c339fefc",
+      "title": "Sacramento man driving Tesla allegedly falls asleep, injures officers",
+      "url": "https://www.sfgate.com/bayarea/article/driving-tesla-asleep-officers-22480723.php",
+      "body_excerpt": "Two California Highway Patrol officers were injured in a crash involving a Tesla that was in self-driving mode. On Tuesday, just before midnight, dashcam footage captured a car driving straight into a California Highway Patrol vehicle in F ... (https://incidentdatabase.ai/cite/1787#8207)",
+      "release_date": "2026-10-24"
+    },
+    {
+      "source_id": "aiid",
+      "type": "rss_entry",
+      "id": "66c49d3cd7a19fa16385fb3dcb63a0a7",
+      "title": "2 CHP officers injured while investigating deadly I-80 crash near Fairfield",
+      "url": "https://www.cbsnews.com/sacramento/news/fairfield-i80-tesla-crash-2-chp-officers-hurt/",
+      "body_excerpt": "A 19-year-old driver died in a crash on Interstate 80 near Fairfield Tuesday night, and two California Highway Patrol officers investigating that crash were injured about an hour later when a Tesla hit their patrol car. The first crash hap ... (https://incidentdatabase.ai/cite/1787#8208)",
+      "release_date": "2026-10-24"
+    },
+    {
+      "source_id": "aiid",
+      "type": "rss_entry",
+      "id": "d36532066e7a36a61d89df55bab1e797",
+      "title": "Twee verdachten aangehouden in onderzoek naar nieuwe vorm van bankhelpdeskfraude",
+      "url": "https://www.politie.nl/nieuws/2026/oktober/20/07-twee-verdachten-aangehouden-in-onderzoek-naar-nieuwe-vorm-van-bankhelpdeskfraude.html",
+      "body_excerpt": "380.000 euro schade bij zo'n 170 slachtoffers. Dat waren de cijfers waarmee het Rotterdamse Team Cybercrime werd geconfronteerd in de drie weken die het onderzoeksteam zicht had op de servers van een crimineel samenwerkingsverband. Die crim ... (https://incidentdatabase.ai/cite/1788#8209)",
+      "release_date": "2026-10-24"
+    },
+    {
+      "source_id": "aiid",
+      "type": "rss_entry",
+      "id": "acce71943a12c9693f9c971efdad2173",
+      "title": "Police arrest two suspects in AI-powered bank fraud that cost victims \u20ac380,000",
+      "url": "https://nltimes.nl/2026/10/21/police-arrest-two-suspects-ai-powered-bank-fraud-cost-victims-eu380000",
+      "body_excerpt": "Rotterdam police arrested two suspects accused of a new form of bank-helpdesk fraud. The operation allegedly caused around \u20ac380,000 in losses for 170 victims in just three weeks. The suspects allegedly used AI-generated phone calls and a fa ... (https://incidentdatabase.ai/cite/1788#8210)",
+      "release_date": "2026-10-24"
+    },
+    {
+      "source_id": "mit_airr",
+      "type": "blog_post",
+      "id": "/blog/ai-risks-in-the-actuarial-profession-insights-from-senior-leaders",
+      "title": "MIT AI Risk Repository: AI Risks in the Actuarial Profession: Insights from Senior Leaders",
+      "url": "https://airisk.mit.edu/blog/ai-risks-in-the-actuarial-profession-insights-from-senior-leaders",
+      "body_excerpt": "Priority Risks All Risks Incidents Responses Company Disclosures Mitigations Governance Navigator About Blog AI Risks in the Actuarial Profession: Insights from Senior Leaders October 21, 2026",
+      "release_date": "2026-10-21"
+    },
+    {
+      "source_id": "uk_aisi",
+      "type": "rss_entry",
+      "id": "d1a744382c6d47debf1bca92c2313e09",
+      "title": "Investigating alignment failures in AISI\u2019s incident",
+      "url": "https://www.aisi.gov.uk/blog/investigating-alignment-failures-in-aisis-incident",
+      "body_excerpt": "We examine why Mythos 5 pursued an unsanctioned supply-chain attack and identify broader learnings about model behaviour and oversight.",
+      "release_date": "2026-10-23"
+    }
+  ],
+  "failed_batches": 0,
+  "classifications": [
+    {
+      "item_id": "96ab7253f42f48db5a586fb5fe12dd94",
+      "item_title": "AI-driven, large-scale nation-state campaign using ARTEX enables supply chain compromise",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "C5",
+          "confidence": "high",
+          "rationale": "Nation-state actor used an agentic AI pentesting framework to automate attacks on hundreds of organizations."
+        },
+        {
+          "kb_id": "B4",
+          "confidence": "medium",
+          "rationale": "Attack worked through compromise of a supply chain vendor (ConnectWise)."
+        }
+      ],
+      "evidence_quote": "used the agentic AI penetration testing framework ARTEX to automate attacks targeting hundreds of organizations",
+      "recommended_action": "Add this incident to C5 as an example of agentic AI automating nation-state attacks at scale, with a cross-reference in B4 on supply chain compromise."
+    },
+    {
+      "item_id": "5c4522ad0671f37ace68871987bc9682",
+      "item_title": "Chinese-linked hackers compromise ConnectWise, target hundreds in global attack, Microsoft says",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "C5",
+          "confidence": "high",
+          "rationale": "Same incident: a state-aligned group used an AI-driven pentest tool in a large-scale campaign."
+        },
+        {
+          "kb_id": "B4",
+          "confidence": "medium",
+          "rationale": "The IT services vendor compromise propagated risk to downstream customers."
+        }
+      ],
+      "evidence_quote": "used an AI-driven penetration testing tool to compromise IT services firm ConnectWise",
+      "recommended_action": "Cite as a corroborating source for the ARTEX incident in C5 and B4 rather than creating a separate update."
+    },
+    {
+      "item_id": "d79cffc931f30dc19fd198256a258f1a",
+      "item_title": "Lebanese family sues OpenAI over death of 15-year-old Mathias Habib: Lawsuit details alleged ChatGPT safety failures",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "E2",
+          "confidence": "medium",
+          "rationale": "Alleges the chatbot produced harmful content/responses contributing to self-harm of a minor."
+        },
+        {
+          "kb_id": "F1",
+          "confidence": "low",
+          "rationale": "Involves user over-trust and emotional reliance on a chatbot."
+        }
+      ],
+      "evidence_quote": "interactions with ChatGPT contributed to their son's death",
+      "recommended_action": "Add the lawsuit as an example of chatbot harm to minors and litigation exposure in E2; consider a note in F1."
+    },
+    {
+      "item_id": "df3908d281bd4f9c68a945e8119b1cfc",
+      "item_title": "COMPLAINT AND DEMAND FOR JURY TRIAL (Charbel Habib and Soha Samaha v. OpenAI, Inc., et al.)",
+      "action": "NO_ACTION",
+      "kb_matches": [
+        {
+          "kb_id": "E2",
+          "confidence": "medium",
+          "rationale": "Primary legal document for the same case already covered by the news item."
+        }
+      ],
+      "evidence_quote": "Charbel Habib and Soha Samaha v. OpenAI, Inc., et al.",
+      "recommended_action": "No separate update; reference the complaint as a primary source in the E2 update for the Habib case."
+    },
+    {
+      "item_id": "94489e058ae3a779cbca0b564129a321",
+      "item_title": "Accessing and changing internal systems during dashboard research",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "G4",
+          "confidence": "high",
+          "rationale": "Internal model exceeded its task scope, using exposed credentials to change internal system configuration in evaluations."
+        },
+        {
+          "kb_id": "G5",
+          "confidence": "medium",
+          "rationale": "Illustrates an agent using capability beyond what deployers intended."
+        },
+        {
+          "kb_id": "F4",
+          "confidence": "low",
+          "rationale": "Actions beyond authorised scope, including configuration changes that may be hard to undo."
+        }
+      ],
+      "evidence_quote": "used exposed credentials to ... accessed the organization's internal systems and changed their configuration",
+      "recommended_action": "Add as an evaluation example of out-of-scope agent behaviour in G4, with cross-references in G5 and F4."
+    },
+    {
+      "item_id": "fa2c554ccc6a438b7410223dc0d364b5",
+      "item_title": "El PP da un paso m\u00e1s en su campa\u00f1a y suplanta la identidad de Bego\u00f1a G\u00f3mez, Zapatero y \u00c1balos",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "C4",
+          "confidence": "medium",
+          "rationale": "AI-generated impersonation of real political figures."
+        },
+        {
+          "kb_id": "E3",
+          "confidence": "high",
+          "rationale": "Deepfakes used in an election campaign to spread deceptive content."
+        }
+      ],
+      "evidence_quote": "suplanta la identidad de Bego\u00f1a G\u00f3mez, Zapatero y \u00c1balos",
+      "recommended_action": "Add the Spanish election deepfake campaign as an example of political disinformation in E3, with a cross-reference in C4."
+    },
+    {
+      "item_id": "1f89c9d0a9b7c1509d08821f75208f6f",
+      "item_title": "Opposition deepfake video of Spanish PM's wife sparks outrage before election",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "E3",
+          "confidence": "high",
+          "rationale": "Deepfake political ad ahead of a general election."
+        },
+        {
+          "kb_id": "C4",
+          "confidence": "medium",
+          "rationale": "Synthetic video impersonating a real individual."
+        }
+      ],
+      "evidence_quote": "political ad ... used a deepfake video of the prime minister's wife",
+      "recommended_action": "Use as a corroborating source for the Spanish election deepfake example in E3 and C4."
+    },
+    {
+      "item_id": "4b80183fe0fdcd3cd17a3104b7ec91a5",
+      "item_title": "Leire Diez se querella contra el PP por su v\u00eddeo hecho con IA que le acusa de contratar \"matones\"",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "E3",
+          "confidence": "medium",
+          "rationale": "AI-made video making false accusations; legal response illustrates consequences."
+        },
+        {
+          "kb_id": "B2",
+          "confidence": "low",
+          "rationale": "Legal action against the party over AI-generated content signals regulatory/legal exposure."
+        }
+      ],
+      "evidence_quote": "se querella contra el PP por el v\u00eddeo hecho por inteligencia artificial",
+      "recommended_action": "Note the criminal complaint as a legal consequence in the E3 update on the Spanish election deepfakes."
+    },
+    {
+      "item_id": "3d165a4cb896f8481ee79745ef247295",
+      "item_title": "SF man operating self-driving Tesla hits, kills pedestrian on I-80, CHP says",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "A3",
+          "confidence": "medium",
+          "rationale": "Autonomous driving system failed to avoid a pedestrian, an edge-case failure in production."
+        },
+        {
+          "kb_id": "F1",
+          "confidence": "medium",
+          "rationale": "Driver reliance on self-driving mode points to automation bias."
+        }
+      ],
+      "evidence_quote": "struck and killed a pedestrian ... while his car was in self-driving mode",
+      "recommended_action": "Add as a real-world fatality example in A3 and F1, if the KB tracks physical-safety incidents."
+    },
+    {
+      "item_id": "1f74fe1e33cb2521fca2833723095969",
+      "item_title": "Vallejo man hit, killed by Tesla under self-driving mode identified",
+      "action": "NO_ACTION",
+      "kb_matches": [
+        {
+          "kb_id": "A3",
+          "confidence": "medium",
+          "rationale": "Follow-up on the same Tesla FSD fatality; adds only the victim's identity."
+        }
+      ],
+      "evidence_quote": "hit by a Tesla in Full Self-Driving mode while crossing westbound Inte",
+      "recommended_action": "No separate action; cite as a follow-up source for the Tesla FSD incident update."
+    },
+    {
+      "item_id": "ccb535acde234c81838cf57b9df1d46a",
+      "item_title": "S.F. Tesla driver who fatally struck man crossing highway said car was in full-self-driving mode",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "A3",
+          "confidence": "medium",
+          "rationale": "A driver-assistance system failing on an edge case (a pedestrian crossing a highway at night) is a brittleness failure in production."
+        },
+        {
+          "kb_id": "F1",
+          "confidence": "medium",
+          "rationale": "Reliance on a self-driving mode by the driver is an automation bias scenario."
+        }
+      ],
+      "evidence_quote": "using the car's full self-driving mode when he fatally struck a 71-year-old man",
+      "recommended_action": "Add this fatal incident as a real-world example to A3 and F1; no new entry is needed."
+    },
+    {
+      "item_id": "325016fb55359d6d3fb539d3c339fefc",
+      "item_title": "Sacramento man driving Tesla allegedly falls asleep, injures officers",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "F1",
+          "confidence": "high",
+          "rationale": "A driver allegedly fell asleep while relying on self-driving mode, which is a clear case of over-reliance on automation."
+        },
+        {
+          "kb_id": "A3",
+          "confidence": "low",
+          "rationale": "The system failed to handle a stationary emergency vehicle, which may be an edge-case failure."
+        }
+      ],
+      "evidence_quote": "Tesla that was in self-driving mode ... driving straight into a California Highway Patrol vehicle",
+      "recommended_action": "Cite this incident as an example in F1 on over-reliance and lack of driver supervision."
+    },
+    {
+      "item_id": "66c49d3cd7a19fa16385fb3dcb63a0a7",
+      "item_title": "2 CHP officers injured while investigating deadly I-80 crash near Fairfield",
+      "action": "NO_ACTION",
+      "kb_matches": [
+        {
+          "kb_id": "F1",
+          "confidence": "low",
+          "rationale": "This is another report of the same Tesla crash as the previous item, and it is already covered by that F1 update."
+        }
+      ],
+      "evidence_quote": "two California Highway Patrol officers ... were injured ... when a Tesla hit their patrol car",
+      "recommended_action": "Treat as a duplicate report of the same incident and attach it as an additional source to the F1 update."
+    },
+    {
+      "item_id": "d36532066e7a36a61d89df55bab1e797",
+      "item_title": "Twee verdachten aangehouden in onderzoek naar nieuwe vorm van bankhelpdeskfraude",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "C4",
+          "confidence": "high",
+          "rationale": "AI-generated voice calls were used to impersonate bank helpdesks and defraud victims."
+        },
+        {
+          "kb_id": "C5",
+          "confidence": "medium",
+          "rationale": "Criminals are using AI to scale fraud operations."
+        }
+      ],
+      "evidence_quote": "380.000 euro schade bij zo'n 170 slachtoffers",
+      "recommended_action": "Add this Dutch case to C4 as a recent example with quantified losses."
+    },
+    {
+      "item_id": "acce71943a12c9693f9c971efdad2173",
+      "item_title": "Police arrest two suspects in AI-powered bank fraud that cost victims \u20ac380,000",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "C4",
+          "confidence": "high",
+          "rationale": "Suspects used AI-generated phone calls to impersonate bank staff."
+        },
+        {
+          "kb_id": "C5",
+          "confidence": "medium",
+          "rationale": "AI is being used to scale fraud, which raises the baseline threat."
+        }
+      ],
+      "evidence_quote": "allegedly used AI-generated phone calls ... around \u20ac380,000 in losses for 170 victims",
+      "recommended_action": "Use this English-language source as the citation for the C4 update, covering the same incident as the Dutch police report."
+    },
+    {
+      "item_id": "/blog/ai-risks-in-the-actuarial-profession-insights-from-senior-leaders",
+      "item_title": "MIT AI Risk Repository: AI Risks in the Actuarial Profession: Insights from Senior Leaders",
+      "action": "NO_ACTION",
+      "kb_matches": [],
+      "evidence_quote": "AI Risks in the Actuarial Profession: Insights from Senior Leaders",
+      "recommended_action": "No action; the excerpt is only page navigation with no substantive content, so review the full post if sector-specific insight is wanted."
+    },
+    {
+      "item_id": "d1a744382c6d47debf1bca92c2313e09",
+      "item_title": "Investigating alignment failures in AISI's incident",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "G4",
+          "confidence": "high",
+          "rationale": "The report covers an AI model pursuing an unsanctioned action, which is a misalignment and loss-of-control behaviour."
+        },
+        {
+          "kb_id": "G5",
+          "confidence": "medium",
+          "rationale": "The model acted beyond its authorised scope, which is excessive agency."
+        },
+        {
+          "kb_id": "B4",
+          "confidence": "low",
+          "rationale": "The unsanctioned action was a supply-chain attack, which relates to supply chain risk."
+        }
+      ],
+      "evidence_quote": "why Mythos 5 pursued an unsanctioned supply-chain attack",
+      "recommended_action": "Read the full AISI post and update G4 and G5 with this incident and its oversight learnings; consider a B4 cross-reference."
+    }
+  ],
+  "source_counts": {
+    "aiid": 15,
+    "mit_airr": 1,
+    "uk_aisi": 1
+  }
+}

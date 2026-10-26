@@ -1,183 +1,201 @@
 {
-  "run_date": "2026-10-19",
-  "run_timestamp": "2026-10-19T16:39:57.578937+00:00",
-  "total_new_items": 15,
+  "run_date": "2026-10-26",
+  "run_timestamp": "2026-10-26T16:20:04.915265+00:00",
+  "total_new_items": 17,
   "items": [
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "f246b4030c4f470efd5dc4e99e4267e3",
-      "title": "Georgia police chief charged with using license plate readers to stalk and harass people",
-      "url": "https://apnews.com/article/georgia-plate-readers-stalk-harass-chief-arrested-39adb6f89fc2074da61f2801fef3f180",
-      "body_excerpt": "BRASELTON, Ga. (AP) \u2014 A police chief in suburban Atlanta has been arrested on charges that he used the city\u2019s automated license plate recognition cameras to stalk and harass multiple people. Michael Steffman, 49, had been the police chief ... (https://incidentdatabase.ai/cite/1760#8140)",
-      "release_date": "2026-10-18"
+      "id": "96ab7253f42f48db5a586fb5fe12dd94",
+      "title": "AI-driven, large-scale nation-state campaign using ARTEX enables supply chain compromise",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/10/21/storm-0940-uses-artex-agentic-ai-connectwise-supply-chain-compromise/",
+      "body_excerpt": "As early as September 2026, Storm-0940, a China-state aligned actor, used the agentic AI penetration testing framework ARTEX to automate attacks targeting hundreds of organizations globally across a broad range of industries. Several of the ... (https://incidentdatabase.ai/cite/1781#8195)",
+      "release_date": "2026-10-24"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "0c70b15a596b27527df6447c83d4dd57",
-      "title": "GBI Arrests Braselton Police Chief for Harassment and Stalking",
-      "url": "https://gbi.georgia.gov/press-releases/2025-11-19/gbi-arrests-braselton-police-chief-harassment-and-stalking",
-      "body_excerpt": "Braselton, Jackson County, GA (November 19, 2025) -- The GBI has arrested and charged Braselton Police Department Chief Michael Steffman, age 49, of Braselton, GA, with Violation of Oath by Public Officer, Stalking, Harassing Communications ... (https://incidentdatabase.ai/cite/1759#8141)",
-      "release_date": "2026-10-18"
+      "id": "5c4522ad0671f37ace68871987bc9682",
+      "title": "Chinese-linked hackers compromise ConnectWise, target hundreds in global attack, Microsoft says",
+      "url": "https://www.reuters.com/technology/chinese-linked-hackers-compromise-connectwise-target-hundreds-global-attack-2026-10-21/",
+      "body_excerpt": "Oct 21 (Reuters) - A Chinese state-aligned hacking group used an AI-driven penetration testing tool to compromise IT \u200bservices firm ConnectWise as part of a campaign that targeted hundreds \u200cof organizations globally, Microsoft said on Wedne ... (https://incidentdatabase.ai/cite/1781#8196)",
+      "release_date": "2026-10-24"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "cc500c15730243b9990d4ce6b575320a",
-      "title": "NEW DETAILS: Former Braselton Police Chief accused of stalking; judge denied protective order",
-      "url": "https://www.wsbtv.com/news/local/new-details-former-braselton-police-chief-accused-stalking-judge-denied-protective-order/DMECQENH7FGU5EQSD5XXUYZPYU/",
-      "body_excerpt": "BRASELTON, Ga. --- A woman accusing the Braselton police chief of stalking her was denied a protective order against him before his arrest. Channel 2 Action News reported last week when Michael Steffman, retired and resigned from his posit ... (https://incidentdatabase.ai/cite/1759#8142)",
-      "release_date": "2026-10-18"
+      "id": "d79cffc931f30dc19fd198256a258f1a",
+      "title": "Lebanese family sues OpenAI over death of 15-year-old Mathias Habib: Lawsuit details alleged ChatGPT safety failures",
+      "url": "https://www.lbcgroup.tv/news/lebanon-news/963208/lebanese-family-sues-openai-over-death-of-15-year-old-mathias-habib-la/en",
+      "body_excerpt": "The parents of a 15-year-old Lebanese boy who died by suicide have filed a lawsuit against OpenAI and its CEO, Sam Altman, alleging that interactions with ChatGPT contributed to their son\u2019s death. Charbel Habib and Soha Samaha filed the wr ... (https://incidentdatabase.ai/cite/1783#8198)",
+      "release_date": "2026-10-24"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "6366a01ebe6564bba5d5fc10a0db9143",
-      "title": "Haines City officer arrested for misusing Flock cameras to track estranged wife: Officials",
-      "url": "https://www.fox13news.com/news/haines-city-officer-arrested-misusing-flock-cameras-track-estranged-wife-officials",
-      "body_excerpt": "HAINES CITY, Fla. - A Haines City police officer is accused of misusing Flock camera databases to track his estranged wife's car, according to officials. Haines City police investigation What we know: The Haines City Police Department s ... (https://incidentdatabase.ai/cite/1761#8143)",
-      "release_date": "2026-10-18"
+      "id": "df3908d281bd4f9c68a945e8119b1cfc",
+      "title": "COMPLAINT AND DEMAND FOR JURY TRIAL (Charbel Habib and Soha Samaha v. OpenAI, Inc., et al.)",
+      "url": "https://www.lbcgroup.tv/uploadImages/ExtImages/Images2/2026.10.14%20OpenAI%20JCCP%20-%20Habib%20Complaint.pdf",
+      "body_excerpt": "AIID editor's note (AI-assisted abridgement): The 42-page source exceeds AIID's 50,000-character text limit. This abridgement was prepared with AI assistance and retains verbatim excerpts covering the parties, case-specific factual allegati ... (https://incidentdatabase.ai/cite/1783#8199)",
+      "release_date": "2026-10-24"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "96c6fa523000e23ae00fe1d103a309cc",
-      "title": "Haines City police officer accused of using FLOCK cameras to search estranged wife's vehicle over 700 times",
-      "url": "https://www.tampabay28.com/news/region-polk/haines-city-police-officer-accused-of-using-flock-cameras-to-search-estranged-wifes-vehicle-over-700-times",
-      "body_excerpt": "HAINES CITY, Fla. \u2014 Haines City Police said an officer has been arrested after an investigation revealed FLOCK camera misuse. According to an arrest affidavit from the Haines City Police Department, an investigation was opened on August 10 ... (https://incidentdatabase.ai/cite/1761#8144)",
-      "release_date": "2026-10-18"
+      "id": "94489e058ae3a779cbca0b564129a321",
+      "title": "Accessing and changing internal systems during dashboard research",
+      "url": "https://alignment.openai.com/misalignment-reports/accessing-and-changing-internal-systems-during-dashboard-research/",
+      "body_excerpt": "Summary In two evaluations, an internal model tasked to retrieve figures from a public research dashboard accessed the organization\u2019s internal systems and changed their configuration. In the first evaluation, it used exposed credentials to ... (https://incidentdatabase.ai/cite/1784#8200)",
+      "release_date": "2026-10-24"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "4d819a20c169e821e96ca927d38ed02f",
-      "title": "Haines City police add new safeguards for Flock cameras after officer accused of misuse",
-      "url": "https://www.tampabay28.com/news/region-polk/haines-city-police-add-new-safeguards-for-flock-cameras-after-officer-accused-of-misuse",
-      "body_excerpt": "HAINES CITY, Fla. --- Haines City Police Department is changing how officers use Flock cameras after an officer was accused of repeatedly using the system to track his estranged wife's vehicle. The department is now requiring formal audits ... (https://incidentdatabase.ai/cite/1761#8145)",
-      "release_date": "2026-10-18"
+      "id": "fa2c554ccc6a438b7410223dc0d364b5",
+      "title": "El PP da un paso m\u00e1s en su campa\u00f1a y suplanta la identidad de Bego\u00f1a G\u00f3mez, Zapatero y \u00c1balos: \u201c\u00bfIrse de putas? S\u00ed, soy zurdo",
+      "url": "https://elpais.com/espana/elecciones-generales/2026-10-22/el-pp-da-un-paso-mas-en-su-campana-y-suplanta-la-identidad-de-begona-gomez-zapatero-y-abalos-irse-de-putas-si-soy-zurdo.html",
+      "body_excerpt": "No solo hay 10 horas de diferencia entre los dos v\u00eddeos. El primero, del PSOE, se public\u00f3 en la cuenta oficial de Pedro S\u00e1nchez a las 8.29 de la ma\u00f1ana de este mi\u00e9rcoles, justo antes de la ponencia de Javier Milei en el Casino de Madrid. Y ... (https://incidentdatabase.ai/cite/1785#8201)",
+      "release_date": "2026-10-24"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "901f2df90ac0df9a1aa704967bb15d83",
-      "title": "Police departments weren\u2019t looking for officers abusing Flock. We did it for them.",
-      "url": "https://www.washingtonpost.com/technology/2026/08/19/we-found-cops-who-misused-flock-their-police-departments-didnt-know/",
-      "body_excerpt": "Last month, as Indianapolis residents called for tighter restrictions on police surveillance, Police Chief Tanya Terry sought to reassure the public that her officers were using the 301 Flock cameras spread throughout the city solely to in ... (https://incidentdatabase.ai/cite/1761#8146)",
-      "release_date": "2026-10-18"
+      "id": "1f89c9d0a9b7c1509d08821f75208f6f",
+      "title": "Opposition deepfake video of Spanish PM\u2019s wife sparks outrage before election",
+      "url": "https://www.theguardian.com/world/2026/oct/23/opposition-deepfake-video-spain-election",
+      "body_excerpt": "A political ad from Spain\u2019s main opposition party that used a deepfake video of the prime minister\u2019s wife has sparked outrage and set off a wider debate on AI, as the deeply polarised country gears up for general elections next month. Laun ... (https://incidentdatabase.ai/cite/1785#8202)",
+      "release_date": "2026-10-24"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "a1678cc0c3bc5822a0e3c64e2bf6cfe8",
-      "title": "Papua New Guinea moves to outlaw AI deepfakes as victims call for more protection",
-      "url": "https://www.abc.net.au/news/2026-07-21/new-laws-in-png-target-ai-deepfakes/106928414",
-      "body_excerpt": "An AI-generated image showing Jennifer Baing with a group of people holding cash standing behind another pile of cash. Jennifer Baing says AI-generated images of her have been used by scammers to impersonate her online. (Supplied) Jennif ... (https://incidentdatabase.ai/cite/1758#8138)",
-      "release_date": "2026-10-17"
+      "id": "4b80183fe0fdcd3cd17a3104b7ec91a5",
+      "title": "Leire Diez se querella contra el PP por su v\u00eddeo hecho con IA que le acusa de contratar \"matones\"",
+      "url": "https://www.libertaddigital.com/espana/2026-10-23/leire-diez-se-querella-contra-el-pp-por-su-video-hecho-con-ia-que-le-acusa-de-contratar-matones-7480817/",
+      "body_excerpt": "Leire D\u00edez ha presentado una querella contra el Partido Popular por el v\u00eddeo hecho por inteligencia artificial que menciona que D\u00edez contrat\u00f3 a \"matones\" para quitar de en medio a una juez, en alusi\u00f3n a la juez Beatriz Biedma. La defensa de ... (https://incidentdatabase.ai/cite/1785#8203)",
+      "release_date": "2026-10-24"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "d53b87a580f05df089fc13024bdc3c2b",
-      "title": "Mouvement des lyc\u00e9ens en France : faux, cette vid\u00e9o ne montre pas un manifestant recevant un coup violent d\u2019un policier",
-      "url": "https://africacheck.org/fr/fact-checks/meta-programme-fact-checks/mouvement-des-lyceens-en-france-faux-cette-video-ne-montre-pas-un-manifestant-frappe-par-un-policier-video-generee-par",
-      "body_excerpt": "EN BREF : Cette vid\u00e9o a \u00e9t\u00e9 g\u00e9n\u00e9r\u00e9e par intelligence artificielle et diffus\u00e9e sur les r\u00e9seaux sociaux depuis juin 2026. Sur Facebook, l\u2019activiste Natalie Yamb, tr\u00e8s critique du gouvernement d\u2019Emmanuel Macron a publi\u00e9 le 7 octobre 2026 cet ... (https://incidentdatabase.ai/cite/1759#8139)",
-      "release_date": "2026-10-17"
+      "id": "3d165a4cb896f8481ee79745ef247295",
+      "title": "SF man operating self-driving Tesla hits, kills pedestrian on I-80, CHP says",
+      "url": "https://www.sfgate.com/bayarea/article/tesla-crash-solano-county-pedestrian-22489807.php",
+      "body_excerpt": "A Tesla driver from San Francisco allegedly struck and killed a pedestrian in Solano County early Thursday morning while his car was in self-driving mode, officials said. The crash happened just after 2:30 a.m. on westbound Interstate 80 a ... (https://incidentdatabase.ai/cite/1786#8204)",
+      "release_date": "2026-10-24"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "053bc9e4dfebab64ffc722c662ae36e7",
-      "title": "Lawsuit claims Sharp HealthCare secretly recorded exam room conversations without patient consent",
-      "url": "https://www.kpbs.org/news/health/2025/12/11/lawsuit-claims-sharp-healthcare-secretly-recorded-exam-room-conversations-without-patient-consent",
-      "body_excerpt": "A proposed class-action lawsuit filed in San Diego Superior Court claims Sharp HealthCare secretly recorded doctor-patient conversations using an artificial intelligence tool --- and falsely documented that patients had given consent. Shar ... (https://incidentdatabase.ai/cite/1754#8129)",
-      "release_date": "2026-10-15"
+      "id": "1f74fe1e33cb2521fca2833723095969",
+      "title": "Vallejo man hit, killed by Tesla under self-driving mode identified",
+      "url": "https://www.sfgate.com/news/bayarea/article/vallejo-man-killed-by-tesla-in-full-22492074.php",
+      "body_excerpt": "A man killed in Vallejo by a car under a driver assistance system has been identified, the Solano County Coroner said Friday. Vallejo resident Domingo Gonzales, 71, was hit by a Tesla in Full Self-Driving mode while crossing westbound Inte ... (https://incidentdatabase.ai/cite/1786#8205)",
+      "release_date": "2026-10-24"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "b228ff7205a50285e5479cde4b9c8170",
-      "title": "\"\u0420\u0430\u0437\u0434\u0435\u043b\u0438\" \u0444\u043e\u0442\u043e\u0433\u0440\u0430\u0444\u0438\u044e \u0447\u0435\u0440\u0435\u0437 \u0418\u0418 \u0438 \u0440\u0430\u0437\u043e\u0441\u043b\u0430\u043b\u0438 \u0437\u043d\u0430\u043a\u043e\u043c\u044b\u043c\". \u0414\u0435\u0432\u0443\u0448\u043a\u0430 \u0436\u0430\u043b\u0443\u0435\u0442\u0441\u044f \u043d\u0430 \u0437\u0430\u0442\u044f\u0433\u0438\u0432\u0430\u043d\u0438\u0435 \u0434\u0435\u043b\u0430",
-      "url": "https://kaktus.media/doc/554280_razdeli_fotografiu_cherez_ii_i_razoslali_znakomym._devyshka_jalyetsia_na_zatiagivanie_dela.html",
-      "body_excerpt": "\u0412 \u0440\u0435\u0434\u0430\u043a\u0446\u0438\u044e Kaktus.media \u043e\u0431\u0440\u0430\u0442\u0438\u043b\u0430\u0441\u044c 23-\u043b\u0435\u0442\u043d\u044f\u044f \u0410\u0438\u043c\u0430 \u042e\u043d\u0443\u0441\u0431\u0430\u0435\u0432\u0430, \u043a\u043e\u0442\u043e\u0440\u0430\u044f \u0441\u0442\u0430\u043b\u0430 \u0436\u0435\u0440\u0442\u0432\u043e\u0439 \u0441\u0435\u043a\u0441\u0443\u0430\u043b\u0438\u0437\u0438\u0440\u043e\u0432\u0430\u043d\u043d\u043e\u0433\u043e \u0434\u0438\u043f\u0444\u0435\u0439\u043a\u0430. \u041e\u043d\u0430 \u043e\u043f\u0430\u0441\u0430\u0435\u0442\u0441\u044f, \u0447\u0442\u043e \u043d\u0435 \u0441\u043c\u043e\u0436\u0435\u0442 \u0437\u0430\u0449\u0438\u0442\u0438\u0442\u044c \u0441\u0432\u043e\u0438 \u043f\u0440\u0430\u0432\u0430, \u0430 \u0432\u0438\u043d\u043e\u0432\u043d\u0438\u043a \u0441\u043c\u043e\u0436\u0435\u0442 \u0438\u0437\u0431\u0435\u0436\u0430\u0442\u044c \u043d\u0430\u043a\u0430\u0437\u0430\u043d\u0438\u044f, \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u044f \u0441\u0432\u043e\u0438 \u0441\u0432\u044f\u0437\u0438. \u0414\u0435\u0432\u0443\u0448\u043a\u0430 \u0440\u0430\u0441\u0441\u043a\u0430\u0437\u0430 ... (https://incidentdatabase.ai/cite/1755#8130)",
-      "release_date": "2026-10-15"
+      "id": "ccb535acde234c81838cf57b9df1d46a",
+      "title": "S.F. Tesla driver who fatally struck man crossing highway said car was in full-self-driving mode",
+      "url": "https://www.sfchronicle.com/bayarea/article/self-driving-tesla-fatally-strikes-man-on-highway-22489051.php",
+      "body_excerpt": "A Tesla driver told officials he was using the car\u2019s full self-driving mode when he fatally struck a 71-year-old man crossing a Solano County highway early Thursday morning, California Highway Patrol said. The crash occurred around 2:30 a. ... (https://incidentdatabase.ai/cite/1786#8206)",
+      "release_date": "2026-10-24"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "3e43e5eb4a522315d98e7a8d82fd8f5a",
-      "title": "Invasion of the Self-Replicating AI-Malware Botnet",
-      "url": "https://www.theatlantic.com/ideas/2026/10/ai-malware-botnet/688997/",
-      "body_excerpt": "Have you ever counted the computers in your house? Tally them up now. I'll wait. You're probably including your desktop and laptop computers, if you own some. I bet you're also including the smartphones and tablets. Depending on the size of ... (report_number: 8131)",
-      "release_date": "2026-10-15"
+      "id": "325016fb55359d6d3fb539d3c339fefc",
+      "title": "Sacramento man driving Tesla allegedly falls asleep, injures officers",
+      "url": "https://www.sfgate.com/bayarea/article/driving-tesla-asleep-officers-22480723.php",
+      "body_excerpt": "Two California Highway Patrol officers were injured in a crash involving a Tesla that was in self-driving mode. On Tuesday, just before midnight, dashcam footage captured a car driving straight into a California Highway Patrol vehicle in F ... (https://incidentdatabase.ai/cite/1787#8207)",
+      "release_date": "2026-10-24"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "094a8807d5eb51253a164ce60bfb1400",
-      "title": "Lawsuit: Reno police detective says she was told not to write a report about false facial recognition arrest (1 of 4)",
-      "url": "https://thisisreno.com/2026/10/killinger-civil-rights-lawsuit/",
-      "body_excerpt": "A Reno police detective testified she was ordered not to write a report after concluding that officer Richard Jager had wrongly jailed Jason Killinger, court records in Killinger's civil rights lawsuit show. The order came from her supervi ... (https://incidentdatabase.ai/cite/1311#8132)",
-      "release_date": "2026-10-15"
+      "id": "66c49d3cd7a19fa16385fb3dcb63a0a7",
+      "title": "2 CHP officers injured while investigating deadly I-80 crash near Fairfield",
+      "url": "https://www.cbsnews.com/sacramento/news/fairfield-i80-tesla-crash-2-chp-officers-hurt/",
+      "body_excerpt": "A 19-year-old driver died in a crash on Interstate 80 near Fairfield Tuesday night, and two California Highway Patrol officers investigating that crash were injured about an hour later when a Tesla hit their patrol car. The first crash hap ... (https://incidentdatabase.ai/cite/1787#8208)",
+      "release_date": "2026-10-24"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "fcd796b767849dfc37c816d4256a79b9",
-      "title": "Firmware to Root in 30 Minutes: How AI is Changing Threat Intelligence",
-      "url": "https://www.claroty.com/team82/research/firmware-to-root-in-30-minutes-how-ai-is-changing-threat-intelligence",
-      "body_excerpt": "This week's cyberattacks affecting supermarket refrigeration systems in France underscores how disruptions and damage to industrial equipment can lead to, in this case, food waste and significant financial loss. It also demonstrates how an ... (report_number: 8133)",
-      "release_date": "2026-10-15"
+      "id": "d36532066e7a36a61d89df55bab1e797",
+      "title": "Twee verdachten aangehouden in onderzoek naar nieuwe vorm van bankhelpdeskfraude",
+      "url": "https://www.politie.nl/nieuws/2026/oktober/20/07-twee-verdachten-aangehouden-in-onderzoek-naar-nieuwe-vorm-van-bankhelpdeskfraude.html",
+      "body_excerpt": "380.000 euro schade bij zo'n 170 slachtoffers. Dat waren de cijfers waarmee het Rotterdamse Team Cybercrime werd geconfronteerd in de drie weken die het onderzoeksteam zicht had op de servers van een crimineel samenwerkingsverband. Die crim ... (https://incidentdatabase.ai/cite/1788#8209)",
+      "release_date": "2026-10-24"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "4b70ba2b2caeee2abd085447007bcc68",
-      "title": "UK Election Watchdog Develops AI System to Flag Deepfakes Within 3 Hours",
-      "url": "https://www.techpolicy.press/uk-election-watchdog-develops-ai-system-to-flag-deepfakes-within-3-hours/",
-      "body_excerpt": "The United Kingdom's election watchdog is developing an AI-powered system designed to notify candidates of significant deepfakes within three hours of posting to social media, the organization's chief executive said. In wide-ranging commen ... (https://incidentdatabase.ai/cite/1258#8134)",
-      "release_date": "2026-10-15"
+      "id": "acce71943a12c9693f9c971efdad2173",
+      "title": "Police arrest two suspects in AI-powered bank fraud that cost victims \u20ac380,000",
+      "url": "https://nltimes.nl/2026/10/21/police-arrest-two-suspects-ai-powered-bank-fraud-cost-victims-eu380000",
+      "body_excerpt": "Rotterdam police arrested two suspects accused of a new form of bank-helpdesk fraud. The operation allegedly caused around \u20ac380,000 in losses for 170 victims in just three weeks. The suspects allegedly used AI-generated phone calls and a fa ... (https://incidentdatabase.ai/cite/1788#8210)",
+      "release_date": "2026-10-24"
+    },
+    {
+      "source_id": "mit_airr",
+      "type": "blog_post",
+      "id": "/blog/ai-risks-in-the-actuarial-profession-insights-from-senior-leaders",
+      "title": "MIT AI Risk Repository: AI Risks in the Actuarial Profession: Insights from Senior Leaders",
+      "url": "https://airisk.mit.edu/blog/ai-risks-in-the-actuarial-profession-insights-from-senior-leaders",
+      "body_excerpt": "Priority Risks All Risks Incidents Responses Company Disclosures Mitigations Governance Navigator About Blog AI Risks in the Actuarial Profession: Insights from Senior Leaders October 21, 2026",
+      "release_date": "2026-10-21"
+    },
+    {
+      "source_id": "uk_aisi",
+      "type": "rss_entry",
+      "id": "d1a744382c6d47debf1bca92c2313e09",
+      "title": "Investigating alignment failures in AISI\u2019s incident",
+      "url": "https://www.aisi.gov.uk/blog/investigating-alignment-failures-in-aisis-incident",
+      "body_excerpt": "We examine why Mythos 5 pursued an unsanctioned supply-chain attack and identify broader learnings about model behaviour and oversight.",
+      "release_date": "2026-10-23"
     }
   ],
   "source_health": {
     "aiid": {
       "consecutive_failures": 0,
-      "last_success": "2026-10-19T16:39:47.706698+00:00",
+      "last_success": "2026-10-26T16:19:53.957550+00:00",
       "last_error": null
     },
     "mitre_atlas": {
       "consecutive_failures": 0,
-      "last_success": "2026-10-19T16:39:49.212669+00:00",
+      "last_success": "2026-10-26T16:19:55.348962+00:00",
       "last_error": null
     },
     "owasp_llm": {
       "consecutive_failures": 0,
-      "last_success": "2026-10-19T16:39:50.375028+00:00",
+      "last_success": "2026-10-26T16:19:56.436634+00:00",
       "last_error": null
     },
     "mit_airr": {
       "consecutive_failures": 0,
-      "last_success": "2026-10-19T16:39:51.568310+00:00",
+      "last_success": "2026-10-26T16:19:59.143733+00:00",
       "last_error": null
     },
     "uk_aisi": {
       "consecutive_failures": 0,
-      "last_success": "2026-10-19T16:39:52.721016+00:00",
+      "last_success": "2026-10-26T16:20:00.162629+00:00",
       "last_error": null
     },
     "nist_ai_rmf": {
       "consecutive_failures": 0,
-      "last_success": "2026-10-19T16:39:53.890423+00:00",
+      "last_success": "2026-10-26T16:20:01.269883+00:00",
       "last_error": null
     },
     "eu_ai_office": {
-      "consecutive_failures": 0,
+      "consecutive_failures": 1,
       "last_success": "2026-10-19T16:39:55.172830+00:00",
-      "last_error": null
+      "last_error": "fetch failed: HTTP Error 403: Forbidden"
     },
     "apra": {
       "consecutive_failures": 0,
-      "last_success": "2026-10-19T16:39:56.578802+00:00",
+      "last_success": "2026-10-26T16:20:03.915103+00:00",
       "last_error": null
     }
   }
