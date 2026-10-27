@@ -8,6 +8,13 @@ sidebar_position: 6
 
 All material changes to the knowledge base are documented here. Changes are version-controlled in the [GitHub repository](https://github.com/b-gowland/ai-risk-kb).
 
+## [1.5.1] — October 2026
+
+### Added — incidents from source monitoring (#75)
+- **D2 — Privacy:** an ambient AI scribe alleged to have recorded patients without consent and written consent statements into their charts (Sharp HealthCare / Abridge, 2025); police officers misusing licence plate recognition searches to stalk people, with no one reviewing the logs (Braselton, GA and Haines City, FL, 2025–2026)
+- **F1 — Automation Bias:** a casino facial recognition match trusted over a valid driver's licence (Reno, 2023; *Killinger v. Jager*)
+- **C5 — AI Cyber Attacks:** disclosed OT controller vulnerabilities reproduced and chained by an AI agent in about 30 minutes (Claroty Team82, 2026)
+
 ## [1.5.0] — October 2026
 
 ### Re-verified — A2, A3, A4, B3, C3, G2 (14 October 2026; closes #54)
