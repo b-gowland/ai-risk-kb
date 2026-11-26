@@ -1,61 +1,119 @@
 /**
  * AI Risk Practice Library — Custom Styles
- * Authoritative register — Playfair Display + DM Sans, white, amber accent.
- * Redesigned May 3, 2026 — AI Risk Practice rebrand.
+ *
+ * Tokens follow the practice scenarios app (ai-risk-training src/index.css),
+ * as the Governance Baseline does: warm ground, ink text, one accent, Archivo
+ * for headings and interface, Newsreader italic for accents, IBM Plex Mono for
+ * labels. Adopted November 2026 (replaces the May 2026 Playfair / DM Sans /
+ * amber register).
+ *
+ * The fonts are self-hosted (@fontsource packages loaded by src/fonts.js), so
+ * no request goes to Google. Text and link colours hold at least 4.5:1 on
+ * every background they sit on, in light and dark mode.
  */
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=DM+Sans:wght@400;500&family=Space+Mono:wght@400;700&display=swap');
-
 :root {
-  /* Amber accent — shared brand token */
-  --brand-amber:        #D97706;
-  --brand-amber-light:  #FEF3C7;
-  --brand-amber-dark:   #92400E;
+  /* App tokens */
+  --ground:        #fbf8f2;
+  --ground-raised: #ffffff;
+  --ground-sunk:   #f4f2ee;
+  --ink:           #1c1a16;
+  --ink-soft:      #4f4a41;
+  --ink-faint:     #6f685c;
+  --rule:          #ded8ca;
+  --rule-firm:     #bdb6a8;
+  --accent:        #b0512b;
+  --accent-deep:   #8a3d1f;
+  /* Lighter than the app's #f7ece5 so accent links on it still hold 4.5:1. */
+  --accent-wash:   #fcf4ee;
 
-  /* Docusaurus primary — maps to amber */
-  --ifm-color-primary:          #D97706;
-  --ifm-color-primary-dark:     #C26905;
-  --ifm-color-primary-darker:   #B86304;
-  --ifm-color-primary-darkest:  #975104;
-  --ifm-color-primary-light:    #E88A1A;
-  --ifm-color-primary-lighter:  #EA9120;
-  --ifm-color-primary-lightest: #EDA040;
+  --font-sans:  'Archivo Variable', 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-serif: 'Newsreader Variable', 'Newsreader', 'Iowan Old Style', Georgia, serif;
+  --font-mono:  'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* Older names kept so existing class rules and entries keep working */
+  --brand-amber:       var(--accent);
+  --brand-amber-light: var(--accent-wash);
+  --brand-amber-dark:  var(--accent-deep);
+
+  /* Docusaurus primary — the app accent (4.9:1 on the ground) */
+  --ifm-color-primary:          #b0512b;
+  --ifm-color-primary-dark:     #9e4927;
+  --ifm-color-primary-darker:   #964525;
+  --ifm-color-primary-darkest:  #7b391e;
+  --ifm-color-primary-light:    #c25a30;
+  --ifm-color-primary-lighter:  #c75e33;
+  --ifm-color-primary-lightest: #d0703f;
+  --ifm-link-color:             var(--accent);
+  --ifm-link-hover-color:       var(--accent-deep);
+
+  --ifm-font-color-base:       var(--ink);
+  --ifm-heading-color:         var(--ink);
+  --ifm-color-content:         var(--ink);
+  --ifm-color-content-secondary: var(--ink-soft);
+  --ifm-menu-color:            var(--ink-soft);
+  --ifm-toc-link-color:        var(--ink-soft);
+  --ifm-footer-link-color:     var(--ink-soft);
+  --ifm-footer-title-color:    var(--ink);
+  --ifm-footer-color:          var(--ink-faint);
+  --ifm-footer-background-color: var(--ground-sunk);
 
   --ifm-code-font-size: 90%;
-  --ifm-font-family-base: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  --ifm-font-family-monospace: 'Space Mono', monospace;
-  --ifm-heading-font-family: 'Playfair Display', Georgia, serif;
+  --ifm-font-family-base: var(--font-sans);
+  --ifm-font-family-monospace: var(--font-mono);
+  --ifm-heading-font-family: var(--font-sans);
   --ifm-heading-font-weight: 700;
   --ifm-navbar-height: 60px;
-  --ifm-navbar-background-color: #FFFFFF;
-  --ifm-background-color: #FFFFFF;
-  --ifm-background-surface-color: #FAFAFA;
+  --ifm-navbar-background-color: var(--ground);
+  --ifm-background-color: var(--ground);
+  --ifm-background-surface-color: var(--ground-raised);
+  --ifm-hr-background-color: var(--rule);
+  --ifm-toc-border-color: var(--rule);
+  --ifm-table-border-color: var(--rule);
+  --ifm-color-emphasis-300: var(--rule);
 
-  /* Domain colours — unchanged, used for card labels */
+  /* Domain colours, used for card labels (white text holds 4.5:1 on each) */
   --domain-a: #1a4f8a;
   --domain-b: #2e7d32;
   --domain-c: #b71c1c;
-  --domain-d: #e65100;
+  --domain-d: #bf4600;
   --domain-e: #6a1b9a;
   --domain-f: #00695c;
   --domain-g: #4e342e;
 }
 
+/* Dark mode: the app has none, so these are the app tokens inverted onto a
+   warm near-black, with a lighter accent that holds contrast. */
 [data-theme='dark'] {
-  --ifm-color-primary:          #F0A839;
-  --ifm-color-primary-dark:     #E89820;
-  --ifm-color-primary-darker:   #E09018;
-  --ifm-color-primary-darkest:  #C07A10;
-  --ifm-color-primary-light:    #F4B84A;
-  --ifm-color-primary-lighter:  #F6C055;
-  --ifm-color-primary-lightest: #F9CE70;
-  --ifm-navbar-background-color: #0F0F0F;
-  --ifm-background-color: #0F0F0F;
+  --ground:        #171512;
+  --ground-raised: #211e1a;
+  --ground-sunk:   #1d1a16;
+  --ink:           #ece6da;
+  --ink-soft:      #c4bcae;
+  --ink-faint:     #a39b8d;
+  --rule:          #34302a;
+  --rule-firm:     #4a443b;
+  --accent:        #e8946b;
+  --accent-deep:   #f0ae8c;
+  --accent-wash:   #2a1e16;
+
+  --ifm-color-primary:          #e8946b;
+  --ifm-color-primary-dark:     #e47f50;
+  --ifm-color-primary-darker:   #e27443;
+  --ifm-color-primary-darkest:  #d5571f;
+  --ifm-color-primary-light:    #eca986;
+  --ifm-color-primary-lighter:  #eeb493;
+  --ifm-color-primary-lightest: #f3cab5;
 }
 
-/* ── Headings — Playfair Display ── */
+/* ── Type ── */
+body {
+  background: var(--ground);
+  color: var(--ink);
+}
+
 h1, h2, h3, .navbar__title {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: var(--font-sans);
 }
 
 h1 { letter-spacing: -0.02em; }
@@ -63,42 +121,32 @@ h2 { letter-spacing: -0.01em; }
 
 /* ── Navbar ── */
 .navbar {
-  border-bottom: 1px solid #EBEBEB;
+  border-bottom: 1px solid var(--rule);
   box-shadow: none;
 }
 
 .navbar__title {
-  font-family: 'Playfair Display', serif;
   font-weight: 700;
   font-size: 1.05rem;
   letter-spacing: -0.01em;
-  color: #0F0F0F;
-}
-
-[data-theme='dark'] .navbar__title {
-  color: #E8E8E8;
+  color: var(--ink);
 }
 
 /* ── Homepage hero ── */
 .hero-banner {
   padding: 4rem 2rem;
   text-align: center;
-  background: #FFFFFF;
-  border-bottom: 1px solid #EBEBEB;
-}
-
-[data-theme='dark'] .hero-banner {
-  background: #0F0F0F;
-  border-bottom: 1px solid #1E1E1E;
+  background: var(--ground);
+  border-bottom: 1px solid var(--rule);
 }
 
 .hero-banner .hero-eyebrow {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-mono);
   font-size: 0.7rem;
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--brand-amber);
+  color: var(--accent);
   margin-bottom: 1rem;
   display: flex;
   align-items: center;
@@ -112,38 +160,31 @@ h2 { letter-spacing: -0.01em; }
   display: inline-block;
   width: 24px;
   height: 1px;
-  background: var(--brand-amber);
+  background: var(--accent);
 }
 
 .hero-banner h1 {
-  font-family: 'Playfair Display', serif;
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 700;
   letter-spacing: -0.02em;
   margin-bottom: 1rem;
-  color: #0F0F0F;
+  color: var(--ink);
   font-style: normal;
 }
 
 .hero-banner h1 em {
+  font-family: var(--font-serif);
   font-style: italic;
-  color: var(--brand-amber);
-}
-
-[data-theme='dark'] .hero-banner h1 {
-  color: #E8E8E8;
+  font-weight: 500;
+  color: var(--accent);
 }
 
 .hero-banner p {
   font-size: 1.05rem;
-  color: #555555;
+  color: var(--ink-soft);
   max-width: 600px;
   margin: 0 auto 2rem;
   line-height: 1.7;
-}
-
-[data-theme='dark'] .hero-banner p {
-  color: #AAAAAA;
 }
 
 .hero-buttons {
@@ -153,72 +194,87 @@ h2 { letter-spacing: -0.01em; }
   flex-wrap: wrap;
 }
 
-/* ── Hero CTA buttons ── */
+/* ── Buttons ── */
 .button--primary {
-  background: #0F0F0F !important;
-  border-color: #0F0F0F !important;
-  color: #FFFFFF !important;
+  background: var(--ink) !important;
+  border-color: var(--ink) !important;
+  color: var(--ground) !important;
   border-radius: 4px !important;
 }
 
 .button--primary:hover {
-  background: #2A2A2A !important;
-  border-color: #2A2A2A !important;
+  background: var(--ink-soft) !important;
+  border-color: var(--ink-soft) !important;
 }
 
-[data-theme='dark'] .button--primary {
-  background: var(--brand-amber) !important;
-  border-color: var(--brand-amber) !important;
-  color: #0F0F0F !important;
+.button.button--secondary {
+  background: var(--ground-raised);
+  border: 1px solid var(--rule-firm);
+  color: var(--ink);
+  border-radius: 4px;
+}
+
+.button.button--secondary:hover {
+  background: var(--ground-sunk);
+  border-color: var(--ink-faint);
+  color: var(--ink);
 }
 
 /* ── Explainer band ── */
 .explainer-band {
-  background: #FAFAFA;
-  border-bottom: 1px solid #EBEBEB;
+  background: var(--ground-sunk);
+  border-bottom: 1px solid var(--rule);
   padding: 2rem;
   text-align: center;
 }
 
-[data-theme='dark'] .explainer-band {
-  background: #141414;
-  border-bottom: 1px solid #1E1E1E;
+.explainer-band p {
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--ink-soft);
 }
 
 /* ── Domain cards on homepage ── */
 .domain-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
   gap: 1.5rem;
   padding: 3rem 2rem;
+  /* The layout wrapper is a column flexbox, where auto margins stop the
+     grid stretching; without an explicit width it took its widest content
+     (1200px) and scrolled sideways on phones. */
+  width: 100%;
+  box-sizing: border-box;
   max-width: 1200px;
   margin: 0 auto;
 }
 
+@media (max-width: 480px) {
+  .domain-grid { padding: 2rem 1rem; }
+}
+
 .domain-card {
-  border: 0.5px solid #EBEBEB;
-  border-radius: 8px;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
   padding: 1.5rem;
-  transition: border-color 0.15s, box-shadow 0.15s;
+  transition: border-color 0.15s;
   text-decoration: none;
   color: inherit;
   display: block;
-  background: #FFFFFF;
-}
-
-[data-theme='dark'] .domain-card {
-  border-color: #1E1E1E;
-  background: #141414;
+  background: var(--ground-raised);
+  min-width: 0;
 }
 
 .domain-card:hover {
-  border-color: var(--brand-amber);
-  box-shadow: 0 2px 12px rgba(217, 119, 6, 0.08);
+  border-color: var(--accent);
   text-decoration: none;
+  color: inherit;
 }
 
 .domain-card-label {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-mono);
   font-size: 0.7rem;
   font-weight: 500;
   letter-spacing: 0.08em;
@@ -227,40 +283,53 @@ h2 { letter-spacing: -0.01em; }
   padding: 0.2rem 0.6rem;
   border-radius: 3px;
   display: inline-block;
-  color: white;
+  color: #ffffff;
 }
 
 .domain-card h3 {
-  font-family: 'Playfair Display', serif;
   font-size: 1rem;
   margin: 0.75rem 0 0.5rem;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .domain-card p {
   font-size: 0.875rem;
-  color: #555555;
+  color: var(--ink-soft);
   margin: 0;
   line-height: 1.55;
 }
 
-[data-theme='dark'] .domain-card p {
-  color: #AAAAAA;
+.domain-card p.domain-card-count {
+  font-size: 0.8rem;
+  margin-top: 0.75rem;
+  color: var(--accent);
+  font-weight: 500;
 }
 
-/* ── Amber left-border callouts ── */
+/* ── Homepage footnote ── */
+.home-footnote {
+  text-align: center;
+  padding: 2rem;
+  border-top: 1px solid var(--rule);
+}
+
+.home-footnote p {
+  font-size: 0.85rem;
+  color: var(--ink-faint);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* ── Accent left-border callouts ── */
 .key-question {
-  border-left: 3px solid var(--brand-amber);
-  background: var(--brand-amber-light);
+  border-left: 3px solid var(--accent);
+  background: var(--accent-wash);
   padding: 1rem 1.25rem;
   border-radius: 0 4px 4px 0;
   margin: 1.5rem 0;
+  font-family: var(--font-serif);
   font-style: italic;
-}
-
-[data-theme='dark'] .key-question {
-  background: #1A1200;
-  border-left-color: var(--brand-amber);
 }
 
 /* ── Persona tabs ── */
@@ -270,7 +339,7 @@ h2 { letter-spacing: -0.01em; }
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-mono);
   font-size: 0.7rem;
   font-weight: 500;
   letter-spacing: 0.06em;
@@ -297,46 +366,36 @@ h2 { letter-spacing: -0.01em; }
 }
 
 .controls-table th {
-  background: #FAFAFA;
+  background: var(--ground-sunk);
   padding: 0.6rem 1rem;
   text-align: left;
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-mono);
   font-weight: 500;
   font-size: 0.75rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  border-bottom: 1px solid #EBEBEB;
-  color: #555555;
+  border-bottom: 1px solid var(--rule);
+  color: var(--ink-soft);
 }
 
 .controls-table td {
   padding: 0.75rem 1rem;
-  border-bottom: 0.5px solid #EBEBEB;
+  border-bottom: 1px solid var(--rule);
   vertical-align: top;
 }
 
 .controls-table tr:last-child td { border-bottom: none; }
-
-[data-theme='dark'] .controls-table th {
-  background: #141414;
-  border-bottom-color: #1E1E1E;
-  color: #AAAAAA;
-}
-
-[data-theme='dark'] .controls-table td {
-  border-bottom-color: #1E1E1E;
-}
 
 .effort-badge {
   font-size: 0.7rem;
   font-weight: 500;
   padding: 0.15rem 0.5rem;
   border-radius: 3px;
-  font-family: 'Space Mono', monospace;
+  font-family: var(--font-mono);
 }
 
 .effort-low    { background: #e8f5e9; color: #2e7d32; }
-.effort-medium { background: #fff8e1; color: #f57f17; }
+.effort-medium { background: #fff8e1; color: #8a5c10; }
 .effort-high   { background: #fce4ec; color: #c62828; }
 
 [data-theme='dark'] .effort-low    { background: #1b3a1f; color: #81c784; }
@@ -344,7 +403,7 @@ h2 { letter-spacing: -0.01em; }
 [data-theme='dark'] .effort-high   { background: #2a0a0a; color: #ef9a9a; }
 
 .required-badge {
-  font-family: 'Space Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 0.65rem;
   font-weight: 700;
   padding: 0.1rem 0.4rem;
@@ -353,15 +412,15 @@ h2 { letter-spacing: -0.01em; }
   letter-spacing: 0.05em;
 }
 
-.required-golive { background: #b71c1c; color: white; }
-.required-post   { background: #EBEBEB; color: #555555; }
+.required-golive { background: #b71c1c; color: #ffffff; }
+.required-post   { background: var(--ground-sunk); color: var(--ink-soft); }
 
 /* ── Severity badges ── */
 .severity-badge {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  font-family: 'Space Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 0.75rem;
   font-weight: 700;
   padding: 0.2rem 0.6rem;
@@ -369,10 +428,11 @@ h2 { letter-spacing: -0.01em; }
   letter-spacing: 0.03em;
 }
 
-.severity-critical { background: #b71c1c; color: white; }
-.severity-high     { background: #e65100; color: white; }
-.severity-medium   { background: #f57f17; color: white; }
-.severity-low      { background: #2e7d32; color: white; }
+/* White text holds 4.5:1 on each fill. */
+.severity-critical { background: #b71c1c; color: #ffffff; }
+.severity-high     { background: #bf4600; color: #ffffff; }
+.severity-medium   { background: #8a5c10; color: #ffffff; }
+.severity-low      { background: #2e7d32; color: #ffffff; }
 
 /* ── Layer pills ── */
 .layer-nav {
@@ -383,49 +443,42 @@ h2 { letter-spacing: -0.01em; }
 }
 
 .layer-pill {
-  font-family: 'DM Sans', sans-serif;
   font-size: 0.8rem;
   font-weight: 500;
   padding: 0.3rem 0.8rem;
   border-radius: 3px;
-  border: 0.5px solid #CCCCCC;
-  color: #555555;
+  border: 1px solid var(--rule-firm);
+  color: var(--ink-soft);
   text-decoration: none;
   transition: all 0.12s;
 }
 
 .layer-pill:hover, .layer-pill.active {
-  background: var(--brand-amber);
-  border-color: var(--brand-amber);
-  color: white;
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--ground);
   text-decoration: none;
 }
 
 /* ── Training CTA ── */
 .training-cta {
-  background: var(--brand-amber-light);
-  border: 0.5px solid #D97706;
-  border-left: 3px solid var(--brand-amber);
+  background: var(--accent-wash);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--accent);
   border-radius: 0 4px 4px 0;
   padding: 1.5rem;
   margin: 3rem 0 1rem;
   text-align: center;
 }
 
-[data-theme='dark'] .training-cta {
-  background: #1A1200;
-  border-color: var(--brand-amber);
-}
-
 .training-cta h4 {
-  font-family: 'Playfair Display', serif;
   margin: 0 0 0.5rem;
   font-size: 1rem;
 }
 
 .training-cta p {
   font-size: 0.875rem;
-  color: #555555;
+  color: var(--ink-soft);
   margin: 0 0 1rem;
 }
 
@@ -438,19 +491,13 @@ h2 { letter-spacing: -0.01em; }
 }
 
 .framework-chip {
-  font-family: 'Space Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 0.7rem;
   padding: 0.2rem 0.6rem;
-  border: 0.5px solid #CCCCCC;
+  border: 1px solid var(--rule);
   border-radius: 3px;
-  color: #555555;
-  background: #FAFAFA;
-}
-
-[data-theme='dark'] .framework-chip {
-  border-color: #2A2A2A;
-  color: #AAAAAA;
-  background: #141414;
+  color: var(--ink-soft);
+  background: var(--ground-raised);
 }
 
 /* ── Verify flag ── */
@@ -460,7 +507,7 @@ h2 { letter-spacing: -0.01em; }
   border-radius: 4px;
   padding: 0.6rem 1rem;
   font-size: 0.85rem;
-  color: #e65100;
+  color: #8a3d1f;
   margin: 0.5rem 0;
 }
 
@@ -470,42 +517,35 @@ h2 { letter-spacing: -0.01em; }
   color: #ffb74d;
 }
 
-/* ── Markdown overrides ── */
-.markdown h1, .markdown h2, .markdown h3 {
-  font-family: 'Playfair Display', serif;
-}
-
+/* ── Markdown ── */
 .markdown h2 {
   margin-top: 2.5rem;
   padding-bottom: 0.5rem;
-  border-bottom: 0.5px solid #EBEBEB;
+  border-bottom: 1px solid var(--rule);
 }
 
-[data-theme='dark'] .markdown h2 {
-  border-bottom-color: #1E1E1E;
+.markdown blockquote {
+  border-left-color: var(--accent);
+  color: var(--ink-soft);
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
 }
 
 .table-of-contents__link { font-size: 0.85rem; }
 
 article header h1 {
-  font-family: 'Playfair Display', serif;
   font-size: 1.8rem;
 }
 
 /* ── Footer ── */
 .footer {
-  border-top: 0.5px solid #EBEBEB;
+  border-top: 1px solid var(--rule);
 }
 
 .footer__title {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-mono);
   font-size: 0.7rem;
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #0F0F0F;
-}
-
-[data-theme='dark'] .footer__title {
-  color: #E8E8E8;
 }

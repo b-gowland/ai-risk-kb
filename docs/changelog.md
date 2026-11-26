@@ -10,6 +10,20 @@ All material changes to the knowledge base are documented here. Changes are vers
 
 ## [1.5.3] — November 2026
 
+### Changed — site design and privacy
+- Colours and fonts now follow the practice scenarios app: warm ground, ink text, one accent (#b0512b), Archivo, Newsreader and IBM Plex Mono. Link text now meets 4.5:1 contrast in light and dark mode (the old amber links were 3.2:1)
+- Fonts are served from the site, so no visitor request goes to Google
+- Footer links to the Privacy page (on the practice scenarios app, which covers all three sites) and to the practice scenarios and governance baseline; cross-site labels match the app
+- Removed the leftover GitHub Pages deploy settings; `npm run deploy` now publishes to Cloudflare Pages
+
+### Corrected
+- "Practise this" lines no longer give scenario lengths, which the app now sets (A1, C4, D2, D3, E1, F1, F2)
+- Invented email addresses in C2 and C7 now use `.example`
+- About and How to use describe the app with its current tagline ("You decide, then see what follows")
+
+### Added — checks
+- `tools/incident-qa/check_incidents.py` flags aphorism-style closers and incident examples that don't end with a dated source. Runs in CI as a warning: 2 closers and 53 of 107 paragraphs without a closing dated source at the time it was added
+
 ### Corrected — monthly maintenance triage (#81)
 Corrections from the 1 November automated check, each confirmed against the primary source. The full record, including the items rejected and deferred, is in `automation/reviews/2026-11-01-monthly-triage.md`.
 - **MITRE ATLAS (B4, C1, C2, C5, C6, C7, C8):** release years corrected (v5.3 to v5.6 came out between January and April 2026, not 2025); claims that v5.3 added "named techniques" for MCP exfiltration and computer-use hijacking now describe the case studies it added; C6, C7 and C8 chips now cite technique IDs (AML.T0115.002, AML.T0143, AML.T0112.000) in place of "ATLAS v5.3"; C7 cites LLM Prompt Propagation (AML.T0143, October 2026); C5 Machine Compromise described as ATLAS defines it; C2 jailbreak entry dated to 2023

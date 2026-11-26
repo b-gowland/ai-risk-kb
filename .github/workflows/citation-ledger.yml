@@ -11,12 +11,14 @@ on:
       - "docs/**/*.mdx"
       - "docs/**/*.md"
       - "tools/citation-ledger/**"
+      - "tools/incident-qa/**"
       - ".github/workflows/citation-ledger.yml"
   pull_request:
     paths:
       - "docs/**/*.mdx"
       - "docs/**/*.md"
       - "tools/citation-ledger/**"
+      - "tools/incident-qa/**"
       - ".github/workflows/citation-ledger.yml"
   workflow_dispatch:
 
@@ -66,6 +68,15 @@ jobs:
         run: |
           python3 tools/citation-ledger/check_citations.py --self-test
 
+      # Incident examples: aphorism-style closers and paragraphs without a
+      # closing dated source. Warning only until existing hits are cleared;
+      # then add --strict.
+      - name: Incident examples QA (warning only)
+        shell: bash
+        run: |
+          python3 tools/incident-qa/check_incidents.py --self-test
+          python3 tools/incident-qa/check_incidents.py docs | tee incident-report.txt
+
       - name: Surface report in job summary
         if: always()
         run: |
@@ -73,5 +84,9 @@ jobs:
             echo '## Citation ledger (strict)';
             echo '```';
             cat citation-report.txt;
+            echo '```';
+            echo '## Incident examples QA (warning only)';
+            echo '```';
+            cat incident-report.txt 2>/dev/null || true;
             echo '```';
           } >> "$GITHUB_STEP_SUMMARY"
