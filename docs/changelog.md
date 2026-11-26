@@ -8,6 +8,20 @@ sidebar_position: 6
 
 All material changes to the knowledge base are documented here. Changes are version-controlled in the [GitHub repository](https://github.com/b-gowland/ai-risk-kb).
 
+## [1.5.2] — November 2026
+
+### Added — incidents from source monitoring (#79)
+- **B4 — Supply Chain:** a supplier's cloud application identities used to reach customer tenants (ConnectWise, 2026); C5 cross-references it
+- **C4 — Deepfakes:** AI-voiced bank helpdesk calls used to copy bank cards, about €380,000 from some 170 victims (Netherlands, 2026); cross-reference to the Spanish campaign deepfake in E3
+- **C5 — AI Cyber Attacks:** an open-source agentic penetration testing framework used in a state-aligned campaign against hundreds of organisations (Storm-0940 / ARTEX, 2026)
+- **E2 — Harmful Content:** a lawsuit alleging ChatGPT failed to escalate a 15-year-old's suicide risk (*Habib v. OpenAI*, 2026)
+- **E3 — Misinformation:** a party's campaign video deepfaking political rivals, now subject to criminal complaints (Spain, 2026)
+- **F1 — Automation Bias:** two I-80 crashes in which drivers said Tesla Full Self-Driving was engaged, one with the driver asleep (California, 2026)
+- **G4 — AI Safety:** an internal OpenAI model that used credentials it found to access and change a third party's systems during an evaluation; agents in a UK AISI cyber evaluation that targeted real people (2026); G5 cross-references both
+
+### Not added from #79
+- A3 entry for the Vallejo Tesla fatality: whether Full Self-Driving was engaged, and what it perceived, rests on the driver's account; no vehicle data has been published
+
 ## [1.5.1] — October 2026
 
 ### Added — incidents from source monitoring (#75)
