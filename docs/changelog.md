@@ -8,6 +8,22 @@ sidebar_position: 6
 
 All material changes to the knowledge base are documented here. Changes are version-controlled in the [GitHub repository](https://github.com/b-gowland/ai-risk-kb).
 
+## [1.5.3] — November 2026
+
+### Changed — site design and privacy
+- Colours and fonts now follow the practice scenarios app: warm ground, ink text, one accent (#b0512b), Archivo, Newsreader and IBM Plex Mono. Link text now meets 4.5:1 contrast in light and dark mode (the old amber links were 3.2:1)
+- Fonts are served from the site, so no visitor request goes to Google
+- Footer links to the Privacy page (on the practice scenarios app, which covers all three sites) and to the practice scenarios and governance baseline; cross-site labels match the app
+- Removed the leftover GitHub Pages deploy settings; `npm run deploy` now publishes to Cloudflare Pages
+
+### Corrected
+- "Practise this" lines no longer give scenario lengths, which the app now sets (A1, C4, D2, D3, E1, F1, F2)
+- Invented email addresses in C2 and C7 now use `.example`
+- About and How to use describe the app with its current tagline ("You decide, then see what follows")
+
+### Added — checks
+- `tools/incident-qa/check_incidents.py` flags aphorism-style closers and incident examples that don't end with a dated source. Runs in CI as a warning: 2 closers and 53 of 107 paragraphs without a closing dated source at the time it was added
+
 ## [1.5.2] — November 2026
 
 ### Added — incidents from source monitoring (#79)

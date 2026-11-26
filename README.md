@@ -3,7 +3,7 @@
 A free, open-source reference for understanding, assessing, and controlling AI risk — from board level to technical implementation.
 
 **Live site:** https://library.airiskpractice.org/
-**Companion training app:** https://app.airiskpractice.org/
+**Practice scenarios:** https://app.airiskpractice.org/
 **Governance baseline:** https://baseline.airiskpractice.org/
 **Project home:** https://airiskpractice.org/
 

@@ -11,7 +11,6 @@ const config = {
 
   organizationName: 'b-gowland',
   projectName: 'ai-risk-kb',
-  deploymentBranch: 'gh-pages',
   trailingSlash: false,
 
   onBrokenLinks: 'throw',
@@ -21,6 +20,8 @@ const config = {
     defaultLocale: 'en',
     locales: ['en'],
   },
+
+  clientModules: [require.resolve('./src/fonts.js')],
 
   scripts: [
     {
@@ -165,6 +166,9 @@ const config = {
               { label: 'GitHub', href: 'https://github.com/b-gowland/ai-risk-kb' },
               { label: 'Report an Issue', href: 'https://github.com/b-gowland/ai-risk-kb/issues' },
               { label: 'Contribute', href: 'https://github.com/b-gowland/ai-risk-kb/blob/main/docs/contributing.md' },
+              { label: 'Practice scenarios', href: 'https://app.airiskpractice.org/' },
+              { label: 'Governance baseline', href: 'https://baseline.airiskpractice.org/' },
+              { label: 'Privacy', href: 'https://app.airiskpractice.org/#/privacy' },
             ],
           },
         ],

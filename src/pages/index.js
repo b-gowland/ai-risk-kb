@@ -20,7 +20,7 @@ const DOMAINS = [
     entries: 8, link: '/docs/domain-c-security/c2-prompt-injection',
   },
   {
-    code: 'D', label: 'Data', color: '#e65100',
+    code: 'D', label: 'Data', color: '#bf4600',
     desc: 'Training data quality, privacy and data protection, intellectual property.',
     entries: 3, link: '/docs/domain-d-data/d1-training-data-quality',
   },
@@ -49,7 +49,7 @@ function DomainCard({ code, label, color, desc, entries, link }) {
       </span>
       <h3>{label} Risks</h3>
       <p>{desc}</p>
-      <p style={{ fontSize: '0.8rem', marginTop: '0.75rem', color: '#D97706', fontFamily: "'DM Sans', sans-serif", fontWeight: 500 }}>
+      <p className="domain-card-count">
         {entries} risk {entries === 1 ? 'entry' : 'entries'} →
       </p>
     </Link>
@@ -84,7 +84,7 @@ export default function Home() {
       </div>
 
       <div className="explainer-band">
-        <p style={{ maxWidth: 700, margin: '0 auto', fontSize: '0.95rem', lineHeight: 1.75, color: '#555' }}>
+        <p>
           Each entry covers four layers: a plain-English <strong>executive card</strong>,
           a <strong>practitioner overview</strong> with controls ownership and go-live criteria,
           an <strong>actionable controls detail</strong>, and a <strong>technical implementation</strong> guide.
@@ -96,10 +96,10 @@ export default function Home() {
         {DOMAINS.map((d) => <DomainCard key={d.code} {...d} />)}
       </div>
 
-      <div style={{ textAlign: 'center', padding: '2rem', borderTop: '1px solid #EBEBEB' }}>
-        <p style={{ fontSize: '0.85rem', color: '#999', maxWidth: 600, margin: '0 auto', lineHeight: 1.7 }}>
-          AI Risk Practice · <a href="https://airiskpractice.org" style={{ color: '#D97706' }}>airiskpractice.org</a> · Open source under MIT licence.<br />
-          <a href="https://app.airiskpractice.org/" style={{ color: '#D97706' }}>Training scenarios ↗</a> · <a href="https://baseline.airiskpractice.org/" style={{ color: '#D97706' }}>Governance Baseline ↗</a><br />
+      <div className="home-footnote">
+        <p>
+          AI Risk Practice · <a href="https://airiskpractice.org">airiskpractice.org</a> · Open source under MIT licence.<br />
+          <a href="https://app.airiskpractice.org/">Practice scenarios ↗</a> · <a href="https://baseline.airiskpractice.org/">Governance baseline ↗</a> · <a href="https://app.airiskpractice.org/#/privacy">Privacy</a><br />
           Not legal, regulatory, or professional advice.<br />
           Basis: MIT AI Risk Repository · NIST AI RMF 1.0 · EU AI Act · OWASP LLM Top 10 · Documented AI incidents.
         </p>

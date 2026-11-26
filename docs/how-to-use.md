@@ -60,7 +60,7 @@ See the [Contributing guide](/docs/contributing) for how to raise an issue or su
 
 ## Companion training app
 
-[AI Risk Practice](https://app.airiskpractice.org/) is the free training app that sits alongside this reference layer. It runs branching decision scenarios: you are put in a situation, you make the calls under incomplete information, and you see what follows. Nothing is scored and there is no login.
+[AI Risk Practice](https://app.airiskpractice.org/) is the free training app that sits alongside this reference layer. It runs branching decision scenarios: you are put in a situation with incomplete information, and you decide, then see what follows. Nothing is scored and there is no login.
 
 There are two doors. **At Work** covers AI risk in a job — shadow AI, hallucination, privacy, intellectual property, bias, automation bias. **At Home** covers personal AI risk — voice-clone scams, trusting an AI answer, algorithmic decisions. At Home scenarios take about five minutes; At Work scenarios run a little longer.
 
