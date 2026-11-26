@@ -18,8 +18,8 @@ MODEL_SONNET = "claude-sonnet-5-5"
 DEFAULT_MAX_TOKENS = 16000
 
 # On a safety-classifier refusal, the API re-runs the request on a fallback
-# model inside the same call. The installed SDK predates the `fallbacks`
-# parameter, so it is sent via extra_body.
+# model inside the same call. `fallbacks` is a typed parameter of
+# client.beta.messages.create from anthropic 2.x.
 FALLBACK_BETA = "server-side-fallback-2026-07-01"
 
 
@@ -37,7 +37,7 @@ def message_kwargs(
         "messages": [{"role": "user", "content": prompt}],
         "output_config": {"effort": effort},
         "betas": [FALLBACK_BETA],
-        "extra_body": {"fallbacks": "default"},
+        "fallbacks": "default",
     }
     if system:
         kwargs["system"] = system
