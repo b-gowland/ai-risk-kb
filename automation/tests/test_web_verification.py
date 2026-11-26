@@ -105,6 +105,7 @@ def test_supported_claim_uses_tool_citations_and_retains_human_review():
     assert "nist.gov" in tool["allowed_domains"]
     assert client.calls[0]["max_tokens"] == 4096
     assert "tools" not in client.calls[1]
+    assert "fallbacks" not in client.calls[0]
     assert "extra_body" not in client.calls[0]
     assert "betas" not in client.calls[0]
 

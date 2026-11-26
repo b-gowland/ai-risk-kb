@@ -22,6 +22,13 @@ All material changes to the knowledge base are documented here. Changes are vers
 ### Not added from #79
 - A3 entry for the Vallejo Tesla fatality: whether Full Self-Driving was engaged, and what it perceived, rests on the driver's account; no vehicle data has been published
 
+## [1.5.1] — October 2026
+
+### Added — incidents from source monitoring (#75)
+- **D2 — Privacy:** an ambient AI scribe alleged to have recorded patients without consent and written consent statements into their charts (Sharp HealthCare / Abridge, 2025); police officers misusing licence plate recognition searches to stalk people, with no one reviewing the logs (Braselton, GA and Haines City, FL, 2025–2026)
+- **F1 — Automation Bias:** a casino facial recognition match trusted over a valid driver's licence (Reno, 2023; *Killinger v. Jager*)
+- **C5 — AI Cyber Attacks:** disclosed OT controller vulnerabilities reproduced and chained by an AI agent in about 30 minutes (Claroty Team82, 2026)
+
 ## [1.5.0] — October 2026
 
 ### Re-verified — A2, A3, A4, B3, C3, G2 (14 October 2026; closes #54)

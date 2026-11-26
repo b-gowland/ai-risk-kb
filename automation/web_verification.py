@@ -110,7 +110,7 @@ class WebVerifier:
             MODEL_OPUS, prompt, effort="high", max_tokens=self.config.max_tokens
         )
         # Keep a single bounded attempt; do not enable the shared refusal fallback.
-        kwargs.pop("extra_body", None)
+        kwargs.pop("fallbacks", None)
         kwargs.pop("betas", None)
         if tools:
             kwargs["tools"] = tools

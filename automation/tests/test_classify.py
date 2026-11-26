@@ -42,7 +42,8 @@ def test_request_uses_current_sonnet_with_fallbacks():
     classify.classify_batch(ITEMS, fake_client(ok_response(), calls=calls))
     (kwargs,) = calls
     assert kwargs['model'] == 'claude-sonnet-5-5'
-    assert kwargs['extra_body'] == {'fallbacks': 'default'}
+    assert kwargs['fallbacks'] == 'default'
+    assert 'extra_body' not in kwargs
     assert 'temperature' not in kwargs
 
 

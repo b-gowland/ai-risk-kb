@@ -65,6 +65,11 @@ jobs:
               by_source[s] = by_source.get(s, 0) + 1
           for s, n in sorted(by_source.items()):
               print(f'  {s}: {n}')
+          for s, h in sorted(d.get('source_health', {}).items()):
+              if h.get('needs_manual_check'):
+                  print(f'  NOT CHECKED (refused) {s}: check by hand: {h.get(\"manual_check_url\")}')
+              elif h.get('consecutive_failures'):
+                  print(f'  FAILED {s}: {h.get(\"last_error\")}')
           " >> $GITHUB_STEP_SUMMARY
           fi
 
