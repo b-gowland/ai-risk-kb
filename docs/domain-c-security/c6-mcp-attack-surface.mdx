@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 
 <div style={{display:'flex', gap:'0.5rem', flexWrap:'wrap', marginBottom:'1.5rem'}}>
   <span className="severity-badge severity-high">High severity</span>
-  <span className="framework-chip">MITRE ATLAS v5.3</span>
+  <span className="framework-chip">MITRE ATLAS AML.T0115.002 Publish Poisoned AI Agent Tools</span>
   <span className="framework-chip">MITRE ATLAS AML.T0110 AI Agent Tool Poisoning</span>
   <span className="framework-chip">OWASP LLM03:2026 Excessive Agency</span>
   <span className="framework-chip">NIST AI RMF GOVERN 6.1</span>
@@ -39,7 +39,7 @@ Do we maintain an approved allowlist of MCP servers that our AI agents are permi
 <Tabs>
   <TabItem value="executive" label="Executive / Board">
 
-Every tool you give an AI agent — access to your CRM, your file system, your email — increases what an attacker who compromises that tool can do. MCP is the new integration standard for AI agents, and it is not inherently secure. The risk is not theoretical: MITRE ATLAS documented MCP-based data exfiltration as a named technique in 2025. The control question is whether your organisation has an approved list of what AI agents are allowed to connect to, and who is reviewing MCP server security before connection.
+Every tool you give an AI agent — access to your CRM, your file system, your email — increases what an attacker who compromises that tool can do. MCP is the new integration standard for AI agents, and it is not inherently secure. The risk is not theoretical: MITRE ATLAS has recorded real cases of data exfiltration through MCP servers, and in 2026 added techniques for poisoned agent tools, including MCP servers. The control question is whether your organisation has an approved list of what AI agents are allowed to connect to, and who is reviewing MCP server security before connection.
 
   </TabItem>
   <TabItem value="pm" label="Project Manager">
@@ -49,7 +49,7 @@ Before deploying any AI agent with MCP tool access, confirm: (1) every MCP serve
   </TabItem>
   <TabItem value="analyst" label="Security Analyst">
 
-The MCP attack surface has three primary vectors: (1) compromised MCP server — a legitimate server is taken over and begins returning malicious payloads; (2) malicious MCP server published as open-source — an attacker publishes a server that appears useful but contains embedded malicious behaviour (ATLAS v5.4 Publish Poisoned AI Agent Tool); (3) MCP server response injection — a server returns data containing instructions that the agent interprets and executes. Controls: MCP allowlist, response sandboxing, MCP traffic logging, integrity verification for self-hosted MCP servers, and red teaming that includes malicious MCP server scenarios.
+The MCP attack surface has three primary vectors: (1) compromised MCP server — a legitimate server is taken over and begins returning malicious payloads; (2) malicious MCP server published as open-source — an attacker publishes a server that appears useful but contains embedded malicious behaviour (ATLAS AML.T0115.002, added in v5.4 as Publish Poisoned AI Agent Tool); (3) MCP server response injection — a server returns data containing instructions that the agent interprets and executes. Controls: MCP allowlist, response sandboxing, MCP traffic logging, integrity verification for self-hosted MCP servers, and red teaming that includes malicious MCP server scenarios.
 
   </TabItem>
 </Tabs>
@@ -69,7 +69,7 @@ Each MCP connection is a trust relationship. The agent receives data and instruc
 - Redirect tool calls to unintended targets
 - Return poisoned data that causes the agent to take harmful actions
 
-MITRE ATLAS v5.3 documented data exfiltration via MCP server as a named technique. MITRE ATLAS v5.4 documented publishing poisoned AI agent tools (including MCP servers) to public repositories.
+MITRE ATLAS v5.3 (January 2026) added a case study of data exfiltration through an MCP server. MITRE ATLAS v5.4 (February 2026) added a technique for publishing poisoned AI agent tools, including MCP servers, to public repositories.
 
 ### Likelihood drivers
 
@@ -135,9 +135,9 @@ Review the allowlist at least quarterly and whenever a new agent is deployed or 
 
 Before adding any MCP server to the approved allowlist, conduct a security assessment covering: (1) publisher identity and accountability — can you identify who maintains this server and contact them if a vulnerability is discovered? (2) for open-source MCP servers: code review of the server implementation, particularly data handling and network calls; (3) data handling: what data does the server receive from the agent's context, and where does it go? (4) update process: how are security patches applied? (5) dependency chain: what does the MCP server itself depend on?
 
-Apply heightened scrutiny to servers that have broad data access (file system, database, email) or that have been recently published without established community review. The MITRE ATLAS v5.4 Publish Poisoned AI Agent Tool technique specifically targets organisations that adopt newly-published MCP servers without review.
+Apply heightened scrutiny to servers that have broad data access (file system, database, email) or that have been recently published without established community review. The ATLAS technique for publishing poisoned AI agent tools (added in v5.4, now AML.T0115.002) targets organisations that adopt newly-published MCP servers without review.
 
-**Jurisdiction notes:** AU — recommended under APRA CPS 234 and Privacy Act APP 11 | EU — required for high-risk AI under EU AI Act Art. 9 | US — NIST CSF IDENTIFY.SC
+**Jurisdiction notes:** AU — recommended under APRA CPS 234 and Privacy Act APP 11 | EU — supports the risk management system required for high-risk AI under EU AI Act Art. 9 | US — NIST CSF 2.0 GV.SC (Cybersecurity Supply Chain Risk Management)
 
 ---
 
@@ -157,11 +157,11 @@ Where the MCP server provides structured data (JSON, database records), parse an
 
 **Owner:** Security | **Type:** Detective | **Effort:** Low | **Go-live required:** No (post-launch)
 
-Log all MCP tool invocations and responses with sufficient context for forensic analysis: agent ID, session ID, MCP server called, tool called, parameters, response (truncated if large), timestamp, and downstream action taken by the agent. Retain logs for the regulatory minimum applicable to your jurisdiction (minimum 6 months for EU AI Act high-risk systems; minimum 12 months recommended for financial services under APRA).
+Log all MCP tool invocations and responses with sufficient context for forensic analysis: agent ID, session ID, MCP server called, tool called, parameters, response (truncated if large), timestamp, and downstream action taken by the agent. Retain logs for the regulatory minimum applicable to your jurisdiction (minimum 6 months for EU AI Act high-risk systems; APRA sets no fixed period, so choose one that supports incident investigation).
 
 Configure anomaly alerts for: MCP responses containing network addresses not in an approved list; MCP responses significantly larger than baseline (potential data staging); agent actions following an MCP call that are inconsistent with the agent's intended function; connection attempts to MCP servers not on the allowlist.
 
-**Jurisdiction notes:** AU — APRA CPS 234 | EU — EU AI Act Art. 12 logging requirements for high-risk AI | US — NIST CSF DETECT.CM
+**Jurisdiction notes:** AU — APRA CPS 234 | EU — EU AI Act Art. 12 logging requirements for high-risk AI | US — NIST CSF 2.0 DE.CM (Continuous Monitoring)
 
 ---
 
@@ -235,15 +235,15 @@ def validate_mcp_response(server_name: str, tool: str, response: str) -> str:
     return response
 ```
 
-**Tools and frameworks:** MCP specification (modelcontextprotocol.io) · Anthropic MCP documentation · MITRE ATLAS v5.3–v5.4 technique documentation · Garak (LLM vulnerability scanning, includes MCP scenarios)
+**Tools and frameworks:** MCP specification (modelcontextprotocol.io) · Anthropic MCP documentation · MITRE ATLAS technique and case study pages (atlas.mitre.org) · Garak (LLM vulnerability scanning, includes MCP scenarios)
 
 ---
 
 ## Incident examples
 
-**Data exfiltration via compromised MCP server (ATLAS v5.3, 2025):** MITRE ATLAS v5.3 documented a technique where a compromised MCP server returns responses containing injected instructions directing the connected agent to exfiltrate data from its context window. The agent, which has legitimate tool access, processes the injected instruction as a trusted server response and complies. The attack is particularly effective against agents with email, HTTP, or file-write tool access. Source: MITRE ATLAS v5.3.0 (2025).
+**Data exfiltration via compromised MCP server (ATLAS v5.3, January 2026):** MITRE ATLAS v5.3 added a case study (AML.CS0045) of data exfiltration through an MCP server used by the Cursor code editor. In this pattern a compromised MCP server returns responses containing injected instructions directing the connected agent to exfiltrate data from its context window. The agent, which has legitimate tool access, processes the injected instruction as a trusted server response and complies. The attack is particularly effective against agents with email, HTTP, or file-write tool access. Source: MITRE ATLAS v5.3.0 (January 2026).
 
-**Poisoned MCP server published to open-source repository (ATLAS v5.4, 2025):** MITRE ATLAS v5.4 documented a supply-chain variant where an attacker publishes a malicious MCP server to a public repository, embedding malicious behaviour alongside legitimate functionality. The server passes casual review because its stated purpose is genuine. Organisations that adopt recently-published, unreviewed MCP servers are the primary target of this technique. Source: MITRE ATLAS v5.4.0 (2025).
+**Poisoned MCP server published to open-source repository (ATLAS v5.4, February 2026):** MITRE ATLAS v5.4 documented a supply-chain variant where an attacker publishes a malicious MCP server to a public repository, embedding malicious behaviour alongside legitimate functionality. The server passes casual review because its stated purpose is genuine. Organisations that adopt recently-published, unreviewed MCP servers are the primary target of this technique. Sources: MITRE ATLAS v5.4.0 (February 2026); since v2026.07 the technique is AML.T0115.002.
 
 ---
 
