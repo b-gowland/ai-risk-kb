@@ -21,7 +21,11 @@ adding a source never floods the classifier with its back catalogue.
 
 Source health (last success, consecutive failures, last error) is tracked in
 the state file and written to the diff. A fetch error, or a feed/page that
-yields nothing parseable, counts as a failure.
+yields nothing parseable, counts as a failure. A refusal (HTTP 401, 403, 429
+or 451: bot protection, rate limiting, IP blocking) is also flagged as
+`needs_manual_check` with the page a person should open instead, so the report
+says the source was not checked rather than only listing an error. The poller
+does not retry or work around such refusals.
   python poll-sources.py --health-check
 exits 1 when any source has failed HEALTH_FAIL_THRESHOLD runs in a row.
 
@@ -40,6 +44,7 @@ import json
 import re
 import sys
 import time
+import urllib.error
 import urllib.request
 import xml.etree.ElementTree as ET
 from datetime import UTC, datetime, timedelta
@@ -121,6 +126,10 @@ SOURCES: list[dict] = [
     {
         "id": "eu_ai_office", "name": "EU AI Office", "type": "html_links",
         "url": "https://digital-strategy.ec.europa.eu/en/policies/ai-office",
+        # The page loads normally from other networks; the 403 seen from a
+        # GitHub runner on 26 Oct 2026 was a refusal of the runner, not a moved
+        # page. If it is refused again, the report asks for a manual check.
+        "manual_check_url": "https://digital-strategy.ec.europa.eu/en/policies/ai-office",
         "link_pattern": r"^/en/(news|library|events)/[a-z0-9-]+$", "max_items": 5,
     },
     {
@@ -169,11 +178,24 @@ class SourceError(Exception):
     """A source could not be fetched or yielded nothing usable."""
 
 
+class SourceBlocked(SourceError):
+    """The server refused this client (bot protection, rate limit, IP block)."""
+
+
+# Statuses that mean "not for you" rather than "not here": a person checks the
+# page by hand instead of the poller retrying or changing how it identifies.
+BLOCKED_STATUSES = {401, 403, 429, 451}
+
+
 def fetch_bytes(url: str, timeout: int = 60) -> bytes:
     try:
         req = urllib.request.Request(url, headers=HEADERS)
         with urllib.request.urlopen(req, timeout=timeout) as resp:
             return resp.read()
+    except urllib.error.HTTPError as exc:
+        if exc.code in BLOCKED_STATUSES:
+            raise SourceBlocked(f"blocked: HTTP {exc.code} {exc.reason}") from exc
+        raise SourceError(f"fetch failed: {exc}") from exc
     except Exception as exc:
         raise SourceError(f"fetch failed: {exc}") from exc
 
@@ -507,10 +529,18 @@ def poll_source(source: dict, state: dict) -> list[dict]:
     except Exception as exc:
         health["consecutive_failures"] = health.get("consecutive_failures", 0) + 1
         health["last_error"] = str(exc)[:300]
+        if isinstance(exc, SourceBlocked):
+            health["needs_manual_check"] = True
+            health["manual_check_url"] = source.get("manual_check_url", source["url"])
+        else:
+            health.pop("needs_manual_check", None)
+            health.pop("manual_check_url", None)
         print(f"   [WARN] {source['id']}: {exc} "
               f"({health['consecutive_failures']} consecutive failure(s))")
         return []
     health.update(consecutive_failures=0, last_success=utc_now(), last_error=None)
+    health.pop("needs_manual_check", None)
+    health.pop("manual_check_url", None)
     return items
 
 
@@ -534,6 +564,9 @@ def main() -> None:
         for sid, health in bad.items():
             print(f"[health] {sid}: {health['consecutive_failures']} consecutive failures; "
                   f"last error: {health.get('last_error')}")
+            if health.get("needs_manual_check"):
+                print(f"[health] {sid}: refused by the server; check by hand: "
+                      f"{health.get('manual_check_url')}")
         if bad:
             print(f"[health] {len(bad)} source(s) failing — fix or replace their URLs "
                   f"in automation/monitoring/poll-sources.py")

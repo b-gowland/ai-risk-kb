@@ -142,12 +142,50 @@ def test_health_tracking_and_health_check(monkeypatch, tmp_path):
     assert state['dead']['health']['consecutive_failures'] == 0
 
 
+def test_refused_fetch_flags_manual_check_and_clears_on_success(monkeypatch):
+    import io
+    import urllib.error
+
+    source = {'id': 'eu', 'name': 'EU', 'type': 'rss', 'url': 'https://feed.example/rss',
+              'manual_check_url': 'https://site.example/page'}
+
+    def refuse(req, timeout=60):
+        raise urllib.error.HTTPError(req.full_url, 403, 'Forbidden', {}, io.BytesIO(b''))
+
+    monkeypatch.setattr(poll.urllib.request, 'urlopen', refuse)
+    with pytest.raises(poll.SourceBlocked):
+        poll.fetch_bytes(source['url'])
+    state = {}
+    assert poll.poll_source(source, state) == []
+    health = state['eu']['health']
+    assert health['needs_manual_check'] is True
+    assert health['manual_check_url'] == 'https://site.example/page'
+    assert 'HTTP 403' in health['last_error']
+
+    # Other failures are not reported as refusals.
+    def missing(req, timeout=60):
+        raise urllib.error.HTTPError(req.full_url, 404, 'Not Found', {}, io.BytesIO(b''))
+
+    monkeypatch.setattr(poll.urllib.request, 'urlopen', missing)
+    poll.poll_source(source, state)
+    assert 'needs_manual_check' not in state['eu']['health']
+
+    monkeypatch.setattr(poll.urllib.request, 'urlopen', refuse)
+    poll.poll_source(source, state)
+    monkeypatch.setattr(poll, 'fetch_bytes', lambda url, timeout=30: RSS)
+    poll.poll_source(source, state)
+    health = state['eu']['health']
+    assert health['consecutive_failures'] == 0
+    assert 'needs_manual_check' not in health and 'manual_check_url' not in health
+
+
 def test_registry_is_well_formed():
     ids = [s['id'] for s in poll.SOURCES]
     assert len(ids) == len(set(ids))
     for s in poll.SOURCES:
         assert s['type'] in poll.POLLERS
         assert s['url'].startswith('https://')
+        assert s.get('manual_check_url', 'https://').startswith('https://')
         if s['type'] == 'html_links':
             assert s['link_pattern'].startswith('^/')
 

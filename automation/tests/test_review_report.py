@@ -63,6 +63,26 @@ def test_failed_source_with_no_items_does_not_claim_clean(tmp_path):
     assert "Review is incomplete" in report
 
 
+def test_refused_source_asks_for_manual_check(tmp_path):
+    health = {
+        "eu_ai_office": {"consecutive_failures": 1, "needs_manual_check": True,
+                         "last_error": "blocked: HTTP 403 Forbidden",
+                         "manual_check_url": "https://site.example/ai-office"},
+        "nist": {"consecutive_failures": 1, "last_error": "timeout"},
+    }
+    report = generate_report("2099-01-01", [], [], {}, health, docs_dir=tmp_path)
+    manual, _, failed = report.partition("Sources that failed to poll")
+    assert "check by hand" in manual
+    assert "eu\\_ai\\_office" in manual and "https://site.example/ai-office" in manual
+    assert "nist" in failed and "eu\\_ai\\_office" not in failed
+    assert "Review is incomplete" in report
+
+    only_blocked = {"eu_ai_office": health["eu_ai_office"]}
+    report = generate_report("2099-01-01", [], [], {}, only_blocked, docs_dir=tmp_path)
+    assert "Review is incomplete" in report
+    assert "No action recommended for the classified items" not in report
+
+
 def test_existing_framework_edition_is_visible_without_suppressing_action(tmp_path):
     entry_dir = tmp_path / "domain-a-technical"
     entry_dir.mkdir()

@@ -122,6 +122,9 @@ def generate_report(
     missing = [item for item in all_items if item["id"] not in classified_ids]
     failing = {sid: health for sid, health in (source_health or {}).items()
                if health.get("consecutive_failures")}
+    blocked = {sid: health for sid, health in failing.items()
+               if health.get("needs_manual_check")}
+    failing = {sid: health for sid, health in failing.items() if sid not in blocked}
     lines = [
         f"# Source monitoring report — {text(run_date)}", "",
         f"**Items received:** {len(all_items)}  ",
@@ -134,6 +137,15 @@ def generate_report(
         "**Sources with new items:**",
     ]
     lines += [f"- {text(sid)}: {count} new item(s)" for sid, count in sorted(source_counts.items())]
+    if blocked:
+        lines += ["", "**Sources not checked this run — check by hand:**"]
+        for sid, health in sorted(blocked.items()):
+            lines.append(
+                f"- {text(sid)}: the site refused the monitor ({text(health.get('last_error'))}; "
+                f"{health['consecutive_failures']} run(s) in a row). Open "
+                f"{link('the page', health.get('manual_check_url'))} and look for new items "
+                "since the last report."
+            )
     if failing:
         lines += ["", "**Sources that failed to poll this run:**"]
         for sid, health in sorted(failing.items()):
@@ -177,7 +189,7 @@ def generate_report(
                 lines += ["", "</details>"]
             lines.append("")
 
-    if not action_items and not missing and not failing:
+    if not action_items and not missing and not failing and not blocked:
         lines += ["## No action recommended for the classified items", ""]
     elif not action_items:
         lines += ["Review is incomplete; this report does not establish that "
