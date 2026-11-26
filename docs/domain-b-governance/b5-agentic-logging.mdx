@@ -98,7 +98,7 @@ Technology · Security · Legal / Compliance · Risk
 |---------|-------|--------|-------------------|-------------------|
 | Agentic action log design | Technology | Medium | <span className="required-badge required-golive">Required</span> | Log schema captures: session ID, agent ID, timestamp, input context hash, tool called, parameters, response, downstream action. Documented. |
 | Chain-level correlation in multi-agent systems | Technology | Medium | <span className="required-badge required-golive">Required</span> | Correlation ID assigned at workflow start, propagated through all inter-agent calls. Any action traceable to originating input. |
-| Log retention meeting regulatory requirements | Technology | Low | <span className="required-badge required-golive">Required</span> | Retention period documented and enforced: minimum 6 months for EU AI Act high-risk AI; 12 months recommended for APRA-regulated entities. |
+| Log retention meeting regulatory requirements | Technology | Low | <span className="required-badge required-golive">Required</span> | Retention period documented and enforced: minimum 6 months for EU AI Act high-risk AI; APRA sets no fixed period, so APRA-regulated entities should document one that supports incident investigation. |
 | Agentic incident investigation procedure | Security | Low | <span className="required-badge required-post">Post-launch</span> | Documented procedure for investigating agentic system failures. Tested at least annually with a simulated incident. |
 
 ### Regulatory obligations
@@ -139,7 +139,7 @@ This enables: (1) reconstruction of the complete causal chain for any action; (2
 
 In practice, implement using distributed tracing standards (OpenTelemetry is recommended) so that agentic workflow traces can be correlated with application infrastructure traces.
 
-**Jurisdiction notes:** EU — EU AI Act Art. 12 | AU — APRA CPS 234 | US — NIST CSF IDENTIFY.AM
+**Jurisdiction notes:** EU — EU AI Act Art. 12 | AU — APRA CPS 234 | US — NIST CSF 2.0 ID.AM (Asset Management)
 
 ---
 
@@ -149,8 +149,8 @@ In practice, implement using distributed tracing standards (OpenTelemetry is rec
 
 Set retention periods based on the most stringent applicable regulatory requirement:
 - EU AI Act high-risk AI deployers: minimum 6 months (Art. 26(6))
-- APRA-regulated entities: minimum 12 months recommended (CPS 234)
-- GDPR-subject systems processing personal data: 12 months minimum, subject to data minimisation review
+- APRA-regulated entities: CPS 234 sets no retention period; choose and document one that supports incident investigation (12 months is a common internal choice)
+- GDPR-subject systems processing personal data: GDPR sets no minimum; keep logs only as long as needed for their purpose (storage limitation, Art. 5(1)(e))
 - Financial services: align with applicable transaction log retention requirements (typically 5–7 years)
 
 Document the retention policy for each agentic system in its AI Register entry. Where privacy constraints limit what can be retained (e.g. logs referencing personal data), implement hashed context references rather than raw content, with a documented key management process for resolution.
@@ -167,7 +167,7 @@ Document a step-by-step procedure for investigating agentic system failures. The
 
 Test the procedure at least annually with a simulated incident — "the agent sent an email it should not have sent; reconstruct what happened."
 
-**Jurisdiction notes:** EU — EU AI Act Art. 26(5) — deployers must cooperate with market surveillance; requires investigation capability | AU — APRA CPS 234 | AU — Privacy Act — notifiable data breach scheme requires timely investigation
+**Jurisdiction notes:** EU — EU AI Act Art. 26(5) — deployers must monitor the system and report serious incidents; Art. 26(12) — deployers must cooperate with competent authorities, which needs investigation capability | AU — APRA CPS 234 | AU — Privacy Act — notifiable data breach scheme requires timely investigation
 
 ---
 

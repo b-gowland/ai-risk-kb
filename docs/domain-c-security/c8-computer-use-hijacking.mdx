@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 
 <div style={{display:'flex', gap:'0.5rem', flexWrap:'wrap', marginBottom:'1.5rem'}}>
   <span className="severity-badge severity-high">High severity</span>
-  <span className="framework-chip">MITRE ATLAS v5.3</span>
+  <span className="framework-chip">MITRE ATLAS AML.T0112.000 Machine Compromise: Local AI Agent</span>
   <span className="framework-chip">MITRE ATLAS AML.T0134 AI Targeted Cloaking</span>
   <span className="framework-chip">OWASP LLM03:2026 Excessive Agency</span>
   <span className="framework-chip">NIST AI 600-1</span>
@@ -50,7 +50,7 @@ Computer-use agent deployments require specific pre-launch controls beyond those
   </TabItem>
   <TabItem value="analyst" label="Security Analyst">
 
-Computer-use agents expand the injection surface from documents to the entire rendered web. Your controls must address: (1) environmental isolation — the agent should not run with production credentials or access to sensitive systems; (2) allowlisted domains — the agent should only be permitted to browse domains relevant to its task; (3) action restrictions — irreversible actions (form submission, file download, clipboard access) require human approval; (4) screenshot logging — complete visual record of agent activity for forensics; (5) MITRE ATLAS v5.3 documents computer-use hijacking via injected instructions as a named technique. Red team this before any deployment.
+Computer-use agents expand the injection surface from documents to the entire rendered web. Your controls must address: (1) environmental isolation — the agent should not run with production credentials or access to sensitive systems; (2) allowlisted domains — the agent should only be permitted to browse domains relevant to its task; (3) action restrictions — irreversible actions (form submission, file download, clipboard access) require human approval; (4) screenshot logging — complete visual record of agent activity for forensics; (5) MITRE ATLAS records real cases of computer-use agents hijacked this way and covers the attack as Machine Compromise: Local AI Agent (AML.T0112.000). Red team this before any deployment.
 
   </TabItem>
 </Tabs>
@@ -70,7 +70,7 @@ Computer-use agents (also called GUI agents or browser agents) interact with com
 - Text rendered in UI elements, tooltips, notifications
 - Content in form fields, search results, or dynamically loaded content
 
-MITRE ATLAS v5.3 documents computer-use agent hijacking as a named technique. The attack is particularly effective because:
+MITRE ATLAS covers computer-use agent hijacking as Machine Compromise: Local AI Agent (AML.T0112.000, added in v5.5, March 2026). The attack is particularly effective because:
 1. The agent's task context makes visiting the target webpage appear legitimate
 2. The agent has real system access to carry out injected instructions
 3. The agent cannot cryptographically verify the legitimacy of instructions it encounters
@@ -245,13 +245,13 @@ class SandboxedBrowserAgent:
         })
 ```
 
-**Tools:** Playwright (browser automation with sandboxing) · Selenium Grid (isolated browser instances) · Docker Desktop (containerised agent execution) · Anthropic computer-use API · MITRE ATLAS v5.3 technique documentation
+**Tools:** Playwright (browser automation with sandboxing) · Selenium Grid (isolated browser instances) · Docker Desktop (containerised agent execution) · Anthropic computer-use API · MITRE ATLAS technique and case study pages (atlas.mitre.org)
 
 ---
 
 ## Incident examples
 
-**Computer-use agent hijacking via web content (ATLAS v5.3, 2025):** MITRE ATLAS v5.3 documented computer-use agent hijacking as a named technique — where an AI agent operating a browser encounters a webpage containing injected instructions in visible text, hidden HTML, or image content, and executes those instructions using its real system permissions. The technique is distinguished from conventional web-based injection by the agent's ability to take physical-layer actions (keyboard, mouse, file system) rather than only producing text outputs. Source: MITRE ATLAS v5.3.0 (2025).
+**Computer-use agent hijacking via web content (ATLAS v5.3 and v5.5, 2026):** MITRE ATLAS v5.3 (January 2026) added a case study of indirect prompt injection that led Claude's computer-use agent to destroy data (AML.CS0046), and v5.5 (March 2026) added one on hijacking computer-use agents with ClickFix-style pages (AML.CS0055). In both, where an AI agent operating a browser encounters a webpage containing injected instructions in visible text, hidden HTML, or image content, and executes those instructions using its real system permissions. The technique is distinguished from conventional web-based injection by the agent's ability to take physical-layer actions (keyboard, mouse, file system) rather than only producing text outputs. Sources: MITRE ATLAS v5.3.0 (January 2026), v5.5.0 (March 2026).
 
 **Research demonstration: hidden instruction in webpage causes agent to exfiltrate session data (2024–2025):** Security researchers demonstrated that browser-operating agents can be redirected by instructions embedded in webpages to navigate to attacker-controlled sites, enter session tokens into forms, or download files, without the user observing the deviation from the intended task. The agent's task context makes the initial navigation appear legitimate; the injected instruction takes over once the target page loads. Source: agentic security research documentation, 2024–2025.
 

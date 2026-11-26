@@ -26,12 +26,13 @@ meta:
   note: "Prototype seed scoped to IDs actually cited across the KB and training corpora."
 
 mitre-atlas:
-  source: "MITRE ATLAS data v2026.09 (github.com/mitre-atlas/atlas-data, dist/ATLAS-latest.yaml, release 2026-09-14 per CHANGELOG). Calendar-versioned monthly releases since v2026.05 (May 2026)."
-  verified_on: "2026-10-02"
+  source: "MITRE ATLAS data v2026.10 (github.com/mitre-atlas/atlas-data, dist/v6/ATLAS-2026.10.yaml, release 2026-10-28 per CHANGELOG). Calendar-versioned monthly releases since v2026.05 (May 2026). Release dates of the v5.x series (from CHANGELOG): v5.2.0 2025-12-24, v5.3.0 2026-01-30, v5.4.0 2026-02-05, v5.5.0 2026-03-30, v5.6.0 2026-04-30."
+  verified_on: "2026-11-26"
   ids:
     AML.T0005:
-      name: "Create Proxy AI Model"
-      aliases: ["Create Proxy ML Model"]
+      name: "Replicate AI Model Behavior"
+      aliases: ["Create Proxy AI Model", "Create Proxy ML Model"]
+      note: "Renamed from 'Create Proxy AI Model' in ATLAS v2026.10."
       status: verified
     AML.T0020:
       name: "Training Data Poisoning"
@@ -56,6 +57,36 @@ mitre-atlas:
       name: null
       status: retired
       note: "RESOLVED 2026-07-10: nonexistent ID. c2-prompt-injection cited AML.T0054.003 for indirect injection via MCP/tool responses; correct technique is AML.T0051.001 (LLM Prompt Injection: Indirect). Corrected in the entry. Grounding: OWASP GenAI LLM01 cross-references and MISP ATLAS galaxy both list AML.T0051 sub-techniques .000 Direct / .001 Indirect / .002 Triggered; AML.T0054 is LLM Jailbreak with no .003. Matches ai-risk-training fix (commit e18bed5)."
+    AML.T0099:
+      name: "AI Agent Tool Data Poisoning"
+      note: "Added in ATLAS v5.2.0 (2025-12-24). Verified 2026-11-26 against ATLAS-2026.10.yaml."
+      status: verified
+    AML.T0109:
+      name: "AI Supply Chain Rug Pull"
+      note: "Added in ATLAS v5.5.0 (2026-03-30)."
+      status: verified
+    AML.T0111:
+      name: "AI Supply Chain Reputation Inflation"
+      note: "Added in ATLAS v5.5.0 (2026-03-30)."
+      status: verified
+    AML.T0112:
+      name: "Machine Compromise"
+      note: "Added in ATLAS v5.5.0 (2026-03-30). Compromise of a host by exploiting or manipulating its AI-enabled components."
+      status: verified
+    AML.T0112.000:
+      name: "Machine Compromise: Local AI Agent"
+      aliases: ["Local AI Agent"]
+      note: "Added in ATLAS v5.5.0 (2026-03-30); covers computer-use agents and AI-driven browsers."
+      status: verified
+    AML.T0115.002:
+      name: "Publish Poisoned AI Artifacts: AI Agent Tools"
+      aliases: ["Publish Poisoned AI Agent Tool", "Publish Poisoned AI Agent Tools"]
+      note: "Previously 'Publish Poisoned AI Agent Tool' (AML.T0104, added v5.4.0 2026-02-05); merged into AML.T0115 in v2026.07."
+      status: verified
+    AML.T0143:
+      name: "LLM Prompt Propagation"
+      note: "Added in ATLAS v2026.10 (2026-10-28)."
+      status: verified
     AML.T0110:
       name: "AI Agent Tool Poisoning"
       note: "Added in ATLAS v5.5.0 (2026-03-30); sub-techniques .000-.002 added in v2026.07."

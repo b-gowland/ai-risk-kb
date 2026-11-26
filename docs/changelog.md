@@ -24,6 +24,15 @@ All material changes to the knowledge base are documented here. Changes are vers
 ### Added — checks
 - `tools/incident-qa/check_incidents.py` flags aphorism-style closers and incident examples that don't end with a dated source. Runs in CI as a warning: 2 closers and 53 of 107 paragraphs without a closing dated source at the time it was added
 
+### Corrected — monthly maintenance triage (#81)
+Corrections from the 1 November automated check, each confirmed against the primary source. The full record, including the items rejected and deferred, is in `automation/reviews/2026-11-01-monthly-triage.md`.
+- **MITRE ATLAS (B4, C1, C2, C5, C6, C7, C8):** release years corrected (v5.3 to v5.6 came out between January and April 2026, not 2025); claims that v5.3 added "named techniques" for MCP exfiltration and computer-use hijacking now describe the case studies it added; C6, C7 and C8 chips now cite technique IDs (AML.T0115.002, AML.T0143, AML.T0112.000) in place of "ATLAS v5.3"; C7 cites LLM Prompt Propagation (AML.T0143, October 2026); C5 Machine Compromise described as ATLAS defines it; C2 jailbreak entry dated to 2023
+- **OWASP:** C1 chip corrected to ML02 (Data Poisoning Attack); ML01 is Input Manipulation
+- **EU AI Act:** Art. 15(5), not Art. 9, names data poisoning (C1); Art. 10 paragraph numbers and the move of Art. 10(5) to Art. 4a (C1, D1); log retention cited to Arts 19 and 26(6) (C2); Art. 9(2) for continuous review (D1); Art. 21 for cooperation with authorities (E1); Art. 26(2) and 26(12) wording (B1, B5); Art. 25 and 43(4) claims aligned with the text (B1, B4, F3); Art. 11(1) for technical documentation (B2); Art. 53 copyright duties apply to all GPAI providers (D3); prohibited practices dated with penalties from August 2025 (B2)
+- **APRA:** CPS 234 and CPS 230 paragraph numbers corrected (B1, B2, C1, C5, G1); CPS 234 no longer said to require awareness training, an annual attestation, least privilege or a 12-month log retention (B5, C4, C5, C6, E3, F1, G4); CPS 230 no longer said to require Board approval of outsourcing (B2); G4 describes the 30 April 2026 letter as written
+- **Other:** NIST CSF identifiers given in CSF 2.0 form (B5, C2, C6, C7); NIST AI 600-1 no longer said to cover federated learning, minimal footprint or kill switches (C1, G4); NIST IR 8596 described as a preliminary draft (C1); DORA concentration risk cited to Art. 29 and continuity testing to Art. 11(6) (G1); modern award consultation clauses set no 28-day period (G3); FinCEN advisory number, ASIC RG 274 and SEC rule dates corrected (C4, C5); SEC rules no longer said to require AI risk disclosure (B1); EO 14110 shown as revoked in January 2025 (E2, G4); B2 describes the 30 April 2026 APRA letter as written; *Google v. Oracle* outcome (D3); Gender Shades page numbers (D1, E1); federal CSAM definition (E2)
+- Citation ledger: ATLAS refreshed to v2026.10 (AML.T0005 renamed Replicate AI Model Behavior); AML.T0099, T0109, T0111, T0112, T0112.000, T0115.002 and T0143 added
+
 ## [1.5.2] — November 2026
 
 ### Added — incidents from source monitoring (#79)
