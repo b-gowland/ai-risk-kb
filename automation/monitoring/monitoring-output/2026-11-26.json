@@ -1,0 +1,562 @@
+{
+  "run_date": "2026-11-26",
+  "items_reviewed": 25,
+  "items_received": 25,
+  "items": [
+    {
+      "source_id": "aiid",
+      "type": "rss_entry",
+      "id": "5dafad980e0d0d3778f2bd5bdd63bb70",
+      "title": "Claude Code settings.local.json Secrets: 17 months of exposure on GitHub, & Docker Hub",
+      "url": "https://blog.gitguardian.com/claude-code-settings-local-json-secrets-docker-hub/",
+      "body_excerpt": "TL;DR 31,088 secrets, 5,343 valid: GitGuardian found 31,088 distinct secrets in Claude Code\u2019s .claude/settings.local.json on public GitHub, across 23,276 repositories, and 5,343 of them worked when we detected them. \u201cYes, and don\u2019t ask ag ... (https://incidentdatabase.ai/cite/1846#8384)",
+      "release_date": "2026-11-23"
+    },
+    {
+      "source_id": "aiid",
+      "type": "rss_entry",
+      "id": "252fc72618081a68be6ba4da9b421545",
+      "title": "Coding Agents Copy Your Secrets to a Hidden File. Thousands Are on GitHub",
+      "url": "https://apiiro.com/blog/coding-agents-leaking-secrets-github-dont-ask-again",
+      "body_excerpt": "Update, November 8: Anthropic's Head of Claude Code responds. Boris Cherny responded on Hacker News on November 7 and took part in the discussion through the weekend. He said the team is \"looking into what we can do to prevent this,\" named ... (https://incidentdatabase.ai/cite/1846#8385)",
+      "release_date": "2026-11-23"
+    },
+    {
+      "source_id": "aiid",
+      "type": "rss_entry",
+      "id": "eba8b5f88216880842823cefaaad3d91",
+      "title": "Claude Code\u2019s \u2018don\u2019t ask again\u2019 button has a secrets-spilling problem",
+      "url": "https://www.csoonline.com/article/4247336/claude-codes-dont-ask-again-button-has-a-secrets-spilling-problem.html",
+      "body_excerpt": "A configuration file meant to store local command permissions on Anthropic\u2019s Claude Code is exposing thousands of API keys, database credentials and other secrets, according to findings by GitGuardian. The code security firm identified 31, ... (https://incidentdatabase.ai/cite/1846#8386)",
+      "release_date": "2026-11-23"
+    },
+    {
+      "source_id": "aiid",
+      "type": "rss_entry",
+      "id": "186635ab39d4e66487060e4c7599e458",
+      "title": "Waymo pauses robotaxi service amid San Francisco storms: \u2018We were kind of just stuck there\u2019",
+      "url": "https://www.sfchronicle.com/sf/article/waymo-service-paused-storm-rain-22537988.php",
+      "body_excerpt": "Waymo suspended its autonomous ride-hail service Wednesday morning, provoking complaints that ripped through social media with nearly as much ferocity as a super El Ni\u00f1o pummeling the Bay Area. \u201cWe\u2019ve paused for now due to weather,\u201d the co ... (https://incidentdatabase.ai/cite/1835#8357)",
+      "release_date": "2026-11-21"
+    },
+    {
+      "source_id": "aiid",
+      "type": "rss_entry",
+      "id": "acb2db24354d09fce5943e2096e13ba6",
+      "title": "Bay Area Waymo robotaxi service suspended amid storm, flooding",
+      "url": "https://www.cbsnews.com/sanfrancisco/news/waymo-service-pause-bay-area-storm-flooding/",
+      "body_excerpt": "Heavy rain and localized flooding in the Bay Area prompted Waymo to suspend its driverless vehicle service on Wednesday, the company announced. The Waymo app indicated at around 11 a.m. that its robotaxi service would be paused until road ... (https://incidentdatabase.ai/cite/1835#8358)",
+      "release_date": "2026-11-21"
+    },
+    {
+      "source_id": "aiid",
+      "type": "rss_entry",
+      "id": "d8de9380cd1df8d95654f9fd5722b05b",
+      "title": "Waymo resumes service as more storms loom over Bay Area",
+      "url": "https://www.sfchronicle.com/sf/article/waymo-resumes-service-22539972.php",
+      "body_excerpt": "Waymo resumed service in the Bay Area on Thursday morning after a temporary stoppage Wednesday as robotaxis struggled to navigate battering storms. The restoration at 9 a.m. came as rain abated and wan sunlight pressed through cloud banks ... (https://incidentdatabase.ai/cite/1835#8359)",
+      "release_date": "2026-11-21"
+    },
+    {
+      "source_id": "aiid",
+      "type": "rss_entry",
+      "id": "2da9db829a7783389810a1f2cf99842d",
+      "title": "Tech outage wave reaches US government; Trump says all is 'fine'",
+      "url": "https://www.reuters.com/business/aerospace-defense/trump-shrugs-off-spate-us-outages-says-things-like-that-happen-2026-11-17/",
+      "body_excerpt": "WASHINGTON, Nov 17 (Reuters) - Technology outages that shut down email for many companies and grounded thousands of flights over the past few days extended to the US National Security Agency on Tuesday, as President Donald Trump's administr ... (https://incidentdatabase.ai/cite/1836#8360)",
+      "release_date": "2026-11-21"
+    },
+    {
+      "source_id": "aiid",
+      "type": "rss_entry",
+      "id": "8e4c58f0ab146ff452c1bfd4cec8c702",
+      "title": "National Security Agency network outage linked to software vulnerability",
+      "url": "https://www.cbsnews.com/news/national-security-agency-network-outage-software-vulnerability/",
+      "body_excerpt": "The National Security Agency's network outage Tuesday has been linked to an urgent patching of vulnerabilities in PHP, the programming language that powers the majority of all websites, multiple sources told CBS News. The NSA's internal ne ... (https://incidentdatabase.ai/cite/1836#8361)",
+      "release_date": "2026-11-21"
+    },
+    {
+      "source_id": "aiid",
+      "type": "rss_entry",
+      "id": "680706b6ed3dce210a743ac07c82b4e9",
+      "title": "NSA statement on network issues",
+      "url": "https://www.nsa.gov/Press-Room/Press-Releases-Statements/Press-Release-View/Article/4650245/nsa-statement-on-network-issues/",
+      "body_excerpt": "The National Security Agency experienced temporary degradation during scheduled routine maintenance. While some internal systems were affected, mission-critical capabilities remain fully operational and our ability to defend national securi ... (https://incidentdatabase.ai/cite/1836#8362)",
+      "release_date": "2026-11-21"
+    },
+    {
+      "source_id": "aiid",
+      "type": "rss_entry",
+      "id": "c7547dd94c6c8bf471efc900586996c5",
+      "title": "Jay Clayton addresses concerns amid widespread tech outages",
+      "url": "https://www.foxbusiness.com/technology/jay-clayton-addresses-concerns-amid-widespread-tech-outages",
+      "body_excerpt": "Director of National Intelligence Jay Clayton said Tuesday that officials see no signs of a coordinated cyberattack or state-sponsored activity behind a wave of technology outages, pointing instead to institutions installing security patche ... (https://incidentdatabase.ai/cite/1836#8363)",
+      "release_date": "2026-11-21"
+    },
+    {
+      "source_id": "aiid",
+      "type": "rss_entry",
+      "id": "4450b3b93eb1d50ecfeb1fcd19c7500d",
+      "title": "Exclusive: Highly classified US national security communications network goes down, sources say",
+      "url": "https://www.cnn.com/2026/11/17/politics/highly-classified-national-security-communications-network-goes-down",
+      "body_excerpt": "The highly classified network that the National Security Agency uses for its internal communications is down, according to six people familiar with the matter. The NSA closed its campus to most employees on Tuesday night, reverting to essen ... (https://incidentdatabase.ai/cite/1836#8364)",
+      "release_date": "2026-11-21"
+    },
+    {
+      "source_id": "aiid",
+      "type": "rss_entry",
+      "id": "81e5110647ee2459550069073c8ab73b",
+      "title": "Outage at NSA\u2019s highly classified communications network has been resolved, sources say",
+      "url": "https://keyt.com/politics/cnn-us-politics/2026/11/20/outage-at-nsas-highly-classified-communications-network-has-been-resolved/",
+      "body_excerpt": "(CNN) \u2014 The outage of a key internal communications network at the National Security Agency that has kept large swaths of employees locked out for more than three days has now been resolved, according to a source familiar with the matter an ... (https://incidentdatabase.ai/cite/1836#8365)",
+      "release_date": "2026-11-21"
+    },
+    {
+      "source_id": "aiid",
+      "type": "rss_entry",
+      "id": "05bbd36be62c1c7f8e76c58d2f1de6e6",
+      "title": "NSA outage hits key facility for Middle East intel operations as agency resorts to workarounds, sources say",
+      "url": "https://abc17news.com/politics/national-politics/cnn-us-politics/2026/11/18/nsa-outage-disrupts-key-intel-hub-that-supports-middle-east-intelligence-and-operations-sources-say/",
+      "body_excerpt": "(CNN) \u2014 The sweeping IT disruptions that have kept large swaths of the National Security Agency\u2019s workforce at home for three days has also impacted operations at a critical Georgia facility that supports signals intelligence and cybersecur ... (https://incidentdatabase.ai/cite/1836#8366)",
+      "release_date": "2026-11-21"
+    },
+    {
+      "source_id": "aiid",
+      "type": "rss_entry",
+      "id": "31712cfdd191d239c93124b5bc7745dc",
+      "title": "NSA resumes normal operations following internal network disruptions",
+      "url": "https://therecord.media/nsa-resumes-normal-operations-following-internal-disruptions",
+      "body_excerpt": "The National Security Agency has mostly returned to business as usual after patches to a commonly-used programming language caused an internal communications network to crash for much of the week. An NSA spokesperson said they \u201ccan confirm ... (https://incidentdatabase.ai/cite/1836#8367)",
+      "release_date": "2026-11-21"
+    },
+    {
+      "source_id": "aiid",
+      "type": "rss_entry",
+      "id": "4f133d577e6caaddaf78b786e8663703",
+      "title": "Security officials tell Congress tech outages are not malicious",
+      "url": "https://www.nextgov.com/cybersecurity/2026/11/security-officials-tell-congress-tech-outages-are-not-malicious/417312/",
+      "body_excerpt": "Officials on Wednesday sought to assuage fears about foreign adversaries accessing various digital platforms amid a series of major tech outages that affected online services over the last week. Homeland Security Secretary Markwayne Mullin ... (https://incidentdatabase.ai/cite/1836#8368)",
+      "release_date": "2026-11-21"
+    },
+    {
+      "source_id": "mitre_atlas",
+      "type": "rss_entry",
+      "id": "2d9588119ee4faa0e2f574c0a7329d74",
+      "title": "v2026.10",
+      "url": "https://github.com/mitre-atlas/atlas-data/releases/tag/v2026.10",
+      "body_excerpt": "Content v2026.10 This version of ATLAS data contains 1 matrix, 16 tactics, 129 techniques, 92 sub-techniques, 44 mitigations, 77 case studies, 44 entities, and 37 software records. Techniques Added new techniques Develop Capabilities: Malware Outputs from AI Models Collection behavior separated out from Exfiltration via AI Inference API Exfiltration via AI User Interface Training Data Information from AI Models Training Data Information from AI Models: Infer Membership moved from \"Exfiltration via AI Inference API: Infer Training Data Membership\" (AML.T0024.000) Training Data Information from AI Models: Infer Properties Training Data Information from AI Models: Invert AI Model moved from \"Exfiltration via AI Inference API: Invert AI Model\" (AML.T0024.001) Training Data Information from AI ",
+      "release_date": "2026-10-28"
+    },
+    {
+      "source_id": "mitre_atlas",
+      "type": "rss_entry",
+      "id": "aebc06a264642e8cde24ffc2d6fdcb2a",
+      "title": "v6.1.0",
+      "url": "https://github.com/mitre-atlas/atlas-data/releases/tag/v6.1.0",
+      "body_excerpt": "GitHub release on 2026-10-28",
+      "release_date": "2026-10-28"
+    },
+    {
+      "source_id": "mit_airr",
+      "type": "blog_post",
+      "id": "/blog/the-paris-call-calls-for-epidemiology",
+      "title": "MIT AI Risk Repository: Define, detect, report, coordinate: what epidemiology offers the Paris Call",
+      "url": "https://airisk.mit.edu/blog/the-paris-call-calls-for-epidemiology",
+      "body_excerpt": "Priority Risks Existential Risks All Risks Incidents Responses Companies Mitigations Governance Navigator About Blog Define, detect, report, coordinate: what epidemiology offers the Paris Call November 18, 2026",
+      "release_date": "2026-11-20"
+    },
+    {
+      "source_id": "uk_aisi",
+      "type": "rss_entry",
+      "id": "a9e1aa60b2c4014ce5fce0711b2004b3",
+      "title": "Attack policy selection can make monitor evaluations misleading",
+      "url": "https://www.aisi.gov.uk/blog/attack-policy-selection-can-make-monitor-evaluations-misleading",
+      "body_excerpt": "Our case study reveals how one component of evaluations can undermine claims that monitors are reliable",
+      "release_date": "2026-11-23"
+    },
+    {
+      "source_id": "eu_ai_office",
+      "type": "new_link",
+      "id": "https://digital-strategy.ec.europa.eu/en/news/commission-welcomes-european-citizens-panel-recommendations-democratic-resilience",
+      "title": "Commission welcomes European Citizens' Panel recommendations on Democratic Resilience",
+      "url": "https://digital-strategy.ec.europa.eu/en/news/commission-welcomes-european-citizens-panel-recommendations-democratic-resilience",
+      "body_excerpt": "",
+      "release_date": ""
+    },
+    {
+      "source_id": "eu_ai_office",
+      "type": "new_link",
+      "id": "https://digital-strategy.ec.europa.eu/en/news/commission-hosts-apply-ai-summit-boost-europes-ai-innovation-and-uptake",
+      "title": "Commission hosts Apply AI Summit to boost Europe\u2019s AI innovation and uptake",
+      "url": "https://digital-strategy.ec.europa.eu/en/news/commission-hosts-apply-ai-summit-boost-europes-ai-innovation-and-uptake",
+      "body_excerpt": "",
+      "release_date": ""
+    },
+    {
+      "source_id": "eu_ai_office",
+      "type": "new_link",
+      "id": "https://digital-strategy.ec.europa.eu/en/events/alliance-language-technologies-edic-connect-university",
+      "title": "The Alliance for Language Technologies EDIC | CONNECT University",
+      "url": "https://digital-strategy.ec.europa.eu/en/events/alliance-language-technologies-edic-connect-university",
+      "body_excerpt": "",
+      "release_date": ""
+    },
+    {
+      "source_id": "eu_ai_office",
+      "type": "new_link",
+      "id": "https://digital-strategy.ec.europa.eu/en/news/commission-launches-education-and-skills-package-tackle-declining-basic-skills-rapid-digital-change",
+      "title": "Commission launches Education and Skills package to tackle declining basic skills, rapid digital change and teacher shortages",
+      "url": "https://digital-strategy.ec.europa.eu/en/news/commission-launches-education-and-skills-package-tackle-declining-basic-skills-rapid-digital-change",
+      "body_excerpt": "",
+      "release_date": ""
+    },
+    {
+      "source_id": "eu_ai_office",
+      "type": "new_link",
+      "id": "https://digital-strategy.ec.europa.eu/en/events/web-summit-2026",
+      "title": "Web Summit 2026",
+      "url": "https://digital-strategy.ec.europa.eu/en/events/web-summit-2026",
+      "body_excerpt": "",
+      "release_date": ""
+    },
+    {
+      "source_id": "apra",
+      "type": "new_link",
+      "id": "https://www.apra.gov.au/news-and-publications/apra-secures-8-million-penalty-against-bendigo-and-adelaide-bank-over-cyber",
+      "title": "APRA secures $8 million penalty against Bendigo and Adelaide Bank over cyber incident",
+      "url": "https://www.apra.gov.au/news-and-publications/apra-secures-8-million-penalty-against-bendigo-and-adelaide-bank-over-cyber",
+      "body_excerpt": "",
+      "release_date": ""
+    }
+  ],
+  "failed_batches": 0,
+  "classifications": [
+    {
+      "item_id": "5dafad980e0d0d3778f2bd5bdd63bb70",
+      "item_title": "Claude Code settings.local.json Secrets: 17 months of exposure on GitHub, & Docker Hub",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "D2",
+          "confidence": "medium",
+          "rationale": "Agent tooling persisted credentials/secrets to a file that was then publicly exposed, an agent-driven data exfiltration/exposure vector."
+        },
+        {
+          "kb_id": "G5",
+          "confidence": "medium",
+          "rationale": "Agent's 'don't ask again' permission persistence writes secrets into config files beyond what users intended."
+        },
+        {
+          "kb_id": "B5",
+          "confidence": "low",
+          "rationale": "Agent-written artifacts containing sensitive data were not visible or audited by users."
+        }
+      ],
+      "evidence_quote": "31,088 distinct secrets in Claude Code's .claude/settings.local.json on public GitHub",
+      "recommended_action": "Add this AIID incident (1846) as a real-world example to D2 and G5 on coding agents persisting secrets in local permission files that get committed publicly."
+    },
+    {
+      "item_id": "252fc72618081a68be6ba4da9b421545",
+      "item_title": "Coding Agents Copy Your Secrets to a Hidden File. Thousands Are on GitHub",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "D2",
+          "confidence": "medium",
+          "rationale": "Same incident: agents copy secrets into hidden files that end up on public GitHub."
+        },
+        {
+          "kb_id": "G5",
+          "confidence": "medium",
+          "rationale": "Agent behaviour exceeded what users expected when approving commands."
+        }
+      ],
+      "evidence_quote": "Coding Agents Copy Your Secrets to a Hidden File. Thousands Are on GitHub",
+      "recommended_action": "Cite as a corroborating source for the incident 1846 update to D2 and G5; note vendor response."
+    },
+    {
+      "item_id": "eba8b5f88216880842823cefaaad3d91",
+      "item_title": "Claude Code's 'don't ask again' button has a secrets-spilling problem",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "D2",
+          "confidence": "medium",
+          "rationale": "Exposure of API keys and database credentials through an agent configuration file."
+        },
+        {
+          "kb_id": "G5",
+          "confidence": "medium",
+          "rationale": "Persisted permission approvals illustrate agent autonomy/oversight design gaps."
+        }
+      ],
+      "evidence_quote": "exposing thousands of API keys, database credentials and other secrets",
+      "recommended_action": "Add as a third source on the same incident under D2 and G5; no separate entry needed."
+    },
+    {
+      "item_id": "186635ab39d4e66487060e4c7599e458",
+      "item_title": "Waymo pauses robotaxi service amid San Francisco storms: 'We were kind of just stuck there'",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "A3",
+          "confidence": "medium",
+          "rationale": "Autonomous system struggled with adverse weather conditions, an edge-case brittleness failure."
+        },
+        {
+          "kb_id": "G1",
+          "confidence": "low",
+          "rationale": "Service suspension shows operational dependency on a single AI provider."
+        }
+      ],
+      "evidence_quote": "We've paused for now due to weather",
+      "recommended_action": "Add the Waymo storm suspension (incident 1835) as an example in A3, optionally noting dependency impact in G1."
+    },
+    {
+      "item_id": "acb2db24354d09fce5943e2096e13ba6",
+      "item_title": "Bay Area Waymo robotaxi service suspended amid storm, flooding",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "A3",
+          "confidence": "medium",
+          "rationale": "Robotaxi service halted due to rain and flooding conditions."
+        }
+      ],
+      "evidence_quote": "prompted Waymo to suspend its driverless vehicle service",
+      "recommended_action": "Cite as a corroborating source for the A3 Waymo weather-brittleness example."
+    },
+    {
+      "item_id": "d8de9380cd1df8d95654f9fd5722b05b",
+      "item_title": "Waymo resumes service as more storms loom over Bay Area",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "A3",
+          "confidence": "medium",
+          "rationale": "Robotaxis struggled to navigate storms before service was restored."
+        }
+      ],
+      "evidence_quote": "robotaxis struggled to navigate battering storms",
+      "recommended_action": "Add as a follow-up source to the A3 Waymo example noting the service resumption."
+    },
+    {
+      "item_id": "2da9db829a7783389810a1f2cf99842d",
+      "item_title": "Tech outage wave reaches US government; Trump says all is 'fine'",
+      "action": "NO_ACTION",
+      "kb_matches": [],
+      "evidence_quote": "Technology outages that shut down email for many companies and grounded thousands of flights",
+      "recommended_action": "No KB change; the outages are attributed to patching, with no AI involvement indicated."
+    },
+    {
+      "item_id": "8e4c58f0ab146ff452c1bfd4cec8c702",
+      "item_title": "National Security Agency network outage linked to software vulnerability",
+      "action": "NO_ACTION",
+      "kb_matches": [],
+      "evidence_quote": "urgent patching of vulnerabilities in PHP",
+      "recommended_action": "No action; a conventional software patching outage, not an AI risk."
+    },
+    {
+      "item_id": "680706b6ed3dce210a743ac07c82b4e9",
+      "item_title": "NSA statement on network issues",
+      "action": "NO_ACTION",
+      "kb_matches": [],
+      "evidence_quote": "temporary degradation during scheduled routine maintenance",
+      "recommended_action": "No action; official statement on a non-AI maintenance outage."
+    },
+    {
+      "item_id": "c7547dd94c6c8bf471efc900586996c5",
+      "item_title": "Jay Clayton addresses concerns amid widespread tech outages",
+      "action": "NO_ACTION",
+      "kb_matches": [],
+      "evidence_quote": "no signs of a coordinated cyberattack or state-sponsored activity",
+      "recommended_action": "No action; officials attribute the outages to security patching, not AI-enabled attacks."
+    },
+    {
+      "item_id": "4450b3b93eb1d50ecfeb1fcd19c7500d",
+      "item_title": "Exclusive: Highly classified US national security communications network goes down, sources say",
+      "action": "NO_ACTION",
+      "kb_matches": [],
+      "evidence_quote": "The highly classified network that the National Security Agency uses for its internal communications is down",
+      "recommended_action": "No KB change; the excerpt describes an IT outage with no evident AI-system involvement, though it may be tracked as a related AIID incident record."
+    },
+    {
+      "item_id": "81e5110647ee2459550069073c8ab73b",
+      "item_title": "Outage at NSA's highly classified communications network has been resolved, sources say",
+      "action": "NO_ACTION",
+      "kb_matches": [],
+      "evidence_quote": "outage ... that has kept large swaths of employees locked out for more than three days has now been resolved",
+      "recommended_action": "No KB change; this is a follow-up report on a non-AI IT outage."
+    },
+    {
+      "item_id": "05bbd36be62c1c7f8e76c58d2f1de6e6",
+      "item_title": "NSA outage hits key facility for Middle East intel operations as agency resorts to workarounds, sources say",
+      "action": "NO_ACTION",
+      "kb_matches": [],
+      "evidence_quote": "sweeping IT disruptions that have kept large swaths of the NSA's workforce at home for three days",
+      "recommended_action": "No KB change; the excerpt describes an operational IT disruption, not an AI-specific risk."
+    },
+    {
+      "item_id": "31712cfdd191d239c93124b5bc7745dc",
+      "item_title": "NSA resumes normal operations following internal network disruptions",
+      "action": "NO_ACTION",
+      "kb_matches": [
+        {
+          "kb_id": "B4",
+          "confidence": "low",
+          "rationale": "Cause was patches to a commonly-used programming language (software supply chain), but no AI link is shown."
+        }
+      ],
+      "evidence_quote": "patches to a commonly-used programming language caused an internal communications network to crash",
+      "recommended_action": "No KB change; the incident is a generic software patch failure with no AI component. Revisit only if later reporting ties it to AI tooling."
+    },
+    {
+      "item_id": "4f133d577e6caaddaf78b786e8663703",
+      "item_title": "Security officials tell Congress tech outages are not malicious",
+      "action": "NO_ACTION",
+      "kb_matches": [
+        {
+          "kb_id": "G1",
+          "confidence": "low",
+          "rationale": "Concerns major tech outages, but the excerpt does not link them to AI infrastructure concentration."
+        }
+      ],
+      "evidence_quote": "Officials ... sought to assuage fears about foreign adversaries accessing various digital platforms",
+      "recommended_action": "No KB change; the item is not AI-specific."
+    },
+    {
+      "item_id": "2d9588119ee4faa0e2f574c0a7329d74",
+      "item_title": "v2026.10",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "D2",
+          "confidence": "medium",
+          "rationale": "New techniques for training data information extraction and membership inference relate to model memorisation and privacy leakage."
+        },
+        {
+          "kb_id": "C5",
+          "confidence": "low",
+          "rationale": "A new 'Develop Capabilities: Malware Outputs from AI Models' technique relates to AI-enabled attacks."
+        }
+      ],
+      "evidence_quote": "Training Data Information from AI Models: Infer Membership moved from \"Exfiltration via AI Inference API\"",
+      "recommended_action": "Update D2 (and optionally C5) to reflect the ATLAS v2026.10 technique restructuring and cite the new technique names and IDs."
+    },
+    {
+      "item_id": "aebc06a264642e8cde24ffc2d6fdcb2a",
+      "item_title": "v6.1.0",
+      "action": "NO_ACTION",
+      "kb_matches": [],
+      "evidence_quote": "GitHub release on 2026-10-28",
+      "recommended_action": "No separate action; the release has no content in the excerpt and is covered by the v2026.10 item."
+    },
+    {
+      "item_id": "/blog/the-paris-call-calls-for-epidemiology",
+      "item_title": "MIT AI Risk Repository: Define, detect, report, coordinate: what epidemiology offers the Paris Call",
+      "action": "NO_ACTION",
+      "kb_matches": [
+        {
+          "kb_id": "B3",
+          "confidence": "low",
+          "rationale": "Blog on governance approaches to AI risk detection and reporting, but the excerpt has no substantive content."
+        }
+      ],
+      "evidence_quote": "Define, detect, report, coordinate: what epidemiology offers the Paris Call",
+      "recommended_action": "No KB change; the excerpt is only a navigation header and title. Review the full post if governance coverage is being expanded."
+    },
+    {
+      "item_id": "a9e1aa60b2c4014ce5fce0711b2004b3",
+      "item_title": "Attack policy selection can make monitor evaluations misleading",
+      "action": "UPDATE_ENTRY",
+      "kb_matches": [
+        {
+          "kb_id": "G4",
+          "confidence": "medium",
+          "rationale": "Concerns the reliability of monitors used to oversee potentially misaligned or agentic AI."
+        },
+        {
+          "kb_id": "A3",
+          "confidence": "low",
+          "rationale": "Flawed evaluation design can give false assurance about robustness."
+        }
+      ],
+      "evidence_quote": "one component of evaluations can undermine claims that monitors are reliable",
+      "recommended_action": "Add a note to G4 that AI monitor reliability evaluations can be misleading depending on attack policy selection, citing the UK AISI post."
+    },
+    {
+      "item_id": "https://digital-strategy.ec.europa.eu/en/news/commission-welcomes-european-citizens-panel-recommendations-democratic-resilience",
+      "item_title": "Commission welcomes European Citizens' Panel recommendations on Democratic Resilience",
+      "action": "NO_ACTION",
+      "kb_matches": [
+        {
+          "kb_id": "E3",
+          "confidence": "low",
+          "rationale": "Democratic resilience may touch on disinformation, but the excerpt is empty."
+        }
+      ],
+      "evidence_quote": "",
+      "recommended_action": "No KB change; there is no excerpt content and no evident AI-specific risk."
+    },
+    {
+      "item_id": "https://digital-strategy.ec.europa.eu/en/news/commission-hosts-apply-ai-summit-boost-europes-ai-innovation-and-uptake",
+      "item_title": "Commission hosts Apply AI Summit to boost Europe\u2019s AI innovation and uptake",
+      "action": "NO_ACTION",
+      "kb_matches": [],
+      "evidence_quote": "",
+      "recommended_action": "No action; promotional event announcement with no excerpt and no identifiable AI risk content."
+    },
+    {
+      "item_id": "https://digital-strategy.ec.europa.eu/en/events/alliance-language-technologies-edic-connect-university",
+      "item_title": "The Alliance for Language Technologies EDIC | CONNECT University",
+      "action": "NO_ACTION",
+      "kb_matches": [],
+      "evidence_quote": "",
+      "recommended_action": "No action; event listing about language technologies collaboration with no risk-relevant content."
+    },
+    {
+      "item_id": "https://digital-strategy.ec.europa.eu/en/news/commission-launches-education-and-skills-package-tackle-declining-basic-skills-rapid-digital-change",
+      "item_title": "Commission launches Education and Skills package to tackle declining basic skills, rapid digital change and teacher shortages",
+      "action": "NO_ACTION",
+      "kb_matches": [
+        {
+          "kb_id": "G3",
+          "confidence": "low",
+          "rationale": "Skills policy touches on digital change and workforce skills, but no AI displacement content is evident from the title alone."
+        }
+      ],
+      "evidence_quote": "",
+      "recommended_action": "No action; revisit only if full text shows substantive AI-driven skills displacement evidence relevant to G3."
+    },
+    {
+      "item_id": "https://digital-strategy.ec.europa.eu/en/events/web-summit-2026",
+      "item_title": "Web Summit 2026",
+      "action": "NO_ACTION",
+      "kb_matches": [],
+      "evidence_quote": "",
+      "recommended_action": "No action; generic event listing."
+    },
+    {
+      "item_id": "https://www.apra.gov.au/news-and-publications/apra-secures-8-million-penalty-against-bendigo-and-adelaide-bank-over-cyber",
+      "item_title": "APRA secures $8 million penalty against Bendigo and Adelaide Bank over cyber incident",
+      "action": "NO_ACTION",
+      "kb_matches": [
+        {
+          "kb_id": "B2",
+          "confidence": "low",
+          "rationale": "Regulatory penalty for a cyber incident is compliance-related, but there is no indication of AI involvement."
+        }
+      ],
+      "evidence_quote": "",
+      "recommended_action": "No action; a conventional cyber-resilience enforcement matter with no AI link shown. Reconsider only if the full text cites AI systems."
+    }
+  ],
+  "source_counts": {
+    "aiid": 15,
+    "mitre_atlas": 2,
+    "mit_airr": 1,
+    "uk_aisi": 1,
+    "eu_ai_office": 5,
+    "apra": 1
+  }
+}

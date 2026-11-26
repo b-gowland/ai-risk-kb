@@ -1,201 +1,273 @@
 {
-  "run_date": "2026-10-26",
-  "run_timestamp": "2026-10-26T16:20:04.915265+00:00",
-  "total_new_items": 17,
+  "run_date": "2026-11-26",
+  "run_timestamp": "2026-11-26T10:58:45.964483+00:00",
+  "total_new_items": 25,
   "items": [
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "96ab7253f42f48db5a586fb5fe12dd94",
-      "title": "AI-driven, large-scale nation-state campaign using ARTEX enables supply chain compromise",
-      "url": "https://www.microsoft.com/en-us/security/blog/2026/10/21/storm-0940-uses-artex-agentic-ai-connectwise-supply-chain-compromise/",
-      "body_excerpt": "As early as September 2026, Storm-0940, a China-state aligned actor, used the agentic AI penetration testing framework ARTEX to automate attacks targeting hundreds of organizations globally across a broad range of industries. Several of the ... (https://incidentdatabase.ai/cite/1781#8195)",
-      "release_date": "2026-10-24"
+      "id": "5dafad980e0d0d3778f2bd5bdd63bb70",
+      "title": "Claude Code settings.local.json Secrets: 17 months of exposure on GitHub, & Docker Hub",
+      "url": "https://blog.gitguardian.com/claude-code-settings-local-json-secrets-docker-hub/",
+      "body_excerpt": "TL;DR 31,088 secrets, 5,343 valid: GitGuardian found 31,088 distinct secrets in Claude Code\u2019s .claude/settings.local.json on public GitHub, across 23,276 repositories, and 5,343 of them worked when we detected them. \u201cYes, and don\u2019t ask ag ... (https://incidentdatabase.ai/cite/1846#8384)",
+      "release_date": "2026-11-23"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "5c4522ad0671f37ace68871987bc9682",
-      "title": "Chinese-linked hackers compromise ConnectWise, target hundreds in global attack, Microsoft says",
-      "url": "https://www.reuters.com/technology/chinese-linked-hackers-compromise-connectwise-target-hundreds-global-attack-2026-10-21/",
-      "body_excerpt": "Oct 21 (Reuters) - A Chinese state-aligned hacking group used an AI-driven penetration testing tool to compromise IT \u200bservices firm ConnectWise as part of a campaign that targeted hundreds \u200cof organizations globally, Microsoft said on Wedne ... (https://incidentdatabase.ai/cite/1781#8196)",
-      "release_date": "2026-10-24"
+      "id": "252fc72618081a68be6ba4da9b421545",
+      "title": "Coding Agents Copy Your Secrets to a Hidden File. Thousands Are on GitHub",
+      "url": "https://apiiro.com/blog/coding-agents-leaking-secrets-github-dont-ask-again",
+      "body_excerpt": "Update, November 8: Anthropic's Head of Claude Code responds. Boris Cherny responded on Hacker News on November 7 and took part in the discussion through the weekend. He said the team is \"looking into what we can do to prevent this,\" named ... (https://incidentdatabase.ai/cite/1846#8385)",
+      "release_date": "2026-11-23"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "d79cffc931f30dc19fd198256a258f1a",
-      "title": "Lebanese family sues OpenAI over death of 15-year-old Mathias Habib: Lawsuit details alleged ChatGPT safety failures",
-      "url": "https://www.lbcgroup.tv/news/lebanon-news/963208/lebanese-family-sues-openai-over-death-of-15-year-old-mathias-habib-la/en",
-      "body_excerpt": "The parents of a 15-year-old Lebanese boy who died by suicide have filed a lawsuit against OpenAI and its CEO, Sam Altman, alleging that interactions with ChatGPT contributed to their son\u2019s death. Charbel Habib and Soha Samaha filed the wr ... (https://incidentdatabase.ai/cite/1783#8198)",
-      "release_date": "2026-10-24"
+      "id": "eba8b5f88216880842823cefaaad3d91",
+      "title": "Claude Code\u2019s \u2018don\u2019t ask again\u2019 button has a secrets-spilling problem",
+      "url": "https://www.csoonline.com/article/4247336/claude-codes-dont-ask-again-button-has-a-secrets-spilling-problem.html",
+      "body_excerpt": "A configuration file meant to store local command permissions on Anthropic\u2019s Claude Code is exposing thousands of API keys, database credentials and other secrets, according to findings by GitGuardian. The code security firm identified 31, ... (https://incidentdatabase.ai/cite/1846#8386)",
+      "release_date": "2026-11-23"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "df3908d281bd4f9c68a945e8119b1cfc",
-      "title": "COMPLAINT AND DEMAND FOR JURY TRIAL (Charbel Habib and Soha Samaha v. OpenAI, Inc., et al.)",
-      "url": "https://www.lbcgroup.tv/uploadImages/ExtImages/Images2/2026.10.14%20OpenAI%20JCCP%20-%20Habib%20Complaint.pdf",
-      "body_excerpt": "AIID editor's note (AI-assisted abridgement): The 42-page source exceeds AIID's 50,000-character text limit. This abridgement was prepared with AI assistance and retains verbatim excerpts covering the parties, case-specific factual allegati ... (https://incidentdatabase.ai/cite/1783#8199)",
-      "release_date": "2026-10-24"
+      "id": "186635ab39d4e66487060e4c7599e458",
+      "title": "Waymo pauses robotaxi service amid San Francisco storms: \u2018We were kind of just stuck there\u2019",
+      "url": "https://www.sfchronicle.com/sf/article/waymo-service-paused-storm-rain-22537988.php",
+      "body_excerpt": "Waymo suspended its autonomous ride-hail service Wednesday morning, provoking complaints that ripped through social media with nearly as much ferocity as a super El Ni\u00f1o pummeling the Bay Area. \u201cWe\u2019ve paused for now due to weather,\u201d the co ... (https://incidentdatabase.ai/cite/1835#8357)",
+      "release_date": "2026-11-21"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "94489e058ae3a779cbca0b564129a321",
-      "title": "Accessing and changing internal systems during dashboard research",
-      "url": "https://alignment.openai.com/misalignment-reports/accessing-and-changing-internal-systems-during-dashboard-research/",
-      "body_excerpt": "Summary In two evaluations, an internal model tasked to retrieve figures from a public research dashboard accessed the organization\u2019s internal systems and changed their configuration. In the first evaluation, it used exposed credentials to ... (https://incidentdatabase.ai/cite/1784#8200)",
-      "release_date": "2026-10-24"
+      "id": "acb2db24354d09fce5943e2096e13ba6",
+      "title": "Bay Area Waymo robotaxi service suspended amid storm, flooding",
+      "url": "https://www.cbsnews.com/sanfrancisco/news/waymo-service-pause-bay-area-storm-flooding/",
+      "body_excerpt": "Heavy rain and localized flooding in the Bay Area prompted Waymo to suspend its driverless vehicle service on Wednesday, the company announced. The Waymo app indicated at around 11 a.m. that its robotaxi service would be paused until road ... (https://incidentdatabase.ai/cite/1835#8358)",
+      "release_date": "2026-11-21"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "fa2c554ccc6a438b7410223dc0d364b5",
-      "title": "El PP da un paso m\u00e1s en su campa\u00f1a y suplanta la identidad de Bego\u00f1a G\u00f3mez, Zapatero y \u00c1balos: \u201c\u00bfIrse de putas? S\u00ed, soy zurdo",
-      "url": "https://elpais.com/espana/elecciones-generales/2026-10-22/el-pp-da-un-paso-mas-en-su-campana-y-suplanta-la-identidad-de-begona-gomez-zapatero-y-abalos-irse-de-putas-si-soy-zurdo.html",
-      "body_excerpt": "No solo hay 10 horas de diferencia entre los dos v\u00eddeos. El primero, del PSOE, se public\u00f3 en la cuenta oficial de Pedro S\u00e1nchez a las 8.29 de la ma\u00f1ana de este mi\u00e9rcoles, justo antes de la ponencia de Javier Milei en el Casino de Madrid. Y ... (https://incidentdatabase.ai/cite/1785#8201)",
-      "release_date": "2026-10-24"
+      "id": "d8de9380cd1df8d95654f9fd5722b05b",
+      "title": "Waymo resumes service as more storms loom over Bay Area",
+      "url": "https://www.sfchronicle.com/sf/article/waymo-resumes-service-22539972.php",
+      "body_excerpt": "Waymo resumed service in the Bay Area on Thursday morning after a temporary stoppage Wednesday as robotaxis struggled to navigate battering storms. The restoration at 9 a.m. came as rain abated and wan sunlight pressed through cloud banks ... (https://incidentdatabase.ai/cite/1835#8359)",
+      "release_date": "2026-11-21"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "1f89c9d0a9b7c1509d08821f75208f6f",
-      "title": "Opposition deepfake video of Spanish PM\u2019s wife sparks outrage before election",
-      "url": "https://www.theguardian.com/world/2026/oct/23/opposition-deepfake-video-spain-election",
-      "body_excerpt": "A political ad from Spain\u2019s main opposition party that used a deepfake video of the prime minister\u2019s wife has sparked outrage and set off a wider debate on AI, as the deeply polarised country gears up for general elections next month. Laun ... (https://incidentdatabase.ai/cite/1785#8202)",
-      "release_date": "2026-10-24"
+      "id": "2da9db829a7783389810a1f2cf99842d",
+      "title": "Tech outage wave reaches US government; Trump says all is 'fine'",
+      "url": "https://www.reuters.com/business/aerospace-defense/trump-shrugs-off-spate-us-outages-says-things-like-that-happen-2026-11-17/",
+      "body_excerpt": "WASHINGTON, Nov 17 (Reuters) - Technology outages that shut down email for many companies and grounded thousands of flights over the past few days extended to the US National Security Agency on Tuesday, as President Donald Trump's administr ... (https://incidentdatabase.ai/cite/1836#8360)",
+      "release_date": "2026-11-21"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "4b80183fe0fdcd3cd17a3104b7ec91a5",
-      "title": "Leire Diez se querella contra el PP por su v\u00eddeo hecho con IA que le acusa de contratar \"matones\"",
-      "url": "https://www.libertaddigital.com/espana/2026-10-23/leire-diez-se-querella-contra-el-pp-por-su-video-hecho-con-ia-que-le-acusa-de-contratar-matones-7480817/",
-      "body_excerpt": "Leire D\u00edez ha presentado una querella contra el Partido Popular por el v\u00eddeo hecho por inteligencia artificial que menciona que D\u00edez contrat\u00f3 a \"matones\" para quitar de en medio a una juez, en alusi\u00f3n a la juez Beatriz Biedma. La defensa de ... (https://incidentdatabase.ai/cite/1785#8203)",
-      "release_date": "2026-10-24"
+      "id": "8e4c58f0ab146ff452c1bfd4cec8c702",
+      "title": "National Security Agency network outage linked to software vulnerability",
+      "url": "https://www.cbsnews.com/news/national-security-agency-network-outage-software-vulnerability/",
+      "body_excerpt": "The National Security Agency's network outage Tuesday has been linked to an urgent patching of vulnerabilities in PHP, the programming language that powers the majority of all websites, multiple sources told CBS News. The NSA's internal ne ... (https://incidentdatabase.ai/cite/1836#8361)",
+      "release_date": "2026-11-21"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "3d165a4cb896f8481ee79745ef247295",
-      "title": "SF man operating self-driving Tesla hits, kills pedestrian on I-80, CHP says",
-      "url": "https://www.sfgate.com/bayarea/article/tesla-crash-solano-county-pedestrian-22489807.php",
-      "body_excerpt": "A Tesla driver from San Francisco allegedly struck and killed a pedestrian in Solano County early Thursday morning while his car was in self-driving mode, officials said. The crash happened just after 2:30 a.m. on westbound Interstate 80 a ... (https://incidentdatabase.ai/cite/1786#8204)",
-      "release_date": "2026-10-24"
+      "id": "680706b6ed3dce210a743ac07c82b4e9",
+      "title": "NSA statement on network issues",
+      "url": "https://www.nsa.gov/Press-Room/Press-Releases-Statements/Press-Release-View/Article/4650245/nsa-statement-on-network-issues/",
+      "body_excerpt": "The National Security Agency experienced temporary degradation during scheduled routine maintenance. While some internal systems were affected, mission-critical capabilities remain fully operational and our ability to defend national securi ... (https://incidentdatabase.ai/cite/1836#8362)",
+      "release_date": "2026-11-21"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "1f74fe1e33cb2521fca2833723095969",
-      "title": "Vallejo man hit, killed by Tesla under self-driving mode identified",
-      "url": "https://www.sfgate.com/news/bayarea/article/vallejo-man-killed-by-tesla-in-full-22492074.php",
-      "body_excerpt": "A man killed in Vallejo by a car under a driver assistance system has been identified, the Solano County Coroner said Friday. Vallejo resident Domingo Gonzales, 71, was hit by a Tesla in Full Self-Driving mode while crossing westbound Inte ... (https://incidentdatabase.ai/cite/1786#8205)",
-      "release_date": "2026-10-24"
+      "id": "c7547dd94c6c8bf471efc900586996c5",
+      "title": "Jay Clayton addresses concerns amid widespread tech outages",
+      "url": "https://www.foxbusiness.com/technology/jay-clayton-addresses-concerns-amid-widespread-tech-outages",
+      "body_excerpt": "Director of National Intelligence Jay Clayton said Tuesday that officials see no signs of a coordinated cyberattack or state-sponsored activity behind a wave of technology outages, pointing instead to institutions installing security patche ... (https://incidentdatabase.ai/cite/1836#8363)",
+      "release_date": "2026-11-21"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "ccb535acde234c81838cf57b9df1d46a",
-      "title": "S.F. Tesla driver who fatally struck man crossing highway said car was in full-self-driving mode",
-      "url": "https://www.sfchronicle.com/bayarea/article/self-driving-tesla-fatally-strikes-man-on-highway-22489051.php",
-      "body_excerpt": "A Tesla driver told officials he was using the car\u2019s full self-driving mode when he fatally struck a 71-year-old man crossing a Solano County highway early Thursday morning, California Highway Patrol said. The crash occurred around 2:30 a. ... (https://incidentdatabase.ai/cite/1786#8206)",
-      "release_date": "2026-10-24"
+      "id": "4450b3b93eb1d50ecfeb1fcd19c7500d",
+      "title": "Exclusive: Highly classified US national security communications network goes down, sources say",
+      "url": "https://www.cnn.com/2026/11/17/politics/highly-classified-national-security-communications-network-goes-down",
+      "body_excerpt": "The highly classified network that the National Security Agency uses for its internal communications is down, according to six people familiar with the matter. The NSA closed its campus to most employees on Tuesday night, reverting to essen ... (https://incidentdatabase.ai/cite/1836#8364)",
+      "release_date": "2026-11-21"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "325016fb55359d6d3fb539d3c339fefc",
-      "title": "Sacramento man driving Tesla allegedly falls asleep, injures officers",
-      "url": "https://www.sfgate.com/bayarea/article/driving-tesla-asleep-officers-22480723.php",
-      "body_excerpt": "Two California Highway Patrol officers were injured in a crash involving a Tesla that was in self-driving mode. On Tuesday, just before midnight, dashcam footage captured a car driving straight into a California Highway Patrol vehicle in F ... (https://incidentdatabase.ai/cite/1787#8207)",
-      "release_date": "2026-10-24"
+      "id": "81e5110647ee2459550069073c8ab73b",
+      "title": "Outage at NSA\u2019s highly classified communications network has been resolved, sources say",
+      "url": "https://keyt.com/politics/cnn-us-politics/2026/11/20/outage-at-nsas-highly-classified-communications-network-has-been-resolved/",
+      "body_excerpt": "(CNN) \u2014 The outage of a key internal communications network at the National Security Agency that has kept large swaths of employees locked out for more than three days has now been resolved, according to a source familiar with the matter an ... (https://incidentdatabase.ai/cite/1836#8365)",
+      "release_date": "2026-11-21"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "66c49d3cd7a19fa16385fb3dcb63a0a7",
-      "title": "2 CHP officers injured while investigating deadly I-80 crash near Fairfield",
-      "url": "https://www.cbsnews.com/sacramento/news/fairfield-i80-tesla-crash-2-chp-officers-hurt/",
-      "body_excerpt": "A 19-year-old driver died in a crash on Interstate 80 near Fairfield Tuesday night, and two California Highway Patrol officers investigating that crash were injured about an hour later when a Tesla hit their patrol car. The first crash hap ... (https://incidentdatabase.ai/cite/1787#8208)",
-      "release_date": "2026-10-24"
+      "id": "05bbd36be62c1c7f8e76c58d2f1de6e6",
+      "title": "NSA outage hits key facility for Middle East intel operations as agency resorts to workarounds, sources say",
+      "url": "https://abc17news.com/politics/national-politics/cnn-us-politics/2026/11/18/nsa-outage-disrupts-key-intel-hub-that-supports-middle-east-intelligence-and-operations-sources-say/",
+      "body_excerpt": "(CNN) \u2014 The sweeping IT disruptions that have kept large swaths of the National Security Agency\u2019s workforce at home for three days has also impacted operations at a critical Georgia facility that supports signals intelligence and cybersecur ... (https://incidentdatabase.ai/cite/1836#8366)",
+      "release_date": "2026-11-21"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "d36532066e7a36a61d89df55bab1e797",
-      "title": "Twee verdachten aangehouden in onderzoek naar nieuwe vorm van bankhelpdeskfraude",
-      "url": "https://www.politie.nl/nieuws/2026/oktober/20/07-twee-verdachten-aangehouden-in-onderzoek-naar-nieuwe-vorm-van-bankhelpdeskfraude.html",
-      "body_excerpt": "380.000 euro schade bij zo'n 170 slachtoffers. Dat waren de cijfers waarmee het Rotterdamse Team Cybercrime werd geconfronteerd in de drie weken die het onderzoeksteam zicht had op de servers van een crimineel samenwerkingsverband. Die crim ... (https://incidentdatabase.ai/cite/1788#8209)",
-      "release_date": "2026-10-24"
+      "id": "31712cfdd191d239c93124b5bc7745dc",
+      "title": "NSA resumes normal operations following internal network disruptions",
+      "url": "https://therecord.media/nsa-resumes-normal-operations-following-internal-disruptions",
+      "body_excerpt": "The National Security Agency has mostly returned to business as usual after patches to a commonly-used programming language caused an internal communications network to crash for much of the week. An NSA spokesperson said they \u201ccan confirm ... (https://incidentdatabase.ai/cite/1836#8367)",
+      "release_date": "2026-11-21"
     },
     {
       "source_id": "aiid",
       "type": "rss_entry",
-      "id": "acce71943a12c9693f9c971efdad2173",
-      "title": "Police arrest two suspects in AI-powered bank fraud that cost victims \u20ac380,000",
-      "url": "https://nltimes.nl/2026/10/21/police-arrest-two-suspects-ai-powered-bank-fraud-cost-victims-eu380000",
-      "body_excerpt": "Rotterdam police arrested two suspects accused of a new form of bank-helpdesk fraud. The operation allegedly caused around \u20ac380,000 in losses for 170 victims in just three weeks. The suspects allegedly used AI-generated phone calls and a fa ... (https://incidentdatabase.ai/cite/1788#8210)",
-      "release_date": "2026-10-24"
+      "id": "4f133d577e6caaddaf78b786e8663703",
+      "title": "Security officials tell Congress tech outages are not malicious",
+      "url": "https://www.nextgov.com/cybersecurity/2026/11/security-officials-tell-congress-tech-outages-are-not-malicious/417312/",
+      "body_excerpt": "Officials on Wednesday sought to assuage fears about foreign adversaries accessing various digital platforms amid a series of major tech outages that affected online services over the last week. Homeland Security Secretary Markwayne Mullin ... (https://incidentdatabase.ai/cite/1836#8368)",
+      "release_date": "2026-11-21"
+    },
+    {
+      "source_id": "mitre_atlas",
+      "type": "rss_entry",
+      "id": "2d9588119ee4faa0e2f574c0a7329d74",
+      "title": "v2026.10",
+      "url": "https://github.com/mitre-atlas/atlas-data/releases/tag/v2026.10",
+      "body_excerpt": "Content v2026.10 This version of ATLAS data contains 1 matrix, 16 tactics, 129 techniques, 92 sub-techniques, 44 mitigations, 77 case studies, 44 entities, and 37 software records. Techniques Added new techniques Develop Capabilities: Malware Outputs from AI Models Collection behavior separated out from Exfiltration via AI Inference API Exfiltration via AI User Interface Training Data Information from AI Models Training Data Information from AI Models: Infer Membership moved from \"Exfiltration via AI Inference API: Infer Training Data Membership\" (AML.T0024.000) Training Data Information from AI Models: Infer Properties Training Data Information from AI Models: Invert AI Model moved from \"Exfiltration via AI Inference API: Invert AI Model\" (AML.T0024.001) Training Data Information from AI ",
+      "release_date": "2026-10-28"
+    },
+    {
+      "source_id": "mitre_atlas",
+      "type": "rss_entry",
+      "id": "aebc06a264642e8cde24ffc2d6fdcb2a",
+      "title": "v6.1.0",
+      "url": "https://github.com/mitre-atlas/atlas-data/releases/tag/v6.1.0",
+      "body_excerpt": "GitHub release on 2026-10-28",
+      "release_date": "2026-10-28"
     },
     {
       "source_id": "mit_airr",
       "type": "blog_post",
-      "id": "/blog/ai-risks-in-the-actuarial-profession-insights-from-senior-leaders",
-      "title": "MIT AI Risk Repository: AI Risks in the Actuarial Profession: Insights from Senior Leaders",
-      "url": "https://airisk.mit.edu/blog/ai-risks-in-the-actuarial-profession-insights-from-senior-leaders",
-      "body_excerpt": "Priority Risks All Risks Incidents Responses Company Disclosures Mitigations Governance Navigator About Blog AI Risks in the Actuarial Profession: Insights from Senior Leaders October 21, 2026",
-      "release_date": "2026-10-21"
+      "id": "/blog/the-paris-call-calls-for-epidemiology",
+      "title": "MIT AI Risk Repository: Define, detect, report, coordinate: what epidemiology offers the Paris Call",
+      "url": "https://airisk.mit.edu/blog/the-paris-call-calls-for-epidemiology",
+      "body_excerpt": "Priority Risks Existential Risks All Risks Incidents Responses Companies Mitigations Governance Navigator About Blog Define, detect, report, coordinate: what epidemiology offers the Paris Call November 18, 2026",
+      "release_date": "2026-11-20"
     },
     {
       "source_id": "uk_aisi",
       "type": "rss_entry",
-      "id": "d1a744382c6d47debf1bca92c2313e09",
-      "title": "Investigating alignment failures in AISI\u2019s incident",
-      "url": "https://www.aisi.gov.uk/blog/investigating-alignment-failures-in-aisis-incident",
-      "body_excerpt": "We examine why Mythos 5 pursued an unsanctioned supply-chain attack and identify broader learnings about model behaviour and oversight.",
-      "release_date": "2026-10-23"
+      "id": "a9e1aa60b2c4014ce5fce0711b2004b3",
+      "title": "Attack policy selection can make monitor evaluations misleading",
+      "url": "https://www.aisi.gov.uk/blog/attack-policy-selection-can-make-monitor-evaluations-misleading",
+      "body_excerpt": "Our case study reveals how one component of evaluations can undermine claims that monitors are reliable",
+      "release_date": "2026-11-23"
+    },
+    {
+      "source_id": "eu_ai_office",
+      "type": "new_link",
+      "id": "https://digital-strategy.ec.europa.eu/en/news/commission-welcomes-european-citizens-panel-recommendations-democratic-resilience",
+      "title": "Commission welcomes European Citizens' Panel recommendations on Democratic Resilience",
+      "url": "https://digital-strategy.ec.europa.eu/en/news/commission-welcomes-european-citizens-panel-recommendations-democratic-resilience",
+      "body_excerpt": "",
+      "release_date": ""
+    },
+    {
+      "source_id": "eu_ai_office",
+      "type": "new_link",
+      "id": "https://digital-strategy.ec.europa.eu/en/news/commission-hosts-apply-ai-summit-boost-europes-ai-innovation-and-uptake",
+      "title": "Commission hosts Apply AI Summit to boost Europe\u2019s AI innovation and uptake",
+      "url": "https://digital-strategy.ec.europa.eu/en/news/commission-hosts-apply-ai-summit-boost-europes-ai-innovation-and-uptake",
+      "body_excerpt": "",
+      "release_date": ""
+    },
+    {
+      "source_id": "eu_ai_office",
+      "type": "new_link",
+      "id": "https://digital-strategy.ec.europa.eu/en/events/alliance-language-technologies-edic-connect-university",
+      "title": "The Alliance for Language Technologies EDIC | CONNECT University",
+      "url": "https://digital-strategy.ec.europa.eu/en/events/alliance-language-technologies-edic-connect-university",
+      "body_excerpt": "",
+      "release_date": ""
+    },
+    {
+      "source_id": "eu_ai_office",
+      "type": "new_link",
+      "id": "https://digital-strategy.ec.europa.eu/en/news/commission-launches-education-and-skills-package-tackle-declining-basic-skills-rapid-digital-change",
+      "title": "Commission launches Education and Skills package to tackle declining basic skills, rapid digital change and teacher shortages",
+      "url": "https://digital-strategy.ec.europa.eu/en/news/commission-launches-education-and-skills-package-tackle-declining-basic-skills-rapid-digital-change",
+      "body_excerpt": "",
+      "release_date": ""
+    },
+    {
+      "source_id": "eu_ai_office",
+      "type": "new_link",
+      "id": "https://digital-strategy.ec.europa.eu/en/events/web-summit-2026",
+      "title": "Web Summit 2026",
+      "url": "https://digital-strategy.ec.europa.eu/en/events/web-summit-2026",
+      "body_excerpt": "",
+      "release_date": ""
+    },
+    {
+      "source_id": "apra",
+      "type": "new_link",
+      "id": "https://www.apra.gov.au/news-and-publications/apra-secures-8-million-penalty-against-bendigo-and-adelaide-bank-over-cyber",
+      "title": "APRA secures $8 million penalty against Bendigo and Adelaide Bank over cyber incident",
+      "url": "https://www.apra.gov.au/news-and-publications/apra-secures-8-million-penalty-against-bendigo-and-adelaide-bank-over-cyber",
+      "body_excerpt": "",
+      "release_date": ""
     }
   ],
   "source_health": {
     "aiid": {
       "consecutive_failures": 0,
-      "last_success": "2026-10-26T16:19:53.957550+00:00",
+      "last_success": "2026-11-26T10:58:35.512159+00:00",
       "last_error": null
     },
     "mitre_atlas": {
       "consecutive_failures": 0,
-      "last_success": "2026-10-26T16:19:55.348962+00:00",
+      "last_success": "2026-11-26T10:58:36.737295+00:00",
       "last_error": null
     },
     "owasp_llm": {
       "consecutive_failures": 0,
-      "last_success": "2026-10-26T16:19:56.436634+00:00",
+      "last_success": "2026-11-26T10:58:37.826205+00:00",
       "last_error": null
     },
     "mit_airr": {
       "consecutive_failures": 0,
-      "last_success": "2026-10-26T16:19:59.143733+00:00",
+      "last_success": "2026-11-26T10:58:40.125343+00:00",
       "last_error": null
     },
     "uk_aisi": {
       "consecutive_failures": 0,
-      "last_success": "2026-10-26T16:20:00.162629+00:00",
+      "last_success": "2026-11-26T10:58:41.277304+00:00",
       "last_error": null
     },
     "nist_ai_rmf": {
       "consecutive_failures": 0,
-      "last_success": "2026-10-26T16:20:01.269883+00:00",
+      "last_success": "2026-11-26T10:58:42.327358+00:00",
       "last_error": null
     },
     "eu_ai_office": {
-      "consecutive_failures": 1,
-      "last_success": "2026-10-19T16:39:55.172830+00:00",
-      "last_error": "fetch failed: HTTP Error 403: Forbidden"
+      "consecutive_failures": 0,
+      "last_success": "2026-11-26T10:58:43.827147+00:00",
+      "last_error": null
     },
     "apra": {
       "consecutive_failures": 0,
-      "last_success": "2026-10-26T16:20:03.915103+00:00",
+      "last_success": "2026-11-26T10:58:44.964323+00:00",
       "last_error": null
     }
   }
