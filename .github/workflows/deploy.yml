@@ -1,4 +1,17 @@
-name: Deploy to GitHub Pages
+name: Check and deploy
+
+# Builds on every pull request and push. A push to main also deploys to
+# Cloudflare Pages (project ai-risk-library), which serves
+# library.airiskpractice.org since the move off GitHub Pages on 17 Nov 2026.
+#
+# Deploying needs CLOUDFLARE_API_TOKEN (a token with only "Account ·
+# Cloudflare Pages · Edit") and CLOUDFLARE_ACCOUNT_ID, stored as secrets of
+# the "production" environment, which is limited to the main branch. Until
+# they exist the deploy job says so and stops without failing the run.
+#
+# The token is handed only to the publish step, never to npm ci or the build,
+# so no installed package can read it, and Wrangler is pinned to an exact
+# version.
 
 on:
   push:
@@ -9,8 +22,6 @@ on:
       - main
   workflow_dispatch:
 
-# Build (which runs npm ci / PR code) gets read-only; only the deploy job
-# receives the Pages write + OIDC scopes.
 permissions:
   contents: read
 
@@ -19,7 +30,7 @@ permissions:
 # Real deploys all run on refs/heads/main and so still serialise against
 # each other, which is the property this concurrency block exists to protect.
 concurrency:
-  group: "pages-${{ github.ref }}"
+  group: "deploy-${{ github.ref }}"
   cancel-in-progress: false
 
 jobs:
@@ -44,26 +55,55 @@ jobs:
       - name: Build site
         run: npm run build
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v5
-        with:
-          path: build
-
-  # Deploys only on push to main (or manual dispatch) — never from a PR, so
-  # unreviewed branches cannot reach production. Mirrors the ai-risk-training
-  # fix (PR #18). Also stops Dependabot PRs failing on the read-only token.
+  # Deploys only on push to main (or manual dispatch), never from a PR, so
+  # unreviewed branches cannot reach production. It rebuilds rather than
+  # passing an artifact between jobs.
   deploy:
-    name: Deploy to GitHub Pages
+    name: Deploy to Cloudflare Pages
     needs: build
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
     environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      name: production
+      url: https://library.airiskpractice.org/
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v5
+      - name: Check for Cloudflare credentials
+        id: creds
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ] || [ -z "$CLOUDFLARE_ACCOUNT_ID" ]; then
+            echo "::warning::CLOUDFLARE_API_TOKEN or CLOUDFLARE_ACCOUNT_ID is not set, so nothing was deployed. Add both as secrets of the production environment."
+            echo "ok=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "ok=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Checkout
+        if: steps.creds.outputs.ok == 'true'
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        if: steps.creds.outputs.ok == 'true'
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        if: steps.creds.outputs.ok == 'true'
+        run: npm ci
+
+      - name: Build site
+        if: steps.creds.outputs.ok == 'true'
+        run: npm run build
+
+      - name: Publish to Cloudflare Pages
+        if: steps.creds.outputs.ok == 'true'
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: npx --yes wrangler@4.163.0 pages deploy build --project-name=ai-risk-library --branch=main --commit-dirty=true

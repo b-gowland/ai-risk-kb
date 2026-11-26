@@ -2,42 +2,43 @@
   "aiid": {
     "health": {
       "consecutive_failures": 0,
-      "last_success": "2026-10-19T16:39:47.706698+00:00",
+      "last_success": "2026-10-26T16:19:53.957550+00:00",
       "last_error": null
     },
     "seen": [
       "053bc9e4dfebab64ffc722c662ae36e7",
-      "05c90c0c61138bea3b0d61f6b956e140",
       "094a8807d5eb51253a164ce60bfb1400",
       "0c70b15a596b27527df6447c83d4dd57",
-      "158ce8433169870d0127564027bf0e23",
-      "20fb28bd69c90564a3f542609c686fcc",
-      "29ac158dc927a0c36deecff70f0b2e7b",
-      "36528a2df3fe987b34022cb9de4de918",
-      "37050b0ae743c4c70abde7e613e90e3c",
+      "1f74fe1e33cb2521fca2833723095969",
+      "1f89c9d0a9b7c1509d08821f75208f6f",
+      "325016fb55359d6d3fb539d3c339fefc",
+      "3d165a4cb896f8481ee79745ef247295",
       "3e43e5eb4a522315d98e7a8d82fd8f5a",
-      "3f5615103ac962bbfa9e03d985b2b00c",
       "4b70ba2b2caeee2abd085447007bcc68",
+      "4b80183fe0fdcd3cd17a3104b7ec91a5",
       "4d819a20c169e821e96ca927d38ed02f",
+      "5c4522ad0671f37ace68871987bc9682",
       "6366a01ebe6564bba5d5fc10a0db9143",
-      "70b6ce37a22d3c05563bd7387e88f543",
-      "80861f936e91349378b9a05cff8ce12a",
-      "848b52a93573525bef3156d5c95aa84e",
+      "66c49d3cd7a19fa16385fb3dcb63a0a7",
       "901f2df90ac0df9a1aa704967bb15d83",
-      "95ba46efa398de677d05fd995151b2ed",
+      "94489e058ae3a779cbca0b564129a321",
+      "96ab7253f42f48db5a586fb5fe12dd94",
       "96c6fa523000e23ae00fe1d103a309cc",
       "a1678cc0c3bc5822a0e3c64e2bf6cfe8",
+      "acce71943a12c9693f9c971efdad2173",
       "b228ff7205a50285e5479cde4b9c8170",
-      "c0f385a4b3b73482acf9d98263d4d061",
-      "c531d4b7bd669df85abdbd1a30750471",
       "cc500c15730243b9990d4ce6b575320a",
+      "ccb535acde234c81838cf57b9df1d46a",
+      "d36532066e7a36a61d89df55bab1e797",
       "d53b87a580f05df089fc13024bdc3c2b",
-      "e776dd054f35d345350b13dd5ed735b9",
+      "d79cffc931f30dc19fd198256a258f1a",
+      "df3908d281bd4f9c68a945e8119b1cfc",
       "f246b4030c4f470efd5dc4e99e4267e3",
-      "fcc38c47ddf542bb6f7388d3ebe0e71e",
+      "fa2c554ccc6a438b7410223dc0d364b5",
       "fcd796b767849dfc37c816d4256a79b9",
       "01b2b51d080b34fb221efde76aa19a59",
       "04be0737619ab901b40600b41e0486e5",
+      "05c90c0c61138bea3b0d61f6b956e140",
       "0632be7c43e6d08df9d4a7d94c4d0801",
       "076b6ece61a3d6eef0d6c1c4fb56a708",
       "07e036969c34d1ad43355b13dd906639",
@@ -48,23 +49,29 @@
       "0dd8c7a905caff044fb85bde0f6c0ec5",
       "0f7cf370837e625c686814a62d7c661b",
       "1447f8b8931d483c87ada3e76de8ad0a",
+      "158ce8433169870d0127564027bf0e23",
       "15904512cfe985e1b859cfd0800a4c55",
       "1ad11e551fa8ddd1d63a78ca587f54ec",
       "1dd7113a992403db5853a7cd24ca7515",
+      "20fb28bd69c90564a3f542609c686fcc",
       "21d2e0d6d862eea311559684ebda614b",
       "21fd471d076f40e824c9c083d1ba94fc",
       "247b76d94ab218def02ff99f2bd77098",
       "26d38f9416bee84b503880906d61332f",
       "271c980126534cb0eba380839305e2e5",
       "287e32b33354f93877af0017cd87fc9d",
+      "29ac158dc927a0c36deecff70f0b2e7b",
       "2b36cc0a349630a7d505ead1147173ba",
       "31ab51e46694f24bb402312a13fd130b",
       "3257996cb05f46b45aff785c0ed87111",
       "341091c58aa41303c9ceb31c996ba3ef",
+      "36528a2df3fe987b34022cb9de4de918",
+      "37050b0ae743c4c70abde7e613e90e3c",
       "38ac903184c5c878f794b632a0421057",
       "3a51bc0a711aaffe1fc5ce80d412eb61",
       "3d262fb2dfed06fb018b5d0fac4a644d",
       "3dd890abbad27ea1fd3d2fd6148d913a",
+      "3f5615103ac962bbfa9e03d985b2b00c",
       "438ae575cfa081e02b11ecab7fd83464",
       "45f37aba278d3b5ec36fcdae257f03ac",
       "47a8e0af190e064b5c469395ec732f06",
@@ -90,6 +97,7 @@
       "6b162b2f46c23509601ead568cc12f6b",
       "6b4018945820f2cba7562a07a6ce9f0c",
       "6d2db4082a0452e3b9d68ee00866437b",
+      "70b6ce37a22d3c05563bd7387e88f543",
       "70ba70d22fc0eb237a48e005094ef10f",
       "72d484bb5ec81742e0ef0d64b426c13f",
       "7337439b2d2688d87aedf1c030155a7b",
@@ -97,8 +105,10 @@
       "7affdda79a3ac9b3ba2c9af1dee3528f",
       "7c2d2e67f9b4d97639b477ca00947ddf",
       "804c3dcaff1c44f29497caee14611f01",
+      "80861f936e91349378b9a05cff8ce12a",
       "8095165186405977e36fa383a72ee50c",
       "8357bcbb8a4637c611eea8e63a319920",
+      "848b52a93573525bef3156d5c95aa84e",
       "872dc18eb996d556196e3cc1051c063e",
       "872dff830f5d3081edfebe0a33353003",
       "881fe5b2eefe2b75ac9c5ef567fb5bd8",
@@ -107,6 +117,7 @@
       "8b19fb46185a6698f658e282cabf59ee",
       "8ddcbd0a45aad40a2c637e0aa0a79664",
       "915cb50572ee8060358b09f1eb7c15a5",
+      "95ba46efa398de677d05fd995151b2ed",
       "97545f3dd186d6408836485426f5b413",
       "9c455a2752d0f9cc3fdc345539123959",
       "9c8407ce017807157cfa04984cee1090",
@@ -128,8 +139,10 @@
       "baf5843a755fe89d179751ebae7894d6",
       "bc6264f1b4fce773a1ec867a583df761",
       "c05bdcdf7f8ec88179908a0244ec2f35",
+      "c0f385a4b3b73482acf9d98263d4d061",
       "c130d74a6abd704c0dd30d06c29f8456",
       "c3059f05d30541023d6b55bf10e810b9",
+      "c531d4b7bd669df85abdbd1a30750471",
       "c72ccd216cf563f2b50a6e87a64a59f9",
       "ca7f6bc5b2bf1c43e16b322617e94da8",
       "cc8c6d09d3b93927906c85b64efbfd8d",
@@ -138,6 +151,7 @@
       "dcc2ce5f15cb07824f19641b6284d0e5",
       "e0febbbcd80d20d6dc2addb6500b6128",
       "e3087c182e700768d2ff43d17407c20f",
+      "e776dd054f35d345350b13dd5ed735b9",
       "e8dd9a3df5398502d66a064212a472c3",
       "eb4871ec1bde99112af05180c822a6e6",
       "eb4d0edeb1950563d4fe0059535d54b1",
@@ -150,14 +164,15 @@
       "f87064bd49db2249c3f5575978169956",
       "fabf34e9581de04dd8bfe1b04786a9ad",
       "fadb103cfaf30fef31918b238e281b62",
-      "fbef90a293efe1847acc1fea8b5b94d1"
+      "fbef90a293efe1847acc1fea8b5b94d1",
+      "fcc38c47ddf542bb6f7388d3ebe0e71e"
     ]
   },
   "owasp_llm": {
     "value": "2026 \u2014 published August 4, 2026",
     "health": {
       "consecutive_failures": 0,
-      "last_success": "2026-10-19T16:39:50.375028+00:00",
+      "last_success": "2026-10-26T16:19:56.436634+00:00",
       "last_error": null
     }
   },
@@ -166,6 +181,7 @@
       "/blog/a-framework-for-ethical-ai-at-the-united-nations-2",
       "/blog/ai-incident-tracker-june-2026-update",
       "/blog/ai-risk-profiles-a-standards-proposal-for-pre-deployment-ai-risk-disclosures",
+      "/blog/ai-risks-in-the-actuarial-profession-insights-from-senior-leaders",
       "/blog/ai-trism",
       "/blog/ai-verify-testing-framework",
       "/blog/an-overview-of-catastrophic-ai-risks",
@@ -213,14 +229,14 @@
     ],
     "health": {
       "consecutive_failures": 0,
-      "last_success": "2026-10-19T16:39:51.568310+00:00",
+      "last_success": "2026-10-26T16:19:59.143733+00:00",
       "last_error": null
     }
   },
   "mitre_atlas": {
     "health": {
       "consecutive_failures": 0,
-      "last_success": "2026-10-19T16:39:49.212669+00:00",
+      "last_success": "2026-10-26T16:19:55.348962+00:00",
       "last_error": null
     },
     "seen": [
@@ -239,7 +255,7 @@
   "uk_aisi": {
     "health": {
       "consecutive_failures": 0,
-      "last_success": "2026-10-19T16:39:52.721016+00:00",
+      "last_success": "2026-10-26T16:20:00.162629+00:00",
       "last_error": null
     },
     "seen": [
@@ -247,7 +263,6 @@
       "03c2186e508ee71ae31b61d6a6d1d98b",
       "04188a613b7d478e594ea1afed78baf4",
       "0653a9a51274d991fb91319fc7237d7d",
-      "09767fb3b68aa3fed92ce3312e7d5704",
       "0f2290adac3c4da9db90d12824cf2803",
       "0f62f65b351af31fd9d92673e706ac45",
       "13e0324c66b9d6cc4a81bdf4938b6b4c",
@@ -328,6 +343,7 @@
       "c0439d3b05cc3747a3b01ef199fa6d80",
       "c07dbaa760e586a06bed45a3a042fc38",
       "cf32923eacea72d6900ede89d07986fb",
+      "d1a744382c6d47debf1bca92c2313e09",
       "d83faaf1c5a08e47afe0f99b30725746",
       "e222e589378c21158a06af03390666ea",
       "e252f40ff27f49921e5a3e0944f87f76",
@@ -342,13 +358,14 @@
       "f1c26b8ec4aed7c242d57cca8bfe6ae1",
       "fb17f89ed0e53ca1deb1e65c8b5a8406",
       "fda0c5b72165406c32a808b0911fa1b1",
-      "fe221862fb86ac169f219da66cd105dc"
+      "fe221862fb86ac169f219da66cd105dc",
+      "09767fb3b68aa3fed92ce3312e7d5704"
     ]
   },
   "nist_ai_rmf": {
     "health": {
       "consecutive_failures": 0,
-      "last_success": "2026-10-19T16:39:53.890423+00:00",
+      "last_success": "2026-10-26T16:20:01.269883+00:00",
       "last_error": null
     },
     "seen": [
@@ -399,9 +416,9 @@
   },
   "eu_ai_office": {
     "health": {
-      "consecutive_failures": 0,
+      "consecutive_failures": 1,
       "last_success": "2026-10-19T16:39:55.172830+00:00",
-      "last_error": null
+      "last_error": "fetch failed: HTTP Error 403: Forbidden"
     },
     "seen": [
       "https://digital-strategy.ec.europa.eu/en/events/cybersecurity-and-artificial-intelligence-innovation-impact",
@@ -421,26 +438,30 @@
   "apra": {
     "health": {
       "consecutive_failures": 0,
-      "last_success": "2026-10-19T16:39:56.578802+00:00",
+      "last_success": "2026-10-26T16:20:03.915103+00:00",
       "last_error": null
     },
     "seen": [
       "https://www.apra.gov.au/news-and-publications/apra-and-asic-publish-latest-data-life-insurance-claims-and-disputes-june-3",
       "https://www.apra.gov.au/news-and-publications/apra-and-rbnz-complete-joint-bank-stress-test-promote-trans-tasman-resilience",
       "https://www.apra.gov.au/news-and-publications/apra-annual-reports-archive",
+      "https://www.apra.gov.au/news-and-publications/apra-consults-confidentiality-data-collected-under-srs-6040-rse-licensee",
       "https://www.apra.gov.au/news-and-publications/apra-corporate-plan-2026-27",
+      "https://www.apra.gov.au/news-and-publications/apra-deputy-chair-david-bradburys-speech-2026-fsc-retirement-summit-building",
       "https://www.apra.gov.au/news-and-publications/apra-publishes-2025-26-annual-report",
+      "https://www.apra.gov.au/news-and-publications/apra-publishes-deputy-chair-david-bradburys-speech-fsc-retirement-summit",
       "https://www.apra.gov.au/news-and-publications/apra-releases-latest-points-presence-statistics-authorised-deposit-taking-2026",
-      "https://www.apra.gov.au/news-and-publications/apra-releases-proposals-strengthen-trustee-investment-governance",
       "https://www.apra.gov.au/news-and-publications/apra-submissions",
       "https://www.apra.gov.au/news-and-publications/apra-welcomes-basel-endorsement-australias-bank-leverage-ratio-framework",
-      "https://www.apra.gov.au/news-and-publications/authorised-deposit-taking-institutions-points-presence-statistics",
+      "https://www.apra.gov.au/news-and-publications/consultation-confidentiality-data-collected-under-srs-6040",
       "https://www.apra.gov.au/news-and-publications/events",
       "https://www.apra.gov.au/news-and-publications/life-insurance-claims-and-disputes-statistics",
       "https://www.apra.gov.au/news-and-publications/apra-releases-intermediated-general-insurance-statistics-june-2026",
       "https://www.apra.gov.au/news-and-publications/apra-releases-monthly-authorised-deposit-taking-institution-statistics-56",
+      "https://www.apra.gov.au/news-and-publications/apra-releases-proposals-strengthen-trustee-investment-governance",
       "https://www.apra.gov.au/news-and-publications/apra-releases-quarterly-authorised-deposit-taking-institution-statistics-27",
       "https://www.apra.gov.au/news-and-publications/apra-updates-rpg-7010-economic-and-financial-statistics-collection",
+      "https://www.apra.gov.au/news-and-publications/authorised-deposit-taking-institutions-points-presence-statistics",
       "https://www.apra.gov.au/news-and-publications/intermediated-general-insurance-statistics",
       "https://www.apra.gov.au/news-and-publications/latest-apra-explains-article-getting-balance-right-supporting-productivity",
       "https://www.apra.gov.au/news-and-publications/monthly-authorised-deposit-taking-institution-statistics",
