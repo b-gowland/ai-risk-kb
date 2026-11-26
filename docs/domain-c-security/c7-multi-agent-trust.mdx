@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 
 <div style={{display:'flex', gap:'0.5rem', flexWrap:'wrap', marginBottom:'1.5rem'}}>
   <span className="severity-badge severity-high">High severity</span>
-  <span className="framework-chip">MITRE ATLAS v5.3</span>
+  <span className="framework-chip">MITRE ATLAS AML.T0143 LLM Prompt Propagation</span>
   <span className="framework-chip">OWASP LLM03:2026 Excessive Agency</span>
   <span className="framework-chip">NIST AI 600-1</span>
   <span className="framework-chip">EU AI Act Art. 15</span>
@@ -49,7 +49,7 @@ Multi-agent architectures have compounding security requirements. The critical p
   </TabItem>
   <TabItem value="analyst" label="Security Analyst">
 
-Multi-agent injection chains are your primary concern in orchestrated AI deployments. The attack surface is every inter-agent communication channel. Key controls: (1) zero-trust between agents — each agent validates its inputs regardless of source; (2) permission scoping — downstream agents cannot be directed to use capabilities the upstream agent is not authorised to invoke; (3) chain-level audit logging — trace any action back through the full agent path that produced it; (4) injection propagation testing — red team scenarios where injection succeeds against the most restricted agent and attempt to propagate to the most privileged. MITRE ATLAS v5.3 documents this attack pattern.
+Multi-agent injection chains are your primary concern in orchestrated AI deployments. The attack surface is every inter-agent communication channel. Key controls: (1) zero-trust between agents — each agent validates its inputs regardless of source; (2) permission scoping — downstream agents cannot be directed to use capabilities the upstream agent is not authorised to invoke; (3) chain-level audit logging — trace any action back through the full agent path that produced it; (4) injection propagation testing — red team scenarios where injection succeeds against the most restricted agent and attempt to propagate to the most privileged. MITRE ATLAS added LLM Prompt Propagation (AML.T0143) in October 2026 to cover injected instructions spreading to other agents and systems.
 
   </TabItem>
 </Tabs>
@@ -132,7 +132,7 @@ Implement a correlation ID that is assigned at the start of a multi-agent workfl
 
 Without chain-level logging, a successful multi-agent injection attack may produce no single log entry that reveals the attack. The logs look like a sequence of individually legitimate actions. The correlation ID makes the attack pattern visible.
 
-**Jurisdiction notes:** EU — EU AI Act Art. 12 logging requirements for high-risk AI | AU — APRA CPS 234 | US — NIST CSF DETECT.CM
+**Jurisdiction notes:** EU — EU AI Act Art. 12 logging requirements for high-risk AI | AU — APRA CPS 234 | US — NIST CSF 2.0 DE.CM (Continuous Monitoring)
 
 ---
 
@@ -160,7 +160,7 @@ Test at a minimum: inject at the most restricted agent and attempt to reach the 
 
 ## Incident examples
 
-**Multi-agent injection chain propagation (ATLAS v5.3, 2025):** MITRE ATLAS v5.3 documented indirect prompt injection in agentic pipelines as a named technique — where injection succeeds against one agent and propagates through inter-agent trust relationships to cause actions in downstream agents. The documented concern is that each individual agent's logs may appear normal while the chain-level action is malicious. Source: MITRE ATLAS v5.3.0 (2025).
+**Multi-agent injection chain propagation (ATLAS v2026.10, October 2026):** MITRE ATLAS v2026.10 added LLM Prompt Propagation (AML.T0143): malicious instructions already inside an AI environment are passed on to other agents, shared documents, memory or retrieval stores, where they shape later AI activity. The first step is indirect prompt injection (AML.T0051.001), which ATLAS has listed since 2023. The documented concern is that each individual agent's logs may appear normal while the chain-level action is malicious. Source: MITRE ATLAS v2026.10 (October 2026).
 
 **Research demonstration: LLM agent chain hijacking (2024):** Security researchers demonstrated that in multi-agent pipelines where agents share context without validation, a single injection in an early-stage document processing agent could direct a later-stage email-sending agent to forward processed data to an attacker-controlled address. The email-sending agent's logs showed a legitimate email send — no individual agent's logs revealed the attack. Source: agentic security research documentation, 2024.
 
