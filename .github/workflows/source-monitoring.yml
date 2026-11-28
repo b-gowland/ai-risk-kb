@@ -1,9 +1,9 @@
 name: Weekly — Source monitoring
 
 on:
-  schedule:
-    # Every Monday at 10:00 UTC
-    - cron: '0 10 * * 1'
+  # Schedule removed 28 Nov 2026: the library is being retired (owner
+  # decision; see ai-risk-platform DECISIONS). It called the paid Claude API.
+  # Manual runs still work.
   workflow_dispatch:
 
 # Explicit minimum permissions

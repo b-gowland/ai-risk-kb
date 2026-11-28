@@ -1,9 +1,8 @@
 name: Weekly — Gap check
 
 on:
-  schedule:
-    # Every Sunday at 02:00 UTC
-    - cron: '0 2 * * 0'
+  # Schedule removed 28 Nov 2026: the library is being retired (owner
+  # decision). Manual runs still work.
   workflow_dispatch:
 
 # Explicit minimum permissions
