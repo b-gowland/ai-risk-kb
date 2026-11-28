@@ -1,5 +1,7 @@
 # AI Risk Practice Library
 
+> **Retired on 28 November 2026.** The library is no longer maintained and no longer online. Every library.airiskpractice.org address now redirects: the seven entries a practice scenario was built on go to that scenario at [app.airiskpractice.org](https://app.airiskpractice.org/), and every other entry goes to the [MIT AI Risk Repository](https://airisk.mit.edu/). The content stays here, archived, under its licence. It is dated November 2026 and may be out of date.
+
 A free, open-source reference for understanding, assessing, and controlling AI risk — from board level to technical implementation.
 
 **Live site:** https://library.airiskpractice.org/

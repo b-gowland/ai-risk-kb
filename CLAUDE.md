@@ -1,5 +1,8 @@
 # AI Risk Practice Library: notes for Claude
 
+**Retired on 28 Nov 2026 and archived.** The site only redirects (`retired/`).
+Don't add content; see the README.
+
 Free, open-source reference library on AI risk (library.airiskpractice.org):
 32 risk entries across 7 domains, each in four layers from board summary to
 technical implementation, mapped to NIST AI RMF, the EU AI Act, OWASP and
