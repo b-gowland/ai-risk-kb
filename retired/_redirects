@@ -1,0 +1,15 @@
+# The reference library was retired on 28 Nov 2026 (owner decision; see the
+# README). Every address redirects permanently:
+# - the 7 entries a practice scenario was built on go to that scenario;
+# - every other entry goes to the MIT AI Risk Repository;
+# - everything else goes to the practice scenarios.
+# Cloudflare Pages applies the first rule that matches.
+/docs/domain-c-security/c4-deepfakes*            https://app.airiskpractice.org/scenarios/home-voice-clone/       301
+/docs/domain-a-technical/a1-hallucination*       https://app.airiskpractice.org/scenarios/home-ai-answer/         301
+/docs/domain-e-fairness/e1-algorithmic-bias*     https://app.airiskpractice.org/scenarios/home-algorithm-said-no/ 301
+/docs/domain-d-data/d2-privacy*                  https://app.airiskpractice.org/scenarios/d2-privacy/             301
+/docs/domain-d-data/d3-intellectual-property*    https://app.airiskpractice.org/scenarios/d3-ip/                  301
+/docs/domain-f-deployment/f1-automation-bias*    https://app.airiskpractice.org/scenarios/f1-automation-bias/     301
+/docs/domain-f-deployment/f2-shadow-ai*          https://app.airiskpractice.org/scenarios/f2-shadow-ai/           301
+/docs/domain-*                                   https://airisk.mit.edu/              301
+/*                                               https://app.airiskpractice.org/                                  301

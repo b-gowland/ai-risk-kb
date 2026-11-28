@@ -4,6 +4,11 @@ name: Check and deploy
 # Cloudflare Pages (project ai-risk-library), which serves
 # library.airiskpractice.org since the move off GitHub Pages on 17 Nov 2026.
 #
+# Retired 28 Nov 2026: the deploy publishes only retired/ (_redirects,
+# _headers and a fallback page), so every library address redirects to the
+# practice scenarios or the MIT AI Risk Repository. The Docusaurus build is
+# kept as a check only and is no longer published.
+#
 # Deploying needs CLOUDFLARE_API_TOKEN (a token with only "Account ·
 # Cloudflare Pages · Edit") and CLOUDFLARE_ACCOUNT_ID, stored as secrets of
 # the "production" environment, which is limited to the main branch. Until
@@ -83,27 +88,10 @@ jobs:
       - name: Checkout
         if: steps.creds.outputs.ok == 'true'
         uses: actions/checkout@v7
-        with:
-          fetch-depth: 0
-
-      - name: Setup Node.js
-        if: steps.creds.outputs.ok == 'true'
-        uses: actions/setup-node@v7
-        with:
-          node-version: 24
-          cache: npm
-
-      - name: Install dependencies
-        if: steps.creds.outputs.ok == 'true'
-        run: npm ci
-
-      - name: Build site
-        if: steps.creds.outputs.ok == 'true'
-        run: npm run build
 
       - name: Publish to Cloudflare Pages
         if: steps.creds.outputs.ok == 'true'
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        run: npx --yes wrangler@4.163.0 pages deploy build --project-name=ai-risk-library --branch=main --commit-dirty=true
+        run: npx --yes wrangler@4.163.0 pages deploy retired --project-name=ai-risk-library --branch=main --commit-dirty=true
