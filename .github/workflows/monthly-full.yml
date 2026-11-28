@@ -1,9 +1,8 @@
 name: Monthly — Full maintenance run
 
 on:
-  schedule:
-    # 1st of every month at 03:00 UTC
-    - cron: '0 3 1 * *'
+  # Schedule removed 28 Nov 2026: the library is being retired (owner
+  # decision). It called the paid Claude API. Manual runs still work.
   workflow_dispatch:
     inputs:
       entry:
